@@ -43,11 +43,11 @@ Data flow（数据流） Scrapy中的数据流由引擎控制，其过程如下:
 9.管道对item进行相应的处理。
 10.重复第二步，直到调度器中没有更多的request，此时引擎关闭该网站。
 安装 1.下载安装最新版的 Python3
-2. 使用pip指令安装Scrapy
+2.使用pip指令安装Scrapy
  pip3 install scrapy  新建项目 首先进入你的代码存储目录，在命令行中输入以下命令：
 scrapy startproject scrapy_project  startproject
 新建成功后，可以看到在当前目录下新建了一个名为scrapy_project的Scrapy项目，其项目结构如下：
-scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.</description>
+scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.</description>
     </item>
     
   </channel>

@@ -13,7 +13,19 @@
   </url>
   
   <url>
+    <loc>http://zintrulcre.top/tags/leetcode/</loc>
+    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://zintrulcre.top/post/</loc>
+    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.top/tags/scrapy/</loc>
     <lastmod>2019-01-03T11:25:15+11:00</lastmod>
     <priority>0</priority>
   </url>
@@ -24,7 +36,26 @@
   </url>
   
   <url>
+    <loc>http://zintrulcre.top/categories/spider/</loc>
+    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.top/tags/spider/</loc>
+    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.top/tags/splash/</loc>
+    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://zintrulcre.top/tags/</loc>
+    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
     <priority>0</priority>
   </url>
   

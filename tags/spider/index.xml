@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ZintrulCre&#39;s Blog</title>
-    <link>http://zintrulcre.top/</link>
-    <description>Recent content on ZintrulCre&#39;s Blog</description>
+    <title>Spider on ZintrulCre&#39;s Blog</title>
+    <link>http://zintrulcre.top/tags/spider/</link>
+    <description>Recent content in Spider on ZintrulCre&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; Copyright 2019 ZintrulCre</copyright>
     <lastBuildDate>Thu, 03 Jan 2019 11:25:15 +1100</lastBuildDate>
     
-	<atom:link href="http://zintrulcre.top/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://zintrulcre.top/tags/spider/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

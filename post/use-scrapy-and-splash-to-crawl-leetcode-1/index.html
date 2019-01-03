@@ -31,11 +31,11 @@ Data flow（数据流） Scrapy中的数据流由引擎控制，其过程如下:
 9.管道对item进行相应的处理。
 10.重复第二步，直到调度器中没有更多的request，此时引擎关闭该网站。
 安装 1.下载安装最新版的 Python3
-2. 使用pip指令安装Scrapy
+2.使用pip指令安装Scrapy
  pip3 install scrapy  新建项目 首先进入你的代码存储目录，在命令行中输入以下命令：
 scrapy startproject scrapy_project  startproject
 新建成功后，可以看到在当前目录下新建了一个名为scrapy_project的Scrapy项目，其项目结构如下：
-scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.">
+scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.">
   <meta property="og:description" content="简介 Scrapy官方文档对Scrapy的介绍如下：
 Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
 其最初是为了页面抓取（更确切来说, 网络抓取）所设计的，也可以应用在获取API所返回的数据（例如 Amazon Associates Web Services ）或者通用的网络爬虫。
@@ -61,11 +61,11 @@ Data flow（数据流） Scrapy中的数据流由引擎控制，其过程如下:
 9.管道对item进行相应的处理。
 10.重复第二步，直到调度器中没有更多的request，此时引擎关闭该网站。
 安装 1.下载安装最新版的 Python3
-2. 使用pip指令安装Scrapy
+2.使用pip指令安装Scrapy
  pip3 install scrapy  新建项目 首先进入你的代码存储目录，在命令行中输入以下命令：
 scrapy startproject scrapy_project  startproject
 新建成功后，可以看到在当前目录下新建了一个名为scrapy_project的Scrapy项目，其项目结构如下：
-scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.">
+scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.">
   <meta name="twitter:description" content="简介 Scrapy官方文档对Scrapy的介绍如下：
 Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
 其最初是为了页面抓取（更确切来说, 网络抓取）所设计的，也可以应用在获取API所返回的数据（例如 Amazon Associates Web Services ）或者通用的网络爬虫。
@@ -110,6 +110,36 @@ Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应�
       <hr class="article-title-bottom">
       <ul class="article-meta">
         <li class="article-meta-date"><time>January 3, 2019</time></li>
+        <li class="article-meta-categories">
+          <a href="/categories/spider/">
+            <i class="fas fa-folder"></i>
+            Spider
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/tags/spider/">
+            <i class="fas fa-tag"></i>
+            Spider
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/tags/scrapy/">
+            <i class="fas fa-tag"></i>
+            Scrapy
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/tags/splash/">
+            <i class="fas fa-tag"></i>
+            Splash
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/tags/leetcode/">
+            <i class="fas fa-tag"></i>
+            LeetCode
+          </a>&nbsp;
+        </li>
       </ul>
       
       
@@ -176,7 +206,7 @@ Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应�
 
 <p>1.下载安装最新版的 <a href="https://www.python.org/downloads/">Python3</a></p>
 
-<p>2. 使用pip指令安装Scrapy</p>
+<p>2.使用pip指令安装Scrapy</p>
 
 <pre><code>    pip3 install scrapy
 </code></pre>
