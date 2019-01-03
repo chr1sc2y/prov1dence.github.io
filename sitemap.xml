@@ -3,7 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://zintrulcre.top/post/use-scrapy-and-splash-to-crawl-leetcode-1/</loc>
+    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zintrulcre.top/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.top/post/</loc>
+    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -19,6 +30,7 @@
   
   <url>
     <loc>http://zintrulcre.top/</loc>
+    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
     <priority>0</priority>
   </url>
   
