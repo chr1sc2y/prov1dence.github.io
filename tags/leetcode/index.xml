@@ -19,6 +19,7 @@
       
       <guid>https://zintrulcre.top/posts/use-scrapy-and-splash-to-crawl-leetcode-1/</guid>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <description>简介 Scrapy官方文档对Scrapy的介绍如下：
 Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
 其最初是为了页面抓取（更确切来说, 网络抓取）所设计的，也可以应用在获取API所返回的数据（例如 Amazon Associates Web Services ）或者通用的网络爬虫。
@@ -50,6 +51,8 @@ scrapy startproject scrapy_project  startproject
 新建成功后，可以看到在当前目录下新建了一个名为scrapy_project的Scrapy项目，其项目结构如下：
 scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.</description>
 =======
+=======
+>>>>>>> parent of 1e52dd8... update
       <description>简介 Scrapy官方文档对Scrapy的介绍如下： Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘</description>
 >>>>>>> parent of 1e52dd8... update
     </item>
