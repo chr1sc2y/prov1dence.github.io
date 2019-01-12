@@ -3,82 +3,82 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zintrulcre.top/post/run-jupyter-notebook-on-gcp/</loc>
+    <loc>http://zintrulcre.top/post/run-jupyter-notebook-on-gcp/</loc>
     <lastmod>2019-01-12T17:03:12+11:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zintrulcre.top/post/use-scrapy-and-splash-to-crawl-leetcode-1/</loc>
+    <loc>http://zintrulcre.top/post/use-scrapy-and-splash-to-crawl-leetcode-1/</loc>
     <lastmod>2019-01-03T11:25:15+11:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zintrulcre.top/category/</loc>
+    <loc>http://zintrulcre.top/category/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zintrulcre.top/tags/cloud/</loc>
+    <loc>http://zintrulcre.top/tags/cloud/</loc>
     <lastmod>2019-01-12T17:03:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zintrulcre.top/tags/gcp/</loc>
+    <loc>http://zintrulcre.top/tags/gcp/</loc>
     <lastmod>2019-01-12T17:03:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zintrulcre.top/tags/jupyter-notebook/</loc>
+    <loc>http://zintrulcre.top/tags/jupyter-notebook/</loc>
     <lastmod>2019-01-12T17:03:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zintrulcre.top/tags/leetcode/</loc>
-    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zintrulcre.top/post/</loc>
-    <lastmod>2019-01-12T17:03:12+11:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zintrulcre.top/tags/scrapy/</loc>
+    <loc>http://zintrulcre.top/tags/leetcode/</loc>
     <lastmod>2019-01-03T11:25:15+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zintrulcre.top/tags/server/</loc>
+    <loc>http://zintrulcre.top/post/</loc>
     <lastmod>2019-01-12T17:03:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zintrulcre.top/tags/spider/</loc>
+    <loc>http://zintrulcre.top/tags/scrapy/</loc>
     <lastmod>2019-01-03T11:25:15+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zintrulcre.top/tags/splash/</loc>
-    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zintrulcre.top/tags/</loc>
+    <loc>http://zintrulcre.top/tags/server/</loc>
     <lastmod>2019-01-12T17:03:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zintrulcre.top/</loc>
+    <loc>http://zintrulcre.top/tags/spider/</loc>
+    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.top/tags/splash/</loc>
+    <lastmod>2019-01-03T11:25:15+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.top/tags/</loc>
+    <lastmod>2019-01-12T17:03:12+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.top/</loc>
     <lastmod>2019-01-12T17:03:12+11:00</lastmod>
     <priority>0</priority>
   </url>
