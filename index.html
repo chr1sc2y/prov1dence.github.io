@@ -42,6 +42,56 @@
   <div class="main" role="main">
     <section class="list home-list">
       <article class="article">
+        <a href="/post/run-jupyter-notebook-on-gcp/" class="article-titles">
+          <h2 class="article-title">在Google Cloud Platform上运行Jupyter Notebook</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>January 12, 2019</time></li>
+          <li class="article-meta-categories">
+            <a href="/categories/cloud/">
+              <i class="fas fa-folder"></i>
+              Cloud
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/gcp/">
+              <i class="fas fa-tag"></i>
+              GCP
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/jupyter-notebook/">
+              <i class="fas fa-tag"></i>
+              Jupyter Notebook
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/cloud/">
+              <i class="fas fa-tag"></i>
+              Cloud
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/server/">
+              <i class="fas fa-tag"></i>
+              Server
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。
+服务器搭建 创建账号 首先在Google Cloud Platform上创建一个账号。
+创建新项目 点击左上角&rdquo;Google Cloud Platform&rdquo;右边的三个点，点击&rdquo;NEW PROJECT&rdquo;创建新项目。
+创建虚拟机 进入刚才创建的项目，从左侧边栏点击 Compute Engine -&gt; VM instances 进入虚拟机页面。点击Create创建一个新的虚拟机实例（VM instance）
+)
+根据需求填写和选择 Name, Region, Zone, Machine Type和Boot Disk。在 Firewall 选项中选中 Allow HTTP traffic 和 Allow HTTPS traffic, 在下方的 Disks 选项卡中取消勾选 Delete boot disk when instance is deleted。最后点击 Create，虚拟机实例就创建好了。
+设置静态IP 默认情况下，外网IP是动态变化的，为了方便访问服务器，我们可以将其设置为静态的。
+        </div>
+        <div class="article-readmore"><a href="/post/run-jupyter-notebook-on-gcp/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+      <article class="article">
         <a href="/post/use-scrapy-and-splash-to-crawl-leetcode-1/" class="article-titles">
           <h2 class="article-title">使用Scrapy和Splash爬取LeetCode（1）：Scrapy框架入门</h2>
           
