@@ -8,42 +8,24 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="在Google Cloud Platform上运行Jupyter Notebook">
-<meta itemprop="description" content="简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。
-服务器搭建 创建账号 首先在Google Cloud Platform上创建一个账号。
-创建新项目 点击左上角&rdquo;Google Cloud Platform&rdquo;右边的三个点，点击&rdquo;NEW PROJECT&rdquo;创建新项目。
-创建虚拟机 进入刚才创建的项目，从左侧边栏点击 Compute Engine -&gt; VM instances 进入虚拟机页面。点击Create创建一个新的虚拟机实例（VM instance）
-)
-根据需求填写和选择 Name, Region, Zone, Machine Type和Boot Disk。在 Firewall 选项中选中 Allow HTTP traffic 和 Allow HTTPS traffic, 在下方的 Disks 选项卡中取消勾选 Delete boot disk when instance is deleted。最后点击 Create，虚拟机实例就创建好了。
-设置静态IP 默认情况下，外网IP是动态变化的，为了方便访问服务器，我们可以将其设置为静态的。">
+<meta itemprop="description" content="简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jup">
 
 
 <meta itemprop="datePublished" content="2019-01-12T17:03:12&#43;11:00" />
 <meta itemprop="dateModified" content="2019-01-12T17:03:12&#43;11:00" />
-<meta itemprop="wordCount" content="211">
+<meta itemprop="wordCount" content="1084">
 
 
 
 <meta itemprop="keywords" content="GCP,Jupyter Notebook,Cloud,Server," />
 <meta property="og:title" content="在Google Cloud Platform上运行Jupyter Notebook" />
-<meta property="og:description" content="简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。
-服务器搭建 创建账号 首先在Google Cloud Platform上创建一个账号。
-创建新项目 点击左上角&rdquo;Google Cloud Platform&rdquo;右边的三个点，点击&rdquo;NEW PROJECT&rdquo;创建新项目。
-创建虚拟机 进入刚才创建的项目，从左侧边栏点击 Compute Engine -&gt; VM instances 进入虚拟机页面。点击Create创建一个新的虚拟机实例（VM instance）
-)
-根据需求填写和选择 Name, Region, Zone, Machine Type和Boot Disk。在 Firewall 选项中选中 Allow HTTP traffic 和 Allow HTTPS traffic, 在下方的 Disks 选项卡中取消勾选 Delete boot disk when instance is deleted。最后点击 Create，虚拟机实例就创建好了。
-设置静态IP 默认情况下，外网IP是动态变化的，为了方便访问服务器，我们可以将其设置为静态的。" />
+<meta property="og:description" content="简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jup" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zintrulcre.top/posts/run-jupyter-notebook-on-gcp/" /><meta property="article:published_time" content="2019-01-12T17:03:12&#43;11:00"/>
+<meta property="og:url" content="https://zintrulcre.top/post/run-jupyter-notebook-on-gcp/" /><meta property="article:published_time" content="2019-01-12T17:03:12&#43;11:00"/>
 <meta property="article:modified_time" content="2019-01-12T17:03:12&#43;11:00"/>
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="在Google Cloud Platform上运行Jupyter Notebook"/>
-<meta name="twitter:description" content="简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。
-服务器搭建 创建账号 首先在Google Cloud Platform上创建一个账号。
-创建新项目 点击左上角&rdquo;Google Cloud Platform&rdquo;右边的三个点，点击&rdquo;NEW PROJECT&rdquo;创建新项目。
-创建虚拟机 进入刚才创建的项目，从左侧边栏点击 Compute Engine -&gt; VM instances 进入虚拟机页面。点击Create创建一个新的虚拟机实例（VM instance）
-)
-根据需求填写和选择 Name, Region, Zone, Machine Type和Boot Disk。在 Firewall 选项中选中 Allow HTTP traffic 和 Allow HTTPS traffic, 在下方的 Disks 选项卡中取消勾选 Delete boot disk when instance is deleted。最后点击 Create，虚拟机实例就创建好了。
-设置静态IP 默认情况下，外网IP是动态变化的，为了方便访问服务器，我们可以将其设置为静态的。"/>
+<meta name="twitter:description" content="简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jup"/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -82,14 +64,10 @@
 	</div>
 
 
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Jan 12, 2019</span></div>
-				<h1>在Google Cloud Platform上运行Jupyter Notebook</h1>
-			</header>
-			<div class="content">
-				
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>在Google Cloud Platform上运行Jupyter Notebook</h1>
+		<div class="content">
+			
 
 <h2 id="简介">简介</h2>
 
@@ -192,35 +170,11 @@ c.NotebookApp.port = &lt;Port Number&gt;
 
 <p><a href="https://towardsdatascience.com/running-jupyter-notebook-in-google-cloud-platform-in-15-min-61e16da34d52" target="_blank">Running Jupyter Notebook on Google Cloud Platform in 15 min</a></p>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://zintrulcre.top/tags/gcp">GCP</a></span><span class="tag"><a href="https://zintrulcre.top/tags/jupyter-notebook">Jupyter Notebook</a></span><span class="tag"><a href="https://zintrulcre.top/tags/cloud">Cloud</a></span><span class="tag"><a href="https://zintrulcre.top/tags/server">Server</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>211 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-01-12 17:03</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="prev-post" href="https://zintrulcre.top/posts/use-scrapy-and-splash-to-crawl-leetcode-1/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>使用Scrapy和Splash爬取LeetCode（1）：Scrapy框架入门</span>
-			</a>
 		</div>
-		<div id="comments" class="thin">
-</div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-<<<<<<< HEAD
-<<<<<<< HEAD
-		<p>&copy; 2019 <a href="https://zintrulcre.top">Zhengyu Chen</a></p>
-=======
 		<p>&copy; 2019 <a href="https://zintrulcre.top">Zhengyu Chen</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
->>>>>>> parent of 1e52dd8... update
-=======
-		<p>&copy; 2019 <a href="https://zintrulcre.top">Zhengyu Chen</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
->>>>>>> parent of 1e52dd8... update
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://zintrulcre.top/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

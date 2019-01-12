@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Scrapy on ZintrulCre&#39;s Blog</title>
-    <link>https://zintrulcre.top/tags/scrapy/</link>
-    <description>Recent content in Scrapy on ZintrulCre&#39;s Blog</description>
+    <title>Posts on ZintrulCre&#39;s Blog</title>
+    <link>https://zintrulcre.top/post/</link>
+    <description>Recent content in Posts on ZintrulCre&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 03 Jan 2019 11:25:15 +1100</lastBuildDate>
+    <lastBuildDate>Sat, 12 Jan 2019 17:03:12 +1100</lastBuildDate>
     
-	<atom:link href="https://zintrulcre.top/tags/scrapy/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zintrulcre.top/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>在Google Cloud Platform上运行Jupyter Notebook</title>
+      <link>https://zintrulcre.top/post/run-jupyter-notebook-on-gcp/</link>
+      <pubDate>Sat, 12 Jan 2019 17:03:12 +1100</pubDate>
+      
+      <guid>https://zintrulcre.top/post/run-jupyter-notebook-on-gcp/</guid>
+      <description>简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jup</description>
+    </item>
     
     <item>
       <title>使用Scrapy和Splash爬取LeetCode（1）：Scrapy框架入门</title>
