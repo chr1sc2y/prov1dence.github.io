@@ -2,85 +2,85 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on ZintrulCre&#39;s Blog</title>
-    <link>http://zintrulcre.top/tags/</link>
+    <link>https://zintrulcre.top/tags/</link>
     <description>Recent content in Tags on ZintrulCre&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; Copyright 2019 ZintrulCre</copyright>
+    <copyright>Copyright 2019 ZintrulCre</copyright>
     <lastBuildDate>Sat, 12 Jan 2019 17:03:12 +1100</lastBuildDate>
     
-	<atom:link href="http://zintrulcre.top/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zintrulcre.top/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Cloud</title>
-      <link>http://zintrulcre.top/tags/cloud/</link>
+      <link>https://zintrulcre.top/tags/cloud/</link>
       <pubDate>Sat, 12 Jan 2019 17:03:12 +1100</pubDate>
       
-      <guid>http://zintrulcre.top/tags/cloud/</guid>
+      <guid>https://zintrulcre.top/tags/cloud/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Gcp</title>
-      <link>http://zintrulcre.top/tags/gcp/</link>
+      <link>https://zintrulcre.top/tags/gcp/</link>
       <pubDate>Sat, 12 Jan 2019 17:03:12 +1100</pubDate>
       
-      <guid>http://zintrulcre.top/tags/gcp/</guid>
+      <guid>https://zintrulcre.top/tags/gcp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jupyter Notebook</title>
-      <link>http://zintrulcre.top/tags/jupyter-notebook/</link>
+      <link>https://zintrulcre.top/tags/jupyter-notebook/</link>
       <pubDate>Sat, 12 Jan 2019 17:03:12 +1100</pubDate>
       
-      <guid>http://zintrulcre.top/tags/jupyter-notebook/</guid>
+      <guid>https://zintrulcre.top/tags/jupyter-notebook/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Leetcode</title>
-      <link>http://zintrulcre.top/tags/leetcode/</link>
+      <link>https://zintrulcre.top/tags/leetcode/</link>
       <pubDate>Thu, 03 Jan 2019 11:25:15 +1100</pubDate>
       
-      <guid>http://zintrulcre.top/tags/leetcode/</guid>
+      <guid>https://zintrulcre.top/tags/leetcode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Scrapy</title>
-      <link>http://zintrulcre.top/tags/scrapy/</link>
+      <link>https://zintrulcre.top/tags/scrapy/</link>
       <pubDate>Thu, 03 Jan 2019 11:25:15 +1100</pubDate>
       
-      <guid>http://zintrulcre.top/tags/scrapy/</guid>
+      <guid>https://zintrulcre.top/tags/scrapy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Server</title>
-      <link>http://zintrulcre.top/tags/server/</link>
+      <link>https://zintrulcre.top/tags/server/</link>
       <pubDate>Sat, 12 Jan 2019 17:03:12 +1100</pubDate>
       
-      <guid>http://zintrulcre.top/tags/server/</guid>
+      <guid>https://zintrulcre.top/tags/server/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Spider</title>
-      <link>http://zintrulcre.top/tags/spider/</link>
+      <link>https://zintrulcre.top/tags/spider/</link>
       <pubDate>Thu, 03 Jan 2019 11:25:15 +1100</pubDate>
       
-      <guid>http://zintrulcre.top/tags/spider/</guid>
+      <guid>https://zintrulcre.top/tags/spider/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Splash</title>
-      <link>http://zintrulcre.top/tags/splash/</link>
+      <link>https://zintrulcre.top/tags/splash/</link>
       <pubDate>Thu, 03 Jan 2019 11:25:15 +1100</pubDate>
       
-      <guid>http://zintrulcre.top/tags/splash/</guid>
+      <guid>https://zintrulcre.top/tags/splash/</guid>
       <description></description>
     </item>
     

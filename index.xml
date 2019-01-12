@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ZintrulCre&#39;s Blog</title>
-    <link>http://zintrulcre.top/</link>
+    <link>https://zintrulcre.top/</link>
     <description>Recent content on ZintrulCre&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; Copyright 2019 ZintrulCre</copyright>
+    <copyright>Copyright 2019 ZintrulCre</copyright>
     <lastBuildDate>Sat, 12 Jan 2019 17:03:12 +1100</lastBuildDate>
     
-	<atom:link href="http://zintrulcre.top/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zintrulcre.top/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>在Google Cloud Platform上运行Jupyter Notebook</title>
-      <link>http://zintrulcre.top/post/run-jupyter-notebook-on-gcp/</link>
+      <link>https://zintrulcre.top/posts/run-jupyter-notebook-on-gcp/</link>
       <pubDate>Sat, 12 Jan 2019 17:03:12 +1100</pubDate>
       
-      <guid>http://zintrulcre.top/post/run-jupyter-notebook-on-gcp/</guid>
+      <guid>https://zintrulcre.top/posts/run-jupyter-notebook-on-gcp/</guid>
       <description>简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。
 服务器搭建 创建账号 首先在Google Cloud Platform上创建一个账号。
 创建新项目 点击左上角&amp;rdquo;Google Cloud Platform&amp;rdquo;右边的三个点，点击&amp;rdquo;NEW PROJECT&amp;rdquo;创建新项目。
@@ -29,10 +29,10 @@
     
     <item>
       <title>使用Scrapy和Splash爬取LeetCode（1）：Scrapy框架入门</title>
-      <link>http://zintrulcre.top/post/use-scrapy-and-splash-to-crawl-leetcode-1/</link>
+      <link>https://zintrulcre.top/posts/use-scrapy-and-splash-to-crawl-leetcode-1/</link>
       <pubDate>Thu, 03 Jan 2019 11:25:15 +1100</pubDate>
       
-      <guid>http://zintrulcre.top/post/use-scrapy-and-splash-to-crawl-leetcode-1/</guid>
+      <guid>https://zintrulcre.top/posts/use-scrapy-and-splash-to-crawl-leetcode-1/</guid>
       <description>简介 Scrapy官方文档对Scrapy的介绍如下：
 Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
 其最初是为了页面抓取（更确切来说, 网络抓取）所设计的，也可以应用在获取API所返回的数据（例如 Amazon Associates Web Services ）或者通用的网络爬虫。
