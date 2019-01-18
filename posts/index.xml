@@ -83,7 +83,7 @@ class QuestionSetSpider(scrapy.Spider):
 
 <h3 id="实现">实现</h3>
 
-<p>为了题目列表的json对象，我们需要先重写start_requests函数。</p>
+<p>为了获取题目列表的json对象，我们需要先重写start_requests函数。</p>
 
 <pre><code>def start_requests(self):
         self.Login() # 用户登录，后续会用到
