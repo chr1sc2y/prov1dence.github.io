@@ -33,9 +33,9 @@
 
 <p>点击左上角&rdquo;Google Cloud Platform&rdquo;右边的三个点，点击&rdquo;NEW PROJECT&rdquo;创建新项目。</p>
 
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/2.png" alt="2" /></p>
-
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/1.png" alt="1" /></p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/2.png" alt="2" /></p>
 
 <h3 id="创建虚拟机">创建虚拟机</h3>
 
@@ -123,11 +123,11 @@ c.NotebookApp.port = &lt;Port Number&gt;
 		</item>
 		
 		<item>
-			<title>使用Scrapy和Splash爬取LeetCode（1）：Scrapy框架入门</title>
-			<link>http://zintrulcre.vip/posts/use-scrapy-and-splash-to-crawl-leetcode-1/</link>
+			<title>使用Scrapy爬取LeetCode（1）：Scrapy框架入门</title>
+			<link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-1/</link>
 			<pubDate>Thu, 03 Jan 2019 11:25:15 +1100</pubDate>
 			
-			<guid>http://zintrulcre.vip/posts/use-scrapy-and-splash-to-crawl-leetcode-1/</guid>
+			<guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-1/</guid>
 			<description>简介 Scrapy官方文档对Scrapy的介绍如下： Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘</description>
 			<content type="html"><![CDATA[
 
@@ -191,23 +191,23 @@ c.NotebookApp.port = &lt;Port Number&gt;
 
 <h2 id="安装">安装</h2>
 
-<p>1.下载安装最新版的 <a href="https://www.python.org/downloads/" target="_blank">Python3</a></p>
+<p>1.下载安装最新版的<a href="https://www.python.org/downloads/" target="_blank">Python3</a></p>
 
 <p>2.使用pip指令安装Scrapy</p>
 
-<pre><code>    pip3 install scrapy
+<pre><code>pip3 install scrapy
 </code></pre>
 
-<h2 id="新建项目">新建项目</h2>
+<h2 id="创建项目">创建项目</h2>
 
 <p>首先进入你的代码存储目录，在命令行中输入以下命令：</p>
 
-<pre><code>scrapy startproject scrapy_project
+<pre><code>scrapy startproject LeetCode_Crawler
 </code></pre>
 
-<p>startproject</p>
+<p>注意项目名称是不能包含连字符 &lsquo;-&rsquo; 的</p>
 
-<p>新建成功后，可以看到在当前目录下新建了一个名为scrapy_project的Scrapy项目，其项目结构如下：</p>
+<p>新建成功后，可以看到在当前目录下新建了一个名为LeetCode_Crawler的Scrapy项目，进入该目录，其项目结构如下：</p>
 
 <pre><code>scrapy.cfg              #该项目的配置文件
 scrapy_project          #该项目的Python模块
@@ -222,15 +222,7 @@ scrapy_project          #该项目的Python模块
         __pycache__
 </code></pre>
 
-<p>进入该项目文件夹，新建一个爬虫：</p>
-
-<pre><code>cd scrapy_project
-scrapy genspider leetcode_spider https://leetcode.com/
-</code></pre>
-
-<p>其中leetcode_spider是爬虫的名字，<a href="https://leetcode.com/" target="_blank">https://leetcode.com/</a> 是我们打算爬取的网站url。</p>
-
-<p>至此Scrapy项目的新建就完成了。</p>
+<p>至此Scrapy项目的创建就完成了。</p>
 
 <h2 id="参考资料">参考资料</h2>
 

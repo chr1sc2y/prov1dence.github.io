@@ -22,11 +22,11 @@
     </item>
     
     <item>
-      <title>使用Scrapy和Splash爬取LeetCode（1）：Scrapy框架入门</title>
-      <link>http://zintrulcre.vip/posts/use-scrapy-and-splash-to-crawl-leetcode-1/</link>
+      <title>使用Scrapy爬取LeetCode（1）：Scrapy框架入门</title>
+      <link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-1/</link>
       <pubDate>Thu, 03 Jan 2019 11:25:15 +1100</pubDate>
       
-      <guid>http://zintrulcre.vip/posts/use-scrapy-and-splash-to-crawl-leetcode-1/</guid>
+      <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-1/</guid>
       <description>简介 Scrapy官方文档对Scrapy的介绍如下： Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘</description>
     </item>
     
