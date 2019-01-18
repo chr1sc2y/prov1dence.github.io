@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Posts on ZintrulCre&#39;s Blog</title>
+		<title>Posts on ZintrulCre</title>
 		<link>http://zintrulcre.vip/posts/</link>
-		<description>Recent content in Posts on ZintrulCre&#39;s Blog</description>
+		<description>Recent content in Posts on ZintrulCre</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
@@ -83,7 +83,7 @@ class QuestionSetSpider(scrapy.Spider):
 
 <h3 id="实现">实现</h3>
 
-<p>为了获取这个json对象，我们需要先重写start_requests函数。</p>
+<p>为了题目列表的json对象，我们需要先重写start_requests函数。</p>
 
 <pre><code>def start_requests(self):
         self.Login() # 用户登录，后续会用到
@@ -234,13 +234,13 @@ class QuestionDataItem(scrapy.Item):
 
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/7.png" alt="7" /></p>
 
-<p>根据需求填写 Name，将 Targets 勾选为 All instances in the network，在 Source IP ranges 中填写 0.0.0.0/0，在 Protocols and ports 中勾选tcp，填写一个端口范围，用于之后访问 Jupyter Notebook。</p>
+<p>根据需求填写 Name，将 Targets 勾选为 All instances in the network，在 Source IP ranges 中填写 0.0.0.0/0，在 Protocols and ports 中勾选 tcp，填写一个端口范围，用于之后访问 Jupyter Notebook。</p>
 
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/8.png" alt="8" /></p>
 
 <h3 id="连接虚拟机">连接虚拟机</h3>
 
-<p>回到 VM instances，根据外网IP连接上刚才创建的虚拟机。可以直接从谷歌提供的web端终端连接，也可以通过其他途径连接。Windows 下可以使用Putty，Linux 和 Unix 系统可以直接使用SSH连接。</p>
+<p>回到 VM instances，根据外网IP连接上刚才创建的虚拟机。可以直接从谷歌提供的 web 端终端连接，也可以通过其他途径连接。Windows 下可以使用Putty，Linux 和 Unix 系统可以直接使用SSH连接。</p>
 
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/9.png" alt="9" /></p>
 
@@ -271,7 +271,7 @@ c.NotebookApp.open_browser = False
 c.NotebookApp.port = &lt;Port Number&gt;
 </code></pre>
 
-<p>此处 <Port Number> 填写 Jupyter Notebook 使用的端口号，该端口号应该是在防火墙规则的端口范围之内的，否则将不能够通过外网IP和端口号访问 Jupyter Notebook。填写完之后使用保存该文件<code>:wq</code>。</p>
+<p>在 &lt;Port Number&gt; 处填写 Jupyter Notebook 使用的端口号，该端口号应该是在防火墙规则的端口范围之内的，否则将不能够通过外网IP和端口号访问 Jupyter Notebook。填写完之后使用<code>:wq</code>命令保存该文件。</p>
 
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/10.png" alt="10" /></p>
 
