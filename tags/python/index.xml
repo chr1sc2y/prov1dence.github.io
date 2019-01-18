@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 03 Jan 2019 11:25:15 +1100</lastBuildDate>
+    <lastBuildDate>Fri, 18 Jan 2019 15:06:01 +1100</lastBuildDate>
     
 	<atom:link href="http://zintrulcre.vip/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用Scrapy爬取LeetCode（2）：爬取题目信息</title>
+      <link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-2/</link>
+      <pubDate>Fri, 18 Jan 2019 15:06:01 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-2/</guid>
+      <description>创建爬虫 在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用genspider命令新建一个爬虫： cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中Q</description>
+    </item>
     
     <item>
       <title>使用Scrapy爬取LeetCode（1）：Scrapy框架入门</title>
