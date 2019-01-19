@@ -71,7 +71,7 @@ class QuestionSetSpider(scrapy.Spider):
 
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/3.png" alt="3" /></p>
 
-<p>返回的Response是一个json对象，其中的&rdquo;stat_status_pairs&rdquo;键所对应的值是所有包含题目信息的list，而列表中的[&ldquo;stat&rdquo;][&ldquo;question__title_slug&rdquo;]就是题目所在的页面。以Largest Perimeter Triangle为例，将其title_slug拼接到<a href="https://leetcode.com/problems/后，进入页面https://leetcode.com/problems/largest-perimeter-triangle/。同样地，打开开发者工具，刷新页面，可以看到服务器返回了很多项graphql的查询数据，通过查看Request" target="_blank">https://leetcode.com/problems/后，进入页面https://leetcode.com/problems/largest-perimeter-triangle/。同样地，打开开发者工具，刷新页面，可以看到服务器返回了很多项graphql的查询数据，通过查看Request</a> Payload可以找到其中operationName为&rdquo;questionData&rdquo;的一项，这就是当前题目的详细信息。</p>
+<p>返回的Response是一个json对象，其中的&rdquo;stat_status_pairs&rdquo;键所对应的值是所有包含题目信息的list，而列表中的[&ldquo;stat&rdquo;][&ldquo;question__title_slug&rdquo;]就是题目所在的页面。以Largest Perimeter Triangle为例，将其title_slug拼接到<a href="https://leetcode.com/problems/" target="_blank">https://leetcode.com/problems/</a> 后，进入页面<a href="https://leetcode.com/problems/largest-perimeter-triangle/。同样地，打开开发者工具，刷新页面，可以看到服务器返回了很多项graphql的查询数据，通过查看Request" target="_blank">https://leetcode.com/problems/largest-perimeter-triangle/。同样地，打开开发者工具，刷新页面，可以看到服务器返回了很多项graphql的查询数据，通过查看Request</a> Payload可以找到其中operationName为&rdquo;questionData&rdquo;的一项，这就是当前题目的详细信息。</p>
 
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/4.png" alt="4" /></p>
 
