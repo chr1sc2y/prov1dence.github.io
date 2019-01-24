@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="">
+<meta itemprop="description" content="印象最深的项目：2018.11开始，维护至今的LeetCode爬虫（个人开源项目，Github：ZintrulCre/LeetCode_Crawler） 做这个项目的初衷有两点：第一是为了更进一步的学习Python，在此之前已经在学习统计学机器学习的课程时使用Python实现过许多算法（GitHub：ZintrulCre/Machine-Learning），但Python基础并不算牢固，希望通过自己开发一个项目来巩固和深化对Python的理解。第二是因为我经常刷LeetCode，并且把所有的AC提交都放在了Github上，组织成了一个markdown文件进行展示用，但一直是手动维护的，每做一道题就需要手动地把题目连接，提交连接等复制上去，非常繁琐，所以希望通过尝试做一个爬虫来把这个流程自动化。 在确定了两个明确的目标后就开始细化并实施任务了。首先是要熟悉Python爬虫相关的库和框架，库包括urllib，requests，bs4等，框架方面研究了Scrapy框架和Splash库。其次要研究LeetCode的网页结构，消息接口等。除此之外，因为我对web开发的认识尚浅，对网络的认识大多停留在本科大二学习计算机网络时，使用抓包工具抓包，死记硬背各种协议知识之上，我还需要进一步学习Http协议的各种细节，包括状态码，request，response，payload，headers等。 明确任务之后便开始着手于学习Python爬虫了。因为以前并没有web开发的经验，所以搜集了很多资源进行学习，包括Youtube上的Python爬虫教程，GitHub上的开源项目，以及咨询一些在做Python相关工作的本科同学。在GitHub上找开源项目时认识了很多技术大佬，包括一位蚂蚁金服体验技术部玉伯团队的开发者，一些外国友人等，通过邮件询问了很多问题，非常感谢他们耐心地解答我的问题。除此之外，还依靠查看官方文档，在stackoverflow，V2EX等社区上提问解答了许多问题。 在经过了一个多月长时间（期间从12月开始在上暑期课程，所以拖得有点久，12月是澳洲的夏天）的努力之后，终于完成了这个项目。整个开发流程远比我想象的复杂，涉及到的知识比我以为的更广。其间对于计算机网络和Http协议的知识进行了很好地巩固，学习了Postman工具的使用，顺便在复习网络知识的时候做了一个华东师范大学（本科院校）图书馆研讨室自动预订系统。更是从零开始学习了MongoDB和pymongo库的使用（用于存储爬取下来的数据），刚好我正准备做一个数据仓库相关的项目，相当于进行了充足的知识储备。除此之外，我正在将这个项目的细节整理成文档，发表在我的个人博客（http://zintrulcre.vip/）上。">
+
+
+
+<meta itemprop="wordCount" content="5">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="印象最深的项目：2018.11开始，维护至今的LeetCode爬虫（个人开源项目，Github：ZintrulCre/LeetCode_Crawler） 做这个项目的初衷有两点：第一是为了更进一步的学习Python，在此之前已经在学习统计学机器学习的课程时使用Python实现过许多算法（GitHub：ZintrulCre/Machine-Learning），但Python基础并不算牢固，希望通过自己开发一个项目来巩固和深化对Python的理解。第二是因为我经常刷LeetCode，并且把所有的AC提交都放在了Github上，组织成了一个markdown文件进行展示用，但一直是手动维护的，每做一道题就需要手动地把题目连接，提交连接等复制上去，非常繁琐，所以希望通过尝试做一个爬虫来把这个流程自动化。 在确定了两个明确的目标后就开始细化并实施任务了。首先是要熟悉Python爬虫相关的库和框架，库包括urllib，requests，bs4等，框架方面研究了Scrapy框架和Splash库。其次要研究LeetCode的网页结构，消息接口等。除此之外，因为我对web开发的认识尚浅，对网络的认识大多停留在本科大二学习计算机网络时，使用抓包工具抓包，死记硬背各种协议知识之上，我还需要进一步学习Http协议的各种细节，包括状态码，request，response，payload，headers等。 明确任务之后便开始着手于学习Python爬虫了。因为以前并没有web开发的经验，所以搜集了很多资源进行学习，包括Youtube上的Python爬虫教程，GitHub上的开源项目，以及咨询一些在做Python相关工作的本科同学。在GitHub上找开源项目时认识了很多技术大佬，包括一位蚂蚁金服体验技术部玉伯团队的开发者，一些外国友人等，通过邮件询问了很多问题，非常感谢他们耐心地解答我的问题。除此之外，还依靠查看官方文档，在stackoverflow，V2EX等社区上提问解答了许多问题。 在经过了一个多月长时间（期间从12月开始在上暑期课程，所以拖得有点久，12月是澳洲的夏天）的努力之后，终于完成了这个项目。整个开发流程远比我想象的复杂，涉及到的知识比我以为的更广。其间对于计算机网络和Http协议的知识进行了很好地巩固，学习了Postman工具的使用，顺便在复习网络知识的时候做了一个华东师范大学（本科院校）图书馆研讨室自动预订系统。更是从零开始学习了MongoDB和pymongo库的使用（用于存储爬取下来的数据），刚好我正准备做一个数据仓库相关的项目，相当于进行了充足的知识储备。除此之外，我正在将这个项目的细节整理成文档，发表在我的个人博客（http://zintrulcre.vip/）上。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zintrulcre.vip/%E7%88%AC%E8%99%AB/" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="印象最深的项目：2018.11开始，维护至今的LeetCode爬虫（个人开源项目，Github：ZintrulCre/LeetCode_Crawler） 做这个项目的初衷有两点：第一是为了更进一步的学习Python，在此之前已经在学习统计学机器学习的课程时使用Python实现过许多算法（GitHub：ZintrulCre/Machine-Learning），但Python基础并不算牢固，希望通过自己开发一个项目来巩固和深化对Python的理解。第二是因为我经常刷LeetCode，并且把所有的AC提交都放在了Github上，组织成了一个markdown文件进行展示用，但一直是手动维护的，每做一道题就需要手动地把题目连接，提交连接等复制上去，非常繁琐，所以希望通过尝试做一个爬虫来把这个流程自动化。 在确定了两个明确的目标后就开始细化并实施任务了。首先是要熟悉Python爬虫相关的库和框架，库包括urllib，requests，bs4等，框架方面研究了Scrapy框架和Splash库。其次要研究LeetCode的网页结构，消息接口等。除此之外，因为我对web开发的认识尚浅，对网络的认识大多停留在本科大二学习计算机网络时，使用抓包工具抓包，死记硬背各种协议知识之上，我还需要进一步学习Http协议的各种细节，包括状态码，request，response，payload，headers等。 明确任务之后便开始着手于学习Python爬虫了。因为以前并没有web开发的经验，所以搜集了很多资源进行学习，包括Youtube上的Python爬虫教程，GitHub上的开源项目，以及咨询一些在做Python相关工作的本科同学。在GitHub上找开源项目时认识了很多技术大佬，包括一位蚂蚁金服体验技术部玉伯团队的开发者，一些外国友人等，通过邮件询问了很多问题，非常感谢他们耐心地解答我的问题。除此之外，还依靠查看官方文档，在stackoverflow，V2EX等社区上提问解答了许多问题。 在经过了一个多月长时间（期间从12月开始在上暑期课程，所以拖得有点久，12月是澳洲的夏天）的努力之后，终于完成了这个项目。整个开发流程远比我想象的复杂，涉及到的知识比我以为的更广。其间对于计算机网络和Http协议的知识进行了很好地巩固，学习了Postman工具的使用，顺便在复习网络知识的时候做了一个华东师范大学（本科院校）图书馆研讨室自动预订系统。更是从零开始学习了MongoDB和pymongo库的使用（用于存储爬取下来的数据），刚好我正准备做一个数据仓库相关的项目，相当于进行了充足的知识储备。除此之外，我正在将这个项目的细节整理成文档，发表在我的个人博客（http://zintrulcre.vip/）上。"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title></title>
+	<link rel="stylesheet" href="http://zintrulcre.vip/css/style.min.9a30741782203507f3d35fe9cefabad487c72fc82dfbdf59121759fc2fa52f92.css" integrity="sha256-mjB0F4IgNQfz01/pzvq61IfHL8gt+99ZEhdZ/C+lL5I=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://zintrulcre.vip">ZintrulCre</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="http://zintrulcre.vip/posts/">Posts</a>
+					<a href="http://zintrulcre.vip/about-hugo/">About</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/ZintrulCre" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/ZintrulCre" target="_blank" rel="noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://www.linkedin.com/in/%E6%AD%A3%E5%AE%87-%E9%99%88-19065a164/" target="_blank" rel="noopener" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://www.youtube.com/channel/UC3y5yK_ms60X90fVKbTpYeg?view_as=subscriber" target="_blank" rel="noopener" title="Youtube"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://zintrulcre.vip/posts/">Posts</a></li>
+			<li><a href="http://zintrulcre.vip/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1></h1>
+		<div class="content">
+			<p>印象最深的项目：2018.11开始，维护至今的LeetCode爬虫（个人开源项目，Github：ZintrulCre/LeetCode_Crawler）
+做这个项目的初衷有两点：第一是为了更进一步的学习Python，在此之前已经在学习统计学机器学习的课程时使用Python实现过许多算法（GitHub：ZintrulCre/Machine-Learning），但Python基础并不算牢固，希望通过自己开发一个项目来巩固和深化对Python的理解。第二是因为我经常刷LeetCode，并且把所有的AC提交都放在了Github上，组织成了一个markdown文件进行展示用，但一直是手动维护的，每做一道题就需要手动地把题目连接，提交连接等复制上去，非常繁琐，所以希望通过尝试做一个爬虫来把这个流程自动化。
+在确定了两个明确的目标后就开始细化并实施任务了。首先是要熟悉Python爬虫相关的库和框架，库包括urllib，requests，bs4等，框架方面研究了Scrapy框架和Splash库。其次要研究LeetCode的网页结构，消息接口等。除此之外，因为我对web开发的认识尚浅，对网络的认识大多停留在本科大二学习计算机网络时，使用抓包工具抓包，死记硬背各种协议知识之上，我还需要进一步学习Http协议的各种细节，包括状态码，request，response，payload，headers等。
+明确任务之后便开始着手于学习Python爬虫了。因为以前并没有web开发的经验，所以搜集了很多资源进行学习，包括Youtube上的Python爬虫教程，GitHub上的开源项目，以及咨询一些在做Python相关工作的本科同学。在GitHub上找开源项目时认识了很多技术大佬，包括一位蚂蚁金服体验技术部玉伯团队的开发者，一些外国友人等，通过邮件询问了很多问题，非常感谢他们耐心地解答我的问题。除此之外，还依靠查看官方文档，在stackoverflow，V2EX等社区上提问解答了许多问题。
+在经过了一个多月长时间（期间从12月开始在上暑期课程，所以拖得有点久，12月是澳洲的夏天）的努力之后，终于完成了这个项目。整个开发流程远比我想象的复杂，涉及到的知识比我以为的更广。其间对于计算机网络和Http协议的知识进行了很好地巩固，学习了Postman工具的使用，顺便在复习网络知识的时候做了一个华东师范大学（本科院校）图书馆研讨室自动预订系统。更是从零开始学习了MongoDB和pymongo库的使用（用于存储爬取下来的数据），刚好我正准备做一个数据仓库相关的项目，相当于进行了充足的知识储备。除此之外，我正在将这个项目的细节整理成文档，发表在我的个人博客（<a href="http://zintrulcre.vip/）上。" target="_blank">http://zintrulcre.vip/）上。</a></p>
+
+		</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://zintrulcre.vip">Zhengyu Chen</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://zintrulcre.vip/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://zintrulcre.vip/js/main.min.8f39f24808e9d0a9b02da58c2d2838da859dc0b7bdfadbdb1883aae8b6adacfe.js" integrity="sha256-jznySAjp0KmwLaWMLSg42oWdwLe9+tvbGIOq6LatrP4="></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

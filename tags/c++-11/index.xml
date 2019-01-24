@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; 11 on ZintrulCre</title>
+    <link>http://zintrulcre.vip/tags/c&#43;&#43;-11/</link>
+    <description>Recent content in C&#43;&#43; 11 on ZintrulCre</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 24 Jan 2019 15:21:35 +1100</lastBuildDate>
+    
+	<atom:link href="http://zintrulcre.vip/tags/c++-11/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C&#43;&#43;智能指针（1）：auto_ptr</title>
+      <link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer-1/</link>
+      <pubDate>Thu, 24 Jan 2019 15:21:35 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer-1/</guid>
+      <description>分析 C++中经常会出现因为没有delete指针而造成的内存泄漏，例如有下面一个类 class Obj { public: explicit Obj(int &amp;amp;&amp;amp;obj); ~Obj(); void Print(); private: int obj; }; Obj::Obj(int &amp;amp;&amp;amp;obj) { this-&amp;gt;obj = obj; std::cout &amp;lt;&amp;lt; &amp;quot;obj &amp;quot; &amp;lt;&amp;lt; obj; std::cout &amp;lt;&amp;lt; &amp;quot; Constructor</description>
+    </item>
+    
+  </channel>
+</rss>

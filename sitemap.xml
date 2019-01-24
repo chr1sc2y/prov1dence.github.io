@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer-1/</loc>
+    <lastmod>2019-01-24T15:21:35+11:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-3/</loc>
     <lastmod>2019-01-21T13:15:17+11:00</lastmod>
   </url>
@@ -20,6 +25,26 @@
   <url>
     <loc>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-1/</loc>
     <lastmod>2019-01-03T11:25:15+11:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.vip/c&#43;&#43;/</loc>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.vip/%E7%88%AC%E8%99%AB/</loc>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.vip/tags/c&#43;&#43;/</loc>
+    <lastmod>2019-01-24T15:21:35+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.vip/tags/c&#43;&#43;-11/</loc>
+    <lastmod>2019-01-24T15:21:35+11:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -52,8 +77,14 @@
   </url>
   
   <url>
+    <loc>http://zintrulcre.vip/tags/pointer/</loc>
+    <lastmod>2019-01-24T15:21:35+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://zintrulcre.vip/posts/</loc>
-    <lastmod>2019-01-21T13:15:17+11:00</lastmod>
+    <lastmod>2019-01-24T15:21:35+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -77,13 +108,13 @@
   
   <url>
     <loc>http://zintrulcre.vip/tags/</loc>
-    <lastmod>2019-01-12T17:03:12+11:00</lastmod>
+    <lastmod>2019-01-24T15:21:35+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://zintrulcre.vip/</loc>
-    <lastmod>2019-01-21T13:15:17+11:00</lastmod>
+    <lastmod>2019-01-24T15:21:35+11:00</lastmod>
     <priority>0</priority>
   </url>
   
