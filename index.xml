@@ -57,25 +57,5 @@
       <description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 简介 Scrapy官</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>http://zintrulcre.vip/c&#43;&#43;/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://zintrulcre.vip/c&#43;&#43;/</guid>
-      <description>、请介绍一项你最热爱、最擅长的专业领域，并且介绍你在这个领域的学习经历和未来的学习规划。 Please introduce to us the academic field that you like most and are best at. Please include your past experience and future plan in this area.
-最热爱的领域：C++开发 学习经历：我从小的梦想就是进入计算机行业，自己开发软件和游戏，转眼从高一开始学习C++语言到现在已经有8年多的时间。最初学习C++只是为了进行NOIP竞赛，彼时的可选项只有C++和Pascal两种，竞赛导师为我们统一进行了C++的教学。经过长年的积累，C++已经成为了我最喜欢的开发语言，从高中时刷ZOJ，POJ等OJ一直使用C++，本科时尽可能多地选修C++相关的课程（计算机图形学，数字图像处理，MFC开发等），到后来成为了一名C++开发工程师实习生，使用C++进行图形接口封装，内存机制优化，profiling优化等。我认为相比于依赖设计模式的Java，动态脚本语言Python，C++无论是在细节还是可控性上都在高到不知道哪里去了，正是因为缺少垃圾回收的机制，把内存管理的任务交给开发者，才使得C++更适合做底层开发，更适应于高性能开发，因而对C++程序员的要求和素养也就更高了。 学习规划：越学习C++就越会发现自己的无知，我认为作为一个C++开发者，我更应该学习和研究算法，优化，细节，内存控制，汇编语言相关的知识。我通过每周参加LeetCode周赛加深对算法和C++的认识，在一个限定时间的比赛（类似于考试）中，我觉得能对语言和算法产生更深刻的印象。除此之外，因为在国外留学，在Youtube上查找算法相关的视频和阅读C++相关的英语书籍相比于中文资源来说，更能够理解作者的思想。我希望在未来在更深入的研究C++和算法。
-虽然我并没有熟悉的人脉在阿里巴巴工作，不太了解阿里巴巴的部门，但我非常喜欢一句话，“孕育创新在痛苦中思考与进步，创造充满各种未知可能性”，我希望加入一个思维开放，不受太多束缚，能够接受并创造新事物的部门。</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://zintrulcre.vip/%E7%88%AC%E8%99%AB/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://zintrulcre.vip/%E7%88%AC%E8%99%AB/</guid>
-      <description>印象最深的项目：2018.11开始，维护至今的LeetCode爬虫（个人开源项目，Github：ZintrulCre/LeetCode_Crawler） 做这个项目的初衷有两点：第一是为了更进一步的学习Python，在此之前已经在学习统计学机器学习的课程时使用Python实现过许多算法（GitHub：ZintrulCre/Machine-Learning），但Python基础并不算牢固，希望通过自己开发一个项目来巩固和深化对Python的理解。第二是因为我经常刷LeetCode，并且把所有的AC提交都放在了Github上，组织成了一个markdown文件进行展示用，但一直是手动维护的，每做一道题就需要手动地把题目连接，提交连接等复制上去，非常繁琐，所以希望通过尝试做一个爬虫来把这个流程自动化。 在确定了两个明确的目标后就开始细化并实施任务了。首先是要熟悉Python爬虫相关的库和框架，库包括urllib，requests，bs4等，框架方面研究了Scrapy框架和Splash库。其次要研究LeetCode的网页结构，消息接口等。除此之外，因为我对web开发的认识尚浅，对网络的认识大多停留在本科大二学习计算机网络时，使用抓包工具抓包，死记硬背各种协议知识之上，我还需要进一步学习Http协议的各种细节，包括状态码，request，response，payload，headers等。 明确任务之后便开始着手于学习Python爬虫了。因为以前并没有web开发的经验，所以搜集了很多资源进行学习，包括Youtube上的Python爬虫教程，GitHub上的开源项目，以及咨询一些在做Python相关工作的本科同学。在GitHub上找开源项目时认识了很多技术大佬，包括一位蚂蚁金服体验技术部玉伯团队的开发者，一些外国友人等，通过邮件询问了很多问题，非常感谢他们耐心地解答我的问题。除此之外，还依靠查看官方文档，在stackoverflow，V2EX等社区上提问解答了许多问题。 在经过了一个多月长时间（期间从12月开始在上暑期课程，所以拖得有点久，12月是澳洲的夏天）的努力之后，终于完成了这个项目。整个开发流程远比我想象的复杂，涉及到的知识比我以为的更广。其间对于计算机网络和Http协议的知识进行了很好地巩固，学习了Postman工具的使用，顺便在复习网络知识的时候做了一个华东师范大学（本科院校）图书馆研讨室自动预订系统。更是从零开始学习了MongoDB和pymongo库的使用（用于存储爬取下来的数据），刚好我正准备做一个数据仓库相关的项目，相当于进行了充足的知识储备。除此之外，我正在将这个项目的细节整理成文档，发表在我的个人博客（http://zintrulcre.vip/）上。</description>
-    </item>
-    
   </channel>
 </rss>
