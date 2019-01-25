@@ -580,7 +580,7 @@ private:
 		<item>
 			<title>C&#43;&#43;智能指针（2）：unique_ptr</title>
 			<link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer-2/</link>
-			<pubDate>Thu, 24 Jan 2019 01:02:02 +1100</pubDate>
+			<pubDate>Sat, 19 Jan 2019 01:02:02 +1100</pubDate>
 			
 			<guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer-2/</guid>
 			<description>分析 在使用auto_ptr的时候会发生所有权转移和内存泄漏的问题，所以我们可以对AutoPointer类稍加修改，修复这两个问题。 所有权转</description>
@@ -1132,7 +1132,7 @@ public:
 		<item>
 			<title>使用Scrapy爬取LeetCode（3）：登录</title>
 			<link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-3/</link>
-			<pubDate>Mon, 21 Jan 2019 13:15:17 +1100</pubDate>
+			<pubDate>Fri, 11 Jan 2019 13:15:17 +1100</pubDate>
 			
 			<guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-3/</guid>
 			<description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 Cookie和Se</description>
@@ -1228,182 +1228,9 @@ for cookie in result.cookies:
 		</item>
 		
 		<item>
-			<title>使用Scrapy爬取LeetCode（2）：爬取题目信息</title>
-			<link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-2/</link>
-			<pubDate>Fri, 18 Jan 2019 15:06:01 +1100</pubDate>
-			
-			<guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-2/</guid>
-			<description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 创建爬虫 在新建好项</description>
-			<content type="html"><![CDATA[
-
-<p>本项目<a href="https://github.com/ZintrulCre/LeetCode_Crawler" target="_blank">ZintrulCre/LeetCode_Crawler</a>已完成，并正在维护中，欢迎在GitHub上star和fork。</p>
-
-<h2 id="创建爬虫">创建爬虫</h2>
-
-<p>在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用<code>genspider</code>命令新建一个爬虫：</p>
-
-<pre><code>cd scrapy_project
-scrapy genspider QuestionSetSpider leetcode.com
-</code></pre>
-
-<p>其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。</p>
-
-<p>新建好爬虫之后可以看到在项目的spiders文件夹下新增了一个名为 QuestionSetSpider.py的文件，这就是我们刚才新建的爬虫文件。这个爬虫文件会自动生成以下代码</p>
-
-<pre><code># -*- coding: utf-8 -*-
-import scrapy
-
-class QuestionSetSpider(scrapy.Spider):
-    name = 'QuestionSetSpider'
-    allowed_domains = ['leetcode.com']
-    start_urls = ['http://leetcode.com/']
-
-    def parse(self, response):
-        pass
-
-</code></pre>
-
-<ul>
-<li>QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类；</li>
-<li>self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫；</li>
-<li>self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误；</li>
-<li>self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数</li>
-</ul>
-
-<h2 id="获取题目详细信息">获取题目详细信息</h2>
-
-<h3 id="分析">分析</h3>
-
-<p>LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。</p>
-
-<p>为了爬取题目的详细信息，我们首先要从题目列表进入每个题目对应的链接。</p>
-
-<p>首先打开leetcode的<a href="https://leetcode.com/problemset/all/" target="_blank">problem</a>列表，按F12打开Chrome的开发者工具，进入Network标签栏，勾选上Preserve log，刷新该页面。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/1.png" alt="1" /></p>
-
-<p>可以看到，网页向 <a href="https://leetcode.com/api/problems/all/" target="_blank">https://leetcode.com/api/problems/all/</a> 发送了一个名为&rdquo;all/&ldquo;的GET类型的Request，这就是获取所有题目链接和相关信息的请求。如果此时已经安装了Toggle JavaScript插件，我们可以直接右键点击“Open in new tab”，查看该请求返回的Response。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/2.png" alt="2" /></p>
-
-<p>更方便的方法是使用postman向服务器发送一个相同的Request，并将其保存下来，这样如果我们下次需要查看相应的Response的时候就不需要再使用开发者工具了。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/3.png" alt="3" /></p>
-
-<p>返回的Response是一个json对象，其中的&rdquo;stat_status_pairs&rdquo;键所对应的值是所有包含题目信息的list，而列表中的[&ldquo;stat&rdquo;][&ldquo;question__title_slug&rdquo;]就是题目所在的页面。以Largest Perimeter Triangle为例，将其title_slug拼接到<a href="https://leetcode.com/problems/" target="_blank">https://leetcode.com/problems/</a> 后，进入页面<a href="https://leetcode.com/problems/largest-perimeter-triangle/" target="_blank">https://leetcode.com/problems/largest-perimeter-triangle/</a> 。同样地，打开开发者工具，刷新页面，可以看到服务器返回了很多项graphql的查询数据，通过查看Request Payload可以找到其中operationName为&rdquo;questionData&rdquo;的一项，这就是当前题目的详细信息。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/4.png" alt="4" /></p>
-
-<p>将Payload复制粘贴到postman的Body中，在Headers中设置Content-Type为application/json，发送请求，可以看到返回的是一个json对象，包含了该题目所对应的所有信息。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/5.png" alt="5" /></p>
-
-<p>接下来我们就可以对该题目的信息进行处理了。</p>
-
-<h3 id="实现">实现</h3>
-
-<p>为了获取题目列表的json对象，我们需要先重写start_requests函数。</p>
-
-<pre><code>def start_requests(self):
-        self.Login() # 用户登录，后续会用到
-        questionset_url = &quot;https://leetcode.com/api/problems/all/&quot;
-        yield scrapy.Request(url=questionset_url, callback=self.ParseQuestionSet)
-</code></pre>
-
-<p>Request是scrapy的一个类对象，功能类似于requests库中的get函数，可以让scrapy框架中的Downloader向url发送一个get请求，并将获取的response交给指定的爬虫文件中的回调函数进行相应的处理，其构造函数如下</p>
-
-<pre><code>class Request(object_ref):
-
-    def __init__(self, url, callback=None, method='GET', headers=None, body=None, cookies=None, meta=None, encoding='utf-8', priority=0, dont_filter=False, errback=None, flags=None):
-    ...
-</code></pre>
-
-<p>在获取到json对象之后，可以通过遍历&rdquo;stat_status_pairs&rdquo;键所对应的列表，并取出[&ldquo;stat&rdquo;][&ldquo;question__title_slug&rdquo;]的值，得到题目的title_slug。此时我们不再需要进行打开题目相关页面的操作，直接向GraphQL发送查询详细信息的request即可。</p>
-
-<p>我们可以从postman直接获取到发送请求相关的代码。因为每个题目的title_slug不同，我们可以将Payload中titleSlug后的字段改为一个不会重复的独特的字符串，在每一次获取到新的title_slug之后用replace函数替换它，发送新的请求，然后再将其替换回独特的字符串。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/6.png" alt="6" /></p>
-
-<p>准备好Payload和Headers之后，我们可以使用FormRequest发送POST请求向GraphQL查询数据。FormRequest是scrapy的一个类对象，功能类似于requests库中的post函数，让scrapy框架中的Downloader向url发送一个post请求，并将获取的response交给指定的爬虫文件中的回调函数进行相应的处理。此处在发送POST请求之后response被交给ParseQuestionData函数进行处理。</p>
-
-<pre><code>    question_payload = &quot;{\n    \&quot;operationName\&quot;: \&quot;questionData\&quot;,\n    \&quot;variables\&quot;: {\n        \&quot;titleSlug\&quot;: \&quot;QuestionName\&quot;\n    },\n    \&quot;query\&quot;: \&quot;query questionData($titleSlug: String!) {\\n  question(titleSlug: $titleSlug) {\\n    questionId\\n    questionFrontendId\\n    boundTopicId\\n    title\\n    titleSlug\\n    content\\n    translatedTitle\\n    translatedContent\\n    isPaidOnly\\n    difficulty\\n    likes\\n    dislikes\\n    isLiked\\n    similarQuestions\\n    contributors {\\n      username\\n      profileUrl\\n      avatarUrl\\n      __typename\\n    }\\n    langToValidPlayground\\n    topicTags {\\n      name\\n      slug\\n      translatedName\\n      __typename\\n    }\\n    companyTagStats\\n    codeSnippets {\\n      lang\\n      langSlug\\n      code\\n      __typename\\n    }\\n    stats\\n    hints\\n    solution {\\n      id\\n      canSeeDetail\\n      __typename\\n    }\\n    status\\n    sampleTestCase\\n    metaData\\n    judgerAvailable\\n    judgeType\\n    mysqlSchemas\\n    enableRunCode\\n    enableTestMode\\n    envInfo\\n    __typename\\n  }\\n}\\n\&quot;\n}\n&quot;
-
-    graphql_url = &quot;https://leetcode.com/graphql&quot;
-
-    def ParseQuestionSet(self, response):
-        headers = {
-            &quot;user_agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'&quot;,
-            &quot;content-type&quot;: &quot;application/json&quot;  # necessary
-        }
-        questionSet = json.loads(response.text)
-        questionSet = questionSet[&quot;stat_status_pairs&quot;]
-        for question in questionSet:
-            title_slug = question[&quot;stat&quot;][&quot;question__title_slug&quot;]
-            self.question_payload = self.question_payload.replace(&quot;QuestionName&quot;, title_slug)
-            yield scrapy.FormRequest(url=self.graphql_url, callback=self.ParseQuestionData,
-                                     headers=headers, body=self.question_payload)
-            self.question_payload = self.question_payload.replace(title_slug, &quot;QuestionName&quot;)
-</code></pre>
-
-<p>现在数据已经获取到了，我们需要在items.py文件中定义一个类用来存储题目的详细信息。items.py文件中的类继承自scrapy.Item类，是提供给scrapy框架中的组件Item Pipeline进行处理的统一的的数据结构。</p>
-
-<pre><code>import scrapy
-
-class QuestionDataItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    id = scrapy.Field()
-    title = scrapy.Field()
-    content = scrapy.Field()
-    submission_list = scrapy.Field()
-    topics = scrapy.Field()
-    difficulty = scrapy.Field()
-    ac_rate = scrapy.Field()
-    likes = scrapy.Field()
-    dislikes = scrapy.Field()
-    slug = scrapy.Field()
-</code></pre>
-
-<p>定义了QuestionDataItem类之后可以进入ParseQuestionData函数开始对题目详细信息的提取，我们可以根据需求提取出题目的id，title，content，topics，difficulty等信息，用一个QuestionDataItem对象来存储这些数据，然后进行yield questionDataItem操作，将这个对象交给Item Pipeline进行处理。</p>
-
-<pre><code>    def ParseQuestionData(self, response):
-        questionData = json.loads(response.text)[&quot;data&quot;][&quot;question&quot;]
-        questionDataItem = QuestionDataItem()
-        questionDataItem[&quot;id&quot;] = questionData[&quot;questionFrontendId&quot;]
-        questionDataItem[&quot;title&quot;] = questionData[&quot;title&quot;]
-        questionDataItem[&quot;content&quot;] = questionData[&quot;content&quot;]
-        topics = []
-        for topic in questionData[&quot;topicTags&quot;]:
-            topics.append(topic[&quot;name&quot;])
-        if len(topics) == 0:
-            topics.append(&quot;None&quot;)
-        questionDataItem[&quot;topics&quot;] = topics
-        questionDataItem[&quot;difficulty&quot;] = questionData[&quot;difficulty&quot;]
-        stats = json.loads(questionData[&quot;stats&quot;])
-        questionDataItem[&quot;ac_rate&quot;] = stats[&quot;acRate&quot;]
-        questionDataItem[&quot;likes&quot;] = questionData[&quot;likes&quot;]
-        questionDataItem[&quot;dislikes&quot;] = questionData[&quot;dislikes&quot;]
-        questionDataItem[&quot;slug&quot;] = questionData[&quot;titleSlug&quot;]
-        submission_list = self.GetSubmissionList(questionDataItem[&quot;slug&quot;])
-        questionDataItem[&quot;submission_list&quot;] = submission_list
-
-        yield questionDataItem
-</code></pre>
-
-<p>至此题目信息的爬取就完成了。</p>
-
-<h2 id="参考资料">参考资料</h2>
-
-<p><a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/" target="_blank">Scrapy官方文档</a></p>
-
-<p><a href="https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates/">Postman官方文档</a></p>
-]]></content>
-		</item>
-		
-		<item>
 			<title>C&#43;&#43;智能指针（1.5）：move语义</title>
 			<link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer-1.5/</link>
-			<pubDate>Tue, 15 Jan 2019 09:55:05 +1100</pubDate>
+			<pubDate>Wed, 02 Jan 2019 09:55:05 +1100</pubDate>
 			
 			<guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer-1.5/</guid>
 			<description>move语义 定义 右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（P</description>
@@ -1413,9 +1240,12 @@ class QuestionDataItem(scrapy.Item):
 
 <h3 id="定义">定义</h3>
 
-<p>右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（Perfect Forwarding），其主要目的有
-- 消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。
-- 能够更简洁明确地定义泛型函数。</p>
+<p>右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（Perfect Forwarding），其主要目的有</p>
+
+<ul>
+<li>消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。</li>
+<li>能够更简洁明确地定义泛型函数。</li>
+</ul>
 
 <h3 id="实现">实现</h3>
 
@@ -1577,121 +1407,9 @@ Destruct
 		</item>
 		
 		<item>
-			<title>在Google Cloud Platform上运行Jupyter Notebook</title>
-			<link>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</link>
-			<pubDate>Sat, 12 Jan 2019 17:03:12 +1100</pubDate>
-			
-			<guid>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</guid>
-			<description>简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jup</description>
-			<content type="html"><![CDATA[
-
-<h2 id="简介">简介</h2>
-
-<p>本文取材自 <a href="https://towardsdatascience.com/@aankul.a" target="_blank">Amulya Aankul</a> 发布在 <a href="https://medium.com/" target="_blank">Medium</a> 的 <a href="https://towardsdatascience.com/running-jupyter-notebook-in-google-cloud-platform-in-15-min-61e16da34d52" target="_blank">Running Jupyter Notebook on Google Cloud Platform in 15 min</a>，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。</p>
-
-<h2 id="服务器搭建">服务器搭建</h2>
-
-<h3 id="创建账号">创建账号</h3>
-
-<p>首先在<a href="https://cloud.google.com/" target="_blank">Google Cloud Platform</a>上创建一个账号。</p>
-
-<h3 id="创建新项目">创建新项目</h3>
-
-<p>点击左上角&rdquo;Google Cloud Platform&rdquo;右边的三个点，点击&rdquo;NEW PROJECT&rdquo;创建新项目。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/1.png" alt="1" /></p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/2.png" alt="2" /></p>
-
-<h3 id="创建虚拟机">创建虚拟机</h3>
-
-<p>进入刚才创建的项目，从左侧边栏点击 Compute Engine -&gt; VM instances 进入虚拟机页面。点击Create创建一个新的虚拟机实例（VM instance）</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/3.png" alt="3" />)</p>
-
-<p>根据需求填写和选择 Name, Region, Zone, Machine Type和Boot Disk。在 Firewall 选项中选中 Allow HTTP traffic 和 Allow HTTPS traffic, 在下方的 Disks 选项卡中取消勾选 Delete boot disk when instance is deleted。最后点击 Create，虚拟机实例就创建好了。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/4.png" alt="4" /></p>
-
-<h3 id="设置静态ip">设置静态IP</h3>
-
-<p>默认情况下，外网IP是动态变化的，为了方便访问服务器，我们可以将其设置为静态的。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/5.png" alt="5" /></p>
-
-<p>从左侧边栏点击 VPC Network -&gt; External IP Address，可以看到当前项目下的所有虚拟机，点击虚拟机实例对应的 Type 标签，点击 Ephemeral，将外网IP设置为静态的。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/6.png" alt="6" /></p>
-
-<h3 id="设置防火墙">设置防火墙</h3>
-
-<p>从左侧边栏点击 VPC Network -&gt; Firewall rules，点击上方的 CREATE FIREWALL RULE，创建一个新的防火墙规则。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/7.png" alt="7" /></p>
-
-<p>根据需求填写 Name，将 Targets 勾选为 All instances in the network，在 Source IP ranges 中填写 0.0.0.0/0，在 Protocols and ports 中勾选 tcp，填写一个端口范围，用于之后访问 Jupyter Notebook。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/8.png" alt="8" /></p>
-
-<h3 id="连接虚拟机">连接虚拟机</h3>
-
-<p>回到 VM instances，根据外网IP连接上刚才创建的虚拟机。可以直接从谷歌提供的 web 端终端连接，也可以通过其他途径连接。Windows 下可以使用Putty，Linux 和 Unix 系统可以直接使用SSH连接。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/9.png" alt="9" /></p>
-
-<h2 id="配置-jupyter-notebook">配置 Jupyter Notebook</h2>
-
-<h3 id="安装-jupyter-notebook">安装 Jupyter Notebook</h3>
-
-<p>在终端中输入<code>wget http://repo.continuum.io/archive/Anaconda3-4.0.0-Linux-x86_64.sh</code>
-获取 Anaconda 3 的安装文件</p>
-
-<p>接下来输入<code>bash Anaconda3-4.0.0-Linux-x86_64.sh</code>
-运行该文件，并根据屏幕提示安装 Anaconda 3。</p>
-
-<p>安装好之后读取启动文件<code>source ~/.bashrc</code>
-以使用 Anaconda 3</p>
-
-<h3 id="修改配置文件">修改配置文件</h3>
-
-<p>创建 Jupyter Notebook 的配置文件<code>jupyter notebook --generate-config</code></p>
-
-<p>使用Vim或其他编辑器打开该配置文件<code>vi ~/.jupyter/jupyter_notebook_config.py</code></p>
-
-<p>在该文件中加入相应的设置</p>
-
-<pre><code>c = get_config()
-c.NotebookApp.ip = '*'
-c.NotebookApp.open_browser = False
-c.NotebookApp.port = &lt;Port Number&gt;
-</code></pre>
-
-<p>在 &lt;Port Number&gt; 处填写 Jupyter Notebook 使用的端口号，该端口号应该是在防火墙规则的端口范围之内的，否则将不能够通过外网IP和端口号访问 Jupyter Notebook。填写完之后使用<code>:wq</code>命令保存该文件。</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/10.png" alt="10" /></p>
-
-<h3 id="启动-jupyter-notebook">启动 Jupyter Notebook</h3>
-
-<p>最后，在浏览器中输入
-<code>jupyter-notebook --no-browser --port=&lt;Port Number&gt;</code>
-来启动 Jupyter Notebook，当然也可以使用
-<code>nohup jupyter-notebook --no-browser --port=&lt;Port Number&gt; &gt; jupyter.log &amp;</code>
-指令忽略挂起信号，让 Jupyter Notebook 一直在后台运行，并将控制台信息输出到 jupyter.log 文件中。</p>
-
-<p>最后在浏览器中输入 IP 地址和端口号（例如156.73.83.51:4813）就能打开 Jupyter Notebook 了！</p>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/11.png" alt="11" /></p>
-
-<h2 id="参考资料">参考资料</h2>
-
-<p><a href="https://towardsdatascience.com/running-jupyter-notebook-in-google-cloud-platform-in-15-min-61e16da34d52" target="_blank">Running Jupyter Notebook on Google Cloud Platform in 15 min</a></p>
-]]></content>
-		</item>
-		
-		<item>
 			<title>C&#43;&#43;智能指针（1）：auto_ptr</title>
 			<link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer-1/</link>
-			<pubDate>Mon, 07 Jan 2019 15:21:35 +1100</pubDate>
+			<pubDate>Thu, 27 Dec 2018 15:21:35 +1100</pubDate>
 			
 			<guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer-1/</guid>
 			<description>分析 C++中经常会出现因为没有delete指针而造成的内存泄漏，例如有下面一个类 class Obj { public: Obj() { std::cout &amp;lt;&amp;lt; &amp;quot;Construct&amp;quot; &amp;lt;&amp;lt; std::endl; } Obj(const Obj &amp;amp;other) { std::cout &amp;lt;&amp;lt; &amp;quot;Copy&amp;quot; &amp;lt;&amp;lt; std::endl; } Obj(Obj &amp;amp;&amp;amp;other) noexcept { std::cout &amp;lt;&amp;lt; &amp;quot;Move&amp;quot; &amp;lt;&amp;lt;</description>
@@ -1979,9 +1697,294 @@ public:
 		</item>
 		
 		<item>
+			<title>使用Scrapy爬取LeetCode（2）：爬取题目信息</title>
+			<link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-2/</link>
+			<pubDate>Fri, 21 Dec 2018 15:06:01 +1100</pubDate>
+			
+			<guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-2/</guid>
+			<description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 创建爬虫 在新建好项</description>
+			<content type="html"><![CDATA[
+
+<p>本项目<a href="https://github.com/ZintrulCre/LeetCode_Crawler" target="_blank">ZintrulCre/LeetCode_Crawler</a>已完成，并正在维护中，欢迎在GitHub上star和fork。</p>
+
+<h2 id="创建爬虫">创建爬虫</h2>
+
+<p>在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用<code>genspider</code>命令新建一个爬虫：</p>
+
+<pre><code>cd scrapy_project
+scrapy genspider QuestionSetSpider leetcode.com
+</code></pre>
+
+<p>其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。</p>
+
+<p>新建好爬虫之后可以看到在项目的spiders文件夹下新增了一个名为 QuestionSetSpider.py的文件，这就是我们刚才新建的爬虫文件。这个爬虫文件会自动生成以下代码</p>
+
+<pre><code># -*- coding: utf-8 -*-
+import scrapy
+
+class QuestionSetSpider(scrapy.Spider):
+    name = 'QuestionSetSpider'
+    allowed_domains = ['leetcode.com']
+    start_urls = ['http://leetcode.com/']
+
+    def parse(self, response):
+        pass
+
+</code></pre>
+
+<ul>
+<li>QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类；</li>
+<li>self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫；</li>
+<li>self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误；</li>
+<li>self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数</li>
+</ul>
+
+<h2 id="获取题目详细信息">获取题目详细信息</h2>
+
+<h3 id="分析">分析</h3>
+
+<p>LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。</p>
+
+<p>为了爬取题目的详细信息，我们首先要从题目列表进入每个题目对应的链接。</p>
+
+<p>首先打开leetcode的<a href="https://leetcode.com/problemset/all/" target="_blank">problem</a>列表，按F12打开Chrome的开发者工具，进入Network标签栏，勾选上Preserve log，刷新该页面。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/1.png" alt="1" /></p>
+
+<p>可以看到，网页向 <a href="https://leetcode.com/api/problems/all/" target="_blank">https://leetcode.com/api/problems/all/</a> 发送了一个名为&rdquo;all/&ldquo;的GET类型的Request，这就是获取所有题目链接和相关信息的请求。如果此时已经安装了Toggle JavaScript插件，我们可以直接右键点击“Open in new tab”，查看该请求返回的Response。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/2.png" alt="2" /></p>
+
+<p>更方便的方法是使用postman向服务器发送一个相同的Request，并将其保存下来，这样如果我们下次需要查看相应的Response的时候就不需要再使用开发者工具了。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/3.png" alt="3" /></p>
+
+<p>返回的Response是一个json对象，其中的&rdquo;stat_status_pairs&rdquo;键所对应的值是所有包含题目信息的list，而列表中的[&ldquo;stat&rdquo;][&ldquo;question__title_slug&rdquo;]就是题目所在的页面。以Largest Perimeter Triangle为例，将其title_slug拼接到<a href="https://leetcode.com/problems/" target="_blank">https://leetcode.com/problems/</a> 后，进入页面<a href="https://leetcode.com/problems/largest-perimeter-triangle/" target="_blank">https://leetcode.com/problems/largest-perimeter-triangle/</a> 。同样地，打开开发者工具，刷新页面，可以看到服务器返回了很多项graphql的查询数据，通过查看Request Payload可以找到其中operationName为&rdquo;questionData&rdquo;的一项，这就是当前题目的详细信息。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/4.png" alt="4" /></p>
+
+<p>将Payload复制粘贴到postman的Body中，在Headers中设置Content-Type为application/json，发送请求，可以看到返回的是一个json对象，包含了该题目所对应的所有信息。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/5.png" alt="5" /></p>
+
+<p>接下来我们就可以对该题目的信息进行处理了。</p>
+
+<h3 id="实现">实现</h3>
+
+<p>为了获取题目列表的json对象，我们需要先重写start_requests函数。</p>
+
+<pre><code>def start_requests(self):
+        self.Login() # 用户登录，后续会用到
+        questionset_url = &quot;https://leetcode.com/api/problems/all/&quot;
+        yield scrapy.Request(url=questionset_url, callback=self.ParseQuestionSet)
+</code></pre>
+
+<p>Request是scrapy的一个类对象，功能类似于requests库中的get函数，可以让scrapy框架中的Downloader向url发送一个get请求，并将获取的response交给指定的爬虫文件中的回调函数进行相应的处理，其构造函数如下</p>
+
+<pre><code>class Request(object_ref):
+
+    def __init__(self, url, callback=None, method='GET', headers=None, body=None, cookies=None, meta=None, encoding='utf-8', priority=0, dont_filter=False, errback=None, flags=None):
+    ...
+</code></pre>
+
+<p>在获取到json对象之后，可以通过遍历&rdquo;stat_status_pairs&rdquo;键所对应的列表，并取出[&ldquo;stat&rdquo;][&ldquo;question__title_slug&rdquo;]的值，得到题目的title_slug。此时我们不再需要进行打开题目相关页面的操作，直接向GraphQL发送查询详细信息的request即可。</p>
+
+<p>我们可以从postman直接获取到发送请求相关的代码。因为每个题目的title_slug不同，我们可以将Payload中titleSlug后的字段改为一个不会重复的独特的字符串，在每一次获取到新的title_slug之后用replace函数替换它，发送新的请求，然后再将其替换回独特的字符串。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/6.png" alt="6" /></p>
+
+<p>准备好Payload和Headers之后，我们可以使用FormRequest发送POST请求向GraphQL查询数据。FormRequest是scrapy的一个类对象，功能类似于requests库中的post函数，让scrapy框架中的Downloader向url发送一个post请求，并将获取的response交给指定的爬虫文件中的回调函数进行相应的处理。此处在发送POST请求之后response被交给ParseQuestionData函数进行处理。</p>
+
+<pre><code>    question_payload = &quot;{\n    \&quot;operationName\&quot;: \&quot;questionData\&quot;,\n    \&quot;variables\&quot;: {\n        \&quot;titleSlug\&quot;: \&quot;QuestionName\&quot;\n    },\n    \&quot;query\&quot;: \&quot;query questionData($titleSlug: String!) {\\n  question(titleSlug: $titleSlug) {\\n    questionId\\n    questionFrontendId\\n    boundTopicId\\n    title\\n    titleSlug\\n    content\\n    translatedTitle\\n    translatedContent\\n    isPaidOnly\\n    difficulty\\n    likes\\n    dislikes\\n    isLiked\\n    similarQuestions\\n    contributors {\\n      username\\n      profileUrl\\n      avatarUrl\\n      __typename\\n    }\\n    langToValidPlayground\\n    topicTags {\\n      name\\n      slug\\n      translatedName\\n      __typename\\n    }\\n    companyTagStats\\n    codeSnippets {\\n      lang\\n      langSlug\\n      code\\n      __typename\\n    }\\n    stats\\n    hints\\n    solution {\\n      id\\n      canSeeDetail\\n      __typename\\n    }\\n    status\\n    sampleTestCase\\n    metaData\\n    judgerAvailable\\n    judgeType\\n    mysqlSchemas\\n    enableRunCode\\n    enableTestMode\\n    envInfo\\n    __typename\\n  }\\n}\\n\&quot;\n}\n&quot;
+
+    graphql_url = &quot;https://leetcode.com/graphql&quot;
+
+    def ParseQuestionSet(self, response):
+        headers = {
+            &quot;user_agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'&quot;,
+            &quot;content-type&quot;: &quot;application/json&quot;  # necessary
+        }
+        questionSet = json.loads(response.text)
+        questionSet = questionSet[&quot;stat_status_pairs&quot;]
+        for question in questionSet:
+            title_slug = question[&quot;stat&quot;][&quot;question__title_slug&quot;]
+            self.question_payload = self.question_payload.replace(&quot;QuestionName&quot;, title_slug)
+            yield scrapy.FormRequest(url=self.graphql_url, callback=self.ParseQuestionData,
+                                     headers=headers, body=self.question_payload)
+            self.question_payload = self.question_payload.replace(title_slug, &quot;QuestionName&quot;)
+</code></pre>
+
+<p>现在数据已经获取到了，我们需要在items.py文件中定义一个类用来存储题目的详细信息。items.py文件中的类继承自scrapy.Item类，是提供给scrapy框架中的组件Item Pipeline进行处理的统一的的数据结构。</p>
+
+<pre><code>import scrapy
+
+class QuestionDataItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    id = scrapy.Field()
+    title = scrapy.Field()
+    content = scrapy.Field()
+    submission_list = scrapy.Field()
+    topics = scrapy.Field()
+    difficulty = scrapy.Field()
+    ac_rate = scrapy.Field()
+    likes = scrapy.Field()
+    dislikes = scrapy.Field()
+    slug = scrapy.Field()
+</code></pre>
+
+<p>定义了QuestionDataItem类之后可以进入ParseQuestionData函数开始对题目详细信息的提取，我们可以根据需求提取出题目的id，title，content，topics，difficulty等信息，用一个QuestionDataItem对象来存储这些数据，然后进行yield questionDataItem操作，将这个对象交给Item Pipeline进行处理。</p>
+
+<pre><code>    def ParseQuestionData(self, response):
+        questionData = json.loads(response.text)[&quot;data&quot;][&quot;question&quot;]
+        questionDataItem = QuestionDataItem()
+        questionDataItem[&quot;id&quot;] = questionData[&quot;questionFrontendId&quot;]
+        questionDataItem[&quot;title&quot;] = questionData[&quot;title&quot;]
+        questionDataItem[&quot;content&quot;] = questionData[&quot;content&quot;]
+        topics = []
+        for topic in questionData[&quot;topicTags&quot;]:
+            topics.append(topic[&quot;name&quot;])
+        if len(topics) == 0:
+            topics.append(&quot;None&quot;)
+        questionDataItem[&quot;topics&quot;] = topics
+        questionDataItem[&quot;difficulty&quot;] = questionData[&quot;difficulty&quot;]
+        stats = json.loads(questionData[&quot;stats&quot;])
+        questionDataItem[&quot;ac_rate&quot;] = stats[&quot;acRate&quot;]
+        questionDataItem[&quot;likes&quot;] = questionData[&quot;likes&quot;]
+        questionDataItem[&quot;dislikes&quot;] = questionData[&quot;dislikes&quot;]
+        questionDataItem[&quot;slug&quot;] = questionData[&quot;titleSlug&quot;]
+        submission_list = self.GetSubmissionList(questionDataItem[&quot;slug&quot;])
+        questionDataItem[&quot;submission_list&quot;] = submission_list
+
+        yield questionDataItem
+</code></pre>
+
+<p>至此题目信息的爬取就完成了。</p>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p><a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/" target="_blank">Scrapy官方文档</a></p>
+
+<p><a href="https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates/">Postman官方文档</a></p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>在Google Cloud Platform上运行Jupyter Notebook</title>
+			<link>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</link>
+			<pubDate>Fri, 14 Dec 2018 17:03:12 +1100</pubDate>
+			
+			<guid>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</guid>
+			<description>简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jup</description>
+			<content type="html"><![CDATA[
+
+<h2 id="简介">简介</h2>
+
+<p>本文取材自 <a href="https://towardsdatascience.com/@aankul.a" target="_blank">Amulya Aankul</a> 发布在 <a href="https://medium.com/" target="_blank">Medium</a> 的 <a href="https://towardsdatascience.com/running-jupyter-notebook-in-google-cloud-platform-in-15-min-61e16da34d52" target="_blank">Running Jupyter Notebook on Google Cloud Platform in 15 min</a>，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。</p>
+
+<h2 id="服务器搭建">服务器搭建</h2>
+
+<h3 id="创建账号">创建账号</h3>
+
+<p>首先在<a href="https://cloud.google.com/" target="_blank">Google Cloud Platform</a>上创建一个账号。</p>
+
+<h3 id="创建新项目">创建新项目</h3>
+
+<p>点击左上角&rdquo;Google Cloud Platform&rdquo;右边的三个点，点击&rdquo;NEW PROJECT&rdquo;创建新项目。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/1.png" alt="1" /></p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/2.png" alt="2" /></p>
+
+<h3 id="创建虚拟机">创建虚拟机</h3>
+
+<p>进入刚才创建的项目，从左侧边栏点击 Compute Engine -&gt; VM instances 进入虚拟机页面。点击Create创建一个新的虚拟机实例（VM instance）</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/3.png" alt="3" />)</p>
+
+<p>根据需求填写和选择 Name, Region, Zone, Machine Type和Boot Disk。在 Firewall 选项中选中 Allow HTTP traffic 和 Allow HTTPS traffic, 在下方的 Disks 选项卡中取消勾选 Delete boot disk when instance is deleted。最后点击 Create，虚拟机实例就创建好了。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/4.png" alt="4" /></p>
+
+<h3 id="设置静态ip">设置静态IP</h3>
+
+<p>默认情况下，外网IP是动态变化的，为了方便访问服务器，我们可以将其设置为静态的。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/5.png" alt="5" /></p>
+
+<p>从左侧边栏点击 VPC Network -&gt; External IP Address，可以看到当前项目下的所有虚拟机，点击虚拟机实例对应的 Type 标签，点击 Ephemeral，将外网IP设置为静态的。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/6.png" alt="6" /></p>
+
+<h3 id="设置防火墙">设置防火墙</h3>
+
+<p>从左侧边栏点击 VPC Network -&gt; Firewall rules，点击上方的 CREATE FIREWALL RULE，创建一个新的防火墙规则。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/7.png" alt="7" /></p>
+
+<p>根据需求填写 Name，将 Targets 勾选为 All instances in the network，在 Source IP ranges 中填写 0.0.0.0/0，在 Protocols and ports 中勾选 tcp，填写一个端口范围，用于之后访问 Jupyter Notebook。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/8.png" alt="8" /></p>
+
+<h3 id="连接虚拟机">连接虚拟机</h3>
+
+<p>回到 VM instances，根据外网IP连接上刚才创建的虚拟机。可以直接从谷歌提供的 web 端终端连接，也可以通过其他途径连接。Windows 下可以使用Putty，Linux 和 Unix 系统可以直接使用SSH连接。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/9.png" alt="9" /></p>
+
+<h2 id="配置-jupyter-notebook">配置 Jupyter Notebook</h2>
+
+<h3 id="安装-jupyter-notebook">安装 Jupyter Notebook</h3>
+
+<p>在终端中输入<code>wget http://repo.continuum.io/archive/Anaconda3-4.0.0-Linux-x86_64.sh</code>
+获取 Anaconda 3 的安装文件</p>
+
+<p>接下来输入<code>bash Anaconda3-4.0.0-Linux-x86_64.sh</code>
+运行该文件，并根据屏幕提示安装 Anaconda 3。</p>
+
+<p>安装好之后读取启动文件<code>source ~/.bashrc</code>
+以使用 Anaconda 3</p>
+
+<h3 id="修改配置文件">修改配置文件</h3>
+
+<p>创建 Jupyter Notebook 的配置文件<code>jupyter notebook --generate-config</code></p>
+
+<p>使用Vim或其他编辑器打开该配置文件<code>vi ~/.jupyter/jupyter_notebook_config.py</code></p>
+
+<p>在该文件中加入相应的设置</p>
+
+<pre><code>c = get_config()
+c.NotebookApp.ip = '*'
+c.NotebookApp.open_browser = False
+c.NotebookApp.port = &lt;Port Number&gt;
+</code></pre>
+
+<p>在 &lt;Port Number&gt; 处填写 Jupyter Notebook 使用的端口号，该端口号应该是在防火墙规则的端口范围之内的，否则将不能够通过外网IP和端口号访问 Jupyter Notebook。填写完之后使用<code>:wq</code>命令保存该文件。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/10.png" alt="10" /></p>
+
+<h3 id="启动-jupyter-notebook">启动 Jupyter Notebook</h3>
+
+<p>最后，在浏览器中输入
+<code>jupyter-notebook --no-browser --port=&lt;Port Number&gt;</code>
+来启动 Jupyter Notebook，当然也可以使用
+<code>nohup jupyter-notebook --no-browser --port=&lt;Port Number&gt; &gt; jupyter.log &amp;</code>
+指令忽略挂起信号，让 Jupyter Notebook 一直在后台运行，并将控制台信息输出到 jupyter.log 文件中。</p>
+
+<p>最后在浏览器中输入 IP 地址和端口号（例如156.73.83.51:4813）就能打开 Jupyter Notebook 了！</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Run-Jupyter-Notebook-on-GCP/11.png" alt="11" /></p>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p><a href="https://towardsdatascience.com/running-jupyter-notebook-in-google-cloud-platform-in-15-min-61e16da34d52" target="_blank">Running Jupyter Notebook on Google Cloud Platform in 15 min</a></p>
+]]></content>
+		</item>
+		
+		<item>
 			<title>使用Scrapy爬取LeetCode（1）：Scrapy框架入门</title>
 			<link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-1/</link>
-			<pubDate>Thu, 03 Jan 2019 11:25:15 +1100</pubDate>
+			<pubDate>Tue, 04 Dec 2018 11:25:15 +1100</pubDate>
 			
 			<guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-1/</guid>
 			<description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 简介 Scrapy官</description>

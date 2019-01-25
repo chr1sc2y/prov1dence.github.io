@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 12 Jan 2019 17:03:12 +1100</lastBuildDate>
+    <lastBuildDate>Fri, 14 Dec 2018 17:03:12 +1100</lastBuildDate>
     
 	<atom:link href="http://zintrulcre.vip/tags/jupyter-notebook/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>在Google Cloud Platform上运行Jupyter Notebook</title>
       <link>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</link>
-      <pubDate>Sat, 12 Jan 2019 17:03:12 +1100</pubDate>
+      <pubDate>Fri, 14 Dec 2018 17:03:12 +1100</pubDate>
       
       <guid>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</guid>
       <description>简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jup</description>
