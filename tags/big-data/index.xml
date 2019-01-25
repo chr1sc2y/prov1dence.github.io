@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Big Data on ZintrulCre</title>
+    <link>http://zintrulcre.vip/tags/big-data/</link>
+    <description>Recent content in Big Data on ZintrulCre</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 21 Jan 2019 13:15:17 +1100</lastBuildDate>
+    
+	<atom:link href="http://zintrulcre.vip/tags/big-data/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Scrapy爬取LeetCode（3）：登录</title>
+      <link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-3/</link>
+      <pubDate>Mon, 21 Jan 2019 13:15:17 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-3/</guid>
+      <description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 Cookie和Se</description>
+    </item>
+    
+    <item>
+      <title>使用Scrapy爬取LeetCode（2）：爬取题目信息</title>
+      <link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-2/</link>
+      <pubDate>Fri, 18 Jan 2019 15:06:01 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-2/</guid>
+      <description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 创建爬虫 在新建好项</description>
+    </item>
+    
+    <item>
+      <title>使用Scrapy爬取LeetCode（1）：Scrapy框架入门</title>
+      <link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-1/</link>
+      <pubDate>Thu, 03 Jan 2019 11:25:15 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode-1/</guid>
+      <description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 简介 Scrapy官</description>
+    </item>
+    
+  </channel>
+</rss>
