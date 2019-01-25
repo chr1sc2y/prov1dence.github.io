@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="C&#43;&#43;智能指针（3）：shared_ptr">
+<meta itemprop="description" content="分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器 private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几">
+
+
+<meta itemprop="datePublished" content="2019-01-25T17:47:38&#43;11:00" />
+<meta itemprop="dateModified" content="2019-01-25T17:47:38&#43;11:00" />
+<meta itemprop="wordCount" content="1935">
+
+
+
+<meta itemprop="keywords" content="C&#43;&#43;,Pointer,C&#43;&#43;11," />
+<meta property="og:title" content="C&#43;&#43;智能指针（3）：shared_ptr" />
+<meta property="og:description" content="分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器 private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer-3/" /><meta property="article:published_time" content="2019-01-25T17:47:38&#43;11:00"/>
+<meta property="article:modified_time" content="2019-01-25T17:47:38&#43;11:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;智能指针（3）：shared_ptr"/>
+<meta name="twitter:description" content="分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器 private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>C&#43;&#43;智能指针（3）：shared_ptr</title>
+	<link rel="stylesheet" href="http://zintrulcre.vip/css/style.min.9a30741782203507f3d35fe9cefabad487c72fc82dfbdf59121759fc2fa52f92.css" integrity="sha256-mjB0F4IgNQfz01/pzvq61IfHL8gt+99ZEhdZ/C+lL5I=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://zintrulcre.vip">ZintrulCre</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="http://zintrulcre.vip/posts/">Posts</a>
+					<a href="http://zintrulcre.vip/about-hugo/">About</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/ZintrulCre" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/ZintrulCre" target="_blank" rel="noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://www.linkedin.com/in/%E6%AD%A3%E5%AE%87-%E9%99%88-19065a164/" target="_blank" rel="noopener" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://www.youtube.com/channel/UC3y5yK_ms60X90fVKbTpYeg?view_as=subscriber" target="_blank" rel="noopener" title="Youtube"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://zintrulcre.vip/posts/">Posts</a></li>
+			<li><a href="http://zintrulcre.vip/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 25, 2019</span></div>
+				<h1>C&#43;&#43;智能指针（3）：shared_ptr</h1>
+			</header>
+			<div class="content">
+				
+
+<h2 id="分析">分析</h2>
+
+<p>UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器</p>
+
+<pre><code>private:
+    int *counter;
+    T *pointer;
+    D *deleter;
+</code></pre>
+
+<p>计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。</p>
+
+<pre><code>template&lt;typename T, typename D&gt;
+void SharedPointer&lt;T, D&gt;::Decrese() {
+    if (pointer) {
+        std::cout &lt;&lt; &quot;SharedPointer &quot; &lt;&lt; this &lt;&lt; &quot; counter remains &quot; &lt;&lt; *counter &lt;&lt; std::endl;
+        if (--(*counter) == 0) {
+            std::cout &lt;&lt; &quot;SharedPointer &quot; &lt;&lt; this &lt;&lt; &quot; destructor called.&quot; &lt;&lt; std::endl;
+            (*deleter)(pointer);
+            (*deleter)(counter);
+            (*deleter)(deleter);
+            pointer = nullptr;
+            counter = nullptr;
+        }
+    }
+}
+</code></pre>
+
+<p>析构函数和reset函数都可以直接调用Decrease函数</p>
+
+<pre><code>template&lt;typename T, typename D&gt;
+SharedPointer&lt;T, D&gt;::~SharedPointer() {
+    Decrese();
+}
+
+template&lt;typename T, typename D&gt;
+void SharedPointer&lt;T, D&gt;::reset() {
+    Decrese();
+    pointer = nullptr;
+    counter = nullptr;
+    deleter = nullptr;
+}
+</code></pre>
+
+<p>在进行拷贝构造和赋值操作时都要使计数器自增1，在赋值操作时还要先使原有的计数器执行Decrease函数</p>
+
+<pre><code>template&lt;typename T, typename D&gt;
+SharedPointer&lt;T, D&gt;::SharedPointer(const SharedPointer&lt;T, D&gt; &amp;other) {
+    if (this != &amp;other) {
+        pointer = other.pointer;
+        counter = other.counter;
+        deleter = other.deleter;
+        ++(*counter);
+    }
+}
+
+template&lt;typename T, typename D&gt;
+SharedPointer&lt;T, D&gt; &amp;SharedPointer&lt;T, D&gt;::operator=(const SharedPointer&lt;T, D&gt; &amp;other) {
+    if (this != &amp;other) {
+        Decrese();
+        pointer = other.pointer;
+        counter = other.counter;
+        deleter = other.deleter;
+        ++(*counter);
+    }
+    return *this;
+}
+</code></pre>
+
+<h2 id="实现">实现</h2>
+
+<p>根据shared_ptr的源码，能够大致实现SharedPointer类</p>
+
+<pre><code>template&lt;typename T, typename D&gt;
+class SharedPointer {
+public:
+    explicit SharedPointer(T *t = nullptr, D *d = nullptr);
+
+    ~SharedPointer();
+
+    T &amp;operator*();
+
+    T *operator-&gt;();
+
+    T *release() = delete; // no need for release function
+
+    void reset();
+
+    SharedPointer(const SharedPointer &amp;other);
+
+    SharedPointer &amp;operator=(const SharedPointer &amp;other);
+
+
+private:
+    void Decrese();
+
+    int *counter;
+    T *pointer;
+    D *deleter;
+};
+
+template&lt;typename T, typename D&gt;
+void SharedPointer&lt;T, D&gt;::Decrese() {
+    if (pointer) {
+        std::cout &lt;&lt; &quot;SharedPointer &quot; &lt;&lt; this &lt;&lt; &quot; counter remains &quot; &lt;&lt; *counter &lt;&lt; std::endl;
+        if (--(*counter) == 0) {
+            std::cout &lt;&lt; &quot;SharedPointer &quot; &lt;&lt; this &lt;&lt; &quot; destructor called.&quot; &lt;&lt; std::endl;
+            (*deleter)(pointer);
+            (*deleter)(counter);
+            (*deleter)(deleter);
+            pointer = nullptr;
+            counter = nullptr;
+        }
+    }
+}
+
+template&lt;typename T, typename D&gt;
+SharedPointer&lt;T, D&gt;::SharedPointer(T *t, D *d): pointer(t), deleter(d) {
+    if (pointer)
+        counter = new int(1);
+    else
+        counter = nullptr;
+    std::cout &lt;&lt; &quot;SharedPointer &quot; &lt;&lt; this &lt;&lt; &quot; constructor called.&quot; &lt;&lt; std::endl;
+}
+
+template&lt;typename T, typename D&gt;
+SharedPointer&lt;T, D&gt;::~SharedPointer() {
+    Decrese();
+}
+
+template&lt;typename T, typename D&gt;
+T &amp;SharedPointer&lt;T, D&gt;::operator*() {
+    return *pointer;
+}
+
+template&lt;typename T, typename D&gt;
+T *SharedPointer&lt;T, D&gt;::operator-&gt;() {
+    return pointer;
+}
+
+template&lt;typename T, typename D&gt;
+void SharedPointer&lt;T, D&gt;::reset() {
+    Decrese();
+    pointer = nullptr;
+    counter = nullptr;
+    deleter = nullptr;
+}
+
+template&lt;typename T, typename D&gt;
+SharedPointer&lt;T, D&gt;::SharedPointer(const SharedPointer&lt;T, D&gt; &amp;other) {
+    std::cout &lt;&lt; &quot;SharedPointer &quot; &lt;&lt; this &lt;&lt; &quot; copy constructor called.&quot; &lt;&lt; std::endl;
+    if (this != &amp;other) {
+        pointer = other.pointer;
+        counter = other.counter;
+        deleter = other.deleter;
+        ++(*counter);
+    }
+}
+
+template&lt;typename T, typename D&gt;
+SharedPointer&lt;T, D&gt; &amp;SharedPointer&lt;T, D&gt;::operator=(const SharedPointer&lt;T, D&gt; &amp;other) {
+    std::cout &lt;&lt; &quot;SharedPointer &quot; &lt;&lt; this &lt;&lt; &quot; assignment operator called.&quot; &lt;&lt; std::endl;
+    if (this != &amp;other) {
+        Decrese();
+        pointer = other.pointer;
+        counter = other.counter;
+        deleter = other.deleter;
+        ++(*counter);
+    }
+    return *this;
+}
+</code></pre>
+
+<h2 id="测试">测试</h2>
+
+<p>尝试使用拷贝构造函数和赋值操作符使多个SharedPointer对象使用同一个指针，以及使用reset函数清空智能指针对象的指针</p>
+
+<pre><code>int main() {
+    Deleter *deleter = new Deleter();
+    Obj *o = new Obj();
+    SharedPointer&lt;Obj, Deleter&gt; s1(o, deleter);
+    SharedPointer&lt;Obj, Deleter&gt; s2(s1);
+    SharedPointer&lt;Obj, Deleter&gt; s3 = s1;
+    s3.reset();
+    SharedPointer&lt;Obj, Deleter&gt; s4;
+    s4 = s1;
+    return 0;
+}
+/*
+output:
+Construct
+SharedPointer 0x7ffee5877a00 constructor called.
+SharedPointer 0x7ffee58779e8 copy constructor called.
+SharedPointer 0x7ffee58779d0 copy constructor called.
+SharedPointer 0x7ffee58779d0 counter remains 3
+SharedPointer 0x7ffee58779b8 constructor called.
+SharedPointer 0x7ffee58779b8 assignment operator called.
+SharedPointer 0x7ffee58779b8 counter remains 3
+SharedPointer 0x7ffee58779e8 counter remains 2
+SharedPointer 0x7ffee5877a00 counter remains 1
+SharedPointer 0x7ffee5877a00 destructor called.
+Destruct
+*/
+</code></pre>
+
+<p>现在假设有两个类，Obj1和Obj2</p>
+
+<pre><code>class Obj2;
+class Obj1 {
+public:
+    SharedPointer&lt;Obj2, Deleter&gt; obj2_ptr;
+};
+
+class Obj2 {
+public:
+    SharedPointer&lt;Obj1, Deleter&gt; obj1_ptr;
+};
+</code></pre>
+
+<p>执行修改后的main函数</p>
+
+<pre><code>int main() {
+    Deleter *deleter = new Deleter();
+    Obj1 *o1 = new Obj1();
+    Obj2 *o2 = new Obj2();
+    SharedPointer&lt;Obj1, Deleter&gt; s1(o1, deleter);
+    SharedPointer&lt;Obj2, Deleter&gt; s2(o2, deleter);
+    o1-&gt;obj2_ptr = s2;
+    o2-&gt;obj1_ptr = s1;
+    return 0;
+}
+/*
+output:
+SharedPointer 0x7fe16d6000b0 constructor called.
+SharedPointer 0x7fe16d500200 constructor called.
+SharedPointer 0x7ffee63ca9d8 constructor called.
+SharedPointer 0x7ffee63ca9c0 constructor called.
+SharedPointer 0x7fe16d6000b0 assignment operator called.
+SharedPointer 0x7fe16d500200 assignment operator called.
+SharedPointer 0x7ffee63ca9c0 counter remains 2
+SharedPointer 0x7ffee63ca9d8 counter remains 2
+*/
+</code></pre>
+
+<p>o1和o2两个指针都包含了一个SharedPointer类型的智能指针，但这两个指针又依赖于SharedPointer对象去进行销毁，导致最后s1和s2的计数器都不能减为0，从而不能正确地销毁指针，导致了内存泄漏。这种现象叫做交叉引用。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>SharedPointer利用Reference counting（<a href="https://en.wikipedia.org/wiki/Reference_counting" target="_blank">计数引用</a>）解决了多个对象使用同一个指针时自动销毁指针的问题，但又会发生交叉引用时不能够正确销毁指针的问题。</p>
+
+<h2 id="shared-pointer源码">shared_pointer源码</h2>
+
+<pre><code>template&lt;class _Tp&gt;
+class _LIBCPP_TEMPLATE_VIS shared_ptr
+{
+public:
+    typedef _Tp element_type;
+
+#if _LIBCPP_STD_VER &gt; 14
+    typedef weak_ptr&lt;_Tp&gt; weak_type;
+#endif
+private:
+    element_type*      __ptr_;
+    __shared_weak_count* __cntrl_;
+
+    struct __nat {int __for_bool_;};
+public:
+    _LIBCPP_INLINE_VISIBILITY
+    _LIBCPP_CONSTEXPR shared_ptr() _NOEXCEPT;
+    _LIBCPP_INLINE_VISIBILITY
+    _LIBCPP_CONSTEXPR shared_ptr(nullptr_t) _NOEXCEPT;
+    template&lt;class _Yp&gt;
+        explicit shared_ptr(_Yp* __p,
+                            typename enable_if&lt;is_convertible&lt;_Yp*, element_type*&gt;::value, __nat&gt;::type = __nat());
+    template&lt;class _Yp, class _Dp&gt;
+        shared_ptr(_Yp* __p, _Dp __d,
+                   typename enable_if&lt;is_convertible&lt;_Yp*, element_type*&gt;::value, __nat&gt;::type = __nat());
+    template&lt;class _Yp, class _Dp, class _Alloc&gt;
+        shared_ptr(_Yp* __p, _Dp __d, _Alloc __a,
+                   typename enable_if&lt;is_convertible&lt;_Yp*, element_type*&gt;::value, __nat&gt;::type = __nat());
+    template &lt;class _Dp&gt; shared_ptr(nullptr_t __p, _Dp __d);
+    template &lt;class _Dp, class _Alloc&gt; shared_ptr(nullptr_t __p, _Dp __d, _Alloc __a);
+    template&lt;class _Yp&gt; _LIBCPP_INLINE_VISIBILITY shared_ptr(const shared_ptr&lt;_Yp&gt;&amp; __r, element_type* __p) _NOEXCEPT;
+    _LIBCPP_INLINE_VISIBILITY
+    shared_ptr(const shared_ptr&amp; __r) _NOEXCEPT;
+    template&lt;class _Yp&gt;
+        _LIBCPP_INLINE_VISIBILITY
+        shared_ptr(const shared_ptr&lt;_Yp&gt;&amp; __r,
+                   typename enable_if&lt;is_convertible&lt;_Yp*, element_type*&gt;::value, __nat&gt;::type = __nat())
+                       _NOEXCEPT;
+#ifndef _LIBCPP_HAS_NO_RVALUE_REFERENCES
+    _LIBCPP_INLINE_VISIBILITY
+    shared_ptr(shared_ptr&amp;&amp; __r) _NOEXCEPT;
+    template&lt;class _Yp&gt; _LIBCPP_INLINE_VISIBILITY  shared_ptr(shared_ptr&lt;_Yp&gt;&amp;&amp; __r,
+                   typename enable_if&lt;is_convertible&lt;_Yp*, element_type*&gt;::value, __nat&gt;::type = __nat())
+                       _NOEXCEPT;
+#endif  // _LIBCPP_HAS_NO_RVALUE_REFERENCES
+    template&lt;class _Yp&gt; explicit shared_ptr(const weak_ptr&lt;_Yp&gt;&amp; __r,
+                   typename enable_if&lt;is_convertible&lt;_Yp*, element_type*&gt;::value, __nat&gt;::type= __nat());
+#if _LIBCPP_STD_VER &lt;= 14 || defined(_LIBCPP_ENABLE_CXX17_REMOVED_AUTO_PTR)
+#ifndef _LIBCPP_HAS_NO_RVALUE_REFERENCES
+    template&lt;class _Yp&gt;
+        shared_ptr(auto_ptr&lt;_Yp&gt;&amp;&amp; __r,
+                   typename enable_if&lt;is_convertible&lt;_Yp*, element_type*&gt;::value, __nat&gt;::type = __nat());
+#else
+    template&lt;class _Yp&gt;
+        shared_ptr(auto_ptr&lt;_Yp&gt; __r,
+                   typename enable_if&lt;is_convertible&lt;_Yp*, element_type*&gt;::value, __nat&gt;::type = __nat());
+#endif
+#endif
+#ifndef _LIBCPP_HAS_NO_RVALUE_REFERENCES
+    template &lt;class _Yp, class _Dp&gt;
+        shared_ptr(unique_ptr&lt;_Yp, _Dp&gt;&amp;&amp;,
+                   typename enable_if
+                   &lt;
+                       !is_lvalue_reference&lt;_Dp&gt;::value &amp;&amp;
+                       !is_array&lt;_Yp&gt;::value &amp;&amp;
+                       is_convertible&lt;typename unique_ptr&lt;_Yp, _Dp&gt;::pointer, element_type*&gt;::value,
+                       __nat
+                   &gt;::type = __nat());
+    template &lt;class _Yp, class _Dp&gt;
+        shared_ptr(unique_ptr&lt;_Yp, _Dp&gt;&amp;&amp;,
+                   typename enable_if
+                   &lt;
+                       is_lvalue_reference&lt;_Dp&gt;::value &amp;&amp;
+                       !is_array&lt;_Yp&gt;::value &amp;&amp;
+                       is_convertible&lt;typename unique_ptr&lt;_Yp, _Dp&gt;::pointer, element_type*&gt;::value,
+                       __nat
+                   &gt;::type = __nat());
+#else  // _LIBCPP_HAS_NO_RVALUE_REFERENCES
+    template &lt;class _Yp, class _Dp&gt;
+        shared_ptr(unique_ptr&lt;_Yp, _Dp&gt;,
+                   typename enable_if
+                   &lt;
+                       !is_lvalue_reference&lt;_Dp&gt;::value &amp;&amp;
+                       !is_array&lt;_Yp&gt;::value &amp;&amp;
+                       is_convertible&lt;typename unique_ptr&lt;_Yp, _Dp&gt;::pointer, element_type*&gt;::value,
+                       __nat
+                   &gt;::type = __nat());
+    template &lt;class _Yp, class _Dp&gt;
+        shared_ptr(unique_ptr&lt;_Yp, _Dp&gt;,
+                   typename enable_if
+                   &lt;
+                       is_lvalue_reference&lt;_Dp&gt;::value &amp;&amp;
+                       !is_array&lt;_Yp&gt;::value &amp;&amp;
+                       is_convertible&lt;typename unique_ptr&lt;_Yp, _Dp&gt;::pointer, element_type*&gt;::value,
+                       __nat
+                   &gt;::type = __nat());
+#endif  // _LIBCPP_HAS_NO_RVALUE_REFERENCES
+
+    ~shared_ptr();
+
+    _LIBCPP_INLINE_VISIBILITY
+    shared_ptr&amp; operator=(const shared_ptr&amp; __r) _NOEXCEPT;
+    template&lt;class _Yp&gt;
+        typename enable_if
+        &lt;
+            is_convertible&lt;_Yp*, element_type*&gt;::value,
+            shared_ptr&amp;
+        &gt;::type
+        _LIBCPP_INLINE_VISIBILITY
+        operator=(const shared_ptr&lt;_Yp&gt;&amp; __r) _NOEXCEPT;
+#ifndef _LIBCPP_HAS_NO_RVALUE_REFERENCES
+    _LIBCPP_INLINE_VISIBILITY
+    shared_ptr&amp; operator=(shared_ptr&amp;&amp; __r) _NOEXCEPT;
+    template&lt;class _Yp&gt;
+        typename enable_if
+        &lt;
+            is_convertible&lt;_Yp*, element_type*&gt;::value,
+            shared_ptr&lt;_Tp&gt;&amp;
+        &gt;::type
+        _LIBCPP_INLINE_VISIBILITY
+        operator=(shared_ptr&lt;_Yp&gt;&amp;&amp; __r);
+#if _LIBCPP_STD_VER &lt;= 14 || defined(_LIBCPP_ENABLE_CXX17_REMOVED_AUTO_PTR)
+    template&lt;class _Yp&gt;
+        _LIBCPP_INLINE_VISIBILITY
+        typename enable_if
+        &lt;
+            !is_array&lt;_Yp&gt;::value &amp;&amp;
+            is_convertible&lt;_Yp*, element_type*&gt;::value,
+            shared_ptr
+        &gt;::type&amp;
+        operator=(auto_ptr&lt;_Yp&gt;&amp;&amp; __r);
+#endif
+#else  // _LIBCPP_HAS_NO_RVALUE_REFERENCES
+#if _LIBCPP_STD_VER &lt;= 14 || defined(_LIBCPP_ENABLE_CXX17_REMOVED_AUTO_PTR)
+    template&lt;class _Yp&gt;
+        _LIBCPP_INLINE_VISIBILITY
+        typename enable_if
+        &lt;
+            !is_array&lt;_Yp&gt;::value &amp;&amp;
+            is_convertible&lt;_Yp*, element_type*&gt;::value,
+            shared_ptr&amp;
+        &gt;::type
+        operator=(auto_ptr&lt;_Yp&gt; __r);
+#endif
+#endif
+    template &lt;class _Yp, class _Dp&gt;
+        typename enable_if
+        &lt;
+            !is_array&lt;_Yp&gt;::value &amp;&amp;
+            is_convertible&lt;typename unique_ptr&lt;_Yp, _Dp&gt;::pointer, element_type*&gt;::value,
+            shared_ptr&amp;
+        &gt;::type
+#ifndef _LIBCPP_HAS_NO_RVALUE_REFERENCES
+        _LIBCPP_INLINE_VISIBILITY
+        operator=(unique_ptr&lt;_Yp, _Dp&gt;&amp;&amp; __r);
+#else  // _LIBCPP_HAS_NO_RVALUE_REFERENCES
+        _LIBCPP_INLINE_VISIBILITY
+        operator=(unique_ptr&lt;_Yp, _Dp&gt; __r);
+#endif
+
+    _LIBCPP_INLINE_VISIBILITY
+    void swap(shared_ptr&amp; __r) _NOEXCEPT;
+    _LIBCPP_INLINE_VISIBILITY
+    void reset() _NOEXCEPT;
+    template&lt;class _Yp&gt;
+        typename enable_if
+        &lt;
+            is_convertible&lt;_Yp*, element_type*&gt;::value,
+            void
+        &gt;::type
+        _LIBCPP_INLINE_VISIBILITY
+        reset(_Yp* __p);
+    template&lt;class _Yp, class _Dp&gt;
+        typename enable_if
+        &lt;
+            is_convertible&lt;_Yp*, element_type*&gt;::value,
+            void
+        &gt;::type
+        _LIBCPP_INLINE_VISIBILITY
+        reset(_Yp* __p, _Dp __d);
+    template&lt;class _Yp, class _Dp, class _Alloc&gt;
+        typename enable_if
+        &lt;
+            is_convertible&lt;_Yp*, element_type*&gt;::value,
+            void
+        &gt;::type
+        _LIBCPP_INLINE_VISIBILITY
+        reset(_Yp* __p, _Dp __d, _Alloc __a);
+
+    _LIBCPP_INLINE_VISIBILITY
+    element_type* get() const _NOEXCEPT {return __ptr_;}
+    _LIBCPP_INLINE_VISIBILITY
+    typename add_lvalue_reference&lt;element_type&gt;::type operator*() const _NOEXCEPT
+        {return *__ptr_;}
+    _LIBCPP_INLINE_VISIBILITY
+    element_type* operator-&gt;() const _NOEXCEPT {return __ptr_;}
+    _LIBCPP_INLINE_VISIBILITY
+    long use_count() const _NOEXCEPT {return __cntrl_ ? __cntrl_-&gt;use_count() : 0;}
+    _LIBCPP_INLINE_VISIBILITY
+    bool unique() const _NOEXCEPT {return use_count() == 1;}
+    _LIBCPP_INLINE_VISIBILITY
+    _LIBCPP_EXPLICIT operator bool() const _NOEXCEPT {return get() != 0;}
+    template &lt;class _Up&gt;
+        _LIBCPP_INLINE_VISIBILITY
+        bool owner_before(shared_ptr&lt;_Up&gt; const&amp; __p) const _NOEXCEPT
+        {return __cntrl_ &lt; __p.__cntrl_;}
+    template &lt;class _Up&gt;
+        _LIBCPP_INLINE_VISIBILITY
+        bool owner_before(weak_ptr&lt;_Up&gt; const&amp; __p) const _NOEXCEPT
+        {return __cntrl_ &lt; __p.__cntrl_;}
+    _LIBCPP_INLINE_VISIBILITY
+    bool
+    __owner_equivalent(const shared_ptr&amp; __p) const
+        {return __cntrl_ == __p.__cntrl_;}
+
+#ifndef _LIBCPP_NO_RTTI
+    template &lt;class _Dp&gt;
+        _LIBCPP_INLINE_VISIBILITY
+        _Dp* __get_deleter() const _NOEXCEPT
+            {return static_cast&lt;_Dp*&gt;(__cntrl_
+                    ? const_cast&lt;void *&gt;(__cntrl_-&gt;__get_deleter(typeid(_Dp)))
+                      : nullptr);}
+#endif  // _LIBCPP_NO_RTTI
+
+#ifndef _LIBCPP_HAS_NO_VARIADICS
+
+    template&lt;class ..._Args&gt;
+        static
+        shared_ptr&lt;_Tp&gt;
+        make_shared(_Args&amp;&amp; ...__args);
+
+    template&lt;class _Alloc, class ..._Args&gt;
+        static
+        shared_ptr&lt;_Tp&gt;
+        allocate_shared(const _Alloc&amp; __a, _Args&amp;&amp; ...__args);
+
+#else  // _LIBCPP_HAS_NO_VARIADICS
+
+    static shared_ptr&lt;_Tp&gt; make_shared();
+
+    template&lt;class _A0&gt;
+        static shared_ptr&lt;_Tp&gt; make_shared(_A0&amp;);
+
+    template&lt;class _A0, class _A1&gt;
+        static shared_ptr&lt;_Tp&gt; make_shared(_A0&amp;, _A1&amp;);
+
+    template&lt;class _A0, class _A1, class _A2&gt;
+        static shared_ptr&lt;_Tp&gt; make_shared(_A0&amp;, _A1&amp;, _A2&amp;);
+
+    template&lt;class _Alloc&gt;
+        static shared_ptr&lt;_Tp&gt;
+        allocate_shared(const _Alloc&amp; __a);
+
+    template&lt;class _Alloc, class _A0&gt;
+        static shared_ptr&lt;_Tp&gt;
+        allocate_shared(const _Alloc&amp; __a, _A0&amp; __a0);
+
+    template&lt;class _Alloc, class _A0, class _A1&gt;
+        static shared_ptr&lt;_Tp&gt;
+        allocate_shared(const _Alloc&amp; __a, _A0&amp; __a0, _A1&amp; __a1);
+
+    template&lt;class _Alloc, class _A0, class _A1, class _A2&gt;
+        static shared_ptr&lt;_Tp&gt;
+        allocate_shared(const _Alloc&amp; __a, _A0&amp; __a0, _A1&amp; __a1, _A2&amp; __a2);
+
+#endif  // _LIBCPP_HAS_NO_VARIADICS
+
+private:
+    template &lt;class _Yp, bool = is_function&lt;_Yp&gt;::value&gt;
+        struct __shared_ptr_default_allocator
+        {
+            typedef allocator&lt;_Yp&gt; type;
+        };
+
+    template &lt;class _Yp&gt;
+        struct __shared_ptr_default_allocator&lt;_Yp, true&gt;
+        {
+            typedef allocator&lt;__shared_ptr_dummy_rebind_allocator_type&gt; type;
+        };
+
+    template &lt;class _Yp, class _OrigPtr&gt;
+        _LIBCPP_INLINE_VISIBILITY
+        typename enable_if&lt;is_convertible&lt;_OrigPtr*,
+                                          const enable_shared_from_this&lt;_Yp&gt;*
+        &gt;::value,
+            void&gt;::type
+        __enable_weak_this(const enable_shared_from_this&lt;_Yp&gt;* __e,
+                           _OrigPtr* __ptr) _NOEXCEPT
+        {
+            typedef typename remove_cv&lt;_Yp&gt;::type _RawYp;
+            if (__e &amp;&amp; __e-&gt;__weak_this_.expired())
+            {
+                __e-&gt;__weak_this_ = shared_ptr&lt;_RawYp&gt;(*this,
+                    const_cast&lt;_RawYp*&gt;(static_cast&lt;const _Yp*&gt;(__ptr)));
+            }
+        }
+
+    _LIBCPP_INLINE_VISIBILITY void __enable_weak_this(...) _NOEXCEPT {}
+
+    template &lt;class _Up&gt; friend class _LIBCPP_TEMPLATE_VIS shared_ptr;
+    template &lt;class _Up&gt; friend class _LIBCPP_TEMPLATE_VIS weak_ptr;
+};
+</code></pre>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://zintrulcre.vip/tags/c&#43;&#43;">C&#43;&#43;</a></span><span class="tag"><a href="http://zintrulcre.vip/tags/pointer">Pointer</a></span><span class="tag"><a href="http://zintrulcre.vip/tags/c&#43;&#43;11">C&#43;&#43;11</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1935 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-01-25 17:47</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer-2/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>C&#43;&#43;智能指针（2）：unique_ptr</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://zintrulcre.vip">Zhengyu Chen</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://zintrulcre.vip/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://zintrulcre.vip/js/main.min.8f39f24808e9d0a9b02da58c2d2838da859dc0b7bdfadbdb1883aae8b6adacfe.js" integrity="sha256-jznySAjp0KmwLaWMLSg42oWdwLe9+tvbGIOq6LatrP4="></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>
