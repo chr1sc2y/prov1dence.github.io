@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="C&#43;&#43;智能指针（1.5）：move语义">
+<meta itemprop="description" content="move语义 定义 右值引用（Rvalue Referene）是 C&#43;&#43; 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（P">
+
+
+<meta itemprop="datePublished" content="2019-01-02T09:55:05&#43;11:00" />
+<meta itemprop="dateModified" content="2019-01-02T09:55:05&#43;11:00" />
+<meta itemprop="wordCount" content="1263">
+
+
+
+<meta itemprop="keywords" content="C&#43;&#43;,Pointer,C&#43;&#43;11," />
+<meta property="og:title" content="C&#43;&#43;智能指针（1.5）：move语义" />
+<meta property="og:description" content="move语义 定义 右值引用（Rvalue Referene）是 C&#43;&#43; 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（P" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1.5/" /><meta property="article:published_time" content="2019-01-02T09:55:05&#43;11:00"/>
+<meta property="article:modified_time" content="2019-01-02T09:55:05&#43;11:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;智能指针（1.5）：move语义"/>
+<meta name="twitter:description" content="move语义 定义 右值引用（Rvalue Referene）是 C&#43;&#43; 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（P"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>C&#43;&#43;智能指针（1.5）：move语义</title>
+	<link rel="stylesheet" href="http://zintrulcre.vip/css/style.min.9a30741782203507f3d35fe9cefabad487c72fc82dfbdf59121759fc2fa52f92.css" integrity="sha256-mjB0F4IgNQfz01/pzvq61IfHL8gt+99ZEhdZ/C+lL5I=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://zintrulcre.vip">ZintrulCre</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="http://zintrulcre.vip/posts/">Posts</a>
+					<a href="http://zintrulcre.vip/about">About</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/ZintrulCre" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/ZintrulCre" target="_blank" rel="noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://www.linkedin.com/in/%E6%AD%A3%E5%AE%87-%E9%99%88-19065a164/" target="_blank" rel="noopener" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://www.youtube.com/channel/UC3y5yK_ms60X90fVKbTpYeg?view_as=subscriber" target="_blank" rel="noopener" title="Youtube"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://zintrulcre.vip/posts/">Posts</a></li>
+			<li><a href="http://zintrulcre.vip/about">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 2, 2019</span></div>
+				<h1>C&#43;&#43;智能指针（1.5）：move语义</h1>
+			</header>
+			<div class="content">
+				
+
+<h2 id="move语义">move语义</h2>
+
+<h3 id="定义">定义</h3>
+
+<p>右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（Perfect Forwarding），其主要目的有</p>
+
+<ul>
+<li>消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。</li>
+<li>能够更简洁明确地定义泛型函数。</li>
+</ul>
+
+<h3 id="实现">实现</h3>
+
+<p>move语义的实现如下</p>
+
+<pre><code>template &lt;class _Tp&gt;
+typename remove_reference&lt;_Tp&gt;::type&amp;&amp;
+move(_Tp&amp;&amp; __t) _NOEXCEPT
+{
+    typedef typename remove_reference&lt;_Tp&gt;::type _Up;
+    return static_cast&lt;_Up&amp;&amp;&gt;(__t);
+}
+</code></pre>
+
+<p>可以看到其实move语义的实现非常简单，它将传入的参数（__t）强制类型转换（static_cast）成了对应类型的右值（&lt;_Up&amp;&amp;&gt;）。也就是说，使用move语义之后，编译器窃取（一般会在移动构造函数和移动赋值操作符里将原有对象指向nullptr）了原有对象的右值，并延长了这个右值的生命周期，而没有对右值做任何拷贝操作，这个右值将被用来赋值给其他的对象。</p>
+
+<h3 id="测试">测试</h3>
+
+<p>定义一个obj类</p>
+
+<pre><code>class Obj {
+public:
+    Obj() { std::cout &lt;&lt; &quot;Construct&quot; &lt;&lt; std::endl; }
+
+    Obj(const Obj &amp;other) { std::cout &lt;&lt; &quot;Copy&quot; &lt;&lt; std::endl; }
+
+    Obj(Obj &amp;&amp;other) noexcept { std::cout &lt;&lt; &quot;Move&quot; &lt;&lt; std::endl; }
+
+    ~Obj() { std::cout &lt;&lt; &quot;Destruct&quot; &lt;&lt; std::endl; }
+
+    void Print() { std::cout &lt;&lt; &quot;Print&quot; &lt;&lt; std::endl; }
+};
+
+</code></pre>
+
+<p>定义一个Function函数，使用move语义返回</p>
+
+<pre><code>Obj Function() {
+    Obj obj;
+    return move(obj);
+}
+
+int main() {
+    Obj obj = Function();
+    return 0;
+}
+/*
+output:
+Construct
+Move
+Destruct
+Destruct
+*/
+</code></pre>
+
+<p>可以看到在Function函数返回右值后，obj对象调用了移动构造函数，而不是拷贝构造函数。</p>
+
+<h3 id="rvo-return-value-optimisation">RVO (return value optimisation)</h3>
+
+<p>RVO（返回值优化）是一种编译器优化技术，允许编译器在调用点（<a href="https://en.wikipedia.org/wiki/Call_site" target="_blank">call site</a>）直接构造函数的返回值。</p>
+
+<p>在Function函数中返回一个Obj对象</p>
+
+<pre><code>Obj Function() {
+    Obj obj;
+    return obj; // NRVO (named return value optimisation)
+}
+
+int main() {
+    Obj obj = Function();
+
+    return 0;
+}
+/*
+output:
+Construct
+Destruct
+ */
+</code></pre>
+
+<p>原本Function函数在返回时应该会进行一次拷贝，然而调试结果却告诉我们obj只在Function函数中被构造了一次，在程序结束时被析构了一次。这是因为编译器使用了RVO机制。这里Function函数返回的是一个左值，所以又称NRVO（命名返回值优化）。这项技术在C++ 11里被称为Copy Elision（拷贝省略）。</p>
+
+<p>如果我们在返回时使用move语义</p>
+
+<pre><code>Obj Function() {
+    Obj obj;
+    return move(obj);
+}
+
+int main() {
+    Obj obj = Function();
+    return 0;
+}
+/*
+output:
+Construct
+Move
+Destruct
+Destruct
+*/
+</code></pre>
+
+<p>可以看到，因为使用了move语义，函数实际返回的是一个右值引用（Obj&amp;&amp;），而不是函数定义中的对象（Obj），没有触发RVO。也就是说，要触发RVO机制，必须保证函数实际的返回值类型和函数定义中的返回值类型一致。</p>
+
+<p>如果我们把函数返回值类型改为右值引用</p>
+
+<pre><code>Obj &amp;&amp;Function() {
+    Obj obj;
+    return move(obj);
+}
+
+int main() {
+    Obj obj = Function();
+    return 0;
+}
+/*
+output:
+Construct
+Destruct
+Move
+Destruct
+*/
+</code></pre>
+
+<p>可以看到main函数中的obj对象使用了移动构造函数，触发了RVO机制。</p>
+
+<p>现在对函数稍加修改，再次运行</p>
+
+<pre><code>Obj Function(bool flag) {
+    Obj obj1, obj2;
+    if(flag)
+        return obj1;
+    return obj2;
+}
+
+int main() {
+    Obj obj = Function(true);
+    return 0;
+}
+/*
+output:
+Construct
+Construct
+Move
+Destruct
+Destruct
+Destruct
+*/
+</code></pre>
+
+<p>这一次Function函数使用了两次默认构造函数构造了两个Obj对象，返回时又调用了一次移动构造函数（左值返回时编译器会优先使用移动构造函数，不支持移动构造时才调用拷贝构造函数），没有触发RVO机制。这是因为编译器使用了parent stack frame（父堆栈帧）来避免返回值拷贝，但如果在返回时使用了判断语句，编译器在编译时将不能确定将哪一个作为返回值，</p>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://www.ibm.com/developerworks/community/blogs/5894415f-be62-4bc0-81c5-3956e82276f3/entry/RVO_V_S_std_move?lang=en" target="_blank">RVO V.S. std::move</a></p>
+
+<p><a href="https://www.ibm.com/developerworks/cn/aix/library/1307_lisl_c11/index.html" target="_blank">右值引用与转移语义</a></p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://zintrulcre.vip/tags/c&#43;&#43;">C&#43;&#43;</a></span><span class="tag"><a href="http://zintrulcre.vip/tags/pointer">Pointer</a></span><span class="tag"><a href="http://zintrulcre.vip/tags/c&#43;&#43;11">C&#43;&#43;11</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1263 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-01-02 09:55</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-3/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>使用Scrapy爬取LeetCode（3）：登录</span>
+			</a>
+			<a class="prev-post" href="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>C&#43;&#43;智能指针（1）：auto_ptr</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://zintrulcre.vip">Zhengyu Chen</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://zintrulcre.vip/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://zintrulcre.vip/js/main.min.8f39f24808e9d0a9b02da58c2d2838da859dc0b7bdfadbdb1883aae8b6adacfe.js" integrity="sha256-jznySAjp0KmwLaWMLSg42oWdwLe9+tvbGIOq6LatrP4="></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>
