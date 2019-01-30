@@ -15,7 +15,7 @@ import numpy as np import matplotlib.">
 
 <meta itemprop="datePublished" content="2019-01-30T14:38:43&#43;11:00" />
 <meta itemprop="dateModified" content="2019-01-30T14:38:43&#43;11:00" />
-<meta itemprop="wordCount" content="913">
+<meta itemprop="wordCount" content="911">
 
 
 
@@ -127,18 +127,18 @@ import io
 <p>where</p>
 
 <ul>
-<li>$y$ is the <strong>target variable</strong></li>
-<li>$\mathbf{x} = [x_1, \ldots, x_m]$ is a vector of <strong>features</strong> ($x_0 = 1$)</li>
-<li>$\mathbf{w} = [w_0, \ldots, w_m]$ are the <strong>weights</strong>.</li>
+<li><span  class="math">\(y\)</span> is the <strong>target variable</strong></li>
+<li><span  class="math">\(\mathbf{x} = [x_1, \ldots, x_m]\)</span> is a vector of <strong>features</strong> (<span  class="math">\(x_0 = 1\)</span>)</li>
+<li><span  class="math">\(\mathbf{w} = [w_0, \ldots, w_m]\)</span> are the <strong>weights</strong>.</li>
 </ul>
 
-<p>To fit the model, we should <strong>minimise</strong> the empirical risk with respect to $\vec{w}$.</p>
+<p>To fit the model, we should <strong>minimise</strong> the empirical risk with respect to <span  class="math">\(\vec{w}\)</span>.</p>
 
 <p>In this case, this amounts to minimising the sum of squared residuals (square loss):</p>
 
 <p><span  class="math">\[SSR(\mathbf{w}) = \sum_{i=1}^{n}(y_i - \mathbf{w} \cdot \mathbf{x}_i)^2\]</span></p>
 
-<p>For simplicity, we only consider the case $m = 1$ (i.e. only one feature excluding the intercept).</p>
+<p>For simplicity, we only consider the case <span  class="math">\(m = 1\)</span> (i.e. only one feature excluding the intercept).</p>
 
 <h2 id="3-import-data-set">3. Import Data set</h2>
 
@@ -182,13 +182,13 @@ olympics = np.genfromtxt(io.BytesIO(csv.encode()), delimiter=&quot;,&quot;)
 print(olympics)
 </code></pre>
 
-<p>Now we take the race time as the <strong>target variable</strong> $y$ and the year of the race as the only <strong>feature</strong> $x = x_1$.</p>
+<p>Now we take the race time as the <strong>target variable</strong> <span  class="math">\(y\)</span> and the year of the race as the only <strong>feature</strong> <span  class="math">\(x = x_1\)</span>.</p>
 
 <pre><code>x = olympics[:, 0:1]
 y = olympics[:, 1:2]
 </code></pre>
 
-<p>Plot $y$ and $x$.</p>
+<p>Plot <span  class="math">\(y\)</span> and <span  class="math">\(x\)</span>.</p>
 
 <pre><code>plt.plot(x, y, 'rx')
 plt.ylabel(&quot;y (Race time)&quot;)
@@ -202,16 +202,16 @@ plt.show()
 
 <h2 id="4-iterative-solution-coordinate-descent">4. Iterative solution (coordinate descent)</h2>
 
-<p>Expanding out the sum of square residuals for this simple case (where $\mathbf{w}=[w_0, w_1]$) we have:</p>
+<p>Expanding out the sum of square residuals for this simple case (where <span  class="math">\(\mathbf{w}=[w_0, w_1]\)</span>) we have:</p>
 
 <p><span  class="math">\[SSR(w_0, w_1) = \sum_{i=1}^{n}(y_i - w_0 - w_1 x_i)^2\]</span></p>
 
-<p>Let's start with an initial guess for the slope $w_1$ (which is clearly negative from the plot).</p>
+<p>Let's start with an initial guess for the slope <span  class="math">\(w_1\)</span> (which is clearly negative from the plot).</p>
 
 <pre><code>w1 = -0.5
 </code></pre>
 
-<p>Then using the maximum likelihood update, we can get the following estimate for the intercept $w_0$</p>
+<p>Then using the maximum likelihood update, we can get the following estimate for the intercept <span  class="math">\(w_0\)</span></p>
 
 <p><span  class="math">\[w_0 = \frac{\sum_{i=1}^{n}(y_i-w_1 x_i)}{n}\]</span></p>
 
@@ -222,7 +222,7 @@ w0 = update_w0(x, y, w1)
 print(w0)
 </code></pre>
 
-<p>Similarly, we can update $w_1$ based on this new estimate of $w_0$</p>
+<p>Similarly, we can update <span  class="math">\(w_1\)</span> based on this new estimate of <span  class="math">\(w_0\)</span></p>
 
 <p><span  class="math">\[w_1 = \frac{\sum_{i=1}^{n} (y_i - w_0) \times x_i}{\sum_{i=1}^{n} x_i^2}\]</span></p>
 
@@ -233,7 +233,7 @@ w1 = update_w1(x, y, w0)
 print(w1)
 </code></pre>
 
-<p>Now let's examine the quality of fit for these values for the weights $w_0$ and $w_1$. We create a vector of &quot;test&quot; values <code>x_test</code> and a function to compute the predictions according to the model.</p>
+<p>Now let's examine the quality of fit for these values for the weights <span  class="math">\(w_0\)</span> and <span  class="math">\(w_1\)</span>. We create a vector of &quot;test&quot; values <code>x_test</code> and a function to compute the predictions according to the model.</p>
 
 <pre><code>x_test = np.arange(1890, 2020)[:, None]
 
@@ -258,7 +258,7 @@ plot_fit(x_test, predict(x_test, w0, w1), x, y)
 
 <p><figure><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Machine-Learning/Machine-Learning-Algorithm-Implementation-1/2.png" alt="2"></figure></p>
 
-<p>We can compute the sum of square residuals $SSR(w_0,w_1)$ on the training set to measure the goodness of fit.</p>
+<p>We can compute the sum of square residuals <span  class="math">\(SSR(w_0,w_1)\)</span> on the training set to measure the goodness of fit.</p>
 
 <pre><code>def compute_SSR(x, y, w0, w1): 
     return ((y - w0 - w1*x)**2).sum()
@@ -287,34 +287,21 @@ print(&quot;Final estimates: w0 = {}; w1 = {}&quot;.format(w0, w1))
 
 <h2 id="5-linear-algebra-solution">5. Linear algebra solution</h2>
 
-<p>it's possible to solve for the optimal weights $\mathbf{w}^\star$ analytically. The solution is</p>
+<p>it's possible to solve for the optimal weights <span  class="math">\(\mathbf{w}^\star\)</span> analytically. The solution is</p>
 
 <p><span  class="math">\[\mathbf{w}^* = \left[\mathbf{X}^\top \mathbf{X}\right]^{-1} \mathbf{X}^\top \mathbf{y}\]</span></p>
 
 <p>where</p>
 
-<p>$$\mathbf{X} = \begin{pmatrix}</p>
+<p><span  class="math">\[\mathbf{X} = \begin{pmatrix} 1 & x_1 \\ 1 & x_2 \\ \vdots & \vdots \\ 1 & x_n \end{pmatrix} \quad \text{and} \quad \mathbf{y} = \begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n\end{pmatrix}\]</span></p>
 
-<pre><code>    1 &amp; x_1 \\ 1 &amp; x_2 \\ \vdots &amp; \vdots \\ 1 &amp; x_n 
-\end{pmatrix} 
-</code></pre>
-
-<p>\quad \text{and} \quad
-  \mathbf{y} = \begin{pmatrix}</p>
-
-<pre><code>      y_1 \\ y_2 \\ \vdots \\ y_n
-  \end{pmatrix}
-</code></pre>
-
-<p>$$</p>
-
-<p>We construct $\mathbf{X}$ in the code block below. It's important to include the $x_0 = 1$ column for the bias (intercept).</p>
+<p>We construct <span  class="math">\(\mathbf{X}\)</span> in the code block below. It's important to include the <span  class="math">\(x_0 = 1\)</span> column for the bias (intercept).</p>
 
 <pre><code>X = np.hstack((np.ones_like(x), x))
 print(X)
 </code></pre>
 
-<p>Although we can express $\mathbf{w}^\star$ explicitly in terms of the matrix inverse $(\mathbf{X}^\top \mathbf{X})^{-1}$, this isn't an efficient way to compute $\mathbf{w}$ numerically. It is better instead to solve the following system of linear equations</p>
+<p>Although we can express <span  class="math">\(\mathbf{w}^\star\)</span> explicitly in terms of the matrix inverse <span  class="math">\((\mathbf{X}^\top \mathbf{X})^{-1}\)</span>, this isn't an efficient way to compute <span  class="math">\(\mathbf{w}\)</span> numerically. It is better instead to solve the following system of linear equations</p>
 
 <p><span  class="math">\[\mathbf{X}^\top\mathbf{X} \mathbf{w}^\star = \mathbf{X}^\top\mathbf{y}\]</span></p>
 
@@ -332,7 +319,7 @@ plot_fit(x_test, predict(x_test, w0, w1), x, y)
 
 <p><figure><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Machine-Learning/Machine-Learning-Algorithm-Implementation-1/4.png" alt="4"></figure></p>
 
-<p>We should verify that the sum of squared residuals $SSR(w_0, w_1)$, matches or beats the earlier iterative result.</p>
+<p>We should verify that the sum of squared residuals <span  class="math">\(SSR(w_0, w_1)\)</span>, matches or beats the earlier iterative result.</p>
 
 <pre><code>print(compute_SSR(x, y, w0, w1))
 </code></pre>
@@ -361,7 +348,7 @@ lr.score(x,y)
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://zintrulcre.vip/tags/machine-learning">Machine Learning</a></span><span class="tag"><a href="http://zintrulcre.vip/tags/python">Python</a></span><span class="tag"><a href="http://zintrulcre.vip/tags/jupyter-notebook">Jupyter Notebook</a></span><span class="tag"><a href="http://zintrulcre.vip/tags/algorithm">Algorithm</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>913 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>911 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-01-30 14:38</p>
 			</footer>
 		</article>
