@@ -19,7 +19,8 @@
       
       <guid>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-1/</guid>
       <description>Linear Regression  Goal  fit a linear model, using only the numpy library visualize the output, using the matplotlib library  Implementation Methods  iterative updates (coordinate descent) linear algebra  Verification  compare our output to the output of using library sklearn.   Click the title to access the implementation in Jupyter Notebook
-1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).</description>
+1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
+import numpy as np import matplotlib.</description>
     </item>
     
     <item>
@@ -28,7 +29,7 @@
       <pubDate>Sat, 26 Jan 2019 12:21:35 +1100</pubDate>
       
       <guid>http://zintrulcre.vip/about/</guid>
-      <description>重构中&amp;hellip;</description>
+      <description>Refactoring&amp;hellip;</description>
     </item>
     
     <item>
