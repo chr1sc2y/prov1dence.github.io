@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 30 Jan 2019 14:38:43 +1100</lastBuildDate>
+    <lastBuildDate>Fri, 01 Feb 2019 14:00:16 +1100</lastBuildDate>
     
 	<atom:link href="http://zintrulcre.vip/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Machine Learning Algorithm Implementation (2): Logistic Regression</title>
+      <link>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-2/</link>
+      <pubDate>Fri, 01 Feb 2019 14:00:16 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-2/</guid>
+      <description>Logistic Regression  Goal  implementing L2-regularised logistic regression, using scipy and numpy library apply polynomial basis expansion and L2 regularisation.  Implementation Methods  hill-climbing algorithm  Verification  compare our output to the output of using library sklearn.    1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
+%matplotlib inline import numpy as np import matplotlib.pyplot as plt 2. Binary classification data Firstly, we generate some binary classification data using the make_circles function from sklearn.</description>
+    </item>
     
     <item>
       <title>Machine Learning Algorithm Implementation (1): Linear Regression</title>

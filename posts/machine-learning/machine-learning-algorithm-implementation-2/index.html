@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="http://zintrulcre.vip">
+    <meta name="keywords" content="ZintrulCre">
+    
+    <meta property="og:site_name" content="ZintrulCre">
+    <meta property="og:title" content="
+  Machine Learning Algorithm Implementation (2): Logistic Regression - ZintrulCre
+">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-2/">
+    <meta property="og:image" content="http://zintrulcre.vip">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-2/">
+    <meta name="twitter:image" content="http://zintrulcre.vip">
+
+    <base href="http://zintrulcre.vip">
+    <title>
+  Machine Learning Algorithm Implementation (2): Logistic Regression - ZintrulCre
+</title>
+
+    <link rel="canonical" href="http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-2/">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="http://zintrulcre.vip/css/style.min.css">
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.53" />
+  </head>
+
+  <body class="">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">ZintrulCre</a>
+    <input type="checkbox" id="menu-control"/>
+    <label class="menu-mobile  float-right " for="menu-control">
+      <span class="btn-mobile  float-right ">&#9776;</span>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/categories">Categories</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/tags/">Tags</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/about">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    </label>
+  </section>
+</nav>
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+
+      <div class="content">
+        
+  <section class="container post">
+  <article>
+    <header>
+      <h1 class="title">Machine Learning Algorithm Implementation (2): Logistic Regression</h1>
+      <h2 class="date">February 1, 2019</h2>
+
+      
+    </header>
+
+    <h1 id="logistic-regression">Logistic Regression</h1>
+
+<ul>
+<li>Goal
+
+<ul>
+<li>implementing L2-regularised logistic regression, using <code>scipy</code> and <code>numpy</code> library</li>
+<li>apply polynomial basis expansion and L2 regularisation.</li>
+</ul></li>
+<li>Implementation Methods
+
+<ul>
+<li>hill-climbing algorithm</li>
+</ul></li>
+<li>Verification
+
+<ul>
+<li>compare our output to the output of using library <code>sklearn</code>.
+<br></li>
+</ul></li>
+</ul>
+
+<h2 id="1-import-library">1. Import Library</h2>
+
+<p>Firstly we should import the relevant libraries (<code>numpy</code>, <code>matplotlib</code>, etc.).</p>
+<div class="highlight"><pre class="chroma">%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt</pre></div>
+<h2 id="2-binary-classification-data">2. Binary classification data</h2>
+
+<p>Firstly, we generate some binary classification data using the <code>make_circles</code> function from <code>sklearn</code>.</p>
+<div class="highlight"><pre class="chroma">from sklearn.datasets import make_circles
+X, Y = make_circles(n_samples=300, noise=0.1, factor=0.7, random_state=90051)
+plt.plot(X[Y==0,0], X[Y==0,1], &#39;o&#39;, label = &#34;y=0&#34;)
+plt.plot(X[Y==1,0], X[Y==1,1], &#39;s&#39;, label = &#34;y=1&#34;)
+plt.legend()
+plt.xlabel(&#34;$x_0$&#34;)
+plt.ylabel(&#34;$x_1$&#34;)
+plt.show()</pre></div>
+<p><figure><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Machine-Learning/Machine-Learning-Algorithm-Implementation-2/1.png" alt="1"></figure></p>
+
+<p>In preparation for fitting and evaluating a logistic regression model, we randomly partition the data into train/test sets using the <code>train_test_split</code> function from <code>sklearn</code>.</p>
+<div class="highlight"><pre class="chroma">from sklearn.model_selection import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random_state=90051)
+print(&#34;Training set has {} instances. Test set has {} instances.&#34;.format(X_train.shape[0], X_test.shape[0]))</pre></div>
+<h2 id="2-logistic-regression-objective-function">2. Logistic regression objective function</h2>
+
+<p>The logistic regression models the distribution of the binary class <span  class="math">\(y\)</span> <em>conditional</em> on the feature vector <span  class="math">\(\mathbf{x}\)</span> as</p>
+
+<p><span  class="math">\[
+y | \mathbf{x} \sim \mathrm{Bernoulli}[\sigma(\mathbf{w}^T \mathbf{x} + b)]
+\]</span></p>
+
+<p>where</p>
+
+<ul>
+<li><span  class="math">\(\mathbf{w}\)</span> is the weight vector</li>
+<li><span  class="math">\(b\)</span> is the bias term</li>
+<li><span  class="math">\(\sigma(z) = 1/(1 + e^{-z})\)</span> is the logistic function.</li>
+</ul>
+
+<p>To simplify the notation, we collect the parameters <span  class="math">\(\mathbf{w}\)</span> and <span  class="math">\(b\)</span> into a single vector <span  class="math">\(\mathbf{v} = [b, \mathbf{w}]\)</span>.</p>
+
+<p>Fitting this model amounts to choosing <span  class="math">\(\mathbf{v}\)</span> that minimises the sum of cross-entropies over the instances (<span  class="math">\(i = 1,\ldots,n\)</span>) in the training set</p>
+
+<p><span  class="math">\[
+f_\mathrm{cross-ent}(\mathbf{v}; \mathbf{X}, \mathbf{Y}) = - \sum_{i = 1}^{n} \left\{ y_i \log \sigma(\mathbf{w}^T \mathbf{x}_i + b) + (1 - y_i) \log (1 - \sigma(\mathbf{w}^T \mathbf{x}_i + b)) \right\}
+\]</span></p>
+
+<p>Often a regularisation term of the form <span  class="math">\(f_\mathrm{reg}(\mathbf{w}; \lambda) = \frac{1}{2} \lambda \mathbf{w}^T \mathbf{w}\)</span> is added to the objective to penalize large weights in orderto prevent overfitting. Note that <span  class="math">\(\lambda \geq 0\)</span> controls the strength of the regularisation term.</p>
+
+<p>Putting this together, our goal is to minimise the following objective function with respect to <span  class="math">\(\mathbf{w}\)</span> and <span  class="math">\(b\)</span>:</p>
+
+<p><span  class="math">\[
+f(\mathbf{v}; \mathbf{X}, \mathbf{Y}, \lambda) = f_\mathrm{reg}(\mathbf{w}; \lambda) + f_\mathrm{cross-ent}(\mathbf{v}; \mathbf{X}, \mathbf{Y})
+\]</span></p>
+
+<p>If we replace <span  class="math">\(\mathbf{w}\)</span> with <span  class="math">\(\mathbf{v}\)</span> in the regularisation term, we'd be penalising large <span  class="math">\(b\)</span> because a large bias may be required for some data sets, and restricting the bias doesn't help with generalisation. So only <span  class="math">\(\mathbf{w}\)</span> is included in <span  class="math">\(f_\mathrm{reg}\)</span>.</p>
+
+<p>We use the BFGS algorithm to solve this minimisation problem. BFGS is a &quot;hill-climbing&quot; algorithm like gradient descent, however it additionally makes use of second-order derivative information by approximating the Hessian. It converges in fewer iterations than gradient descent. It's convergence rate is superlinear whereas gradient descent is only linear.</p>
+
+<p>We use the function <code>fmin_bfgs</code> from <code>scipy</code>. The algorithm requires two functions as input:</p>
+
+<ol>
+<li>a function that evaluates the objective <span  class="math">\(f(\mathbf{v}; \ldots)\)</span></li>
+<li>a function that evalutes the gradient <span  class="math">\(\nabla_{\mathbf{v}} f(\mathbf{v}; \ldots)\)</span>.</li>
+</ol>
+
+<p>Firstly we write a function to compute <span  class="math">\(f(\mathbf{v}; \ldots)\)</span>.</p>
+<div class="highlight"><pre class="chroma">from scipy.special import expit # logistic function
+
+# v: parameter vector
+# X: feature matrix
+# Y: class labels
+# Lambda: regularisation constant
+def obj_fn(v, X, Y, Lambda):
+    prob_1 = expit(np.dot(X,v[1::]) + v[0])
+    reg_term = 1 * Lambda * np.dot(v[1::].T,v[1::])
+    cross_entropy_term = - np.dot(Y, np.log(prob_1)) - np.dot(1. - Y, np.log(1. - prob_1))
+    return reg_term + cross_entropy_term</pre></div>
+<p>Now for the gradient, we use the following result:</p>
+
+<p><span  class="math">\[
+\nabla_{\mathbf{v}} f(\mathbf{v}; \ldots) = \left[\frac{\partial f(\mathbf{w}, b;\ldots)}{\partial b}, \nabla_{\mathbf{w}} f(\mathbf{w}, b; \ldots) \right] = \left[\sum_{i = 1}^{n} \sigma(\mathbf{w}^T \mathbf{x}_i + b) - y_i, \lambda \mathbf{w} + \sum_{i = 1}^{n} (\sigma(\mathbf{w}^T \mathbf{x}_i + b) - y_i)\mathbf{x}_i\right]
+\]</span></p>
+<div class="highlight"><pre class="chroma"># v: parameter vector
+# X: feature matrix
+# Y: class labels
+# Lambda: regularisation constant
+def grad_obj_fn(v, X, Y, Lambda):
+    prob_1 = expit(np.dot(X, v[1::]) + v[0])
+    grad_b = np.sum(prob_1 - Y)
+    grad_w = Lambda * v[1::] + np.dot(prob_1 - Y, X)
+    return np.insert(grad_w, 0, grad_b)</pre></div>
+<h2 id="3-solving-the-minimization-problem-using-bfgs">3. Solving the minimization problem using BFGS</h2>
+
+<p>Now that we've implemented functions to compute the objective and the gradient, we can plug them into <code>fmin_bfgs</code>.</p>
+
+<p>We define a function <code>logistic_regression</code> which calls <code>fmin_bfgs</code> and returns the optimal weight vector.</p>
+<div class="highlight"><pre class="chroma">from scipy.optimize import fmin_bfgs
+
+# X: feature matrix
+# Y: class labels
+# Lambda: regularisation constant
+# v_initial: initial guess for parameter vector
+def logistic_regression(X, Y, Lambda, v_initial, disp=True):
+    # Function for displaying progress
+    def display(v):
+        print(&#39;v is&#39;, v, &#39;objective is&#39;, obj_fn(v, X, Y, Lambda))
+    
+    return fmin_bfgs(f=obj_fn, fprime=grad_obj_fn, 
+                     x0=v_initial, args=(X, Y, Lambda), disp=disp, 
+                     callback=display)</pre></div><div class="highlight"><pre class="chroma">Lambda = 1
+v_initial = np.zeros(X_train.shape[1] + 1)
+v_opt = logistic_regression(X_train, Y_train, Lambda, v_initial)
+
+# Function to plot the data points and decision boundary
+def plot_results(X, Y, v, trans_func = None):
+    # Scatter plot in feature space
+    plt.plot(X[Y==0,0], X[Y==0,1], &#39;o&#39;, label = &#34;y=0&#34;)
+    plt.plot(X[Y==1,0], X[Y==1,1], &#39;s&#39;, label = &#34;y=1&#34;)
+    
+    # Compute axis limits
+    x0_lower = X[:,0].min() - 0.1
+    x0_upper = X[:,0].max() + 0.1
+    x1_lower = X[:,1].min() - 0.1
+    x1_upper = X[:,1].max() + 0.1
+    
+    # Generate grid over feature space
+    x0, x1 = np.mgrid[x0_lower:x0_upper:.01, x1_lower:x1_upper:.01]
+    grid = np.c_[x0.ravel(), x1.ravel()]
+    if (trans_func is not None):
+        grid = trans_func(grid) # apply transformation to features
+    arg = (np.dot(grid, v[1::]) + v[0]).reshape(x0.shape)
+    
+    # Plot decision boundary (where w^T x + b == 0)
+    plt.contour(x0, x1, arg, levels=[0], cmap=&#34;Greys&#34;, vmin=-0.2, vmax=0.2)
+    plt.legend()
+    plt.show()
+    
+plot_results(X, Y, v_opt)</pre></div>
+<p><figure><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Machine-Learning/Machine-Learning-Algorithm-Implementation-2/2.png" alt="2"></figure></p>
+
+<p>It's not a good fit because logistic regression is a linear classifier, and the data is not linearly seperable.</p>
+
+<p>Now we calculate the accuracy of this model:</p>
+
+<p><span  class="math">\[\hat{y} = \begin{cases}1, &\mathrm{if} \ p(y = 1|\mathbf{x}) \geq \tfrac{1}{2}, \\0, &\mathrm{otherwise}.\end{cases}\]</span></p>
+
+<h2 id="4-adding-polynomial-features">4. Adding polynomial features</h2>
+
+<p>Ordinary logistic regression does poorly on this data set because the data is not linearly separable in the <span  class="math">\(x_0,x_1\)</span> feature space.</p>
+
+<p>We can get around this problem using basis expansion. In this case, we'll augment the feature space by adding polynomial features of degree 2. In other words, we replace the original feature matrix <span  class="math">\(\mathbf{X}\)</span> by a transformed feature matrix <span  class="math">\(\mathbf{\Phi}\)</span> which contains additional columns corresponding to <span  class="math">\(x_0^2\)</span>, <span  class="math">\(x_0 x_1\)</span> and <span  class="math">\(x_1^2\)</span>.</p>
+
+<p>There is a built-in function <code>preprocessing.PolynomialFeatures</code> from <code>sklearn</code> to add polynomial featrues, but we can implement the function <code>add_quadratic_features</code> by ourselves.</p>
+<div class="highlight"><pre class="chroma"># X: original feature matrix
+def add_quadratic_features(X):
+    return np.c_[X, X[:,0]**2, X[:,0]*X[:,1], X[:,1]**2]
+
+Phi_train = add_quadratic_features(X_train)
+Phi_test = add_quadratic_features(X_test)</pre></div>
+<p>Now we apply our custom logistic regression function again on the augmented feature space.</p>
+<div class="highlight"><pre class="chroma">Lambda = 1
+v_initial = np.zeros(Phi_train.shape[1] + 1) # fill in a vector of zeros of appropriate length
+v_opt = logistic_regression(Phi_train, Y_train, Lambda, v_initial)
+plot_results(X, Y, v_opt, trans_func=add_quadratic_features)</pre></div>
+<p><figure><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Machine-Learning/Machine-Learning-Algorithm-Implementation-2/3.png" alt="3"></figure></p>
+
+<p>This time we should get a better result for the accuracy on the test set.</p>
+<div class="highlight"><pre class="chroma">from sklearn.metrics import accuracy_score
+Y_test_pred = ((np.dot(Phi_test, v_opt[1::]) + v_opt[0]) &gt;= 0)*1 # fill in
+accuracy_score(Y_test, Y_test_pred)</pre></div>
+<p>We've chosen the regularisation constant as <span  class="math">\(\lambda = 1\)</span>, but it's possible to choose an optimal value for <span  class="math">\(\lambda\)</span> by applying cross-validation.</p>
+
+<p>If we try to set <span  class="math">\(\lambda\)</span> to a small value  (say <span  class="math">\(10^{-3}\)</span>) or switched off entirely, we will risk overfitting. We can observe that the accuracy on the test set reduces slightly with <span  class="math">\(\lambda = 10^{-3}\)</span> vs. <span  class="math">\(\lambda = 1\)</span>.*</p>
+
+<h2 id="5-verification-using-scikitlearn">5. Verification using scikit-learn</h2>
+
+<p>Now that we have some insight into the optimisation problem behind logistic regression, we should feel confident in using the built-in implementation in <code>sklearn</code>.
+The <code>sklearn</code> implementation handles floating point underflow/overflow more carefully than we have done, and uses faster numerical optimisation algorithms.</p>
+<div class="highlight"><pre class="chroma">from sklearn.linear_model import LogisticRegression
+clf = LogisticRegression(solver=&#39;lbfgs&#39;)
+clf.fit(Phi_train, Y_train)</pre></div><div class="highlight"><pre class="chroma">from sklearn.metrics import accuracy_score
+Y_test_pred = clf.predict(Phi_test)
+accuracy_score(Y_test, Y_test_pred)</pre></div>
+  </article>
+
+  <br/>
+
+  
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+  
+</section>
+
+      </div>
+      
+        
+<script>renderMathInElement(document.body);</script>
+      
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  <script src="http://zintrulcre.vip/js/app.js"></script>
+  
+  </body>
+</html>
