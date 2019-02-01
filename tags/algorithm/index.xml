@@ -18,8 +18,9 @@
       <pubDate>Fri, 01 Feb 2019 14:00:16 +1100</pubDate>
       
       <guid>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-2/</guid>
-      <description>Logistic Regression  Goal  implementing L2-regularised logistic regression, using scipy and numpy library apply polynomial basis expansion and L2 regularisation.  Implementation Methods  hill-climbing algorithm  Verification  compare our output to the output of using library sklearn.    1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
-%matplotlib inline import numpy as np import matplotlib.pyplot as plt 2. Binary classification data Firstly, we generate some binary classification data using the make_circles function from sklearn.</description>
+      <description>Click here to see the implementation in Jupyter Notebook
+Logistic Regression  Goal  implementing L2-regularised logistic regression, using scipy and numpy library apply polynomial basis expansion and L2 regularisation.  Implementation Methods  hill-climbing algorithm  Verification  compare our output to the output of using library sklearn.    1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
+%matplotlib inline import numpy as np import matplotlib.</description>
     </item>
     
     <item>
@@ -28,8 +29,8 @@
       <pubDate>Wed, 30 Jan 2019 14:38:43 +1100</pubDate>
       
       <guid>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-1/</guid>
-      <description>Linear Regression  Goal  fit a linear model, using only the numpy library visualize the output, using the matplotlib library  Implementation Methods  iterative updates (coordinate descent) linear algebra  Verification  compare our output to the output of using library sklearn.   Click the title to access the implementation in Jupyter Notebook
-1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
+      <description>Click here to see the implementation in Jupyter Notebook
+Linear regression  Goal  fit a linear model, using only the numpy library visualize the output, using the matplotlib library  Implementation Methods  iterative updates (coordinate descent) linear algebra  Verification  compare our output to the output of using library sklearn.   1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
 import numpy as np import matplotlib.</description>
     </item>
     
