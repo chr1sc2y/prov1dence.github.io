@@ -11,7 +11,7 @@
     
     <meta property="og:site_name" content="ZinBlog">
     <meta property="og:title" content="
-  Machine Learning Algorithm Implementation 3 - ZinBlog
+  Machine Learning Algorithm Implementation (3): Perceptron - ZinBlog
 ">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
@@ -23,7 +23,7 @@
 
     <base href="http://zintrulcre.vip">
     <title>
-  Machine Learning Algorithm Implementation 3 - ZinBlog
+  Machine Learning Algorithm Implementation (3): Perceptron - ZinBlog
 </title>
 
     <link rel="canonical" href="http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-3/">
@@ -90,7 +90,7 @@
   <section class="container post">
   <article>
     <header>
-      <h1 class="title">Machine Learning Algorithm Implementation 3</h1>
+      <h1 class="title">Machine Learning Algorithm Implementation (3): Perceptron</h1>
       <h2 class="date">February 5, 2019</h2>
 
       
@@ -157,14 +157,14 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random
 print(&#34;Training set has {} instances. Test set has {} instances.&#34;.format(X_train.shape[0], X_test.shape[0]))</pre></div>
 <h2 id="3-definition-of-the-perceptron">3. Definition of the perceptron</h2>
 
-<p>A perceptron is a binary classifier which maps an input vector $\mathbf{x}$ to a binary ouput given by</p>
+<p>A perceptron is a binary classifier which maps an input vector <span  class="math">\(\mathbf{x}\)</span> to a binary ouput given by</p>
 
-<p><span  class="math">\[\begin{align*}f(\mathbf{x}; \mathbf{w}, b) &= \begin{cases}1 & \mathrm{if} \ s(\mathbf{x}; \mathbf{w}, b) \geq 0, -1 & \mathrm{otherwise}, \end{cases} \end{align*} \]</span></p>
+<p><figure><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/0.png" alt="0"></figure></p>
 
-<p>where $s(\mathbf{x}; \mathbf{w}, b) = \mathbf{w} \cdot \mathbf{x} + b$.
-$\mathbf{w}$ is a vector of weights (one for each feature) and $b$ is the bias term.</p>
+<p>where <span  class="math">\(s(\mathbf{x}; \mathbf{w}, b) = \mathbf{w} \cdot \mathbf{x} + b\)</span>.
+<span  class="math">\(\mathbf{w}\)</span> is a vector of weights (one for each feature) and <span  class="math">\(b\)</span> is the bias term.</p>
 
-<p>Now we start by implementing the weighted sum function $s(\mathbf{x}; \mathbf{w}, b)$.</p>
+<p>Now we start by implementing the weighted sum function <span  class="math">\(s(\mathbf{x}; \mathbf{w}, b)\)</span>.</p>
 <div class="highlight"><pre class="chroma">def weighted_sum(X, w, b):
     &#34;&#34;&#34;
     Returns an array containing the weighted sum s(x) for each instance x in the feature matrix
@@ -207,20 +207,20 @@ Typically, multiple epochs are required to get close to the optimal solution.</p
 <p>Now we write a function called <code>train</code> which implements sequential gradient descent. The function should implement the following pseudocode.</p>
 
 <blockquote>
-<p>repeat $n_\mathrm{epochs}$ times</p>
+<p>repeat <span  class="math">\(n_\mathrm{epochs}\)</span> times</p>
 
 <blockquote>
-<p>for each $(\mathbf{x}, y)$ pair in the training set</p>
+<p>for each <span  class="math">\((\mathbf{x}, y)\)</span> pair in the training set</p>
 
 <blockquote>
-<p>if the model prediction $\hat{y} = f(\mathbf{x})$ and $y$ differ, make a weight update</p>
+<p>if the model prediction <span  class="math">\(\hat{y} = f(\mathbf{x})\)</span> and <span  class="math">\(y\)</span> differ, make a weight update</p>
 </blockquote>
 </blockquote>
 
-<p>return $\mathbf{w}$ and $b$</p>
+<p>return <span  class="math">\(\mathbf{w}\)</span> and <span  class="math">\(b\)</span></p>
 </blockquote>
 
-<p>Note that the weight update in the inner-most loop is given by $\mathbf{w} \gets \mathbf{w} + \eta y  \mathbf{x}$ and $b \gets b + \eta y$.</p>
+<p>Note that the weight update in the inner-most loop is given by <span  class="math">\(\mathbf{w} \gets \mathbf{w} + \eta y  \mathbf{x}\)</span> and <span  class="math">\(b \gets b + \eta y\)</span>.</p>
 <div class="highlight"><pre class="chroma">def train(X, Y, n_epochs, w, b, eta=0.1):
     &#34;&#34;&#34;
     Returns updated weight vector w and bias term b
@@ -257,7 +257,7 @@ print(&#34;w = {}; b = {}&#34;.format(w, b))</pre></div>
 
 <p>Now that we've trained the perceptron, let's see how it performs.</p>
 
-<p>Now we plot the data (training and test sets) along with the decision boundary (which is defined by ${\mathbf{x}: s(\mathbf{x}; \mathbf{w}, b) = 0$}).</p>
+<p>Now we plot the data (training and test sets) along with the decision boundary (which is defined by <span  class="math">\(\{\mathbf{x}: s(\mathbf{x}; \mathbf{w}, b) = 0\)</span>}).</p>
 <div class="highlight"><pre class="chroma">def plot_results(X_train, Y_train, X_test, Y_test, score_fn, threshold = 0):
     # Plot training set
     plt.plot(X_train[Y_train==-1,0], X_train[Y_train==-1,1], &#34;o&#34;, label=&#34;Y=-1, train&#34;)
@@ -321,7 +321,7 @@ print(evaluate(X_train, Y_train, w, b))</pre></div>
 
 <p>Now we examine how the train/test error rates vary as a function of the number of epochs.
 Note that careful tuning of the learning rate is needed to get sensible behaviour.
-Setting $\eta(t) = \frac{1}{1+t}$ where $t$ is the epoch number often works well.</p>
+Setting <span  class="math">\(\eta(t) = \frac{1}{1+t}\)</span> where <span  class="math">\(t\)</span> is the epoch number often works well.</p>
 <div class="highlight"><pre class="chroma">w_hat = np.zeros(X_train.shape[1]); b_hat = 0
 n_epochs = 100
 
