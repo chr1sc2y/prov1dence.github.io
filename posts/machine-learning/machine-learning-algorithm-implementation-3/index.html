@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="http://zintrulcre.vip">
+    <meta name="keywords" content="ZintrulCre">
+    
+    <meta property="og:site_name" content="ZinBlog">
+    <meta property="og:title" content="
+  Machine Learning Algorithm Implementation 3 - ZinBlog
+">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-3/">
+    <meta property="og:image" content="http://zintrulcre.vip">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-3/">
+    <meta name="twitter:image" content="http://zintrulcre.vip">
+
+    <base href="http://zintrulcre.vip">
+    <title>
+  Machine Learning Algorithm Implementation 3 - ZinBlog
+</title>
+
+    <link rel="canonical" href="http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-3/">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="http://zintrulcre.vip/css/style.min.css">
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.53" />
+  </head>
+
+  <body class="">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">ZinBlog</a>
+    <input type="checkbox" id="menu-control"/>
+    <label class="menu-mobile  float-right " for="menu-control">
+      <span class="btn-mobile  float-right ">&#9776;</span>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/tags/">Tags</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/about">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    </label>
+  </section>
+</nav>
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+
+      <div class="content">
+        
+  <section class="container post">
+  <article>
+    <header>
+      <h1 class="title">Machine Learning Algorithm Implementation 3</h1>
+      <h2 class="date">February 5, 2019</h2>
+
+      
+    </header>
+
+    <p>Click <a href="https://github.com/ZintrulCre/Machine-Learning/blob/master/Perceptron.ipynb">here</a> to see the implementation in Jupyter Notebook</p>
+
+<h1 id="perceptron">Perceptron</h1>
+
+<ul>
+<li><p>Goal</p>
+
+<ul>
+<li>implement the perceptron (a building block of neural networks)</li>
+<li>to assess how the perceptron behaves in two distinct scenarios (separable vs. non-separable data)</li>
+</ul></li>
+
+<li><p>Verification</p>
+
+<ul>
+<li>compare our output to the output of using <code>LogisticRegression</code> function from library <code>sklearn</code>.
+<br></li>
+</ul></li>
+</ul>
+
+<h2 id="1-import-library">1. Import Library</h2>
+
+<p>Firstly we should import the relevant libraries (<code>numpy</code>, <code>matplotlib</code>, etc.).</p>
+<div class="highlight"><pre class="chroma">%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt</pre></div>
+<h2 id="2-synthetic-data-set">2. Synthetic data set</h2>
+
+<p>We'll use the <code>make_classification</code> function from <code>sklearn</code> to generate a synthetic binary classification data set.</p>
+
+<p>The main advantage of using synthetic data is that we have complete control over the distribution.
+In particular, we'll be varying the <strong>degree of separability</strong> between the two classes by adjusting the <code>class_sep</code> parameter below.</p>
+
+<p>Now we generate a data set that is almost linearly separable (with <code>class_sep = 2</code>).</p>
+
+<p>We use <code>-1</code> in place of <code>0</code> for the negative class, and <code>1</code> for the positive class.
+This is for making the gradient descent update simpler to implement.</p>
+<div class="highlight"><pre class="chroma">class_sep = 2 # set the `class_sep` to 2 firstly
+# class_sep = 0.5 # adjust the `class_sep` to 0.5 later
+
+from sklearn.datasets import make_classification
+X, Y = make_classification(n_samples=200, n_features=2, n_informative=2, 
+                           n_redundant=0, n_clusters_per_class=1, flip_y=0,
+                           class_sep=class_sep, random_state=1)
+Y[Y==0] = -1 # encode &#34;negative&#34; class using -1 rather than 0
+plt.plot(X[Y==-1,0], X[Y==-1,1], &#34;o&#34;, label=&#34;Y = -1&#34;)
+plt.plot(X[Y==1,0], X[Y==1,1], &#34;o&#34;, label=&#34;Y = 1&#34;)
+plt.legend()
+plt.xlabel(&#34;$x_0$&#34;)
+plt.ylabel(&#34;$x_1$&#34;)
+plt.show()</pre></div>
+<p><figure><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/1.png" alt="1"></figure></p>
+
+<p>We can see that this data is linearly seperable.</p>
+
+<p>In preparation for training and evaluating a perceptron on this data, we randomly partition the data into train/test sets.</p>
+<div class="highlight"><pre class="chroma">from sklearn.model_selection import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random_state=90051)
+print(&#34;Training set has {} instances. Test set has {} instances.&#34;.format(X_train.shape[0], X_test.shape[0]))</pre></div>
+<h2 id="3-definition-of-the-perceptron">3. Definition of the perceptron</h2>
+
+<p>A perceptron is a binary classifier which maps an input vector $\mathbf{x}$ to a binary ouput given by</p>
+
+<p><span  class="math">\[\begin{align*}f(\mathbf{x}; \mathbf{w}, b) &= \begin{cases}1 & \mathrm{if} \ s(\mathbf{x}; \mathbf{w}, b) \geq 0, -1 & \mathrm{otherwise}, \end{cases} \end{align*} \]</span></p>
+
+<p>where $s(\mathbf{x}; \mathbf{w}, b) = \mathbf{w} \cdot \mathbf{x} + b$.
+$\mathbf{w}$ is a vector of weights (one for each feature) and $b$ is the bias term.</p>
+
+<p>Now we start by implementing the weighted sum function $s(\mathbf{x}; \mathbf{w}, b)$.</p>
+<div class="highlight"><pre class="chroma">def weighted_sum(X, w, b):
+    &#34;&#34;&#34;
+    Returns an array containing the weighted sum s(x) for each instance x in the feature matrix
+    
+    Arguments:
+    X : numpy array, shape: (n_instances, n_features)
+        feature matrix
+    w : numpy array, shape: (n_features,)
+        weights vector
+    b : float
+        bias term
+    &#34;&#34;&#34;
+    return np.dot(X, w) + b
+
+def predict(X, w, b):
+    &#34;&#34;&#34;
+    Returns an array containing the predicted binary labels (-1/1) for each instance in the feature matrix
+    
+    Arguments:
+    X : numpy array, shape: (n_instances, n_features)
+        feature matrix
+    w : numpy array, shape: (n_features,)
+        weights vector
+    b : float
+        bias term
+    &#34;&#34;&#34;
+    return np.where(weighted_sum(X, w, b) &gt;= 0, 1, -1)</pre></div>
+<h2 id="4-perceptron-training-algorithm">4. Perceptron training algorithm</h2>
+
+<p>We're now going to implement the perceptron training algorithm.</p>
+
+<p>The algorithm is essentially an application of <strong>sequential gradient descent</strong> (a.k.a. <strong>online stochastic gradient descent</strong>) to minimise the following empirical loss:</p>
+
+<p><span  class="math">\[L[\mathbf{w}, b] = \frac{1}{n} \sum_{i = 1}^{n} \max(0, -y \cdot s(\mathbf{x}; \mathbf{w}, b))\]</span></p>
+
+<p>It's <strong>sequential</strong> in that the weights/bias are updated for each training instance—one at a time.
+After iterating through all of the training instances, we say that we've completed an <strong>epoch</strong>.
+Typically, multiple epochs are required to get close to the optimal solution.</p>
+
+<p>Now we write a function called <code>train</code> which implements sequential gradient descent. The function should implement the following pseudocode.</p>
+
+<blockquote>
+<p>repeat $n_\mathrm{epochs}$ times</p>
+
+<blockquote>
+<p>for each $(\mathbf{x}, y)$ pair in the training set</p>
+
+<blockquote>
+<p>if the model prediction $\hat{y} = f(\mathbf{x})$ and $y$ differ, make a weight update</p>
+</blockquote>
+</blockquote>
+
+<p>return $\mathbf{w}$ and $b$</p>
+</blockquote>
+
+<p>Note that the weight update in the inner-most loop is given by $\mathbf{w} \gets \mathbf{w} + \eta y  \mathbf{x}$ and $b \gets b + \eta y$.</p>
+<div class="highlight"><pre class="chroma">def train(X, Y, n_epochs, w, b, eta=0.1):
+    &#34;&#34;&#34;
+    Returns updated weight vector w and bias term b
+    
+    Arguments:
+    X : numpy array, shape: (n_instances, n_features)
+        feature matrix
+    Y : numpy array, shape: (n_instances,)
+        target class labels relative to X
+    n_epochs : int
+        number of epochs (full sweeps through X)
+    w : numpy array, shape: (n_features,)
+        initial guess for weights vector
+    b : float
+        initial guess for bias term
+    eta : positive float
+        step size (default: 0.1)
+    &#34;&#34;&#34;
+    for t in range(n_epochs):
+        for i in range(X.shape[0]):
+            yhat = predict(X[i,:], w, b)
+            if yhat != Y[i]:
+                w += eta * Y[i] * X[i,:]
+                b += eta * Y[i]
+    return w, b</pre></div>
+<p>Test our implementation by running it for 5 epochs. We can get the following result for the weights and bias term:
+<code>w = [ 0.26746342 -0.96011853]; b = -0.2</code></p>
+<div class="highlight"><pre class="chroma"># Initialise weights and bias to zero
+w = np.zeros(X.shape[1]); b = 0.0
+
+w, b = train(X_train, Y_train, 5, w, b)
+print(&#34;w = {}; b = {}&#34;.format(w, b))</pre></div>
+<h2 id="5-evaluation">5. Evaluation</h2>
+
+<p>Now that we've trained the perceptron, let's see how it performs.</p>
+
+<p>Now we plot the data (training and test sets) along with the decision boundary (which is defined by ${\mathbf{x}: s(\mathbf{x}; \mathbf{w}, b) = 0$}).</p>
+<div class="highlight"><pre class="chroma">def plot_results(X_train, Y_train, X_test, Y_test, score_fn, threshold = 0):
+    # Plot training set
+    plt.plot(X_train[Y_train==-1,0], X_train[Y_train==-1,1], &#34;o&#34;, label=&#34;Y=-1, train&#34;)
+    plt.plot(X_train[Y_train==1,0], X_train[Y_train==1,1], &#34;o&#34;, label=&#34;Y=1, train&#34;)
+    plt.gca().set_prop_cycle(None) # reset colour cycle
+
+    # Plot test set
+    plt.plot(X_test[Y_test==-1,0], X_test[Y_test==-1,1], &#34;x&#34;, label=&#34;Y=-1, test&#34;)
+    plt.plot(X_test[Y_test==1,0], X_test[Y_test==1,1], &#34;x&#34;, label=&#34;Y=1, test&#34;)
+
+    # Compute axes limits
+    border = 1
+    x0_lower = X[:,0].min() - border
+    x0_upper = X[:,0].max() + border
+    x1_lower = X[:,1].min() - border
+    x1_upper = X[:,1].max() + border
+
+    # Generate grid over feature space
+    resolution = 0.01
+    x0, x1 = np.mgrid[x0_lower:x0_upper:resolution, x1_lower:x1_upper:resolution]
+    grid = np.c_[x0.ravel(), x1.ravel()]
+    s = score_fn(grid).reshape(x0.shape)
+
+    # Plot decision boundary (where s(x) == 0)
+    plt.contour(x0, x1, s, levels=[0], cmap=&#34;Greys&#34;, vmin=-0.2, vmax=0.2)
+
+    plt.legend()
+    plt.xlabel(&#34;$x_0$&#34;)
+    plt.ylabel(&#34;$x_1$&#34;)
+    plt.show()
+    
+plot_results(X_train, Y_train, X_test, Y_test, lambda X: weighted_sum(X, w, b))</pre></div>
+<p><figure><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/2.png" alt="2"></figure></p>
+
+<p>The decision boundary is acceptable for <code>class_sep=2</code>.</p>
+
+<p>To evaluate the perceptron quantitatively, we use the error rate (proportion of misclassified instances).
+The error rate is a reasonable evaluation measure to use for this data since the classes are well balanced.</p>
+<div class="highlight"><pre class="chroma">def evaluate(X, Y, w, b):
+    &#34;&#34;&#34;
+    Returns the proportion of misclassified instances (error rate)
+    
+    Arguments:
+    X : numpy array, shape: (n_instances, n_features)
+        feature matrix
+    Y : numpy array, shape: (n_instances,)
+        target class labels relative to X
+    w : numpy array, shape: (n_features,)
+        weights vector
+    b : float
+        bias term
+    &#34;&#34;&#34;
+    return np.mean(predict(X, w, b) != Y)
+
+print(evaluate(X_train, Y_train, w, b))</pre></div>
+<p>The <code>evaluate</code> function computes the error rate on the training data, but it is not a good idea in general.</p>
+
+<p>Compute the error rate on the test set instead.</p>
+<div class="highlight"><pre class="chroma">print(evaluate(X_test, Y_test, w, b))</pre></div>
+<p>The error on the test set is actually smaller than the error on the training set. This suggests we may not have a problem with overfitting (but it's difficult to say for such a small sample size).</p>
+
+<p>Now we examine how the train/test error rates vary as a function of the number of epochs.
+Note that careful tuning of the learning rate is needed to get sensible behaviour.
+Setting $\eta(t) = \frac{1}{1+t}$ where $t$ is the epoch number often works well.</p>
+<div class="highlight"><pre class="chroma">w_hat = np.zeros(X_train.shape[1]); b_hat = 0
+n_epochs = 100
+
+# Initialize arrays to store errors for each epoch
+train_error = np.empty(n_epochs)
+heldout_error = np.empty(n_epochs)
+
+for t in range(n_epochs):
+    # here we use a learning rate, which decays with each epoch
+    eta = 1./(1+t)
+    w_hat, b_hat = train(X_train, Y_train, 1, w_hat, b_hat, eta=eta)    
+    train_error[t] = evaluate(X_train, Y_train, w_hat, b_hat)
+    heldout_error[t] = evaluate(X_test, Y_test, w_hat, b_hat)
+
+plt.plot(train_error, label = &#39;Train error&#39;)
+plt.plot(heldout_error, label = &#39;Test error&#39;)
+plt.legend()
+plt.xlabel(&#39;Epoch, $t$&#39;)
+plt.ylabel(&#39;Error&#39;)
+plt.show()</pre></div>
+<p><figure><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/3.png" alt="3"></figure></p>
+
+<p>The train/test errors are quite close. This suggests we may not have a problem with overfitting.</p>
+
+<p>The model is relatively stable and converges quite rapidly for <code>class_sep=2</code>. However, The model is highly unstable for <code>class_sep=0.5</code> if we adjust the <code>class_sep</code> to 0.5.</p>
+<div class="highlight"><pre class="chroma">plot_results(X_train, Y_train, X_test, Y_test, lambda X: weighted_sum(X, w_hat, b_hat))</pre></div>
+<p><figure><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/4.png" alt="4"></figure></p>
+
+<h2 id="6-repeat-with-class-overlap">6. Repeat with class overlap</h2>
+
+<p>By now we've probably concluded that the perceptron performs well on the data with <code>class_sep=2</code>, which is to be expected as it's roughly linearly separable.</p>
+
+<p>However, the perceptron can actually fail on non-linearly separable data if we re-generate the synthetic data set with <code>class_sep=0.5</code> and repeat the program.</p>
+
+<h2 id="7-comparison-with-logistic-regression">7. Comparison with logistic regression</h2>
+
+<p>We know that the perceptron is not robust to binary classification problems with overlapping classes.
+But how does logistic regression fare in this case?</p>
+
+<p>Run the code block below to fit a logistic regression model using <code>sklearn</code>.
+We may wish to switch off regularisation (alter the <code>C</code> parameter) for a fairer comparison with the perceptron.</p>
+<div class="highlight"><pre class="chroma">from sklearn.linear_model import LogisticRegression
+clf = LogisticRegression()
+clf.fit(X_train, Y_train)</pre></div>
+<p>Let's plot the decision boundary.</p>
+<div class="highlight"><pre class="chroma">plot_results(X_train, Y_train, X_test, Y_test, lambda X: clf.decision_function(X))</pre></div>
+<p><figure><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/5.png" alt="5"></figure></p>
+
+<p>The logistic regression classifier seems to produce a more reasonable &quot;approximate&quot; solution in the presence of class overlap. The support vector machine was designed to address this problem.</p>
+
+<p>The error rate is lower for logistic regression (around 0.23). The error rate for the perceptron fluctuates, but never seems to reach a comparably low value.</p>
+<div class="highlight"><pre class="chroma">1.0 - clf.score(X_test, Y_test)</pre></div>
+  </article>
+
+  <br/>
+
+  
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+  
+</section>
+
+      </div>
+      
+        
+<script>renderMathInElement(document.body);</script>
+      
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  <script src="http://zintrulcre.vip/js/app.js"></script>
+  
+  </body>
+</html>
