@@ -31,8 +31,8 @@ Perceptron  Goal
       <pubDate>Mon, 04 Feb 2019 23:26:26 +1100</pubDate>
       
       <guid>http://zintrulcre.vip/projects/</guid>
-      <description>LeetCode_Crawler  Crawl submissions from LeetCode and generate a markdown file. Implemented by Python3 and Scrapy framework. 🔮
- ZinMark  A Featured Dynamic Bookmark Website. 📌</description>
+      <description>LeetCode_Crawler  Crawl submissions from LeetCode and generate a markdown file, using Python3, Request Library and Scrapy framework. 🔮
+ ZinMark  A Featured Dynamic Bookmark Website, using Django framework (back end) and Bootstrap, jQuery (front end). 📌</description>
     </item>
     
     <item>
