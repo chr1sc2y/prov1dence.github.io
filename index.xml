@@ -31,8 +31,10 @@ Perceptron  Goal
       <pubDate>Mon, 04 Feb 2019 23:26:26 +1100</pubDate>
       
       <guid>http://zintrulcre.vip/projects/</guid>
-      <description>LeetCode_Crawler  Crawl submissions from LeetCode and generate a markdown file, using Python3, Request Library and Scrapy framework. 🔮
- ZinMark  A Featured Dynamic Bookmark Website, using Django framework (back end) and Bootstrap, jQuery (front end). 📌</description>
+      <description>LeetCode_Crawler  Crawl submissions from LeetCode and generate a markdown file, implemented in Python3 using Scrapy framework and MongoDB. 🔮
+ ZinMark  A Featured Dynamic Bookmark Website, implemented in Python3 using Django framework for back end and Bootstrap, jQuery for front end. 📌
+ Scrabble Game  An online multi-player Scrabble game, implemented in Java using TCP, Thread, and JavaFX. 🍩
+ Machine Learning Algorithm Implementations  Machine Learning algorithm implementations, implemented in Python3 and Jupyter Notebook using numpy, scipy, pandas, matplotlib, tenserflow libraries, and verified by sklearn.</description>
     </item>
     
     <item>
