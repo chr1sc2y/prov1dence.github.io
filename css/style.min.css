@@ -13,7 +13,7 @@ body {
     display: flex;
     color: #323232;
     background-color: #fefefe;
-    font-family: HelveticaNeueLight, HelveticaNeue, Helvetica, Arial, sans-serif monospace;
+    font-family: HelveticaNeueLight, HelveticaNeue, Helvetica, Arial, sans-serif, monospace;
     font-size: 1.6em;
     font-weight: 400;
     letter-spacing: .0625em;
