@@ -138,8 +138,8 @@ pre {
 
 code {
     display: inline-block;
-    background-color: #000;
-    color: #fefefe;
+    background-color: #fefefe;
+    color: #111619;
     padding: .2rem .4rem .2rem .4rem
 }
 
@@ -597,7 +597,7 @@ a:hover:after {
 }
 
 code {
-    background: #111619 !important
+    background: #fefefe !important
 }
 
 .sns-shares {
@@ -661,8 +661,8 @@ code {
 }
 
 .chroma {
-    color: #e3e3e3;
-    background-color: #364549
+    color: #111619;
+    background-color: #fefefe;
 }
 
 .chroma .err {
