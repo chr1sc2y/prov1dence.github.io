@@ -139,7 +139,7 @@ pre {
 code {
     display: inline-block;
     background-color: #fefefe;
-    color: #111619;
+    color: #6A4C9C;
     padding: .2rem .4rem .2rem .4rem
 }
 
@@ -661,7 +661,7 @@ code {
 }
 
 .chroma {
-    color: #111619;
+    color: #6A4C9C;
     background-color: #fefefe;
 }
 
