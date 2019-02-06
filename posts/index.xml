@@ -48,6 +48,15 @@ import numpy as np import matplotlib.</description>
     </item>
     
     <item>
+      <title>LeetCode 560. 和为K的子数组</title>
+      <link>http://zintrulcre.vip/posts/leetcode/560/</link>
+      <pubDate>Sat, 26 Jan 2019 14:33:18 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/leetcode/560/</guid>
+      <description>560. 和为K的子数组 给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。 示例 1 : 输入:nums = [1,1,1], k = 2 输出: 2 , [1,1] 与 [1,1]</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;智能指针（3）：shared_ptr</title>
       <link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-3/</link>
       <pubDate>Fri, 25 Jan 2019 17:47:38 +1100</pubDate>
@@ -99,15 +108,6 @@ import numpy as np import matplotlib.</description>
       
       <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-2/</guid>
       <description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 创建爬虫 在新建好项</description>
-    </item>
-    
-    <item>
-      <title>在Google Cloud Platform上运行Jupyter Notebook</title>
-      <link>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</link>
-      <pubDate>Fri, 14 Dec 2018 17:03:12 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</guid>
-      <description>简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jup</description>
     </item>
     
   </channel>

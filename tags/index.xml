@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 05 Feb 2019 00:58:34 +1100</lastBuildDate>
+    <lastBuildDate>Sat, 26 Jan 2019 14:33:18 +1100</lastBuildDate>
     
 	<atom:link href="http://zintrulcre.vip/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Algorith</title>
+      <link>http://zintrulcre.vip/tags/algorith/</link>
+      <pubDate>Sat, 26 Jan 2019 14:33:18 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/tags/algorith/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Algorithm</title>
@@ -18,6 +27,15 @@
       <pubDate>Tue, 05 Feb 2019 00:58:34 +1100</pubDate>
       
       <guid>http://zintrulcre.vip/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Array</title>
+      <link>http://zintrulcre.vip/tags/array/</link>
+      <pubDate>Sat, 26 Jan 2019 14:33:18 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/tags/array/</guid>
       <description></description>
     </item>
     
@@ -76,29 +94,11 @@
     </item>
     
     <item>
-      <title>Jupyter Notebook</title>
-      <link>http://zintrulcre.vip/tags/jupyter-notebook/</link>
-      <pubDate>Tue, 05 Feb 2019 00:58:34 +1100</pubDate>
+      <title>Hash Table</title>
+      <link>http://zintrulcre.vip/tags/hash-table/</link>
+      <pubDate>Sat, 26 Jan 2019 14:33:18 +1100</pubDate>
       
-      <guid>http://zintrulcre.vip/tags/jupyter-notebook/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Leetcode</title>
-      <link>http://zintrulcre.vip/tags/leetcode/</link>
-      <pubDate>Fri, 11 Jan 2019 13:15:17 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/tags/leetcode/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Machine Learning</title>
-      <link>http://zintrulcre.vip/tags/machine-learning/</link>
-      <pubDate>Tue, 05 Feb 2019 00:58:34 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/tags/machine-learning/</guid>
+      <guid>http://zintrulcre.vip/tags/hash-table/</guid>
       <description></description>
     </item>
     
