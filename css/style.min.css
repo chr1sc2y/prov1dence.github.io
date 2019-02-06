@@ -140,7 +140,7 @@ code {
     display: inline-block;
     background-color: #000;
     color: #fefefe;
-    padding: .4rem .8rem .4rem .8rem
+    padding: .2rem .4rem .2rem .4rem
 }
 
 blockquote {
@@ -597,7 +597,7 @@ a:hover:after {
 }
 
 code {
-    background: #364549 !important
+    background: #111619 !important
 }
 
 .sns-shares {
