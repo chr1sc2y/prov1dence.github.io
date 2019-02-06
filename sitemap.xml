@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://zintrulcre.vip/posts/leetcode/560/</loc>
+    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-3/</loc>
     <lastmod>2019-02-05T00:58:34+11:00</lastmod>
   </url>
@@ -20,11 +25,6 @@
   <url>
     <loc>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-1/</loc>
     <lastmod>2019-01-30T14:38:43+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://zintrulcre.vip/posts/leetcode/560/</loc>
-    <lastmod>2019-01-26T14:33:18+11:00</lastmod>
   </url>
   
   <url>
@@ -73,20 +73,14 @@
   </url>
   
   <url>
-    <loc>http://zintrulcre.vip/tags/algorith/</loc>
-    <lastmod>2019-01-26T14:33:18+11:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://zintrulcre.vip/tags/algorithm/</loc>
-    <lastmod>2019-02-05T00:58:34+11:00</lastmod>
+    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://zintrulcre.vip/tags/array/</loc>
-    <lastmod>2019-01-26T14:33:18+11:00</lastmod>
+    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -152,7 +146,7 @@
   
   <url>
     <loc>http://zintrulcre.vip/tags/hash-table/</loc>
-    <lastmod>2019-01-26T14:33:18+11:00</lastmod>
+    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -164,13 +158,13 @@
   
   <url>
     <loc>http://zintrulcre.vip/tags/leetcode/</loc>
-    <lastmod>2019-01-26T14:33:18+11:00</lastmod>
+    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://zintrulcre.vip/categories/leetcode/</loc>
-    <lastmod>2019-01-26T14:33:18+11:00</lastmod>
+    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -188,7 +182,7 @@
   
   <url>
     <loc>http://zintrulcre.vip/tags/oj/</loc>
-    <lastmod>2019-01-26T14:33:18+11:00</lastmod>
+    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -200,7 +194,7 @@
   
   <url>
     <loc>http://zintrulcre.vip/posts/</loc>
-    <lastmod>2019-02-05T00:58:34+11:00</lastmod>
+    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -224,13 +218,13 @@
   
   <url>
     <loc>http://zintrulcre.vip/tags/</loc>
-    <lastmod>2019-01-26T14:33:18+11:00</lastmod>
+    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://zintrulcre.vip/</loc>
-    <lastmod>2019-02-05T00:58:34+11:00</lastmod>
+    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
     <priority>0</priority>
   </url>
   
