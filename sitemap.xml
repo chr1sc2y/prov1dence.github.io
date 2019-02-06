@@ -86,6 +86,12 @@
   </url>
   
   <url>
+    <loc>http://zintrulcre.vip/categories/c&#43;&#43;-pointer/</loc>
+    <lastmod>2019-01-25T17:47:38+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://zintrulcre.vip/tags/c&#43;&#43;11/</loc>
     <lastmod>2019-01-25T17:47:38+11:00</lastmod>
     <priority>0</priority>
@@ -93,6 +99,7 @@
   
   <url>
     <loc>http://zintrulcre.vip/categories/</loc>
+    <lastmod>2019-01-25T17:47:38+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -103,7 +110,19 @@
   </url>
   
   <url>
+    <loc>http://zintrulcre.vip/categories/cloud/</loc>
+    <lastmod>2018-12-14T17:03:12+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://zintrulcre.vip/tags/crawler/</loc>
+    <lastmod>2019-01-11T13:15:17+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.vip/categories/crawler/</loc>
     <lastmod>2019-01-11T13:15:17+11:00</lastmod>
     <priority>0</priority>
   </url>
@@ -128,6 +147,12 @@
   
   <url>
     <loc>http://zintrulcre.vip/tags/machine-learning/</loc>
+    <lastmod>2019-02-05T00:58:34+11:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://zintrulcre.vip/categories/machine-learning/</loc>
     <lastmod>2019-02-05T00:58:34+11:00</lastmod>
     <priority>0</priority>
   </url>
