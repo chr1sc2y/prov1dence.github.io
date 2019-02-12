@@ -22,15 +22,6 @@
     </item>
     
     <item>
-      <title>Array</title>
-      <link>http://zintrulcre.vip/tags/array/</link>
-      <pubDate>Wed, 06 Feb 2019 22:11:18 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/tags/array/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Big Data</title>
       <link>http://zintrulcre.vip/tags/big-data/</link>
       <pubDate>Fri, 11 Jan 2019 13:15:17 +1100</pubDate>
@@ -76,6 +67,15 @@
     </item>
     
     <item>
+      <title>Data Structure</title>
+      <link>http://zintrulcre.vip/tags/data-structure/</link>
+      <pubDate>Tue, 12 Feb 2019 21:44:35 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/tags/data-structure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Gcp</title>
       <link>http://zintrulcre.vip/tags/gcp/</link>
       <pubDate>Fri, 14 Dec 2018 17:03:12 +1100</pubDate>
@@ -85,20 +85,20 @@
     </item>
     
     <item>
-      <title>Hash Table</title>
-      <link>http://zintrulcre.vip/tags/hash-table/</link>
-      <pubDate>Wed, 06 Feb 2019 22:11:18 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/tags/hash-table/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Jupyter Notebook</title>
       <link>http://zintrulcre.vip/tags/jupyter-notebook/</link>
       <pubDate>Tue, 05 Feb 2019 00:58:34 +1100</pubDate>
       
       <guid>http://zintrulcre.vip/tags/jupyter-notebook/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Leetcode</title>
+      <link>http://zintrulcre.vip/tags/leetcode/</link>
+      <pubDate>Tue, 12 Feb 2019 21:44:35 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/tags/leetcode/</guid>
       <description></description>
     </item>
     
