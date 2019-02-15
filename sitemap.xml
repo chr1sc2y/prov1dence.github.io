@@ -13,23 +13,8 @@
   </url>
   
   <url>
-    <loc>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-3/</loc>
-    <lastmod>2019-02-05T00:58:34+11:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://zintrulcre.vip/projects/</loc>
     <lastmod>2019-02-04T23:26:26+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-2/</loc>
-    <lastmod>2019-02-01T14:00:16+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-1/</loc>
-    <lastmod>2019-01-30T14:38:43+11:00</lastmod>
   </url>
   
   <url>
@@ -151,7 +136,7 @@
   
   <url>
     <loc>http://zintrulcre.vip/tags/jupyter-notebook/</loc>
-    <lastmod>2019-02-05T00:58:34+11:00</lastmod>
+    <lastmod>2018-12-14T17:03:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -164,18 +149,6 @@
   <url>
     <loc>http://zintrulcre.vip/categories/leetcode/</loc>
     <lastmod>2019-02-12T21:44:35+11:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://zintrulcre.vip/tags/machine-learning/</loc>
-    <lastmod>2019-02-05T00:58:34+11:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://zintrulcre.vip/categories/machine-learning/</loc>
-    <lastmod>2019-02-05T00:58:34+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -199,7 +172,7 @@
   
   <url>
     <loc>http://zintrulcre.vip/tags/python/</loc>
-    <lastmod>2019-02-05T00:58:34+11:00</lastmod>
+    <lastmod>2019-01-11T13:15:17+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -212,12 +185,6 @@
   <url>
     <loc>http://zintrulcre.vip/tags/server/</loc>
     <lastmod>2018-12-14T17:03:12+11:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://zintrulcre.vip/tags/supervised-learning/</loc>
-    <lastmod>2019-02-05T00:58:34+11:00</lastmod>
     <priority>0</priority>
   </url>
   

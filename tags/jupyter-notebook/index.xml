@@ -7,45 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 05 Feb 2019 00:58:34 +1100</lastBuildDate>
+    <lastBuildDate>Fri, 14 Dec 2018 17:03:12 +1100</lastBuildDate>
     
 	<atom:link href="http://zintrulcre.vip/tags/jupyter-notebook/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Machine Learning Algorithm Implementation (3): Perceptron</title>
-      <link>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-3/</link>
-      <pubDate>Tue, 05 Feb 2019 00:58:34 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-3/</guid>
-      <description>Click here to see the implementation in Jupyter Notebook
-Perceptron  Goal
- implement the perceptron (a building block of neural networks) to assess how the perceptron behaves in two distinct scenarios (separable vs. non-separable data)  Verification
- compare our output to the output of using LogisticRegression function from library sklearn.    1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
-%matplotlib inline import numpy as np import matplotlib.</description>
-    </item>
-    
-    <item>
-      <title>Machine Learning Algorithm Implementation (2): Logistic Regression</title>
-      <link>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-2/</link>
-      <pubDate>Fri, 01 Feb 2019 14:00:16 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-2/</guid>
-      <description>Click here to see the implementation in Jupyter Notebook
-Logistic Regression  Goal  implementing L2-regularised logistic regression, using scipy and numpy library apply polynomial basis expansion and L2 regularisation.  Implementation Methods  hill-climbing algorithm  Verification  compare our output to the output of using library sklearn.    1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
-%matplotlib inline import numpy as np import matplotlib.</description>
-    </item>
-    
-    <item>
-      <title>Machine Learning Algorithm Implementation (1): Linear Regression</title>
-      <link>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-1/</link>
-      <pubDate>Wed, 30 Jan 2019 14:38:43 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-1/</guid>
-      <description>Click here to see the implementation in Jupyter Notebook
-Linear regression  Goal  fit a linear model, using only the numpy library visualize the output, using the matplotlib library  Implementation Methods  iterative updates (coordinate descent) linear algebra  Verification  compare our output to the output of using library sklearn.   1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
-import numpy as np import matplotlib.</description>
-    </item>
     
     <item>
       <title>在Google Cloud Platform上运行Jupyter Notebook</title>

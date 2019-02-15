@@ -31,19 +31,6 @@
     </item>
     
     <item>
-      <title>Machine Learning Algorithm Implementation (3): Perceptron</title>
-      <link>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-3/</link>
-      <pubDate>Tue, 05 Feb 2019 00:58:34 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-3/</guid>
-      <description>Click here to see the implementation in Jupyter Notebook
-Perceptron  Goal
- implement the perceptron (a building block of neural networks) to assess how the perceptron behaves in two distinct scenarios (separable vs. non-separable data)  Verification
- compare our output to the output of using LogisticRegression function from library sklearn.    1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
-%matplotlib inline import numpy as np import matplotlib.</description>
-    </item>
-    
-    <item>
       <title>Projects</title>
       <link>http://zintrulcre.vip/projects/</link>
       <pubDate>Mon, 04 Feb 2019 23:26:26 +1100</pubDate>
@@ -53,28 +40,6 @@ Perceptron  Goal
  ZinMark  A Featured Dynamic Bookmark Website, implemented in Python3 using Django framework for back end and Bootstrap, jQuery for front end. 📌
  Scrabble Game  An online multi-player Scrabble game, implemented in Java using TCP, Thread, and JavaFX. 🍩
  Machine Learning Algorithm Implementations  Machine Learning algorithm implementations, implemented in Python3 and Jupyter Notebook using numpy, scipy, pandas, matplotlib, tenserflow libraries, and verified by sklearn.</description>
-    </item>
-    
-    <item>
-      <title>Machine Learning Algorithm Implementation (2): Logistic Regression</title>
-      <link>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-2/</link>
-      <pubDate>Fri, 01 Feb 2019 14:00:16 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-2/</guid>
-      <description>Click here to see the implementation in Jupyter Notebook
-Logistic Regression  Goal  implementing L2-regularised logistic regression, using scipy and numpy library apply polynomial basis expansion and L2 regularisation.  Implementation Methods  hill-climbing algorithm  Verification  compare our output to the output of using library sklearn.    1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
-%matplotlib inline import numpy as np import matplotlib.</description>
-    </item>
-    
-    <item>
-      <title>Machine Learning Algorithm Implementation (1): Linear Regression</title>
-      <link>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-1/</link>
-      <pubDate>Wed, 30 Jan 2019 14:38:43 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/posts/machine-learning/machine-learning-algorithm-implementation-1/</guid>
-      <description>Click here to see the implementation in Jupyter Notebook
-Linear regression  Goal  fit a linear model, using only the numpy library visualize the output, using the matplotlib library  Implementation Methods  iterative updates (coordinate descent) linear algebra  Verification  compare our output to the output of using library sklearn.   1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
-import numpy as np import matplotlib.</description>
     </item>
     
     <item>
@@ -111,6 +76,33 @@ import numpy as np import matplotlib.</description>
       
       <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-3/</guid>
       <description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 Cookie和Se</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;智能指针（1.5）：move语义</title>
+      <link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
+      <pubDate>Wed, 02 Jan 2019 09:55:05 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
+      <description>move语义 定义 右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（P</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;智能指针（1）：auto_ptr</title>
+      <link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/</link>
+      <pubDate>Thu, 27 Dec 2018 15:21:35 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
+      <description>分析 C++中经常会出现因为没有delete指针而造成的内存泄漏，例如有下面一个类 class Obj { public: Obj() { std::cout &amp;lt;&amp;lt; &amp;#34;Construct&amp;#34; &amp;lt;&amp;lt; std::endl; } Obj(const Obj &amp;amp;other) { std::cout &amp;lt;&amp;lt; &amp;#34;Copy&amp;#34; &amp;lt;&amp;lt; std::endl; } Obj(Obj &amp;amp;&amp;amp;other) noexcept { std::cout &amp;lt;&amp;lt; &amp;#34;Move&amp;#34; &amp;lt;&amp;lt;</description>
+    </item>
+    
+    <item>
+      <title>使用Scrapy爬取LeetCode（2）：爬取题目信息</title>
+      <link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-2/</link>
+      <pubDate>Fri, 21 Dec 2018 15:06:01 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-2/</guid>
+      <description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 创建爬虫 在新建好项</description>
     </item>
     
   </channel>
