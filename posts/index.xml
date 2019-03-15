@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 12 Feb 2019 21:44:35 +1100</lastBuildDate>
+    <lastBuildDate>Fri, 15 Mar 2019 10:56:12 +1100</lastBuildDate>
     
 	<atom:link href="http://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 208 实现 Trie (前缀树)</title>
+      <link>http://zintrulcre.vip/posts/leetcode/208/</link>
+      <pubDate>Fri, 15 Mar 2019 10:56:12 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/leetcode/208/</guid>
+      <description>LeetCode 208 实现 Trie (前缀树) 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。 示例: Trie trie = new Trie(); trie.insert(&amp;#34;apple&amp;#34;); trie.search(&amp;#34;apple&amp;#34;); // 返回 true trie.search(&amp;#34;app&amp;#34;); // 返回 false trie.startsWith(&amp;#34;app&amp;#34;); // 返回 true trie.insert(&amp;#34;app&amp;#34;); trie.search(&amp;#34;app&amp;#34;); // 返回 true 说明: 你可以假</description>
+    </item>
     
     <item>
       <title>LeetCode 98 验证二叉搜索树</title>
@@ -86,20 +95,11 @@
     
     <item>
       <title>在Google Cloud Platform上运行Jupyter Notebook</title>
-      <link>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</link>
+      <link>http://zintrulcre.vip/posts/cloud/run-jupyter-notebook-on-gcp/</link>
       <pubDate>Fri, 14 Dec 2018 17:03:12 +1100</pubDate>
       
-      <guid>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</guid>
+      <guid>http://zintrulcre.vip/posts/cloud/run-jupyter-notebook-on-gcp/</guid>
       <description>简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jup</description>
-    </item>
-    
-    <item>
-      <title>使用Scrapy爬取LeetCode（1）：Scrapy框架入门</title>
-      <link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-1/</link>
-      <pubDate>Tue, 04 Dec 2018 11:25:15 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-1/</guid>
-      <description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 简介 Scrapy官</description>
     </item>
     
   </channel>

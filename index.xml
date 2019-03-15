@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 12 Feb 2019 21:44:35 +1100</lastBuildDate>
+    <lastBuildDate>Fri, 15 Mar 2019 10:56:12 +1100</lastBuildDate>
     
 	<atom:link href="http://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 208 实现 Trie (前缀树)</title>
+      <link>http://zintrulcre.vip/posts/leetcode/208/</link>
+      <pubDate>Fri, 15 Mar 2019 10:56:12 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/leetcode/208/</guid>
+      <description>LeetCode 208 实现 Trie (前缀树) 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。 示例: Trie trie = new Trie(); trie.insert(&amp;#34;apple&amp;#34;); trie.search(&amp;#34;apple&amp;#34;); // 返回 true trie.search(&amp;#34;app&amp;#34;); // 返回 false trie.startsWith(&amp;#34;app&amp;#34;); // 返回 true trie.insert(&amp;#34;app&amp;#34;); trie.search(&amp;#34;app&amp;#34;); // 返回 true 说明: 你可以假</description>
+    </item>
     
     <item>
       <title>LeetCode 98 验证二叉搜索树</title>
@@ -94,15 +103,6 @@
       
       <guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
       <description>分析 C++中经常会出现因为没有delete指针而造成的内存泄漏，例如有下面一个类 class Obj { public: Obj() { std::cout &amp;lt;&amp;lt; &amp;#34;Construct&amp;#34; &amp;lt;&amp;lt; std::endl; } Obj(const Obj &amp;amp;other) { std::cout &amp;lt;&amp;lt; &amp;#34;Copy&amp;#34; &amp;lt;&amp;lt; std::endl; } Obj(Obj &amp;amp;&amp;amp;other) noexcept { std::cout &amp;lt;&amp;lt; &amp;#34;Move&amp;#34; &amp;lt;&amp;lt;</description>
-    </item>
-    
-    <item>
-      <title>使用Scrapy爬取LeetCode（2）：爬取题目信息</title>
-      <link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-2/</link>
-      <pubDate>Fri, 21 Dec 2018 15:06:01 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-2/</guid>
-      <description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 创建爬虫 在新建好项</description>
     </item>
     
   </channel>

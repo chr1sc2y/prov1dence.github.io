@@ -14,10 +14,10 @@
     
     <item>
       <title>在Google Cloud Platform上运行Jupyter Notebook</title>
-      <link>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</link>
+      <link>http://zintrulcre.vip/posts/cloud/run-jupyter-notebook-on-gcp/</link>
       <pubDate>Fri, 14 Dec 2018 17:03:12 +1100</pubDate>
       
-      <guid>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</guid>
+      <guid>http://zintrulcre.vip/posts/cloud/run-jupyter-notebook-on-gcp/</guid>
       <description>简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jup</description>
     </item>
     

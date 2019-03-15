@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://zintrulcre.vip/posts/leetcode/208/</loc>
+    <lastmod>2019-03-15T10:56:12+11:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zintrulcre.vip/posts/leetcode/98/</loc>
     <lastmod>2019-02-12T21:44:35+11:00</lastmod>
   </url>
@@ -53,7 +58,7 @@
   </url>
   
   <url>
-    <loc>http://zintrulcre.vip/posts/run-jupyter-notebook-on-gcp/</loc>
+    <loc>http://zintrulcre.vip/posts/cloud/run-jupyter-notebook-on-gcp/</loc>
     <lastmod>2018-12-14T17:03:12+11:00</lastmod>
   </url>
   
@@ -64,7 +69,7 @@
   
   <url>
     <loc>http://zintrulcre.vip/tags/algorithm/</loc>
-    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
+    <lastmod>2019-03-15T10:56:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -142,19 +147,19 @@
   
   <url>
     <loc>http://zintrulcre.vip/tags/leetcode/</loc>
-    <lastmod>2019-02-12T21:44:35+11:00</lastmod>
+    <lastmod>2019-03-15T10:56:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://zintrulcre.vip/categories/leetcode/</loc>
-    <lastmod>2019-02-12T21:44:35+11:00</lastmod>
+    <lastmod>2019-03-15T10:56:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://zintrulcre.vip/tags/oj/</loc>
-    <lastmod>2019-02-12T21:44:35+11:00</lastmod>
+    <lastmod>2019-03-15T10:56:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -166,7 +171,7 @@
   
   <url>
     <loc>http://zintrulcre.vip/posts/</loc>
-    <lastmod>2019-02-12T21:44:35+11:00</lastmod>
+    <lastmod>2019-03-15T10:56:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -190,13 +195,13 @@
   
   <url>
     <loc>http://zintrulcre.vip/tags/</loc>
-    <lastmod>2019-02-06T22:11:18+11:00</lastmod>
+    <lastmod>2019-03-15T10:56:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://zintrulcre.vip/</loc>
-    <lastmod>2019-02-12T21:44:35+11:00</lastmod>
+    <lastmod>2019-03-15T10:56:12+11:00</lastmod>
     <priority>0</priority>
   </url>
   
