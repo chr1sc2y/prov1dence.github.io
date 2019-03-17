@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://zintrulcre.vip/notebooks/</loc>
+    <lastmod>2019-03-17T11:48:06+11:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zintrulcre.vip/posts/leetcode/208/</loc>
     <lastmod>2019-03-15T10:56:12+11:00</lastmod>
   </url>
@@ -201,7 +206,7 @@
   
   <url>
     <loc>http://zintrulcre.vip/</loc>
-    <lastmod>2019-03-15T10:56:12+11:00</lastmod>
+    <lastmod>2019-03-17T11:48:06+11:00</lastmod>
     <priority>0</priority>
   </url>
   
