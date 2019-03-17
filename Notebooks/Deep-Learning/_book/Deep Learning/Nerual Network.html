@@ -1,0 +1,671 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Nerual Network · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Object Detection.html" />
+    
+    
+    <link rel="prev" href="Natural Language Processing.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Deep Learning
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="Data Processing.html">
+            
+                <a href="Data Processing.html">
+            
+                    
+                    Data Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="Evaluation.html">
+            
+                <a href="Evaluation.html">
+            
+                    
+                    Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="Gradient Descent.html">
+            
+                <a href="Gradient Descent.html">
+            
+                    
+                    Gradient Descent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="Hyperparameters.html">
+            
+                <a href="Hyperparameters.html">
+            
+                    
+                    Hyperparameters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="Linear Regression.html">
+            
+                <a href="Linear Regression.html">
+            
+                    
+                    Linear Regression
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="Logistic Regression.html">
+            
+                <a href="Logistic Regression.html">
+            
+                    
+                    Logistic Regression
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="Machine Learning.html">
+            
+                <a href="Machine Learning.html">
+            
+                    
+                    Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="Natural Language Processing.html">
+            
+                <a href="Natural Language Processing.html">
+            
+                    
+                    Natural Language Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.9" data-path="Nerual Network.html">
+            
+                <a href="Nerual Network.html">
+            
+                    
+                    Nerual Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="Object Detection.html">
+            
+                <a href="Object Detection.html">
+            
+                    
+                    Object Detection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="Sequence Model.html">
+            
+                <a href="Sequence Model.html">
+            
+                    
+                    Sequence Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="Strategy.html">
+            
+                <a href="Strategy.html">
+            
+                    
+                    Strategy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.13" data-path="Convolutional Neural Network.html">
+            
+                <a href="Convolutional Neural Network.html">
+            
+                    
+                    Convolutional Neural Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Nerual Network</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="neural-network">Neural Network</h1>
+<h2 id="neural-network">Neural Network</h2>
+<p>input layer (layer 0) $-&gt;$ hidden layer (layer 1) $-&gt;$ ... $-&gt;$ hidden layer (layer n -1) $-&gt;$ output layer (layer n)</p>
+<h3 id="chain-rule">Chain Rule</h3>
+<p>$u = 4 x $ -&gt; $ v = u + a $ -&gt; $ y = 3 v &#x200B;$</p>
+<p>$ \frac{d y}{d v} = 3 $ , $ \frac{d y}{d u} = \frac{d y}{d v} \frac{d v}{d u} = 3 $, $ \frac{d y}{d x} = \frac{d y}{d v} \frac{d v}{d u} \frac{d u}{d x} = 12 &#x200B;$</p>
+<h3 id="activation-function">Activation Function</h3>
+<ul>
+<li><p>Sigmoid function: $\sigma(z) = \frac{1}{1+e^{-z}}&#x200B;$</p>
+<ul>
+<li><p>$\sigma(z)&apos; =  \frac{d}{d z} \sigma(z)  = \frac{1}{1+e^{-z}}(1 - \frac{1}{1-e^{-z}})  = g(z) (1 - g(z)) = a (1 - a)&#x200B;$</p>
+</li>
+<li><p>only used in binary classification</p>
+</li>
+</ul>
+</li>
+<li><p>tanh function: $tanh(z) = \frac {e^z - e^{-z}} {e^z + e^{-z}}&#x200B;$</p>
+<ul>
+<li>$tanh(z)&apos; = \frac{d}{d z} tanh(z) = 1 - (tanh(z)) ^ 2&#x200B;$</li>
+</ul>
+</li>
+<li><p>ReLU function: $g(z) = max(0, z)&#x200B;$</p>
+<ul>
+<li>$g(z)&apos; =  0&#x200B;$ if z &lt; 0</li>
+<li>$g(z)&apos; =  1&#x200B;$ if z &gt; 0</li>
+<li>$g(z)&apos; = undefined &#x200B;$ if z = 0</li>
+<li>ReLU: rectified linear unit </li>
+<li>z &lt; 0, a = 0</li>
+<li>z = 0, a = z</li>
+</ul>
+</li>
+<li><p>Leaky ReLU function: a = max(cz, z)</p>
+<ul>
+<li>$g(z)&apos; =  c$ if z &lt; 0</li>
+<li>$g(z)&apos; =  1$ if z &gt; 0</li>
+<li>$g(z)&apos; = undefined $ if z = 0</li>
+</ul>
+</li>
+<li><ul>
+<li>c is very small</li>
+</ul>
+</li>
+<li>identity activation function: a = z<ul>
+<li>useless</li>
+</ul>
+</li>
+</ul>
+<h3 id="gradient-descent">Gradient Descent</h3>
+<p>Repeat:</p>
+<p>&#x200B;    $\omega ^ {[i]} = \omega ^ {[i]} - \alpha * \frac{\partial}{\partial\omega ^ {[i]}}J &#x200B;$</p>
+<p>&#x200B;    $\beta ^ {[i]} = \beta ^ {[i]} - \alpha * \frac{\partial}{\partial\beta ^ {[i]}}J $</p>
+<ul>
+<li>initialize the parmeters randomly<ul>
+<li>$ \omega^{[i]} = $ np.random.randn ((n,m)) * 0.01</li>
+<li>$ \beta{[i]} = &#x200B;$ np.zero ((n,1))</li>
+</ul>
+</li>
+</ul>
+<h4 id="forward-propagation">Forward Propagation</h4>
+<p>input: $ a^{[i-1]} $</p>
+<p>output: $ a^{[i]} &#x200B;$, cache $ z^{[i]} &#x200B;$</p>
+<ul>
+<li>$A^{[0]} = X&#x200B;$</li>
+<li>$Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]}  &#x200B;$</li>
+<li>$A^{[i]} = g^{[i]} (Z^{[i]}) $</li>
+<li>$ \hat{Y} = A^{[l]} $</li>
+</ul>
+<h4 id="back-propagation">Back Propagation</h4>
+<p>input: $ d a^{[i]} $</p>
+<p>output: $ d a^{[i-i]} , d \omega^{[i]}, d \beta^{[i]} &#x200B;$</p>
+<ul>
+<li>$ dZ^{[i]} = A^{[i]} - Y &#x200B;$</li>
+<li>$ d\omega^{[i]} = \frac{1}{m} dZ^{[i]} A^{[i-1]T} &#x200B;$</li>
+<li>$d b^{[i]} = \frac{1}{m} np.sum(dZ^{[i]}, axis = 1, keepdims = True) $ </li>
+<li>$da^{[i-1]} = \omega ^ {[i]T} dz^{[i]} $</li>
+</ul>
+<h3 id="weight-initialization">Weight Initialization</h3>
+<ul>
+<li><p>variance($ \omega_i $) = $ \frac{1}{n} $</p>
+<ul>
+<li>prevent z blow up or too small</li>
+<li>n is the number of input features</li>
+</ul>
+</li>
+<li><p>$ \omega{[i]} $ = np.random.randn(shape) * np.sqrt($ \frac{2}{n^{[i-1]}} &#x200B;$)</p>
+<ul>
+<li>ReLU activation</li>
+</ul>
+</li>
+<li>$ \sqrt{\frac{2}{n^{[i-1]} + n ^{[i]}}} $<ul>
+<li>tanh activation</li>
+</ul>
+</li>
+</ul>
+<h3 id="cost-function">Cost Function</h3>
+<p>$ J( \omega ^{[1]}, \beta^{[1]}, ..., \omega^{[L]}, \beta^{[L]}) = \frac{1}{m} \sum_{i=1}^m l(\hat{y^i}, y^i) &#x200B;$</p>
+<h4 id="regularization">Regularization</h4>
+<h5 id="l2-norm">L2 Norm</h5>
+<p>$ J( \omega ^{[1]}, \beta^{[1]}, ..., \omega^{[L]}, \beta^{[L]}) = \frac{1}{m} \sum<em>{i=1}^m l(\hat{y^i}, y^i) + \frac{\lambda}{2m}\sum</em>{l=1}^L| |\omega^{[l]}||^2 $</p>
+<p>$ || \omega^{[l]} || ^2 = \sum<em>{i=1}^{n^{[l-1]}} \sum</em>{j=1}^{n^{[l]}} (\omega_{ij}^{[l]})^2 &#x200B;$</p>
+<ul>
+<li><p>$ \omega : (n^{i-1}, n^{i}) $</p>
+</li>
+<li><p>Frobenius Norm</p>
+</li>
+</ul>
+<h5 id="dropout-regularization">Dropout Regularization</h5>
+<p>Intuition: Cannot rely on any one feature, so have to spread out weights</p>
+<p>parameter:</p>
+<ul>
+<li>keep_prob for different layers<ul>
+<li>the chance of keeping a unit in each layer</li>
+<li>keep_prob = 1: keep all units</li>
+</ul>
+</li>
+</ul>
+<h2 id="deep-neural-network">Deep Neural Network</h2>
+<pre><code class="lang-mermaid">graph LR
+x1((x1)) --&gt; a11((a11)) 
+x2((x2)) --&gt; a11((a11))
+x3((x3)) --&gt; a11((a11))
+x1((x1)) --&gt; a12((a12))
+x2((x2)) --&gt; a12((a12))
+x3((x3)) --&gt; a12((a12))
+x1((x1)) --&gt; a13((a13))
+x2((x2)) --&gt; a13((a13))
+x3((x3)) --&gt; a13((a13))
+x1((x1)) --&gt; a14((a14))
+x2((x2)) --&gt; a14((a14))
+x3((x3)) --&gt; a14((a14))
+x1((x1)) --&gt; a15((a15))
+x2((x2)) --&gt; a15((a15))
+x3((x3)) --&gt; a15((a15))
+a11((a11)) --&gt; a21((a21))
+a12((a12)) --&gt; a21((a21))
+a13((a13)) --&gt; a21((a21))
+a14((a14)) --&gt; a21((a21))
+a15((a15)) --&gt; a21((a21))
+a11((a11)) --&gt; a22((a22))
+a12((a12)) --&gt; a22((a22))
+a13((a13)) --&gt; a22((a22))
+a14((a14)) --&gt; a22((a22))
+a15((a15)) --&gt; a22((a22))
+a11((a11)) --&gt; a23((a23))
+a12((a12)) --&gt; a23((a23))
+a13((a13)) --&gt; a23((a23))
+a14((a14)) --&gt; a23((a23))
+a15((a15)) --&gt; a23((a23))
+a11((a11)) --&gt; a24((a24))
+a12((a12)) --&gt; a24((a24))
+a13((a13)) --&gt; a24((a24))
+a14((a14)) --&gt; a24((a24))
+a15((a15)) --&gt; a24((a24))
+a11((a11)) --&gt; a25((a25))
+a12((a12)) --&gt; a25((a25))
+a13((a13)) --&gt; a25((a25))
+a14((a14)) --&gt; a25((a25))
+a15((a15)) --&gt; a25((a25))
+a21((a11)) --&gt; a31((a31))
+a22((a12)) --&gt; a31((a31))
+a23((a13)) --&gt; a31((a31))
+a24((a14)) --&gt; a31((a31))
+a25((a15)) --&gt; a31((a31))
+a21((a11)) --&gt; a32((a32))
+a22((a12)) --&gt; a32((a32))
+a23((a13)) --&gt; a32((a32))
+a24((a14)) --&gt; a32((a32))
+a25((a15)) --&gt; a32((a32))
+a21((a11)) --&gt; a33((a33))
+a22((a12)) --&gt; a33((a33))
+a23((a13)) --&gt; a33((a33))
+a24((a14)) --&gt; a33((a33))
+a25((a15)) --&gt; a33((a33))
+a31((a31)) --&gt; a41((a41))
+a32((a32)) --&gt; a41((a41))
+a33((a33)) --&gt; a41((a41))
+</code></pre>
+<ul>
+<li>$l$ = 4&#x200B; (hidden layers and output layer)</li>
+<li>$n^{[i]}&#x200B;$ = units in layer i<ul>
+<li>$n^{[1]}$ = 5, $n^{[2]}$ = 5, $n^{[3]}$ = 3, $n^{[4]}$ = $n^{[l]}$ = 1, $n^{[0]}$ = $n_x$ = 3</li>
+</ul>
+</li>
+<li>$a^{[i]}$ = activations in layer i</li>
+<li>$z^{[i]}$ = cache in layer i (before being put in activation function)</li>
+</ul>
+<h3 id="parameters">Parameters</h3>
+<h4 id="hyperparameters">Hyperparameters</h4>
+<p>Contrul the ultimate parameters $ \omega $ and $ \beta $</p>
+<ul>
+<li>learning rate $ \alpha $</li>
+<li>iterations of gradient descent</li>
+<li>number of hidden layers</li>
+<li>number of hidden units</li>
+<li>choice of activation function</li>
+</ul>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li>$ \omega $</li>
+<li>$ \beta $</li>
+</ul>
+<h3 id="forward-propagation">Forward Propagation</h3>
+<p>input: $ a^{[i-1]} $</p>
+<p>output: $ a^{[i]} $, cache $ z^{[i]} $</p>
+<ul>
+<li>$A^{[0]} = X$</li>
+<li>$Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]}  $</li>
+<li>$A^{[i]} = g^{[i]} (Z^{[i]}) &#x200B;$</li>
+<li>$ \hat{Y} = A^{[l]} &#x200B;$</li>
+</ul>
+<h3 id="backward-propagation">Backward Propagation</h3>
+<p>input: $ d a^{[i]} &#x200B;$</p>
+<p>output: $ d a^{[i-i]} , d \omega^{[i]}, d \beta^{[i]} &#x200B;$</p>
+<ul>
+<li>$ dZ^{[i]} = dA^{[i]} g^{[i]&apos;} (Z{[i]}) &#x200B;$</li>
+<li>$ d\omega^{[i]} = \frac{1}{m} dZ^{[i]} A^{[i-1]T} $</li>
+<li>$d b^{[i]} = \frac{1}{m} np.sum(dZ^{[i]}, axis = 1, keepdims = True) &#x200B;$ </li>
+<li>$da^{[i-1]} = \omega ^ {[i]T} dz^{[i]} &#x200B;$</li>
+</ul>
+<h3 id="dimension">Dimension</h3>
+<h4 id="single-example">Single Example</h4>
+<ul>
+<li>$A^{[0]} = X$<ul>
+<li>$ X &#x200B;$: ($ n^{[i]}, 1 &#x200B;$)</li>
+</ul>
+</li>
+<li>$Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]}  &#x200B;$<ul>
+<li>$\omega^{[i]}$ : ( $ n^{[i]}, n^{[i-1]} &#x200B;$ )</li>
+<li>$\beta {[i]}&#x200B;$ : ( $ n^{[i]}, 1 &#x200B;$ )</li>
+</ul>
+</li>
+<li>$A^{[i]} = g^{[i]} (Z^{[i]}) $<ul>
+<li>$ Z^{[i]} &#x200B;$:  ($ n^{[i]}, 1 &#x200B;$)</li>
+</ul>
+</li>
+<li>$ \hat{Y} = A^{[l]} &#x200B;$</li>
+</ul>
+<h4 id="vectorization">Vectorization</h4>
+<ul>
+<li><p>$ A^{[0]} = X $</p>
+<ul>
+<li>$ X $: ($ n^{[i]}, m $)</li>
+</ul>
+</li>
+<li><p>$ Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]} $</p>
+<ul>
+<li>$ Z^{[i]} = [Z^{<a href="1">i</a>}, Z^{<a href="2">i</a>}, ... , Z^{<a href="m">i</a>}] $</li>
+<li>$ Z^{[i]} $:  ($ n^{[i]}, m $)</li>
+<li>$\beta {[i]}$ : ( $ n^{[i]}, 1 $ ) -- Broadcast -- &gt; $\beta {[i]}$ : ( $ n^{[i]}, m $ )</li>
+</ul>
+</li>
+</ul>
+<h3 id="circuit-theory">Circuit Theory</h3>
+<p>Small L-layer deep neural network require exponentially more hidden units to compute.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Natural Language Processing.html" class="navigation navigation-prev " aria-label="Previous page: Natural Language Processing">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Object Detection.html" class="navigation navigation-next " aria-label="Next page: Object Detection">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Nerual Network","level":"1.2.9","depth":2,"next":{"title":"Object Detection","level":"1.2.10","depth":2,"path":"Deep Learning/Object Detection.md","ref":"./Deep Learning/Object Detection.md","articles":[]},"previous":{"title":"Natural Language Processing","level":"1.2.8","depth":2,"path":"Deep Learning/Natural Language Processing.md","ref":"./Deep Learning/Natural Language Processing.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Deep Learning/Nerual Network.md","mtime":"2019-02-09T08:05:49.467Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T00:35:48.775Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

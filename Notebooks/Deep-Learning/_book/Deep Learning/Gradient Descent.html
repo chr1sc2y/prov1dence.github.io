@@ -1,0 +1,731 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Gradient Descent · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Hyperparameters.html" />
+    
+    
+    <link rel="prev" href="Evaluation.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Deep Learning
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="Data Processing.html">
+            
+                <a href="Data Processing.html">
+            
+                    
+                    Data Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="Evaluation.html">
+            
+                <a href="Evaluation.html">
+            
+                    
+                    Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.3" data-path="Gradient Descent.html">
+            
+                <a href="Gradient Descent.html">
+            
+                    
+                    Gradient Descent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="Hyperparameters.html">
+            
+                <a href="Hyperparameters.html">
+            
+                    
+                    Hyperparameters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="Linear Regression.html">
+            
+                <a href="Linear Regression.html">
+            
+                    
+                    Linear Regression
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="Logistic Regression.html">
+            
+                <a href="Logistic Regression.html">
+            
+                    
+                    Logistic Regression
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="Machine Learning.html">
+            
+                <a href="Machine Learning.html">
+            
+                    
+                    Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="Natural Language Processing.html">
+            
+                <a href="Natural Language Processing.html">
+            
+                    
+                    Natural Language Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="Nerual Network.html">
+            
+                <a href="Nerual Network.html">
+            
+                    
+                    Nerual Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="Object Detection.html">
+            
+                <a href="Object Detection.html">
+            
+                    
+                    Object Detection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="Sequence Model.html">
+            
+                <a href="Sequence Model.html">
+            
+                    
+                    Sequence Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="Strategy.html">
+            
+                <a href="Strategy.html">
+            
+                    
+                    Strategy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.13" data-path="Convolutional Neural Network.html">
+            
+                <a href="Convolutional Neural Network.html">
+            
+                    
+                    Convolutional Neural Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Gradient Descent</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="gradient-descent">Gradient Descent</h1>
+<h2 id="gradient-descent">Gradient Descent</h2>
+<p>Function: $F_\vec{\theta}&#x200B;$</p>
+<p>Goal: $ \underset{\vec{\theta}}{\operatorname{argmin}}F_\vec{\theta} $</p>
+<p>Gradient Descent: $\theta_i = \theta_i - \alpha * \frac{\partial}{\partial\theta_i}J(\vec{\theta}) &#x200B;$</p>
+<ul>
+<li>$\theta_0 = \theta_0 - \alpha * \frac{\partial}{\partial\theta_0}J(\vec{\theta}) &#x200B;$</li>
+<li>$\theta_1 = \theta_1 - \alpha * \frac{\partial}{\partial\theta_1}J(\vec{\theta}) $</li>
+<li>...</li>
+<li>$\theta_n = \theta_n - \alpha * \frac{\partial}{\partial\theta_n}J(\vec{\theta})$</li>
+</ul>
+<p>Outline:</p>
+<ul>
+<li>Start with some $\vec{\theta}$</li>
+<li>Keep changing $\vec{\theta}$ to reduce $F(\vec{\theta})$</li>
+<li>End up at a minimum</li>
+</ul>
+<h3 id="simultaneous-update">Simultaneous Update</h3>
+<p>Repeat Until Converge:</p>
+<p>$\theta_i = \theta_i - \alpha * \frac{\partial}{\partial\theta_i}J(\vec{\theta}) $</p>
+<ul>
+<li>$\alpha&#x200B;$: learning rate<ul>
+<li>for sufficiently small $\alpha$, $J(\vec{\theta})$ should decrease after each iteration</li>
+<li>if $\alpha$ is too small:<ul>
+<li>slow decrease</li>
+</ul>
+</li>
+<li>if $\alpha$ is too large:<ul>
+<li>increase</li>
+<li>overshoot the minimum</li>
+<li>fail to converge, or even diverge</li>
+</ul>
+</li>
+<li>take smaller $\alpha$ automatically as it approaches a local minimum</li>
+</ul>
+</li>
+<li>$\frac{\partial}{\partial\theta_i}J(\vec{\theta}) $: derivative</li>
+</ul>
+<p>Note:</p>
+<ul>
+<li>Gradient Descent can only converge to a local minimum</li>
+<li>Declare convergence if $J(\vec{\theta})$ decreases by less than $10^{-3}$ in a single iteration</li>
+</ul>
+<h3 id="gradient-vanishingexploding">Gradient Vanishing/Exploding</h3>
+<p>In deep network, activations end up increasing/decreasing exponentially.</p>
+<p>$ \hat{Y} = X\omega^{[1]} \omega^{[2]} ... \omega^{[L]} &#x200B;$</p>
+<ul>
+<li>$ \omega{[i]} &#x200B;$ is bigger than 1<ul>
+<li>activations explode</li>
+</ul>
+</li>
+<li>$ \omega{[i]} $ is smaller than 1<ul>
+<li>activations vanish</li>
+</ul>
+</li>
+</ul>
+<h3 id="gradient-checking">Gradient Checking</h3>
+<ul>
+<li>only to debug</li>
+<li>check components to identify bug</li>
+<li>use regularization<ul>
+<li>not work with dropout</li>
+</ul>
+</li>
+<li>run at random initialization</li>
+</ul>
+<h4 id="formula">Formula</h4>
+<p>$ f&apos;(\theta) = \lim_{\epsilon-&gt;0} \frac{f(\theta + \epsilon) - f(\theta - \epsilon)}{2\epsilon} = O(\epsilon^2) &#x200B;$</p>
+<ul>
+<li>$ f(\theta + \epsilon) - f(\theta - \epsilon) $: height</li>
+<li>$ 2\epsilon &#x200B;$: length</li>
+</ul>
+<h4 id="grad-check">Grad Check</h4>
+<ul>
+<li>Reshape $\omega{[1]}, \beta{[1]}, ... \omega{[L], \beta{[L]}}  &#x200B;$ into a big vector $ \theta &#x200B;$<ul>
+<li>$ J(\omega{[1]}, \beta{[1]}, ... \omega{[L], \beta{[L]}}  ) = J(\theta) = J(\theta_1, ..., \theta_i, .. , \theta_L)&#x200B;$</li>
+</ul>
+</li>
+<li>Reshape $d\omega{[1]}, d\beta{[1]}, ... d\omega{[L], d\beta{[L]}}  &#x200B;$ into a big vector $ \theta &#x200B;$<ul>
+<li>$ J(d\omega{[1]}, d\beta{[1]}, ... d\omega{[L], d\beta{[L]}}  ) = J(d\theta) = J(d\theta_1, ..., d\theta_i, .. , d\theta_L &#x200B;$</li>
+</ul>
+</li>
+<li><p>for each i:</p>
+<ul>
+<li>$ d\theta_{approx}^{[i]} = \frac{J(\theta_1, ..., \theta_i + \epsilon, .. , \theta_L) - J(\theta_1, ..., \theta_i - \epsilon, .. , \theta_L}{2\epsilon} \approx d\theta^{[i]} = \frac{\partial J}{\partial \theta^{[i]}}  &#x200B;$ </li>
+</ul>
+</li>
+<li><p>Check</p>
+<ul>
+<li>check $ \frac{||d\theta<em>{approx} - d\theta||_2}{||d\theta</em>{approx}||_2 + ||d\theta||_2} $<ul>
+<li>$ &lt; 10 ^{-7} $, grate</li>
+<li>$&gt; 10 ^{-3} &#x200B;$, wrong</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="batch-gradient-descent">Batch Gradient Descent</h2>
+<h3 id="batch-gradient-descent">Batch Gradient Descent</h3>
+<p>Each step of Gradient Descent use all the training examples.</p>
+<p>$ X= [x^1 x^2 ... x^n] &#x200B;$</p>
+<p>$ Y= [y^1 y^2 ... y^n] $</p>
+<h3 id="mini-batch-gradient-descent">Mini-Batch Gradient Descent</h3>
+<p>Each step of Gradient Descent use a set of the training examples.</p>
+<ul>
+<li><p>$ X= [x^{{1}} x^{{2}} ... x^{{n}}] $</p>
+<ul>
+<li>$ x{{1}} = [x^1 ... x ^m] $ (m=1000, e.g.)</li>
+<li>$ x{{2}} = [x^{m+1} ... x ^{2m}] $ (m=1000, e.g.)</li>
+<li>...</li>
+<li>$ x{{n/m}} = [x^{n-m} ... x ^{n}] &#x200B;$ (m=1000, e.g.)</li>
+</ul>
+</li>
+<li><p>$ Y= [y^{{1}} y^{{2}} ... y^{{n}}] $</p>
+</li>
+</ul>
+<h4 id="mini-batch-size">Mini-Batch Size</h4>
+<ul>
+<li>size = n: Batch Gradient Descent<ul>
+<li>too long per iteration</li>
+</ul>
+</li>
+<li>size = 1: Stochastic Gradient Descent<ul>
+<li>lose speedup from vectorization</li>
+</ul>
+</li>
+<li>size = m: In-Between<ul>
+<li>speedup from vectorization</li>
+<li>make progress without waiting</li>
+</ul>
+</li>
+</ul>
+<h4 id="mini-batch-gradient-descent-in-neural-network">Mini-Batch Gradient Descent in Neural Network</h4>
+<p>for t = 1, ... , n/m    // 1 epoch: 1 pass through training set</p>
+<p>&#x200B;    Forward Propagation on $ X^{{t}} &#x200B;$</p>
+<p>&#x200B;    Compute cost $ J^{{t}} = \frac{1}{m} \sum_{i = 1}^{l} l(\hat{y}{i},y^{i}) + \frac{\lambda}{2m}\sum ||\omega^{[l]}||^2 $</p>
+<p>&#x200B;    Backward Propagation to compute gradient descent</p>
+<h2 id="adam">Adam</h2>
+<h3 id="exponentially-weighted-average">Exponentially Weighted Average</h3>
+<h4 id="formula">Formula</h4>
+<p>$ v<em>t = \beta v</em>{t-1} + (1-\beta)\theta_t &#x200B;$</p>
+<ul>
+<li>$v_t&#x200B;$: averaging over  $ \frac{1}{1-\beta}&#x200B;$ day&apos;s temperature</li>
+</ul>
+<h5 id="beta">$\beta$</h5>
+<ul>
+<li><p>e.g  $\beta = 0.5 &#x200B;$: 2 day&apos;s average</p>
+</li>
+<li><p>e.g. $\beta = 0.98 &#x200B;$: 50 day&apos;s average</p>
+</li>
+<li><p>e.g. $\beta = 0.9 $: 10 day&apos;s average</p>
+<ul>
+<li>$ v<em>{100} = 0.9 v</em>{99} + 0.1 \theta_{100} &#x200B;$</li>
+<li>$ v<em>{99} = 0.9 v</em>{98} + 0.1 \theta_{99} $</li>
+<li>...</li>
+<li>$ v<em>{100} =0.1 \theta</em>{100} + 0.9(0.1\theta<em>{99} + 0.9(0.1\theta</em>{98} + ... + 0.1 \theta<em>{2} + 0.9v</em>{1} )) $</li>
+<li>$v<em>{100} = 0.1\theta</em>{100} + 0.1<em>0.9\theta_{99} + 0.1 </em>(0.9)^2\theta<em>{98} + ... + 0.1*(0.9)^{99}\theta</em>{1} $</li>
+</ul>
+</li>
+<li>$ (1-\epsilon)^{(1/\epsilon)} \approx \frac{1}{e} $</li>
+<li>$ \beta = (1-\epsilon) $ </li>
+</ul>
+<h4 id="bias-correction">Bias Correction</h4>
+<ul>
+<li><p>not good estimate during initial phase</p>
+<ul>
+<li>$ v<em>{1} =0.9 v</em>{0} + 0.1 \theta<em>{1}  = 0.1 \theta</em>{1} &#x200B;$</li>
+<li>$ v<em>{2} =0.9 v</em>{1} + 0.1 \theta<em>{2}  = 0.1 \theta</em>{2} + 0.9 * 0.1\theta_1 $ </li>
+</ul>
+</li>
+<li><p>more accurate during initial phase</p>
+<ul>
+<li>$ v<em>t = \beta v</em>{t-1} + (1-\beta)\theta_t $</li>
+<li>$ \frac{V_t}{1-\beta^t} $<ul>
+<li>$ 1-\beta^t $: weighted average of data</li>
+<li>remove the bias</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="aim">Aim</h4>
+<ul>
+<li>damp the oscillation</li>
+</ul>
+<h3 id="momentum">Momentum</h3>
+<ul>
+<li>for iteration = 1, ... , n=<ul>
+<li>Forward Propagation on $ X^{{t}} &#x200B;$</li>
+<li>Compute cost $ J^{{t}} = \frac{1}{m} \sum_{i = 1}^{l} l(\hat{y}{i},y^{i}) + \frac{\lambda}{2m}\sum ||\omega^{[l]}||^2 $</li>
+<li>Backward Propagation to compute gradient descent<ul>
+<li>Compute $dw$, $ db $ on the current mini-batch</li>
+<li>$ v<em>{dw} = \beta v</em>{dw} + (1-\beta)dw  &#x200B;$ </li>
+<li>$ v<em>{db} = \beta v</em>{db} + (1-\beta)db  &#x200B;$ </li>
+<li>$ w = w - \alpha v_{dw} &#x200B;$</li>
+<li>$ b = b - \alpha v_{db} &#x200B;$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="rmsprop">RMSprop</h3>
+<ul>
+<li>for iteration = 1, ... , n=<ul>
+<li>Forward Propagation on $ X^{{t}} $</li>
+<li>Compute cost $ J^{{t}} = \frac{1}{m} \sum_{i = 1}^{l} l(\hat{y}{i},y^{i}) + \frac{\lambda}{2m}\sum ||\omega^{[l]}||^2 &#x200B;$</li>
+<li>Backward Propagation to compute gradient descent<ul>
+<li>Compute $dw&#x200B;$, $ db &#x200B;$ on the current mini-batch</li>
+<li>$ S<em>{dw} = \beta S</em>{dw} + (1-\beta)d^2w  &#x200B;$ </li>
+<li>$ S<em>{db} = \beta S</em>{db} + (1-\beta)d^2b  $ </li>
+<li>$ w = w - \alpha \frac{dw}{\sqrt{S_{dw}}+ \epsilon} &#x200B;$</li>
+<li>$ b = b - \alpha \frac{db}{\sqrt{S_{db}}+ \epsilon} &#x200B;$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="adam">Adam</h3>
+<p>Adaptive Moment Estimation</p>
+<ul>
+<li>$ v<em>{dw}, v</em>{db},  S<em>{dw}, S</em>{db} = 0, 0, 0, 0 &#x200B;$</li>
+<li>for t = 1, ... , n    // t: iteration<ul>
+<li>Forward Propagation on $ X^{{t}} $</li>
+<li>Compute cost $ J^{{t}} = \frac{1}{m} \sum_{i = 1}^{l} l(\hat{y}{i},y^{i}) + \frac{\lambda}{2m}\sum ||\omega^{[l]}||^2 $</li>
+<li>Backward Propagation to compute gradient descent<ul>
+<li>Compute $dw&#x200B;$, $ db &#x200B;$ on the current mini-batch</li>
+<li>$ v<em>{dw} = \beta_1 v</em>{dw} + (1-\beta_1)dw  &#x200B;$</li>
+<li>$ v<em>{db} = \beta_1 v</em>{db} + (1-\beta_1)db  $</li>
+<li>$ s<em>{dw} = \beta_2 s</em>{dw} + (1-\beta_2)d^2w  $</li>
+<li>$ s<em>{db} = \beta_2 s</em>{db} + (1-\beta_2)d^2b  $</li>
+<li>$ v<em>{dw}^{corrected} = \frac{v</em>{dw}}{(1-\beta_1^t)} &#x200B;$</li>
+<li>$ v<em>{db}^{corrected} = \frac{v</em>{db}}{(1-\beta_1^t)} $</li>
+<li>$ s<em>{dw}^{corrected} = \frac{s</em>{dw}}{(1-\beta_2^t)} &#x200B;$</li>
+<li>$ s<em>{db}^{corrected} = \frac{s</em>{db}}{(1-\beta_2^t)} &#x200B;$</li>
+<li>$ w = w - \alpha \frac{v<em>{dw}^{corrected}}{\sqrt{s</em>{dw}^{corrected}}+ \epsilon} &#x200B;$</li>
+<li>$ b = b - \alpha \frac{v<em>{db}^{corrected}}{\sqrt{s</em>{db}^{corrected}}+ \epsilon} $</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="hyperparameters">Hyperparameters</h4>
+<ul>
+<li>$\alpha$<ul>
+<li>needs to be tuned</li>
+</ul>
+</li>
+<li>$\beta_1$: first moment<ul>
+<li>Momentum term</li>
+<li>default 0.9</li>
+</ul>
+</li>
+<li>$\beta_2$: second moment<ul>
+<li>RMSprop term</li>
+<li>default 0.999</li>
+</ul>
+</li>
+<li>$\epsilon&#x200B;$<ul>
+<li>default $10^{-1}&#x200B;$</li>
+</ul>
+</li>
+</ul>
+<h2 id="learning-rate-decay">Learning Rate Decay</h2>
+<ul>
+<li>bigger learning rate during the initial steps</li>
+<li>Slower learning rate as approaching convergence</li>
+</ul>
+<h3 id="decay-rate">Decay Rate</h3>
+<p>$ \alpha = \frac{1}{1 + decay_rate * epoch_number} \alpha_0 $</p>
+<ul>
+<li>for $\alpha_0&#x200B;$ = 0.2, decay_rate = 1</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>epoch</th>
+<th>$\alpha$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.67</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<p>Other Rate Decay</p>
+<ul>
+<li><p>$  \alpha = decay_rate^{epoch_number} \alpha_0$</p>
+<ul>
+<li>Exponential Decay</li>
+<li>exponentially quickly decay</li>
+</ul>
+</li>
+<li><p>$   \alpha = \frac{k}{\sqrt{epoch_number}} \alpha_0 $</p>
+</li>
+</ul>
+<h2 id="local-optimal">Local Optimal</h2>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Evaluation.html" class="navigation navigation-prev " aria-label="Previous page: Evaluation">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Hyperparameters.html" class="navigation navigation-next " aria-label="Next page: Hyperparameters">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Gradient Descent","level":"1.2.3","depth":2,"next":{"title":"Hyperparameters","level":"1.2.4","depth":2,"path":"Deep Learning/Hyperparameters.md","ref":"./Deep Learning/Hyperparameters.md","articles":[]},"previous":{"title":"Evaluation","level":"1.2.2","depth":2,"path":"Deep Learning/Evaluation.md","ref":"./Deep Learning/Evaluation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Deep Learning/Gradient Descent.md","mtime":"2019-02-10T08:28:57.075Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T00:35:48.775Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

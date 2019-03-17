@@ -1,0 +1,495 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Logistic Regression · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Machine Learning.html" />
+    
+    
+    <link rel="prev" href="Linear Regression.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Deep Learning
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="Data Processing.html">
+            
+                <a href="Data Processing.html">
+            
+                    
+                    Data Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="Evaluation.html">
+            
+                <a href="Evaluation.html">
+            
+                    
+                    Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="Gradient Descent.html">
+            
+                <a href="Gradient Descent.html">
+            
+                    
+                    Gradient Descent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="Hyperparameters.html">
+            
+                <a href="Hyperparameters.html">
+            
+                    
+                    Hyperparameters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="Linear Regression.html">
+            
+                <a href="Linear Regression.html">
+            
+                    
+                    Linear Regression
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.6" data-path="Logistic Regression.html">
+            
+                <a href="Logistic Regression.html">
+            
+                    
+                    Logistic Regression
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="Machine Learning.html">
+            
+                <a href="Machine Learning.html">
+            
+                    
+                    Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="Natural Language Processing.html">
+            
+                <a href="Natural Language Processing.html">
+            
+                    
+                    Natural Language Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="Nerual Network.html">
+            
+                <a href="Nerual Network.html">
+            
+                    
+                    Nerual Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="Object Detection.html">
+            
+                <a href="Object Detection.html">
+            
+                    
+                    Object Detection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="Sequence Model.html">
+            
+                <a href="Sequence Model.html">
+            
+                    
+                    Sequence Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="Strategy.html">
+            
+                <a href="Strategy.html">
+            
+                    
+                    Strategy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.13" data-path="Convolutional Neural Network.html">
+            
+                <a href="Convolutional Neural Network.html">
+            
+                    
+                    Convolutional Neural Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Logistic Regression</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="logistic-regression">Logistic Regression</h1>
+<h2 id="logistic-regression">Logistic Regression</h2>
+<p>Model: $ \hat{y} = H_\theta(x) = \sigma(\theta^Tx) = \frac{1}{1 + e^{-\theta^Tx}} = \sigma(z) = \frac{1}{1 + e^-z} &#x200B;$ ($z =\theta^Tx&#x200B;$)</p>
+<p>Parameters: $\theta^T = \theta_0, \theta_1, ...,  \theta_n&#x200B;$</p>
+<ul>
+<li>$H_\theta(x) = P(y=1 | x; \theta)&#x200B;$ </li>
+<li>$H<em>\theta(x)$ is the estimated probability that $H</em>\theta(\vec{x})=1$ on features $\vec{x}$ and parameters $\theta$</li>
+</ul>
+<h3 id="cost-function">Cost Function</h3>
+<p>&#x200B;    $ Cost(H<em>\theta(x), x) = \frac{1}{m} \sum</em>{i=1}^m(-y^i log(H<em>\theta(x^i))  -  (1-y^i)log(1 - H</em>\theta(x^i)) &#x200B;$</p>
+<ul>
+<li><p>$ Cost(H<em>\theta(x),y) = \left{\begin{matrix} -log(H</em>\theta(x)), y = 1
+\ -log(1 - H_\theta(x), y = 0
+\end{matrix}\right.$</p>
+<ul>
+<li>For $ H<em>\theta(x) $ = 1, $ Cost(H</em>\theta(x),y) = 0 $ </li>
+<li><p>if $ H<em>\theta(x) $ = 0, $ Cost(H</em>\theta(x),y) = \infty  $</p>
+</li>
+<li><p>if $ H<em>\theta(x) $ = 0, $ Cost(H</em>\theta(x),y) = 0 $ </p>
+</li>
+<li>if $ H<em>\theta(x) $ = 1, $ Cost(H</em>\theta(x),y) = \infty  &#x200B;</li>
+</ul>
+</li>
+<li><p>Cost function on single example</p>
+</li>
+<li><p>$P(y|x) = \hat{y}^y (1 - \hat{y})^{(1-y)}&#x200B;$</p>
+<ul>
+<li>If y = 1, $P(y|x) = \hat{y}$</li>
+<li>If y = 0, $P(y|x) = 1 - \hat{y} &#x200B;$</li>
+</ul>
+</li>
+<li>$logP(y|x) = y log\hat{y} + {(1-y)} log(1 - \hat{y})&#x200B;$</li>
+<li><p>minimise cost function $-&gt;$ maximize $logP(y|x)$, penalise by large cost</p>
+</li>
+<li><p>Cost function on m examples</p>
+</li>
+<li><p>$P(Y|X) = \prod_{i=1}^m P(y^i|x^i)&#x200B;$</p>
+</li>
+<li>$log P(Y|X) = log \prod_{i=1}^m P(y^i|x^i)$</li>
+<li>maximum likelihood estimation</li>
+<li>$ Cost(H<em>\theta(x), y) = \frac{1}{m} \sum</em>{i=1}^m(-y^i log(H<em>\theta(x^i))  -  (1-y^i)log(1 - H</em>\theta(x^i)) &#x200B;$</li>
+</ul>
+<h3 id="gradient-descent">Gradient Descent</h3>
+<h4 id="predict">Predict</h4>
+<ul>
+<li>$ Z = \omega ^ T X + \beta $</li>
+</ul>
+<p><code>Z = np.dot(w.T, X) + b</code></p>
+<ul>
+<li>$ A = g(Z) $</li>
+<li>$dZ = A - Y$</li>
+</ul>
+<h4 id="adjust-weights">Adjust Weights</h4>
+<p>$ d b = \frac{1}{m} \sum_{i=1}^{m} d z^i = \frac{1}{m}&#x200B;$ <code>np.sum(dz)</code></p>
+<p>$ d w = \frac{1}{m} X d z^T $</p>
+<h3 id="broadcasting">BroadCasting</h3>
+<ul>
+<li>matrix(m, n) + vector(1, n) -&gt; matrix(m, n) + matrix(m, n)</li>
+<li>matrix(m, n) + x -&gt; matrix(m, n) + matrix(m, n)</li>
+</ul>
+<h3 id="decision-boundary">Decision Boundary</h3>
+<ol>
+<li><p>linear</p>
+<p>$ H_\theta(\vec{x}) = g(\theta^T\vec{x}) = g(\theta_0 + \theta_1x_1 + ... + \theta_nx_n)&#x200B;$</p>
+</li>
+<li><p>non-linear</p>
+<p>$ H_\theta(\vec{x}) = g(\theta^T\vec{x}) = g(\theta_0 + \theta_1x_1 + \theta_2x_2^2 + \theta_3x_3^3 ... + \theta_nx_n^n)$</p>
+</li>
+</ol>
+<h2 id="regularization">Regularization</h2>
+<h3 id="cost-function">Cost Function</h3>
+<p>Cost Function: $ J(\omega, \beta) = \frac{1}{m} \sum_{i=1}^m(-y^i log\hat{y}^i)  -  (1-y^i)log(1 - \hat{y} ^ i) + \frac{\lambda}{2m} \left | \omega \right |$</p>
+<p>Regularization Parameter: $ \lambda &#x200B;$</p>
+<p>L2 regularization: $ \left | \omega \right |<em>2^2 = \sum</em>{i = 1}^{n} \omega_i^2 = \omega^T\omega &#x200B;$</p>
+<h2 id="softmax-regression">Softmax Regression</h2>
+<h4 id="activation-function">Activation Function</h4>
+<p>t = $ e^{z^{[l]}} $</p>
+<p>$ a<em>i^{[l]} = \frac{t}{\sum</em>{j=1}^{number of class}t_j} $</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Linear Regression.html" class="navigation navigation-prev " aria-label="Previous page: Linear Regression">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Machine Learning.html" class="navigation navigation-next " aria-label="Next page: Machine Learning">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Logistic Regression","level":"1.2.6","depth":2,"next":{"title":"Machine Learning","level":"1.2.7","depth":2,"path":"Deep Learning/Machine Learning.md","ref":"./Deep Learning/Machine Learning.md","articles":[]},"previous":{"title":"Linear Regression","level":"1.2.5","depth":2,"path":"Deep Learning/Linear Regression.md","ref":"./Deep Learning/Linear Regression.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Deep Learning/Logistic Regression.md","mtime":"2019-02-10T23:37:04.467Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T00:35:48.775Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
