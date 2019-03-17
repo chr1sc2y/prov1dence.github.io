@@ -395,30 +395,30 @@
                                 <h1 id="machine-learning">Machine Learning</h1>
 <h2 id="support-vector-machine">Support Vector Machine</h2>
 <h3 id="cost-function">Cost Function</h3>
-<p>$ \min<em>{\theta} C\sum</em>{i=1}^m(y^{i}cost<em>1(\theta^T X^i) + (1 - y^{i})cost_0(\theta^T X^i)) + \frac{1}{2}\sum</em>{i = 0}^m \theta_j^2 $</p>
+<p><script type="math/tex; "> \min_{\theta} C\sum_{i=1}^m(y^{i}cost_1(\theta^T X^i) + (1 - y^{i})cost_0(\theta^T X^i)) + \frac{1}{2}\sum_{i = 0}^m \theta_j^2 </script></p>
 <ul>
 <li>C: not too large</li>
 </ul>
 <h3 id="decision-boundary">Decision Boundary</h3>
 <h4 id="margin">Margin</h4>
-<p>$\min<em>{\theta} \frac{1}{2} \sum</em>{j=1}^n \theta_j^2 = \frac{1}{2}(\theta_1^2 + \theta_2^2) = \frac{1}{2}\sqrt{\theta_1^2 + \theta_2^2} = \frac{1}{2}||\theta||^2 $</p>
+<p><script type="math/tex; ">\min_{\theta} \frac{1}{2} \sum_{j=1}^n \theta_j^2 = \frac{1}{2}(\theta_1^2 + \theta_2^2) = \frac{1}{2}\sqrt{\theta_1^2 + \theta_2^2} = \frac{1}{2}||\theta||^2 </script></p>
 <h2 id="recommender-system">Recommender System</h2>
 <h3 id="anomaly-detection">Anomaly Detection</h3>
 <ol>
-<li>choose features $x_i&#x200B;$ which might be indicative of anomalous examples</li>
-<li><p>fit parameters $\mu_1, \mu_2, ... , \mu_n, \sigma_1^2, ... , \sigma_n^2 &#x200B;$</p>
+<li>choose features <script type="math/tex; ">x_i​</script> which might be indicative of anomalous examples</li>
+<li><p>fit parameters <script type="math/tex; ">\mu_1, \mu_2, ... , \mu_n, \sigma_1^2, ... , \sigma_n^2 ​</script></p>
 </li>
-<li><p>$ \mu<em>j = \frac{1}{m} \sum</em>{i=1}^{m} x_j^{i} &#x200B;$</p>
+<li><p><script type="math/tex; "> \mu_j = \frac{1}{m} \sum_{i=1}^{m} x_j^{i} ​</script></p>
 </li>
-<li><p>$ \sigma^2 = \frac{1}{m} \sum_{i=1}^{m}(x_j^{(i)} - \mu_j)^2 &#x200B;$</p>
+<li><p><script type="math/tex; "> \sigma^2 = \frac{1}{m} \sum_{i=1}^{m}(x_j^{(i)} - \mu_j)^2 ​</script></p>
 </li>
-<li><p>compute $p(x)&#x200B;$</p>
+<li><p>compute <script type="math/tex; ">p(x)​</script></p>
 </li>
-<li><p>$ p(x) = \prod<em>{j=1}^{n} p(x_j;\mu_j,\sigma_j^2) = \prod</em>{j=1}^n(x \sim N(x;\mu, \sigma^2)) $</p>
+<li><p><script type="math/tex; "> p(x) = \prod_{j=1}^{n} p(x_j;\mu_j,\sigma_j^2) = \prod_{j=1}^n(x \sim N(x;\mu, \sigma^2)) </script></p>
 </li>
 </ol>
 <h4 id="gaussian-normal-distribution">Gaussian (Normal) Distribution</h4>
-<p>$ x \sim N(x;\mu, \sigma^2) = \frac{1}{\sqrt{2\pi}\sigma} exp(-\frac{(x-\mu)^2}{2\sigma^2}) &#x200B;$</p>
+<p><script type="math/tex; "> x \sim N(x;\mu, \sigma^2) = \frac{1}{\sqrt{2\pi}\sigma} exp(-\frac{(x-\mu)^2}{2\sigma^2}) ​</script></p>
 <h4 id=""> </h4>
 
                                 
@@ -463,7 +463,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Machine Learning","level":"1.2.6","depth":2,"next":{"title":"Strategy","level":"1.2.7","depth":2,"path":"Machine-Learning/Strategy.md","ref":"./Machine-Learning/Strategy.md","articles":[]},"previous":{"title":"Evaluation","level":"1.2.5","depth":2,"path":"Machine-Learning/Evaluation.md","ref":"./Machine-Learning/Evaluation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Machine-Learning/Machine Learning.md","mtime":"2019-02-15T00:26:19.109Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T01:33:20.445Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Machine Learning","level":"1.2.6","depth":2,"next":{"title":"Strategy","level":"1.2.7","depth":2,"path":"Machine-Learning/Strategy.md","ref":"./Machine-Learning/Strategy.md","articles":[]},"previous":{"title":"Evaluation","level":"1.2.5","depth":2,"path":"Machine-Learning/Evaluation.md","ref":"./Machine-Learning/Evaluation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Machine-Learning/Machine Learning.md","mtime":"2019-03-17T09:09:44.241Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T09:11:28.227Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -471,6 +471,14 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

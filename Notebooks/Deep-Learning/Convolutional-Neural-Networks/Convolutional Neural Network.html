@@ -393,8 +393,8 @@
                                 <h1 id="convolutional-neural-network">Convolutional Neural Network</h1>
 <h2 id="convolutional-neural-network">Convolutional Neural Network</h2>
 <ul>
-<li>input: $ n * n &#x200B;$</li>
-<li>filter: $ m * m &#x200B;$<ul>
+<li>input: <script type="math/tex; "> n * n ​</script></li>
+<li>filter: <script type="math/tex; "> m * m ​</script><ul>
 <li>cross-correlation<ul>
 <li>no flipping</li>
 <li>used in deep learning</li>
@@ -408,7 +408,7 @@
 </li>
 </ul>
 </li>
-<li>output: $ (n - m + 1) * (n - m + 1) $</li>
+<li>output: <script type="math/tex; "> (n - m + 1) * (n - m + 1) </script></li>
 </ul>
 <h3 id="filter">filter</h3>
 <table>
@@ -421,52 +421,52 @@
 </thead>
 <tbody>
 <tr>
-<td>$ \omega 1 $</td>
-<td>$ \omega 2 $</td>
-<td style="text-align:left">$ \omega 3 $</td>
+<td><script type="math/tex; "> \omega 1 </script></td>
+<td><script type="math/tex; "> \omega 2 </script></td>
+<td style="text-align:left"><script type="math/tex; "> \omega 3 </script></td>
 </tr>
 <tr>
-<td>$ \omega 4 $</td>
-<td>$ \omega 5 $</td>
-<td style="text-align:left">$ \omega 6 $</td>
+<td><script type="math/tex; "> \omega 4 </script></td>
+<td><script type="math/tex; "> \omega 5 </script></td>
+<td style="text-align:left"><script type="math/tex; "> \omega 6 </script></td>
 </tr>
 <tr>
-<td>$ \omega 7 $</td>
-<td>$ \omega 8$</td>
-<td style="text-align:left">$ \omega 9$</td>
+<td><script type="math/tex; "> \omega 7 </script></td>
+<td><script type="math/tex; "> \omega 8</script></td>
+<td style="text-align:left"><script type="math/tex; "> \omega 9</script></td>
 </tr>
 </tbody>
 </table>
 <h3 id="padding&#xFF08;&#x586B;&#x5145;&#xFF09;">Padding&#xFF08;&#x586B;&#x5145;&#xFF09;</h3>
 <ul>
-<li>input: $ n * n &#x200B;$</li>
-<li>padding: $ p &#x200B;$</li>
-<li>filter: $ f * f $<ul>
+<li>input: <script type="math/tex; "> n * n ​</script></li>
+<li>padding: <script type="math/tex; "> p ​</script></li>
+<li>filter: <script type="math/tex; "> f * f </script><ul>
 <li>m is odd</li>
 </ul>
 </li>
-<li>output: $ (n + 2p - f + 1) * (n + 2p - f + 1) $</li>
+<li>output: <script type="math/tex; "> (n + 2p - f + 1) * (n + 2p - f + 1) </script></li>
 </ul>
 <h4 id="valid-padding">Valid Padding</h4>
 <p>no padding</p>
 <h4 id="same-padding">Same Padding</h4>
 <p>the output size is the same as the input size after padding</p>
 <ul>
-<li><p>$ n = n + 2p - m + 1$</p>
+<li><p><script type="math/tex; "> n = n + 2p - m + 1</script></p>
 </li>
-<li><p>$ p = \frac{m - 1}{2} $</p>
+<li><p><script type="math/tex; "> p = \frac{m - 1}{2} </script></p>
 </li>
 </ul>
 <h3 id="stride&#xFF08;&#x6B65;&#x957F;&#xFF09;">Stride&#xFF08;&#x6B65;&#x957F;&#xFF09;</h3>
 <ul>
-<li>input: $ n * n &#x200B;$</li>
-<li>padding: $ p &#x200B;$</li>
+<li>input: <script type="math/tex; "> n * n ​</script></li>
+<li>padding: <script type="math/tex; "> p ​</script></li>
 <li>stride: s</li>
-<li>filter: $ f * f $<ul>
+<li>filter: <script type="math/tex; "> f * f </script><ul>
 <li>m is odd</li>
 </ul>
 </li>
-<li>output: $ \left \lfloor \frac{(n + 2p - m)}{s} + 1 \right \rfloor * \left \lfloor  \frac{(n + 2p - m)}{s} / s + 1 \right \rfloor &#x200B;$<ul>
+<li>output: <script type="math/tex; "> \left \lfloor \frac{(n + 2p - m)}{s} + 1 \right \rfloor * \left \lfloor  \frac{(n + 2p - m)}{s} / s + 1 \right \rfloor ​</script><ul>
 <li>round down</li>
 <li>floor of output</li>
 </ul>
@@ -475,22 +475,22 @@
 <h3 id="convolutions-over-volumes">Convolutions over volumes</h3>
 <p>channels: different color detectors</p>
 <ul>
-<li>input: $ h_i <em> w_i </em> c &#x200B;$<ul>
+<li>input: <script type="math/tex; "> h_i * w_i * c ​</script><ul>
 <li>h: height</li>
 <li>w: weight</li>
 <li>c: channel / depth</li>
 </ul>
 </li>
-<li>padding: $ p &#x200B;$</li>
+<li>padding: <script type="math/tex; "> p ​</script></li>
 <li>stride: s</li>
-<li>filter: $ h_f <em> w_f </em> c &#x200B;$<ul>
+<li>filter: <script type="math/tex; "> h_f * w_f * c ​</script><ul>
 <li>h: height</li>
 <li>w: weight</li>
 <li>c: channel / depth</li>
 </ul>
 </li>
-<li>output: $ \left \lfloor \frac{(n + 2p - f)}{s} + 1 \right \rfloor <em> \left \lfloor  \frac{(n + 2p - f)}{s} / s + 1 \right \rfloor </em> n_f&#x200B;$<ul>
-<li>$ n_f &#x200B;$: number of filters<ul>
+<li>output: <script type="math/tex; "> \left \lfloor \frac{(n + 2p - f)}{s} + 1 \right \rfloor * \left \lfloor  \frac{(n + 2p - f)}{s} / s + 1 \right \rfloor * n_f​</script><ul>
+<li><script type="math/tex; "> n_f ​</script>: number of filters<ul>
 <li>detect different features</li>
 </ul>
 </li>
@@ -518,23 +518,23 @@ different_output --&gt;|stack|cnn_layer
 </code></pre>
 <h4 id="hyperparameters">Hyperparameters</h4>
 <ul>
-<li><p>input: $ n ^{[i-1]} <em>{h} * n ^{[i-1]}</em>{w} * n_c^{[i-1]} $</p>
+<li><p>input: <script type="math/tex; "> n ^{[i-1]} _{h} * n ^{[i-1]}_{w} * n_c^{[i-1]} </script></p>
 </li>
-<li><p>filter: $ f^{[i]} <em> f^{[i]} </em> n_c^{[i-1]} $</p>
+<li><p>filter: <script type="math/tex; "> f^{[i]} * f^{[i]} * n_c^{[i-1]} </script></p>
 </li>
-<li><p>padding: $ p^{[i]} * p^{[i]} &#x200B;$</p>
+<li><p>padding: <script type="math/tex; "> p^{[i]} * p^{[i]} ​</script></p>
 </li>
-<li><p>Stride: $ s^{[i]} * s^{[i]} &#x200B;$</p>
+<li><p>Stride: <script type="math/tex; "> s^{[i]} * s^{[i]} ​</script></p>
 </li>
-<li><p>output: $ n ^{[i]} <em>{h} * n ^{[i]}</em>{w} * n_c^{[i]} &#x200B;$</p>
+<li><p>output: <script type="math/tex; "> n ^{[i]} _{h} * n ^{[i]}_{w} * n_c^{[i]} ​</script></p>
 <ul>
-<li>number of filters: $ n_c^{[i]} $<ul>
-<li>bias: $ n_c^{[i]} &#x200B;$</li>
+<li>number of filters: <script type="math/tex; "> n_c^{[i]} </script><ul>
+<li>bias: <script type="math/tex; "> n_c^{[i]} ​</script></li>
 </ul>
 </li>
-<li>$n ^{[i]}<em>h = \left \lfloor \frac{(n ^{[i-1]} </em>{h} + 2p^{[i]} - f{[i]})}{s^{[i]}} + 1 \right \rfloor &#x200B;$</li>
-<li>$ n ^{[i]}<em>w = \left \lfloor \frac{(n ^{[i-1]} </em>{w} + 2p^{[i]} - f{[i]})}{s^{[i]}} + 1 \right \rfloor &#x200B;$</li>
-<li>$ n_c^{[i]} $</li>
+<li><script type="math/tex; ">n ^{[i]}_h = \left \lfloor \frac{(n ^{[i-1]} _{h} + 2p^{[i]} - f{[i]})}{s^{[i]}} + 1 \right \rfloor ​</script></li>
+<li><script type="math/tex; "> n ^{[i]}_w = \left \lfloor \frac{(n ^{[i-1]} _{w} + 2p^{[i]} - f{[i]})}{s^{[i]}} + 1 \right \rfloor ​</script></li>
+<li><script type="math/tex; "> n_c^{[i]} </script></li>
 </ul>
 </li>
 </ul>
@@ -558,15 +558,15 @@ different_output --&gt;|stack|cnn_layer
 </ul>
 <h4 id="hyperparameters">Hyperparameters</h4>
 <ul>
-<li>filter: $ f^{[i]} <em> f^{[i]} </em> n_c^{[i-1]} $<ul>
+<li>filter: <script type="math/tex; "> f^{[i]} * f^{[i]} * n_c^{[i-1]} </script><ul>
 <li>usually 2, 3</li>
 </ul>
 </li>
-<li>Stride: $ s^{[i]} * s^{[i]} &#x200B;$<ul>
+<li>Stride: <script type="math/tex; "> s^{[i]} * s^{[i]} ​</script><ul>
 <li>usually 2</li>
 </ul>
 </li>
-<li>padding: $ p^{[i]} * p^{[i]} $<ul>
+<li>padding: <script type="math/tex; "> p^{[i]} * p^{[i]} </script><ul>
 <li>usually 0</li>
 </ul>
 </li>
@@ -641,12 +641,12 @@ FC2 --&gt; softmax
 <h5 id="plain-network">Plain Network</h5>
 <ul>
 <li>&quot;main path&quot;</li>
-<li>$ a^{[l]} $ -&gt; activation -&gt; $ a^{[l + 1]} $ -&gt; activation -&gt; $ a^{[l + 2]} $ -&gt; ...</li>
+<li><script type="math/tex; "> a^{[l]} </script> -&gt; activation -&gt; <script type="math/tex; "> a^{[l + 1]} </script> -&gt; activation -&gt; <script type="math/tex; "> a^{[l + 2]} </script> -&gt; ...</li>
 </ul>
 <h5 id="residual-network">Residual Network</h5>
 <ul>
 <li>&quot;short cut&quot; / &quot;skip connection&quot;</li>
-<li>$ a^{[l + 2]}  = g( z^{[l + 2]} + a^{[l]} )$</li>
+<li><script type="math/tex; "> a^{[l + 2]}  = g( z^{[l + 2]} + a^{[l]} )</script></li>
 </ul>
 <h3 id="inception">Inception</h3>
 <h4 id="1--1-convolution">1 * 1 Convolution</h4>
@@ -768,7 +768,7 @@ InceptionModulen --&gt; output
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Convolutional Neural Network","level":"1.4.1","depth":2,"next":{"title":"Object Detection","level":"1.4.2","depth":2,"path":"Convolutional-Neural-Networks/Object Detection.md","ref":"./Convolutional-Neural-Networks/Object Detection.md","articles":[]},"previous":{"title":"Convolutional-Neural-Networks","level":"1.4","depth":1,"ref":"","articles":[{"title":"Convolutional Neural Network","level":"1.4.1","depth":2,"path":"Convolutional-Neural-Networks/Convolutional Neural Network.md","ref":"./Convolutional-Neural-Networks/Convolutional Neural Network.md","articles":[]},{"title":"Object Detection","level":"1.4.2","depth":2,"path":"Convolutional-Neural-Networks/Object Detection.md","ref":"./Convolutional-Neural-Networks/Object Detection.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Convolutional-Neural-Networks/Convolutional Neural Network.md","mtime":"2019-02-19T01:46:18.131Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T01:33:20.445Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Convolutional Neural Network","level":"1.4.1","depth":2,"next":{"title":"Object Detection","level":"1.4.2","depth":2,"path":"Convolutional-Neural-Networks/Object Detection.md","ref":"./Convolutional-Neural-Networks/Object Detection.md","articles":[]},"previous":{"title":"Convolutional-Neural-Networks","level":"1.4","depth":1,"ref":"","articles":[{"title":"Convolutional Neural Network","level":"1.4.1","depth":2,"path":"Convolutional-Neural-Networks/Convolutional Neural Network.md","ref":"./Convolutional-Neural-Networks/Convolutional Neural Network.md","articles":[]},{"title":"Object Detection","level":"1.4.2","depth":2,"path":"Convolutional-Neural-Networks/Object Detection.md","ref":"./Convolutional-Neural-Networks/Object Detection.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Convolutional-Neural-Networks/Convolutional Neural Network.md","mtime":"2019-03-17T09:07:54.801Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T09:11:28.227Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -776,6 +776,14 @@ InceptionModulen --&gt; output
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

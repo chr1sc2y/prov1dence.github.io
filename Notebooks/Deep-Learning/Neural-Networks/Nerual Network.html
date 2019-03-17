@@ -392,30 +392,30 @@
                                 
                                 <h1 id="neural-network">Neural Network</h1>
 <h2 id="neural-network">Neural Network</h2>
-<p>input layer (layer 0) $-&gt;$ hidden layer (layer 1) $-&gt;$ ... $-&gt;$ hidden layer (layer n -1) $-&gt;$ output layer (layer n)</p>
+<p>input layer (layer 0) <script type="math/tex; ">-></script> hidden layer (layer 1) <script type="math/tex; ">-></script> ... <script type="math/tex; ">-></script> hidden layer (layer n -1) <script type="math/tex; ">-></script> output layer (layer n)</p>
 <h3 id="chain-rule">Chain Rule</h3>
-<p>$u = 4 x $ -&gt; $ v = u + a $ -&gt; $ y = 3 v &#x200B;$</p>
-<p>$ \frac{d y}{d v} = 3 $ , $ \frac{d y}{d u} = \frac{d y}{d v} \frac{d v}{d u} = 3 $, $ \frac{d y}{d x} = \frac{d y}{d v} \frac{d v}{d u} \frac{d u}{d x} = 12 &#x200B;$</p>
+<p><script type="math/tex; ">u = 4 x </script> -&gt; <script type="math/tex; "> v = u + a </script> -&gt; <script type="math/tex; "> y = 3 v ​</script></p>
+<p><script type="math/tex; "> \frac{d y}{d v} = 3 </script> , <script type="math/tex; "> \frac{d y}{d u} = \frac{d y}{d v} \frac{d v}{d u} = 3 </script>, <script type="math/tex; "> \frac{d y}{d x} = \frac{d y}{d v} \frac{d v}{d u} \frac{d u}{d x} = 12 ​</script></p>
 <h3 id="activation-function">Activation Function</h3>
 <ul>
-<li><p>Sigmoid function: $\sigma(z) = \frac{1}{1+e^{-z}}&#x200B;$</p>
+<li><p>Sigmoid function: <script type="math/tex; ">\sigma(z) = \frac{1}{1+e^{-z}}​</script></p>
 <ul>
-<li><p>$\sigma(z)&apos; =  \frac{d}{d z} \sigma(z)  = \frac{1}{1+e^{-z}}(1 - \frac{1}{1-e^{-z}})  = g(z) (1 - g(z)) = a (1 - a)&#x200B;$</p>
+<li><p><script type="math/tex; ">\sigma(z)' =  \frac{d}{d z} \sigma(z)  = \frac{1}{1+e^{-z}}(1 - \frac{1}{1-e^{-z}})  = g(z) (1 - g(z)) = a (1 - a)​</script></p>
 </li>
 <li><p>only used in binary classification</p>
 </li>
 </ul>
 </li>
-<li><p>tanh function: $tanh(z) = \frac {e^z - e^{-z}} {e^z + e^{-z}}&#x200B;$</p>
+<li><p>tanh function: <script type="math/tex; ">tanh(z) = \frac {e^z - e^{-z}} {e^z + e^{-z}}​</script></p>
 <ul>
-<li>$tanh(z)&apos; = \frac{d}{d z} tanh(z) = 1 - (tanh(z)) ^ 2&#x200B;$</li>
+<li><script type="math/tex; ">tanh(z)' = \frac{d}{d z} tanh(z) = 1 - (tanh(z)) ^ 2​</script></li>
 </ul>
 </li>
-<li><p>ReLU function: $g(z) = max(0, z)&#x200B;$</p>
+<li><p>ReLU function: <script type="math/tex; ">g(z) = max(0, z)​</script></p>
 <ul>
-<li>$g(z)&apos; =  0&#x200B;$ if z &lt; 0</li>
-<li>$g(z)&apos; =  1&#x200B;$ if z &gt; 0</li>
-<li>$g(z)&apos; = undefined &#x200B;$ if z = 0</li>
+<li><script type="math/tex; ">g(z)' =  0​</script> if z &lt; 0</li>
+<li><script type="math/tex; ">g(z)' =  1​</script> if z &gt; 0</li>
+<li><script type="math/tex; ">g(z)' = undefined ​</script> if z = 0</li>
 <li>ReLU: rectified linear unit </li>
 <li>z &lt; 0, a = 0</li>
 <li>z = 0, a = z</li>
@@ -423,9 +423,9 @@
 </li>
 <li><p>Leaky ReLU function: a = max(cz, z)</p>
 <ul>
-<li>$g(z)&apos; =  c$ if z &lt; 0</li>
-<li>$g(z)&apos; =  1$ if z &gt; 0</li>
-<li>$g(z)&apos; = undefined $ if z = 0</li>
+<li><script type="math/tex; ">g(z)' =  c</script> if z &lt; 0</li>
+<li><script type="math/tex; ">g(z)' =  1</script> if z &gt; 0</li>
+<li><script type="math/tex; ">g(z)' = undefined </script> if z = 0</li>
 </ul>
 </li>
 <li><ul>
@@ -439,59 +439,59 @@
 </ul>
 <h3 id="gradient-descent">Gradient Descent</h3>
 <p>Repeat:</p>
-<p>&#x200B;    $\omega ^ {[i]} = \omega ^ {[i]} - \alpha * \frac{\partial}{\partial\omega ^ {[i]}}J &#x200B;$</p>
-<p>&#x200B;    $\beta ^ {[i]} = \beta ^ {[i]} - \alpha * \frac{\partial}{\partial\beta ^ {[i]}}J $</p>
+<p>&#x200B;    <script type="math/tex; ">\omega ^ {[i]} = \omega ^ {[i]} - \alpha * \frac{\partial}{\partial\omega ^ {[i]}}J ​</script></p>
+<p>&#x200B;    <script type="math/tex; ">\beta ^ {[i]} = \beta ^ {[i]} - \alpha * \frac{\partial}{\partial\beta ^ {[i]}}J </script></p>
 <ul>
 <li>initialize the parmeters randomly<ul>
-<li>$ \omega^{[i]} = $ np.random.randn ((n,m)) * 0.01</li>
-<li>$ \beta{[i]} = &#x200B;$ np.zero ((n,1))</li>
+<li><script type="math/tex; "> \omega^{[i]} = </script> np.random.randn ((n,m)) * 0.01</li>
+<li><script type="math/tex; "> \beta{[i]} = ​</script> np.zero ((n,1))</li>
 </ul>
 </li>
 </ul>
 <h4 id="forward-propagation">Forward Propagation</h4>
-<p>input: $ a^{[i-1]} $</p>
-<p>output: $ a^{[i]} &#x200B;$, cache $ z^{[i]} &#x200B;$</p>
+<p>input: <script type="math/tex; "> a^{[i-1]} </script></p>
+<p>output: <script type="math/tex; "> a^{[i]} ​</script>, cache <script type="math/tex; "> z^{[i]} ​</script></p>
 <ul>
-<li>$A^{[0]} = X&#x200B;$</li>
-<li>$Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]}  &#x200B;$</li>
-<li>$A^{[i]} = g^{[i]} (Z^{[i]}) $</li>
-<li>$ \hat{Y} = A^{[l]} $</li>
+<li><script type="math/tex; ">A^{[0]} = X​</script></li>
+<li><script type="math/tex; ">Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]}  ​</script></li>
+<li><script type="math/tex; ">A^{[i]} = g^{[i]} (Z^{[i]}) </script></li>
+<li><script type="math/tex; "> \hat{Y} = A^{[l]} </script></li>
 </ul>
 <h4 id="back-propagation">Back Propagation</h4>
-<p>input: $ d a^{[i]} $</p>
-<p>output: $ d a^{[i-i]} , d \omega^{[i]}, d \beta^{[i]} &#x200B;$</p>
+<p>input: <script type="math/tex; "> d a^{[i]} </script></p>
+<p>output: <script type="math/tex; "> d a^{[i-i]} , d \omega^{[i]}, d \beta^{[i]} ​</script></p>
 <ul>
-<li>$ dZ^{[i]} = A^{[i]} - Y &#x200B;$</li>
-<li>$ d\omega^{[i]} = \frac{1}{m} dZ^{[i]} A^{[i-1]T} &#x200B;$</li>
-<li>$d b^{[i]} = \frac{1}{m} np.sum(dZ^{[i]}, axis = 1, keepdims = True) $ </li>
-<li>$da^{[i-1]} = \omega ^ {[i]T} dz^{[i]} $</li>
+<li><script type="math/tex; "> dZ^{[i]} = A^{[i]} - Y ​</script></li>
+<li><script type="math/tex; "> d\omega^{[i]} = \frac{1}{m} dZ^{[i]} A^{[i-1]T} ​</script></li>
+<li><script type="math/tex; ">d b^{[i]} = \frac{1}{m} np.sum(dZ^{[i]}, axis = 1, keepdims = True) </script> </li>
+<li><script type="math/tex; ">da^{[i-1]} = \omega ^ {[i]T} dz^{[i]} </script></li>
 </ul>
 <h3 id="weight-initialization">Weight Initialization</h3>
 <ul>
-<li><p>variance($ \omega_i $) = $ \frac{1}{n} $</p>
+<li><p>variance(<script type="math/tex; "> \omega_i </script>) = <script type="math/tex; "> \frac{1}{n} </script></p>
 <ul>
 <li>prevent z blow up or too small</li>
 <li>n is the number of input features</li>
 </ul>
 </li>
-<li><p>$ \omega{[i]} $ = np.random.randn(shape) * np.sqrt($ \frac{2}{n^{[i-1]}} &#x200B;$)</p>
+<li><p><script type="math/tex; "> \omega{[i]} </script> = np.random.randn(shape) * np.sqrt(<script type="math/tex; "> \frac{2}{n^{[i-1]}} ​</script>)</p>
 <ul>
 <li>ReLU activation</li>
 </ul>
 </li>
-<li>$ \sqrt{\frac{2}{n^{[i-1]} + n ^{[i]}}} $<ul>
+<li><script type="math/tex; "> \sqrt{\frac{2}{n^{[i-1]} + n ^{[i]}}} </script><ul>
 <li>tanh activation</li>
 </ul>
 </li>
 </ul>
 <h3 id="cost-function">Cost Function</h3>
-<p>$ J( \omega ^{[1]}, \beta^{[1]}, ..., \omega^{[L]}, \beta^{[L]}) = \frac{1}{m} \sum_{i=1}^m l(\hat{y^i}, y^i) &#x200B;$</p>
+<p><script type="math/tex; "> J( \omega ^{[1]}, \beta^{[1]}, ..., \omega^{[L]}, \beta^{[L]}) = \frac{1}{m} \sum_{i=1}^m l(\hat{y^i}, y^i) ​</script></p>
 <h4 id="regularization">Regularization</h4>
 <h5 id="l2-norm">L2 Norm</h5>
-<p>$ J( \omega ^{[1]}, \beta^{[1]}, ..., \omega^{[L]}, \beta^{[L]}) = \frac{1}{m} \sum<em>{i=1}^m l(\hat{y^i}, y^i) + \frac{\lambda}{2m}\sum</em>{l=1}^L| |\omega^{[l]}||^2 $</p>
-<p>$ || \omega^{[l]} || ^2 = \sum<em>{i=1}^{n^{[l-1]}} \sum</em>{j=1}^{n^{[l]}} (\omega_{ij}^{[l]})^2 &#x200B;$</p>
+<p><script type="math/tex; "> J( \omega ^{[1]}, \beta^{[1]}, ..., \omega^{[L]}, \beta^{[L]}) = \frac{1}{m} \sum_{i=1}^m l(\hat{y^i}, y^i) + \frac{\lambda}{2m}\sum_{l=1}^L| |\omega^{[l]}||^2 </script></p>
+<p><script type="math/tex; "> || \omega^{[l]} || ^2 = \sum_{i=1}^{n^{[l-1]}} \sum_{j=1}^{n^{[l]}} (\omega_{ij}^{[l]})^2 ​</script></p>
 <ul>
-<li><p>$ \omega : (n^{i-1}, n^{i}) $</p>
+<li><p><script type="math/tex; "> \omega : (n^{i-1}, n^{i}) </script></p>
 </li>
 <li><p>Frobenius Norm</p>
 </li>
@@ -568,19 +568,19 @@ a32((a32)) --&gt; a41((a41))
 a33((a33)) --&gt; a41((a41))
 </code></pre>
 <ul>
-<li>$l$ = 4&#x200B; (hidden layers and output layer)</li>
-<li>$n^{[i]}&#x200B;$ = units in layer i<ul>
-<li>$n^{[1]}$ = 5, $n^{[2]}$ = 5, $n^{[3]}$ = 3, $n^{[4]}$ = $n^{[l]}$ = 1, $n^{[0]}$ = $n_x$ = 3</li>
+<li><script type="math/tex; ">l</script> = 4&#x200B; (hidden layers and output layer)</li>
+<li><script type="math/tex; ">n^{[i]}​</script> = units in layer i<ul>
+<li><script type="math/tex; ">n^{[1]}</script> = 5, <script type="math/tex; ">n^{[2]}</script> = 5, <script type="math/tex; ">n^{[3]}</script> = 3, <script type="math/tex; ">n^{[4]}</script> = <script type="math/tex; ">n^{[l]}</script> = 1, <script type="math/tex; ">n^{[0]}</script> = <script type="math/tex; ">n_x</script> = 3</li>
 </ul>
 </li>
-<li>$a^{[i]}$ = activations in layer i</li>
-<li>$z^{[i]}$ = cache in layer i (before being put in activation function)</li>
+<li><script type="math/tex; ">a^{[i]}</script> = activations in layer i</li>
+<li><script type="math/tex; ">z^{[i]}</script> = cache in layer i (before being put in activation function)</li>
 </ul>
 <h3 id="parameters">Parameters</h3>
 <h4 id="hyperparameters">Hyperparameters</h4>
-<p>Contrul the ultimate parameters $ \omega $ and $ \beta $</p>
+<p>Contrul the ultimate parameters <script type="math/tex; "> \omega </script> and <script type="math/tex; "> \beta </script></p>
 <ul>
-<li>learning rate $ \alpha $</li>
+<li>learning rate <script type="math/tex; "> \alpha </script></li>
 <li>iterations of gradient descent</li>
 <li>number of hidden layers</li>
 <li>number of hidden units</li>
@@ -588,57 +588,57 @@ a33((a33)) --&gt; a41((a41))
 </ul>
 <h4 id="parameters">Parameters</h4>
 <ul>
-<li>$ \omega $</li>
-<li>$ \beta $</li>
+<li><script type="math/tex; "> \omega </script></li>
+<li><script type="math/tex; "> \beta </script></li>
 </ul>
 <h3 id="forward-propagation">Forward Propagation</h3>
-<p>input: $ a^{[i-1]} $</p>
-<p>output: $ a^{[i]} $, cache $ z^{[i]} $</p>
+<p>input: <script type="math/tex; "> a^{[i-1]} </script></p>
+<p>output: <script type="math/tex; "> a^{[i]} </script>, cache <script type="math/tex; "> z^{[i]} </script></p>
 <ul>
-<li>$A^{[0]} = X$</li>
-<li>$Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]}  $</li>
-<li>$A^{[i]} = g^{[i]} (Z^{[i]}) &#x200B;$</li>
-<li>$ \hat{Y} = A^{[l]} &#x200B;$</li>
+<li><script type="math/tex; ">A^{[0]} = X</script></li>
+<li><script type="math/tex; ">Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]}  </script></li>
+<li><script type="math/tex; ">A^{[i]} = g^{[i]} (Z^{[i]}) ​</script></li>
+<li><script type="math/tex; "> \hat{Y} = A^{[l]} ​</script></li>
 </ul>
 <h3 id="backward-propagation">Backward Propagation</h3>
-<p>input: $ d a^{[i]} &#x200B;$</p>
-<p>output: $ d a^{[i-i]} , d \omega^{[i]}, d \beta^{[i]} &#x200B;$</p>
+<p>input: <script type="math/tex; "> d a^{[i]} ​</script></p>
+<p>output: <script type="math/tex; "> d a^{[i-i]} , d \omega^{[i]}, d \beta^{[i]} ​</script></p>
 <ul>
-<li>$ dZ^{[i]} = dA^{[i]} g^{[i]&apos;} (Z{[i]}) &#x200B;$</li>
-<li>$ d\omega^{[i]} = \frac{1}{m} dZ^{[i]} A^{[i-1]T} $</li>
-<li>$d b^{[i]} = \frac{1}{m} np.sum(dZ^{[i]}, axis = 1, keepdims = True) &#x200B;$ </li>
-<li>$da^{[i-1]} = \omega ^ {[i]T} dz^{[i]} &#x200B;$</li>
+<li><script type="math/tex; "> dZ^{[i]} = dA^{[i]} g^{[i]'} (Z{[i]}) ​</script></li>
+<li><script type="math/tex; "> d\omega^{[i]} = \frac{1}{m} dZ^{[i]} A^{[i-1]T} </script></li>
+<li><script type="math/tex; ">d b^{[i]} = \frac{1}{m} np.sum(dZ^{[i]}, axis = 1, keepdims = True) ​</script> </li>
+<li><script type="math/tex; ">da^{[i-1]} = \omega ^ {[i]T} dz^{[i]} ​</script></li>
 </ul>
 <h3 id="dimension">Dimension</h3>
 <h4 id="single-example">Single Example</h4>
 <ul>
-<li>$A^{[0]} = X$<ul>
-<li>$ X &#x200B;$: ($ n^{[i]}, 1 &#x200B;$)</li>
+<li><script type="math/tex; ">A^{[0]} = X</script><ul>
+<li><script type="math/tex; "> X ​</script>: (<script type="math/tex; "> n^{[i]}, 1 ​</script>)</li>
 </ul>
 </li>
-<li>$Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]}  &#x200B;$<ul>
-<li>$\omega^{[i]}$ : ( $ n^{[i]}, n^{[i-1]} &#x200B;$ )</li>
-<li>$\beta {[i]}&#x200B;$ : ( $ n^{[i]}, 1 &#x200B;$ )</li>
+<li><script type="math/tex; ">Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]}  ​</script><ul>
+<li><script type="math/tex; ">\omega^{[i]}</script> : ( <script type="math/tex; "> n^{[i]}, n^{[i-1]} ​</script> )</li>
+<li><script type="math/tex; ">\beta {[i]}​</script> : ( <script type="math/tex; "> n^{[i]}, 1 ​</script> )</li>
 </ul>
 </li>
-<li>$A^{[i]} = g^{[i]} (Z^{[i]}) $<ul>
-<li>$ Z^{[i]} &#x200B;$:  ($ n^{[i]}, 1 &#x200B;$)</li>
+<li><script type="math/tex; ">A^{[i]} = g^{[i]} (Z^{[i]}) </script><ul>
+<li><script type="math/tex; "> Z^{[i]} ​</script>:  (<script type="math/tex; "> n^{[i]}, 1 ​</script>)</li>
 </ul>
 </li>
-<li>$ \hat{Y} = A^{[l]} &#x200B;$</li>
+<li><script type="math/tex; "> \hat{Y} = A^{[l]} ​</script></li>
 </ul>
 <h4 id="vectorization">Vectorization</h4>
 <ul>
-<li><p>$ A^{[0]} = X $</p>
+<li><p><script type="math/tex; "> A^{[0]} = X </script></p>
 <ul>
-<li>$ X $: ($ n^{[i]}, m $)</li>
+<li><script type="math/tex; "> X </script>: (<script type="math/tex; "> n^{[i]}, m </script>)</li>
 </ul>
 </li>
-<li><p>$ Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]} $</p>
+<li><p><script type="math/tex; "> Z^{[i]} = \omega^{[i]} A^{[i - 1]} + \beta^{[i]} </script></p>
 <ul>
-<li>$ Z^{[i]} = [Z^{<a href="1">i</a>}, Z^{<a href="2">i</a>}, ... , Z^{<a href="m">i</a>}] $</li>
-<li>$ Z^{[i]} $:  ($ n^{[i]}, m $)</li>
-<li>$\beta {[i]}$ : ( $ n^{[i]}, 1 $ ) -- Broadcast -- &gt; $\beta {[i]}$ : ( $ n^{[i]}, m $ )</li>
+<li><script type="math/tex; "> Z^{[i]} = [Z^{[i](1)}, Z^{[i](2)}, ... , Z^{[i](m)}] </script></li>
+<li><script type="math/tex; "> Z^{[i]} </script>:  (<script type="math/tex; "> n^{[i]}, m </script>)</li>
+<li><script type="math/tex; ">\beta {[i]}</script> : ( <script type="math/tex; "> n^{[i]}, 1 </script> ) -- Broadcast -- &gt; <script type="math/tex; ">\beta {[i]}</script> : ( <script type="math/tex; "> n^{[i]}, m </script> )</li>
 </ul>
 </li>
 </ul>
@@ -683,7 +683,7 @@ a33((a33)) --&gt; a41((a41))
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Nerual Network","level":"1.3.2","depth":2,"next":{"title":"Convolutional-Neural-Networks","level":"1.4","depth":1,"ref":"","articles":[{"title":"Convolutional Neural Network","level":"1.4.1","depth":2,"path":"Convolutional-Neural-Networks/Convolutional Neural Network.md","ref":"./Convolutional-Neural-Networks/Convolutional Neural Network.md","articles":[]},{"title":"Object Detection","level":"1.4.2","depth":2,"path":"Convolutional-Neural-Networks/Object Detection.md","ref":"./Convolutional-Neural-Networks/Object Detection.md","articles":[]}]},"previous":{"title":"Hyperparameters","level":"1.3.1","depth":2,"path":"Neural-Networks/Hyperparameters.md","ref":"./Neural-Networks/Hyperparameters.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Neural-Networks/Nerual Network.md","mtime":"2019-02-09T08:05:49.467Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T01:33:20.445Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Nerual Network","level":"1.3.2","depth":2,"next":{"title":"Convolutional-Neural-Networks","level":"1.4","depth":1,"ref":"","articles":[{"title":"Convolutional Neural Network","level":"1.4.1","depth":2,"path":"Convolutional-Neural-Networks/Convolutional Neural Network.md","ref":"./Convolutional-Neural-Networks/Convolutional Neural Network.md","articles":[]},{"title":"Object Detection","level":"1.4.2","depth":2,"path":"Convolutional-Neural-Networks/Object Detection.md","ref":"./Convolutional-Neural-Networks/Object Detection.md","articles":[]}]},"previous":{"title":"Hyperparameters","level":"1.3.1","depth":2,"path":"Neural-Networks/Hyperparameters.md","ref":"./Neural-Networks/Hyperparameters.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Neural-Networks/Nerual Network.md","mtime":"2019-03-17T09:09:44.265Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T09:11:28.227Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -691,6 +691,14 @@ a33((a33)) --&gt; a41((a41))
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

@@ -399,8 +399,8 @@
 </ul>
 <h3 id="recurrent-neural-network">Recurrent Neural Network</h3>
 <h4 id="notation">Notation</h4>
-<p>$ a^{<t>} = g(W<em>{aa}a^{<t-1>} + W</t-1></em>{ax}x^{<t>} + b_a) = g(W_a[a^{<t-1>}, x^{<t>}] + b_a) $</t></t-1></t></t></p>
-<p>$ \hat{y}^{<t>} = g(W_{ya}a^{<t>} + b_y) $</t></t></p>
+<p><script type="math/tex; "> a^{<t>} = g(W_{aa}a^{<t-1>} + W_{ax}x^{<t>} + b_a) = g(W_a[a^{<t-1>}, x^{<t>}] + b_a) </script></p>
+<p><script type="math/tex; "> \hat{y}^{<t>} = g(W_{ya}a^{<t>} + b_y) </script></p>
 <ul>
 <li>Forward Propagation</li>
 <li>Backpropagation Through Time</li>
@@ -451,7 +451,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Sequence Model","level":"1.5.1","depth":2,"next":{"title":"Natural Language Processing","level":"1.5.2","depth":2,"path":"Sequence-Model/Natural Language Processing.md","ref":"./Sequence-Model/Natural Language Processing.md","articles":[]},"previous":{"title":"Sequence Model","level":"1.5","depth":1,"ref":"","articles":[{"title":"Sequence Model","level":"1.5.1","depth":2,"path":"Sequence-Model/Sequence Model.md","ref":"./Sequence-Model/Sequence Model.md","articles":[]},{"title":"Natural Language Processing","level":"1.5.2","depth":2,"path":"Sequence-Model/Natural Language Processing.md","ref":"./Sequence-Model/Natural Language Processing.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Sequence-Model/Sequence Model.md","mtime":"2019-02-17T01:12:05.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T01:33:20.445Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Sequence Model","level":"1.5.1","depth":2,"next":{"title":"Natural Language Processing","level":"1.5.2","depth":2,"path":"Sequence-Model/Natural Language Processing.md","ref":"./Sequence-Model/Natural Language Processing.md","articles":[]},"previous":{"title":"Sequence Model","level":"1.5","depth":1,"ref":"","articles":[{"title":"Sequence Model","level":"1.5.1","depth":2,"path":"Sequence-Model/Sequence Model.md","ref":"./Sequence-Model/Sequence Model.md","articles":[]},{"title":"Natural Language Processing","level":"1.5.2","depth":2,"path":"Sequence-Model/Natural Language Processing.md","ref":"./Sequence-Model/Natural Language Processing.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Sequence-Model/Sequence Model.md","mtime":"2019-03-17T09:09:44.296Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T09:11:28.227Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -459,6 +459,14 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

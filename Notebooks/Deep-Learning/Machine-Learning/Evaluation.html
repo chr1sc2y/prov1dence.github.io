@@ -396,15 +396,15 @@
 <h2 id="regularization">Regularization</h2>
 <ul>
 <li>prevent overfitting</li>
-<li>Regularization Parameter: $ \lambda $</li>
+<li>Regularization Parameter: <script type="math/tex; "> \lambda </script></li>
 </ul>
 <h3 id="l2-norm">L2 Norm</h3>
 <ul>
-<li>$ \left | \omega \right |<em>2^2 = \sum</em>{i = 1}^{n} \omega_i^2 = \omega^T\omega $</li>
+<li><script type="math/tex; "> \left \| \omega \right \|_2^2 = \sum_{i = 1}^{n} \omega_i^2 = \omega^T\omega </script></li>
 </ul>
 <h3 id="l1-norm">L1 Norm</h3>
 <ul>
-<li>$ \left | \omega \right |<em>1 = \sum</em>{i = 1}^{n} |\omega| $</li>
+<li><script type="math/tex; "> \left \| \omega \right \|_1 = \sum_{i = 1}^{n} |\omega| </script></li>
 <li>weight decay</li>
 </ul>
 <h3 id="dropout-regularization">Dropout Regularization</h3>
@@ -451,7 +451,7 @@
 <h4 id="high-bias">high bias</h4>
 <ul>
 <li>underfitting</li>
-<li>large $ \lambda $</li>
+<li>large <script type="math/tex; "> \lambda </script></li>
 <li>high training error, high cross validation error </li>
 </ul>
 <h5 id="solve">solve</h5>
@@ -460,12 +460,12 @@
 <li>NN architecture search</li>
 <li>train longer</li>
 <li>polynomial features</li>
-<li>decrease $ \lambda $</li>
+<li>decrease <script type="math/tex; "> \lambda </script></li>
 </ul>
 <h4 id="high-variance">high variance</h4>
 <ul>
 <li>overfitting</li>
-<li>small $ \lambda $</li>
+<li>small <script type="math/tex; "> \lambda </script></li>
 <li>low training error, high cross validation error</li>
 </ul>
 <h5 id="solve">solve</h5>
@@ -479,7 +479,7 @@
 <li>NN architecture search</li>
 <li>regularization</li>
 <li>smaller sets of features</li>
-<li>increase $ \lambda $</li>
+<li>increase <script type="math/tex; "> \lambda </script></li>
 </ul>
 <h3 id="training-set">Training Set</h3>
 <ul>
@@ -519,7 +519,7 @@
 </ul>
 <h4 id="trade-off">Trade off</h4>
 <ul>
-<li>predict 1 if $ h_\theta(x) $ &gt; p<ul>
+<li>predict 1 if <script type="math/tex; "> h_\theta(x) </script> &gt; p<ul>
 <li>if p = 0.9<ul>
 <li>high precision</li>
 <li>low recall</li>
@@ -535,11 +535,11 @@
 </ul>
 <h4 id="f-score">F Score</h4>
 <ul>
-<li>Average: $ \frac{Precision + Recall}{2} $<ul>
+<li>Average: <script type="math/tex; "> \frac{Precision + Recall}{2} </script><ul>
 <li>not good</li>
 </ul>
 </li>
-<li>$ F_1 $ Score: $ 2 \frac{PR}{P+R} $</li>
+<li><script type="math/tex; "> F_1 </script> Score: <script type="math/tex; "> 2 \frac{PR}{P+R} </script></li>
 </ul>
 <h3 id="evaluation-metrics">Evaluation Metrics</h3>
 <ul>
@@ -627,7 +627,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Evaluation","level":"1.2.5","depth":2,"next":{"title":"Machine Learning","level":"1.2.6","depth":2,"path":"Machine-Learning/Machine Learning.md","ref":"./Machine-Learning/Machine Learning.md","articles":[]},"previous":{"title":"Data Processing","level":"1.2.4","depth":2,"path":"Machine-Learning/Data Processing.md","ref":"./Machine-Learning/Data Processing.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Machine-Learning/Evaluation.md","mtime":"2019-02-11T00:50:07.049Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T01:33:20.445Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Evaluation","level":"1.2.5","depth":2,"next":{"title":"Machine Learning","level":"1.2.6","depth":2,"path":"Machine-Learning/Machine Learning.md","ref":"./Machine-Learning/Machine Learning.md","articles":[]},"previous":{"title":"Data Processing","level":"1.2.4","depth":2,"path":"Machine-Learning/Data Processing.md","ref":"./Machine-Learning/Data Processing.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Machine-Learning/Evaluation.md","mtime":"2019-03-17T09:09:44.240Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T09:11:28.227Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -635,6 +635,14 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

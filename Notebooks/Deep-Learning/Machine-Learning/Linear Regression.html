@@ -392,29 +392,28 @@
                                 
                                 <h1 id="linear-regression">Linear Regression</h1>
 <h2 id="linear-regression">Linear Regression</h2>
-<p>Model: $F_\theta(\vec{x}) = \theta^T \vec{x} = \theta_0x_0 + \theta_1x_1^2 + ... +  \theta_nx_n^n&#x200B;$</p>
-<p>Parameters: $\theta^T = \theta_0, \theta_1, ...,  \theta_n&#x200B;$</p>
+<p>Model: <script type="math/tex; "> F_\theta(\vec{x}) = \theta^T \vec{x} = \theta_0x_0 + \theta_1x_1^2 + ... +  \theta_nx_n^n </script></p>
+<p>Parameters: <script type="math/tex; "> \theta^T = \theta_0, \theta_1, ...,  \theta_n ​</script></p>
 <h3 id="cost-function">Cost Function</h3>
-<p>$J(\vec{\theta}) =\frac{1}{2m}\sum<em>{i=1}^{m} (F</em>\theta x^{i} - y^{i}) ^ 2&#x200B;$</p>
+<p><script type="math/tex; "> J(\vec{\theta}) =\frac{1}{2m}\sum_{i=1}^{m} (F_\theta x^{i} - y^{i}) ^ 2 ​</script></p>
 <h2 id="square-loss">Square Loss</h2>
 <ul>
-<li></li>
 <li>Least Square Method</li>
 <li>Minimise Square Loss</li>
 </ul>
 <h3 id="formula">Formula</h3>
 <ul>
-<li><p>$ \omega, \beta = \underset{\omega, \beta}{argmin} \sum<em>{i=1}^{m} (F</em>\vec{\theta} x^i - y^i) ^ 2 &#x200B;$</p>
+<li><p><script type="math/tex; "> \omega, \beta = \underset{\omega, \beta}{argmin} \sum_{i=1}^{m} (F_\vec{\theta} x^i - y^i) ^ 2 </script></p>
 </li>
-<li><p>$ \omega =\frac{\sum<em>{i=1}^{m} y_i (x_i\bar{x})}{\sum</em>{i=1}^{m}x<em>i^2 - \frac{1}{m}(\sum</em>{i=1}^{m}x_i)^2} $</p>
+<li><p><script type="math/tex; "> \omega =\frac{\sum_{i=1}^{m} y_i (x_i\bar{x})}{\sum_{i=1}^{m}x_i^2 - \frac{1}{m}(\sum_{i=1}^{m}x_i)^2} </script></p>
 </li>
-<li>$ \beta = \frac{1}{m} \sum_{i=1}^{m}(y_i - \omega x_i) $</li>
+<li><script type="math/tex; "> \beta = \frac{1}{m} \sum_{i=1}^{m}(y_i - \omega x_i) </script></li>
 </ul>
 <h2 id="normal-equation">Normal Equation</h2>
-<p>Normal Equation: A method to solve for $\vec{\theta}$ analytically</p>
+<p>Normal Equation: A method to solve for $\vec{\theta}&#x200B;$ analytically</p>
 <p>For m examples, n features:</p>
-<p>$X = \left[\begin{matrix} x_0^1 x_1^1 ... x_n^1 \ x_0^2 x_1^2 ... x_n^2 \ ... \ x_0^m x_1^m ... x_n^m \end{matrix}\right]&#x200B;$    $Y = \left[\begin{matrix} y^1\y^2\ ... \y^m\end{matrix}\right]&#x200B;$</p>
-<p>$\vec{\theta} = (X^TX)^{-1}X^TY&#x200B;$</p>
+<p><script type="math/tex; "> X = \left[\begin{matrix} x_0^1 x_1^1 ... x_n^1 \\ x_0^2 x_1^2 ... x_n^2 \\ ... \\ x_0^m x_1^m ... x_n^m \end{matrix}\right] </script>    <script type="math/tex; "> Y = \left[\begin{matrix} y^1\\y^2\\ ... \\y^m\end{matrix}\right] </script></p>
+<p><script type="math/tex; "> \vec{\theta} = (X^TX)^{-1}X^TY </script></p>
 <h2 id="comparison-between-gradient-descent-and-normal-equation">Comparison between Gradient Descent and Normal Equation</h2>
 <table>
 <thead>
@@ -425,12 +424,12 @@
 </thead>
 <tbody>
 <tr>
-<td>choose $\alpha$<br>many iterations</td>
+<td>choose <script type="math/tex; "> \alpha </script><br>many iterations</td>
 <td>no iteration</td>
 </tr>
 <tr>
 <td>works well even if n is large</td>
-<td>need to Compute $(X^TX)^{-1}X^TY$<br>slow if n is very large</td>
+<td>need to Compute <script type="math/tex; "> (X^TX)^{-1}X^TY </script><br>slow if n is very large</td>
 </tr>
 </tbody>
 </table>
@@ -473,7 +472,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Linear Regression","level":"1.2.1","depth":2,"next":{"title":"Logistic Regression","level":"1.2.2","depth":2,"path":"Machine-Learning/Logistic Regression.md","ref":"./Machine-Learning/Logistic Regression.md","articles":[]},"previous":{"title":"Machine Learning","level":"1.2","depth":1,"ref":"","articles":[{"title":"Linear Regression","level":"1.2.1","depth":2,"path":"Machine-Learning/Linear Regression.md","ref":"./Machine-Learning/Linear Regression.md","articles":[]},{"title":"Logistic Regression","level":"1.2.2","depth":2,"path":"Machine-Learning/Logistic Regression.md","ref":"./Machine-Learning/Logistic Regression.md","articles":[]},{"title":"Gradient Descent","level":"1.2.3","depth":2,"path":"Machine-Learning/Gradient Descent.md","ref":"./Machine-Learning/Gradient Descent.md","articles":[]},{"title":"Data Processing","level":"1.2.4","depth":2,"path":"Machine-Learning/Data Processing.md","ref":"./Machine-Learning/Data Processing.md","articles":[]},{"title":"Evaluation","level":"1.2.5","depth":2,"path":"Machine-Learning/Evaluation.md","ref":"./Machine-Learning/Evaluation.md","articles":[]},{"title":"Machine Learning","level":"1.2.6","depth":2,"path":"Machine-Learning/Machine Learning.md","ref":"./Machine-Learning/Machine Learning.md","articles":[]},{"title":"Strategy","level":"1.2.7","depth":2,"path":"Machine-Learning/Strategy.md","ref":"./Machine-Learning/Strategy.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Machine-Learning/Linear Regression.md","mtime":"2019-02-09T01:13:22.440Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T01:33:20.445Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Linear Regression","level":"1.2.1","depth":2,"next":{"title":"Logistic Regression","level":"1.2.2","depth":2,"path":"Machine-Learning/Logistic Regression.md","ref":"./Machine-Learning/Logistic Regression.md","articles":[]},"previous":{"title":"Machine Learning","level":"1.2","depth":1,"ref":"","articles":[{"title":"Linear Regression","level":"1.2.1","depth":2,"path":"Machine-Learning/Linear Regression.md","ref":"./Machine-Learning/Linear Regression.md","articles":[]},{"title":"Logistic Regression","level":"1.2.2","depth":2,"path":"Machine-Learning/Logistic Regression.md","ref":"./Machine-Learning/Logistic Regression.md","articles":[]},{"title":"Gradient Descent","level":"1.2.3","depth":2,"path":"Machine-Learning/Gradient Descent.md","ref":"./Machine-Learning/Gradient Descent.md","articles":[]},{"title":"Data Processing","level":"1.2.4","depth":2,"path":"Machine-Learning/Data Processing.md","ref":"./Machine-Learning/Data Processing.md","articles":[]},{"title":"Evaluation","level":"1.2.5","depth":2,"path":"Machine-Learning/Evaluation.md","ref":"./Machine-Learning/Evaluation.md","articles":[]},{"title":"Machine Learning","level":"1.2.6","depth":2,"path":"Machine-Learning/Machine Learning.md","ref":"./Machine-Learning/Machine Learning.md","articles":[]},{"title":"Strategy","level":"1.2.7","depth":2,"path":"Machine-Learning/Strategy.md","ref":"./Machine-Learning/Strategy.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Machine-Learning/Linear Regression.md","mtime":"2019-03-17T09:03:15.913Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T09:11:28.227Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -481,6 +480,14 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

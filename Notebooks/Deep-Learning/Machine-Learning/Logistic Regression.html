@@ -394,59 +394,59 @@
                                 
                                 <h1 id="logistic-regression">Logistic Regression</h1>
 <h2 id="logistic-regression">Logistic Regression</h2>
-<p>Model: $ \hat{y} = H_\theta(x) = \sigma(\theta^Tx) = \frac{1}{1 + e^{-\theta^Tx}} = \sigma(z) = \frac{1}{1 + e^-z} &#x200B;$ ($z =\theta^Tx&#x200B;$)</p>
-<p>Parameters: $\theta^T = \theta_0, \theta_1, ...,  \theta_n&#x200B;$</p>
+<p>Model: <script type="math/tex; "> \hat{y} = H_\theta(x) = \sigma(\theta^Tx) = \frac{1}{1 + e^{-\theta^Tx}} = \sigma(z) = \frac{1}{1 + e^-z}  (z =\theta^Tx) ​</script></p>
+<p>Parameters: <script type="math/tex; "> \theta^T = \theta_0, \theta_1, ...,  \theta_n ​</script></p>
 <ul>
-<li>$H_\theta(x) = P(y=1 | x; \theta)&#x200B;$ </li>
-<li>$H<em>\theta(x)$ is the estimated probability that $H</em>\theta(\vec{x})=1$ on features $\vec{x}$ and parameters $\theta$</li>
+<li><script type="math/tex; "> H_\theta(x) = P(y=1 | x; \theta) ​</script> </li>
+<li><script type="math/tex; "> H_\theta(x) </script> is the estimated probability that <script type="math/tex; "> H_\theta(\vec{x})=1 </script> on features <script type="math/tex; "> \vec{x} </script> and parameters <script type="math/tex; "> \theta </script></li>
 </ul>
 <h3 id="cost-function">Cost Function</h3>
-<p>&#x200B;    $ Cost(H<em>\theta(x), x) = \frac{1}{m} \sum</em>{i=1}^m(-y^i log(H<em>\theta(x^i))  -  (1-y^i)log(1 - H</em>\theta(x^i)) &#x200B;$</p>
+<p>&#x200B;    <script type="math/tex; "> Cost(H_\theta(x), x) = \frac{1}{m} \sum_{i=1}^m(-y^i log(H_\theta(x^i))  -  (1-y^i)log(1 - H_\theta(x^i)) </script></p>
 <ul>
-<li><p>$ Cost(H<em>\theta(x),y) = \left{\begin{matrix} -log(H</em>\theta(x)), y = 1
-\ -log(1 - H_\theta(x), y = 0
-\end{matrix}\right.$</p>
+<li><p><script type="math/tex; "> Cost(H_\theta(x),y) = \left\{\begin{matrix} -log(H_\theta(x)), y = 1
+  \\ -log(1 - H_\theta(x), y = 0
+  \end{matrix}\right. </script></p>
 <ul>
-<li>For $ H<em>\theta(x) $ = 1, $ Cost(H</em>\theta(x),y) = 0 $ </li>
-<li><p>if $ H<em>\theta(x) $ = 0, $ Cost(H</em>\theta(x),y) = \infty  $</p>
+<li>For <script type="math/tex; "> H_\theta(x) ​</script> = 1, <script type="math/tex; "> Cost(H_\theta(x),y) = 0 ​</script> </li>
+<li><p>if <script type="math/tex; "> H_\theta(x) ​</script> = 0, <script type="math/tex; "> Cost(H_\theta(x),y) = \infty ​</script></p>
 </li>
-<li><p>if $ H<em>\theta(x) $ = 0, $ Cost(H</em>\theta(x),y) = 0 $ </p>
+<li><p>if <script type="math/tex; "> H_\theta(x) ​</script> = 0, <script type="math/tex; "> Cost(H_\theta(x),y) = 0 ​</script> </p>
 </li>
-<li>if $ H<em>\theta(x) $ = 1, $ Cost(H</em>\theta(x),y) = \infty  &#x200B;</li>
+<li>if <script type="math/tex; "> H_\theta(x) </script> = 1, <script type="math/tex; "> Cost(H_\theta(x),y) = \infty </script></li>
 </ul>
 </li>
 <li><p>Cost function on single example</p>
 </li>
-<li><p>$P(y|x) = \hat{y}^y (1 - \hat{y})^{(1-y)}&#x200B;$</p>
+<li><p><script type="math/tex; ">P(y|x) = \hat{y}^y (1 - \hat{y})^{(1-y)}​</script></p>
 <ul>
-<li>If y = 1, $P(y|x) = \hat{y}$</li>
-<li>If y = 0, $P(y|x) = 1 - \hat{y} &#x200B;$</li>
+<li>If y = 1, <script type="math/tex; ">P(y|x) = \hat{y}</script></li>
+<li>If y = 0, <script type="math/tex; ">P(y|x) = 1 - \hat{y} ​</script></li>
 </ul>
 </li>
-<li>$logP(y|x) = y log\hat{y} + {(1-y)} log(1 - \hat{y})&#x200B;$</li>
-<li><p>minimise cost function $-&gt;$ maximize $logP(y|x)$, penalise by large cost</p>
+<li><script type="math/tex; ">logP(y|x) = y log\hat{y} + {(1-y)} log(1 - \hat{y})​</script></li>
+<li><p>minimise cost function <script type="math/tex; ">-></script> maximize <script type="math/tex; ">logP(y|x)</script>, penalise by large cost</p>
 </li>
 <li><p>Cost function on m examples</p>
 </li>
-<li><p>$P(Y|X) = \prod_{i=1}^m P(y^i|x^i)&#x200B;$</p>
+<li><p><script type="math/tex; ">P(Y|X) = \prod_{i=1}^m P(y^i|x^i)​</script></p>
 </li>
-<li>$log P(Y|X) = log \prod_{i=1}^m P(y^i|x^i)$</li>
+<li><script type="math/tex; ">log P(Y|X) = log \prod_{i=1}^m P(y^i|x^i)</script></li>
 <li>maximum likelihood estimation</li>
-<li>$ Cost(H<em>\theta(x), y) = \frac{1}{m} \sum</em>{i=1}^m(-y^i log(H<em>\theta(x^i))  -  (1-y^i)log(1 - H</em>\theta(x^i)) &#x200B;$</li>
+<li><script type="math/tex; "> Cost(H_\theta(x), y) = \frac{1}{m} \sum_{i=1}^m(-y^i log(H_\theta(x^i))  -  (1-y^i)log(1 - H_\theta(x^i)) ​</script></li>
 </ul>
 <h3 id="gradient-descent">Gradient Descent</h3>
 <h4 id="predict">Predict</h4>
 <ul>
-<li>$ Z = \omega ^ T X + \beta $</li>
+<li><script type="math/tex; "> Z = \omega ^ T X + \beta </script></li>
 </ul>
 <p><code>Z = np.dot(w.T, X) + b</code></p>
 <ul>
-<li>$ A = g(Z) $</li>
-<li>$dZ = A - Y$</li>
+<li><script type="math/tex; "> A = g(Z) </script></li>
+<li><script type="math/tex; ">dZ = A - Y</script></li>
 </ul>
 <h4 id="adjust-weights">Adjust Weights</h4>
-<p>$ d b = \frac{1}{m} \sum_{i=1}^{m} d z^i = \frac{1}{m}&#x200B;$ <code>np.sum(dz)</code></p>
-<p>$ d w = \frac{1}{m} X d z^T $</p>
+<p><script type="math/tex; "> d b = \frac{1}{m} \sum_{i=1}^{m} d z^i = \frac{1}{m}​</script> <code>np.sum(dz)</code></p>
+<p><script type="math/tex; "> d w = \frac{1}{m} X d z^T </script></p>
 <h3 id="broadcasting">BroadCasting</h3>
 <ul>
 <li>matrix(m, n) + vector(1, n) -&gt; matrix(m, n) + matrix(m, n)</li>
@@ -455,21 +455,21 @@
 <h3 id="decision-boundary">Decision Boundary</h3>
 <ol>
 <li><p>linear</p>
-<p>$ H_\theta(\vec{x}) = g(\theta^T\vec{x}) = g(\theta_0 + \theta_1x_1 + ... + \theta_nx_n)&#x200B;$</p>
+<p><script type="math/tex; "> H_\theta(\vec{x}) = g(\theta^T\vec{x}) = g(\theta_0 + \theta_1x_1 + ... + \theta_nx_n)​</script></p>
 </li>
 <li><p>non-linear</p>
-<p>$ H_\theta(\vec{x}) = g(\theta^T\vec{x}) = g(\theta_0 + \theta_1x_1 + \theta_2x_2^2 + \theta_3x_3^3 ... + \theta_nx_n^n)$</p>
+<p><script type="math/tex; "> H_\theta(\vec{x}) = g(\theta^T\vec{x}) = g(\theta_0 + \theta_1x_1 + \theta_2x_2^2 + \theta_3x_3^3 ... + \theta_nx_n^n)</script></p>
 </li>
 </ol>
 <h2 id="regularization">Regularization</h2>
 <h3 id="cost-function">Cost Function</h3>
-<p>Cost Function: $ J(\omega, \beta) = \frac{1}{m} \sum_{i=1}^m(-y^i log\hat{y}^i)  -  (1-y^i)log(1 - \hat{y} ^ i) + \frac{\lambda}{2m} \left | \omega \right |$</p>
-<p>Regularization Parameter: $ \lambda &#x200B;$</p>
-<p>L2 regularization: $ \left | \omega \right |<em>2^2 = \sum</em>{i = 1}^{n} \omega_i^2 = \omega^T\omega &#x200B;$</p>
+<p>Cost Function: <script type="math/tex; "> J(\omega, \beta) = \frac{1}{m} \sum_{i=1}^m(-y^i log\hat{y}^i)  -  (1-y^i)log(1 - \hat{y} ^ i) + \frac{\lambda}{2m} \left \| \omega \right \|</script></p>
+<p>Regularization Parameter: <script type="math/tex; "> \lambda ​</script></p>
+<p>L2 regularization: <script type="math/tex; "> \left \| \omega \right \|_2^2 = \sum_{i = 1}^{n} \omega_i^2 = \omega^T\omega ​</script></p>
 <h2 id="softmax-regression">Softmax Regression</h2>
 <h4 id="activation-function">Activation Function</h4>
-<p>t = $ e^{z^{[l]}} $</p>
-<p>$ a<em>i^{[l]} = \frac{t}{\sum</em>{j=1}^{number of class}t_j} $</p>
+<p>t = <script type="math/tex; "> e^{z^{[l]}} </script></p>
+<p><script type="math/tex; "> a_i^{[l]} = \frac{t}{\sum_{j=1}^{number of class}t_j} </script></p>
 
                                 
                                 </section>
@@ -513,7 +513,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Logistic Regression","level":"1.2.2","depth":2,"next":{"title":"Gradient Descent","level":"1.2.3","depth":2,"path":"Machine-Learning/Gradient Descent.md","ref":"./Machine-Learning/Gradient Descent.md","articles":[]},"previous":{"title":"Linear Regression","level":"1.2.1","depth":2,"path":"Machine-Learning/Linear Regression.md","ref":"./Machine-Learning/Linear Regression.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Machine-Learning/Logistic Regression.md","mtime":"2019-02-10T23:37:04.467Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T01:33:20.445Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Logistic Regression","level":"1.2.2","depth":2,"next":{"title":"Gradient Descent","level":"1.2.3","depth":2,"path":"Machine-Learning/Gradient Descent.md","ref":"./Machine-Learning/Gradient Descent.md","articles":[]},"previous":{"title":"Linear Regression","level":"1.2.1","depth":2,"path":"Machine-Learning/Linear Regression.md","ref":"./Machine-Learning/Linear Regression.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Machine-Learning/Logistic Regression.md","mtime":"2019-03-17T09:09:34.405Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T09:11:28.227Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -521,6 +521,14 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
