@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on ZinBlog</title>
+    <link>http://zintrulcre.vip/tags/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on ZinBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Fri, 25 Jan 2019 17:47:38 +1100</lastBuildDate>
+    
+	<atom:link href="http://zintrulcre.vip/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C&#43;&#43;智能指针（3）：shared_ptr</title>
+      <link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-3/</link>
+      <pubDate>Fri, 25 Jan 2019 17:47:38 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
+      <description>分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器 private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;智能指针（2）：unique_ptr</title>
+      <link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-2/</link>
+      <pubDate>Sat, 19 Jan 2019 01:02:02 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-2/</guid>
+      <description>分析 在使用auto_ptr的时候会发生所有权转移和内存泄漏的问题，所以我们可以对AutoPointer类稍加修改，修复这两个问题。 所有权转</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;智能指针（1.5）：move语义</title>
+      <link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
+      <pubDate>Wed, 02 Jan 2019 09:55:05 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
+      <description>move语义 定义 右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（P</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;智能指针（1）：auto_ptr</title>
+      <link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/</link>
+      <pubDate>Thu, 27 Dec 2018 15:21:35 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
+      <description>分析 C++中经常会出现因为没有delete指针而造成的内存泄漏，例如有下面一个类 class Obj { public: Obj() { std::cout &amp;lt;&amp;lt; &amp;#34;Construct&amp;#34; &amp;lt;&amp;lt; std::endl; } Obj(const Obj &amp;amp;other) { std::cout &amp;lt;&amp;lt; &amp;#34;Copy&amp;#34; &amp;lt;&amp;lt; std::endl; } Obj(Obj &amp;amp;&amp;amp;other) noexcept { std::cout &amp;lt;&amp;lt; &amp;#34;Move&amp;#34; &amp;lt;&amp;lt;</description>
+    </item>
+    
+  </channel>
+</rss>
