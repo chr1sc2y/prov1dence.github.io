@@ -97,11 +97,11 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
     </item>
     
     <item>
-      <title>LeetCode Archiver(3): 登录</title>
-      <link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-3/</link>
+      <title>LeetCode Archiver(3)：登录</title>
+      <link>http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver3/</link>
       <pubDate>Fri, 11 Jan 2019 13:15:17 +1100</pubDate>
       
-      <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-3/</guid>
+      <guid>http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver3/</guid>
       <description>Cookie和Session 为了获取我们自己的提交记录，我们首先要进行登录的操作。但我们都知道HTTP是一种无状态的协议，它的每个请求都是独</description>
     </item>
     
