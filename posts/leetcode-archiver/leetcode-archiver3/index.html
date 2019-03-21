@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="http://zintrulcre.vip">
+    <meta name="keywords" content="ZintrulCre">
+    
+    <meta property="og:site_name" content="ZinBlog">
+    <meta property="og:title" content="
+  LeetCode Archiver(3)：登录 - ZinBlog
+">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver3/">
+    <meta property="og:image" content="http://zintrulcre.vip">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver3/">
+    <meta name="twitter:image" content="http://zintrulcre.vip">
+
+    <base href="http://zintrulcre.vip">
+    <title>
+  LeetCode Archiver(3)：登录 - ZinBlog
+</title>
+
+    <link rel="canonical" href="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver3/">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="http://zintrulcre.vip/css/style.min.css">
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.53" />
+  </head>
+
+  <body class="">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">ZinBlog</a>
+    <input type="checkbox" id="menu-control"/>
+    <label class="menu-mobile  float-right " for="menu-control">
+      <span class="btn-mobile  float-right ">&#9776;</span>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/categories/">Categories</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/notebooks/">Notebooks</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/zinmark/">Bookmarks</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/about">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    </label>
+  </section>
+</nav>
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+      <div class="content">
+        
+  <section class="container post">
+  <article>
+    <header>
+      <h1 class="title">LeetCode Archiver(3)：登录</h1>
+      <h2 class="date">January 11, 2019</h2>
+
+      
+    </header>
+
+    
+
+<h2 id="cookie和session">Cookie和Session</h2>
+
+<p>为了获取我们自己的提交记录，我们首先要进行登录的操作。但我们都知道HTTP是一种无状态的协议，它的每个请求都是独立的。无论是GET还是POST请求，都包含了处理当前这一条请求的所有信息，但它并不会涉及到状态的变化。因此，为了在无状态的HTTP协议上维护一个持久的状态，引入了Cookie和Session的概念，两者都是为了辨识用户相关信息而储存在内存或硬盘上的加密数据。</p>
+
+<p>Cookie是由客户端浏览器维护的。客户端浏览器会在需要时把Cookie保存在内存中，当其再次向该域名相关的网站发出request时，浏览器会把url和Cookie一起作为request的一部分发送给服务器。服务器通过解析该Cookie来确认用户的状态，并对Cookie的内容作出相应的修改。一般来说，如果不设置过期时间，非持久Cookie会保存在内存中，浏览器关闭后就被删除了。</p>
+
+<p>Session是由服务器维护的。当客户端第一次向服务器发出request后，服务器会为该客户端创建一个Session。当该客户端再次访问服务器时，服务器会根据该Session来获取相关信息。一般来说，服务器会为Seesion设置一个失效时间，当距离接收到客户端上一次发送request的时间超过这个失效时间后，服务器会主动删除Session。</p>
+
+<p>两种方法都可以用来维护登录的状态。为了简便起见，本项目目前使用Session作为维护登录状态的方法。</p>
+
+<h2 id="获取数据">获取数据</h2>
+
+<h3 id="分析">分析</h3>
+
+<p>首先我们进入<a href="https://leetcode.com/accounts/login/">登录页面</a>，打开开发者工具，勾选Preserve log。为了知道在登录时浏览器向服务器提交了哪些数据，我们可以先输入一个错误的用户名和密码，便于抓包。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/7.png" alt="7" /></p>
+
+<p>通过分析&rdquo;login/&ldquo;这条request，我们可以知道我们所需要的一些关键信息，例如headers中的user-agent和referer，表单数据（form data）中的csrfmiddlewaretoken，login和password。显然，user-agent和referer我们可以直接复制下来，login和password是我们填写的用户名和密码。还有一个很陌生的csrfmiddlewaretoken。这是CSRF的中间件token，CSRF是Cross-Site Request Forgery，相关知识可以查询<a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0">跨站请求伪造的维基百科</a>。那么现在我们就要分析这个token是从何而来。</p>
+
+<h4 id="获取csrfmiddlewaretoken">获取csrfmiddlewaretoken</h4>
+
+<p>我们将刚才获取到的csrfmiddlewaretoken复制下来，在开发者工具中使用搜索功能，可以发现这个csrfmiddlewaretoken出现在了登录之前的一些request对应的response中。例如在刚才打开登录页面，发送GET请求时，response的headers的set-cookie中出现了&rdquo;csrftoken=&hellip;&ldquo;，而这里csrftoken的值与我们需要在登录表单中提交的值完全相同。因此，我们可以通过获取刚才的response中的Cookies来获取csrfmiddlewaretoken的值。</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/8.png" alt="8" /></p>
+
+<p>首先我们通过发送GET请求来分析一下Cookies的构成</p>
+<div class="highlight"><pre class="chroma">login_url = &#34;https://leetcode.com/accounts/login/&#34;
+session = requests.session()
+result = session.get(login_url)
+print(result)
+print(type(result.cookies))
+for cookie in result.cookies:
+    print(type(cookie))
+    print(cookie)</pre></div>
+<p>得到的结果是</p>
+
+<ul>
+<li><code>&lt;Response [200]&gt;</code> 状态码200，表示请求成功</li>
+<li><code>&lt;class 'requests.cookies.RequestsCookieJar'&gt;</code> cookies的类型是CookieJar</li>
+<li><code>&lt;class 'http.cookiejar.Cookie'&gt;</code> 第一条cookie的类型是Cookie</li>
+<li><code>&lt;Cookie__cfduid=d3e02d4309b848f9369e21671fabbce571548041181 for .leetcode.com/&gt;</code> 第一条cookie的信息</li>
+<li><code>&lt;class 'http.cookiejar.Cookie'&gt;</code> 第二条cookie的类型是Cookie</li>
+<li><code>&lt;Cookie csrftoken=13mQWE9tYN6g2IrlKY8oMLRc4VhVNoet4j328YdDapW2WC2nf93y5iCuzorovTDl for leetcode.com/&gt;</code> 第二条cookie的信息，也就是我们所需要的csrftoken</li>
+</ul>
+
+<p>这样一来我们便获取到了在提交表单信息时所需要的csrfmiddlewaretoken，之后我们便可以开始着手写登录的相关代码了。顺便一提，在使用Django进行后端开发的时候自动生成的csrf token的键也叫csrfmiddlewaretoken，不知道LeetCode是不是用Django作为后端开发框架的。</p>
+
+<h3 id="实现">实现</h3>
+
+<p>首先我们需要在爬虫开始运行之前获取登录信息，将Session作为类的成员变量保存下来，方便在获取submissions时使用。同时我们需要在与爬虫文件相同的目录下新建config.json，将自己的用户名和密码保存在该json文件里，这样就能顺利登陆了。</p>
+<div class="highlight"><pre class="chroma">    def start_requests(self):
+        self.Login()    # 登录
+        questionset_url = &#34;https://leetcode.com/api/problems/all/&#34;
+        yield scrapy.Request(url=questionset_url, callback=self.ParseQuestionSet)
+
+    def Login(self):
+    login_url = &#34;https://leetcode.com/accounts/login/&#34;
+    login_headers = {
+        &#34;user_agent&#34;: &#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&#39;&#34;,
+        &#34;referer&#34;: &#34;https://leetcode.com/accounts/login/&#34;,
+        # &#34;content-type&#34;: &#34;multipart/form-data; boundary=----WebKitFormBoundary70YlQBtroATwu9Jx&#34;
+    }
+    self.session = requests.session()
+    result = self.session.get(login_url)
+    file = open(&#39;./config.json&#39;, &#39;r&#39;)
+    info = json.load(file)
+    data = {&#34;login&#34;: info[&#34;username&#34;], &#34;password&#34;: inf[&#34;password&#34;],
+            &#34;csrfmiddlewaretoken&#34;: self.session.cookies[&#39;csrftoken&#39;]}
+    self.session.post(login_url, data=data,headers=login_headers)
+    print(&#34;login info: &#34; + str(result))</pre></div>
+<p>注意如果在headers中填写了content-type的值，可能会产生一些奇怪的错误信息，并且后续不能正确地获取自己的submissions，只需要user_agent和refere的信息即可。</p>
+
+<p>如果看到输出<code>login info: &lt;Response [200]&gt;</code>就代表登录成功了！</p>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p><a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/" target="_blank">Scrapy官方文档</a></p>
+
+  </article>
+
+  <br/>
+
+  
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+  
+</section>
+
+      </div>
+      
+        
+<script>renderMathInElement(document.body);</script>
+      
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  <script src="http://zintrulcre.vip/js/app.js"></script>
+  
+  </body>
+</html>

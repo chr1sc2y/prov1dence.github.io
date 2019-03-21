@@ -1,0 +1,815 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Convolutional Neural Network · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Object Detection.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Machine Learning
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../Machine-Learning/Linear Regression.html">
+            
+                <a href="../Machine-Learning/Linear Regression.html">
+            
+                    
+                    Linear Regression
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../Machine-Learning/Logistic Regression.html">
+            
+                <a href="../Machine-Learning/Logistic Regression.html">
+            
+                    
+                    Logistic Regression
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../Machine-Learning/Gradient Descent.html">
+            
+                <a href="../Machine-Learning/Gradient Descent.html">
+            
+                    
+                    Gradient Descent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../Machine-Learning/Data Processing.html">
+            
+                <a href="../Machine-Learning/Data Processing.html">
+            
+                    
+                    Data Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../Machine-Learning/Evaluation.html">
+            
+                <a href="../Machine-Learning/Evaluation.html">
+            
+                    
+                    Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../Machine-Learning/Machine Learning.html">
+            
+                <a href="../Machine-Learning/Machine Learning.html">
+            
+                    
+                    Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../Machine-Learning/Strategy.html">
+            
+                <a href="../Machine-Learning/Strategy.html">
+            
+                    
+                    Strategy
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Neural Networks
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../Neural-Networks/Hyperparameters.html">
+            
+                <a href="../Neural-Networks/Hyperparameters.html">
+            
+                    
+                    Hyperparameters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../Neural-Networks/Nerual Network.html">
+            
+                <a href="../Neural-Networks/Nerual Network.html">
+            
+                    
+                    Nerual Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Convolutional-Neural-Networks
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.4.1" data-path="Convolutional Neural Network.html">
+            
+                <a href="Convolutional Neural Network.html">
+            
+                    
+                    Convolutional Neural Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="Object Detection.html">
+            
+                <a href="Object Detection.html">
+            
+                    
+                    Object Detection
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Sequence Model
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../Sequence-Model/Sequence Model.html">
+            
+                <a href="../Sequence-Model/Sequence Model.html">
+            
+                    
+                    Sequence Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../Sequence-Model/Natural Language Processing.html">
+            
+                <a href="../Sequence-Model/Natural Language Processing.html">
+            
+                    
+                    Natural Language Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Convolutional Neural Network</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="convolutional-neural-network">Convolutional Neural Network</h1>
+<h2 id="convolutional-neural-network">Convolutional Neural Network</h2>
+<ul>
+<li>input: <script type="math/tex; "> n * n ​</script></li>
+<li>filter: <script type="math/tex; "> m * m ​</script><ul>
+<li>cross-correlation<ul>
+<li>no flipping</li>
+<li>used in deep learning</li>
+</ul>
+</li>
+<li>convolution<ul>
+<li>flipping</li>
+<li>double mirroring</li>
+<li>used in mathematics</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>output: <script type="math/tex; "> (n - m + 1) * (n - m + 1) </script></li>
+</ul>
+<h3 id="filter">filter</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><script type="math/tex; "> \omega 1 </script></td>
+<td><script type="math/tex; "> \omega 2 </script></td>
+<td style="text-align:left"><script type="math/tex; "> \omega 3 </script></td>
+</tr>
+<tr>
+<td><script type="math/tex; "> \omega 4 </script></td>
+<td><script type="math/tex; "> \omega 5 </script></td>
+<td style="text-align:left"><script type="math/tex; "> \omega 6 </script></td>
+</tr>
+<tr>
+<td><script type="math/tex; "> \omega 7 </script></td>
+<td><script type="math/tex; "> \omega 8</script></td>
+<td style="text-align:left"><script type="math/tex; "> \omega 9</script></td>
+</tr>
+</tbody>
+</table>
+<h3 id="padding&#xFF08;&#x586B;&#x5145;&#xFF09;">Padding&#xFF08;&#x586B;&#x5145;&#xFF09;</h3>
+<ul>
+<li>input: <script type="math/tex; "> n * n ​</script></li>
+<li>padding: <script type="math/tex; "> p ​</script></li>
+<li>filter: <script type="math/tex; "> f * f </script><ul>
+<li>m is odd</li>
+</ul>
+</li>
+<li>output: <script type="math/tex; "> (n + 2p - f + 1) * (n + 2p - f + 1) </script></li>
+</ul>
+<h4 id="valid-padding">Valid Padding</h4>
+<p>no padding</p>
+<h4 id="same-padding">Same Padding</h4>
+<p>the output size is the same as the input size after padding</p>
+<ul>
+<li><p><script type="math/tex; "> n = n + 2p - m + 1</script></p>
+</li>
+<li><p><script type="math/tex; "> p = \frac{m - 1}{2} </script></p>
+</li>
+</ul>
+<h3 id="stride&#xFF08;&#x6B65;&#x957F;&#xFF09;">Stride&#xFF08;&#x6B65;&#x957F;&#xFF09;</h3>
+<ul>
+<li>input: <script type="math/tex; "> n * n ​</script></li>
+<li>padding: <script type="math/tex; "> p ​</script></li>
+<li>stride: s</li>
+<li>filter: <script type="math/tex; "> f * f </script><ul>
+<li>m is odd</li>
+</ul>
+</li>
+<li>output: <script type="math/tex; "> \left \lfloor \frac{(n + 2p - m)}{s} + 1 \right \rfloor * \left \lfloor  \frac{(n + 2p - m)}{s} / s + 1 \right \rfloor ​</script><ul>
+<li>round down</li>
+<li>floor of output</li>
+</ul>
+</li>
+</ul>
+<h3 id="convolutions-over-volumes">Convolutions over volumes</h3>
+<p>channels: different color detectors</p>
+<ul>
+<li>input: <script type="math/tex; "> h_i * w_i * c ​</script><ul>
+<li>h: height</li>
+<li>w: weight</li>
+<li>c: channel / depth</li>
+</ul>
+</li>
+<li>padding: <script type="math/tex; "> p ​</script></li>
+<li>stride: s</li>
+<li>filter: <script type="math/tex; "> h_f * w_f * c ​</script><ul>
+<li>h: height</li>
+<li>w: weight</li>
+<li>c: channel / depth</li>
+</ul>
+</li>
+<li>output: <script type="math/tex; "> \left \lfloor \frac{(n + 2p - f)}{s} + 1 \right \rfloor * \left \lfloor  \frac{(n + 2p - f)}{s} / s + 1 \right \rfloor * n_f​</script><ul>
+<li><script type="math/tex; "> n_f ​</script>: number of filters<ul>
+<li>detect different features</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="layer">Layer</h2>
+<ul>
+<li>Convolution (Conv)</li>
+<li>Pooling (POOL)</li>
+<li>Fully Connected (FC)</li>
+</ul>
+<h3 id="convolution-layer-conv">Convolution Layer (CONV)</h3>
+<pre><code class="lang-mermaid">graph LR
+input --&gt; filter1
+input --&gt; filter2
+filter1 --&gt;|add bias1, activate|output1
+filter2 --&gt;|add bias2, activate|output2
+output1 --&gt;|stack| output
+output2 --&gt;|stack| output
+
+input_layer --&gt;filter
+filter --&gt;|add bias, activate|different_output
+different_output --&gt;|stack|cnn_layer
+</code></pre>
+<h4 id="hyperparameters">Hyperparameters</h4>
+<ul>
+<li><p>input: <script type="math/tex; "> n ^{[i-1]} _{h} * n ^{[i-1]}_{w} * n_c^{[i-1]} </script></p>
+</li>
+<li><p>filter: <script type="math/tex; "> f^{[i]} * f^{[i]} * n_c^{[i-1]} </script></p>
+</li>
+<li><p>padding: <script type="math/tex; "> p^{[i]} * p^{[i]} ​</script></p>
+</li>
+<li><p>Stride: <script type="math/tex; "> s^{[i]} * s^{[i]} ​</script></p>
+</li>
+<li><p>output: <script type="math/tex; "> n ^{[i]} _{h} * n ^{[i]}_{w} * n_c^{[i]} ​</script></p>
+<ul>
+<li>number of filters: <script type="math/tex; "> n_c^{[i]} </script><ul>
+<li>bias: <script type="math/tex; "> n_c^{[i]} ​</script></li>
+</ul>
+</li>
+<li><script type="math/tex; ">n ^{[i]}_h = \left \lfloor \frac{(n ^{[i-1]} _{h} + 2p^{[i]} - f{[i]})}{s^{[i]}} + 1 \right \rfloor ​</script></li>
+<li><script type="math/tex; "> n ^{[i]}_w = \left \lfloor \frac{(n ^{[i-1]} _{w} + 2p^{[i]} - f{[i]})}{s^{[i]}} + 1 \right \rfloor ​</script></li>
+<li><script type="math/tex; "> n_c^{[i]} </script></li>
+</ul>
+</li>
+</ul>
+<h3 id="pooling-layer-pool">Pooling Layer (POOL)</h3>
+<ul>
+<li>static computation</li>
+<li>no backpropagation</li>
+</ul>
+<h4 id="categories">Categories</h4>
+<ul>
+<li><p>Max Pooling</p>
+<ul>
+<li>max operation: keep the max number</li>
+</ul>
+</li>
+<li><p>Average Pooling</p>
+<ul>
+<li>average operation: compute the average</li>
+</ul>
+</li>
+</ul>
+<h4 id="hyperparameters">Hyperparameters</h4>
+<ul>
+<li>filter: <script type="math/tex; "> f^{[i]} * f^{[i]} * n_c^{[i-1]} </script><ul>
+<li>usually 2, 3</li>
+</ul>
+</li>
+<li>Stride: <script type="math/tex; "> s^{[i]} * s^{[i]} ​</script><ul>
+<li>usually 2</li>
+</ul>
+</li>
+<li>padding: <script type="math/tex; "> p^{[i]} * p^{[i]} </script><ul>
+<li>usually 0</li>
+</ul>
+</li>
+</ul>
+<h3 id="fully-connected-fl">Fully Connected (FL)</h3>
+<pre><code class="lang-mermaid">graph LR
+input --&gt; CONV1
+CONV1 --&gt; POOL1
+POOL1 --&gt; CONV2
+CONV2 --&gt; POOL2
+POOL2 --&gt;|vectorisation|FC3
+FC3 --&gt; FC4
+FC4 --&gt; softmax
+</code></pre>
+<h2 id="case">Case</h2>
+<h3 id="classic-networks">Classic Networks</h3>
+<h4 id="lenet-5">LeNet-5</h4>
+<pre><code class="lang-mermaid">graph LR
+input --&gt; Conv1
+Conv1 --&gt; AvgPool1
+AvgPool1 --&gt; Conv2
+Conv2 --&gt; AvgPool2
+AvgPool2 --&gt;|vectorisation|FC3
+FC3 --&gt; FC4
+FC4 --&gt; softmax
+</code></pre>
+<ul>
+<li>approximately 60 thousand parameters</li>
+<li>activation after pooling</li>
+</ul>
+<h4 id="alexnet">AlexNet</h4>
+<pre><code class="lang-mermaid">graph LR
+input --&gt; Conv1
+Conv1 --&gt; MaxPool1
+MaxPool1 --&gt; Conv2
+Conv2 --&gt; MaxPool2
+MaxPool2 --&gt; Conv3
+Conv3 --&gt; MaxPool3
+MaxPool3 --&gt; Conv4
+Conv4 --&gt; MaxPool4
+MaxPool4 --&gt;|vectorisation|FC1
+FC1 --&gt; FC2
+FC2 --&gt; softmax
+</code></pre>
+<ul>
+<li>approximately 60 million parameters</li>
+<li>relu activation</li>
+</ul>
+<h4 id="vgg-16">VGG-16</h4>
+<h5 id="process">Process</h5>
+<ul>
+<li>input: 224 <em> 224 </em> 3 --&gt; Conv64 (<em> 2): 224 </em>224 * 64</li>
+<li>--&gt; MaxPool: 112 <em> 112 </em> 64</li>
+<li>--&gt; Conv128 (<em> 2): 112 </em>112 * 128</li>
+<li>--&gt; MaxPool: 56 <em> 56 </em> 128</li>
+<li>--&gt; Conv256 (<em> 3): 56 </em> 56 * 256</li>
+<li>--&gt; MaxPool: 28 <em> 28 </em> 256</li>
+<li>--&gt; Conv512 (<em> 3): 28 </em> 28 * 512</li>
+<li>--&gt; MaxPool: 14 <em> 14 </em> 512</li>
+<li>--&gt; Conv512 (<em> 3): 14 </em> 14 * 512</li>
+<li>--&gt; MaxPool: 7 <em> 7 </em> 512</li>
+<li>--&gt; FC: 4096</li>
+<li>--&gt; FC: 4096</li>
+<li>--&gt; Softmax: 1000</li>
+</ul>
+<h5 id="pros">Pros</h5>
+<ul>
+<li>the rate of shrinking images and increasing channels is systematic</li>
+</ul>
+<h3 id="residual-network">Residual Network</h3>
+<h4 id="residual-block">Residual Block</h4>
+<h5 id="plain-network">Plain Network</h5>
+<ul>
+<li>&quot;main path&quot;</li>
+<li><script type="math/tex; "> a^{[l]} </script> -&gt; activation -&gt; <script type="math/tex; "> a^{[l + 1]} </script> -&gt; activation -&gt; <script type="math/tex; "> a^{[l + 2]} </script> -&gt; ...</li>
+</ul>
+<h5 id="residual-network">Residual Network</h5>
+<ul>
+<li>&quot;short cut&quot; / &quot;skip connection&quot;</li>
+<li><script type="math/tex; "> a^{[l + 2]}  = g( z^{[l + 2]} + a^{[l]} )</script></li>
+</ul>
+<h3 id="inception">Inception</h3>
+<h4 id="1--1-convolution">1 * 1 Convolution</h4>
+<ul>
+<li>traverse all positions with a 1 * 1 filter</li>
+<li>shrink the channel when large<ul>
+<li>from n_c to n_f</li>
+</ul>
+</li>
+<li>save computation</li>
+<li>learn more the complex function of your network</li>
+<li>as bottleneck layer</li>
+</ul>
+<pre><code class="lang-mermaid">graph LR
+CONV1_28*28*192--&gt;|bottleneck layer 1*1 16|CONV2_28*28*16
+CONV2_28*28*16--&gt;|filter 5*5 32|CONV3_28*28*32
+</code></pre>
+<h4 id="inception-block">Inception Block</h4>
+<ul>
+<li>automatically choose filter size<ul>
+<li>size of filters</li>
+<li>number of filters</li>
+</ul>
+</li>
+<li>automatically choose filter type (CONV or POOL)</li>
+</ul>
+<h4 id="inception-module">Inception Module</h4>
+<pre><code class="lang-mermaid">graph LR
+Previous --&gt; |1*1 64|CONV1
+Previous --&gt; |1*1 96|CONV2
+CONV2 --&gt;  |3*3 128|CONV3
+Previous --&gt; |1*1 16|CONV4
+CONV4 --&gt;  |5*5 32|CONV5
+Previous --&gt; |3*3 192|MAXPOOL
+MAXPOOL --&gt; |1*1 32|CONV6
+CONV1 --&gt; |Channel Concat|Activation
+CONV3 --&gt; |Channel Concat|Activation
+CONV5 --&gt; |Channel Concat|Activation
+CONV6 --&gt; |Channel Concat|Activation
+</code></pre>
+<h4 id="incepution-network">Incepution Network</h4>
+<pre><code class="lang-mermaid">graph LR
+Previous --&gt; InceptionModule1
+InceptionModule1 --&gt; InceptionModule2
+InceptionModule2 --&gt; ...
+... --&gt; InceptionModulen
+InceptionModulen --&gt; output
+</code></pre>
+<h3 id="transfer-learning">Transfer Learning</h3>
+<ul>
+<li>pre-training/pre-initialize low-level features</li>
+<li>fine tuning / retrain</li>
+</ul>
+<h4 id="retrain">retrain</h4>
+<ul>
+<li>just retrain the weights of the last layer</li>
+<li>retrain all the layers if you have enough data</li>
+</ul>
+<h4 id="usage">Usage</h4>
+<ul>
+<li>low level features from the previous could be helpful for the current</li>
+<li>tasks have the same type of input</li>
+<li>have <ul>
+<li>more data for the the problem transfer from</li>
+<li>less data for the problem transfer to</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-augmentation">Data Augmentation</h3>
+<h4 id="common-method">Common Method</h4>
+<ul>
+<li>Mirroring</li>
+<li>Random Cropping</li>
+<li>Rotation</li>
+<li>Shearing</li>
+<li>Local Warping</li>
+</ul>
+<h4 id="color-shifting">Color Shifting</h4>
+<ul>
+<li>adjust R, G, B </li>
+<li>PCA color augmentation</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="Object Detection.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Object Detection">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Convolutional Neural Network","level":"1.4.1","depth":2,"next":{"title":"Object Detection","level":"1.4.2","depth":2,"path":"Convolutional-Neural-Networks/Object Detection.md","ref":"./Convolutional-Neural-Networks/Object Detection.md","articles":[]},"previous":{"title":"Convolutional-Neural-Networks","level":"1.4","depth":1,"ref":"","articles":[{"title":"Convolutional Neural Network","level":"1.4.1","depth":2,"path":"Convolutional-Neural-Networks/Convolutional Neural Network.md","ref":"./Convolutional-Neural-Networks/Convolutional Neural Network.md","articles":[]},{"title":"Object Detection","level":"1.4.2","depth":2,"path":"Convolutional-Neural-Networks/Object Detection.md","ref":"./Convolutional-Neural-Networks/Object Detection.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Convolutional-Neural-Networks/Convolutional Neural Network.md","mtime":"2019-03-17T09:07:54.801Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-17T09:11:28.227Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
