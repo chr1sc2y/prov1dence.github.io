@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 17 Mar 2019 11:48:06 +1100</lastBuildDate>
+    <lastBuildDate>Wed, 20 Mar 2019 09:55:04 +1100</lastBuildDate>
     
 	<atom:link href="http://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Methods to Prevent Overfitting in Deep Learning</title>
+      <link>http://zintrulcre.vip/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</link>
+      <pubDate>Wed, 20 Mar 2019 09:55:04 +1100</pubDate>
+      
+      <guid>http://zintrulcre.vip/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</guid>
+      <description>Methods to Prevent Overfitting in Deep Learning Overfitting Overfitting refers to that when a model fits the training data well but cannot predict the test data correctly, we may say that the model lacks the ability of generalization. It is important to figure out how it happens, and how we can prevent overfitting from the very beginning.
+Detect Overfitting The simplest way to detect overfitting is to split the dataset into two parts: the training set for training the model, and the test set for testing the accuracy of the model on a dataset that it has never seen before.</description>
+    </item>
     
     <item>
       <title>Notebooks</title>
@@ -87,21 +97,12 @@
     </item>
     
     <item>
-      <title>使用Scrapy爬取LeetCode（3）：登录</title>
+      <title>LeetCode Archiver(3): 登录</title>
       <link>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-3/</link>
       <pubDate>Fri, 11 Jan 2019 13:15:17 +1100</pubDate>
       
       <guid>http://zintrulcre.vip/posts/use-scrapy-to-crawl-leetcode/use-scrapy-to-crawl-leetcode-3/</guid>
-      <description>本项目ZintrulCre/LeetCode_Crawler已完成，并正在维护中，欢迎在GitHub上star和fork。 Cookie和Se</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;智能指针（1.5）：move语义</title>
-      <link>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
-      <pubDate>Wed, 02 Jan 2019 09:55:05 +1100</pubDate>
-      
-      <guid>http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
-      <description>move语义 定义 右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（P</description>
+      <description>Cookie和Session 为了获取我们自己的提交记录，我们首先要进行登录的操作。但我们都知道HTTP是一种无状态的协议，它的每个请求都是独</description>
     </item>
     
   </channel>
