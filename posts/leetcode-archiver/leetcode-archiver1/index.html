@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="http://zintrulcre.vip">
+    <meta name="keywords" content="ZintrulCre">
+    
+    <meta property="og:site_name" content="ZinBlog">
+    <meta property="og:title" content="
+  LeetCode Archiver(1)：Scrapy框架和Requests库 - ZinBlog
+">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver1/">
+    <meta property="og:image" content="http://zintrulcre.vip">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver1/">
+    <meta name="twitter:image" content="http://zintrulcre.vip">
+
+    <base href="http://zintrulcre.vip">
+    <title>
+  LeetCode Archiver(1)：Scrapy框架和Requests库 - ZinBlog
+</title>
+
+    <link rel="canonical" href="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver1/">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="http://zintrulcre.vip/css/style.min.css">
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.53" />
+  </head>
+
+  <body class="">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">ZinBlog</a>
+    <input type="checkbox" id="menu-control"/>
+    <label class="menu-mobile  float-right " for="menu-control">
+      <span class="btn-mobile  float-right ">&#9776;</span>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/categories/">Categories</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/ZinNote/">Notebooks</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/ZinMark/">Bookmarks</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://zintrulcre.vip/about">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    </label>
+  </section>
+</nav>
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+      <div class="content">
+        
+  <section class="container post">
+  <article>
+    <header>
+      <h1 class="title">LeetCode Archiver(1)：Scrapy框架和Requests库</h1>
+      <h2 class="date">December 4, 2018</h2>
+
+      
+    </header>
+
+    
+
+<h2 id="简介">简介</h2>
+
+<p>Scrapy官方文档对Scrapy的介绍如下：</p>
+
+<p>Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。<br>其最初是为了页面抓取（更确切来说, 网络抓取）所设计的，也可以应用在获取API所返回的数据（例如 Amazon Associates Web Services ）或者通用的网络爬虫。</p>
+
+<p>简而言之，Scrapy是基于Twisted库开发的，封装了http请求、代理信息、数据存储等功能的Python爬虫框架。</p>
+
+<h2 id="组件和数据流">组件和数据流</h2>
+
+<p>下图是Scrapy官方文档中的架构概览图：</p>
+
+<p><img src="https://scrapy-chs.readthedocs.io/zh_CN/0.24/_images/scrapy_architecture.png" alt="Architecture" /></p>
+
+<p>图中绿色箭头表示<a href="#head">数据流</a>，其他均为组件。</p>
+
+<h3 id="scrapy-engine-引擎">Scrapy Engine（引擎）</h3>
+
+<p>引擎负责控制数据流在系统的组件中流动，并在相应动作发生时触发事件。</p>
+
+<h3 id="scheduler-调度器">Scheduler（调度器）</h3>
+
+<p>调度器从引擎接收request并将其保存，以便在引擎请求时提供给引擎。</p>
+
+<h3 id="downloader-下载器">Downloader（下载器）</h3>
+
+<p>下载器负责下载页面数据，并将其提供给引擎，而后再由引擎提供给爬虫。</p>
+
+<h3 id="spiders-爬虫">Spiders（爬虫）</h3>
+
+<p>Spider是由用户编写的用于<strong>分析response</strong>并<strong>提取item</strong>或额外<strong>跟进url</strong>的类。一个Scrapy项目中可以有很多Spider，他们分别被用于爬取不同的页面和网站。</p>
+
+<h3 id="item-pipeline-管道">Item Pipeline（管道）</h3>
+
+<p>Item Pipeline负责处理被爬虫<strong>提取出来的item</strong>。可以对其进行数据清洗，验证和持久化（例如存储到数据库中）。</p>
+
+<h3 id="downloader-middlewares-下载器中间件">Downloader middlewares（下载器中间件）</h3>
+
+<p>下载器中间件是在引擎及下载器之间的组件，用于处理下载器传递给引擎的response。更多内容请参考<a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/topics/downloader-middleware.html#topics-downloader-middleware">下载器中间件</a>。</p>
+
+<h3 id="spider-middlewares-爬虫中间件">Spider middlewares（爬虫中间件）</h3>
+
+<p>Spider中间件是在引擎及Spider之间的组件，用于处理爬虫的输入（response）和输出（items和requests）。更多内容请参考<a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/topics/spider-middleware.html#topics-spider-middleware">爬虫中间件</a>。</p>
+
+<h3 id="a-id-head-data-flow-数据流-a"><a id="head"/> Data flow（数据流）</a></h3>
+
+<p>Scrapy中的数据流由引擎控制，其过程如下:<br>
+1.引擎打开一个网站，找到处理该网站的爬虫并向该爬虫请求要爬取的url。<br>
+2.引擎从爬虫中获取到要爬取的url并将其作为request发送给调度器。<br>
+3.引擎向调度器请求下一个要爬取的url。<br>
+4.调度器返回下一个要爬取的url给引擎，引擎将url通过下载器中间件发送给下载器。<br>
+5.下载器下载页面成功后，生成一个该页面的response对象，并将其通过下载器中间件发送给引擎。<br>
+6.引擎接收从下载器中间件发送过来的response，并将其通过爬虫中间件发送给爬虫处理。<br>
+7.爬虫处理response，并将爬取到的item及跟进的新的request发送给引擎。<br>
+8.引擎将爬虫返回的item发送给管道，将爬虫返回的新的request发送给调度器。<br>
+9.管道对item进行相应的处理。<br>
+10.重复第二步，直到调度器中没有更多的request，此时引擎关闭该网站。<br></p>
+
+<h2 id="安装">安装</h2>
+
+<p>1.下载安装最新版的<a href="https://www.python.org/downloads/">Python3</a></p>
+
+<p>2.使用pip指令安装Scrapy</p>
+<div class="highlight"><pre class="chroma">pip3 install scrapy</pre></div>
+<h2 id="创建项目">创建项目</h2>
+
+<p>首先进入你的代码存储目录，在命令行中输入以下命令：</p>
+<div class="highlight"><pre class="chroma">scrapy startproject LeetCode_Crawler</pre></div>
+<p>注意项目名称是不能包含连字符 &lsquo;-&rsquo; 的</p>
+
+<p>新建成功后，可以看到在当前目录下新建了一个名为LeetCode_Crawler的Scrapy项目，进入该目录，其项目结构如下：</p>
+<div class="highlight"><pre class="chroma">scrapy.cfg              #该项目的配置文件
+scrapy_project          #该项目的Python模块
+    __init__.py
+    items.py            #可自定义的item类文件
+    middlewares.py      #中间件文件
+    pipelines.py        #管道文件
+    settings.py         #设置文件
+    __pycache__
+    spiders             #爬虫文件夹，所有爬虫文件都应在该文件夹下
+        __init__.py
+        __pycache__</pre></div>
+<p>至此Scrapy项目的创建就完成了。</p>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p><a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/" target="_blank">Scrapy官方文档</a></p>
+
+  </article>
+
+  <br/>
+
+  
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+  
+</section>
+
+      </div>
+      
+        
+<script>renderMathInElement(document.body);</script>
+      
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  <script src="http://zintrulcre.vip/js/app.js"></script>
+  
+  </body>
+</html>
