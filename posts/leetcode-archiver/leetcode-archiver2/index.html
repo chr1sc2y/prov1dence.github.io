@@ -1,38 +1,47 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="author" content="Zhengyu Chen">
-    <meta name="description" content="http://zintrulcre.vip">
-    <meta name="keywords" content="ZintrulCre">
-    
-    <meta property="og:site_name" content="ZinBlog">
-    <meta property="og:title" content="
-  LeetCode Archiver(2)：获取题目信息 - ZinBlog
-">
-    <meta property="og:description" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver2/">
-    <meta property="og:image" content="http://zintrulcre.vip">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver2/">
-    <meta name="twitter:image" content="http://zintrulcre.vip">
+    <meta name="description" content="ZintrulCre&#39;s Personal Website">
+    <meta name="keywords" content="ZintrulCre, Personal Website">
 
-    <base href="http://zintrulcre.vip">
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LeetCode Archiver(2)：获取题目信息"/>
+<meta name="twitter:description" content="创建爬虫 在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用genspider命令新建一个爬虫： cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中Q"/>
+
+    <meta property="og:title" content="LeetCode Archiver(2)：获取题目信息" />
+<meta property="og:description" content="创建爬虫 在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用genspider命令新建一个爬虫： cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中Q" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver2/" /><meta property="article:published_time" content="2018-12-21T15:06:01&#43;11:00"/>
+<meta property="article:modified_time" content="2018-12-21T15:06:01&#43;11:00"/>
+
+
+    
+      <base href="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver2/">
+    
     <title>
-  LeetCode Archiver(2)：获取题目信息 - ZinBlog
+  LeetCode Archiver(2)：获取题目信息 · ZintrulCre
 </title>
 
-    <link rel="canonical" href="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver2/">
     
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+      <link rel="canonical" href="http://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver2/">
     
-    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
-    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" href="http://zintrulcre.vip/css/style.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="http://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
 
     
 
@@ -41,82 +50,93 @@
     <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    
-
     <meta name="generator" content="Hugo 0.53" />
   </head>
 
-  <body class="">
+  <body class=" ">
     <main class="wrapper">
       <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">ZinBlog</a>
-    <input type="checkbox" id="menu-control"/>
-    <label class="menu-mobile  float-right " for="menu-control">
-      <span class="btn-mobile  float-right ">&#9776;</span>
-      <ul class="navigation-list">
+    <a class="navigation-title" href="http://zintrulcre.vip">
+      ZintrulCre
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
         
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/posts/">Posts</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/categories/">Categories</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/ZinNote/">Notebooks</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/projects/">Projects</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/ZinMark/">Bookmarks</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/about">About</a>
-            </li>
-          
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/posts/">Posts</a>
+          </li>
         
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/categories/">Categories</a>
+          </li>
         
-      </ul>
-    </label>
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/about">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/zinnote/">Notebooks</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/zinmark/">Bookmarks</a>
+          </li>
+        
+      
+      
+    </ul>
   </section>
 </nav>
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
       <div class="content">
         
   <section class="container post">
-  <article>
-    <header>
-      <h1 class="title">LeetCode Archiver(2)：获取题目信息</h1>
-      <h2 class="date">December 21, 2018</h2>
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">LeetCode Archiver(2)：获取题目信息</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2018-12-21T15:06:01&#43;11:00'>
+                December 21, 2018
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              6 minutes read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="http://zintrulcre.vip/categories/python/">Python</a></div>
 
-      
-    </header>
+          
+        </div>
+      </header>
 
-    
+      <div>
+        
 
 <h2 id="创建爬虫">创建爬虫</h2>
 
 <p>在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用<code>genspider</code>命令新建一个爬虫：</p>
-<div class="highlight"><pre class="chroma">cd scrapy_project
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd scrapy_project
 scrapy genspider QuestionSetSpider leetcode.com</pre></div>
 <p>其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。</p>
 
 <p>新建好爬虫之后可以看到在项目的spiders文件夹下新增了一个名为 QuestionSetSpider.py的文件，这就是我们刚才新建的爬虫文件。这个爬虫文件会自动生成以下代码</p>
-<div class="highlight"><pre class="chroma"># -*- coding: utf-8 -*-
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># -*- coding: utf-8 -*-
 import scrapy
 
 class QuestionSetSpider(scrapy.Spider):
@@ -166,12 +186,12 @@ class QuestionSetSpider(scrapy.Spider):
 <h3 id="实现">实现</h3>
 
 <p>为了获取题目列表的json对象，我们需要先重写start_requests函数。</p>
-<div class="highlight"><pre class="chroma">def start_requests(self):
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def start_requests(self):
         self.Login() # 用户登录，后续会用到
         questionset_url = &#34;https://leetcode.com/api/problems/all/&#34;
         yield scrapy.Request(url=questionset_url, callback=self.ParseQuestionSet)</pre></div>
 <p>Request是scrapy的一个类对象，功能类似于requests库中的get函数，可以让scrapy框架中的Downloader向url发送一个get请求，并将获取的response交给指定的爬虫文件中的回调函数进行相应的处理，其构造函数如下</p>
-<div class="highlight"><pre class="chroma">class Request(object_ref):
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">class Request(object_ref):
 
     def __init__(self, url, callback=None, method=&#39;GET&#39;, headers=None, body=None, cookies=None, meta=None, encoding=&#39;utf-8&#39;, priority=0, dont_filter=False, errback=None, flags=None):
     ...</pre></div>
@@ -182,7 +202,7 @@ class QuestionSetSpider(scrapy.Spider):
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Use-Scrapy-to-Crawl-LeetCode/6.png" alt="6" /></p>
 
 <p>准备好Payload和Headers之后，我们可以使用FormRequest发送POST请求向GraphQL查询数据。FormRequest是scrapy的一个类对象，功能类似于requests库中的post函数，让scrapy框架中的Downloader向url发送一个post请求，并将获取的response交给指定的爬虫文件中的回调函数进行相应的处理。此处在发送POST请求之后response被交给ParseQuestionData函数进行处理。</p>
-<div class="highlight"><pre class="chroma">    question_payload = &#34;{\n    \&#34;operationName\&#34;: \&#34;questionData\&#34;,\n    \&#34;variables\&#34;: {\n        \&#34;titleSlug\&#34;: \&#34;QuestionName\&#34;\n    },\n    \&#34;query\&#34;: \&#34;query questionData($titleSlug: String!) {\\n  question(titleSlug: $titleSlug) {\\n    questionId\\n    questionFrontendId\\n    boundTopicId\\n    title\\n    titleSlug\\n    content\\n    translatedTitle\\n    translatedContent\\n    isPaidOnly\\n    difficulty\\n    likes\\n    dislikes\\n    isLiked\\n    similarQuestions\\n    contributors {\\n      username\\n      profileUrl\\n      avatarUrl\\n      __typename\\n    }\\n    langToValidPlayground\\n    topicTags {\\n      name\\n      slug\\n      translatedName\\n      __typename\\n    }\\n    companyTagStats\\n    codeSnippets {\\n      lang\\n      langSlug\\n      code\\n      __typename\\n    }\\n    stats\\n    hints\\n    solution {\\n      id\\n      canSeeDetail\\n      __typename\\n    }\\n    status\\n    sampleTestCase\\n    metaData\\n    judgerAvailable\\n    judgeType\\n    mysqlSchemas\\n    enableRunCode\\n    enableTestMode\\n    envInfo\\n    __typename\\n  }\\n}\\n\&#34;\n}\n&#34;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">    question_payload = &#34;{\n    \&#34;operationName\&#34;: \&#34;questionData\&#34;,\n    \&#34;variables\&#34;: {\n        \&#34;titleSlug\&#34;: \&#34;QuestionName\&#34;\n    },\n    \&#34;query\&#34;: \&#34;query questionData($titleSlug: String!) {\\n  question(titleSlug: $titleSlug) {\\n    questionId\\n    questionFrontendId\\n    boundTopicId\\n    title\\n    titleSlug\\n    content\\n    translatedTitle\\n    translatedContent\\n    isPaidOnly\\n    difficulty\\n    likes\\n    dislikes\\n    isLiked\\n    similarQuestions\\n    contributors {\\n      username\\n      profileUrl\\n      avatarUrl\\n      __typename\\n    }\\n    langToValidPlayground\\n    topicTags {\\n      name\\n      slug\\n      translatedName\\n      __typename\\n    }\\n    companyTagStats\\n    codeSnippets {\\n      lang\\n      langSlug\\n      code\\n      __typename\\n    }\\n    stats\\n    hints\\n    solution {\\n      id\\n      canSeeDetail\\n      __typename\\n    }\\n    status\\n    sampleTestCase\\n    metaData\\n    judgerAvailable\\n    judgeType\\n    mysqlSchemas\\n    enableRunCode\\n    enableTestMode\\n    envInfo\\n    __typename\\n  }\\n}\\n\&#34;\n}\n&#34;
 
     graphql_url = &#34;https://leetcode.com/graphql&#34;
 
@@ -200,7 +220,7 @@ class QuestionSetSpider(scrapy.Spider):
                                      headers=headers, body=self.question_payload)
             self.question_payload = self.question_payload.replace(title_slug, &#34;QuestionName&#34;)</pre></div>
 <p>现在数据已经获取到了，我们需要在items.py文件中定义一个类用来存储题目的详细信息。items.py文件中的类继承自scrapy.Item类，是提供给scrapy框架中的组件Item Pipeline进行处理的统一的的数据结构。</p>
-<div class="highlight"><pre class="chroma">import scrapy
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import scrapy
 
 class QuestionDataItem(scrapy.Item):
     # define the fields for your item here like:
@@ -216,7 +236,7 @@ class QuestionDataItem(scrapy.Item):
     dislikes = scrapy.Field()
     slug = scrapy.Field()</pre></div>
 <p>定义了QuestionDataItem类之后可以进入ParseQuestionData函数开始对题目详细信息的提取，我们可以根据需求提取出题目的id，title，content，topics，difficulty等信息，用一个QuestionDataItem对象来存储这些数据，然后进行yield questionDataItem操作，将这个对象交给Item Pipeline进行处理。</p>
-<div class="highlight"><pre class="chroma">    def ParseQuestionData(self, response):
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">    def ParseQuestionData(self, response):
         questionData = json.loads(response.text)[&#34;data&#34;][&#34;question&#34;]
         questionDataItem = QuestionDataItem()
         questionDataItem[&#34;id&#34;] = questionData[&#34;questionFrontendId&#34;]
@@ -246,12 +266,13 @@ class QuestionDataItem(scrapy.Item):
 
 <p><a href="https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates/">Postman官方文档</a></p>
 
-  </article>
+      </div>
 
-  <br/>
+      <footer>
+        
 
-  
-      <div id="disqus_thread"></div>
+
+        <div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -271,15 +292,26 @@ class QuestionDataItem(scrapy.Item):
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-  
-  
-</section>
+      </footer>
+    </article>
+
+    
+  </section>
 
       </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
       
-        
-<script>renderMathInElement(document.body);</script>
-      
+      [<a href="https://github.com/luizdepra/hugo-coder/tree/"></a>]
+    
+  </section>
+</footer>
+
     </main>
 
     
@@ -297,7 +329,6 @@ if (!doNotTrack) {
 </script>
 
 
-  <script src="http://zintrulcre.vip/js/app.js"></script>
-  
   </body>
+
 </html>

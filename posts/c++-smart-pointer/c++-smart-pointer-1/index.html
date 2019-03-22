@@ -1,38 +1,47 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="author" content="Zhengyu Chen">
-    <meta name="description" content="http://zintrulcre.vip">
-    <meta name="keywords" content="ZintrulCre">
-    
-    <meta property="og:site_name" content="ZinBlog">
-    <meta property="og:title" content="
-  C&#43;&#43;智能指针（1）：auto_ptr - ZinBlog
-">
-    <meta property="og:description" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/">
-    <meta property="og:image" content="http://zintrulcre.vip">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/">
-    <meta name="twitter:image" content="http://zintrulcre.vip">
+    <meta name="description" content="ZintrulCre&#39;s Personal Website">
+    <meta name="keywords" content="ZintrulCre, Personal Website">
 
-    <base href="http://zintrulcre.vip">
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;智能指针（1）：auto_ptr"/>
+<meta name="twitter:description" content="分析 C&#43;&#43;中经常会出现因为没有delete指针而造成的内存泄漏，例如有下面一个类 class Obj { public: Obj() { std::cout &lt;&lt; &#34;Construct&#34; &lt;&lt; std::endl; } Obj(const Obj &amp;other) { std::cout &lt;&lt; &#34;Copy&#34; &lt;&lt; std::endl; } Obj(Obj &amp;&amp;other) noexcept { std::cout &lt;&lt; &#34;Move&#34; &lt;&lt;"/>
+
+    <meta property="og:title" content="C&#43;&#43;智能指针（1）：auto_ptr" />
+<meta property="og:description" content="分析 C&#43;&#43;中经常会出现因为没有delete指针而造成的内存泄漏，例如有下面一个类 class Obj { public: Obj() { std::cout &lt;&lt; &#34;Construct&#34; &lt;&lt; std::endl; } Obj(const Obj &amp;other) { std::cout &lt;&lt; &#34;Copy&#34; &lt;&lt; std::endl; } Obj(Obj &amp;&amp;other) noexcept { std::cout &lt;&lt; &#34;Move&#34; &lt;&lt;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/" /><meta property="article:published_time" content="2018-12-27T15:21:35&#43;11:00"/>
+<meta property="article:modified_time" content="2018-12-27T15:21:35&#43;11:00"/>
+
+
+    
+      <base href="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/">
+    
     <title>
-  C&#43;&#43;智能指针（1）：auto_ptr - ZinBlog
+  C&#43;&#43;智能指针（1）：auto_ptr · ZintrulCre
 </title>
 
-    <link rel="canonical" href="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/">
     
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+      <link rel="canonical" href="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/">
     
-    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
-    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" href="http://zintrulcre.vip/css/style.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="http://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
 
     
 
@@ -41,77 +50,95 @@
     <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    
-
     <meta name="generator" content="Hugo 0.53" />
   </head>
 
-  <body class="">
+  <body class=" ">
     <main class="wrapper">
       <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">ZinBlog</a>
-    <input type="checkbox" id="menu-control"/>
-    <label class="menu-mobile  float-right " for="menu-control">
-      <span class="btn-mobile  float-right ">&#9776;</span>
-      <ul class="navigation-list">
+    <a class="navigation-title" href="http://zintrulcre.vip">
+      ZintrulCre
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
         
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/posts/">Posts</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/categories/">Categories</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/ZinNote/">Notebooks</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/projects/">Projects</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/ZinMark/">Bookmarks</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/about">About</a>
-            </li>
-          
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/posts/">Posts</a>
+          </li>
         
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/categories/">Categories</a>
+          </li>
         
-      </ul>
-    </label>
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/about">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/zinnote/">Notebooks</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/zinmark/">Bookmarks</a>
+          </li>
+        
+      
+      
+    </ul>
   </section>
 </nav>
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
       <div class="content">
         
   <section class="container post">
-  <article>
-    <header>
-      <h1 class="title">C&#43;&#43;智能指针（1）：auto_ptr</h1>
-      <h2 class="date">December 27, 2018</h2>
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">C&#43;&#43;智能指针（1）：auto_ptr</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2018-12-27T15:21:35&#43;11:00'>
+                December 27, 2018
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              3 minutes read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="http://zintrulcre.vip/categories/c&#43;&#43;-pointer/">C&#43;&#43; Pointer</a></div>
 
-      
-    </header>
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="http://zintrulcre.vip/tags/c&#43;&#43;/">C&#43;&#43;</a>
+      <span class="separator">•</span>
+    <a href="http://zintrulcre.vip/tags/pointer/">Pointer</a>
+      <span class="separator">•</span>
+    <a href="http://zintrulcre.vip/tags/c&#43;&#43;11/">C&#43;&#43;11</a></div>
 
-    
+        </div>
+      </header>
+
+      <div>
+        
 
 <h2 id="分析">分析</h2>
 
 <p>C++中经常会出现因为没有delete指针而造成的内存泄漏，例如有下面一个类</p>
-<div class="highlight"><pre class="chroma">class Obj {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">class Obj {
 public:
     Obj() { std::cout &lt;&lt; &#34;Construct&#34; &lt;&lt; std::endl; }
 
@@ -124,7 +151,7 @@ public:
     void Print() { std::cout &lt;&lt; &#34;Print&#34; &lt;&lt; std::endl; }
 };</pre></div>
 <p>创建一个指向Obj类型的指针</p>
-<div class="highlight"><pre class="chroma">int main() {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">int main() {
     Obj *o = new Obj();
     o-&gt;Print();
     return 0;
@@ -135,7 +162,7 @@ Construct
 Print
 */</pre></div>
 <p>我们没有进行delete o的操作，导致o没有被正确地析构，造成了内存泄漏。作为对比，创建一个Obj类型的对象</p>
-<div class="highlight"><pre class="chroma">int main() {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">int main() {
     Obj *o1 = new Obj();
     o1-&gt;Print();
     Obj o2 = Obj();
@@ -155,7 +182,7 @@ Destruct
 <h2 id="实现">实现</h2>
 
 <p>根据auto_ptr的源码，能够大致实现AutoPointer类</p>
-<div class="highlight"><pre class="chroma">template&lt;typename T&gt;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T&gt;
 class AutoPointer {
 public:
     explicit AutoPointer(T *t);
@@ -231,7 +258,7 @@ AutoPointer&lt;T&gt; &amp;AutoPointer&lt;T&gt;::operator=(AutoPointer&lt;T&gt; &
 <h2 id="测试">测试</h2>
 
 <p>现在创建一个AutoPointer智能指针类试验一下</p>
-<div class="highlight"><pre class="chroma">int main() {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">int main() {
     Obj *o = new Obj();
     AutoPointer&lt;Obj&gt; a1(o);
     (*a1).Print();
@@ -248,7 +275,7 @@ AutoPointer 0x7fe680c02ab0 destructor called.
 Destruct
 */</pre></div>
 <p>在创建单个对象的时候能够正常地使用，现在创建两个AutoPointer类对象，用同一个Obj对象初始化</p>
-<div class="highlight"><pre class="chroma">int main() {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">int main() {
     Obj *o = new Obj();
     AutoPointer&lt;Obj&gt; a1(o);
     AutoPointer&lt;Obj&gt; a2(o);
@@ -262,7 +289,7 @@ output:
 <p>s1, s2两个AutoPointer对象会各自调用一次析构函数，Obj对象的指针o被析构了两次，显然是有问题的。</p>
 
 <p>再尝试使用拷贝构造函数</p>
-<div class="highlight"><pre class="chroma">int main() {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">int main() {
     Obj *o = new Obj();
     AutoPointer&lt;Obj&gt; a1(o);
     AutoPointer&lt;Obj&gt; a2(a1);
@@ -280,7 +307,7 @@ AutoPointer 0x0 destructor called.
 <p>看上去没有问题。但是o对象原本是属于s1的，在s2调用拷贝构造函数之后，s1的pointer变成了空指针，o对象属于了s2，这叫做所有权转换。</p>
 
 <p>再尝试使用=操作符</p>
-<div class="highlight"><pre class="chroma">int main() {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">int main() {
     Obj *o = new Obj();
     AutoPointer&lt;Obj&gt; a1(o);
     AutoPointer&lt;Obj&gt; a2 = a1;
@@ -317,7 +344,7 @@ AutoPointer 0x0 destructor called.
 </ul>
 
 <h2 id="auto-ptr源码">auto_ptr源码</h2>
-<div class="highlight"><pre class="chroma">template&lt;class _Tp&gt;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;class _Tp&gt;
 class _LIBCPP_TEMPLATE_VIS auto_ptr
 {
 private:
@@ -360,12 +387,13 @@ public:
     template&lt;class _Up&gt; _LIBCPP_INLINE_VISIBILITY operator auto_ptr&lt;_Up&gt;() throw()
         {return auto_ptr&lt;_Up&gt;(release());}
 };</pre></div>
-  </article>
+      </div>
 
-  <br/>
+      <footer>
+        
 
-  
-      <div id="disqus_thread"></div>
+
+        <div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -385,15 +413,26 @@ public:
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-  
-  
-</section>
+      </footer>
+    </article>
+
+    
+  </section>
 
       </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
       
-        
-<script>renderMathInElement(document.body);</script>
-      
+      [<a href="https://github.com/luizdepra/hugo-coder/tree/"></a>]
+    
+  </section>
+</footer>
+
     </main>
 
     
@@ -411,7 +450,6 @@ if (!doNotTrack) {
 </script>
 
 
-  <script src="http://zintrulcre.vip/js/app.js"></script>
-  
   </body>
+
 </html>

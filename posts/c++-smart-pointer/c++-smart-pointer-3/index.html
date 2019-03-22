@@ -1,38 +1,47 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="author" content="Zhengyu Chen">
-    <meta name="description" content="http://zintrulcre.vip">
-    <meta name="keywords" content="ZintrulCre">
-    
-    <meta property="og:site_name" content="ZinBlog">
-    <meta property="og:title" content="
-  C&#43;&#43;智能指针（3）：shared_ptr - ZinBlog
-">
-    <meta property="og:description" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-3/">
-    <meta property="og:image" content="http://zintrulcre.vip">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-3/">
-    <meta name="twitter:image" content="http://zintrulcre.vip">
+    <meta name="description" content="ZintrulCre&#39;s Personal Website">
+    <meta name="keywords" content="ZintrulCre, Personal Website">
 
-    <base href="http://zintrulcre.vip">
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;智能指针（3）：shared_ptr"/>
+<meta name="twitter:description" content="分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器 private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几"/>
+
+    <meta property="og:title" content="C&#43;&#43;智能指针（3）：shared_ptr" />
+<meta property="og:description" content="分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器 private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-3/" /><meta property="article:published_time" content="2019-01-25T17:47:38&#43;11:00"/>
+<meta property="article:modified_time" content="2019-01-25T17:47:38&#43;11:00"/>
+
+
+    
+      <base href="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-3/">
+    
     <title>
-  C&#43;&#43;智能指针（3）：shared_ptr - ZinBlog
+  C&#43;&#43;智能指针（3）：shared_ptr · ZintrulCre
 </title>
 
-    <link rel="canonical" href="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-3/">
     
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+      <link rel="canonical" href="http://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-3/">
     
-    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
-    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" href="http://zintrulcre.vip/css/style.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="http://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
 
     
 
@@ -41,82 +50,100 @@
     <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="http://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    
-
     <meta name="generator" content="Hugo 0.53" />
   </head>
 
-  <body class="">
+  <body class=" ">
     <main class="wrapper">
       <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">ZinBlog</a>
-    <input type="checkbox" id="menu-control"/>
-    <label class="menu-mobile  float-right " for="menu-control">
-      <span class="btn-mobile  float-right ">&#9776;</span>
-      <ul class="navigation-list">
+    <a class="navigation-title" href="http://zintrulcre.vip">
+      ZintrulCre
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
         
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/posts/">Posts</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/categories/">Categories</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/ZinNote/">Notebooks</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/projects/">Projects</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/ZinMark/">Bookmarks</a>
-            </li>
-          
-            <li class="navigation-item  align-center ">
-              <a class="navigation-link" href="http://zintrulcre.vip/about">About</a>
-            </li>
-          
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/posts/">Posts</a>
+          </li>
         
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/categories/">Categories</a>
+          </li>
         
-      </ul>
-    </label>
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/about">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/zinnote/">Notebooks</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://zintrulcre.vip/zinmark/">Bookmarks</a>
+          </li>
+        
+      
+      
+    </ul>
   </section>
 </nav>
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
       <div class="content">
         
   <section class="container post">
-  <article>
-    <header>
-      <h1 class="title">C&#43;&#43;智能指针（3）：shared_ptr</h1>
-      <h2 class="date">January 25, 2019</h2>
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">C&#43;&#43;智能指针（3）：shared_ptr</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-01-25T17:47:38&#43;11:00'>
+                January 25, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              4 minutes read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="http://zintrulcre.vip/categories/c&#43;&#43;-pointer/">C&#43;&#43; Pointer</a></div>
 
-      
-    </header>
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="http://zintrulcre.vip/tags/c&#43;&#43;/">C&#43;&#43;</a>
+      <span class="separator">•</span>
+    <a href="http://zintrulcre.vip/tags/pointer/">Pointer</a>
+      <span class="separator">•</span>
+    <a href="http://zintrulcre.vip/tags/c&#43;&#43;11/">C&#43;&#43;11</a></div>
 
-    
+        </div>
+      </header>
+
+      <div>
+        
 
 <h2 id="分析">分析</h2>
 
 <p>UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器</p>
-<div class="highlight"><pre class="chroma">private:
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">private:
     int *counter;
     T *pointer;
     D *deleter;</pre></div>
 <p>计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。</p>
-<div class="highlight"><pre class="chroma">template&lt;typename T, typename D&gt;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
 void SharedPointer&lt;T, D&gt;::release() {
     if (pointer) {
         std::cout &lt;&lt; &#34;SharedPointer &#34; &lt;&lt; this &lt;&lt; &#34; counter remains &#34; &lt;&lt; *counter &lt;&lt; std::endl;
@@ -132,7 +159,7 @@ void SharedPointer&lt;T, D&gt;::release() {
     }
 }</pre></div>
 <p>reset函数将指针设为other的指针</p>
-<div class="highlight"><pre class="chroma">template&lt;typename T, typename D&gt;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
 void SharedPointer&lt;T, D&gt;::reset(const SharedPointer&lt;T, D&gt; &amp;other) {
     pointer = other.pointer;
     counter = other.counter;
@@ -141,18 +168,18 @@ void SharedPointer&lt;T, D&gt;::reset(const SharedPointer&lt;T, D&gt; &amp;other
         ++(*counter);
 }</pre></div>
 <p>析构函数可以直接调用release函数</p>
-<div class="highlight"><pre class="chroma">template&lt;typename T, typename D&gt;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
 SharedPointer&lt;T, D&gt;::~SharedPointer() {
     release();
 }</pre></div>
 <p>拷贝构造函数可以直接调用reset函数</p>
-<div class="highlight"><pre class="chroma">template&lt;typename T, typename D&gt;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
 SharedPointer&lt;T, D&gt;::SharedPointer(const SharedPointer&lt;T, D&gt; &amp;other) {
     std::cout &lt;&lt; &#34;SharedPointer &#34; &lt;&lt; this &lt;&lt; &#34; copy constructor called.&#34; &lt;&lt; std::endl;
     reset(other);
 }</pre></div>
 <p>使用赋值操作符时先调用release函数，再调用reset函数</p>
-<div class="highlight"><pre class="chroma">template&lt;typename T, typename D&gt;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
 SharedPointer&lt;T, D&gt; &amp;SharedPointer&lt;T, D&gt;::operator=(const SharedPointer&lt;T, D&gt; &amp;other) {
     std::cout &lt;&lt; &#34;SharedPointer &#34; &lt;&lt; this &lt;&lt; &#34; assignment operator called.&#34; &lt;&lt; std::endl;
     if (this != &amp;other) {
@@ -164,7 +191,7 @@ SharedPointer&lt;T, D&gt; &amp;SharedPointer&lt;T, D&gt;::operator=(const Shared
 <h2 id="实现">实现</h2>
 
 <p>根据shared_ptr的源码，能够大致实现SharedPointer类</p>
-<div class="highlight"><pre class="chroma">template&lt;typename T, typename D&gt;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
 class SharedPointer {
 public:
     explicit SharedPointer(T *t = nullptr, D *d = nullptr);
@@ -258,7 +285,7 @@ SharedPointer&lt;T, D&gt; &amp;SharedPointer&lt;T, D&gt;::operator=(const Shared
 <h2 id="测试">测试</h2>
 
 <p>尝试使用拷贝构造函数和赋值操作符使多个SharedPointer对象使用同一个指针，以及使用reset函数清空智能指针对象的指针</p>
-<div class="highlight"><pre class="chroma">int main() {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">int main() {
     Deleter *deleter = new Deleter();
     Obj *o = new Obj();
     SharedPointer&lt;Obj, Deleter&gt; s1(o, deleter);
@@ -281,12 +308,12 @@ SharedPointer 0x7ffeeebdda00 destructor called.
 Destruct
 */</pre></div>
 <p>考虑如下一个类</p>
-<div class="highlight"><pre class="chroma">class Object : public Obj {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">class Object : public Obj {
 public:
     SharedPointer&lt;Object, Deleter&gt; S;
 };</pre></div>
 <p>创建两个Object类型的对象</p>
-<div class="highlight"><pre class="chroma">int main() {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">int main() {
     SharedPointer&lt;Object, Deleter&gt; s1(new Object());
     SharedPointer&lt;Object, Deleter&gt; s2(new Object());
     s1-&gt;S = s2;
@@ -313,7 +340,7 @@ SharedPointer 0x7ffee0bfaa20 counter remains 2
 <p>SharedPointer利用<a href="https://en.wikipedia.org/wiki/Reference_counting">Reference counting</a>（计数引用）解决了多个对象使用同一个指针时自动销毁指针的问题，但又会发生交叉引用时不能够正确销毁指针的问题。</p>
 
 <h2 id="shared-pointer源码">shared_pointer源码</h2>
-<div class="highlight"><pre class="chroma">template&lt;class _Tp&gt;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;class _Tp&gt;
 class _LIBCPP_TEMPLATE_VIS shared_ptr
 {
 public:
@@ -615,12 +642,13 @@ private:
     template &lt;class _Up&gt; friend class _LIBCPP_TEMPLATE_VIS shared_ptr;
     template &lt;class _Up&gt; friend class _LIBCPP_TEMPLATE_VIS weak_ptr;
 };</pre></div>
-  </article>
+      </div>
 
-  <br/>
+      <footer>
+        
 
-  
-      <div id="disqus_thread"></div>
+
+        <div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -640,15 +668,26 @@ private:
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-  
-  
-</section>
+      </footer>
+    </article>
+
+    
+  </section>
 
       </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
       
-        
-<script>renderMathInElement(document.body);</script>
-      
+      [<a href="https://github.com/luizdepra/hugo-coder/tree/"></a>]
+    
+  </section>
+</footer>
+
     </main>
 
     
@@ -666,7 +705,6 @@ if (!doNotTrack) {
 </script>
 
 
-  <script src="http://zintrulcre.vip/js/app.js"></script>
-  
   </body>
+
 </html>
