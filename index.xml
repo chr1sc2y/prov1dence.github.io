@@ -28,8 +28,11 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
       <pubDate>Sun, 17 Mar 2019 11:48:06 +1100</pubDate>
       
       <guid>https://zintrulcre.vip/notebooks/</guid>
-      <description> Deep Learning
+      <description> Python
  Command
+ Deep Learning
+ Cluster and Cloud Computing
+ Natural Language Processing
   </description>
     </item>
     
@@ -84,7 +87,7 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
       <pubDate>Fri, 25 Jan 2019 17:47:38 +1100</pubDate>
       
       <guid>https://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
-      <description>分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器 private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几</description>
+      <description>C++智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器 private: int *counter;</description>
     </item>
     
     <item>
@@ -93,7 +96,7 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
       <pubDate>Sat, 19 Jan 2019 01:02:02 +1100</pubDate>
       
       <guid>https://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-2/</guid>
-      <description>分析 在使用auto_ptr的时候会发生所有权转移和内存泄漏的问题，所以我们可以对AutoPointer类稍加修改，修复这两个问题。 所有权转</description>
+      <description>C++智能指针（2）：unique_ptr 分析 在使用auto_ptr的时候会发生所有权转移和内存泄漏的问题，所以我们可以对AutoPoint</description>
     </item>
     
     <item>
