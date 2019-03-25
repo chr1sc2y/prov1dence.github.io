@@ -190,7 +190,11 @@
 <h2 id="compute">Compute</h2>
 <h3 id="compute-engine">Compute Engine</h3>
 <h4 id="start-up-jupyter-notebook">start up jupyter notebook</h4>
-<p>nohup jupyter-notebook &gt; jupyter.log &amp;</p>
+<ul>
+<li>nohup jupyter notebook &amp;</li>
+<li>nohup jupyter-notebook --no-browser --port=5213 &gt; jupyter.log &amp;</li>
+</ul>
+<h3 id="cloud-storage">Cloud Storage</h3>
 <h4 id="copy-file">copy file</h4>
 <p>gsutil cp \<source file\=""> \<target file\=""></target></p>
 <ol>
@@ -198,6 +202,8 @@
 <p>gsutil cp example gs://zintrulcre-storage</p>
 </li>
 </ol>
+<h4 id="publish-files-to-web">publish files to web</h4>
+<p>gsutil acl ch -u AllUsers:R gs://<bucket-name>/<file-name></file-name></bucket-name></p>
 <h2 id="networking">Networking</h2>
 <h3 id="network-segment">Network Segment</h3>
 <ul>
@@ -249,7 +255,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Google Cloud Platform","level":"1.3","depth":1,"next":{"title":"TensorFlow","level":"1.4","depth":1,"path":"TensorFlow.md","ref":"./TensorFlow.md","articles":[]},"previous":{"title":"Linux","level":"1.2","depth":1,"path":"Linux.md","ref":"./Linux.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Google Cloud Platform.md","mtime":"2019-03-17T09:30:10.343Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-21T06:15:24.395Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Google Cloud Platform","level":"1.3","depth":1,"next":{"title":"TensorFlow","level":"1.4","depth":1,"path":"TensorFlow.md","ref":"./TensorFlow.md","articles":[]},"previous":{"title":"Linux","level":"1.2","depth":1,"path":"Linux.md","ref":"./Linux.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Google Cloud Platform.md","mtime":"2019-03-23T10:04:15.725Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-25T05:00:36.795Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
