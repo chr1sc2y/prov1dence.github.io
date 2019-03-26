@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Google Kick Start 2019 Round A"/>
-<meta name="twitter:description" content="Training (7pts, 13pts) 解析 一道简单的数组题，简单翻译一下就是一共有N个人，从中选P个人，假设这P个人的 skill rating 分别是 rating[i], rating[i &#43; 1], ... , rating[j]，计算这P个人"/>
+<meta name="twitter:description" content="Training (7pts, 13pts) 解析 一道简单的数组题，简单翻译一下就是一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。 \[ \sum_{i}^{j} max(rating) - rating[i] \] #1 Visible"/>
 
     <meta property="og:title" content="Google Kick Start 2019 Round A" />
-<meta property="og:description" content="Training (7pts, 13pts) 解析 一道简单的数组题，简单翻译一下就是一共有N个人，从中选P个人，假设这P个人的 skill rating 分别是 rating[i], rating[i &#43; 1], ... , rating[j]，计算这P个人" />
+<meta property="og:description" content="Training (7pts, 13pts) 解析 一道简单的数组题，简单翻译一下就是一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。 \[ \sum_{i}^{j} max(rating) - rating[i] \] #1 Visible" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/kikc-start/google-kick-start-2019-round-a/" /><meta property="article:published_time" content="2019-03-26T14:25:36&#43;11:00"/>
 <meta property="article:modified_time" content="2019-03-26T14:25:36&#43;11:00"/>
@@ -123,13 +123,15 @@
 
 <h2 id="解析">解析</h2>
 
-<p>一道简单的数组题，简单翻译一下就是一共有N个人，从中选P个人，假设这P个人的 skill rating 分别是 rating[i], rating[i + 1], ... , rating[j]，计算这P个人中 skill rating 的最大值 max(rating) 与其他人的 skill rating 的差值 max(rating) - rating[i] 之和，</p>
+<p>一道简单的数组题，简单翻译一下就是一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。</p>
 
-<p><span  class="math">\( \sum_{i}^{j}\)</span>max(rating) - rating[i]。</p>
+<p><span  class="math">\[ \sum_{i}^{j} max(rating) - rating[i] \]</span></p>
 
-<h3 id="section-1">#1</h3>
+<h3 id="1-visible-test-set">#1 Visible Test Set</h3>
 
-<p>先对数组排序，然后在长度为N的有序数组中遍历长为P的所有连续子数组，计算子数组中的最大值与其他值的差值之和，<span  class="math">\( \sum_{i}^{j - 1} \)</span> rating[j] - rating[i]。</p>
+<p>先对数组排序，然后在长度为N的有序数组中遍历长为P的所有连续子数组，计算子数组中的最大值与其他值的差值之和。</p>
+
+<p><span  class="math">\[ \sum_{i}^{j - 1} rating[j] - rating[i] \]</span></p>
 
 <p>这样做时间复杂度是O(NlogN + NP)，空间复杂度是O(1)。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
@@ -160,13 +162,13 @@
     <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
 }
 </code></pre></div>
-<h3 id="section-2">#2</h3>
+<h3 id="2-hidden-test-set">#2 Hidden Test Set</h3>
 
-<p>#1的做法只能通过visible test set，因为遍历长为P的子数组浪费了太多时间，可以将上面的公式简化为</p>
+<p>第一种做法只能通过visible test set，因为遍历长为P的子数组浪费了太多时间，可以将上面的公式简化为如下。</p>
 
-<p><span  class="math">\( \sum_{i}^{j - 1} \)</span> rating[j] - rating[i] = rating[j] * (j - i - i) - <span  class="math">\( \sum_{i}^{j - 1} \)</span> rating[i]</p>
+<p><span  class="math">\[ \sum_{i}^{j - 1} rating[j] - rating[i] = rating[j] * (j - 1 - i) - \sum_{i}^{j - 1} rating[i] \]</span></p>
 
-<p>为了避免重复计算 <span  class="math">\( \sum_{i}^{j - 1} \)</span> rating[i]，可以用一个长为N+1的数组将原始数组的前缀和保存下来，这样每次直接计算 prefix[j] - prefix[i] 就能得到 <span  class="math">\( \sum_{i}^{j - 1} \)</span> rating[i] 了。</p>
+<p>为了避免重复计算 <span  class="math">\( \sum_{i}^{j - 1} rating[i] \)</span>，可以用一个长为N+1的数组将原始数组的前缀和保存下来，这样每次直接计算 prefix[j] - prefix[i] 就能得到 <span  class="math">\( \sum_{i}^{j - 1} rating[i] \)</span> 了。</p>
 
 <p>这样做时间复杂度是O(NlogN + N)，空间复杂度是O(N)。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
@@ -186,12 +188,12 @@
             std::cin &gt;&gt; rating[n];
         std::sort(rating.begin(), rating.end());
         
-        std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; prefix_sum(N + <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>);
+        std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; prefix(N + <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>);
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; N; ++i)
-            prefix_sum[i + <span style="color:#ff0;font-weight:bold">1</span>] = prefix_sum[i] + rating[i];
+            prefix[i + <span style="color:#ff0;font-weight:bold">1</span>] = prefix[i] + rating[i];
 
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = P - <span style="color:#ff0;font-weight:bold">1</span>; i &lt; N; ++i) {
-            <span style="color:#fff;font-weight:bold">int</span> sum = rating[i] * (P - <span style="color:#ff0;font-weight:bold">1</span>) - (prefix_sum[i] - prefix_sum[i - P + <span style="color:#ff0;font-weight:bold">1</span>]);
+            <span style="color:#fff;font-weight:bold">int</span> sum = rating[i] * (P - <span style="color:#ff0;font-weight:bold">1</span>) - (prefix[i] - prefix[i - P + <span style="color:#ff0;font-weight:bold">1</span>]);
             min_hour = std::max(<span style="color:#ff0;font-weight:bold">0</span>, std::min(min_hour, sum));
         }
 
