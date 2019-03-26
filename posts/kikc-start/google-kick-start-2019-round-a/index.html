@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre&#39;s Personal Website">
+    <meta name="keywords" content="ZintrulCre, Personal Website">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Google Kick Start 2019 Round A"/>
+<meta name="twitter:description" content="Training (7pts, 13pts) 解析 一道简单的数组题，简单翻译一下就是一共有N个人，从中选P个人，假设这P个人的 skill rating 分别是 rating[i], rating[i &#43; 1], ... , rating[j]，计算这P个人"/>
+
+    <meta property="og:title" content="Google Kick Start 2019 Round A" />
+<meta property="og:description" content="Training (7pts, 13pts) 解析 一道简单的数组题，简单翻译一下就是一共有N个人，从中选P个人，假设这P个人的 skill rating 分别是 rating[i], rating[i &#43; 1], ... , rating[j]，计算这P个人" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/kikc-start/google-kick-start-2019-round-a/" /><meta property="article:published_time" content="2019-03-26T14:25:36&#43;11:00"/>
+<meta property="article:modified_time" content="2019-03-26T14:25:36&#43;11:00"/>
+
+
+    
+      <base href="https://zintrulcre.vip/posts/kikc-start/google-kick-start-2019-round-a/">
+    
+    <title>
+  Google Kick Start 2019 Round A · ZintrulCre
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/kikc-start/google-kick-start-2019-round-a/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.53" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      ZintrulCre
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/notebooks/">Notebooks</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/bookmarks/">Bookmarks</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Google Kick Start 2019 Round A</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-03-26T14:25:36&#43;11:00'>
+                March 26, 2019
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/kick-start/">Kick Start</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        <h1 id="training-7pts-13ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050e0100000000000698d6"><a href="https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01/00000000000698d6">Training (7pts, 13pts)</a></h1>
+
+<h2 id="解析">解析</h2>
+
+<p>一道简单的数组题，简单翻译一下就是一共有N个人，从中选P个人，假设这P个人的 skill rating 分别是 rating[i], rating[i + 1], ... , rating[j]，计算这P个人中 skill rating 的最大值 max(rating) 与其他人的 skill rating 的差值 max(rating) - rating[i] 之和，</p>
+
+<p><span  class="math">\( \sum_{i}^{j}\)</span>max(rating) - rating[i]。</p>
+
+<h3 id="section-1">#1</h3>
+
+<p>先对数组排序，然后在长度为N的有序数组中遍历长为P的所有连续子数组，计算子数组中的最大值与其他值的差值之和，<span  class="math">\( \sum_{i}^{j - 1} \)</span> rating[j] - rating[i]。</p>
+
+<p>这样做时间复杂度是O(NlogN + NP)，空间复杂度是O(1)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">int</span> main() {
+    <span style="color:#fff;font-weight:bold">int</span> c = <span style="color:#ff0;font-weight:bold">1</span>;
+    <span style="color:#fff;font-weight:bold">int</span> T;
+    std::cin &gt;&gt; T;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> t = <span style="color:#ff0;font-weight:bold">0</span>; t &lt; T; ++t) {
+        <span style="color:#fff;font-weight:bold">int</span> N, P;
+        <span style="color:#fff;font-weight:bold">int</span> min_hour = <span style="color:#ff0;font-weight:bold">1000000000</span>;
+        std::cin &gt;&gt; N &gt;&gt; P;
+        std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; rating(N, <span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> n = <span style="color:#ff0;font-weight:bold">0</span>; n &lt; N; ++n)
+            std::cin &gt;&gt; rating[n];
+        std::sort(rating.begin(), rating.end());
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = P - <span style="color:#ff0;font-weight:bold">1</span>; i &lt; N; ++i) {
+            <span style="color:#fff;font-weight:bold">int</span> sum = <span style="color:#ff0;font-weight:bold">0</span>;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i - P + <span style="color:#ff0;font-weight:bold">1</span>; j &lt; i; ++j)
+                sum += rating[i] - rating[j];
+            min_hour = std::min(min_hour, sum);
+        }
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> + std::to_string(c) + <span style="color:#0ff;font-weight:bold">&#34;: &#34;</span> + std::to_string(min_hour) &lt;&lt; std::endl;
+        ++c;
+    }
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+</code></pre></div>
+<h3 id="section-2">#2</h3>
+
+<p>#1的做法只能通过visible test set，因为遍历长为P的子数组浪费了太多时间，可以将上面的公式简化为</p>
+
+<p><span  class="math">\( \sum_{i}^{j - 1} \)</span> rating[j] - rating[i] = rating[j] * (j - i - i) - <span  class="math">\( \sum_{i}^{j - 1} \)</span> rating[i]</p>
+
+<p>为了避免重复计算 <span  class="math">\( \sum_{i}^{j - 1} \)</span> rating[i]，可以用一个长为N+1的数组将原始数组的前缀和保存下来，这样每次直接计算 prefix[j] - prefix[i] 就能得到 <span  class="math">\( \sum_{i}^{j - 1} \)</span> rating[i] 了。</p>
+
+<p>这样做时间复杂度是O(NlogN + N)，空间复杂度是O(N)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">int</span> main() {
+    <span style="color:#fff;font-weight:bold">int</span> c = <span style="color:#ff0;font-weight:bold">1</span>;
+    <span style="color:#fff;font-weight:bold">int</span> T;
+    std::cin &gt;&gt; T;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> t = <span style="color:#ff0;font-weight:bold">0</span>; t &lt; T; ++t) {
+        <span style="color:#fff;font-weight:bold">int</span> N, P;
+        <span style="color:#fff;font-weight:bold">int</span> min_hour = <span style="color:#ff0;font-weight:bold">1000000000</span>;
+        std::cin &gt;&gt; N &gt;&gt; P;
+        std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; rating(N, <span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> n = <span style="color:#ff0;font-weight:bold">0</span>; n &lt; N; ++n)
+            std::cin &gt;&gt; rating[n];
+        std::sort(rating.begin(), rating.end());
+        
+        std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; prefix_sum(N + <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; N; ++i)
+            prefix_sum[i + <span style="color:#ff0;font-weight:bold">1</span>] = prefix_sum[i] + rating[i];
+
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = P - <span style="color:#ff0;font-weight:bold">1</span>; i &lt; N; ++i) {
+            <span style="color:#fff;font-weight:bold">int</span> sum = rating[i] * (P - <span style="color:#ff0;font-weight:bold">1</span>) - (prefix_sum[i] - prefix_sum[i - P + <span style="color:#ff0;font-weight:bold">1</span>]);
+            min_hour = std::max(<span style="color:#ff0;font-weight:bold">0</span>, std::min(min_hour, sum));
+        }
+
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> + std::to_string(c) + <span style="color:#0ff;font-weight:bold">&#34;: &#34;</span> + std::to_string(min_hour) &lt;&lt; std::endl;
+        ++c;
+    }
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+</code></pre></div>
+<h1 id="parcels-15pts-20ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050e01000000000006987d"><a href="https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01/000000000006987d">Parcels (15pts, 20pts)</a></h1>
+
+<h1 id="contention-18pts-27ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050e010000000000069881"><a href="https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01/0000000000069881">Contention (18pts, 27pts)</a></h1>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

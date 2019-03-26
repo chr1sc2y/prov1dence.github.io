@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 20 Mar 2019 09:55:04 +1100</lastBuildDate>
+    <lastBuildDate>Tue, 26 Mar 2019 14:25:36 +1100</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Google Kick Start 2019 Round A</title>
+      <link>https://zintrulcre.vip/posts/kikc-start/google-kick-start-2019-round-a/</link>
+      <pubDate>Tue, 26 Mar 2019 14:25:36 +1100</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/kikc-start/google-kick-start-2019-round-a/</guid>
+      <description>Training (7pts, 13pts) 解析 一道简单的数组题，简单翻译一下就是一共有N个人，从中选P个人，假设这P个人的 skill rating 分别是 rating[i], rating[i + 1], ... , rating[j]，计算这P个人</description>
+    </item>
     
     <item>
       <title>Methods to Prevent Overfitting in Deep Learning</title>
@@ -92,15 +101,6 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
       
       <guid>https://zintrulcre.vip/posts/c&#43;&#43;-smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
       <description>C++智能指针（1）：auto_ptr 分析 C++中经常会出现因为没有delete指针而造成的内存泄漏，例如有下面一个类 class Obj { public: Obj() { std::cout &amp;lt;&amp;lt; &amp;#34;Construct&amp;#34; &amp;lt;&amp;lt; std::endl;</description>
-    </item>
-    
-    <item>
-      <title>LeetCode Archiver(2)：获取题目信息</title>
-      <link>https://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver2/</link>
-      <pubDate>Fri, 21 Dec 2018 15:06:01 +1100</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver2/</guid>
-      <description>创建爬虫 在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用genspider命令新建一个爬虫： cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中Q</description>
     </item>
     
   </channel>
