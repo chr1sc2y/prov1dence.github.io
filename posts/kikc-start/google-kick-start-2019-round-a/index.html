@@ -217,7 +217,7 @@
 
 <p>第一步对于每个已经存在的 delivery office，计算出其距离所有点的曼哈顿距离，得到此时的最大运输时间 max_time，时间复杂度是O(RC^2)；</p>
 
-<p>第二部依次遍历所有可能的点，计算出在该点添加 delivery office 后的图中的最大运输时间 curr_max_time，与 max_time 比较取最小值，时间复杂度是O(RC^2)。</p>
+<p>第二步依次遍历所有可能的点，计算出在该点添加 delivery office 后的图中的最大运输时间 curr_max_time，与 max_time 比较取最小值，时间复杂度是O(RC^2)。</p>
 
 <p>这样做时间复杂度是O(RC^2)，空间复杂度是O(RC)。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
