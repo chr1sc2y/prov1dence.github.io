@@ -7,18 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 26 Mar 2019 14:25:36 +1100</lastBuildDate>
+    <lastBuildDate>Sat, 06 Apr 2019 13:40:27 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Google Kick Start 2019 Round A</title>
-      <link>https://zintrulcre.vip/posts/kick-start/google-kick-start-2019-round-a/</link>
+      <title>Code Jam 2019 Qualification Round</title>
+      <link>https://zintrulcre.vip/posts/code-jam/2019-qualification-round/</link>
+      <pubDate>Sat, 06 Apr 2019 13:40:27 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/code-jam/2019-qualification-round/</guid>
+      <description>Code Jam 2019 Qualification Round Foregone Solution (6pts, 10pts, 1pts) 将一个带有数字4的数拆分为两个不带数字4的数。 Solution: Construction 输入的数一定带有数字4，对于每一位上的数字4，我们可以将其拆分为2+2</description>
+    </item>
+    
+    <item>
+      <title>Kick Start 2019 Round A</title>
+      <link>https://zintrulcre.vip/posts/kick-start/2019-round-a/</link>
       <pubDate>Tue, 26 Mar 2019 14:25:36 +1100</pubDate>
       
-      <guid>https://zintrulcre.vip/posts/kick-start/google-kick-start-2019-round-a/</guid>
-      <description>Google Kick Start 2019 Round A Training (7pts, 13pts) 解析 一道常见的数组题。简单翻译一下就是一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。 \[ \sum_{i}^{j}</description>
+      <guid>https://zintrulcre.vip/posts/kick-start/2019-round-a/</guid>
+      <description>Kick Start 2019 Round A Training (7pts, 13pts) 一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。 \[ \sum_{i}^{j} max(rating) - rating[i] \] Solution: Sort + Prefix Sum 先对数组排序，然后在长</description>
     </item>
     
     <item>
@@ -97,15 +106,6 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
       
       <guid>https://zintrulcre.vip/posts/c&#43;&#43;/c&#43;&#43;-smart-pointer-3/</guid>
       <description>C++智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器 private: int *counter;</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;智能指针（2）：unique_ptr</title>
-      <link>https://zintrulcre.vip/posts/c&#43;&#43;/c&#43;&#43;-smart-pointer-2/</link>
-      <pubDate>Sat, 19 Jan 2019 01:02:02 +1100</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/c&#43;&#43;-smart-pointer-2/</guid>
-      <description>C++智能指针（2）：unique_ptr 分析 在使用auto_ptr的时候会发生所有权转移和内存泄漏的问题，所以我们可以对AutoPoint</description>
     </item>
     
   </channel>

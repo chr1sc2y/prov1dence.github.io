@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre&#39;s Personal Website">
+    <meta name="keywords" content="ZintrulCre, Personal Website">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kick Start 2019 Round A"/>
+<meta name="twitter:description" content="Kick Start 2019 Round A Training (7pts, 13pts) 一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。 \[ \sum_{i}^{j} max(rating) - rating[i] \] Solution: Sort &#43; Prefix Sum 先对数组排序，然后在长"/>
+
+    <meta property="og:title" content="Kick Start 2019 Round A" />
+<meta property="og:description" content="Kick Start 2019 Round A Training (7pts, 13pts) 一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。 \[ \sum_{i}^{j} max(rating) - rating[i] \] Solution: Sort &#43; Prefix Sum 先对数组排序，然后在长" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/kick-start/2019-round-a/" /><meta property="article:published_time" content="2019-03-26T14:25:36&#43;11:00"/>
+<meta property="article:modified_time" content="2019-03-26T14:25:36&#43;11:00"/>
+
+
+    
+      <base href="https://zintrulcre.vip/posts/kick-start/2019-round-a/">
+    
+    <title>
+  Kick Start 2019 Round A · ZintrulCre
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/kick-start/2019-round-a/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.53" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      ZintrulCre
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/notebooks/">Notebooks</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/bookmarks/">Bookmarks</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Kick Start 2019 Round A</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-03-26T14:25:36&#43;11:00'>
+                March 26, 2019
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/kick-start/">Kick Start</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        <h1 id="kick-start-2019-round-ahttpscodingcompetitionswithgooglecomkickstartround0000000000050e01"><a href="https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01">Kick Start 2019 Round A</a></h1>
+
+<h2 id="training-7pts-13ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050e0100000000000698d6"><a href="https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01/00000000000698d6">Training (7pts, 13pts)</a></h2>
+
+<p>一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。</p>
+
+<p><span  class="math">\[ \sum_{i}^{j} max(rating) - rating[i] \]</span></p>
+
+<h3 id="solution-sort--prefix-sum">Solution: Sort + Prefix Sum</h3>
+
+<p>先对数组排序，然后在长度为N的有序数组中遍历长为P的所有连续子数组，计算子数组中的最大值与其他值的差值之和。</p>
+
+<p><span  class="math">\[ \sum_{i}^{j - 1} rating[j] - rating[i] \]</span></p>
+
+<p>如果直接遍历长为P的子数组会浪费很多时间，可以将上面的公式简化为如下。</p>
+
+<p><span  class="math">\[ \sum_{i}^{j - 1} rating[j] - rating[i] = rating[j] * (j - 1 - i) - \sum_{i}^{j - 1} rating[i] \]</span></p>
+
+<p>为了避免重复计算 <span  class="math">\( \sum_{i}^{j - 1} rating[i] \)</span>，可以用一个长为N+1的数组将原始数组的前缀和保存下来，这样每次直接计算 prefix[j] - prefix[i] 就能得到 <span  class="math">\( \sum_{i}^{j - 1} rating[i] \)</span> 了，时间复杂度是O(N)。</p>
+
+<ul>
+<li>时间复杂度：O(NlogN)</li>
+<li>空间复杂度：O(N)</li>
+</ul>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">int</span> main() {
+    <span style="color:#fff;font-weight:bold">int</span> c = <span style="color:#ff0;font-weight:bold">1</span>;
+    <span style="color:#fff;font-weight:bold">int</span> T;
+    std::cin &gt;&gt; T;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> t = <span style="color:#ff0;font-weight:bold">0</span>; t &lt; T; ++t) {
+        <span style="color:#fff;font-weight:bold">int</span> N, P;
+        <span style="color:#fff;font-weight:bold">int</span> min_hour = <span style="color:#ff0;font-weight:bold">1000000000</span>;
+        std::cin &gt;&gt; N &gt;&gt; P;
+        std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; rating(N, <span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> n = <span style="color:#ff0;font-weight:bold">0</span>; n &lt; N; ++n)
+            std::cin &gt;&gt; rating[n];
+        std::sort(rating.begin(), rating.end());
+        
+        std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; prefix(N + <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; N; ++i)
+            prefix[i + <span style="color:#ff0;font-weight:bold">1</span>] = prefix[i] + rating[i];
+
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = P - <span style="color:#ff0;font-weight:bold">1</span>; i &lt; N; ++i) {
+            <span style="color:#fff;font-weight:bold">int</span> sum = rating[i] * (P - <span style="color:#ff0;font-weight:bold">1</span>) - (prefix[i] - prefix[i - P + <span style="color:#ff0;font-weight:bold">1</span>]);
+            min_hour = std::max(<span style="color:#ff0;font-weight:bold">0</span>, std::min(min_hour, sum));
+        }
+
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> + std::to_string(c) + <span style="color:#0ff;font-weight:bold">&#34;: &#34;</span> + std::to_string(min_hour) &lt;&lt; std::endl;
+        ++c;
+    }
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+</code></pre></div>
+<h2 id="parcels-15pts-20ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050e01000000000006987d"><a href="https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01/000000000006987d">Parcels (15pts, 20pts)</a></h2>
+
+<p>一道中等难度的BFS，DFS，二分查找的题。需要先计算出图中的曼哈顿距离，再找到一个最优的位置使得其他点离这些点的距离最短。</p>
+
+<h3 id="solution-1-manhattan-distance">Solution #1: Manhattan Distance</h3>
+
+<p>曼哈顿距离可以用公式 <span  class="math">\( |r1 - r2| + |c1 - c2| \)</span> 计算得出，因此可以直接使用两层循环来计算出曼哈顿距离。</p>
+
+<p>第一步对于每个已经存在的 delivery office，计算出其距离所有点的曼哈顿距离，得到此时的最大运输时间 max_time，时间复杂度是O(RC^2)；</p>
+
+<p>第二步依次遍历所有可能的点，计算出在该点添加 delivery office 后的图中的最大运输时间 curr_max_time，与 max_time 比较取最小值，时间复杂度是O(RC^2)。</p>
+
+<ul>
+<li>时间复杂度：O(RC^2)</li>
+<li>空间复杂度：O(RC)</li>
+</ul>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;limits.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">int</span> main() {
+    <span style="color:#fff;font-weight:bold">int</span> num_case = <span style="color:#ff0;font-weight:bold">1</span>;
+    <span style="color:#fff;font-weight:bold">int</span> T;
+    std::cin &gt;&gt; T;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> t = <span style="color:#ff0;font-weight:bold">0</span>; t &lt; T; ++t) {
+        <span style="color:#fff;font-weight:bold">int</span> R, C;
+        std::cin &gt;&gt; R &gt;&gt; C;
+        std::vector&lt;std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; grid(R, std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(C, INT_MAX));
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; R; ++i) {
+            std::string temp_in;
+            std::cin &gt;&gt; temp_in;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; C; ++j) {
+                <span style="color:#fff;font-weight:bold">char</span> &amp;temp = temp_in[j];
+                <span style="color:#fff;font-weight:bold">if</span> (temp == <span style="color:#0ff;font-weight:bold">&#39;1&#39;</span>) {
+                    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> x = <span style="color:#ff0;font-weight:bold">0</span>; x &lt; R; ++x) {
+                        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> y = <span style="color:#ff0;font-weight:bold">0</span>; y &lt; C; ++y) {
+                            grid[x][y] = std::min(grid[x][y], abs(i - x) + abs(j - y));
+                        }
+                    }
+                }
+            }
+        }
+
+        <span style="color:#fff;font-weight:bold">int</span> max_time = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; R; ++i) {
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; C; ++j) {
+                max_time = std::max(max_time, grid[i][j]);
+            }
+        }
+
+        <span style="color:#fff;font-weight:bold">if</span> (max_time == <span style="color:#ff0;font-weight:bold">0</span>) {
+            std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> + std::to_string(num_case) + <span style="color:#0ff;font-weight:bold">&#34;: 0&#34;</span> &lt;&lt; std::endl;
+            ++num_case;
+            <span style="color:#fff;font-weight:bold">continue</span>;
+        }
+
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; R; ++i) {
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; C; ++j) {
+                <span style="color:#fff;font-weight:bold">if</span> (grid[i][j] != <span style="color:#ff0;font-weight:bold">0</span>) {
+                    <span style="color:#fff;font-weight:bold">int</span> curr_max_time = <span style="color:#ff0;font-weight:bold">0</span>;
+                    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> x = <span style="color:#ff0;font-weight:bold">0</span>; x &lt; R; ++x) {
+                        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> y = <span style="color:#ff0;font-weight:bold">0</span>; y &lt; C; ++y) {
+                            curr_max_time = std::max(curr_max_time, std::min(grid[x][y], abs(i - x) + abs(j - y)));
+                        }
+                    }
+                    max_time = std::min(max_time, curr_max_time);
+                }
+            }
+        }
+
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> + std::to_string(num_case) + <span style="color:#0ff;font-weight:bold">&#34;: &#34;</span> + std::to_string(max_time) &lt;&lt; std::endl;
+        ++num_case;
+    }
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+</code></pre></div>
+<h3 id="solution-2-breadthfirstsearch">Solution #2: Breadth-First-Search</h3>
+
+<p>对于第一步来说，可以将所有已经存在的 delivery office 保存在一个队列中，然后使用BFS直接计算出最短的曼哈顿距离，得到此时的最大运输时间 max_time，时间复杂度是O(RC)；</p>
+
+<p>第二步与第一步类似，也可以通过BFS计算出在所有可能的点增加 delivery office 后的最大运输时间，时间复杂度是O(RC^2)。</p>
+
+<ul>
+<li>时间复杂度：O(RC^2)</li>
+<li>空间复杂度：O(RC)</li>
+</ul>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;limits.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">int</span> dir_x[<span style="color:#ff0;font-weight:bold">4</span>] = {-<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>};
+<span style="color:#fff;font-weight:bold">int</span> dir_y[<span style="color:#ff0;font-weight:bold">4</span>] = {<span style="color:#ff0;font-weight:bold">0</span>, -<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">1</span>};
+
+<span style="color:#fff;font-weight:bold">int</span> BFS0(<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span> &amp;R, <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span> &amp;C, <span style="color:#fff;font-weight:bold">int</span> x, <span style="color:#fff;font-weight:bold">int</span> y,
+         std::vector&lt;std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; &amp;grid, std::queue&lt;std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;&gt; &amp;que) {
+    <span style="color:#fff;font-weight:bold">int</span> max_time = <span style="color:#ff0;font-weight:bold">0</span>;
+    <span style="color:#fff;font-weight:bold">int</span> size = que.size(), degree = <span style="color:#ff0;font-weight:bold">1</span>;
+    <span style="color:#fff;font-weight:bold">while</span> (!que.empty()) {
+        x = que.front().first, y = que.front().second;
+        que.pop();
+        max_time = std::max(max_time, grid[x][y]);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; <span style="color:#ff0;font-weight:bold">4</span>; ++i) {
+            <span style="color:#fff;font-weight:bold">int</span> new_x = x + dir_x[i], new_y = y + dir_y[i];
+            <span style="color:#fff;font-weight:bold">if</span> (new_x &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; new_x &lt; R &amp;&amp; new_y &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; new_y &lt; C &amp;&amp; grid[new_x][new_y] == -<span style="color:#ff0;font-weight:bold">1</span>) {
+                que.push(std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;(new_x, new_y));
+                grid[new_x][new_y] = degree;
+            }
+        }
+        --size;
+        <span style="color:#fff;font-weight:bold">if</span> (size == <span style="color:#ff0;font-weight:bold">0</span>) {
+            size = que.size();
+            ++degree;
+        }
+    }
+    <span style="color:#fff;font-weight:bold">return</span> max_time;
+}
+
+<span style="color:#fff;font-weight:bold">int</span> BFS1(<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span> &amp;R, <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span> &amp;C, <span style="color:#fff;font-weight:bold">int</span> x, <span style="color:#fff;font-weight:bold">int</span> y,
+         std::vector&lt;std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; &amp;grid, std::queue&lt;std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;&gt; &amp;que) {
+    std::vector&lt;std::vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; visited(R, std::vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;(C, <span style="color:#fff;font-weight:bold">false</span>));
+    visited[x][y] = <span style="color:#fff;font-weight:bold">true</span>;
+    <span style="color:#fff;font-weight:bold">int</span> max_time = INT_MIN;
+    <span style="color:#fff;font-weight:bold">int</span> size = <span style="color:#ff0;font-weight:bold">1</span>, degree = <span style="color:#ff0;font-weight:bold">0</span>;
+    <span style="color:#fff;font-weight:bold">while</span> (!que.empty()) {
+        x = que.front().first, y = que.front().second;
+        que.pop();
+        max_time = std::max(max_time, std::min(grid[x][y], degree));
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; <span style="color:#ff0;font-weight:bold">4</span>; ++i) {
+            <span style="color:#fff;font-weight:bold">int</span> new_x = x + dir_x[i], new_y = y + dir_y[i];
+            <span style="color:#fff;font-weight:bold">if</span> (new_x &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; new_x &lt; R &amp;&amp; new_y &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; new_y &lt; C &amp;&amp; !visited[new_x][new_y]) {
+                que.push(std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;(new_x, new_y));
+                visited[new_x][new_y] = <span style="color:#fff;font-weight:bold">true</span>;
+            }
+        }
+        --size;
+        <span style="color:#fff;font-weight:bold">if</span> (size == <span style="color:#ff0;font-weight:bold">0</span>) {
+            size = que.size();
+            ++degree;
+        }
+    }
+    <span style="color:#fff;font-weight:bold">return</span> max_time;
+}
+
+<span style="color:#fff;font-weight:bold">int</span> main() {
+    <span style="color:#fff;font-weight:bold">int</span> num_case = <span style="color:#ff0;font-weight:bold">1</span>;
+    <span style="color:#fff;font-weight:bold">int</span> T;
+    std::cin &gt;&gt; T;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> t = <span style="color:#ff0;font-weight:bold">0</span>; t &lt; T; ++t) {
+        <span style="color:#fff;font-weight:bold">int</span> R, C;
+        std::cin &gt;&gt; R &gt;&gt; C;
+        std::vector&lt;std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; grid(R, std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(C, -<span style="color:#ff0;font-weight:bold">1</span>));
+        std::queue&lt;std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;&gt; que;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; R; ++i) {
+            std::string temp_in;
+            std::cin &gt;&gt; temp_in;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; C; ++j) {
+                <span style="color:#fff;font-weight:bold">char</span> &amp;temp = temp_in[j];
+                <span style="color:#fff;font-weight:bold">if</span> (temp == <span style="color:#0ff;font-weight:bold">&#39;1&#39;</span>) {
+                    que.push(std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;(i, j));
+                    grid[i][j] = <span style="color:#ff0;font-weight:bold">0</span>;
+                }
+            }
+        }
+        <span style="color:#fff;font-weight:bold">int</span> size = que.size();
+        <span style="color:#fff;font-weight:bold">if</span> (size == R * C) {
+            std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> + std::to_string(num_case) + <span style="color:#0ff;font-weight:bold">&#34;: 0&#34;</span> &lt;&lt; std::endl;
+            ++num_case;
+            <span style="color:#fff;font-weight:bold">continue</span>;
+        }
+
+        <span style="color:#007f7f">// BFS for existing delivery offices
+</span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">int</span> max_time = BFS0(R, C, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>, grid, que);
+
+        <span style="color:#007f7f">// BFS for all possible positions
+</span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; R; ++i) {
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; C; ++j) {
+                <span style="color:#fff;font-weight:bold">if</span> (grid[i][j] != <span style="color:#ff0;font-weight:bold">0</span>) {
+                    que = std::queue&lt;std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;&gt;();
+                    que.push(std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;(i, j));
+                    <span style="color:#fff;font-weight:bold">int</span> curr_max_time = BFS1(R, C, i, j, grid, que);
+                    max_time = std::min(max_time, curr_max_time);
+                }
+            }
+        }
+
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> + std::to_string(num_case) + <span style="color:#0ff;font-weight:bold">&#34;: &#34;</span> + std::to_string(max_time) &lt;&lt; std::endl;
+        ++num_case;
+    }
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+</code></pre></div>
+<h3 id="solution-3-binary-search">Solution #3: Binary Search</h3>
+
+<p>前面的方法对每个可能的点都进行了搜索，时间复杂度达到了平方级别，因此不能通过 Hidden Test Set。因为题目需要求满足要求的最小值，自然容易想到使用二分法来求下界。</p>
+
+<p>对于一个给定的mid值，如果能够添加新的 delivery office 使得最大运输时间小于等于mid，那么可能有小于 mid 的值 (1 ... k-1) 使得结论成立；如果给定的mid值不能使结论成立，那么大于等于 mid 的所有值 (k ... INT_MAX) 都不能使结论成立。</p>
+
+<p>为了确认图中的点到 delivery office 的最短距离小于 mid，可以将图旋转45度，使用 i + j 和 i - j 分别作为左下和右上两条对角线的值来计算将 mid 作为最大运输时间时能否完成运输。</p>
+
+<p><span  class="math">\[ distance((x1，y1)，(x2，y2))= \max (abs(x1 + y1  - (x2 + y2))，abs(x1  -  y1  - (x2  -  y2))) \]</span></p>
+
+<ul>
+<li>时间复杂度：O(RClog(R+C))</li>
+<li>空间复杂度：O(RC)</li>
+</ul>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;limits.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">int</span> dir_x[<span style="color:#ff0;font-weight:bold">4</span>] = {-<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>};
+<span style="color:#fff;font-weight:bold">int</span> dir_y[<span style="color:#ff0;font-weight:bold">4</span>] = {<span style="color:#ff0;font-weight:bold">0</span>, -<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">1</span>};
+<span style="color:#fff;font-weight:bold">int</span> R, C;
+std::vector&lt;std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; grid;
+
+<span style="color:#fff;font-weight:bold">int</span> BFS(<span style="color:#fff;font-weight:bold">int</span> x, <span style="color:#fff;font-weight:bold">int</span> y, std::queue&lt;std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;&gt; &amp;que) {
+    <span style="color:#fff;font-weight:bold">int</span> max_time = <span style="color:#ff0;font-weight:bold">0</span>;
+    <span style="color:#fff;font-weight:bold">int</span> size = que.size(), time = <span style="color:#ff0;font-weight:bold">1</span>;
+    <span style="color:#fff;font-weight:bold">while</span> (!que.empty()) {
+        x = que.front().first, y = que.front().second;
+        que.pop();
+        max_time = std::max(max_time, grid[x][y]);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; <span style="color:#ff0;font-weight:bold">4</span>; ++i) {
+            <span style="color:#fff;font-weight:bold">int</span> new_x = x + dir_x[i], new_y = y + dir_y[i];
+            <span style="color:#fff;font-weight:bold">if</span> (new_x &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; new_x &lt; R &amp;&amp; new_y &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; new_y &lt; C &amp;&amp; grid[new_x][new_y] == -<span style="color:#ff0;font-weight:bold">1</span>) {
+                que.push(std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;(new_x, new_y));
+                grid[new_x][new_y] = time;
+            }
+        }
+        --size;
+        <span style="color:#fff;font-weight:bold">if</span> (size == <span style="color:#ff0;font-weight:bold">0</span>) {
+            size = que.size();
+            ++time;
+        }
+    }
+    <span style="color:#fff;font-weight:bold">return</span> max_time;
+}
+
+<span style="color:#fff;font-weight:bold">bool</span> CanDeliver(<span style="color:#fff;font-weight:bold">int</span> &amp;max_time) {
+    <span style="color:#fff;font-weight:bold">bool</span> deliver = <span style="color:#fff;font-weight:bold">true</span>;
+    <span style="color:#fff;font-weight:bold">int</span> left_low = INT_MAX, left_high = INT_MIN, right_low = INT_MAX, right_high = INT_MIN;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; R; ++i) {
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; C; ++j) {
+            <span style="color:#fff;font-weight:bold">if</span> (grid[i][j] &gt; max_time) {
+                deliver = <span style="color:#fff;font-weight:bold">false</span>;
+                left_low = std::min(left_low, i + j + max_time);
+                left_high = std::max(left_high, i + j - max_time);
+                right_low = std::min(right_low, i - j + max_time);
+                right_high = std::max(right_high, i - j - max_time);
+            }
+        }
+    }
+    <span style="color:#fff;font-weight:bold">if</span> (deliver)
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; R; ++i) {
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; C; ++j) {
+            <span style="color:#fff;font-weight:bold">int</span> left = i + j, right = i - j;
+            <span style="color:#fff;font-weight:bold">if</span> (left_high &lt;= left &amp;&amp; left &lt;= left_low &amp;&amp; right_high &lt;= right &amp;&amp; right &lt;= right_low)
+                <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
+        }
+    }
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+}
+
+<span style="color:#fff;font-weight:bold">int</span> main() {
+    <span style="color:#fff;font-weight:bold">int</span> num_case = <span style="color:#ff0;font-weight:bold">1</span>;
+    <span style="color:#fff;font-weight:bold">int</span> T;
+    std::cin &gt;&gt; T;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> t = <span style="color:#ff0;font-weight:bold">0</span>; t &lt; T; ++t) {
+        std::cin &gt;&gt; R &gt;&gt; C;
+        grid = std::vector&lt;std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt;(R, std::vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(C, -<span style="color:#ff0;font-weight:bold">1</span>));
+        std::queue&lt;std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;&gt; que;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; R; ++i) {
+            std::string temp_in;
+            std::cin &gt;&gt; temp_in;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; C; ++j) {
+                <span style="color:#fff;font-weight:bold">char</span> &amp;temp = temp_in[j];
+                <span style="color:#fff;font-weight:bold">if</span> (temp == <span style="color:#0ff;font-weight:bold">&#39;1&#39;</span>) {
+                    que.push(std::pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;(i, j));
+                    grid[i][j] = <span style="color:#ff0;font-weight:bold">0</span>;
+                }
+            }
+        }
+        <span style="color:#fff;font-weight:bold">int</span> size = que.size();
+        <span style="color:#fff;font-weight:bold">if</span> (size == R * C) {
+            std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> + std::to_string(num_case) + <span style="color:#0ff;font-weight:bold">&#34;: 0&#34;</span> &lt;&lt; std::endl;
+            ++num_case;
+            <span style="color:#fff;font-weight:bold">continue</span>;
+        }
+
+        <span style="color:#007f7f">// BFS
+</span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">int</span> max_time = BFS(<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>, que);
+
+        <span style="color:#007f7f">// Binary Search
+</span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">int</span> lowest_time = <span style="color:#ff0;font-weight:bold">0</span>, highest_time = INT_MAX;
+        <span style="color:#fff;font-weight:bold">while</span> (lowest_time &lt; highest_time) {
+            <span style="color:#fff;font-weight:bold">int</span> mid_time = lowest_time + ((highest_time - lowest_time) &gt;&gt; <span style="color:#ff0;font-weight:bold">1</span>);
+            <span style="color:#fff;font-weight:bold">if</span> (CanDeliver(mid_time))
+                highest_time = mid_time;
+            <span style="color:#fff;font-weight:bold">else</span>
+                lowest_time = mid_time + <span style="color:#ff0;font-weight:bold">1</span>;
+        }
+
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> + std::to_string(num_case) + <span style="color:#0ff;font-weight:bold">&#34;: &#34;</span> + std::to_string(highest_time) &lt;&lt; std::endl;
+        ++num_case;
+    }
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+</code></pre></div>
+<h2 id="contention-18pts-27ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050e010000000000069881"><a href="https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01/0000000000069881">Contention (18pts, 27pts)</a></h2>
+
+<p>// TODO</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

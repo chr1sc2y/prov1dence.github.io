@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre&#39;s Personal Website">
+    <meta name="keywords" content="ZintrulCre, Personal Website">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Code Jam 2019 Qualification Round"/>
+<meta name="twitter:description" content="Code Jam 2019 Qualification Round Foregone Solution (6pts, 10pts, 1pts) 将一个带有数字4的数拆分为两个不带数字4的数。 Solution: Construction 输入的数一定带有数字4，对于每一位上的数字4，我们可以将其拆分为2&#43;2"/>
+
+    <meta property="og:title" content="Code Jam 2019 Qualification Round" />
+<meta property="og:description" content="Code Jam 2019 Qualification Round Foregone Solution (6pts, 10pts, 1pts) 将一个带有数字4的数拆分为两个不带数字4的数。 Solution: Construction 输入的数一定带有数字4，对于每一位上的数字4，我们可以将其拆分为2&#43;2" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/code-jam/2019-qualification-round/" /><meta property="article:published_time" content="2019-04-06T13:40:27&#43;10:00"/>
+<meta property="article:modified_time" content="2019-04-06T13:40:27&#43;10:00"/>
+
+
+    
+      <base href="https://zintrulcre.vip/posts/code-jam/2019-qualification-round/">
+    
+    <title>
+  Code Jam 2019 Qualification Round · ZintrulCre
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/code-jam/2019-qualification-round/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.53" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      ZintrulCre
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/notebooks/">Notebooks</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/bookmarks/">Bookmarks</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Code Jam 2019 Qualification Round</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-04-06T13:40:27&#43;10:00'>
+                April 6, 2019
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/code-jam/">Code Jam</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        
+
+<h1 id="code-jam-2019-qualification-round-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051705"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705">Code Jam 2019 Qualification Round</a></h1>
+
+<h2 id="foregone-solution-6pts-10pts-1pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051705-0000000000088231"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/0000000000088231">Foregone Solution (6pts, 10pts, 1pts)</a></h2>
+
+<p>将一个带有数字4的数拆分为两个不带数字4的数。</p>
+
+<h3 id="solution-construction">Solution: Construction</h3>
+
+<p>输入的数一定带有数字4，对于每一位上的数字4，我们可以将其拆分为2+2（或1+3）的两个数。输入数据最大是10的100次方，所以我们可以将其作为字符串处理。</p>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#007f7f">// C++
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">using</span> <span style="color:#fff;font-weight:bold">namespace</span> std;
+
+<span style="color:#fff;font-weight:bold">int</span> main() {
+    <span style="color:#fff;font-weight:bold">int</span> T;
+    cin &gt;&gt; T;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> t = <span style="color:#ff0;font-weight:bold">1</span>; t &lt;= T; ++t) {
+        string N;
+        cin &gt;&gt; N;
+        string a, b;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> c:N) {
+            a += c == <span style="color:#0ff;font-weight:bold">&#39;4&#39;</span> ? <span style="color:#0ff;font-weight:bold">&#39;2&#39;</span> : c;
+            b += c == <span style="color:#0ff;font-weight:bold">&#39;4&#39;</span> ? <span style="color:#0ff;font-weight:bold">&#39;2&#39;</span> : <span style="color:#0ff;font-weight:bold">&#39;0&#39;</span>;
+        }
+        <span style="color:#fff;font-weight:bold">while</span> (a[<span style="color:#ff0;font-weight:bold">0</span>] == <span style="color:#0ff;font-weight:bold">&#39;0&#39;</span>)
+            a.erase(a.begin());
+        <span style="color:#fff;font-weight:bold">while</span> (b[<span style="color:#ff0;font-weight:bold">0</span>] == <span style="color:#0ff;font-weight:bold">&#39;0&#39;</span>)
+            b.erase(b.begin());
+        cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> &lt;&lt; t &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;: &#34;</span> &lt;&lt; a &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34; &#34;</span> &lt;&lt; b &lt;&lt; endl;
+    }
+}
+</code></pre></div>
+<h2 id="you-can-go-your-own-way-5pts-9pts-10pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051705-00000000000881da"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/00000000000881da">You Can Go Your Own Way (5pts, 9pts, 10pts)</a></h2>
+
+<p>在n*n的矩阵里从(0,0)走到(n-1,n-1)，只能向右或向下走。矩阵里有一条已有的路径，不能与该路径有重合。最常规的做法是DFS/BFS，时间复杂度为O(n^2)。</p>
+
+<h3 id="solution-mirror">Solution: Mirror</h3>
+
+<p>因为只有一条已知路径，我们可以将其以对角线作镜像，得到的新路径一定与原路径没有重合。</p>
+
+<ul>
+<li>时间复杂度：O(2 * n - 2)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#007f7f">// C++
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">using</span> <span style="color:#fff;font-weight:bold">namespace</span> std;
+
+<span style="color:#fff;font-weight:bold">int</span> main() {
+    <span style="color:#fff;font-weight:bold">int</span> T;
+    cin &gt;&gt; T;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> t = <span style="color:#ff0;font-weight:bold">1</span>; t &lt;= T; ++t) {
+        <span style="color:#fff;font-weight:bold">int</span> N;
+        string str;
+        cin &gt;&gt; N &gt;&gt; str;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; N * <span style="color:#ff0;font-weight:bold">2</span> - <span style="color:#ff0;font-weight:bold">2</span>; ++i)
+            str[i] = str[i] == <span style="color:#0ff;font-weight:bold">&#39;E&#39;</span> ? <span style="color:#0ff;font-weight:bold">&#39;S&#39;</span> : <span style="color:#0ff;font-weight:bold">&#39;E&#39;</span>;
+        cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> &lt;&lt; t &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;: &#34;</span> &lt;&lt; str &lt;&lt; endl;
+    }
+}
+</code></pre></div>
+<h2 id="cryptopangrams-10pts-15pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051705-000000000008830b"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/000000000008830b">Cryptopangrams (10pts, 15pts)</a></h2>
+
+<p>输入上限N和一个长为L的数组product，数组里的每一个数都是一个长为L+1的质数数组res里的相邻质数的乘积。质数数组里一共只有26个质数，返回将这26个质数排序后分别映射为A-Z的结果。对于比较小的N，可以把小于等于N的所有质数保存下来，计算出product[0]是哪两个质数的乘积，再计算出product[1]是哪两个质数的乘积，得到res[1]，再依次计算质数数组res里的其他数。在N比较大的时候时间和空间占用都会很高。</p>
+
+<h3 id="solution-greatest-common-denominator">Solution: Greatest Common Denominator</h3>
+
+<p>相较于先找到所有质数再找到product[0]是哪两个质数的乘积，我们可以使用小学学过的辗转相除法来求出这个质数，这样可以非常有效地降低时间和空间消耗。</p>
+
+<p>这道题测试用例的N最大值是10的100次方，用C++需要自己处理大数乘法（C++最大只支持128位的int型数）。</p>
+
+<ul>
+<li>时间复杂度：O(L)</li>
+<li>空间复杂度：O(L)</li>
+</ul>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#007f7f"># Python 3</span>
+<span style="color:#fff;font-weight:bold">def</span> GCD(a: <span style="color:#fff;font-weight:bold">int</span>, b: <span style="color:#fff;font-weight:bold">int</span>) -&gt; <span style="color:#fff;font-weight:bold">int</span>:
+    <span style="color:#fff;font-weight:bold">if</span> b == <span style="color:#ff0;font-weight:bold">0</span>:
+        <span style="color:#fff;font-weight:bold">return</span> a
+    <span style="color:#fff;font-weight:bold">return</span> GCD(b, a % b)
+
+
+T = <span style="color:#fff;font-weight:bold">int</span>(<span style="color:#fff;font-weight:bold">input</span>())
+<span style="color:#fff;font-weight:bold">for</span> t in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">1</span>, T + <span style="color:#ff0;font-weight:bold">1</span>):
+    N, L = <span style="color:#fff;font-weight:bold">map</span>(<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">input</span>().split())
+    product = <span style="color:#fff;font-weight:bold">list</span>(<span style="color:#fff;font-weight:bold">map</span>(<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">input</span>().split()))
+    res = [<span style="color:#ff0;font-weight:bold">0</span> <span style="color:#fff;font-weight:bold">for</span> _ in <span style="color:#fff;font-weight:bold">range</span>(L + <span style="color:#ff0;font-weight:bold">1</span>)]
+    pos = -<span style="color:#ff0;font-weight:bold">1</span>
+    <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(L - <span style="color:#ff0;font-weight:bold">1</span>):
+        <span style="color:#fff;font-weight:bold">if</span> product[i] != product[i + <span style="color:#ff0;font-weight:bold">1</span>]:
+            res[i + <span style="color:#ff0;font-weight:bold">1</span>] = GCD(product[i], product[i + <span style="color:#ff0;font-weight:bold">1</span>])
+            pos = i + <span style="color:#ff0;font-weight:bold">1</span>
+            <span style="color:#fff;font-weight:bold">break</span>
+    <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(pos + <span style="color:#ff0;font-weight:bold">1</span>, L + <span style="color:#ff0;font-weight:bold">1</span>):
+        res[i] = product[i - <span style="color:#ff0;font-weight:bold">1</span>] // res[i - <span style="color:#ff0;font-weight:bold">1</span>]
+    <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(pos - <span style="color:#ff0;font-weight:bold">1</span>, -<span style="color:#ff0;font-weight:bold">1</span>, -<span style="color:#ff0;font-weight:bold">1</span>):
+        res[i] = product[i] // res[i + <span style="color:#ff0;font-weight:bold">1</span>]
+    match = []
+    <span style="color:#fff;font-weight:bold">for</span> m in res:
+        <span style="color:#fff;font-weight:bold">if</span> m not in match:
+            match.append(m)
+    match.sort()
+    ret = [<span style="color:#fff;font-weight:bold">chr</span>(match.index(res[i]) + <span style="color:#fff;font-weight:bold">ord</span>(<span style="color:#0ff;font-weight:bold">&#39;A&#39;</span>)) <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#fff;font-weight:bold">len</span>(res))]
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Case #{t}: {str}&#34;</span>.format(t=t, <span style="color:#fff;font-weight:bold">str</span>=<span style="color:#0ff;font-weight:bold">&#34;&#34;</span>.join(ret)))</code></pre></div>
+<h2 id="dat-bae-14pts-20pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051705-00000000000881de"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/00000000000881de">Dat Bae (14pts, 20pts)</a></h2>
+
+<p>// TODO</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>
