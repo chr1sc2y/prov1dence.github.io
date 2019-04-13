@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 06 Apr 2019 13:40:27 +1000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Apr 2019 15:28:11 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Code Jam 2019 Qualification Round</title>
+      <link>https://zintrulcre.vip/posts/code-jam/2019-round-1a/</link>
+      <pubDate>Sat, 13 Apr 2019 15:28:11 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/code-jam/2019-round-1a/</guid>
+      <description>Code Jam 2019 Round 1A Pylons (8pts, 23pts) 在m*n的网格里移动，每次移动后的位置不能与之前的位置在同一行/列/对角线上。 Solution: BackTracking 类似于八皇后问题，不过每次的限制条件只和上</description>
+    </item>
     
     <item>
       <title>Code Jam 2019 Qualification Round</title>
@@ -92,15 +101,6 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
       
       <guid>https://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver3/</guid>
       <description>Cookie和Session 为了获取我们自己的提交记录，我们首先要进行登录的操作。但我们都知道HTTP是一种无状态的协议，它的每个请求都是独</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;智能指针（1.5）：move语义</title>
-      <link>https://zintrulcre.vip/posts/c&#43;&#43;/c&#43;&#43;-smart-pointer-1.5/</link>
-      <pubDate>Wed, 02 Jan 2019 09:55:05 +1100</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/c&#43;&#43;-smart-pointer-1.5/</guid>
-      <description>C++智能指针（1.5）：move语义 move语义 定义 右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Mo</description>
     </item>
     
   </channel>
