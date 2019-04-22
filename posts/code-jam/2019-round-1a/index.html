@@ -16,7 +16,8 @@
     <meta property="og:title" content="Code Jam 2019 Round 1A" />
 <meta property="og:description" content="Code Jam 2019 Round 1A Pylons (8pts, 23pts) 在m*n的网格里移动，每次移动后的位置不能与之前的位置在同一行/列/对角线上。 Solution: BackTracking 类似于八皇后问题，不过每次的限制条件只和上" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zintrulcre.vip/posts/code-jam/2019-round-1a/" /><meta property="article:published_time" content="2019-04-13T15:28:11&#43;10:00"/>
+<meta property="og:url" content="https://zintrulcre.vip/posts/code-jam/2019-round-1a/" />
+<meta property="article:published_time" content="2019-04-13T15:28:11&#43;10:00"/>
 <meta property="article:modified_time" content="2019-04-13T15:28:11&#43;10:00"/>
 
 
@@ -50,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.53" />
+    <meta name="generator" content="Hugo 0.55.2" />
   </head>
 
   <body class=" ">
@@ -205,7 +206,7 @@
 
 <h3 id="solution-suffix">Solution: Suffix</h3>
 
-<p>先翻转每一个单词（如果不翻转的话取substr的时候就从中间开始取到最后，翻转的话只需要取前面m个字母）。从最长的单词长度依次递减，取每一个单词的后缀，如果两次单词有相同的后缀则把这两个单词去掉，结果+2。因为是从后往前取后缀，可以保证后缀相同的单词不被漏掉。</p>
+<p>先翻转每一个单词（如果不翻转的话取substr的时候就从中间开始取到最后，翻转的话只需要取前面m个字母）。从最长的单词长度依次递减，取每一个单词的后缀，如果两个单词有相同的后缀则把这两个单词去掉，结果+2。因为是从最长的单词长度开始依次取后缀，可以保证后缀相同的单词不被漏掉。</p>
 
 <ul>
 <li>时间复杂度：O(N * m)
