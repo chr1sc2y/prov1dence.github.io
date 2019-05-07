@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre&#39;s Personal Website">
+    <meta name="keywords" content="ZintrulCre, Personal Website">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Code Jam 2019 Round 1C"/>
+<meta name="twitter:description" content="Code Jam 2019 Round 1C Robot Programming Strategy (10pts, 18pts) 已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。 Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同时有三"/>
+
+    <meta property="og:title" content="Code Jam 2019 Round 1C" />
+<meta property="og:description" content="Code Jam 2019 Round 1C Robot Programming Strategy (10pts, 18pts) 已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。 Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同时有三" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/code-jam/2019-round-1c/" />
+<meta property="article:published_time" content="2019-05-07T22:02:15&#43;10:00"/>
+<meta property="article:modified_time" content="2019-05-07T22:02:15&#43;10:00"/>
+
+
+    
+      <base href="https://zintrulcre.vip/posts/code-jam/2019-round-1c/">
+    
+    <title>
+  Code Jam 2019 Round 1C · ZintrulCre
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/code-jam/2019-round-1c/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.55.2" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      ZintrulCre
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/notebooks/">Notebooks</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/bookmarks/">Bookmarks</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Code Jam 2019 Round 1C</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-05-07T22:02:15&#43;10:00'>
+                May 7, 2019
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/code-jam/">Code Jam</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        
+
+<h1 id="code-jam-2019-round-1c-https-codingcompetitions-withgoogle-com-codejam-round-00000000000516b9"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9">Code Jam 2019 Round 1C</a></h1>
+
+<h2 id="robot-programming-strategy-10pts-18pts-https-codingcompetitions-withgoogle-com-codejam-round-00000000000516b9-0000000000134c90"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134c90">Robot Programming Strategy (10pts, 18pts)</a></h2>
+
+<p>已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。</p>
+
+<h3 id="solution-eliminiating">Solution: Eliminiating</h3>
+
+<p>每一轮遍历当前轮次所有人的出招，如果同时有三种情况（R, P, S）则没有必胜策略，直接输出IMPOSSIBLE；否则返回胜利或打平的策略。</p>
+
+<p>对于已经打败过的对手没有必要再考虑其之后的出招，所以用一个defeated数组保存已经打败过的对手以便直接跳过。因为当前轮次有可能超过对手的出招顺序长度，所以要用i % size获取对手当前的出招。</p>
+
+<ul>
+<li>时间复杂度：O(A ^ 2)</li>
+<li>空间复杂度：O(A)</li>
+</ul>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cstdio&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">using</span> <span style="color:#fff;font-weight:bold">namespace</span> std;
+
+<span style="color:#fff;font-weight:bold">char</span> Decide(<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> &amp;R, <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> &amp;P, <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> &amp;S) {
+    <span style="color:#fff;font-weight:bold">if</span> (R &amp;&amp; P &amp;&amp; S)
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;X&#39;</span>;
+    <span style="color:#fff;font-weight:bold">if</span> (R &amp;&amp; P)
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;P&#39;</span>;
+    <span style="color:#fff;font-weight:bold">if</span> (R &amp;&amp; S)
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;R&#39;</span>;
+    <span style="color:#fff;font-weight:bold">if</span> (P &amp;&amp; S)
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;S&#39;</span>;
+    <span style="color:#fff;font-weight:bold">if</span> (R)
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;P&#39;</span>;
+    <span style="color:#fff;font-weight:bold">if</span> (P)
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;S&#39;</span>;
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;R&#39;</span>;
+}
+
+<span style="color:#fff;font-weight:bold">bool</span> Defeate(<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> &amp;current, <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> &amp;opponent) {
+    <span style="color:#fff;font-weight:bold">return</span> (current == <span style="color:#0ff;font-weight:bold">&#39;R&#39;</span> &amp;&amp; opponent == <span style="color:#0ff;font-weight:bold">&#39;S&#39;</span>) || (current == <span style="color:#0ff;font-weight:bold">&#39;S&#39;</span> &amp;&amp; opponent == <span style="color:#0ff;font-weight:bold">&#39;P&#39;</span>) ||
+           (current == <span style="color:#0ff;font-weight:bold">&#39;P&#39;</span> &amp;&amp; opponent == <span style="color:#0ff;font-weight:bold">&#39;R&#39;</span>);
+}
+
+<span style="color:#fff;font-weight:bold">void</span> solve(<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span> &amp;t) {
+    <span style="color:#fff;font-weight:bold">int</span> A;
+    scanf(<span style="color:#0ff;font-weight:bold">&#34;%d&#34;</span>, &amp;A);
+    <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>;
+    vector&lt;string&gt; opponent(A);
+    vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt; defeated(A, <span style="color:#fff;font-weight:bold">false</span>);
+    <span style="color:#fff;font-weight:bold">bool</span> R, P, S;
+    string res;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> a = <span style="color:#ff0;font-weight:bold">0</span>; a &lt; A; ++a)
+        cin &gt;&gt; opponent[a];
+    <span style="color:#fff;font-weight:bold">while</span> (<span style="color:#fff;font-weight:bold">true</span>) {
+        <span style="color:#fff;font-weight:bold">int</span> current_opponent = <span style="color:#ff0;font-weight:bold">0</span>;
+        R = <span style="color:#fff;font-weight:bold">false</span>, P = <span style="color:#fff;font-weight:bold">false</span>, S = <span style="color:#fff;font-weight:bold">false</span>;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> a = <span style="color:#ff0;font-weight:bold">0</span>; a &lt; A; ++a) {
+            <span style="color:#fff;font-weight:bold">if</span> (!defeated[a]) {
+                ++current_opponent;
+                <span style="color:#fff;font-weight:bold">if</span> (opponent[a][i % opponent[a].size()] == <span style="color:#0ff;font-weight:bold">&#39;R&#39;</span>)
+                    R = <span style="color:#fff;font-weight:bold">true</span>;
+                <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (opponent[a][i % opponent[a].size()] == <span style="color:#0ff;font-weight:bold">&#39;P&#39;</span>)
+                    P = <span style="color:#fff;font-weight:bold">true</span>;
+                <span style="color:#fff;font-weight:bold">else</span>
+                    S = <span style="color:#fff;font-weight:bold">true</span>;
+            }
+        }
+        <span style="color:#fff;font-weight:bold">if</span> (current_opponent == <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">break</span>;
+        <span style="color:#fff;font-weight:bold">char</span> result = Decide(R, P, S);
+        <span style="color:#fff;font-weight:bold">if</span> (result == <span style="color:#0ff;font-weight:bold">&#39;X&#39;</span>) {
+            res = <span style="color:#0ff;font-weight:bold">&#34;IMPOSSIBLE&#34;</span>;
+            <span style="color:#fff;font-weight:bold">break</span>;
+        }
+        res += result;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> a = <span style="color:#ff0;font-weight:bold">0</span>; a &lt; A; ++a) {
+            <span style="color:#fff;font-weight:bold">if</span> (!defeated[a] &amp;&amp; Defeate(result, opponent[a][i % opponent[a].size()]))
+                defeated[a] = <span style="color:#fff;font-weight:bold">true</span>;
+        }
+        ++i;
+    }
+    printf(<span style="color:#0ff;font-weight:bold">&#34;Case #%d: %s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, t, res.c_str());
+}
+
+<span style="color:#fff;font-weight:bold">int</span> main() {
+    <span style="color:#fff;font-weight:bold">int</span> T;
+    scanf(<span style="color:#0ff;font-weight:bold">&#34;%d&#34;</span>, &amp;T);
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> t = <span style="color:#ff0;font-weight:bold">1</span>; t &lt;= T; ++t)
+        solve(t);
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+</code></pre></div>
+<h2 id="power-arrangers-11pts-21pts-https-codingcompetitions-withgoogle-com-codejam-round-00000000000516b9-0000000000134e91"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134e91">Power Arrangers (11pts, 21pts)</a></h2>
+
+<p>// TODO</p>
+
+<h2 id="bacterial-tactics-15pts-25pts-https-codingcompetitions-withgoogle-com-codejam-round-00000000000516b9-0000000000134cdf"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134cdf">Bacterial Tactics (15pts, 25pts)</a></h2>
+
+<p>// TODO</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>
