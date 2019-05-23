@@ -133,6 +133,8 @@
 <p>YOLO is refreshingly simple. A single convolutional network simultaneously predicts multiple bounding boxes and class probabilities for those boxes. YOLO trains on full images and directly optimizes detection performance. This unified model has several benefits over traditional methods of object detection: extremely fast, and achieves more than twice the mean average precision of
 other real-time systems.</p>
 
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Deep-Learning/YOLO.jpg" alt="" /></p>
+
 <h3 id="sliding-window">Sliding Window</h3>
 
 <p>Image detection is harder than image recognition because, in image detection, there can be multiple objects, or even maybe even multiple objects of different categories within a single image. At this time, sliding windows can help. We define a window of some size and put the window over a region on the image. Then feeding the input region to the convolutional neural network model to get an output. Likewise, we repeat this process on each and every region of the image with a certain stride. Once done, we take a window of other sizes (longer, wider, etc) and slide the window over the image, and repeat this process again and again. We may probably end up with a window of the size of a snake in the image and seeing the model to output a breed for that window, meaning we detect a snake in that particular region.</p>
@@ -144,6 +146,8 @@ other real-time systems.</p>
 <h3 id="intersection-over-union">Intersection Over Union</h3>
 
 <p>IOU means to divide the intersection of the bounding box and the true rectangle edge of the object by the union of them. The concept of intersection over union comes in to determine how accurate are these predictions. Suppose there are multiple bounding boxes an object in some grids, what intersection over union tells us is how close our prediction is to the ground truth. Then if the result is high enough (namely, greater than equal to a certain threshold) then the prediction is considered to be correct else we need to work on other bounding boxes.</p>
+
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Deep-Learning/IoU.jpg" alt="" /></p>
 
 <h3 id="non-max-suppression">Non-Max Suppression</h3>
 
