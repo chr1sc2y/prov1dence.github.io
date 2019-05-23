@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 07 May 2019 22:02:15 +1000</lastBuildDate>
+    <lastBuildDate>Sun, 19 May 2019 19:40:23 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Object Detection</title>
+      <link>https://zintrulcre.vip/posts/deep-learning/object-detection/</link>
+      <pubDate>Sun, 19 May 2019 19:40:23 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/deep-learning/object-detection/</guid>
+      <description>Object Detection Humans glance at an image and instantly know what objects are in the image, where they are, and how they interact. The human visual system is fast and accurate, allowing us to perform complex tasks like driving with little conscious thought. Fast, accurate algorithms for object detection would allow computers to drive cars without specialized sensors, enable assistive devices to convey real-time scene information to human users, and unlock the potential for general purpose, responsive robotic systems.</description>
+    </item>
     
     <item>
       <title>Code Jam 2019 Round 1C</title>
@@ -92,15 +101,6 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
       
       <guid>https://zintrulcre.vip/posts/leetcode/560/</guid>
       <description>LeetCode 560 和为K的子数组 给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。 示例 1: 输入:nums = [1,1,1], k = 2 输出: 2 , [1,1] 与 [1,1]</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;智能指针（3）：shared_ptr</title>
-      <link>https://zintrulcre.vip/posts/c&#43;&#43;/c&#43;&#43;-smart-pointer-3/</link>
-      <pubDate>Fri, 25 Jan 2019 17:47:38 +1100</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/c&#43;&#43;-smart-pointer-3/</guid>
-      <description>C++智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器 private: int *counter;</description>
     </item>
     
   </channel>
