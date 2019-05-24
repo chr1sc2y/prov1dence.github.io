@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>Object Detection: YOLO</title>
+      <title>Object Detection</title>
       <link>https://zintrulcre.vip/posts/deep-learning/object-detection-yolo/</link>
       <pubDate>Sun, 19 May 2019 19:40:23 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/deep-learning/object-detection-yolo/</guid>
-      <description>Object Detection: YOLO Humans glance at an image and instantly know what objects are in the image, where they are, and how they interact. The human visual system is fast and accurate, allowing us to perform complex tasks like driving with little conscious thought. Fast, accurate algorithms for object detection would allow computers to drive cars without specialized sensors, enable assistive devices to convey real-time scene information to human users, and unlock the potential for general purpose, responsive robotic systems.</description>
+      <description>Object Detection Object detection deals with detecting instances of objects of a certain class, such as humans, animals, etc, in digital images and videos. Object detection has applications in many areas of computer vision, including image retrieval, face detection, video surveillance, and self-driving, etc \cite{vedaldi2009multiple}. Current detection systems repurpose classifiers to perform detection. To detect an object, these systems take a classifier for that object and evaluate it at various locations and scales in a test image.</description>
     </item>
     
     <item>
