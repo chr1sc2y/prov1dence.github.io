@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 19 May 2019 19:40:23 +1000</lastBuildDate>
+    <lastBuildDate>Thu, 30 May 2019 15:29:45 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kick Start 2019 Round C</title>
+      <link>https://zintrulcre.vip/posts/kick-start/2019-round-c/</link>
+      <pubDate>Thu, 30 May 2019 15:29:45 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/kick-start/2019-round-c/</guid>
+      <description>Kick Start 2019 Round C Wiggle Walk (6pts, 12pts) 在一个R * C的矩阵里面移动，遇到已经走过的格子直接跳过。数据保证移动时不会超出给定的矩阵。 Solution: Simulation 用一个visited数组记录</description>
+    </item>
     
     <item>
       <title>Object Detection</title>
@@ -92,15 +101,6 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
       
       <guid>https://zintrulcre.vip/posts/leetcode/98/</guid>
       <description>LeetCode 98 验证二叉搜索树 给定一个二叉树，判断其是否是一个有效的二叉搜索树。 假设一个二叉搜索树具有如下特征： 节点的左子树只包含小于当前节点的数。 节点</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 560 和为K的子数组</title>
-      <link>https://zintrulcre.vip/posts/leetcode/560/</link>
-      <pubDate>Wed, 06 Feb 2019 22:11:18 +1100</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/560/</guid>
-      <description>LeetCode 560 和为K的子数组 给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。 示例 1: 输入:nums = [1,1,1], k = 2 输出: 2 , [1,1] 与 [1,1]</description>
     </item>
     
   </channel>
