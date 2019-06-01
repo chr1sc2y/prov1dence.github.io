@@ -125,6 +125,11 @@
 <h2 id="solution-1-pattern-match">Solution 1: Pattern Match</h2>
 
 <p>对于每一个要查询的字符串query的每一个字符q，当q是大写字母的时候，q必须匹配pattern中当前的大写字母，否则如果pattern已经遍历完了或者当前字符不能匹配q中的大写字母则当前字符串query的结果是false；当q是小写字母的时候，q如果能和pattern当前的小写字母匹配那么pattern的下标往后移，否则直接查询q的下一个字母。</p>
+
+<ul>
+<li>时间复杂度：O(m * n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++ []" data-lang="c++ []">class Solution {
 public:
     vector&lt;bool&gt; camelMatch(vector&lt;string&gt; &amp;queries, string &amp;pattern) {
