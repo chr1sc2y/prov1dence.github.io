@@ -130,43 +130,44 @@
 <li>时间复杂度：O(m * n)</li>
 <li>空间复杂度：O(1)</li>
 </ul>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++ []" data-lang="c++ []">class Solution {
-public:
-    vector&lt;bool&gt; camelMatch(vector&lt;string&gt; &amp;queries, string &amp;pattern) {
-        vector&lt;bool&gt; ret;
-        int n = pattern.size();
-        for (auto &amp;query:queries) {
-            bool res = true;
-            int i = 0;
-            for (auto &amp;q:query) {
-                if (q &lt; &#39;Z&#39;) {
-                    if (i &gt;= n || q != pattern[i]) {
-                        res = false;
-                        break;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt; camelMatch(vector&lt;string&gt; &amp;queries, string &amp;pattern) {
+        vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt; ret;
+        <span style="color:#fff;font-weight:bold">int</span> n = pattern.size();
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;query:queries) {
+            <span style="color:#fff;font-weight:bold">bool</span> res = <span style="color:#fff;font-weight:bold">true</span>;
+            <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;q:query) {
+                <span style="color:#fff;font-weight:bold">if</span> (q &lt; <span style="color:#0ff;font-weight:bold">&#39;Z&#39;</span>) {
+                    <span style="color:#fff;font-weight:bold">if</span> (i &gt;= n || q != pattern[i]) {
+                        res = <span style="color:#fff;font-weight:bold">false</span>;
+                        <span style="color:#fff;font-weight:bold">break</span>;
                     }
                     ++i;
-                } else if (q == pattern[i])
+                } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (q == pattern[i])
                     ++i;
             }
             ret.push_back(res &amp;&amp; i == n);
         }
-        return ret;
+        <span style="color:#fff;font-weight:bold">return</span> ret;
     }
-};</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python []" data-lang="python []">class Solution:
-    def camelMatch(self, queries: List[str], pattern: str) -&gt; List[bool]:
-        n, ret = len(pattern), []
-        for query in queries:
-            i, res = 0, True
-            for q in query:
-                if q &lt;= &#39;Z&#39;:
-                    if i &gt;= n or q != pattern[i]:
+};
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">class</span> Solution:
+    <span style="color:#fff;font-weight:bold">def</span> camelMatch(self, queries: List[<span style="color:#fff;font-weight:bold">str</span>], pattern: <span style="color:#fff;font-weight:bold">str</span>) -&gt; List[<span style="color:#fff;font-weight:bold">bool</span>]:
+        n, ret = <span style="color:#fff;font-weight:bold">len</span>(pattern), []
+        <span style="color:#fff;font-weight:bold">for</span> query in queries:
+            i, res = <span style="color:#ff0;font-weight:bold">0</span>, True
+            <span style="color:#fff;font-weight:bold">for</span> q in query:
+                <span style="color:#fff;font-weight:bold">if</span> q &lt;= <span style="color:#0ff;font-weight:bold">&#39;Z&#39;</span>:
+                    <span style="color:#fff;font-weight:bold">if</span> i &gt;= n or q != pattern[i]:
                         res = False
-                        break
-                    i += 1
-                elif i &lt; n and q == pattern[i]:
-                    i += 1
+                        <span style="color:#fff;font-weight:bold">break</span>
+                    i += <span style="color:#ff0;font-weight:bold">1</span>
+                <span style="color:#fff;font-weight:bold">elif</span> i &lt; n and q == pattern[i]:
+                    i += <span style="color:#ff0;font-weight:bold">1</span>
             ret.append(res and i == n)
-        return ret</code></pre></div>
+        <span style="color:#fff;font-weight:bold">return</span> ret</code></pre></div>
       </div>
 
       <footer>
