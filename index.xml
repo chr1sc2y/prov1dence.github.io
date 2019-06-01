@@ -24,19 +24,10 @@
     <item>
       <title>Kick Start 2019 Round C</title>
       <link>https://zintrulcre.vip/posts/kick-start/2019-round-c/</link>
-      <pubDate>Thu, 30 May 2019 15:29:45 +1000</pubDate>
+      <pubDate>Sun, 26 May 2019 23:29:45 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/kick-start/2019-round-c/</guid>
       <description>Kick Start 2019 Round C Wiggle Walk (6pts, 12pts) 在一个R * C的矩阵里面移动，遇到已经走过的格子直接跳过。数据保证移动时不会超出给定的矩阵。 Solution: Simulation 用一个visited数组记录</description>
-    </item>
-    
-    <item>
-      <title>Object Detection</title>
-      <link>https://zintrulcre.vip/posts/deep-learning/object-detection-yolo/</link>
-      <pubDate>Sun, 19 May 2019 19:40:23 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/deep-learning/object-detection-yolo/</guid>
-      <description>Object Detection Object detection deals with detecting instances of objects of a certain class, such as humans, animals, etc, in digital images and videos. Object detection has applications in many areas of computer vision, including image retrieval, face detection, video surveillance, and self-driving, etc. Current detection systems repurpose classifiers to perform detection. To detect an object, these systems take a classifier for that object and evaluate it at various locations and scales in a test image.</description>
     </item>
     
     <item>
@@ -106,6 +97,15 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
  Cluster and Cloud Computing
  Natural Language Processing
   </description>
+    </item>
+    
+    <item>
+      <title>LeetCode 208 实现 Trie (前缀树)</title>
+      <link>https://zintrulcre.vip/posts/leetcode/208/</link>
+      <pubDate>Fri, 15 Mar 2019 10:56:12 +1100</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/208/</guid>
+      <description>LeetCode 208 实现 Trie (前缀树) 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。 示例: Trie trie = new Trie(); trie.insert(&amp;#34;apple&amp;#34;); trie.search(&amp;#34;apple&amp;#34;); // 返回 true trie.search(&amp;#34;app&amp;#34;); // 返回 false trie.startsWith(&amp;#34;app&amp;#34;); // 返回 true trie.insert(&amp;#34;app&amp;#34;); trie.search(&amp;#34;app&amp;#34;); // 返回 true 说明: 你可以假</description>
     </item>
     
   </channel>
