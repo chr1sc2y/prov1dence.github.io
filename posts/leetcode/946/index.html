@@ -10,26 +10,26 @@
     <meta name="keywords" content="ZintrulCre, Personal Website">
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="LeetCode 1023 驼峰式匹配"/>
-<meta name="twitter:description" content="LeetCode 1023 驼峰式匹配 给定一个模式字符串pattern和一组查询字符串queries，通过向pattern中插入小写字母来跟queries中的字符匹"/>
+<meta name="twitter:title" content="LeetCode 946 验证栈序列"/>
+<meta name="twitter:description" content="LeetCode 946 验证栈序列 给定 pushed 和 popped 两个数组，判断这两个数组能否通过一个空栈执行 push 和 pop 得到。 Solution 1: Greedy 用一个栈把 pushed 数组里的数依次 push 进去，push 之后检查栈顶"/>
 
-    <meta property="og:title" content="LeetCode 1023 驼峰式匹配" />
-<meta property="og:description" content="LeetCode 1023 驼峰式匹配 给定一个模式字符串pattern和一组查询字符串queries，通过向pattern中插入小写字母来跟queries中的字符匹" />
+    <meta property="og:title" content="LeetCode 946 验证栈序列" />
+<meta property="og:description" content="LeetCode 946 验证栈序列 给定 pushed 和 popped 两个数组，判断这两个数组能否通过一个空栈执行 push 和 pop 得到。 Solution 1: Greedy 用一个栈把 pushed 数组里的数依次 push 进去，push 之后检查栈顶" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/1023/" />
-<meta property="article:published_time" content="2019-06-01T11:56:14&#43;10:00"/>
-<meta property="article:modified_time" content="2019-06-01T11:56:14&#43;10:00"/>
+<meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/946/" />
+<meta property="article:published_time" content="2019-06-02T18:22:25&#43;10:00"/>
+<meta property="article:modified_time" content="2019-06-02T18:22:25&#43;10:00"/>
 
 
     
-      <base href="https://zintrulcre.vip/posts/leetcode/1023/">
+      <base href="https://zintrulcre.vip/posts/leetcode/946/">
     
     <title>
-  LeetCode 1023 驼峰式匹配 · ZintrulCre
+  LeetCode 946 验证栈序列 · ZintrulCre
 </title>
 
     
-      <link rel="canonical" href="https://zintrulcre.vip/posts/leetcode/1023/">
+      <link rel="canonical" href="https://zintrulcre.vip/posts/leetcode/946/">
     
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
@@ -87,14 +87,14 @@
     <article>
       <header>
         <div class="post-title">
-          <h1 class="title">LeetCode 1023 驼峰式匹配</h1>
+          <h1 class="title">LeetCode 946 验证栈序列</h1>
         </div>
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
               <i class="fas fa-calendar"></i>
-              <time datetime='2019-06-01T11:56:14&#43;10:00'>
-                June 1, 2019
+              <time datetime='2019-06-02T18:22:25&#43;10:00'>
+                June 2, 2019
               </time>
             </span>
             
@@ -110,56 +110,38 @@
       <div>
         
 
-<h1 id="leetcode-1023-驼峰式匹配-https-leetcode-cn-com-problems-camelcase-matching"><a href="https://leetcode-cn.com/problems/camelcase-matching/">LeetCode 1023 驼峰式匹配</a></h1>
+<h1 id="leetcode-946-验证栈序列-https-leetcode-cn-com-problems-validate-stack-sequences"><a href="https://leetcode-cn.com/problems/validate-stack-sequences/">LeetCode 946 验证栈序列</a></h1>
 
-<p>给定一个模式字符串pattern和一组查询字符串queries，通过向pattern中插入小写字母来跟queries中的字符匹配。</p>
+<p>给定 pushed 和 popped 两个数组，判断这两个数组能否通过一个空栈执行 push 和 pop 得到。</p>
 
-<h2 id="solution-1-pattern-match">Solution 1: Pattern Match</h2>
+<h2 id="solution-1-greedy">Solution 1: Greedy</h2>
 
-<p>对于每一个要查询的字符串query的每一个字符q，当q是大写字母的时候，q必须匹配pattern中当前的大写字母，否则如果pattern已经遍历完了或者当前字符不能匹配q中的大写字母则当前字符串query的结果是false；当q是小写字母的时候，q如果能和pattern当前的小写字母匹配那么pattern的下标往后移，否则直接查询q的下一个字母。</p>
-
-<ul>
-<li>时间复杂度：O(m * n)</li>
-<li>空间复杂度：O(1)</li>
-</ul>
+<p>用一个栈把 pushed 数组里的数依次 push 进去，push 之后检查栈顶的数是否等于 popped 的头元素，如果想等则去掉头元素。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
-    vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt; camelMatch(vector&lt;string&gt; &amp;queries, string &amp;pattern) {
-        vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt; ret;
-        <span style="color:#fff;font-weight:bold">int</span> n = pattern.size();
-        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;query:queries) {
-            <span style="color:#fff;font-weight:bold">bool</span> res = <span style="color:#fff;font-weight:bold">true</span>;
-            <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>;
-            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;q:query) {
-                <span style="color:#fff;font-weight:bold">if</span> (q &lt; <span style="color:#0ff;font-weight:bold">&#39;Z&#39;</span>) {
-                    <span style="color:#fff;font-weight:bold">if</span> (i &gt;= n || q != pattern[i]) {
-                        res = <span style="color:#fff;font-weight:bold">false</span>;
-                        <span style="color:#fff;font-weight:bold">break</span>;
-                    }
-                    ++i;
-                } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (q == pattern[i])
-                    ++i;
+    <span style="color:#fff;font-weight:bold">bool</span> validateStackSequences(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;pushed, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;popped) {
+        stack&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>, n = popped.size();
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;p:pushed) {
+            res.push(p);
+            <span style="color:#fff;font-weight:bold">while</span> (!res.empty() &amp;&amp; i &lt; n &amp;&amp; res.top() == popped[i]) {
+                ++i;
+                res.pop();
             }
-            ret.push_back(res &amp;&amp; i == n);
         }
-        <span style="color:#fff;font-weight:bold">return</span> ret;
+        <span style="color:#fff;font-weight:bold">return</span> i == n;
     }
 };
 </code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">class</span> Solution:
-    <span style="color:#fff;font-weight:bold">def</span> camelMatch(self, queries: List[<span style="color:#fff;font-weight:bold">str</span>], pattern: <span style="color:#fff;font-weight:bold">str</span>) -&gt; List[<span style="color:#fff;font-weight:bold">bool</span>]:
-        n, ret = <span style="color:#fff;font-weight:bold">len</span>(pattern), []
-        <span style="color:#fff;font-weight:bold">for</span> query in queries:
-            i, res = <span style="color:#ff0;font-weight:bold">0</span>, True
-            <span style="color:#fff;font-weight:bold">for</span> q in query:
-                <span style="color:#fff;font-weight:bold">if</span> q &lt;= <span style="color:#0ff;font-weight:bold">&#39;Z&#39;</span>:
-                    <span style="color:#fff;font-weight:bold">if</span> i &gt;= n or q != pattern[i]:
-                        res = False
-                        <span style="color:#fff;font-weight:bold">break</span>
-                    i += <span style="color:#ff0;font-weight:bold">1</span>
-                <span style="color:#fff;font-weight:bold">elif</span> i &lt; n and q == pattern[i]:
-                    i += <span style="color:#ff0;font-weight:bold">1</span>
-            ret.append(res and i == n)
-        <span style="color:#fff;font-weight:bold">return</span> ret</code></pre></div>
+    <span style="color:#fff;font-weight:bold">def</span> validateStackSequences(self, pushed: List[<span style="color:#fff;font-weight:bold">int</span>], popped: List[<span style="color:#fff;font-weight:bold">int</span>]) -&gt; <span style="color:#fff;font-weight:bold">bool</span>:
+        res = []
+        i, n = <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#fff;font-weight:bold">len</span>(popped)
+        <span style="color:#fff;font-weight:bold">for</span> p in pushed:
+            res.append(p)
+            <span style="color:#fff;font-weight:bold">while</span> res and i &lt; n and res[-<span style="color:#ff0;font-weight:bold">1</span>] == popped[i]:
+                i += <span style="color:#ff0;font-weight:bold">1</span>
+                res.pop()
+        <span style="color:#fff;font-weight:bold">return</span> i == n</code></pre></div>
       </div>
 
       <footer>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 01 Jun 2019 11:56:14 +1000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Jun 2019 18:22:25 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 946 验证栈序列</title>
+      <link>https://zintrulcre.vip/posts/leetcode/946/</link>
+      <pubDate>Sun, 02 Jun 2019 18:22:25 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/946/</guid>
+      <description>LeetCode 946 验证栈序列 给定 pushed 和 popped 两个数组，判断这两个数组能否通过一个空栈执行 push 和 pop 得到。 Solution 1: Greedy 用一个栈把 pushed 数组里的数依次 push 进去，push 之后检查栈顶</description>
+    </item>
     
     <item>
       <title>LeetCode 1023 驼峰式匹配</title>
@@ -97,15 +106,6 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
  Cluster and Cloud Computing
  Natural Language Processing
   </description>
-    </item>
-    
-    <item>
-      <title>LeetCode 208 实现 Trie (前缀树)</title>
-      <link>https://zintrulcre.vip/posts/leetcode/208/</link>
-      <pubDate>Fri, 15 Mar 2019 10:56:12 +1100</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/208/</guid>
-      <description>LeetCode 208 实现 Trie (前缀树) 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。 示例: Trie trie = new Trie(); trie.insert(&amp;#34;apple&amp;#34;); trie.search(&amp;#34;apple&amp;#34;); // 返回 true trie.search(&amp;#34;app&amp;#34;); // 返回 false trie.startsWith(&amp;#34;app&amp;#34;); // 返回 true trie.insert(&amp;#34;app&amp;#34;); trie.search(&amp;#34;app&amp;#34;); // 返回 true 说明: 你可以假</description>
     </item>
     
   </channel>
