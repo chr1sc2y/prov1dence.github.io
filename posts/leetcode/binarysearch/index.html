@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode Binary Search"/>
-<meta name="twitter:description" content="LeetCode Binary Search 二分查找可以在有序数组中查找一个数或者一个数的上限或下限，时间复杂度是O(logN)。 易错点 计算中间值的方法 k = i &#43; (j - i) / 2 k = (i &#43;"/>
+<meta name="twitter:description" content="LeetCode Binary Search 二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。 易错点 计算中间值的方法 k = i &#43;"/>
 
     <meta property="og:title" content="LeetCode Binary Search" />
-<meta property="og:description" content="LeetCode Binary Search 二分查找可以在有序数组中查找一个数或者一个数的上限或下限，时间复杂度是O(logN)。 易错点 计算中间值的方法 k = i &#43; (j - i) / 2 k = (i &#43;" />
+<meta property="og:description" content="LeetCode Binary Search 二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。 易错点 计算中间值的方法 k = i &#43;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/binarysearch/" />
 <meta property="article:published_time" content="2019-06-19T19:26:39&#43;10:00"/>
@@ -112,37 +112,37 @@
 
 <h1 id="leetcode-binary-search-https-leetcode-cn-com-tag-binary-search"><a href="https://leetcode-cn.com/tag/binary-search/">LeetCode Binary Search</a></h1>
 
-<p>二分查找可以在有序数组中查找一个数或者一个数的上限或下限，时间复杂度是O(logN)。</p>
+<p>二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。</p>
 
 <h2 id="易错点">易错点</h2>
 
 <ol>
-<li>计算中间值的方法</li>
-</ol>
+<li><p>计算中间值的方法</p>
 
 <ul>
 <li>k = i + (j - i) / 2</li>
 <li>k = (i + j) / 2</li>
 </ul>
 
-<p>第二种方法一般都会造成整型数据溢出，所以只用第一种方法。</p>
+<p>第二种方法一般都会造成整型数据溢出，所以只用第一种方法。</p></li>
 
-<ol>
-<li>取值上限</li>
-</ol>
+<li><p>取值上限</p>
 
 <ul>
 <li>如果上限j取得到，那么条件是 i &lt;= j，计算中间值用 k = i + (j - i + 1) / 2</li>
 <li>如果上限j取不到，那么条件是 i &lt; j，计算中间值用 k = i + (j - i) / 2</li>
 </ul>
 
-<p>两种方法有各自的应用场景，没用对的话会出现很多边界值的问题。如果下限i和上限j都会在更新时在中间值k的基础上+1或-1的话用第一种方法，否则用第二种。</p>
+<p>两种方法有各自的应用场景，没用对的话会出现很多边界值的问题。如果下限i和上限j都会在更新时在中间值k的基础上+1或-1的话用第一种方法，否则用第二种。</p></li>
+</ol>
 
 <h2 id="题目">题目</h2>
 
-<h3 id="查找数">查找数</h3>
+<h3 id="1-查找数">1. 查找数</h3>
 
 <h4 id="704-二分查找-https-leetcode-cn-com-problems-binary-search"><a href="https://leetcode-cn.com/problems/binary-search/">704 二分查找</a></h4>
+
+<p>描述：给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。</p>
 
 <p>最标准的二分查找。因为下限i和上限j都会在更新时+1和-1，所以让j = nums.size() - 1，循环条件是 i &lt;= j。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
@@ -164,7 +164,16 @@
 </code></pre></div>
 <h4 id="374-猜数字大小-https-leetcode-cn-com-problems-guess-number-higher-or-lower"><a href="https://leetcode-cn.com/problems/guess-number-higher-or-lower/">374 猜数字大小</a></h4>
 
-<p>一个二分查找的简单应用。跟上一题几乎一样。</p>
+<p>描述：我们正在玩一个猜数字游戏。 游戏规则如下：
+我从 1 到 n 选择一个数字。 你需要猜我选择了哪个数字。
+每次你猜错了，我会告诉你这个数字是大了还是小了。
+你调用一个预先定义好的接口 guess(int num)，它会返回 3 个可能的结果（-1，1 或 0）：</p>
+
+<p>-1 : 我的数字比较小
+ 1 : 我的数字比较大
+ 0 : 恭喜！你猜对了！</p>
+
+<p>跟上一题几乎一模一样，只是把target换成了一个接口。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">int</span> guess(<span style="color:#fff;font-weight:bold">int</span> num);
 
 <span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
@@ -187,6 +196,8 @@
 </code></pre></div>
 <h4 id="367-有效的完全平方数-https-leetcode-cn-com-problems-valid-perfect-square"><a href="https://leetcode-cn.com/problems/valid-perfect-square/">367 有效的完全平方数</a></h4>
 
+<p>描述：给定一个正整数 num，编写一个函数，如果 num 是一个完全平方数，则返回 True，否则返回 False。</p>
+
 <p>判断一个数是否是完全平方数。因为在二分的过程中平方得到的结果可能会超过32位int型的上限，所以用long long。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
@@ -207,6 +218,8 @@
 };
 </code></pre></div>
 <h4 id="69-x的平方根-https-leetcode-cn-com-problems-sqrtx"><a href="https://leetcode-cn.com/problems/sqrtx/">69 x的平方根</a></h4>
+
+<p>描述：实现 int sqrt(int x) 函数。计算并返回 x 的平方根，其中 x 是非负整数。由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。</p>
 
 <p>实现int sqrt(int x)函数。用商来判断比用乘积来判断更直观。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
@@ -229,9 +242,11 @@
     }
 };
 </code></pre></div>
-<h3 id="查找上界-下界">查找上界/下界</h3>
+<h3 id="2-查找上界-下界">2. 查找上界/下界</h3>
 
 <h4 id="35-搜索插入位置-https-leetcode-cn-com-problems-search-insert-position"><a href="https://leetcode-cn.com/problems/search-insert-position/">35 搜索插入位置</a></h4>
+
+<p>描述：给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。你可以假设数组中无重复元素。</p>
 
 <p>找到大于等于target的第一个数。因为上限j在更新时会直接被赋给k的值，所以让j = nums.size()，循环条件是i &lt; j。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
@@ -253,6 +268,8 @@
 </code></pre></div>
 <h4 id="744-寻找比目标字母大的最小字母-https-leetcode-cn-com-problems-find-smallest-letter-greater-than-target"><a href="https://leetcode-cn.com/problems/find-smallest-letter-greater-than-target/">744 寻找比目标字母大的最小字母</a></h4>
 
+<p>描述：给定一个只包含小写字母的有序数组letters 和一个目标字母 target，寻找有序数组里面比目标字母大的最小字母。数组里字母的顺序是循环的。举个例子，如果目标字母target = &lsquo;z&rsquo; 并且有序数组为 letters = [&lsquo;a&rsquo;, &lsquo;b&rsquo;]，则答案返回 &rsquo;a&rsquo;。</p>
+
 <p>找到大于target的第一个数，相比于上一题只是少了在循环内判断是否等于的情况。从int类型数组变成了char类型数组，不过这一点并没有任何影响。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
@@ -270,6 +287,12 @@
 };
 </code></pre></div>
 <h4 id="278-第一个错误的版本-https-leetcode-cn-com-problems-first-bad-version"><a href="https://leetcode-cn.com/problems/first-bad-version/">278 第一个错误的版本</a></h4>
+
+<p>描述：你是产品经理，目前正在带领一个团队开发新的产品。不幸的是，你的产品的最新版本没有通过质量检测。由于每个版本都是基于之前的版本开发的，所以错误的版本之后的所有版本都是错的。</p>
+
+<p>假设你有 n 个版本 [1, 2, &hellip;, n]，你想找出导致之后所有版本出错的第一个错误的版本。</p>
+
+<p>你可以通过调用 bool isBadVersion(version) 接口来判断版本号 version 是否在单元测试中出错。实现一个函数来查找第一个错误的版本。你应该尽量减少对调用 API 的次数。</p>
 
 <p>很标准的找下界。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">bool</span> isBadVersion(<span style="color:#fff;font-weight:bold">int</span> version);
@@ -289,9 +312,12 @@
     }
 };
 </code></pre></div>
-<h3 id="根据位置关系查找">根据位置关系查找</h3>
+<h3 id="3-根据位置关系查找">3. 根据位置关系查找</h3>
 
 <h4 id="378-有序矩阵中第k小的元素-https-leetcode-cn-com-problems-kth-smallest-element-in-a-sorted-matrix"><a href="https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/">378 有序矩阵中第K小的元素</a></h4>
+
+<p>描述：给定一个 n x n 矩阵，其中每行和每列元素均按升序排序，找到矩阵中第k小的元素。
+请注意，它是排序后的第k小元素，而不是第k个元素。</p>
 
 <p>这道题可以用跟剑指offer里二维数组中的查找这道题的思路结合二分查找来做，二分的时候每次计算矩阵里小于等于中间值的数的个数就能得到结果了。时间复杂度是O(logm * n)，m是matrix[n - 1][n - 1]，n是matrix.size()。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
@@ -323,6 +349,8 @@
 </code></pre></div>
 <h4 id="153-寻找旋转排序数组中的最小值-https-leetcode-cn-com-problems-find-minimum-in-rotated-sorted-array"><a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/">153 寻找旋转排序数组中的最小值</a></h4>
 
+<p>描述：假设按照升序排序的数组在预先未知的某个点上进行了旋转。( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。请找出其中最小的元素。你可以假设数组中不存在重复元素。</p>
+
 <p>根据中间值与左右边值和其左右边一位的大小关系来判断，如果中间值k比左边值小，那么k有可能是结果，让j = k；否则比较中间值与其右边一位，如果中间值大于右边一位的值，那么右边一位的值就是结果，否则让i = k + 1。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
@@ -346,6 +374,8 @@
 };
 </code></pre></div>
 <h4 id="540-有序数组中的单一元素-https-leetcode-cn-com-problems-single-element-in-a-sorted-array"><a href="https://leetcode-cn.com/problems/single-element-in-a-sorted-array/">540 有序数组中的单一元素</a></h4>
+
+<p>描述：给定一个只包含整数的有序数组，每个元素都会出现两次，唯有一个数只会出现一次，找出这个数。</p>
 
 <p>有序数组里其他每个元素都出现两次，找到唯一只出现一次的数。在唯一的数出现之后奇偶位的相等关系会发生变化，利用这一点来做判断。比较直观的写法是分别判断 k % 2 == 0 和 k % 2 == 1 的情况，这样写起来比较复杂，可以直接在 k % 2 == 1 的时候 &ndash;k，再直接判断nums[k] 和 nums[k + 1]的关系。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
