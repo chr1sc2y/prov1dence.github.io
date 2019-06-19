@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 02 Jun 2019 18:22:25 +1000</lastBuildDate>
+    <lastBuildDate>Wed, 19 Jun 2019 19:26:39 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode Binary Search</title>
+      <link>https://zintrulcre.vip/posts/leetcode/binarysearch/</link>
+      <pubDate>Wed, 19 Jun 2019 19:26:39 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/binarysearch/</guid>
+      <description>LeetCode Binary Search 二分查找可以在有序数组中查找一个数或者一个数的上限或下限，时间复杂度是O(logN)。 易错点 计算中间值的方法 k = i + (j - i) / 2 k = (i +</description>
+    </item>
     
     <item>
       <title>LeetCode 946 验证栈序列</title>
@@ -92,15 +101,6 @@
       <guid>https://zintrulcre.vip/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</guid>
       <description>Methods to Prevent Overfitting in Deep Learning Overfitting Overfitting refers to that when a model fits the training data well but cannot predict the test data correctly, we may say that the model lacks the ability of generalization. It is important to figure out how it happens, and how we can prevent overfitting from the very beginning.
 Detect Overfitting The simplest way to detect overfitting is to split the dataset into two parts: the training set for training the model, and the test set for testing the accuracy of the model on a dataset that it has never seen before.</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 208 实现 Trie (前缀树)</title>
-      <link>https://zintrulcre.vip/posts/leetcode/208/</link>
-      <pubDate>Fri, 15 Mar 2019 10:56:12 +1100</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/208/</guid>
-      <description>LeetCode 208 实现 Trie (前缀树) 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。 示例: Trie trie = new Trie(); trie.insert(&amp;#34;apple&amp;#34;); trie.search(&amp;#34;apple&amp;#34;); // 返回 true trie.search(&amp;#34;app&amp;#34;); // 返回 false trie.startsWith(&amp;#34;app&amp;#34;); // 返回 true trie.insert(&amp;#34;app&amp;#34;); trie.search(&amp;#34;app&amp;#34;); // 返回 true 说明: 你可以假</description>
     </item>
     
   </channel>

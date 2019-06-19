@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre&#39;s Personal Website">
+    <meta name="keywords" content="ZintrulCre, Personal Website">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LeetCode Binary Search"/>
+<meta name="twitter:description" content="LeetCode Binary Search 二分查找可以在有序数组中查找一个数或者一个数的上限或下限，时间复杂度是O(logN)。 易错点 计算中间值的方法 k = i &#43; (j - i) / 2 k = (i &#43;"/>
+
+    <meta property="og:title" content="LeetCode Binary Search" />
+<meta property="og:description" content="LeetCode Binary Search 二分查找可以在有序数组中查找一个数或者一个数的上限或下限，时间复杂度是O(logN)。 易错点 计算中间值的方法 k = i &#43; (j - i) / 2 k = (i &#43;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/binarysearch/" />
+<meta property="article:published_time" content="2019-06-19T19:26:39&#43;10:00"/>
+<meta property="article:modified_time" content="2019-06-19T19:26:39&#43;10:00"/>
+
+
+    
+      <base href="https://zintrulcre.vip/posts/leetcode/binarysearch/">
+    
+    <title>
+  LeetCode Binary Search · ZintrulCre
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/leetcode/binarysearch/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.55.2" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      ZintrulCre
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">LeetCode Binary Search</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-06-19T19:26:39&#43;10:00'>
+                June 19, 2019
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/leetcode/">LeetCode</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        
+
+<h1 id="leetcode-binary-search-https-leetcode-cn-com-tag-binary-search"><a href="https://leetcode-cn.com/tag/binary-search/">LeetCode Binary Search</a></h1>
+
+<p>二分查找可以在有序数组中查找一个数或者一个数的上限或下限，时间复杂度是O(logN)。</p>
+
+<h2 id="易错点">易错点</h2>
+
+<ol>
+<li>计算中间值的方法</li>
+</ol>
+
+<ul>
+<li>k = i + (j - i) / 2</li>
+<li>k = (i + j) / 2</li>
+</ul>
+
+<p>第二种方法一般都会造成整型数据溢出，所以只用第一种方法。</p>
+
+<ol>
+<li>取值上限</li>
+</ol>
+
+<ul>
+<li>如果上限j取得到，那么条件是 i &lt;= j，计算中间值用 k = i + (j - i + 1) / 2</li>
+<li>如果上限j取不到，那么条件是 i &lt; j，计算中间值用 k = i + (j - i) / 2</li>
+</ul>
+
+<p>两种方法有各自的应用场景，没用对的话会出现很多边界值的问题。如果下限i和上限j都会在更新时在中间值k的基础上+1或-1的话用第一种方法，否则用第二种。</p>
+
+<h2 id="题目">题目</h2>
+
+<h3 id="查找数">查找数</h3>
+
+<h4 id="704-二分查找-https-leetcode-cn-com-problems-binary-search"><a href="https://leetcode-cn.com/problems/binary-search/">704 二分查找</a></h4>
+
+<p>最标准的二分查找。因为下限i和上限j都会在更新时+1和-1，所以让j = nums.size() - 1，循环条件是 i &lt;= j。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> search(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums, <span style="color:#fff;font-weight:bold">int</span> target) {
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>, j = nums.size() - <span style="color:#ff0;font-weight:bold">1</span>, k = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt;= j) {
+            k = i + (j - i + <span style="color:#ff0;font-weight:bold">1</span>) / <span style="color:#ff0;font-weight:bold">2</span>;
+            <span style="color:#fff;font-weight:bold">if</span> (nums[k] &gt; target)
+                j = k - <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span> if (nums[k] &lt; target)
+                i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span>
+                <span style="color:#fff;font-weight:bold">return</span> k;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> -<span style="color:#ff0;font-weight:bold">1</span>;
+    }
+};
+</code></pre></div>
+<h4 id="374-猜数字大小-https-leetcode-cn-com-problems-guess-number-higher-or-lower"><a href="https://leetcode-cn.com/problems/guess-number-higher-or-lower/">374 猜数字大小</a></h4>
+
+<p>一个二分查找的简单应用。跟上一题几乎一样。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">int</span> guess(<span style="color:#fff;font-weight:bold">int</span> num);
+
+<span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> guessNumber(<span style="color:#fff;font-weight:bold">int</span> n) {
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>, j = n, k = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt;= j) {
+            k = i + (j - i + <span style="color:#ff0;font-weight:bold">1</span>) / <span style="color:#ff0;font-weight:bold">2</span>;
+            <span style="color:#fff;font-weight:bold">auto</span> res = guess(k);
+            <span style="color:#fff;font-weight:bold">if</span> (res == <span style="color:#ff0;font-weight:bold">1</span>)
+                i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span> if (res == -<span style="color:#ff0;font-weight:bold">1</span>)
+                j = k - <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span>
+                <span style="color:#fff;font-weight:bold">return</span> k;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+    }
+};
+</code></pre></div>
+<h4 id="367-有效的完全平方数-https-leetcode-cn-com-problems-valid-perfect-square"><a href="https://leetcode-cn.com/problems/valid-perfect-square/">367 有效的完全平方数</a></h4>
+
+<p>判断一个数是否是完全平方数。因为在二分的过程中平方得到的结果可能会超过32位int型的上限，所以用long long。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">bool</span> isPerfectSquare(<span style="color:#fff;font-weight:bold">int</span> num) {
+        <span style="color:#fff;font-weight:bold">long</span> <span style="color:#fff;font-weight:bold">long</span> i = <span style="color:#ff0;font-weight:bold">0</span>, j = num, k = <span style="color:#ff0;font-weight:bold">0</span>, res = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt;= j) {
+            k = i + (j - i + <span style="color:#ff0;font-weight:bold">1</span>) / <span style="color:#ff0;font-weight:bold">2</span>;
+            res = k * k;
+            <span style="color:#fff;font-weight:bold">if</span> (res &lt; num)
+                i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span> if (res &gt; num)
+                j = k - <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span>
+                <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> j * j == num;
+    }
+};
+</code></pre></div>
+<h4 id="69-x的平方根-https-leetcode-cn-com-problems-sqrtx"><a href="https://leetcode-cn.com/problems/sqrtx/">69 x的平方根</a></h4>
+
+<p>实现int sqrt(int x)函数。用商来判断比用乘积来判断更直观。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> mySqrt(<span style="color:#fff;font-weight:bold">int</span> x) {
+        <span style="color:#fff;font-weight:bold">if</span> (x &lt;= <span style="color:#ff0;font-weight:bold">1</span>)
+            <span style="color:#fff;font-weight:bold">return</span> x;
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>, j = x, k = <span style="color:#ff0;font-weight:bold">0</span>, sqrt = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt;= j) {
+            k = i + (j - i + <span style="color:#ff0;font-weight:bold">1</span>) / <span style="color:#ff0;font-weight:bold">2</span>;
+            sqrt = x / k;
+            <span style="color:#fff;font-weight:bold">if</span> (sqrt &lt; k)
+                j = k - <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span> if (sqrt &gt; k)
+                i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span>
+                <span style="color:#fff;font-weight:bold">return</span> k;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> j;
+    }
+};
+</code></pre></div>
+<h3 id="查找上界-下界">查找上界/下界</h3>
+
+<h4 id="35-搜索插入位置-https-leetcode-cn-com-problems-search-insert-position"><a href="https://leetcode-cn.com/problems/search-insert-position/">35 搜索插入位置</a></h4>
+
+<p>找到大于等于target的第一个数。因为上限j在更新时会直接被赋给k的值，所以让j = nums.size()，循环条件是i &lt; j。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> searchInsert(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; nums, <span style="color:#fff;font-weight:bold">int</span> target) {
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>, j = nums.size(), k = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt; j) {
+            k = i + (j - i) / <span style="color:#ff0;font-weight:bold">2</span>;
+            <span style="color:#fff;font-weight:bold">if</span> (nums[k] &lt; target)
+                i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span> if (nums[k] &gt; target)
+                j = k;
+            <span style="color:#fff;font-weight:bold">else</span>
+                <span style="color:#fff;font-weight:bold">return</span> k;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> j;
+    }
+};
+</code></pre></div>
+<h4 id="744-寻找比目标字母大的最小字母-https-leetcode-cn-com-problems-find-smallest-letter-greater-than-target"><a href="https://leetcode-cn.com/problems/find-smallest-letter-greater-than-target/">744 寻找比目标字母大的最小字母</a></h4>
+
+<p>找到大于target的第一个数，相比于上一题只是少了在循环内判断是否等于的情况。从int类型数组变成了char类型数组，不过这一点并没有任何影响。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">char</span> nextGreatestLetter(vector&lt;<span style="color:#fff;font-weight:bold">char</span>&gt;&amp; letters, <span style="color:#fff;font-weight:bold">char</span> target) {
+        <span style="color:#fff;font-weight:bold">int</span> n = letters.size(), i = <span style="color:#ff0;font-weight:bold">0</span>, j = n, k = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt; j) {
+            k = i + (j - i) / <span style="color:#ff0;font-weight:bold">2</span>;
+            <span style="color:#fff;font-weight:bold">if</span> (letters[k] &lt;= target)
+                i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span> if (letters[k] &gt; target)
+                j = k;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> j &lt; n ? letters[j] : letters[<span style="color:#ff0;font-weight:bold">0</span>];
+    }
+};
+</code></pre></div>
+<h4 id="278-第一个错误的版本-https-leetcode-cn-com-problems-first-bad-version"><a href="https://leetcode-cn.com/problems/first-bad-version/">278 第一个错误的版本</a></h4>
+
+<p>很标准的找下界。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">bool</span> isBadVersion(<span style="color:#fff;font-weight:bold">int</span> version);
+
+<span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> firstBadVersion(<span style="color:#fff;font-weight:bold">long</span> <span style="color:#fff;font-weight:bold">long</span> n) {
+        <span style="color:#fff;font-weight:bold">long</span> <span style="color:#fff;font-weight:bold">long</span> i = <span style="color:#ff0;font-weight:bold">0</span>, j = n + <span style="color:#ff0;font-weight:bold">1</span>, k = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt; j) {
+            k = i + (j - i) / <span style="color:#ff0;font-weight:bold">2</span>;
+            <span style="color:#fff;font-weight:bold">if</span> (!isBadVersion(k))
+                i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span>
+                j = k;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> j;
+    }
+};
+</code></pre></div>
+<h3 id="根据位置关系查找">根据位置关系查找</h3>
+
+<h4 id="378-有序矩阵中第k小的元素-https-leetcode-cn-com-problems-kth-smallest-element-in-a-sorted-matrix"><a href="https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/">378 有序矩阵中第K小的元素</a></h4>
+
+<p>这道题可以用跟剑指offer里二维数组中的查找这道题的思路结合二分查找来做，二分的时候每次计算矩阵里小于等于中间值的数的个数就能得到结果了。时间复杂度是O(logm * n)，m是matrix[n - 1][n - 1]，n是matrix.size()。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> kthSmallest(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt;&amp; matrix, <span style="color:#fff;font-weight:bold">int</span> m) {
+        <span style="color:#fff;font-weight:bold">int</span> n = matrix.size(), i = matrix[<span style="color:#ff0;font-weight:bold">0</span>][<span style="color:#ff0;font-weight:bold">0</span>], j = matrix[n - <span style="color:#ff0;font-weight:bold">1</span>][n - <span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>, k = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt; j) {
+            k = i + (j - i) / <span style="color:#ff0;font-weight:bold">2</span>;
+            <span style="color:#fff;font-weight:bold">auto</span> res = CountLess(matrix, k);
+            <span style="color:#fff;font-weight:bold">if</span> (res &lt; m)
+                i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span>
+                j = k;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> i;
+    }
+    
+    <span style="color:#fff;font-weight:bold">int</span> CountLess(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt;&amp; matrix, <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span> &amp;target) {
+        <span style="color:#fff;font-weight:bold">int</span> n = matrix.size(), i = <span style="color:#ff0;font-weight:bold">0</span>, j = n - <span style="color:#ff0;font-weight:bold">1</span>, res = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt; n &amp;&amp; j &gt;= <span style="color:#ff0;font-weight:bold">0</span>) {
+            <span style="color:#fff;font-weight:bold">if</span> (matrix[i][j] &lt;= target)
+                res += j + <span style="color:#ff0;font-weight:bold">1</span>, ++i;
+            <span style="color:#fff;font-weight:bold">else</span>
+                --j;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="153-寻找旋转排序数组中的最小值-https-leetcode-cn-com-problems-find-minimum-in-rotated-sorted-array"><a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/">153 寻找旋转排序数组中的最小值</a></h4>
+
+<p>根据中间值与左右边值和其左右边一位的大小关系来判断，如果中间值k比左边值小，那么k有可能是结果，让j = k；否则比较中间值与其右边一位，如果中间值大于右边一位的值，那么右边一位的值就是结果，否则让i = k + 1。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> findMin(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; nums) {
+        <span style="color:#fff;font-weight:bold">int</span> n = nums.size(), i = <span style="color:#ff0;font-weight:bold">0</span>, j = nums.size(), k = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">if</span> (n == <span style="color:#ff0;font-weight:bold">1</span> || nums[<span style="color:#ff0;font-weight:bold">0</span>] &lt; nums[n - <span style="color:#ff0;font-weight:bold">1</span>])
+            <span style="color:#fff;font-weight:bold">return</span> nums[<span style="color:#ff0;font-weight:bold">0</span>];
+        <span style="color:#fff;font-weight:bold">else</span> if (n == <span style="color:#ff0;font-weight:bold">2</span>)
+            <span style="color:#fff;font-weight:bold">return</span> min(nums[<span style="color:#ff0;font-weight:bold">0</span>], nums[<span style="color:#ff0;font-weight:bold">1</span>]);
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt; j) {
+            k = i + (j - i) / <span style="color:#ff0;font-weight:bold">2</span>;
+            <span style="color:#fff;font-weight:bold">if</span> (nums[i] &gt; nums[k])
+                j = k;
+            <span style="color:#fff;font-weight:bold">else</span> if (k + <span style="color:#ff0;font-weight:bold">1</span> &lt; j &amp;&amp; nums[k + <span style="color:#ff0;font-weight:bold">1</span>] &gt; nums[i])
+                i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">else</span>
+                <span style="color:#fff;font-weight:bold">return</span> nums[k + <span style="color:#ff0;font-weight:bold">1</span>];
+        }
+        <span style="color:#fff;font-weight:bold">return</span> j &gt;= n ? nums[i] : min(nums[i], nums[j]);
+    }
+};
+</code></pre></div>
+<h4 id="540-有序数组中的单一元素-https-leetcode-cn-com-problems-single-element-in-a-sorted-array"><a href="https://leetcode-cn.com/problems/single-element-in-a-sorted-array/">540 有序数组中的单一元素</a></h4>
+
+<p>有序数组里其他每个元素都出现两次，找到唯一只出现一次的数。在唯一的数出现之后奇偶位的相等关系会发生变化，利用这一点来做判断。比较直观的写法是分别判断 k % 2 == 0 和 k % 2 == 1 的情况，这样写起来比较复杂，可以直接在 k % 2 == 1 的时候 &ndash;k，再直接判断nums[k] 和 nums[k + 1]的关系。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> singleNonDuplicate(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums) {
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>, j = nums.size() - <span style="color:#ff0;font-weight:bold">1</span>, k = <span style="color:#ff0;font-weight:bold">0</span>, n = nums.size();
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt;= j) {
+            k = i + (j - i + <span style="color:#ff0;font-weight:bold">1</span>) / <span style="color:#ff0;font-weight:bold">2</span>;
+            cout &lt;&lt; k &lt;&lt; endl;
+            <span style="color:#fff;font-weight:bold">if</span> (k % <span style="color:#ff0;font-weight:bold">2</span> == <span style="color:#ff0;font-weight:bold">0</span>) {
+                <span style="color:#fff;font-weight:bold">if</span> (k + <span style="color:#ff0;font-weight:bold">1</span> &lt; n &amp;&amp; nums[k] == nums[k + <span style="color:#ff0;font-weight:bold">1</span>])
+                    i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+                <span style="color:#fff;font-weight:bold">else</span> if (k - <span style="color:#ff0;font-weight:bold">1</span> &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; nums[k] == nums[k - <span style="color:#ff0;font-weight:bold">1</span>])
+                    j = k - <span style="color:#ff0;font-weight:bold">1</span>;
+                <span style="color:#fff;font-weight:bold">else</span>
+                    <span style="color:#fff;font-weight:bold">return</span> nums[k];
+            } <span style="color:#fff;font-weight:bold">else</span> {
+                <span style="color:#fff;font-weight:bold">if</span> (k + <span style="color:#ff0;font-weight:bold">1</span> &lt; n &amp;&amp; nums[k] == nums[k + <span style="color:#ff0;font-weight:bold">1</span>])
+                    j = k - <span style="color:#ff0;font-weight:bold">1</span>;
+                <span style="color:#fff;font-weight:bold">else</span> if (k - <span style="color:#ff0;font-weight:bold">1</span> &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; nums[k] == nums[k - <span style="color:#ff0;font-weight:bold">1</span>])
+                    i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+                <span style="color:#fff;font-weight:bold">else</span>
+                    <span style="color:#fff;font-weight:bold">return</span> nums[k];
+            }
+        }
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+    }
+};
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> singleNonDuplicate(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums) {
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>, j = nums.size(), k = <span style="color:#ff0;font-weight:bold">0</span>, n = nums.size();
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt; j) {
+            k = i + (j - i) / <span style="color:#ff0;font-weight:bold">2</span>;
+            <span style="color:#fff;font-weight:bold">if</span> (k % <span style="color:#ff0;font-weight:bold">2</span> == <span style="color:#ff0;font-weight:bold">1</span>)
+                --k;
+            <span style="color:#fff;font-weight:bold">if</span> (k + <span style="color:#ff0;font-weight:bold">1</span> &lt; n &amp;&amp; nums[k] == nums[k + <span style="color:#ff0;font-weight:bold">1</span>])
+                i = k + <span style="color:#ff0;font-weight:bold">2</span>;
+            <span style="color:#fff;font-weight:bold">else</span>
+                j = k;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> nums[j];
+    }
+};
+</code></pre></div>
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>
