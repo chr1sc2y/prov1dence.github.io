@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 19 Jun 2019 19:26:39 +1000</lastBuildDate>
+    <lastBuildDate>Fri, 21 Jun 2019 17:07:07 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 750 角矩形的数量</title>
+      <link>https://zintrulcre.vip/posts/leetcode/750/</link>
+      <pubDate>Fri, 21 Jun 2019 17:07:07 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/750/</guid>
+      <description>LeetCode 750 角矩形的数量 给一个矩阵，找出里面矩形的数量。 最直观的方法就是暴力法，先找到值为1的点，然后遍历其所在的行和列，再判断能否构成矩形，时间复</description>
+    </item>
     
     <item>
       <title>LeetCode Binary Search</title>
@@ -27,7 +36,7 @@
       <pubDate>Sun, 02 Jun 2019 18:22:25 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/leetcode/946/</guid>
-      <description>LeetCode 946 验证栈序列 给定 pushed 和 popped 两个数组，判断这两个数组能否通过一个空栈执行 push 和 pop 得到。 Solution 1: Greedy 用一个栈把 pushed 数组里的数依次 push 进去，push 之后检查栈顶</description>
+      <description>LeetCode 946 验证栈序列 给定 pushed 和 popped 两个数组，判断这两个数组能否通过一个空栈执行 push 和 pop 得到。 很典型的贪心+栈。用一个栈把 pushed 数组里的数依次 push 进去，push</description>
     </item>
     
     <item>
@@ -91,16 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/kick-start/2019-round-a/</guid>
       <description>Kick Start 2019 Round A Training (7pts, 13pts) 一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。 \[ \sum_{i}^{j} max(rating) - rating[i] \] Solution: Sort + Prefix Sum 先对数组排序，然后在长</description>
-    </item>
-    
-    <item>
-      <title>Methods to Prevent Overfitting in Deep Learning</title>
-      <link>https://zintrulcre.vip/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</link>
-      <pubDate>Wed, 20 Mar 2019 09:55:04 +1100</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</guid>
-      <description>Methods to Prevent Overfitting in Deep Learning Overfitting Overfitting refers to that when a model fits the training data well but cannot predict the test data correctly, we may say that the model lacks the ability of generalization. It is important to figure out how it happens, and how we can prevent overfitting from the very beginning.
-Detect Overfitting The simplest way to detect overfitting is to split the dataset into two parts: the training set for training the model, and the test set for testing the accuracy of the model on a dataset that it has never seen before.</description>
     </item>
     
   </channel>

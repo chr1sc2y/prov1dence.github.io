@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 208 实现 Trie (前缀树)"/>
-<meta name="twitter:description" content="LeetCode 208 实现 Trie (前缀树) 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。 示例: Trie trie = new Trie(); trie.insert(&#34;apple&#34;); trie.search(&#34;apple&#34;); // 返回 true trie.search(&#34;app&#34;); // 返回 false trie.startsWith(&#34;app&#34;); // 返回 true trie.insert(&#34;app&#34;); trie.search(&#34;app&#34;); // 返回 true 说明: 你可以假"/>
+<meta name="twitter:description" content="LeetCode 208 实现 Trie (前缀树) 实现一个前缀树，包括 insert, search, 和 startsWith 三个操作。 Trie前缀树是一种树形数据结构，用于检索字符串数据集中的键，常用于自然语言处理的"/>
 
     <meta property="og:title" content="LeetCode 208 实现 Trie (前缀树)" />
-<meta property="og:description" content="LeetCode 208 实现 Trie (前缀树) 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。 示例: Trie trie = new Trie(); trie.insert(&#34;apple&#34;); trie.search(&#34;apple&#34;); // 返回 true trie.search(&#34;app&#34;); // 返回 false trie.startsWith(&#34;app&#34;); // 返回 true trie.insert(&#34;app&#34;); trie.search(&#34;app&#34;); // 返回 true 说明: 你可以假" />
+<meta property="og:description" content="LeetCode 208 实现 Trie (前缀树) 实现一个前缀树，包括 insert, search, 和 startsWith 三个操作。 Trie前缀树是一种树形数据结构，用于检索字符串数据集中的键，常用于自然语言处理的" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/208/" />
 <meta property="article:published_time" content="2019-03-15T10:56:12&#43;11:00"/>
@@ -112,25 +112,9 @@
 
 <h1 id="leetcode-208-实现-trie-前缀树-https-leetcode-cn-com-problems-implement-trie-prefix-tree"><a href="https://leetcode-cn.com/problems/implement-trie-prefix-tree/">LeetCode 208 实现 Trie (前缀树)</a></h1>
 
-<p>实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。</p>
+<p>实现一个前缀树，包括 insert, search, 和 startsWith 三个操作。</p>
 
-<p>示例:</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Trie trie = new Trie();
-
-trie.insert(&#34;apple&#34;);
-trie.search(&#34;apple&#34;);   // 返回 true
-trie.search(&#34;app&#34;);     // 返回 false
-trie.startsWith(&#34;app&#34;); // 返回 true
-trie.insert(&#34;app&#34;);   
-trie.search(&#34;app&#34;);     // 返回 true</pre></div>
-<p>说明:</p>
-
-<p>你可以假设所有的输入都是由小写字母 a-z 构成的。
-保证所有输入均为非空字符串。</p>
-
-<hr />
-
-<p>Trie（读作&rdquo;try&rdquo;）前缀树是一种树形数据结构，用于检索字符串数据集中的键，常用于自然语言处理的Query Completion。Trie对比于Hash的优势在于，Hash冲突会随着Hash的增加而增加，其搜索时间复杂度在最坏情况下可能为O(n)，其中n是key的数量，而trie的时间复杂度仅为O(m)，其中m是key的最大长度，并且Trie可以使用比Hash更少的空间。而在平衡树中搜索的时间复杂度为O(mlogn)。</p>
+<p>Trie前缀树是一种树形数据结构，用于检索字符串数据集中的键，常用于自然语言处理的Query Completion。Trie对比于Hash的优势在于，Hash冲突会随着Hash的增加而增加，其搜索时间复杂度在最坏情况下可能为O(n)，其中n是key的数量，而trie的时间复杂度仅为O(m)，其中m是key的最大长度，并且Trie可以使用比Hash更少的空间。而在平衡树中搜索的时间复杂度为O(mlogn)。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007f7f">// C++
 </span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Trie {
     <span style="color:#fff;font-weight:bold">struct</span> TrieNode {

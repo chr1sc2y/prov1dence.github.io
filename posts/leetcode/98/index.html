@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 98 验证二叉搜索树"/>
-<meta name="twitter:description" content="LeetCode 98 验证二叉搜索树 给定一个二叉树，判断其是否是一个有效的二叉搜索树。 假设一个二叉搜索树具有如下特征： 节点的左子树只包含小于当前节点的数。 节点"/>
+<meta name="twitter:description" content="LeetCode 98 验证二叉搜索树 给一个二叉树，判断其是否是一个有效的二叉搜索树。 因为二叉搜索树的中序遍历结果是一个有序数组，我们可以将中序遍历的结果保存在"/>
 
     <meta property="og:title" content="LeetCode 98 验证二叉搜索树" />
-<meta property="og:description" content="LeetCode 98 验证二叉搜索树 给定一个二叉树，判断其是否是一个有效的二叉搜索树。 假设一个二叉搜索树具有如下特征： 节点的左子树只包含小于当前节点的数。 节点" />
+<meta property="og:description" content="LeetCode 98 验证二叉搜索树 给一个二叉树，判断其是否是一个有效的二叉搜索树。 因为二叉搜索树的中序遍历结果是一个有序数组，我们可以将中序遍历的结果保存在" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/98/" />
 <meta property="article:published_time" content="2019-02-12T21:44:35&#43;11:00"/>
@@ -112,33 +112,7 @@
 
 <h1 id="leetcode-98-验证二叉搜索树-https-leetcode-cn-com-problems-validate-binary-search-tree"><a href="https://leetcode-cn.com/problems/validate-binary-search-tree/">LeetCode 98 验证二叉搜索树</a></h1>
 
-<p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
-
-<p>假设一个二叉搜索树具有如下特征：</p>
-
-<p>节点的左子树只包含小于当前节点的数。
-节点的右子树只包含大于当前节点的数。
-所有左子树和右子树自身必须也是二叉搜索树。</p>
-
-<p>示例 1:</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">输入:
-    2
-   / \
-  1   3
-输出: true</pre></div>
-<p>示例 2:</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">输入:
-    5
-   / \
-  1   4
-     / \
-    3   6
-输出: false
-解释: 输入为: [5,1,4,null,null,3,6]。
-     根节点的值为 5 ，但是其右子节点值为 4 。</pre></div>
-<hr />
-
-<h2 id="1-中序遍历">#1: 中序遍历</h2>
+<p>给一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
 
 <p>因为二叉搜索树的中序遍历结果是一个有序数组，我们可以将中序遍历的结果保存在一个数组中，再判断该数组是否是有序数组。有递归和迭代两种写法。时间复杂度为<code>O(n)</code>，空间复杂度为<code>O(n)</code>。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#007f7f">// C++ recursion
@@ -192,9 +166,7 @@
     }
 };
 </code></pre></div>
-<h2 id="2-比较">#2: 比较</h2>
-
-<p>根据二叉树的定义，我们只需要判断节点大于左子树的最大值，小于右子树的最小值即可。有递归和迭代两种写法。时间复杂度为<code>O(n)</code>，空间复杂度为<code>O(n)</code>。</p>
+<p>也可以通过二叉树的定义来实现，只需要依次判断当前节点大于左子树的最大值，小于右子树的最小值即可。有递归和迭代两种写法。时间复杂度为<code>O(n)</code>，空间复杂度为<code>O(n)</code>。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#007f7f">// C++ recursion
 </span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
