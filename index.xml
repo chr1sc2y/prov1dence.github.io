@@ -22,12 +22,12 @@
     </item>
     
     <item>
-      <title>LeetCode Binary Search</title>
+      <title>LeetCode 二分查找</title>
       <link>https://zintrulcre.vip/posts/leetcode/binarysearch/</link>
       <pubDate>Wed, 19 Jun 2019 19:26:39 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/leetcode/binarysearch/</guid>
-      <description>LeetCode Binary Search 二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。 易错点 计算中间值的方法 k = i +</description>
+      <description>LeetCode 二分查找 二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。 易错点 计算中间值的方法 k =</description>
     </item>
     
     <item>
