@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>LeetCode 动态规划 丑数</title>
-      <link>https://zintrulcre.vip/posts/leetcode/dynamic-programming/</link>
+      <title>LeetCode 动态规划（1）</title>
+      <link>https://zintrulcre.vip/posts/leetcode/dynamic-programming-1/</link>
       <pubDate>Wed, 26 Jun 2019 18:08:10 +1000</pubDate>
       
-      <guid>https://zintrulcre.vip/posts/leetcode/dynamic-programming/</guid>
-      <description>LeetCode 动态规划 丑数 二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。 易错点 计算中间值的方法</description>
+      <guid>https://zintrulcre.vip/posts/leetcode/dynamic-programming-1/</guid>
+      <description>LeetCode 动态规划 题目 1. 丑数 丑数是质因数只有 2, 3, 5 的正整数。丑数类的题目用暴力法一般都会 TLE，可以用 DP 来将时间复杂度优化到 O(m * n)，其中 m 是质因数</description>
     </item>
     
     <item>
