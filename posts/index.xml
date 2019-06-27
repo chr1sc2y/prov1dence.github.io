@@ -49,6 +49,15 @@
     </item>
     
     <item>
+      <title>Object Detection</title>
+      <link>https://zintrulcre.vip/posts/deep-learning/object-detection-yolo/</link>
+      <pubDate>Sun, 19 May 2019 19:40:23 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/deep-learning/object-detection-yolo/</guid>
+      <description>Object Detection Object detection deals with detecting instances of objects of a certain class, such as humans, animals, etc, in digital images and videos. Object detection has applications in many areas of computer vision, including image retrieval, face detection, video surveillance, and self-driving, etc. Current detection systems repurpose classifiers to perform detection. To detect an object, these systems take a classifier for that object and evaluate it at various locations and scales in a test image.</description>
+    </item>
+    
+    <item>
       <title>Code Jam 2019 Round 1C</title>
       <link>https://zintrulcre.vip/posts/code-jam/2019-round-1c/</link>
       <pubDate>Tue, 07 May 2019 22:02:15 +1000</pubDate>
@@ -91,16 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/kick-start/2019-round-a/</guid>
       <description>Kick Start 2019 Round A Training (7pts, 13pts) 一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。 \[ \sum_{i}^{j} max(rating) - rating[i] \] Solution: Sort + Prefix Sum 先对数组排序，然后在长</description>
-    </item>
-    
-    <item>
-      <title>Methods to Prevent Overfitting in Deep Learning</title>
-      <link>https://zintrulcre.vip/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</link>
-      <pubDate>Wed, 20 Mar 2019 09:55:04 +1100</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</guid>
-      <description>Methods to Prevent Overfitting in Deep Learning Overfitting Overfitting refers to that when a model fits the training data well but cannot predict the test data correctly, we may say that the model lacks the ability of generalization. It is important to figure out how it happens, and how we can prevent overfitting from the very beginning.
-Detect Overfitting The simplest way to detect overfitting is to split the dataset into two parts: the training set for training the model, and the test set for testing the accuracy of the model on a dataset that it has never seen before.</description>
     </item>
     
   </channel>
