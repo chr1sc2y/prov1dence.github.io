@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 26 Jun 2019 18:08:10 +1000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Jun 2019 10:09:13 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 动态规划（2）</title>
+      <link>https://zintrulcre.vip/posts/leetcode/dynamic-programming-2/</link>
+      <pubDate>Thu, 27 Jun 2019 10:09:13 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/dynamic-programming-2/</guid>
+      <description>LeetCode 动态规划 题目 3.</description>
+    </item>
     
     <item>
       <title>LeetCode 动态规划（1）</title>
@@ -91,15 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/code-jam/2019-qualification-round/</guid>
       <description>Code Jam 2019 Qualification Round Foregone Solution (6pts, 10pts, 1pts) 将一个带有数字4的数拆分为两个不带数字4的数。 Solution: Construction 输入的数一定带有数字4，对于每一位上的数字4，我们可以将其拆分为2+2</description>
-    </item>
-    
-    <item>
-      <title>Kick Start 2019 Round A</title>
-      <link>https://zintrulcre.vip/posts/kick-start/2019-round-a/</link>
-      <pubDate>Tue, 26 Mar 2019 14:25:36 +1100</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/kick-start/2019-round-a/</guid>
-      <description>Kick Start 2019 Round A Training (7pts, 13pts) 一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。 \[ \sum_{i}^{j} max(rating) - rating[i] \] Solution: Sort + Prefix Sum 先对数组排序，然后在长</description>
     </item>
     
   </channel>
