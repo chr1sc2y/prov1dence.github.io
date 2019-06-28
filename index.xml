@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 26 Jun 2019 18:08:10 +1000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Jun 2019 10:09:13 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 动态规划（2）</title>
+      <link>https://zintrulcre.vip/posts/leetcode/dynamic-programming-2/</link>
+      <pubDate>Fri, 28 Jun 2019 10:09:13 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/dynamic-programming-2/</guid>
+      <description>LeetCode 动态规划 题目 3. 数组相关 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。 用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之</description>
+    </item>
     
     <item>
       <title>LeetCode 动态规划（1）</title>
@@ -91,16 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/kick-start/2019-round-a/</guid>
       <description>Kick Start 2019 Round A Training (7pts, 13pts) 一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。 \[ \sum_{i}^{j} max(rating) - rating[i] \] Solution: Sort + Prefix Sum 先对数组排序，然后在长</description>
-    </item>
-    
-    <item>
-      <title>Methods to Prevent Overfitting in Deep Learning</title>
-      <link>https://zintrulcre.vip/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</link>
-      <pubDate>Wed, 20 Mar 2019 09:55:04 +1100</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</guid>
-      <description>Methods to Prevent Overfitting in Deep Learning Overfitting Overfitting refers to that when a model fits the training data well but cannot predict the test data correctly, we may say that the model lacks the ability of generalization. It is important to figure out how it happens, and how we can prevent overfitting from the very beginning.
-Detect Overfitting The simplest way to detect overfitting is to split the dataset into two parts: the training set for training the model, and the test set for testing the accuracy of the model on a dataset that it has never seen before.</description>
     </item>
     
   </channel>
