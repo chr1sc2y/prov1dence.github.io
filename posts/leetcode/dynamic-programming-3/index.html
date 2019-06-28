@@ -11,14 +11,14 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="6. N 键键盘 650 只有两个键的键盘 有一个字符 &lsquo;A&rsquo;，只能进行复制和粘贴操作，求得到 n 个 &lsquo;A&rsquo; 的最小操作次数。
-m 个 &lsquo;A&rsquo; 只能通过粘贴的操作得到，求出所有能整除 m 的数里通过复制粘贴操作得到 m 的最小次数即可。
-classSolution { public: int minSteps(int n) { vector&lt;int&gt; dp(n &#43; 1, n); dp[1] = 0; for (int i = 1; i &lt;= n; &#43;&#43;i) { int res = dp[i] &#43; 1; for (int j = i; j &lt;= n; j &#43;= i) { dp[j] = min(dp[j], res); &#43;&#43;res; } } return dp[n]; } };  651 4键键盘 一个键盘上有四个键：输入 &lsquo;A&rsquo;，选中全部，复制，和粘贴。可以按 N 次键盘，求最多能显示多少个 &lsquo;A&rsquo;。"/>
+<meta name="twitter:description" content="6. 回文 5 最长回文子串 找到一个字符串中的最长回文子串。
+最简单的方法是从一个字符与其前一个/两个字符分别往两边遍历。也可以按照自下而上的动态规划思想，用一个二维数组 dp[i][j]，判断两个字符 s[i] 与 s[j] 是否相等，以及他们内侧的子字符串是否是一个回文串，状态转移方程是 dp[i][j] = s[i] == s[j] &amp;&amp; (dp[i &#43; 1][j - 1] || j - i &lt; 3)。
+classSolution { public: string longestPalindrome(string s) { int n = s.size(); string res; vector&lt;vector&lt;bool&gt;&gt; dp(n, vector&lt;bool&gt;(n, false)); for (int i = 0; i &lt; n; &#43;&#43;i) for (int j = i; j &gt;= 0; --j) if (s[i] == s[j] &amp;&amp; (i - j &lt; 3 || dp[j &#43; 1][i - 1])) { dp[j][i] = true; if (i - j &#43; 1 &gt; res."/>
 
     <meta property="og:title" content="" />
-<meta property="og:description" content="6. N 键键盘 650 只有两个键的键盘 有一个字符 &lsquo;A&rsquo;，只能进行复制和粘贴操作，求得到 n 个 &lsquo;A&rsquo; 的最小操作次数。
-m 个 &lsquo;A&rsquo; 只能通过粘贴的操作得到，求出所有能整除 m 的数里通过复制粘贴操作得到 m 的最小次数即可。
-classSolution { public: int minSteps(int n) { vector&lt;int&gt; dp(n &#43; 1, n); dp[1] = 0; for (int i = 1; i &lt;= n; &#43;&#43;i) { int res = dp[i] &#43; 1; for (int j = i; j &lt;= n; j &#43;= i) { dp[j] = min(dp[j], res); &#43;&#43;res; } } return dp[n]; } };  651 4键键盘 一个键盘上有四个键：输入 &lsquo;A&rsquo;，选中全部，复制，和粘贴。可以按 N 次键盘，求最多能显示多少个 &lsquo;A&rsquo;。" />
+<meta property="og:description" content="6. 回文 5 最长回文子串 找到一个字符串中的最长回文子串。
+最简单的方法是从一个字符与其前一个/两个字符分别往两边遍历。也可以按照自下而上的动态规划思想，用一个二维数组 dp[i][j]，判断两个字符 s[i] 与 s[j] 是否相等，以及他们内侧的子字符串是否是一个回文串，状态转移方程是 dp[i][j] = s[i] == s[j] &amp;&amp; (dp[i &#43; 1][j - 1] || j - i &lt; 3)。
+classSolution { public: string longestPalindrome(string s) { int n = s.size(); string res; vector&lt;vector&lt;bool&gt;&gt; dp(n, vector&lt;bool&gt;(n, false)); for (int i = 0; i &lt; n; &#43;&#43;i) for (int j = i; j &gt;= 0; --j) if (s[i] == s[j] &amp;&amp; (i - j &lt; 3 || dp[j &#43; 1][i - 1])) { dp[j][i] = true; if (i - j &#43; 1 &gt; res." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/dynamic-programming-3/" />
 
@@ -110,7 +110,74 @@ classSolution { public: int minSteps(int n) { vector&lt;int&gt; dp(n &#43; 1, n)
       <div>
         
 
-<h3 id="6-n-键键盘">6. N 键键盘</h3>
+<h3 id="6-回文">6. 回文</h3>
+
+<h4 id="5-最长回文子串-https-leetcode-cn-com-problems-longest-palindromic-substring"><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/">5 最长回文子串</a></h4>
+
+<p>找到一个字符串中的最长回文子串。</p>
+
+<p>最简单的方法是从一个字符与其前一个/两个字符分别往两边遍历。也可以按照自下而上的动态规划思想，用一个二维数组 dp[i][j]，判断两个字符 s[i] 与 s[j] 是否相等，以及他们内侧的子字符串是否是一个回文串，状态转移方程是 dp[i][j] = s[i] == s[j] &amp;&amp; (dp[i + 1][j - 1] || j - i &lt; 3)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    string longestPalindrome(string s) {
+        <span style="color:#fff;font-weight:bold">int</span> n = s.size();
+        string res;
+        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; dp(n, vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;(n, <span style="color:#fff;font-weight:bold">false</span>));
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; n; ++i)
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i; j &gt;= <span style="color:#ff0;font-weight:bold">0</span>; --j)
+                <span style="color:#fff;font-weight:bold">if</span> (s[i] == s[j] &amp;&amp; (i - j &lt; <span style="color:#ff0;font-weight:bold">3</span> || dp[j + <span style="color:#ff0;font-weight:bold">1</span>][i - <span style="color:#ff0;font-weight:bold">1</span>])) {
+                    dp[j][i] = <span style="color:#fff;font-weight:bold">true</span>;
+                    <span style="color:#fff;font-weight:bold">if</span> (i - j + <span style="color:#ff0;font-weight:bold">1</span> &gt; res.size())
+                        res = s.substr(j, i - j + <span style="color:#ff0;font-weight:bold">1</span>);
+                }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="647-回文子串-https-leetcode-cn-com-problems-palindromic-substrings"><a href="https://leetcode-cn.com/problems/palindromic-substrings/">647 回文子串</a></h4>
+
+<p>找到一个字符串中的回文子串的个数。</p>
+
+<p>与上一题类似，用一个二维数组 dp[i][j]，判断两个字符 s[i] 与 s[j] 是否相等，以及他们内侧的子字符串是否是一个回文串，如果是那么 s.substr(j, i - j + 1)，将结果 +1 即可。时间复杂度是 O(n ^ 2)，空间复杂度是 O(n ^ 2)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> countSubstrings(string s) {
+        <span style="color:#fff;font-weight:bold">int</span> res = <span style="color:#ff0;font-weight:bold">0</span>, n = s.size();
+        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; dp(n, vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;(n, <span style="color:#fff;font-weight:bold">false</span>));
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; n; ++i)
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i; j &gt;= <span style="color:#ff0;font-weight:bold">0</span>; --j)
+                <span style="color:#fff;font-weight:bold">if</span> (s[i] == s[j] &amp;&amp; (i - j &lt; <span style="color:#ff0;font-weight:bold">3</span> || dp[j + <span style="color:#ff0;font-weight:bold">1</span>][i - <span style="color:#ff0;font-weight:bold">1</span>]))
+                    dp[j][i] = <span style="color:#fff;font-weight:bold">true</span>, ++res;
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="516-最长回文子序列-https-leetcode-cn-com-problems-longest-palindromic-subsequence"><a href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/">516 最长回文子序列</a></h4>
+
+<p>给定一个字符串，找最长的回文子序列。</p>
+
+<p>只有当两个字符相等时，他们才有可能和他们之间的子序列形成回文子序列，因此只需要知道他们之间的最长回文子序列的长度即可，否则他们之间的最长回文子序列只能是其中一个字符的左边或右边到另一个字符之间的最大回文子序列长度，状态转移方程是 dp[j][i] = s[i] == s[j] ? dp[j + 1][i - 1] + 2 : max(dp[j + 1][i], dp[j][i - 1])。时间复杂度是 O(n ^ 2)，空间复杂度是 O(n ^ 2)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> longestPalindromeSubseq(string s) {
+        <span style="color:#fff;font-weight:bold">int</span> n = s.size();
+        <span style="color:#fff;font-weight:bold">if</span> (n &lt;= <span style="color:#ff0;font-weight:bold">1</span>)
+            <span style="color:#fff;font-weight:bold">return</span> n;
+        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; dp(n, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(n, <span style="color:#ff0;font-weight:bold">0</span>));
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; n; ++i) {
+            dp[i][i] = <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i - <span style="color:#ff0;font-weight:bold">1</span>; j &gt;= <span style="color:#ff0;font-weight:bold">0</span>; --j) {
+                <span style="color:#fff;font-weight:bold">if</span> (s[i] == s[j])
+                    dp[j][i] = dp[j + <span style="color:#ff0;font-weight:bold">1</span>][i - <span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">2</span>;
+                <span style="color:#fff;font-weight:bold">else</span>
+                    dp[j][i] = max(dp[j + <span style="color:#ff0;font-weight:bold">1</span>][i], dp[j][i - <span style="color:#ff0;font-weight:bold">1</span>]);
+            }
+        }
+        <span style="color:#fff;font-weight:bold">return</span> dp[<span style="color:#ff0;font-weight:bold">0</span>][n - <span style="color:#ff0;font-weight:bold">1</span>];
+    }
+};
+</code></pre></div>
+<h3 id="7-n-键键盘">7. N 键键盘</h3>
 
 <h4 id="650-只有两个键的键盘-https-leetcode-cn-com-problems-2-keys-keyboard"><a href="https://leetcode-cn.com/problems/2-keys-keyboard/">650 只有两个键的键盘</a></h4>
 
@@ -151,7 +218,7 @@ classSolution { public: int minSteps(int n) { vector&lt;int&gt; dp(n &#43; 1, n)
     }
 };
 </code></pre></div>
-<h3 id="7-路径和">7. 路径和</h3>
+<h3 id="8-路径和">8. 路径和</h3>
 
 <h4 id="62-不同路径-https-leetcode-cn-com-problems-unique-paths"><a href="https://leetcode-cn.com/problems/unique-paths/">62 不同路径</a></h4>
 

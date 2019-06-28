@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 动态规划（2）"/>
-<meta name="twitter:description" content="LeetCode 动态规划 题目 3. 数组 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。 用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之前的"/>
+<meta name="twitter:description" content="LeetCode 动态规划 题目 3. 数组相关 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。 用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之"/>
 
     <meta property="og:title" content="LeetCode 动态规划（2）" />
-<meta property="og:description" content="LeetCode 动态规划 题目 3. 数组 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。 用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之前的" />
+<meta property="og:description" content="LeetCode 动态规划 题目 3. 数组相关 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。 用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/dynamic-programming-2/" />
 <meta property="article:published_time" content="2019-06-28T10:09:13&#43;10:00"/>
@@ -114,7 +114,7 @@
 
 <h2 id="题目">题目</h2>
 
-<h3 id="3-数组">3. 数组</h3>
+<h3 id="3-数组相关">3. 数组相关</h3>
 
 <h4 id="300-最长上升子序列-https-leetcode-cn-com-problems-longest-increasing-subsequence-submissions"><a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/submissions/">300 最长上升子序列</a></h4>
 
@@ -178,7 +178,84 @@
     }
 };
 </code></pre></div>
-<h3 id="4-斐波那契数列">4. 斐波那契数列</h3>
+<h3 id="4-等差数列">4. 等差数列</h3>
+
+<h4 id="413-等差数列划分-https-leetcode-cn-com-problems-arithmetic-slices"><a href="https://leetcode-cn.com/problems/arithmetic-slices/">413 等差数列划分</a></h4>
+
+<p>给一个数组，计算数组中等差子数组的个数。</p>
+
+<p>等差数列必须是相邻两个元素之差相等的长度大于 3 的子数组，因此只需要知道 nums[i] - nums[i - 1] == nums[i - 1] - nums[i - 1] 即可。用一个变量 cul 表示到目前为止等差数列的长度，diff 表示之前的公差，如果目前的差等于 diff 则加上 cul。时间复杂度是 O(n)，空间复杂度是 O(1)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> numberOfArithmeticSlices(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; nums) {
+        <span style="color:#fff;font-weight:bold">int</span> res = <span style="color:#ff0;font-weight:bold">0</span>, n = nums.size(), cul = <span style="color:#ff0;font-weight:bold">1</span>, curr = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">if</span> (n &lt; <span style="color:#ff0;font-weight:bold">3</span>)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">int</span> diff = nums[<span style="color:#ff0;font-weight:bold">1</span>] - nums[<span style="color:#ff0;font-weight:bold">0</span>];
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">2</span>; i &lt; n; ++i) {
+            <span style="color:#fff;font-weight:bold">if</span> ((curr = nums[i] - nums[i - <span style="color:#ff0;font-weight:bold">1</span>]) == diff) {
+                res += cul;
+                ++cul;
+            }
+            <span style="color:#fff;font-weight:bold">else</span> {
+                diff = curr;
+                cul = <span style="color:#ff0;font-weight:bold">1</span>;
+            }
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="446-等差数列划分-ii-子序列-https-leetcode-cn-com-problems-arithmetic-slices-ii-subsequence"><a href="https://leetcode-cn.com/problems/arithmetic-slices-ii-subsequence/">446 等差数列划分 II - 子序列</a></h4>
+
+<p>给一个数组，计算数组中等差子序列的个数。</p>
+
+<p>对于某一个数 nums[i]，已知其与其之前某一个数的差 diff = nums[i] - nums[j]，需要知道在 nums[j] 之前公差为 diff 的等差子序列的最大个数，可以用一个哈希表数组来表示数 nums[j] 之前公差为 diff 的等差子序列的最大个数，如果 nums[i] - nums[j] == diff 则到位置 i 为止公差为 diff 的等差子序列的个数 dp[i][diff] += dp[j][diff]，注意要用 += 而不是 =，因为如果在 nums[i] 之前有多个相同的数字那么需要把每一个都算作一个独立的等差子序列。时间复杂度是 O(n ^ 2)，空间复杂度是 O(n ^ 2)。很搞笑的是这道题的动态规划解法在 LeetCode 上提交的时候 runtime 是 1000ms +-，而在LeetCode-CN 上提交的时候执行用时是 1400ms ~ 1800ms，而且偶尔还会超时，超时的 <a href="https://leetcode-cn.com/submissions/detail/21590899/testcase/">case</a> 的公差超过了 int32 的表示范围，如果加上判断 diff &lt; INT_MIN || diff &gt; INT_MAX 直接 continue 就能正常通过了。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> numberOfArithmeticSlices(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; A) {
+        <span style="color:#fff;font-weight:bold">int</span> n = A.size(), res = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">long</span> <span style="color:#fff;font-weight:bold">long</span> diff = <span style="color:#ff0;font-weight:bold">0</span>;
+        vector&lt;unordered_map&lt;<span style="color:#fff;font-weight:bold">long</span> <span style="color:#fff;font-weight:bold">long</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;&gt; dp(n);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; n; ++i) {
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; i; ++j) {
+                diff = <span style="color:#fff;font-weight:bold">static_cast</span>&lt;<span style="color:#fff;font-weight:bold">long</span> <span style="color:#fff;font-weight:bold">long</span>&gt;(A[i]) - A[j];
+                <span style="color:#fff;font-weight:bold">if</span> (diff &lt; INT_MIN || diff &gt; INT_MAX)
+                    <span style="color:#fff;font-weight:bold">continue</span>;
+                dp[i][diff] += dp[j][diff] + <span style="color:#ff0;font-weight:bold">1</span>;
+                res += dp[j][diff];
+            }
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="1027-最长等差数列-https-leetcode-cn-com-problems-longest-arithmetic-sequence-submissions"><a href="https://leetcode-cn.com/problems/longest-arithmetic-sequence/submissions/">1027 最长等差数列</a></h4>
+
+<p>给一个数组，计算数组中最长等差子序列的长度。</p>
+
+<p>对于某一个数 nums[i]，已知其与其之前某一个数的差 diff = nums[i] - nums[j]，需要知道在 nums[j] 之前公差为 diff 的等差子序列有多长，可以用一个哈希表数组来表示每一个数之前公差为 diff 的等差子序列的最长长度，在此基础上 +1 即可得到最长的等差子序列的长度。时间复杂度是 O(n ^ 2)，空间复杂度是 O(n ^ 2)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> longestArithSeqLength(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;A) {
+        <span style="color:#fff;font-weight:bold">int</span> n = A.size(), res = <span style="color:#ff0;font-weight:bold">2</span>;
+        vector&lt;unordered_map&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;&gt; dp(n);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; n; ++i) {
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; i; ++j) {
+                <span style="color:#fff;font-weight:bold">int</span> diff = A[i] - A[j];
+                <span style="color:#fff;font-weight:bold">if</span> (dp[j].find(diff) == dp[j].end())
+                    dp[i][diff] = <span style="color:#ff0;font-weight:bold">2</span>;
+                <span style="color:#fff;font-weight:bold">else</span> {
+                    dp[i][diff] = dp[j][diff] + <span style="color:#ff0;font-weight:bold">1</span>;
+                    res = max(res, dp[i][diff]);
+                }
+            }
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h3 id="5-斐波那契数列">5. 斐波那契数列</h3>
 
 <h4 id="70-爬楼梯-https-leetcode-cn-com-problems-climbing-stairs"><a href="https://leetcode-cn.com/problems/climbing-stairs/">70 爬楼梯</a></h4>
 
@@ -295,55 +372,6 @@ public:
             }
         }
         <span style="color:#fff;font-weight:bold">return</span> res &lt; <span style="color:#ff0;font-weight:bold">3</span> ? <span style="color:#ff0;font-weight:bold">0</span> : res;
-    }
-};
-</code></pre></div>
-<h3 id="5-回文">5. 回文</h3>
-
-<h4 id="5-最长回文子串-https-leetcode-cn-com-problems-longest-palindromic-substring"><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/">5 最长回文子串</a></h4>
-
-<p>找到一个字符串中的最长回文子串。</p>
-
-<p>最简单的方法是从一个字符与其前一个/两个字符分别往两边遍历。也可以按照自下而上的动态规划思想，用一个二维数组 dp[i][j]，判断两个字符 s[i] 与 s[j] 是否相等，以及他们内侧的子字符串是否是一个回文串，状态转移方程是 dp[i][j] = s[i] == s[j] &amp;&amp; (dp[i + 1][j - 1] || j - i &lt; 3)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
-<span style="color:#fff;font-weight:bold">public</span>:
-    string longestPalindrome(string s) {
-        <span style="color:#fff;font-weight:bold">int</span> n = s.size();
-        string res;
-        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; dp(n, vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;(n, <span style="color:#fff;font-weight:bold">false</span>));
-        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; n; ++i)
-            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i; j &gt;= <span style="color:#ff0;font-weight:bold">0</span>; --j)
-                <span style="color:#fff;font-weight:bold">if</span> (s[i] == s[j] &amp;&amp; (i - j &lt; <span style="color:#ff0;font-weight:bold">3</span> || dp[j + <span style="color:#ff0;font-weight:bold">1</span>][i - <span style="color:#ff0;font-weight:bold">1</span>])) {
-                    dp[j][i] = <span style="color:#fff;font-weight:bold">true</span>;
-                    <span style="color:#fff;font-weight:bold">if</span> (i - j + <span style="color:#ff0;font-weight:bold">1</span> &gt; res.size())
-                        res = s.substr(j, i - j + <span style="color:#ff0;font-weight:bold">1</span>);
-                }
-        <span style="color:#fff;font-weight:bold">return</span> res;
-    }
-};
-</code></pre></div>
-<h4 id="516-最长回文子序列-https-leetcode-cn-com-problems-longest-palindromic-subsequence"><a href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/">516 最长回文子序列</a></h4>
-
-<p>给定一个字符串，找最长的回文子序列。</p>
-
-<p>只有当两个字符相等时，他们才有可能和他们之间的子序列形成回文子序列，因此只需要知道他们之间的最长回文子序列的长度即可，否则他们之间的最长回文子序列只能是其中一个字符的左边或右边到另一个字符之间的最大回文子序列长度，状态转移方程是 dp[j][i] = s[i] == s[j] ? dp[j + 1][i - 1] + 2 : max(dp[j + 1][i], dp[j][i - 1])。时间复杂度是 O(n ^ 2)，空间复杂度是 O(n ^ 2)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
-<span style="color:#fff;font-weight:bold">public</span>:
-    <span style="color:#fff;font-weight:bold">int</span> longestPalindromeSubseq(string s) {
-        <span style="color:#fff;font-weight:bold">int</span> n = s.size();
-        <span style="color:#fff;font-weight:bold">if</span> (n &lt;= <span style="color:#ff0;font-weight:bold">1</span>)
-            <span style="color:#fff;font-weight:bold">return</span> n;
-        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; dp(n, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(n, <span style="color:#ff0;font-weight:bold">0</span>));
-        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; n; ++i) {
-            dp[i][i] = <span style="color:#ff0;font-weight:bold">1</span>;
-            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i - <span style="color:#ff0;font-weight:bold">1</span>; j &gt;= <span style="color:#ff0;font-weight:bold">0</span>; --j) {
-                <span style="color:#fff;font-weight:bold">if</span> (s[i] == s[j])
-                    dp[j][i] = dp[j + <span style="color:#ff0;font-weight:bold">1</span>][i - <span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">2</span>;
-                <span style="color:#fff;font-weight:bold">else</span>
-                    dp[j][i] = max(dp[j + <span style="color:#ff0;font-weight:bold">1</span>][i], dp[j][i - <span style="color:#ff0;font-weight:bold">1</span>]);
-            }
-        }
-        <span style="color:#fff;font-weight:bold">return</span> dp[<span style="color:#ff0;font-weight:bold">0</span>][n - <span style="color:#ff0;font-weight:bold">1</span>];
     }
 };
 </code></pre></div>
