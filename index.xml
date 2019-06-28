@@ -18,7 +18,7 @@
       <pubDate>Wed, 26 Jun 2019 18:08:10 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/leetcode/dynamic-programming-1/</guid>
-      <description>LeetCode 动态规划 题目 1. 丑数 丑数是质因数只有 2, 3, 5 的正整数。丑数类的题目用暴力法一般都会 TLE，可以用 DP 来将时间复杂度优化到 O(m * n)，其中 m 是质因数</description>
+      <description>LeetCode 动态规划 题目 1. 数字相关 263 丑数 判断一个数 num 是否是丑数。 通用的方法是自底向上求出大于等于 num 的第一个数来判断 num 是否是丑数。但这道题已经给出了数 n</description>
     </item>
     
     <item>

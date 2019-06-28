@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="6. N 键键盘 650 只有两个键的键盘 有一个字符 &lsquo;A&rsquo;，只能进行复制和粘贴操作，求得到 n 个 &lsquo;A&rsquo; 的最小操作次数。
+m 个 &lsquo;A&rsquo; 只能通过粘贴的操作得到，求出所有能整除 m 的数里通过复制粘贴操作得到 m 的最小次数即可。
+classSolution { public: int minSteps(int n) { vector&lt;int&gt; dp(n &#43; 1, n); dp[1] = 0; for (int i = 1; i &lt;= n; &#43;&#43;i) { int res = dp[i] &#43; 1; for (int j = i; j &lt;= n; j &#43;= i) { dp[j] = min(dp[j], res); &#43;&#43;res; } } return dp[n]; } };  651 4键键盘 一个键盘上有四个键：输入 &lsquo;A&rsquo;，选中全部，复制，和粘贴。可以按 N 次键盘，求最多能显示多少个 &lsquo;A&rsquo;。"/>
+
+    <meta property="og:title" content="" />
+<meta property="og:description" content="6. N 键键盘 650 只有两个键的键盘 有一个字符 &lsquo;A&rsquo;，只能进行复制和粘贴操作，求得到 n 个 &lsquo;A&rsquo; 的最小操作次数。
+m 个 &lsquo;A&rsquo; 只能通过粘贴的操作得到，求出所有能整除 m 的数里通过复制粘贴操作得到 m 的最小次数即可。
+classSolution { public: int minSteps(int n) { vector&lt;int&gt; dp(n &#43; 1, n); dp[1] = 0; for (int i = 1; i &lt;= n; &#43;&#43;i) { int res = dp[i] &#43; 1; for (int j = i; j &lt;= n; j &#43;= i) { dp[j] = min(dp[j], res); &#43;&#43;res; } } return dp[n]; } };  651 4键键盘 一个键盘上有四个键：输入 &lsquo;A&rsquo;，选中全部，复制，和粘贴。可以按 N 次键盘，求最多能显示多少个 &lsquo;A&rsquo;。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/dynamic-programming-3/" />
+
+
+
+    
+      <base href="https://zintrulcre.vip/posts/leetcode/dynamic-programming-3/">
+    
+    <title>
+   · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/leetcode/dynamic-programming-3/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.55.2" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title"></h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='0001-01-01T00:00:00Z'>
+                January 1, 0001
+              </time>
+            </span>
+            
+          </div>
+          
+          
+        </div>
+      </header>
+
+      <div>
+        
+
+<h3 id="6-n-键键盘">6. N 键键盘</h3>
+
+<h4 id="650-只有两个键的键盘-https-leetcode-cn-com-problems-2-keys-keyboard"><a href="https://leetcode-cn.com/problems/2-keys-keyboard/">650 只有两个键的键盘</a></h4>
+
+<p>有一个字符 &lsquo;A&rsquo;，只能进行复制和粘贴操作，求得到 n 个 &lsquo;A&rsquo; 的最小操作次数。</p>
+
+<p>m 个 &lsquo;A&rsquo; 只能通过粘贴的操作得到，求出所有能整除 m 的数里通过复制粘贴操作得到 m 的最小次数即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> minSteps(<span style="color:#fff;font-weight:bold">int</span> n) {
+        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; dp(n + <span style="color:#ff0;font-weight:bold">1</span>, n);
+        dp[<span style="color:#ff0;font-weight:bold">1</span>] = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt;= n; ++i) {
+            <span style="color:#fff;font-weight:bold">int</span> res = dp[i] + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i; j &lt;= n; j += i) {
+                dp[j] = min(dp[j], res);
+                ++res;
+            }
+        }
+        <span style="color:#fff;font-weight:bold">return</span> dp[n];
+    }
+};
+</code></pre></div>
+<h4 id="651-4键键盘-https-leetcode-cn-com-problems-4-keys-keyboard-submissions"><a href="https://leetcode-cn.com/problems/4-keys-keyboard/submissions/">651 4键键盘</a></h4>
+
+<p>一个键盘上有四个键：输入 &lsquo;A&rsquo;，选中全部，复制，和粘贴。可以按 N 次键盘，求最多能显示多少个 &lsquo;A&rsquo;。</p>
+
+<p>因为 N 是最后一次操作，所以只能进行输入 &lsquo;A&rsquo; 和粘贴两种操作，只需要求出每一步在之前一步基础上输入 &lsquo;A&rsquo;，以及在往前三步的每一步基础上选中，复制，粘贴能得到的最2优解。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> maxA(<span style="color:#fff;font-weight:bold">int</span> N) {
+        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; dp(N + <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt;= N; ++i) {
+            dp[i] = dp[i - <span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i - <span style="color:#ff0;font-weight:bold">1</span>; j &gt;= <span style="color:#ff0;font-weight:bold">2</span>; --j)
+                dp[i] = max(dp[i], dp[j - <span style="color:#ff0;font-weight:bold">2</span>] * (i - j + <span style="color:#ff0;font-weight:bold">1</span>));
+        }
+        <span style="color:#fff;font-weight:bold">return</span> dp[N];
+    }
+};
+</code></pre></div>
+<h3 id="7-路径和">7. 路径和</h3>
+
+<h4 id="62-不同路径-https-leetcode-cn-com-problems-unique-paths"><a href="https://leetcode-cn.com/problems/unique-paths/">62 不同路径</a></h4>
+
+<p>给一个矩阵，求从左上角走到右下角有多少种方法。</p>
+
+<p>走到第一列和第一行的每一格都只有一种方法，其余的格子均可以从其上方和左方走一格到达，因此有状态转移方程 dp[i][j] = dp[i][j - 1] + dp[i - 1][j]。时间复杂度是 O(m * n)，空间复杂度是 O(m * n)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> uniquePaths(<span style="color:#fff;font-weight:bold">int</span> m, <span style="color:#fff;font-weight:bold">int</span> n) {
+        <span style="color:#fff;font-weight:bold">if</span> (m == <span style="color:#ff0;font-weight:bold">0</span> || n == <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; dp(m, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(n, <span style="color:#ff0;font-weight:bold">1</span>));
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; m; ++i)
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">1</span>; j &lt; n; ++j)
+                    dp[i][j] = dp[i][j - <span style="color:#ff0;font-weight:bold">1</span>] + dp[i - <span style="color:#ff0;font-weight:bold">1</span>][j];
+        <span style="color:#fff;font-weight:bold">return</span> dp[m - <span style="color:#ff0;font-weight:bold">1</span>][n - <span style="color:#ff0;font-weight:bold">1</span>];
+    }
+};
+</code></pre></div>
+<p>对于每一个格子来说，它的值都等于到达上方和左方格子的方法数量之和，也就相当于在遍历完一行之后，把上一行的值全部赋值给下一行，在下一行遍历时使其加上左方格子的方法数量，由此可以将赋值的过程简化为一个一维数组，空间复杂度降低为 O(min(m, n))。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> uniquePaths(<span style="color:#fff;font-weight:bold">int</span> m, <span style="color:#fff;font-weight:bold">int</span> n) {
+        <span style="color:#fff;font-weight:bold">if</span> (m == <span style="color:#ff0;font-weight:bold">0</span> || n == <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; dp(n, <span style="color:#ff0;font-weight:bold">1</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; m; ++i)
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">1</span>; j &lt; n; ++j)
+                dp[j] += dp[j - <span style="color:#ff0;font-weight:bold">1</span>];
+        <span style="color:#fff;font-weight:bold">return</span> dp[n - <span style="color:#ff0;font-weight:bold">1</span>];
+    }
+};
+</code></pre></div>
+<h4 id="63-不同路径-ii-https-leetcode-cn-com-problems-unique-paths-ii"><a href="https://leetcode-cn.com/problems/unique-paths-ii/">63 不同路径 II</a></h4>
+
+<p>给一个矩阵，部分位置有障碍物，求从左上角走到右下角有多少种方法。</p>
+
+<p>和上一题相比在部分位置增加了障碍物，首先要处理第一列和第一行，如果有一个位置有障碍物那么接下来的位置都不能到达了，然后对于其他格子，如果本身是障碍物那么也无法到达，否则仍然等于其上方和左方之和。时间复杂度是 O(m * n)，空间复杂度是 O(m * n)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> uniquePathsWithObstacles(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt;&amp; grid) {
+        <span style="color:#fff;font-weight:bold">int</span> m = grid.size(), n = m != <span style="color:#ff0;font-weight:bold">0</span> ? grid[<span style="color:#ff0;font-weight:bold">0</span>].size() : <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">if</span> (m == <span style="color:#ff0;font-weight:bold">0</span> || n == <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">long</span> <span style="color:#fff;font-weight:bold">long</span>&gt;&gt; dp(m, vector&lt;<span style="color:#fff;font-weight:bold">long</span> <span style="color:#fff;font-weight:bold">long</span>&gt;(n, <span style="color:#ff0;font-weight:bold">0</span>));
+        dp[<span style="color:#ff0;font-weight:bold">0</span>][<span style="color:#ff0;font-weight:bold">0</span>] = grid[<span style="color:#ff0;font-weight:bold">0</span>][<span style="color:#ff0;font-weight:bold">0</span>] ^ <span style="color:#ff0;font-weight:bold">1</span>;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; m; ++i)
+            dp[i][<span style="color:#ff0;font-weight:bold">0</span>] = (grid[i][<span style="color:#ff0;font-weight:bold">0</span>] ^ <span style="color:#ff0;font-weight:bold">1</span>) &amp; dp[i - <span style="color:#ff0;font-weight:bold">1</span>][<span style="color:#ff0;font-weight:bold">0</span>];
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">1</span>; j &lt; n; ++j)
+            dp[<span style="color:#ff0;font-weight:bold">0</span>][j] = (grid[<span style="color:#ff0;font-weight:bold">0</span>][j] ^ <span style="color:#ff0;font-weight:bold">1</span>) &amp; dp[<span style="color:#ff0;font-weight:bold">0</span>][j - <span style="color:#ff0;font-weight:bold">1</span>];
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; m; ++i)
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">1</span>; j &lt; n; ++j)
+                dp[i][j] = grid[i][j] ? <span style="color:#ff0;font-weight:bold">0</span> : dp[i - <span style="color:#ff0;font-weight:bold">1</span>][j] + dp[i][j - <span style="color:#ff0;font-weight:bold">1</span>];
+        <span style="color:#fff;font-weight:bold">return</span> dp[m - <span style="color:#ff0;font-weight:bold">1</span>][n - <span style="color:#ff0;font-weight:bold">1</span>];
+    }
+};
+</code></pre></div>
+<h4 id="64-最小路径和-https-leetcode-cn-com-problems-minimum-path-sum"><a href="https://leetcode-cn.com/problems/minimum-path-sum/">64 最小路径和</a></h4>
+
+<p>给一个带权值的矩阵，求从左上角走到右下角的最小权值之和。</p>
+
+<p>到达第一列和第一行的每一格都只有一种方法，因此先将其初始化。因为每一格只能从其上方和左方到达，因此有状态转移方程 grid[i][j] += min(grid[i - 1][j], grid[i][j - 1])。时间复杂度是 O(m * n)。可以直接在给的矩阵中操作，因此空间复杂度是 O(1)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> minPathSum(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt;&amp; grid) {
+        <span style="color:#fff;font-weight:bold">int</span> m = grid.size(), n = m != <span style="color:#ff0;font-weight:bold">0</span> ? grid[<span style="color:#ff0;font-weight:bold">0</span>].size() : <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">if</span> (m == <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; m; ++i)
+            grid[i][<span style="color:#ff0;font-weight:bold">0</span>] += grid[i - <span style="color:#ff0;font-weight:bold">1</span>][<span style="color:#ff0;font-weight:bold">0</span>];
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">1</span>; j &lt; n; ++j)
+            grid[<span style="color:#ff0;font-weight:bold">0</span>][j] += grid[<span style="color:#ff0;font-weight:bold">0</span>][j - <span style="color:#ff0;font-weight:bold">1</span>];
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; m; ++i)
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">1</span>; j &lt; n; ++j)
+                grid[i][j] += min(grid[i - <span style="color:#ff0;font-weight:bold">1</span>][j], grid[i][j - <span style="color:#ff0;font-weight:bold">1</span>]);
+        <span style="color:#fff;font-weight:bold">return</span> grid[m - <span style="color:#ff0;font-weight:bold">1</span>][n - <span style="color:#ff0;font-weight:bold">1</span>];
+    }
+};
+</code></pre></div>
+<h4 id="120-三角形最小路径和-https-leetcode-cn-com-problems-triangle"><a href="https://leetcode-cn.com/problems/triangle/">120 三角形最小路径和</a></h4>
+
+<p>给一个带权值的三角形，求自顶向下的最小路径和。每一步可以移动到左下方或右下方。</p>
+
+<p>因为每一格只能从其左上方和右上方到达，因此有状态转移方程 tri[i][j] += min(tri[i - 1][j], tri[i - 1][j - 1])。时间复杂度是 O(m * n)。可以直接在给的矩阵中操作，因此空间复杂度是 O(1)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> minimumTotal(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; &amp;tri) {
+        <span style="color:#fff;font-weight:bold">int</span> n = tri.size(), res = INT_MAX;
+        <span style="color:#fff;font-weight:bold">if</span> (n &lt;= <span style="color:#ff0;font-weight:bold">1</span>)
+            <span style="color:#fff;font-weight:bold">return</span> n == <span style="color:#ff0;font-weight:bold">0</span> ? <span style="color:#ff0;font-weight:bold">0</span> : tri[<span style="color:#ff0;font-weight:bold">0</span>][<span style="color:#ff0;font-weight:bold">0</span>];
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; n; ++i) {
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; tri[i].size(); ++j) {
+                <span style="color:#fff;font-weight:bold">if</span> (j == <span style="color:#ff0;font-weight:bold">0</span>)
+                    tri[i][j] += tri[i - <span style="color:#ff0;font-weight:bold">1</span>][j];
+                <span style="color:#fff;font-weight:bold">else</span> if (j &gt;= tri[i - <span style="color:#ff0;font-weight:bold">1</span>].size())
+                    tri[i][j] += tri[i - <span style="color:#ff0;font-weight:bold">1</span>][j - <span style="color:#ff0;font-weight:bold">1</span>];
+                <span style="color:#fff;font-weight:bold">else</span>
+                    tri[i][j] += min(tri[i - <span style="color:#ff0;font-weight:bold">1</span>][j], tri[i - <span style="color:#ff0;font-weight:bold">1</span>][j - <span style="color:#ff0;font-weight:bold">1</span>]);
+                <span style="color:#fff;font-weight:bold">if</span> (i == n - <span style="color:#ff0;font-weight:bold">1</span>)
+                    res = min(res, tri[i][j]);
+            }
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>
