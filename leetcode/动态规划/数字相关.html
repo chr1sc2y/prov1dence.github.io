@@ -1,0 +1,402 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>数字相关 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="买卖股票.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    动态规划
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.2.1" data-path="数字相关.html">
+            
+                <a href="数字相关.html">
+            
+                    
+                    数字相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="买卖股票.html">
+            
+                <a href="买卖股票.html">
+            
+                    
+                    买卖股票
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="数组相关.html">
+            
+                <a href="数组相关.html">
+            
+                    
+                    数组相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="等差数列.html">
+            
+                <a href="等差数列.html">
+            
+                    
+                    等差数列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="斐波那契数列.html">
+            
+                <a href="斐波那契数列.html">
+            
+                    
+                    斐波那契数列
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >数字相关</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="1-&#x6570;&#x5B57;&#x76F8;&#x5173;">1. &#x6570;&#x5B57;&#x76F8;&#x5173;</h3>
+<h4 id="263-&#x4E11;&#x6570;"><a href="https://leetcode-cn.com/problems/ugly-number/" target="_blank">263 &#x4E11;&#x6570;</a></h4>
+<p>&#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x6570; num &#x662F;&#x5426;&#x662F;&#x4E11;&#x6570;&#x3002;</p>
+<p>&#x901A;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x81EA;&#x5E95;&#x5411;&#x4E0A;&#x6C42;&#x51FA;&#x5927;&#x4E8E;&#x7B49;&#x4E8E; num &#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x6570;&#x6765;&#x5224;&#x65AD; num &#x662F;&#x5426;&#x662F;&#x4E11;&#x6570;&#x3002;&#x4F46;&#x8FD9;&#x9053;&#x9898;&#x5DF2;&#x7ECF;&#x7ED9;&#x51FA;&#x4E86;&#x6570; num&#xFF0C;&#x76F4;&#x63A5;&#x901A;&#x8FC7;&#x6A21;&#x8FD0;&#x7B97;&#x5C31;&#x80FD;&#x5F97;&#x5230;&#x7ED3;&#x679C;&#x4E86;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isUgly</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span> </span>{
+        <span class="hljs-keyword">if</span> (num &lt; <span class="hljs-number">1</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">while</span> (num % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)
+            num /= <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">while</span> (num % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>)
+            num /= <span class="hljs-number">3</span>;
+        <span class="hljs-keyword">while</span> (num % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>)
+            num /= <span class="hljs-number">5</span>;
+        <span class="hljs-keyword">return</span> num == <span class="hljs-number">1</span>;
+    }
+};
+</code></pre>
+<h4 id="264-&#x4E11;&#x6570;-ii"><a href="https://leetcode-cn.com/problems/ugly-number-ii/comments/" target="_blank">264 &#x4E11;&#x6570; II</a></h4>
+<p>&#x6C42;&#x7B2C; n &#x4E2A;&#x4E11;&#x6570;&#x3002;</p>
+<p>&#x7528;&#x4E00;&#x4E2A;&#x6570;&#x7EC4; ugly &#x6765;&#x4FDD;&#x5B58;&#x524D; m &#x4E2A;&#x4E11;&#x6570;&#xFF0C;&#x7528;&#x4E09;&#x4E2A;&#x8D28;&#x56E0;&#x6570; 2&#xFF0C;3&#xFF0C;5 &#x4E58;&#x4EE5;&#x5176;&#x5F53;&#x524D;&#x7CFB;&#x6570;&#x5BF9;&#x5E94;&#x7684;&#x4E11;&#x6570;&#xFF0C;&#x5F97;&#x5230;&#x65B0;&#x7684;&#x4E11;&#x6570;&#xFF0C;&#x6700;&#x5C0F;&#x7684;&#x4E00;&#x4E2A;&#x5C31;&#x662F;&#x7B2C; m + 1 &#x4E2A;&#x4E11;&#x6570;&#x3002;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(m * n)&#xFF0C;&#x5176;&#x4E2D; m &#x662F;&#x8D28;&#x56E0;&#x6570;&#x7684;&#x4E2A;&#x6570;&#xFF0C;n &#x662F;&#x8981;&#x627E;&#x7684;&#x7B2C; n &#x4E2A;&#x4E11;&#x6570;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">nthUglyNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ugly(n, <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">int</span> base_2 = <span class="hljs-number">0</span>, base_3 = <span class="hljs-number">0</span>, base_5 = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> m = INT_MAX;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n; ++i) {
+            ugly[i] = min({<span class="hljs-number">2</span> * ugly[base_2], <span class="hljs-number">3</span> * ugly[base_3], <span class="hljs-number">5</span> * ugly[base_5]});
+            <span class="hljs-keyword">if</span> (<span class="hljs-number">2</span> * ugly[base_2] == ugly[i])
+                ++base_2;
+            <span class="hljs-keyword">if</span> (<span class="hljs-number">3</span> * ugly[base_3] == ugly[i])
+                ++base_3;
+            <span class="hljs-keyword">if</span> (<span class="hljs-number">5</span> * ugly[base_5] == ugly[i])
+                ++base_5;
+            <span class="hljs-built_in">cout</span> &lt;&lt; ugly[i] &lt;&lt; <span class="hljs-built_in">endl</span>;
+        }
+        <span class="hljs-keyword">return</span> ugly[n - <span class="hljs-number">1</span>];
+    }
+};
+</code></pre>
+<h4 id="313-&#x8D85;&#x7EA7;&#x4E11;&#x6570;"><a href="https://leetcode-cn.com/problems/super-ugly-number/submissions/" target="_blank">313 &#x8D85;&#x7EA7;&#x4E11;&#x6570;</a></h4>
+<p>&#x7ED9;&#x5B9A;&#x8D28;&#x56E0;&#x6570;&#x6570;&#x7EC4; primes&#xFF0C;&#x6C42;&#x7B2C; n &#x4E2A;&#x4E11;&#x6570;&#x3002;</p>
+<p>&#x8DDF;&#x4E0A;&#x4E00;&#x9898;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#xFF0C;&#x53EA;&#x662F;&#x628A;&#x539F;&#x6709;&#x7684;&#x4E09;&#x4E2A;&#x8D28;&#x56E0;&#x6570; 2&#xFF0C;3&#xFF0C;5 &#x6362;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x3002;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(n * m)&#xFF0C;&#x5176;&#x4E2D; n &#x662F;&#x7B2C; n &#x4E2A;&#x4E11;&#x6570;&#xFF0C;m &#x662F;&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">nthSuperUglyNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span> N, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; primes)</span> </span>{
+        <span class="hljs-keyword">int</span> n = primes.size(), m = INT_MAX;;
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ugly(N, <span class="hljs-number">1</span>), base(n, <span class="hljs-number">0</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; N; ++i) {
+            m = INT_MAX;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; ++j)
+                m = min(m, primes[j] * ugly[base[j]]);
+            ugly[i] = m;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; ++j)
+                <span class="hljs-keyword">if</span> (primes[j] * ugly[base[j]] == m)
+                    ++base[j];
+        }
+        <span class="hljs-keyword">return</span> ugly[N - <span class="hljs-number">1</span>];
+    }
+};
+</code></pre>
+<h4 id="279-&#x5B8C;&#x5168;&#x5E73;&#x65B9;&#x6570;"><a href="https://leetcode-cn.com/problems/perfect-squares/" target="_blank">279 &#x5B8C;&#x5168;&#x5E73;&#x65B9;&#x6570;</a></h4>
+<p>&#x7ED9;&#x4E00;&#x4E2A;&#x6570; n&#xFF0C;&#x5176;&#x53EF;&#x4EE5;&#x88AB;&#x8868;&#x793A;&#x4E3A; m &#x4E2A;&#x5B8C;&#x5168;&#x5E73;&#x65B9;&#x6570;&#x7684;&#xFF0C;&#x627E;&#x5230;&#x6700;&#x5C0F;&#x7684; m&#x3002;</p>
+<p>n &#x53EA;&#x80FD;&#x7531;&#x6BD4; n &#x5C0F; 1, 4, 9 &#x7B49;&#x7B49;&#x7684;&#x6570;&#x7684;&#x6700;&#x4F18;&#x503C;&#x52A0;&#x4E00;&#x5F97;&#x5230;&#xFF0C;&#x56E0;&#x6B64;&#x7528;&#x4E00;&#x4E2A;&#x6570;&#x7EC4; dp[n] &#x4FDD;&#x5B58;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E; n &#x7684;&#x6570;&#x88AB;&#x8868;&#x793A;&#x4E3A; k &#x4E2A;&#x5B8C;&#x5168;&#x5E73;&#x65B9;&#x6570;&#x7684;&#x548C;&#x7684;&#x6700;&#x5C0F;&#x7684; k &#x7684;&#x6570;&#x91CF;&#xFF0C;&#x6839;&#x636E;&#x72B6;&#x6001;&#x8F6C;&#x79FB;&#x65B9;&#x7A0B; dp[n] = min({dp[n], dp[n - 1], dp[n - 4], dp[n - 9], ...}) + 1 &#x8BA1;&#x7B97;&#x5F97;&#x5230;&#x7ED3;&#x679C;&#x3002;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(n * w)&#xFF0C;w &#x662F;&#x6BD4; n &#x5C0F;&#x7684;&#x5B8C;&#x5168;&#x5E73;&#x65B9;&#x6570;&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(n)&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numSquares</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; dp(n + <span class="hljs-number">1</span>, INT_MAX);
+        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>, dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; ++i)
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; i - j * j &gt;= <span class="hljs-number">0</span>; ++j)
+                dp[i] = min(dp[i], dp[i - j * j] + <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">return</span> dp[n];
+    }
+};
+</code></pre>
+<h4 id="343-&#x6574;&#x6570;&#x62C6;&#x5206;"><a href="https://leetcode-cn.com/problems/integer-break/" target="_blank">343 &#x6574;&#x6570;&#x62C6;&#x5206;</a></h4>
+<p>&#x7ED9;&#x4E00;&#x4E2A;&#x6570; n&#xFF0C;&#x5C06;&#x5176;&#x62C6;&#x5206;&#x4E3A;&#x81F3;&#x5C11;&#x4E24;&#x4E2A;&#x6570;&#x7684;&#x548C;&#xFF0C;&#x6C42;&#x8FD9;&#x4E9B;&#x6574;&#x6570;&#x7684;&#x6700;&#x5927;&#x4E58;&#x79EF;&#x3002;</p>
+<p>n &#x53EF;&#x4EE5;&#x88AB;&#x62C6;&#x5206;&#x4E3A; 2 &#x4E2A;&#x6570;&#x7684;&#x548C;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x6570;&#x53C8;&#x53EF;&#x4EE5;&#x88AB;&#x62C6;&#x5206;&#x4E3A;&#x82E5;&#x5E72;&#x4E2A;&#x6570;&#x7684;&#x548C;&#xFF0C;&#x56E0;&#x6B64;&#x53EA;&#x9700;&#x8981;&#x77E5;&#x9053;&#x5176;&#x88AB;&#x62C6;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x6570;&#x65F6;&#x8FD9;&#x4E24;&#x4E2A;&#x6570;&#x7684;&#x6700;&#x5927;&#x4E58;&#x79EF;&#xFF0C;&#x81EA;&#x4E0B;&#x5F80;&#x4E0A;&#x5730;&#x8BA1;&#x7B97;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E; n &#x7684;&#x6570;&#x88AB;&#x62C6;&#x5206;&#x65F6;&#x7684;&#x6700;&#x5927;&#x4E58;&#x79EF;&#x5373;&#x53EF;&#xFF0C;&#x72B6;&#x6001;&#x8F6C;&#x79FB;&#x65B9;&#x7A0B;&#x662F; dp[i] = max(dp[i], dp[j] * dp[i - j])&#x3002;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(n ^ 2)&#xFF0C;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(n)&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">integerBreak</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; dp(n + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+        <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">3</span>)  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;
+        dp[<span class="hljs-number">2</span>] = <span class="hljs-number">2</span>, dp[<span class="hljs-number">3</span>] = <span class="hljs-number">3</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">4</span>; i &lt;= n; ++i)
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>, k = i - j; j &lt;= k; ++j, --k)
+                dp[i] = max(dp[i], dp[j] * dp[k]);
+        <span class="hljs-keyword">return</span> dp[n];
+    }
+};
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="买卖股票.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 买卖股票">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"数字相关","level":"1.2.1","depth":2,"next":{"title":"买卖股票","level":"1.2.2","depth":2,"path":"动态规划/买卖股票.md","ref":"动态规划/买卖股票.md","articles":[]},"previous":{"title":"动态规划","level":"1.2","depth":1,"ref":"","articles":[{"title":"数字相关","level":"1.2.1","depth":2,"path":"动态规划/数字相关.md","ref":"动态规划/数字相关.md","articles":[]},{"title":"买卖股票","level":"1.2.2","depth":2,"path":"动态规划/买卖股票.md","ref":"动态规划/买卖股票.md","articles":[]},{"title":"数组相关","level":"1.2.3","depth":2,"path":"动态规划/数组相关.md","ref":"动态规划/数组相关.md","articles":[]},{"title":"等差数列","level":"1.2.4","depth":2,"path":"动态规划/等差数列.md","ref":"动态规划/等差数列.md","articles":[]},{"title":"斐波那契数列","level":"1.2.5","depth":2,"path":"动态规划/斐波那契数列.md","ref":"动态规划/斐波那契数列.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"动态规划/数字相关.md","mtime":"2019-06-29T02:56:17.360Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-29T03:04:14.098Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
