@@ -302,13 +302,40 @@
     }
 };
 </code></pre></div>
+<h4 id="875-爱吃香蕉的珂珂-https-leetcode-cn-com-problems-koko-eating-bananas"><a href="https://leetcode-cn.com/problems/koko-eating-bananas/">875 爱吃香蕉的珂珂</a></h4>
+
+<p>有 N 堆香蕉，每小时内吃完一堆则不吃另外一堆，计算能在 H 小时内吃完的最慢速度。</p>
+
+<p>将速度作为二分查找的变量，每次判断以当前速度是否能吃完所有香蕉，如果能则 j = k，k 有可能是最后的结果，否则 i = k + 1，此时的 k 一定比结果小。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> minEatingSpeed(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; piles, <span style="color:#fff;font-weight:bold">int</span> H) {
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>, j = INT_MAX, k = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt; j) {
+            k = i + (j - i) / <span style="color:#ff0;font-weight:bold">2</span>;
+            <span style="color:#fff;font-weight:bold">int</span> res = CanEatAll(k, H, piles);
+            <span style="color:#fff;font-weight:bold">if</span> (res)
+                j = k;
+            <span style="color:#fff;font-weight:bold">else</span>
+                i = k + <span style="color:#ff0;font-weight:bold">1</span>;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> j;
+    }
+    
+    <span style="color:#fff;font-weight:bold">bool</span> CanEatAll(<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span> &amp;speed, <span style="color:#fff;font-weight:bold">int</span> hour, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; piles) {
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;p:piles)
+            hour -= p / speed + (p % speed &gt; <span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">return</span> hour &gt;= <span style="color:#ff0;font-weight:bold">0</span>;
+    }
+};
+</code></pre></div>
 <h3 id="3-根据位置关系查找">3. 根据位置关系查找</h3>
 
 <h4 id="378-有序矩阵中第k小的元素-https-leetcode-cn-com-problems-kth-smallest-element-in-a-sorted-matrix"><a href="https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/">378 有序矩阵中第K小的元素</a></h4>
 
 <p>n x n 的矩阵中每行和每列均按升序排序，找到矩阵中第k小的元素。</p>
 
-<p>这道题可以用跟剑指offer里二维数组中的查找这道题的思路结合二分查找来做，二分的时候每次计算矩阵里小于等于中间值的数的个数就能得到结果了。时间复杂度是O(logm * n)，m是matrix[n - 1][n - 1]，n是matrix.size()。</p>
+<p>这道题可以用跟剑指offer里二维数组中的查找这道题的思路结合二分查找来做，二分的时候每次计算矩阵里小于等于中间值的数的个数就能得到结果了。时间复杂度是 O(logm * n)，m 是 matrix[n - 1][n - 1]，n 是 matrix.size()。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> kthSmallest(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt;&amp; matrix, <span style="color:#fff;font-weight:bold">int</span> m) {
@@ -340,7 +367,7 @@
 
 <p>一个有序数组在某个点上进行了旋转，找出其中最小的元素。</p>
 
-<p>根据中间值与左右边值和其左右边一位的大小关系来判断，如果中间值k比左边值小，那么k有可能是结果，让j = k；否则比较中间值与其右边一位，如果中间值大于右边一位的值，那么右边一位的值就是结果，否则让i = k + 1。</p>
+<p>根据中间值与左右边值和其左右边一位的大小关系来判断，如果中间值k比左边值小，那么k有可能是结果，让 j = k ；否则比较中间值与其右边一位，如果中间值大于右边一位的值，那么右边一位的值就是结果，否则让 i = k + 1。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> findMin(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; nums) {
@@ -366,7 +393,7 @@
 
 <p>一个有序数组中每个元素都会出现了两次，只有一个数出现了一次，找出这个数。</p>
 
-<p>有序数组里其他每个元素都出现两次，找到唯一只出现一次的数。在唯一的数出现之后奇偶位的相等关系会发生变化，利用这一点来做判断。比较直观的写法是分别判断 k % 2 == 0 和 k % 2 == 1 的情况，这样写起来比较复杂，可以直接在 k % 2 == 1 的时候 &ndash;k，再直接判断nums[k] 和 nums[k + 1]的关系。</p>
+<p>有序数组里其他每个元素都出现两次，找到唯一只出现一次的数。在唯一的数出现之后奇偶位的相等关系会发生变化，利用这一点来做判断。比较直观的写法是分别判断 k % 2 == 0 和 k % 2 == 1 的情况，这样写起来比较复杂，可以直接在 k % 2 == 1 的时候 &ndash;k，再直接判断 nums[k] 和 nums[k + 1] 的关系。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> singleNonDuplicate(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums) {
@@ -416,7 +443,7 @@
 
 <p>在一个山脉数组中找到等于目标值的最小下标。</p>
 
-<p>因为已知数组一定是一个山脉数组，所以一定有唯一的山顶，用二分查找找到山顶的下标。如果山顶小于目标值那么数组中一定没有目标值存在，返回-1，否则在山顶左边使用二分查找找目标值，没有的话则在山顶右边使用二分查找找目标值。</p>
+<p>因为已知数组一定是一个山脉数组，所以一定有唯一的山顶，用二分查找找到山顶的下标。如果山顶小于目标值那么数组中一定没有目标值存在，返回 -1，否则在山顶左边使用二分查找找目标值，没有的话则在山顶右边使用二分查找找目标值。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> findInMountainArray(<span style="color:#fff;font-weight:bold">int</span> target, MountainArray &amp;mountainArr) {

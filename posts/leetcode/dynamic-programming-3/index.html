@@ -10,25 +10,22 @@
     <meta name="keywords" content="ZintrulCre, 尾張">
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="6. 回文 5 最长回文子串 找到一个字符串中的最长回文子串。
-最简单的方法是从一个字符与其前一个/两个字符分别往两边遍历。也可以按照自下而上的动态规划思想，用一个二维数组 dp[i][j]，判断两个字符 s[i] 与 s[j] 是否相等，以及他们内侧的子字符串是否是一个回文串，状态转移方程是 dp[i][j] = s[i] == s[j] &amp;&amp; (dp[i &#43; 1][j - 1] || j - i &lt; 3)。
-classSolution { public: string longestPalindrome(string s) { int n = s.size(); string res; vector&lt;vector&lt;bool&gt;&gt; dp(n, vector&lt;bool&gt;(n, false)); for (int i = 0; i &lt; n; &#43;&#43;i) for (int j = i; j &gt;= 0; --j) if (s[i] == s[j] &amp;&amp; (i - j &lt; 3 || dp[j &#43; 1][i - 1])) { dp[j][i] = true; if (i - j &#43; 1 &gt; res."/>
+<meta name="twitter:title" content="LeetCode 动态规划（3）"/>
+<meta name="twitter:description" content="LeetCode 动态规划 题目 6. 字符串相关 712 两个字符串的最小ASCII删除和 给定两个字符串，计算使两个字符串相同所需要删除的字符的ASCII值的和的最小值。"/>
 
-    <meta property="og:title" content="" />
-<meta property="og:description" content="6. 回文 5 最长回文子串 找到一个字符串中的最长回文子串。
-最简单的方法是从一个字符与其前一个/两个字符分别往两边遍历。也可以按照自下而上的动态规划思想，用一个二维数组 dp[i][j]，判断两个字符 s[i] 与 s[j] 是否相等，以及他们内侧的子字符串是否是一个回文串，状态转移方程是 dp[i][j] = s[i] == s[j] &amp;&amp; (dp[i &#43; 1][j - 1] || j - i &lt; 3)。
-classSolution { public: string longestPalindrome(string s) { int n = s.size(); string res; vector&lt;vector&lt;bool&gt;&gt; dp(n, vector&lt;bool&gt;(n, false)); for (int i = 0; i &lt; n; &#43;&#43;i) for (int j = i; j &gt;= 0; --j) if (s[i] == s[j] &amp;&amp; (i - j &lt; 3 || dp[j &#43; 1][i - 1])) { dp[j][i] = true; if (i - j &#43; 1 &gt; res." />
+    <meta property="og:title" content="LeetCode 动态规划（3）" />
+<meta property="og:description" content="LeetCode 动态规划 题目 6. 字符串相关 712 两个字符串的最小ASCII删除和 给定两个字符串，计算使两个字符串相同所需要删除的字符的ASCII值的和的最小值。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/dynamic-programming-3/" />
-
+<meta property="article:published_time" content="2019-07-01T18:22:45&#43;10:00"/>
+<meta property="article:modified_time" content="2019-07-01T18:22:45&#43;10:00"/>
 
 
     
       <base href="https://zintrulcre.vip/posts/leetcode/dynamic-programming-3/">
     
     <title>
-   · 尾張
+  LeetCode 动态规划（3） · 尾張
 </title>
 
     
@@ -90,19 +87,22 @@ classSolution { public: string longestPalindrome(string s) { int n = s.size(); s
     <article>
       <header>
         <div class="post-title">
-          <h1 class="title"></h1>
+          <h1 class="title">LeetCode 动态规划（3）</h1>
         </div>
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
               <i class="fas fa-calendar"></i>
-              <time datetime='0001-01-01T00:00:00Z'>
-                January 1, 0001
+              <time datetime='2019-07-01T18:22:45&#43;10:00'>
+                July 1, 2019
               </time>
             </span>
             
           </div>
-          
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/leetcode/">LeetCode</a></div>
+
           
         </div>
       </header>
@@ -110,8 +110,36 @@ classSolution { public: string longestPalindrome(string s) { int n = s.size(); s
       <div>
         
 
-<h3 id="6-回文">6. 回文</h3>
+<h1 id="leetcode-动态规划-https-leetcode-cn-com-problemset-all-search-e4-b8-91-e6-95-b0"><a href="https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0">LeetCode 动态规划</a></h1>
 
+<h2 id="题目">题目</h2>
+
+<h3 id="6-字符串相关">6. 字符串相关</h3>
+
+<h4 id="712-两个字符串的最小ascii删除和-https-leetcode-cn-com-problems-minimum-ascii-delete-sum-for-two-strings"><a href="https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/">712 两个字符串的最小ASCII删除和</a></h4>
+
+<p>给定两个字符串，计算使两个字符串相同所需要删除的字符的ASCII值的和的最小值。</p>
+
+<p>对于两个字符串中的字符 s1[i] 和 s2[j]，如果s1[i] == s2[j]，那么这两个字符都不需要被删除，所以 dp[i][j] = dp[i - 1][j - 1]，否则至少有一个应该被删除，取两个中的最小值，状态转移方程是dp[i][j] = min(dp[i - 1][j] + s1[i], dp[i][j - 1] + s2[j])。时间复杂度是 O(m * n)，空间复杂度是 O(m * n)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> minimumDeleteSum(string s1, string s2) {
+        <span style="color:#fff;font-weight:bold">int</span> n1 = s1.size(), n2 = s2.size();
+        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; dp(n1 + <span style="color:#ff0;font-weight:bold">1</span>, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(n2 + <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>));
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt;= n1; ++i)
+            dp[i][<span style="color:#ff0;font-weight:bold">0</span>] = dp[i - <span style="color:#ff0;font-weight:bold">1</span>][<span style="color:#ff0;font-weight:bold">0</span>] + s1[i - <span style="color:#ff0;font-weight:bold">1</span>];
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">1</span>; j &lt;= n2; ++j)
+            dp[<span style="color:#ff0;font-weight:bold">0</span>][j] = dp[<span style="color:#ff0;font-weight:bold">0</span>][j - <span style="color:#ff0;font-weight:bold">1</span>] + s2[j - <span style="color:#ff0;font-weight:bold">1</span>];
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; n1; ++i)
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; n2; ++j)
+                <span style="color:#fff;font-weight:bold">if</span> (s1[i] == s2[j])
+                    dp[i + <span style="color:#ff0;font-weight:bold">1</span>][j + <span style="color:#ff0;font-weight:bold">1</span>] = dp[i][j];
+                <span style="color:#fff;font-weight:bold">else</span>
+                    dp[i + <span style="color:#ff0;font-weight:bold">1</span>][j + <span style="color:#ff0;font-weight:bold">1</span>] = min(dp[i][j] + s1[i] + s2[j], min(dp[i][j + <span style="color:#ff0;font-weight:bold">1</span>] + s1[i], dp[i + <span style="color:#ff0;font-weight:bold">1</span>][j] + s2[j]));
+        <span style="color:#fff;font-weight:bold">return</span> dp[n1][n2];
+    }
+};
+</code></pre></div>
 <h4 id="5-最长回文子串-https-leetcode-cn-com-problems-longest-palindromic-substring"><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/">5 最长回文子串</a></h4>
 
 <p>找到一个字符串中的最长回文子串。</p>
@@ -177,48 +205,7 @@ classSolution { public: string longestPalindrome(string s) { int n = s.size(); s
     }
 };
 </code></pre></div>
-<h3 id="7-n-键键盘">7. N 键键盘</h3>
-
-<h4 id="650-只有两个键的键盘-https-leetcode-cn-com-problems-2-keys-keyboard"><a href="https://leetcode-cn.com/problems/2-keys-keyboard/">650 只有两个键的键盘</a></h4>
-
-<p>有一个字符 &lsquo;A&rsquo;，只能进行复制和粘贴操作，求得到 n 个 &lsquo;A&rsquo; 的最小操作次数。</p>
-
-<p>m 个 &lsquo;A&rsquo; 只能通过粘贴的操作得到，求出所有能整除 m 的数里通过复制粘贴操作得到 m 的最小次数即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
-<span style="color:#fff;font-weight:bold">public</span>:
-    <span style="color:#fff;font-weight:bold">int</span> minSteps(<span style="color:#fff;font-weight:bold">int</span> n) {
-        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; dp(n + <span style="color:#ff0;font-weight:bold">1</span>, n);
-        dp[<span style="color:#ff0;font-weight:bold">1</span>] = <span style="color:#ff0;font-weight:bold">0</span>;
-        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt;= n; ++i) {
-            <span style="color:#fff;font-weight:bold">int</span> res = dp[i] + <span style="color:#ff0;font-weight:bold">1</span>;
-            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i; j &lt;= n; j += i) {
-                dp[j] = min(dp[j], res);
-                ++res;
-            }
-        }
-        <span style="color:#fff;font-weight:bold">return</span> dp[n];
-    }
-};
-</code></pre></div>
-<h4 id="651-4键键盘-https-leetcode-cn-com-problems-4-keys-keyboard-submissions"><a href="https://leetcode-cn.com/problems/4-keys-keyboard/submissions/">651 4键键盘</a></h4>
-
-<p>一个键盘上有四个键：输入 &lsquo;A&rsquo;，选中全部，复制，和粘贴。可以按 N 次键盘，求最多能显示多少个 &lsquo;A&rsquo;。</p>
-
-<p>因为 N 是最后一次操作，所以只能进行输入 &lsquo;A&rsquo; 和粘贴两种操作，只需要求出每一步在之前一步基础上输入 &lsquo;A&rsquo;，以及在往前三步的每一步基础上选中，复制，粘贴能得到的最2优解。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
-<span style="color:#fff;font-weight:bold">public</span>:
-    <span style="color:#fff;font-weight:bold">int</span> maxA(<span style="color:#fff;font-weight:bold">int</span> N) {
-        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; dp(N + <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>);
-        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt;= N; ++i) {
-            dp[i] = dp[i - <span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>;
-            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i - <span style="color:#ff0;font-weight:bold">1</span>; j &gt;= <span style="color:#ff0;font-weight:bold">2</span>; --j)
-                dp[i] = max(dp[i], dp[j - <span style="color:#ff0;font-weight:bold">2</span>] * (i - j + <span style="color:#ff0;font-weight:bold">1</span>));
-        }
-        <span style="color:#fff;font-weight:bold">return</span> dp[N];
-    }
-};
-</code></pre></div>
-<h3 id="8-路径和">8. 路径和</h3>
+<h3 id="7-路径和">7. 路径和</h3>
 
 <h4 id="62-不同路径-https-leetcode-cn-com-problems-unique-paths"><a href="https://leetcode-cn.com/problems/unique-paths/">62 不同路径</a></h4>
 
@@ -322,6 +309,72 @@ classSolution { public: string longestPalindrome(string s) { int n = s.size(); s
             }
         }
         <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="931-下降路径最小和-https-leetcode-cn-com-problems-minimum-falling-path-sum"><a href="https://leetcode-cn.com/problems/minimum-falling-path-sum/">931 下降路径最小和</a></h4>
+
+<p>给一个带权值的方形，求自顶向下的最小路径和。每一步可以移动到左下方，下方或右下方。</p>
+
+<p>每一格可以从其左上方，上方和右上方到达，因此有状态转移方程 A[i][j] += min({A[i - 1][j - 1], A[i - 1][j], A[i - 1][j + 1]})。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> minFallingPathSum(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt;&amp; A) {
+        <span style="color:#fff;font-weight:bold">int</span> m = A.size(), n = m != <span style="color:#ff0;font-weight:bold">0</span> ? A[<span style="color:#ff0;font-weight:bold">0</span>].size() : <span style="color:#ff0;font-weight:bold">0</span>, val = INT_MAX, res = INT_MAX;
+        <span style="color:#fff;font-weight:bold">if</span> (m == <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; m; ++i) {
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; n; ++j) {
+                val = A[i - <span style="color:#ff0;font-weight:bold">1</span>][j];
+                <span style="color:#fff;font-weight:bold">if</span> (j &lt; n - <span style="color:#ff0;font-weight:bold">1</span>)
+                    val = min(val, A[i - <span style="color:#ff0;font-weight:bold">1</span>][j + <span style="color:#ff0;font-weight:bold">1</span>]);
+                <span style="color:#fff;font-weight:bold">if</span> (j &gt; <span style="color:#ff0;font-weight:bold">0</span>)
+                    val = min(val, A[i - <span style="color:#ff0;font-weight:bold">1</span>][j - <span style="color:#ff0;font-weight:bold">1</span>]);
+                A[i][j] += val;
+            }
+        }
+        <span style="color:#fff;font-weight:bold">return</span> *min_element(A[m - <span style="color:#ff0;font-weight:bold">1</span>].begin(), A[m - <span style="color:#ff0;font-weight:bold">1</span>].end());
+    }
+};
+</code></pre></div>
+<h3 id="8-其他">8. 其他</h3>
+
+<h4 id="650-只有两个键的键盘-https-leetcode-cn-com-problems-2-keys-keyboard"><a href="https://leetcode-cn.com/problems/2-keys-keyboard/">650 只有两个键的键盘</a></h4>
+
+<p>有一个字符 &lsquo;A&rsquo;，只能进行复制和粘贴操作，求得到 n 个 &lsquo;A&rsquo; 的最小操作次数。</p>
+
+<p>m 个 &lsquo;A&rsquo; 只能通过粘贴的操作得到，求出所有能整除 m 的数里通过复制粘贴操作得到 m 的最小次数即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> minSteps(<span style="color:#fff;font-weight:bold">int</span> n) {
+        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; dp(n + <span style="color:#ff0;font-weight:bold">1</span>, n);
+        dp[<span style="color:#ff0;font-weight:bold">1</span>] = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt;= n; ++i) {
+            <span style="color:#fff;font-weight:bold">int</span> res = dp[i] + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i; j &lt;= n; j += i) {
+                dp[j] = min(dp[j], res);
+                ++res;
+            }
+        }
+        <span style="color:#fff;font-weight:bold">return</span> dp[n];
+    }
+};
+</code></pre></div>
+<h4 id="651-4键键盘-https-leetcode-cn-com-problems-4-keys-keyboard-submissions"><a href="https://leetcode-cn.com/problems/4-keys-keyboard/submissions/">651 4键键盘</a></h4>
+
+<p>一个键盘上有四个键：输入 &lsquo;A&rsquo;，选中全部，复制，和粘贴。可以按 N 次键盘，求最多能显示多少个 &lsquo;A&rsquo;。</p>
+
+<p>因为 N 是最后一次操作，所以只能进行输入 &lsquo;A&rsquo; 和粘贴两种操作，只需要求出每一步在之前一步基础上输入 &lsquo;A&rsquo;，以及在往前三步的每一步基础上选中，复制，粘贴能得到的最2优解。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> maxA(<span style="color:#fff;font-weight:bold">int</span> N) {
+        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; dp(N + <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt;= N; ++i) {
+            dp[i] = dp[i - <span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i - <span style="color:#ff0;font-weight:bold">1</span>; j &gt;= <span style="color:#ff0;font-weight:bold">2</span>; --j)
+                dp[i] = max(dp[i], dp[j - <span style="color:#ff0;font-weight:bold">2</span>] * (i - j + <span style="color:#ff0;font-weight:bold">1</span>));
+        }
+        <span style="color:#fff;font-weight:bold">return</span> dp[N];
     }
 };
 </code></pre></div>
