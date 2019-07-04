@@ -3,34 +3,44 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zintrulcre.vip/posts/leetcode/dynamic-programming-3/</loc>
-    <lastmod>2019-07-01T18:22:45+10:00</lastmod>
+    <loc>https://zintrulcre.vip/posts/leetcode/linkedlist/</loc>
+    <lastmod>2019-07-03T19:12:25+10:00</lastmod>
   </url>
   
   <url>
     <loc>https://zintrulcre.vip/posts/</loc>
-    <lastmod>2019-07-01T18:22:45+10:00</lastmod>
+    <lastmod>2019-07-03T19:12:25+10:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zintrulcre.vip/</loc>
-    <lastmod>2019-07-01T18:22:45+10:00</lastmod>
+    <lastmod>2019-07-03T19:12:25+10:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zintrulcre.vip/posts/leetcode/dynamic-programming-2/</loc>
+    <loc>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-3/</loc>
+    <lastmod>2019-07-01T18:22:45+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-2/</loc>
     <lastmod>2019-06-28T10:09:13+10:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zintrulcre.vip/posts/leetcode/dynamic-programming-1/</loc>
+    <loc>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-1/</loc>
     <lastmod>2019-06-26T18:08:10+10:00</lastmod>
   </url>
   
   <url>
     <loc>https://zintrulcre.vip/posts/leetcode/binarysearch/</loc>
+    <lastmod>2019-06-19T19:26:39+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/posts/leetcode/bitmanipulation/</loc>
     <lastmod>2019-06-19T19:26:39+10:00</lastmod>
   </url>
   
@@ -117,11 +127,6 @@
   <url>
     <loc>https://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver1/</loc>
     <lastmod>2018-12-04T11:25:15+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zintrulcre.vip/posts/leetcode/dynamic-programming-space-complexity/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
