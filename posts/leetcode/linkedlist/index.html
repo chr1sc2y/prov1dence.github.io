@@ -512,6 +512,48 @@
     }
 };
 </code></pre></div>
+<h4 id="143-重排链表-https-leetcode-cn-com-problems-reorder-list-submissions"><a href="https://leetcode-cn.com/problems/reorder-list/submissions/">143 重排链表</a></h4>
+
+<p>将一个链表从 L0→L1→…→Ln-1→Ln 重新排列为 L0→Ln→L1→Ln-1→L2→Ln-2→&hellip;。</p>
+
+<p>先将链表从中间分为两部分，将后半部分反转，再将对应位置的节点依次链接上。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">void</span> reorderList(ListNode* head) {
+        <span style="color:#fff;font-weight:bold">if</span> (!head)
+            <span style="color:#fff;font-weight:bold">return</span>;
+        <span style="color:#fff;font-weight:bold">auto</span> prev = head, slow = head, fast = head, first = head, second = head;
+        <span style="color:#fff;font-weight:bold">while</span> (fast &amp;&amp; fast-&gt;next)
+            prev = slow, slow = slow-&gt;next, fast = fast-&gt;next-&gt;next;
+        <span style="color:#fff;font-weight:bold">if</span> (fast) {
+            second = slow-&gt;next;
+            slow-&gt;next = <span style="color:#fff;font-weight:bold">nullptr</span>;
+        } <span style="color:#fff;font-weight:bold">else</span> {
+            second = slow;
+            prev-&gt;next = <span style="color:#fff;font-weight:bold">nullptr</span>;
+        }
+        second = Reverse(second);
+        <span style="color:#fff;font-weight:bold">while</span> (second) {
+            <span style="color:#fff;font-weight:bold">auto</span> n1 = first-&gt;next, n2 = second-&gt;next;
+            first-&gt;next = second;
+            second-&gt;next = n1;
+            first = n1;
+            second = n2;
+        }
+    }
+    
+    ListNode *Reverse(ListNode *head) {
+        ListNode *prev = <span style="color:#fff;font-weight:bold">nullptr</span>, *curr = head, *next = <span style="color:#fff;font-weight:bold">nullptr</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (curr) {
+            next = curr-&gt;next;
+            curr-&gt;next = prev;
+            prev = curr;
+            curr = next;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> prev;
+    }
+};
+</code></pre></div>
       </div>
 
       <footer>
