@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 链表"/>
-<meta name="twitter:description" content="LeetCode 链表 题目 1. 常规题 21 合并两个有序链表 合并两个有序链表。 逐个比较大小并添加到当前节点后面，并移动对应的链表节点。 classSolution { public: ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) { ListNode *head = new ListNode(0), *node"/>
+<meta name="twitter:description" content="LeetCode 链表 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。 依次按位进行相加。 classSolution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head ="/>
 
     <meta property="og:title" content="LeetCode 链表" />
-<meta property="og:description" content="LeetCode 链表 题目 1. 常规题 21 合并两个有序链表 合并两个有序链表。 逐个比较大小并添加到当前节点后面，并移动对应的链表节点。 classSolution { public: ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) { ListNode *head = new ListNode(0), *node" />
+<meta property="og:description" content="LeetCode 链表 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。 依次按位进行相加。 classSolution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head =" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/linkedlist/" />
 <meta property="article:published_time" content="2019-07-04T19:12:25&#43;10:00"/>
@@ -116,6 +116,38 @@
 
 <h3 id="1-常规题">1. 常规题</h3>
 
+<h4 id="2-两数相加-https-leetcode-cn-com-problems-add-two-numbers"><a href="https://leetcode-cn.com/problems/add-two-numbers/">2 两数相加</a></h4>
+
+<p>给两个链表分别代表两个正数的逆序表示，计算两个链表之和。</p>
+
+<p>依次按位进行相加。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+        <span style="color:#fff;font-weight:bold">int</span> acc = <span style="color:#ff0;font-weight:bold">0</span>, val = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">auto</span> head = l1, tail = l1;
+        <span style="color:#fff;font-weight:bold">while</span> (l1 &amp;&amp; l2) {
+            val = l1-&gt;val + l2-&gt;val + acc;
+            acc = val / <span style="color:#ff0;font-weight:bold">10</span>;
+            l1-&gt;val = val % <span style="color:#ff0;font-weight:bold">10</span>;
+            <span style="color:#fff;font-weight:bold">if</span> (!l1-&gt;next)
+                l1-&gt;next = l2-&gt;next, l2-&gt;next = <span style="color:#fff;font-weight:bold">nullptr</span>;
+            tail = l1;
+            l1 = l1-&gt;next, l2 = l2-&gt;next;
+        }
+        <span style="color:#fff;font-weight:bold">while</span> (l1) {
+            val = l1-&gt;val + acc;
+            acc = val / <span style="color:#ff0;font-weight:bold">10</span>;
+            l1-&gt;val = val % <span style="color:#ff0;font-weight:bold">10</span>;
+            tail = l1;
+            l1 = l1-&gt;next;
+        }
+        <span style="color:#fff;font-weight:bold">if</span> (acc)
+            tail-&gt;next = <span style="color:#fff;font-weight:bold">new</span> ListNode(<span style="color:#ff0;font-weight:bold">1</span>);
+        <span style="color:#fff;font-weight:bold">return</span> head;
+    }
+};
+</code></pre></div>
 <h4 id="21-合并两个有序链表-https-leetcode-cn-com-problems-merge-two-sorted-lists-submissions"><a href="https://leetcode-cn.com/problems/merge-two-sorted-lists/submissions/">21 合并两个有序链表</a></h4>
 
 <p>合并两个有序链表。</p>
@@ -142,7 +174,7 @@
 </code></pre></div>
 <h4 id="83-删除排序链表中的重复元素-https-leetcode-cn-com-problems-remove-duplicates-from-sorted-list-submissions"><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/submissions/">83 删除排序链表中的重复元素</a></h4>
 
-<p>删除链表中所有重复的元素。</p>
+<p>删除链表中所有重复的节点。</p>
 
 <p>将每个节点与其后面的节点的值做对比，如果相同则删除后面的节点。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
@@ -158,6 +190,34 @@
             head = head-&gt;next;
         }
         <span style="color:#fff;font-weight:bold">return</span> ret;
+    }
+};
+</code></pre></div>
+<h4 id="82-删除排序链表中的重复元素-ii-https-leetcode-cn-com-problems-remove-duplicates-from-sorted-list-ii-submissions"><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/submissions/">82 删除排序链表中的重复元素 II</a></h4>
+
+<p>删除链表中所有重复的节点，只保留原始链表中没有重复出现的数字。</p>
+
+<p>为了删除所有重复的节点并只保留所有没有出现过的数字，需要提前两个节点检查接下来的两个节点的值是否相同，如果相同的话需要将这两个节点及其后的所有重复节点都删除。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode *node = <span style="color:#fff;font-weight:bold">new</span> ListNode(<span style="color:#ff0;font-weight:bold">0</span>), *ret = node, *next = <span style="color:#fff;font-weight:bold">nullptr</span>, *temp = <span style="color:#fff;font-weight:bold">nullptr</span>;
+        node-&gt;next = head;
+        <span style="color:#fff;font-weight:bold">while</span> (node &amp;&amp; node-&gt;next) {
+            next = node-&gt;next-&gt;next;
+            <span style="color:#fff;font-weight:bold">while</span> (next &amp;&amp; node-&gt;next-&gt;val == next-&gt;val) {
+                temp = next;
+                next = next-&gt;next;
+                <span style="color:#fff;font-weight:bold">delete</span> temp;
+            }
+            <span style="color:#fff;font-weight:bold">if</span> (next != node-&gt;next-&gt;next) {
+                temp = node-&gt;next;
+                node-&gt;next = next;
+                <span style="color:#fff;font-weight:bold">delete</span> temp;
+            } <span style="color:#fff;font-weight:bold">else</span>
+                node = node-&gt;next;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> ret-&gt;next;
     }
 };
 </code></pre></div>
@@ -234,6 +294,36 @@
     }
 };
 </code></pre></div>
+<h4 id="430-扁平化多级双向链表-https-leetcode-cn-com-problems-flatten-a-multilevel-doubly-linked-list-submissions"><a href="https://leetcode-cn.com/problems/flatten-a-multilevel-doubly-linked-list/submissions/">430 扁平化多级双向链表</a></h4>
+
+<p>给一个带子节点的双向链表，将其扁平化并使所有结点出现在单级双链表中。</p>
+
+<p>对于某一个节点，如果它有 child 节点，那么需要将其 child 节点作为其新的 next 节点，将其 child 链表上的最后一个节点作为其原本 next 节点的 prev 节点，递归调用整个过程即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    Node *flatten(Node *head) {
+        <span style="color:#fff;font-weight:bold">if</span> (!head)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nullptr</span>;
+        Node *node = head, *next = <span style="color:#fff;font-weight:bold">nullptr</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (node) {
+            <span style="color:#fff;font-weight:bold">if</span> (node-&gt;child) {
+                next = node-&gt;next;
+                <span style="color:#fff;font-weight:bold">auto</span> child = flatten(node-&gt;child);
+                node-&gt;next = child;
+                child-&gt;prev = node;
+                node-&gt;child = <span style="color:#fff;font-weight:bold">nullptr</span>;
+                <span style="color:#fff;font-weight:bold">while</span> (node-&gt;next)
+                    node = node-&gt;next;
+                node-&gt;next = next;
+                <span style="color:#fff;font-weight:bold">if</span> (next)
+                    next-&gt;prev = node;
+            }
+            node = node-&gt;next;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> head;
+    }
+};
+</code></pre></div>
 <h3 id="2-链表反转">2. 链表反转</h3>
 
 <h4 id="206-反转链表-https-leetcode-cn-com-problems-reverse-linked-list-submissions"><a href="https://leetcode-cn.com/problems/reverse-linked-list/submissions/">206 反转链表</a></h4>
@@ -243,6 +333,43 @@
         <span style="color:#fff;font-weight:bold">if</span> (!head)
             <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nullptr</span>;
         ListNode *prev = <span style="color:#fff;font-weight:bold">nullptr</span>, *curr = head, *next = head-&gt;next;
+        <span style="color:#fff;font-weight:bold">while</span> (curr) {
+            next = curr-&gt;next;
+            curr-&gt;next = prev;
+            prev = curr;
+            curr = next;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> prev;
+    }
+};
+</code></pre></div>
+<h4 id="92-反转链表-ii-https-leetcode-cn-com-problems-reverse-linked-list-ii-submissions"><a href="https://leetcode-cn.com/problems/reverse-linked-list-ii/submissions/">92 反转链表 II</a></h4>
+
+<p>将链表中从 m 到 n 位置的节点反转。</p>
+
+<p>先找到位置在 m - 1 的节点，将其后的节点截断，再找到位置在 n 的节点，将其后的节点截断，将中间的一段链表反转后再链接到愿链表上。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    ListNode *reverseBetween(ListNode *head, <span style="color:#fff;font-weight:bold">int</span> m, <span style="color:#fff;font-weight:bold">int</span> n) {
+        ListNode *root = <span style="color:#fff;font-weight:bold">new</span> ListNode(<span style="color:#ff0;font-weight:bold">0</span>), *r = root, *prev, *last;
+        root-&gt;next = head;
+        <span style="color:#fff;font-weight:bold">int</span> cnt = <span style="color:#ff0;font-weight:bold">1</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (cnt &lt; m &amp;&amp; r)
+            r = r-&gt;next, ++cnt;
+        prev = r;
+        <span style="color:#fff;font-weight:bold">while</span> (cnt &lt;= n &amp;&amp; r &amp;&amp; r-&gt;next)
+            r = r-&gt;next, ++cnt;
+        last = r-&gt;next;
+        r-&gt;next = <span style="color:#fff;font-weight:bold">nullptr</span>;
+        prev-&gt;next = Reverse(prev-&gt;next);
+        <span style="color:#fff;font-weight:bold">while</span> (prev &amp;&amp; prev-&gt;next)
+            prev = prev-&gt;next;
+        prev-&gt;next = last;
+        <span style="color:#fff;font-weight:bold">return</span> root-&gt;next;
+    }
+
+    ListNode *Reverse(ListNode *head) {
+        ListNode *prev = <span style="color:#fff;font-weight:bold">nullptr</span>, *curr = head, *next = <span style="color:#fff;font-weight:bold">nullptr</span>;
         <span style="color:#fff;font-weight:bold">while</span> (curr) {
             next = curr-&gt;next;
             curr-&gt;next = prev;
@@ -483,6 +610,58 @@
                 <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
         }
         <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+    }
+};
+</code></pre></div>
+<h4 id="142-环形链表-ii-https-leetcode-cn-com-problems-linked-list-cycle-ii"><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">142 环形链表 II</a></h4>
+
+<p>给一个链表，找到链表中入环的第一个节点。</p>
+
+<p>跟上一题相同，用两个指针 slow 和 fast，fast 每次移动两步，slow 每次移动一步，如果链表中有环那么这两个指针一定会最终相遇，此时 fast 指针移动的距离是 l1 + l2 + c，其中 l1 是链表中环外部分的长度，l2 是环内两个指针走过的共同部分的长度，c 是环的长度，而 slow 指针移动的距离则是 l1 + l2，因为 fast 指针的移动速度是 slow 的两倍，所以有 l1 + l2 + c = 2 * (l1 + l2)，因此 c = l1 + l2，又因为 slow 指针已经在环中走过了长度为 l2 的部分，只剩下长度为 l1 的部分，只需要用一个新的指针从链表的头部开始每次移动一步，同时让 slow 指针每次移动一步，最终他们都会移动 l1 的距离并在入环处相遇。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    ListNode *detectCycle(ListNode *head) {
+        <span style="color:#fff;font-weight:bold">if</span> (!head || !head-&gt;next)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nullptr</span>;
+        <span style="color:#fff;font-weight:bold">auto</span> slow = head-&gt;next, fast = head-&gt;next-&gt;next;
+        <span style="color:#fff;font-weight:bold">while</span> (fast &amp;&amp; fast-&gt;next &amp;&amp; fast != slow) {
+            fast = fast-&gt;next-&gt;next;
+            slow = slow-&gt;next;
+        }
+        <span style="color:#fff;font-weight:bold">if</span> (!fast || !fast-&gt;next)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nullptr</span>;
+        <span style="color:#fff;font-weight:bold">auto</span> lin = head;
+        <span style="color:#fff;font-weight:bold">while</span> (lin != slow)
+            lin = lin-&gt;next, slow = slow-&gt;next;
+        <span style="color:#fff;font-weight:bold">return</span> lin;
+    }
+};
+</code></pre></div>
+<h4 id="61-旋转链表-https-leetcode-cn-com-problems-rotate-list-submissions"><a href="https://leetcode-cn.com/problems/rotate-list/submissions/">61 旋转链表</a></h4>
+
+<p>给一个链表，将其每个节点向右移动 k 个位置。</p>
+
+<p>在链表中不易直接取到前 k 个位置，所以用两个指针，第一个先往前走 k 步，然后两个指针一起往前走直到第一个指针没有后继指针，就可以将头节点链接到第一个指针后，将第二个指针后置为空。注意 k 可能非常大，要先计算一次链表的长度 len 然后用 k % len 进行计算。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    ListNode *rotateRight(ListNode *head, <span style="color:#fff;font-weight:bold">int</span> k) {
+        <span style="color:#fff;font-weight:bold">if</span> (!head)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nullptr</span>;
+        ListNode *first = head, *second = head, *traverse = head;
+        <span style="color:#fff;font-weight:bold">int</span> len = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (traverse) {
+            traverse = traverse-&gt;next;
+            ++len;
+        }
+        k %= len;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; k; i++)
+            first = first-&gt;next;
+        <span style="color:#fff;font-weight:bold">while</span> (first &amp;&amp; first-&gt;next)
+            first = first-&gt;next, second = second-&gt;next;
+        first-&gt;next = head;
+        <span style="color:#fff;font-weight:bold">auto</span> ret = second-&gt;next;
+        second-&gt;next = <span style="color:#fff;font-weight:bold">nullptr</span>;
+        <span style="color:#fff;font-weight:bold">return</span> ret;
     }
 };
 </code></pre></div>

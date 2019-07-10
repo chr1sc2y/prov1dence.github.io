@@ -18,7 +18,7 @@
       <pubDate>Thu, 04 Jul 2019 19:12:25 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/leetcode/linkedlist/</guid>
-      <description>LeetCode 链表 题目 1. 常规题 21 合并两个有序链表 合并两个有序链表。 逐个比较大小并添加到当前节点后面，并移动对应的链表节点。 classSolution { public: ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) { ListNode *head = new ListNode(0), *node</description>
+      <description>LeetCode 链表 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。 依次按位进行相加。 classSolution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head =</description>
     </item>
     
     <item>
