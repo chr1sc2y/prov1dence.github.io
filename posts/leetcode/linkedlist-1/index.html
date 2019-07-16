@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 链表（1）"/>
-<meta name="twitter:description" content="LeetCode 链表 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。 依次按位进行相加。 classSolution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head ="/>
+<meta name="twitter:description" content="LeetCode 链表（1） 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。 依次按位进行相加。 classSolution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0;"/>
 
     <meta property="og:title" content="LeetCode 链表（1）" />
-<meta property="og:description" content="LeetCode 链表 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。 依次按位进行相加。 classSolution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head =" />
+<meta property="og:description" content="LeetCode 链表（1） 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。 依次按位进行相加。 classSolution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/linkedlist-1/" />
 <meta property="article:published_time" content="2019-07-04T19:12:25&#43;10:00"/>
@@ -110,7 +110,7 @@
       <div>
         
 
-<h1 id="leetcode-链表-https-leetcode-cn-com-tag-linked-list"><a href="https://leetcode-cn.com/tag/linked-list/">LeetCode 链表</a></h1>
+<h1 id="leetcode-链表-1-https-leetcode-cn-com-tag-linked-list"><a href="https://leetcode-cn.com/tag/linked-list/">LeetCode 链表（1）</a></h1>
 
 <h2 id="题目">题目</h2>
 
@@ -468,6 +468,45 @@
             curr = next;
         }
         <span style="color:#fff;font-weight:bold">return</span> prev;
+    }
+};
+</code></pre></div>
+<h4 id="25-k-个一组翻转链表-https-leetcode-cn-com-problems-reverse-nodes-in-k-group"><a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">25 K 个一组翻转链表</a></h4>
+
+<p>给一个链表，每 k 个节点一组进行翻转。</p>
+
+<p>用几个指针记录下需要反转的部分的起始，终止位置，依次反转即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+    ListNode *ReverseLinkedList(ListNode *head) {
+        ListNode *prev = <span style="color:#fff;font-weight:bold">nullptr</span>, *curr = head, *next = <span style="color:#fff;font-weight:bold">nullptr</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (curr) {
+            next = curr-&gt;next;
+            curr-&gt;next = prev;
+            prev = curr;
+            curr = next;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> prev;
+    }
+
+<span style="color:#fff;font-weight:bold">public</span>:
+    ListNode *reverseKGroup(ListNode *head, <span style="color:#fff;font-weight:bold">int</span> k) {
+        ListNode *root = <span style="color:#fff;font-weight:bold">new</span> ListNode(<span style="color:#ff0;font-weight:bold">0</span>), *prev = root;
+        prev-&gt;next = head;
+        <span style="color:#fff;font-weight:bold">while</span> (prev) {
+            <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>;
+            ListNode *start = prev-&gt;next, *end = prev-&gt;next, *curr = end, *next = <span style="color:#fff;font-weight:bold">nullptr</span>;
+            <span style="color:#fff;font-weight:bold">while</span> (curr &amp;&amp; i &lt; k)
+                curr = curr-&gt;next, ++i;
+            <span style="color:#fff;font-weight:bold">if</span> (i &lt; k || !curr)
+                <span style="color:#fff;font-weight:bold">break</span>;
+            next = curr-&gt;next;
+            curr-&gt;next = <span style="color:#fff;font-weight:bold">nullptr</span>;
+            start = ReverseLinkedList(start);
+            prev-&gt;next = start;
+            end-&gt;next = next;
+            prev = end;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> root-&gt;next;
     }
 };
 </code></pre></div>

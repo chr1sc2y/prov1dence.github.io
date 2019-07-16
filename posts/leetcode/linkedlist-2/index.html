@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 链表（2）"/>
-<meta name="twitter:description" content="LeetCode 链表 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。 在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，tai"/>
+<meta name="twitter:description" content="LeetCode 链表（2） 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。 在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，"/>
 
     <meta property="og:title" content="LeetCode 链表（2）" />
-<meta property="og:description" content="LeetCode 链表 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。 在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，tai" />
+<meta property="og:description" content="LeetCode 链表（2） 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。 在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/linkedlist-2/" />
 <meta property="article:published_time" content="2019-07-09T19:12:25&#43;10:00"/>
@@ -110,7 +110,7 @@
       <div>
         
 
-<h1 id="leetcode-链表-https-leetcode-cn-com-tag-linked-list"><a href="https://leetcode-cn.com/tag/linked-list/">LeetCode 链表</a></h1>
+<h1 id="leetcode-链表-2-https-leetcode-cn-com-tag-linked-list"><a href="https://leetcode-cn.com/tag/linked-list/">LeetCode 链表（2）</a></h1>
 
 <h2 id="题目">题目</h2>
 
@@ -423,6 +423,87 @@
             node = node-&gt;next;
         }
         <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="23-合并k个排序链表-https-leetcode-cn-com-problems-merge-k-sorted-lists-submissions"><a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/submissions/">23 合并K个排序链表</a></h4>
+
+<p>合并 k 个有序链表。</p>
+
+<p>最简单的做法是每次遍历所有头节点，取出值最小的一个，将其加到要返回的链表中。时间复杂度是 O(m * n)，其中 m 是链表的个数，n 是节点的总个数，空间复杂度是 O(1)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    ListNode *mergeKLists(vector&lt;ListNode *&gt; &amp;lists) {
+        ListNode *root = <span style="color:#fff;font-weight:bold">new</span> ListNode(<span style="color:#ff0;font-weight:bold">0</span>), *node = root;
+        <span style="color:#fff;font-weight:bold">while</span> (node) {
+            ListNode *min_ptr = <span style="color:#fff;font-weight:bold">nullptr</span>;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;l :lists)
+                <span style="color:#fff;font-weight:bold">if</span> (l &amp;&amp; (!min_ptr || l-&gt;val &lt; min_ptr-&gt;val))
+                    min_ptr = l;
+            node-&gt;next = min_ptr;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;l :lists)
+                <span style="color:#fff;font-weight:bold">if</span> (l &amp;&amp; l == min_ptr)
+                    l = l-&gt;next;
+            node = node-&gt;next;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> root-&gt;next;
+    }
+};
+</code></pre></div>
+<p>在此基础上可以用一个小根堆来保存所有头节点，每次取出堆顶的节点，将该节点加入要返回的链表中，判断该节点是否有后继节点，如果有的话则将其加入堆中并维护，注意需要重载优先队列的比较函数。时间复杂度是 O(n * logm)，空间复杂度是 O(m)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+    <span style="color:#fff;font-weight:bold">struct</span> compare {
+        <span style="color:#fff;font-weight:bold">bool</span> <span style="color:#fff;font-weight:bold">operator</span>()(ListNode *l1, ListNode *l2) {
+            <span style="color:#fff;font-weight:bold">return</span> l1-&gt;val &gt; l2-&gt;val;
+        }
+    };
+
+<span style="color:#fff;font-weight:bold">public</span>:
+    ListNode *mergeKLists(vector&lt;ListNode *&gt; &amp;lists) {
+        ListNode *root = <span style="color:#fff;font-weight:bold">new</span> ListNode(<span style="color:#ff0;font-weight:bold">0</span>), *node = root;
+        priority_queue&lt;ListNode *, vector&lt;ListNode *&gt;, compare&gt; heap;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;l:lists)
+            <span style="color:#fff;font-weight:bold">if</span> (l)
+                heap.push(l);
+        <span style="color:#fff;font-weight:bold">while</span> (!heap.empty()) {
+            ListNode *curr = heap.top();
+            node-&gt;next = curr;
+            node = node-&gt;next;
+            heap.pop();
+            <span style="color:#fff;font-weight:bold">if</span> (curr-&gt;next)
+                heap.push(curr-&gt;next);
+        }
+        <span style="color:#fff;font-weight:bold">return</span> root-&gt;next;
+    }
+};
+</code></pre></div>
+<p>还可以用分治法两两合并链表，省去维护堆所花费的空间和时间，因为链表的数量是 m，所以用分治法需要花费 logm 的时间来合并所有的链表。时间复杂度是 O(n * logm)，空间复杂度是 O(1)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+    ListNode *MergeLists(ListNode *l1, ListNode *l2) {
+        ListNode *root = <span style="color:#fff;font-weight:bold">new</span> ListNode(<span style="color:#ff0;font-weight:bold">0</span>), *node = root;
+        <span style="color:#fff;font-weight:bold">while</span> (l1 &amp;&amp; l2) {
+            <span style="color:#fff;font-weight:bold">if</span> (l1-&gt;val &lt; l2-&gt;val) {
+                node-&gt;next = l1;
+                l1 = l1-&gt;next;
+            } <span style="color:#fff;font-weight:bold">else</span> {
+                node-&gt;next = l2;
+                l2 = l2-&gt;next;
+            }
+            node = node-&gt;next;
+        }
+        node-&gt;next = l1 ? l1 : l2;
+        <span style="color:#fff;font-weight:bold">return</span> root-&gt;next;
+    }
+
+<span style="color:#fff;font-weight:bold">public</span>:
+    ListNode *mergeKLists(vector&lt;ListNode *&gt; &amp;lists) {
+        <span style="color:#fff;font-weight:bold">int</span> n = lists.size();
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> interval = <span style="color:#ff0;font-weight:bold">1</span>; interval &lt; n; interval *= <span style="color:#ff0;font-weight:bold">2</span>) {
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; n; i += interval * <span style="color:#ff0;font-weight:bold">2</span>)
+                <span style="color:#fff;font-weight:bold">if</span> (i + interval &lt; n)
+                    lists[i] = MergeLists(lists[i], lists[i + interval]);
+        }
+        <span style="color:#fff;font-weight:bold">return</span> n == <span style="color:#ff0;font-weight:bold">0</span> ? <span style="color:#fff;font-weight:bold">nullptr</span> : lists[<span style="color:#ff0;font-weight:bold">0</span>];
     }
 };
 </code></pre></div>

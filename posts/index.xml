@@ -18,7 +18,7 @@
       <pubDate>Tue, 09 Jul 2019 19:12:25 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/leetcode/linkedlist-2/</guid>
-      <description>LeetCode 链表 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。 在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，tai</description>
+      <description>LeetCode 链表（2） 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。 在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@
       <pubDate>Thu, 04 Jul 2019 19:12:25 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/leetcode/linkedlist-1/</guid>
-      <description>LeetCode 链表 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。 依次按位进行相加。 classSolution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head =</description>
+      <description>LeetCode 链表（1） 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。 依次按位进行相加。 classSolution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0;</description>
     </item>
     
     <item>
