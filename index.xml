@@ -7,17 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 04 Jul 2019 19:12:25 +1000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jul 2019 19:12:25 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>LeetCode 链表</title>
-      <link>https://zintrulcre.vip/posts/leetcode/linkedlist/</link>
+      <title>LeetCode 链表（2）</title>
+      <link>https://zintrulcre.vip/posts/leetcode/linkedlist-2/</link>
+      <pubDate>Tue, 09 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/linkedlist-2/</guid>
+      <description>LeetCode 链表 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。 在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，tai</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 链表（1）</title>
+      <link>https://zintrulcre.vip/posts/leetcode/linkedlist-1/</link>
       <pubDate>Thu, 04 Jul 2019 19:12:25 +1000</pubDate>
       
-      <guid>https://zintrulcre.vip/posts/leetcode/linkedlist/</guid>
+      <guid>https://zintrulcre.vip/posts/leetcode/linkedlist-1/</guid>
       <description>LeetCode 链表 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。 依次按位进行相加。 classSolution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head =</description>
     </item>
     
@@ -91,15 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/code-jam/2019-round-1c/</guid>
       <description>Code Jam 2019 Round 1C Robot Programming Strategy (10pts, 18pts) 已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。 Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同时有三</description>
-    </item>
-    
-    <item>
-      <title>Kick Start 2019 Round B</title>
-      <link>https://zintrulcre.vip/posts/kick-start/2019-round-b/</link>
-      <pubDate>Sun, 21 Apr 2019 14:41:22 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/kick-start/2019-round-b/</guid>
-      <description>Kick Start 2019 Round B Building Palindromes (5pts, 12pts) 判断给定区间内的子字符串是否是回文串。 Solution: Prefix Sum 判断字符串是否是回文串只需要判断字符串里个数为奇数的字符的数量是否小于等于1，</description>
     </item>
     
   </channel>
