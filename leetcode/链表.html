@@ -745,6 +745,373 @@
     }
 };
 </code></pre>
+<h3 id="4-&#x53CC;&#x6307;&#x9488;">4. &#x53CC;&#x6307;&#x9488;</h3>
+<h4 id="19-&#x5220;&#x9664;&#x94FE;&#x8868;&#x7684;&#x5012;&#x6570;&#x7B2C;n&#x4E2A;&#x8282;&#x70B9;"><a href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/submissions/" target="_blank">19 &#x5220;&#x9664;&#x94FE;&#x8868;&#x7684;&#x5012;&#x6570;&#x7B2C;N&#x4E2A;&#x8282;&#x70B9;</a></h4>
+<p>&#x5220;&#x9664;&#x94FE;&#x8868;&#x7684;&#x5012;&#x6570;&#x7B2C; n &#x4E2A;&#x8282;&#x70B9;&#x3002;</p>
+<p>&#x5728;&#x94FE;&#x8868;&#x4E2D;&#x4E0D;&#x6613;&#x76F4;&#x63A5;&#x53D6;&#x5230;&#x5012;&#x6570;&#x7B2C; n &#x4E2A;&#x4F4D;&#x7F6E;&#xFF0C;&#x6240;&#x4EE5;&#x7528;&#x4E24;&#x4E2A;&#x6307;&#x9488; prev &#x548C; tail&#xFF0C;tail &#x5148;&#x5F80;&#x524D;&#x8D70; n &#x6B65;&#xFF0C;&#x7136;&#x540E;&#x4E24;&#x4E2A;&#x6307;&#x9488;&#x4E00;&#x8D77;&#x5F80;&#x524D;&#x8D70;&#x76F4;&#x5230; tail &#x6CA1;&#x6709;&#x540E;&#x7EE7;&#x6307;&#x9488;&#xFF0C;&#x6B64;&#x65F6; prev &#x7684;&#x540E;&#x7EE7;&#x6307;&#x9488;&#x5C31;&#x662F;&#x5012;&#x6570;&#x7B2C; n &#x4E2A;&#x4F4D;&#x7F6E;&#xFF0C;&#x5220;&#x9664;&#x5176;&#x5373;&#x53EF;&#x3002;&#x6CE8;&#x610F;&#x5982;&#x679C;&#x8981;&#x5220;&#x9664;&#x7684;&#x6307;&#x9488;&#x662F;&#x5934;&#x6307;&#x9488;&#x7684;&#x8BDD;&#x8981;&#x5355;&#x72EC;&#x5904;&#x7406;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">removeNthFromEnd</span><span class="hljs-params">(ListNode* head, <span class="hljs-keyword">int</span> n)</span> </span>{
+        ListNode *prev = head, *tail = head;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)
+            tail = tail-&gt;next;
+        <span class="hljs-keyword">if</span> (!tail) {
+            head = head-&gt;next;
+            <span class="hljs-keyword">delete</span> prev;
+            <span class="hljs-keyword">return</span> head;
+        }
+        <span class="hljs-keyword">while</span> (tail-&gt;next)
+            tail = tail-&gt;next, prev = prev-&gt;next;
+        ListNode *next = prev-&gt;next;
+        prev-&gt;next = next-&gt;next;
+        <span class="hljs-keyword">delete</span> next;
+        <span class="hljs-keyword">return</span> head;
+    }
+};
+</code></pre>
+<h4 id="61-&#x65CB;&#x8F6C;&#x94FE;&#x8868;"><a href="https://leetcode-cn.com/problems/rotate-list/submissions/" target="_blank">61 &#x65CB;&#x8F6C;&#x94FE;&#x8868;</a></h4>
+<p>&#x7ED9;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#xFF0C;&#x5C06;&#x5176;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x5411;&#x53F3;&#x79FB;&#x52A8; k &#x4E2A;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>&#x5728;&#x94FE;&#x8868;&#x4E2D;&#x4E0D;&#x6613;&#x76F4;&#x63A5;&#x53D6;&#x5230;&#x524D; k &#x4E2A;&#x4F4D;&#x7F6E;&#xFF0C;&#x6240;&#x4EE5;&#x7528;&#x4E24;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x5148;&#x5F80;&#x524D;&#x8D70; k &#x6B65;&#xFF0C;&#x7136;&#x540E;&#x4E24;&#x4E2A;&#x6307;&#x9488;&#x4E00;&#x8D77;&#x5F80;&#x524D;&#x8D70;&#x76F4;&#x5230;&#x7B2C;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#x6CA1;&#x6709;&#x540E;&#x7EE7;&#x6307;&#x9488;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5C06;&#x5934;&#x8282;&#x70B9;&#x94FE;&#x63A5;&#x5230;&#x7B2C;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#x540E;&#xFF0C;&#x5C06;&#x7B2C;&#x4E8C;&#x4E2A;&#x6307;&#x9488;&#x540E;&#x7F6E;&#x4E3A;&#x7A7A;&#x3002;&#x6CE8;&#x610F; k &#x53EF;&#x80FD;&#x975E;&#x5E38;&#x5927;&#xFF0C;&#x8981;&#x5148;&#x8BA1;&#x7B97;&#x4E00;&#x6B21;&#x94FE;&#x8868;&#x7684;&#x957F;&#x5EA6; len &#x7136;&#x540E;&#x7528; k % len &#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode *<span class="hljs-title">rotateRight</span><span class="hljs-params">(ListNode *head, <span class="hljs-keyword">int</span> k)</span> </span>{
+        <span class="hljs-keyword">if</span> (!head)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        ListNode *first = head, *second = head, *traverse = head;
+        <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span> (traverse) {
+            traverse = traverse-&gt;next;
+            ++len;
+        }
+        k %= len;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++)
+            first = first-&gt;next;
+        <span class="hljs-keyword">while</span> (first &amp;&amp; first-&gt;next)
+            first = first-&gt;next, second = second-&gt;next;
+        first-&gt;next = head;
+        <span class="hljs-keyword">auto</span> ret = second-&gt;next;
+        second-&gt;next = <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">return</span> ret;
+    }
+};
+</code></pre>
+<h4 id="876-&#x94FE;&#x8868;&#x7684;&#x4E2D;&#x95F4;&#x7ED3;&#x70B9;"><a href="https://leetcode-cn.com/problems/middle-of-the-linked-list/solution/lian-biao-de-zhong-jian-jie-dian-by-leetcode/" target="_blank">876 &#x94FE;&#x8868;&#x7684;&#x4E2D;&#x95F4;&#x7ED3;&#x70B9;</a></h4>
+<p>&#x627E;&#x94FE;&#x8868;&#x7684;&#x4E2D;&#x95F4;&#x8282;&#x70B9;&#x3002;</p>
+<p>&#x7528;&#x4E24;&#x4E2A;&#x6307;&#x9488; slow &#x548C; fast&#xFF0C;fast &#x6BCF;&#x6B21;&#x79FB;&#x52A8;&#x4E24;&#x6B65;&#xFF0C;slow &#x6BCF;&#x6B21;&#x79FB;&#x52A8;&#x4E00;&#x6B65;&#xFF0C;&#x5F53; fast &#x8D70;&#x5230;&#x672B;&#x5C3E;&#x7684;&#x65F6;&#x5019; slow &#x6070;&#x597D;&#x5230;&#x6307;&#x9488;&#x7684;&#x4E2D;&#x95F4;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">middleNode</span><span class="hljs-params">(ListNode* head)</span> </span>{
+        <span class="hljs-keyword">auto</span> slow = head, fast = head;
+        <span class="hljs-keyword">while</span> (fast &amp;&amp; fast-&gt;next) {
+            slow = slow-&gt;next;
+            fast = fast-&gt;next-&gt;next;
+        }
+        <span class="hljs-keyword">return</span> slow;
+    }
+};
+</code></pre>
+<h4 id="160-&#x76F8;&#x4EA4;&#x94FE;&#x8868;"><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/submissions/" target="_blank">160 &#x76F8;&#x4EA4;&#x94FE;&#x8868;</a></h4>
+<p>&#x627E;&#x5230;&#x4E24;&#x4E2A;&#x94FE;&#x8868;&#x76F8;&#x4EA4;&#x7684;&#x8D77;&#x59CB;&#x8282;&#x70B9;&#x3002;</p>
+<p>&#x5047;&#x8BBE;&#x94FE;&#x8868; A &#x672A;&#x76F8;&#x4EA4;&#x7684;&#x957F;&#x5EA6;&#x4E3A; l1&#xFF0C;&#x94FE;&#x8868; B &#x672A;&#x76F8;&#x4EA4;&#x7684;&#x957F;&#x5EA6;&#x4E3A; l2&#xFF0C;&#x76F8;&#x4EA4;&#x90E8;&#x5206;&#x7684;&#x957F;&#x5EA6;&#x4E3A; lc&#xFF0C;&#x4E3A;&#x4E86;&#x8BA9;&#x4E24;&#x4E2A;&#x6307;&#x9488;&#x8D70;&#x76F8;&#x540C;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x8BA9;&#x4E24;&#x4E2A;&#x6307;&#x9488;&#x5728;&#x8D70;&#x5230;&#x5C3E;&#x90E8;&#x7684;&#x65F6;&#x5019;&#x91CD;&#x65B0;&#x56DE;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#x7684;&#x5934;&#x90E8;&#x518D;&#x7EE7;&#x7EED;&#x8D70;&#xFF0C;&#x6700;&#x540E;&#x5F53;&#x4E24;&#x4E2A;&#x6307;&#x9488;&#x8D70;&#x8FC7;&#x7684;&#x957F;&#x5EA6;&#x90FD;&#x662F; l1 + l2 + l3 &#x65F6;&#x5373;&#x76F8;&#x4EA4;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode *<span class="hljs-title">getIntersectionNode</span><span class="hljs-params">(ListNode *headA, ListNode *headB)</span> </span>{
+        <span class="hljs-keyword">auto</span> a = headA, b = headB;
+        <span class="hljs-keyword">if</span> (!a || !b)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">while</span> (a != b) {
+            a = a ? a-&gt;next : headB;
+            b = b ? b-&gt;next : headA;
+        }
+        <span class="hljs-keyword">return</span> a;
+    }
+};
+</code></pre>
+<h4 id="141-&#x73AF;&#x5F62;&#x94FE;&#x8868;"><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank">141 &#x73AF;&#x5F62;&#x94FE;&#x8868;</a></h4>
+<p>&#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#x4E2D;&#x662F;&#x5426;&#x6709;&#x73AF;&#x3002;</p>
+<p>&#x7528;&#x4E24;&#x4E2A;&#x6307;&#x9488; slow &#x548C; fast&#xFF0C;fast &#x6BCF;&#x6B21;&#x79FB;&#x52A8;&#x4E24;&#x6B65;&#xFF0C;slow &#x6BCF;&#x6B21;&#x79FB;&#x52A8;&#x4E00;&#x6B65;&#xFF0C;&#x5982;&#x679C;&#x94FE;&#x8868;&#x4E2D;&#x6709;&#x73AF;&#x90A3;&#x4E48;&#x8FD9;&#x4E24;&#x4E2A;&#x6307;&#x9488;&#x4E00;&#x5B9A;&#x4F1A;&#x6700;&#x7EC8;&#x76F8;&#x9047;&#xFF0C;&#x5426;&#x5219; fast &#x5C06;&#x5148;&#x5230;&#x8FBE;&#x672B;&#x5C3E;&#xFF0C;&#x5F53; fast == nullptr &#x6216; fast-&gt;next == nullptr &#x5373;&#x4EE3;&#x8868;&#x94FE;&#x8868;&#x6CA1;&#x6709;&#x6362;&#x5E76;&#x4E14; fast &#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x672B;&#x5C3E;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">hasCycle</span><span class="hljs-params">(ListNode *head)</span> </span>{
+        <span class="hljs-keyword">auto</span> slow = head, fast = head;
+        <span class="hljs-keyword">while</span> (fast &amp;&amp; fast-&gt;next) {
+            slow = slow-&gt;next;
+            fast = fast-&gt;next-&gt;next;
+            <span class="hljs-keyword">if</span> (slow == fast)
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+};
+</code></pre>
+<h4 id="142-&#x73AF;&#x5F62;&#x94FE;&#x8868;-ii"><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/" target="_blank">142 &#x73AF;&#x5F62;&#x94FE;&#x8868; II</a></h4>
+<p>&#x7ED9;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#xFF0C;&#x627E;&#x5230;&#x94FE;&#x8868;&#x4E2D;&#x5165;&#x73AF;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x3002;</p>
+<p>&#x8DDF;&#x4E0A;&#x4E00;&#x9898;&#x76F8;&#x540C;&#xFF0C;&#x7528;&#x4E24;&#x4E2A;&#x6307;&#x9488; slow &#x548C; fast&#xFF0C;fast &#x6BCF;&#x6B21;&#x79FB;&#x52A8;&#x4E24;&#x6B65;&#xFF0C;slow &#x6BCF;&#x6B21;&#x79FB;&#x52A8;&#x4E00;&#x6B65;&#xFF0C;&#x5982;&#x679C;&#x94FE;&#x8868;&#x4E2D;&#x6709;&#x73AF;&#x90A3;&#x4E48;&#x8FD9;&#x4E24;&#x4E2A;&#x6307;&#x9488;&#x4E00;&#x5B9A;&#x4F1A;&#x6700;&#x7EC8;&#x76F8;&#x9047;&#xFF0C;&#x6B64;&#x65F6; fast &#x6307;&#x9488;&#x79FB;&#x52A8;&#x7684;&#x8DDD;&#x79BB;&#x662F; l1 + l2 + c&#xFF0C;&#x5176;&#x4E2D; l1 &#x662F;&#x94FE;&#x8868;&#x4E2D;&#x73AF;&#x5916;&#x90E8;&#x5206;&#x7684;&#x957F;&#x5EA6;&#xFF0C;l2 &#x662F;&#x73AF;&#x5185;&#x4E24;&#x4E2A;&#x6307;&#x9488;&#x8D70;&#x8FC7;&#x7684;&#x5171;&#x540C;&#x90E8;&#x5206;&#x7684;&#x957F;&#x5EA6;&#xFF0C;c &#x662F;&#x73AF;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x800C; slow &#x6307;&#x9488;&#x79FB;&#x52A8;&#x7684;&#x8DDD;&#x79BB;&#x5219;&#x662F; l1 + l2&#xFF0C;&#x56E0;&#x4E3A; fast &#x6307;&#x9488;&#x7684;&#x79FB;&#x52A8;&#x901F;&#x5EA6;&#x662F; slow &#x7684;&#x4E24;&#x500D;&#xFF0C;&#x6240;&#x4EE5;&#x6709; l1 + l2 + c = 2 * (l1 + l2)&#xFF0C;&#x56E0;&#x6B64; c = l1 + l2&#xFF0C;&#x53C8;&#x56E0;&#x4E3A; slow &#x6307;&#x9488;&#x5DF2;&#x7ECF;&#x5728;&#x73AF;&#x4E2D;&#x8D70;&#x8FC7;&#x4E86;&#x957F;&#x5EA6;&#x4E3A; l2 &#x7684;&#x90E8;&#x5206;&#xFF0C;&#x53EA;&#x5269;&#x4E0B;&#x957F;&#x5EA6;&#x4E3A; l1 &#x7684;&#x90E8;&#x5206;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x7528;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6307;&#x9488;&#x4ECE;&#x94FE;&#x8868;&#x7684;&#x5934;&#x90E8;&#x5F00;&#x59CB;&#x6BCF;&#x6B21;&#x79FB;&#x52A8;&#x4E00;&#x6B65;&#xFF0C;&#x540C;&#x65F6;&#x8BA9; slow &#x6307;&#x9488;&#x6BCF;&#x6B21;&#x79FB;&#x52A8;&#x4E00;&#x6B65;&#xFF0C;&#x6700;&#x7EC8;&#x4ED6;&#x4EEC;&#x90FD;&#x4F1A;&#x79FB;&#x52A8; l1 &#x7684;&#x8DDD;&#x79BB;&#x5E76;&#x5728;&#x5165;&#x73AF;&#x5904;&#x76F8;&#x9047;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode *<span class="hljs-title">detectCycle</span><span class="hljs-params">(ListNode *head)</span> </span>{
+        <span class="hljs-keyword">if</span> (!head || !head-&gt;next)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">auto</span> slow = head-&gt;next, fast = head-&gt;next-&gt;next;
+        <span class="hljs-keyword">while</span> (fast &amp;&amp; fast-&gt;next &amp;&amp; fast != slow) {
+            fast = fast-&gt;next-&gt;next;
+            slow = slow-&gt;next;
+        }
+        <span class="hljs-keyword">if</span> (!fast || !fast-&gt;next)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">auto</span> lin = head;
+        <span class="hljs-keyword">while</span> (lin != slow)
+            lin = lin-&gt;next, slow = slow-&gt;next;
+        <span class="hljs-keyword">return</span> lin;
+    }
+};
+</code></pre>
+<h3 id="5-&#x7EFC;&#x5408;">5. &#x7EFC;&#x5408;</h3>
+<h4 id="234-&#x56DE;&#x6587;&#x94FE;&#x8868;"><a href="https://leetcode-cn.com/problems/palindrome-linked-list/submissions/" target="_blank">234 &#x56DE;&#x6587;&#x94FE;&#x8868;</a></h4>
+<p>&#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#x662F;&#x5426;&#x4E3A;&#x56DE;&#x6587;&#x94FE;&#x8868;&#x3002;</p>
+<p>&#x5148;&#x627E;&#x5230;&#x94FE;&#x8868;&#x7684;&#x4E2D;&#x95F4;&#x8282;&#x70B9;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x53F3;&#x8FB9;&#x7684;&#x94FE;&#x8868;&#x7FFB;&#x8F6C;&#xFF0C;&#x5C06;&#x5DE6;&#x8FB9;&#x7684;&#x94FE;&#x8868;&#x4ECE;&#x4E2D;&#x95F4;&#x622A;&#x65AD;&#xFF0C;&#x518D;&#x4E00;&#x6B21;&#x5BF9;&#x6BD4;&#x4E24;&#x8FB9;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x662F;&#x5426;&#x76F8;&#x7B49;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(ListNode *head)</span> </span>{
+        <span class="hljs-keyword">if</span> (!head || !head-&gt;next)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">auto</span> prev = head, slow = head, fast = head;
+        <span class="hljs-keyword">while</span> (fast &amp;&amp; fast-&gt;next) {
+            prev = slow;
+            slow = slow-&gt;next;
+            fast = fast-&gt;next-&gt;next;
+        }
+        <span class="hljs-keyword">auto</span> node = Reverse(fast ? slow-&gt;next : slow);
+        prev-&gt;next = <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">while</span> (head &amp;&amp; node &amp;&amp; head-&gt;val == node-&gt;val)
+            head = head-&gt;next, node = node-&gt;next;
+        <span class="hljs-keyword">return</span> !head &amp;&amp; !node;
+    }
+
+    <span class="hljs-function">ListNode *<span class="hljs-title">Reverse</span><span class="hljs-params">(ListNode *head)</span> </span>{
+        <span class="hljs-keyword">if</span> (!head)
+            <span class="hljs-keyword">return</span> head;
+        ListNode *prev = <span class="hljs-literal">nullptr</span>, *curr = head, *next = head-&gt;next;
+        <span class="hljs-keyword">while</span>(curr) {
+            next = curr-&gt;next;
+            curr-&gt;next = prev;
+            prev = curr;
+            curr = next;
+        }
+        <span class="hljs-keyword">return</span> prev;
+    }
+};
+</code></pre>
+<h4 id="109-&#x6709;&#x5E8F;&#x94FE;&#x8868;&#x8F6C;&#x6362;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;"><a href="https://leetcode-cn.com/problems/convert-sorted-list-to-binary-search-tree/" target="_blank">109 &#x6709;&#x5E8F;&#x94FE;&#x8868;&#x8F6C;&#x6362;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;</a></h4>
+<p>&#x7ED9;&#x4E00;&#x4E2A;&#x6709;&#x5E8F;&#x94FE;&#x8868;&#xFF0C;&#x5C06;&#x5176;&#x8F6C;&#x6362;&#x4E3A;&#x4E00;&#x4E2A;&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x3002;</p>
+<p>&#x5148;&#x627E;&#x5230;&#x94FE;&#x8868;&#x7684;&#x4E2D;&#x95F4;&#x8282;&#x70B9;&#xFF0C;&#x5C06;&#x5176;&#x4F5C;&#x4E3A;&#x6811;&#x7684;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x5C06;&#x4E2D;&#x95F4;&#x8282;&#x70B9;&#x7684;&#x5DE6;&#x8FB9;&#x90E8;&#x5206;&#x94FE;&#x8868;&#x4F5C;&#x4E3A;&#x5176;&#x5DE6;&#x5B50;&#x6811;&#xFF0C;&#x53F3;&#x8FB9;&#x90E8;&#x5206;&#x94FE;&#x8868;&#x4F5C;&#x4E3A;&#x5176;&#x53F3;&#x5B50;&#x6811;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">TreeNode *<span class="hljs-title">sortedListToBST</span><span class="hljs-params">(ListNode *head)</span> </span>{
+        <span class="hljs-keyword">if</span> (!head)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        ListNode *prev = <span class="hljs-literal">nullptr</span>, *slow = head, *fast = head;
+        <span class="hljs-keyword">while</span> (fast &amp;&amp; fast-&gt;next)
+            prev = slow, slow = slow-&gt;next, fast = fast-&gt;next-&gt;next;
+        <span class="hljs-keyword">if</span> (prev)
+            prev-&gt;next = <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">auto</span> root = <span class="hljs-keyword">new</span> TreeNode(slow-&gt;val);
+        root-&gt;left = sortedListToBST(prev ? head : <span class="hljs-literal">nullptr</span>);
+        root-&gt;right = sortedListToBST(slow-&gt;next);
+        <span class="hljs-keyword">return</span> root;
+    }
+};
+</code></pre>
+<h4 id="426-&#x5C06;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x8F6C;&#x5316;&#x4E3A;&#x6392;&#x5E8F;&#x7684;&#x53CC;&#x5411;&#x94FE;&#x8868;"><a href="https://leetcode-cn.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/submissions/" target="_blank">426 &#x5C06;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x8F6C;&#x5316;&#x4E3A;&#x6392;&#x5E8F;&#x7684;&#x53CC;&#x5411;&#x94FE;&#x8868;</a></h4>
+<p>&#x5C06;&#x4E00;&#x4E2A;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x8F6C;&#x6362;&#x4E3A;&#x4E00;&#x4E2A;&#x53CC;&#x5411;&#x5FAA;&#x73AF;&#x94FE;&#x8868;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x5176;&#x88AB;&#x8F6C;&#x6362;&#x4E3A;&#x53CC;&#x5411;&#x94FE;&#x8868;&#x4E4B;&#x540E;&#x7684;&#x524D;&#x9A71;&#x8282;&#x70B9;&#x5E94;&#x8BE5;&#x662F;&#x5176;&#x5DE6;&#x5B50;&#x6811;&#x4E2D;&#x503C;&#x6700;&#x5927;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5176;&#x5DE6;&#x5B50;&#x8282;&#x70B9;&#x7684;&#x6700;&#x53F3;&#x5B50;&#x8282;&#x70B9;&#xFF0C;&#x56E0;&#x6B64;&#x53EA;&#x9700;&#x8981;&#x5148;&#x627E;&#x5230;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x6839;&#x8282;&#x70B9;&#x4E0E;&#x5176;&#x9996;&#x5C3E;&#x76F8;&#x8FDE;&#x5373;&#x53EF;&#xFF0C;&#x5728;&#x6B64;&#x4E4B;&#x524D;&#x5E94;&#x8BE5;&#x5148;&#x5BF9;&#x6839;&#x8282;&#x70B9;&#x7684;&#x5DE6;&#x5B50;&#x6811;&#x5DE6;&#x5BF9;&#x5E94;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x53F3;&#x5B50;&#x6811;&#x4EA6;&#x7136;&#x3002;&#x9664;&#x6B64;&#x4E4B;&#x5916;&#x8FD8;&#x8981;&#x628A;&#x6700;&#x5C0F;&#x7684;&#x548C;&#x6700;&#x5927;&#x7684;&#x4E24;&#x4E2A;&#x8282;&#x70B9;&#x4FDD;&#x5B58;&#x4E0B;&#x6765;&#xFF0C;&#x5C06;&#x8FD9;&#x4E24;&#x4E2A;&#x8282;&#x70B9;&#x9996;&#x5C3E;&#x76F8;&#x8FDE;&#xFF0C;&#x5F62;&#x6210;&#x5FAA;&#x73AF;&#x94FE;&#x8868;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+    Node *first, *last;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">Node *<span class="hljs-title">treeToDoublyList</span><span class="hljs-params">(Node *root)</span> </span>{
+        first = last = <span class="hljs-literal">nullptr</span>;
+        TreeToList(root);
+        <span class="hljs-keyword">if</span> (first)
+            first-&gt;left = last;
+        <span class="hljs-keyword">if</span> (last)
+            last-&gt;right = first;
+        <span class="hljs-keyword">return</span> first;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TreeToList</span><span class="hljs-params">(Node *root)</span> </span>{
+        <span class="hljs-keyword">if</span> (!root)
+            <span class="hljs-keyword">return</span>;
+        <span class="hljs-keyword">if</span> (!first || first-&gt;val &gt; root-&gt;val)
+            first = root;
+        <span class="hljs-keyword">if</span> (!last || last-&gt;val &lt; root-&gt;val)
+            last = root;
+        <span class="hljs-keyword">auto</span> left = root-&gt;left, right = root-&gt;right;
+        TreeToList(left);
+        TreeToList(right);
+        <span class="hljs-keyword">while</span> (left &amp;&amp; left-&gt;right)
+            left = left-&gt;right;
+        <span class="hljs-keyword">if</span> (left)
+            left-&gt;right = root;
+        root-&gt;left = left;
+        <span class="hljs-keyword">while</span> (right &amp;&amp; right-&gt;left)
+            right = right-&gt;left;
+        <span class="hljs-keyword">if</span> (right)
+            right-&gt;left = root;
+        root-&gt;right = right;
+    }
+};
+</code></pre>
+<h4 id="143-&#x91CD;&#x6392;&#x94FE;&#x8868;"><a href="https://leetcode-cn.com/problems/reorder-list/submissions/" target="_blank">143 &#x91CD;&#x6392;&#x94FE;&#x8868;</a></h4>
+<p>&#x5C06;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#x4ECE; L0&#x2192;L1&#x2192;&#x2026;&#x2192;Ln-1&#x2192;Ln &#x91CD;&#x65B0;&#x6392;&#x5217;&#x4E3A; L0&#x2192;Ln&#x2192;L1&#x2192;Ln-1&#x2192;L2&#x2192;Ln-2&#x2192;...&#x3002;</p>
+<p>&#x5148;&#x5C06;&#x94FE;&#x8868;&#x4ECE;&#x4E2D;&#x95F4;&#x5206;&#x4E3A;&#x4E24;&#x90E8;&#x5206;&#xFF0C;&#x5C06;&#x540E;&#x534A;&#x90E8;&#x5206;&#x53CD;&#x8F6C;&#xFF0C;&#x518D;&#x5C06;&#x5BF9;&#x5E94;&#x4F4D;&#x7F6E;&#x7684;&#x8282;&#x70B9;&#x4F9D;&#x6B21;&#x94FE;&#x63A5;&#x4E0A;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">reorderList</span><span class="hljs-params">(ListNode* head)</span> </span>{
+        <span class="hljs-keyword">if</span> (!head)
+            <span class="hljs-keyword">return</span>;
+        <span class="hljs-keyword">auto</span> prev = head, slow = head, fast = head, first = head, second = head;
+        <span class="hljs-keyword">while</span> (fast &amp;&amp; fast-&gt;next)
+            prev = slow, slow = slow-&gt;next, fast = fast-&gt;next-&gt;next;
+        <span class="hljs-keyword">if</span> (fast) {
+            second = slow-&gt;next;
+            slow-&gt;next = <span class="hljs-literal">nullptr</span>;
+        } <span class="hljs-keyword">else</span> {
+            second = slow;
+            prev-&gt;next = <span class="hljs-literal">nullptr</span>;
+        }
+        second = Reverse(second);
+        <span class="hljs-keyword">while</span> (second) {
+            <span class="hljs-keyword">auto</span> n1 = first-&gt;next, n2 = second-&gt;next;
+            first-&gt;next = second;
+            second-&gt;next = n1;
+            first = n1;
+            second = n2;
+        }
+    }
+
+    <span class="hljs-function">ListNode *<span class="hljs-title">Reverse</span><span class="hljs-params">(ListNode *head)</span> </span>{
+        ListNode *prev = <span class="hljs-literal">nullptr</span>, *curr = head, *next = <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">while</span> (curr) {
+            next = curr-&gt;next;
+            curr-&gt;next = prev;
+            prev = curr;
+            curr = next;
+        }
+        <span class="hljs-keyword">return</span> prev;
+    }
+};
+</code></pre>
+<h4 id="138-&#x590D;&#x5236;&#x5E26;&#x968F;&#x673A;&#x6307;&#x9488;&#x7684;&#x94FE;&#x8868;"><a href="https://leetcode-cn.com/problems/copy-list-with-random-pointer/submissions/" target="_blank">138 &#x590D;&#x5236;&#x5E26;&#x968F;&#x673A;&#x6307;&#x9488;&#x7684;&#x94FE;&#x8868;</a></h4>
+<p>&#x7ED9;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#xFF0C;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x5305;&#x542B;&#x4E00;&#x4E2A; random &#x6307;&#x9488;&#x6307;&#x5411;&#x94FE;&#x8868;&#x7684;&#x67D0;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x8FD4;&#x56DE;&#x8FD9;&#x4E2A;&#x94FE;&#x8868;&#x7684;&#x6DF1;&#x62F7;&#x8D1D;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x5728;&#x7B2C;&#x4E00;&#x6B21;&#x904D;&#x5386;&#x65F6; random &#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x8282;&#x70B9;&#x53EF;&#x80FD;&#x5E76;&#x672A;&#x88AB;&#x62F7;&#x8D1D;&#xFF0C;&#x53EF;&#x4EE5;&#x5148;&#x5C06;&#x6240;&#x6709;&#x8282;&#x70B9;&#x5148;&#x62F7;&#x8D1D;&#x4E00;&#x6B21;&#xFF0C;&#x7528;&#x4E00;&#x4E2A;&#x54C8;&#x5E0C;&#x8868;&#x5C06;&#x8282;&#x70B9;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#x4FDD;&#x5B58;&#x4E0B;&#x6765;&#xFF0C;&#x518D;&#x904D;&#x5386;&#x4E00;&#x6B21;&#x5C06; random &#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x8282;&#x70B9;&#x4F9D;&#x6B21;&#x94FE;&#x63A5;&#x4E0A;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(n)&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x5148;&#x5C06;&#x6BCF;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x90FD;&#x62F7;&#x8D1D;&#x4E00;&#x6B21;&#xFF0C;&#x5E76;&#x5C06;&#x62F7;&#x8D1D;&#x7684;&#x8282;&#x70B9;&#x94FE;&#x63A5;&#x5230;&#x8BE5;&#x8282;&#x70B9;&#x540E;&#xFF0C;&#x518D;&#x904D;&#x5386;&#x4E24;&#x6B21;&#x5206;&#x522B;&#x4FEE;&#x6539; random &#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x8282;&#x70B9;&#x4EE5;&#x53CA;&#x5C06;&#x539F;&#x94FE;&#x8868;&#x53CA;&#x5176;&#x62F7;&#x8D1D;&#x5206;&#x5F00;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(1)&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">Node *<span class="hljs-title">copyRandomList</span><span class="hljs-params">(Node *head)</span> </span>{
+        <span class="hljs-keyword">if</span> (!head)
+            <span class="hljs-keyword">return</span> head;
+        Node *node = head;
+        <span class="hljs-keyword">while</span> (node) {
+            Node *cop = <span class="hljs-keyword">new</span> Node(node-&gt;val, node-&gt;next, node-&gt;random);
+            node-&gt;next = cop;
+            node = node-&gt;next-&gt;next;
+        }
+        node = head;
+        <span class="hljs-keyword">while</span> (node &amp;&amp; node-&gt;next) {
+            <span class="hljs-keyword">if</span> (node-&gt;random)
+                node-&gt;next-&gt;random = node-&gt;random-&gt;next;
+            node = node-&gt;next-&gt;next;
+        }
+        node = head;
+        Node *res = head-&gt;next;
+        <span class="hljs-keyword">while</span> (node) {
+            Node *next = node-&gt;next;
+            node-&gt;next = next-&gt;next;
+            next-&gt;next = next-&gt;next ? next-&gt;next-&gt;next : <span class="hljs-literal">nullptr</span>;
+            node = node-&gt;next;
+        }
+        <span class="hljs-keyword">return</span> res;
+    }
+};
+</code></pre>
+<h4 id="23-&#x5408;&#x5E76;k&#x4E2A;&#x6392;&#x5E8F;&#x94FE;&#x8868;"><a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/submissions/" target="_blank">23 &#x5408;&#x5E76;K&#x4E2A;&#x6392;&#x5E8F;&#x94FE;&#x8868;</a></h4>
+<p>&#x5408;&#x5E76; k &#x4E2A;&#x6709;&#x5E8F;&#x94FE;&#x8868;&#x3002;</p>
+<p>&#x6700;&#x7B80;&#x5355;&#x7684;&#x505A;&#x6CD5;&#x662F;&#x6BCF;&#x6B21;&#x904D;&#x5386;&#x6240;&#x6709;&#x5934;&#x8282;&#x70B9;&#xFF0C;&#x53D6;&#x51FA;&#x503C;&#x6700;&#x5C0F;&#x7684;&#x4E00;&#x4E2A;&#xFF0C;&#x5C06;&#x5176;&#x52A0;&#x5230;&#x8981;&#x8FD4;&#x56DE;&#x7684;&#x94FE;&#x8868;&#x4E2D;&#x3002;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(m * n)&#xFF0C;&#x5176;&#x4E2D; m &#x662F;&#x94FE;&#x8868;&#x7684;&#x4E2A;&#x6570;&#xFF0C;n &#x662F;&#x8282;&#x70B9;&#x7684;&#x603B;&#x4E2A;&#x6570;&#xFF0C;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(1)&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode *<span class="hljs-title">mergeKLists</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;ListNode *&gt; &amp;lists)</span> </span>{
+        ListNode *root = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>), *node = root;
+        <span class="hljs-keyword">while</span> (node) {
+            ListNode *min_ptr = <span class="hljs-literal">nullptr</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;l :lists)
+                <span class="hljs-keyword">if</span> (l &amp;&amp; (!min_ptr || l-&gt;val &lt; min_ptr-&gt;val))
+                    min_ptr = l;
+            node-&gt;next = min_ptr;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;l :lists)
+                <span class="hljs-keyword">if</span> (l &amp;&amp; l == min_ptr)
+                    l = l-&gt;next;
+            node = node-&gt;next;
+        }
+        <span class="hljs-keyword">return</span> root-&gt;next;
+    }
+};
+</code></pre>
+<p>&#x5728;&#x6B64;&#x57FA;&#x7840;&#x4E0A;&#x53EF;&#x4EE5;&#x7528;&#x4E00;&#x4E2A;&#x5C0F;&#x6839;&#x5806;&#x6765;&#x4FDD;&#x5B58;&#x6240;&#x6709;&#x5934;&#x8282;&#x70B9;&#xFF0C;&#x6BCF;&#x6B21;&#x53D6;&#x51FA;&#x5806;&#x9876;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x5C06;&#x8BE5;&#x8282;&#x70B9;&#x52A0;&#x5165;&#x8981;&#x8FD4;&#x56DE;&#x7684;&#x94FE;&#x8868;&#x4E2D;&#xFF0C;&#x5224;&#x65AD;&#x8BE5;&#x8282;&#x70B9;&#x662F;&#x5426;&#x6709;&#x540E;&#x7EE7;&#x8282;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x7684;&#x8BDD;&#x5219;&#x5C06;&#x5176;&#x52A0;&#x5165;&#x5806;&#x4E2D;&#x5E76;&#x7EF4;&#x62A4;&#xFF0C;&#x6CE8;&#x610F;&#x9700;&#x8981;&#x91CD;&#x8F7D;&#x4F18;&#x5148;&#x961F;&#x5217;&#x7684;&#x6BD4;&#x8F83;&#x51FD;&#x6570;&#x3002;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(n * logm)&#xFF0C;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(m)&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+    <span class="hljs-keyword">struct</span> compare {
+        <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(ListNode *l1, ListNode *l2)</span> </span>{
+            <span class="hljs-keyword">return</span> l1-&gt;val &gt; l2-&gt;val;
+        }
+    };
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode *<span class="hljs-title">mergeKLists</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;ListNode *&gt; &amp;lists)</span> </span>{
+        ListNode *root = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>), *node = root;
+        priority_queue&lt;ListNode *, <span class="hljs-built_in">vector</span>&lt;ListNode *&gt;, compare&gt; heap;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;l:lists)
+            <span class="hljs-keyword">if</span> (l)
+                heap.push(l);
+        <span class="hljs-keyword">while</span> (!heap.empty()) {
+            ListNode *curr = heap.top();
+            node-&gt;next = curr;
+            node = node-&gt;next;
+            heap.pop();
+            <span class="hljs-keyword">if</span> (curr-&gt;next)
+                heap.push(curr-&gt;next);
+        }
+        <span class="hljs-keyword">return</span> root-&gt;next;
+    }
+};
+</code></pre>
+<p>&#x8FD8;&#x53EF;&#x4EE5;&#x7528;&#x5206;&#x6CBB;&#x6CD5;&#x4E24;&#x4E24;&#x5408;&#x5E76;&#x94FE;&#x8868;&#xFF0C;&#x7701;&#x53BB;&#x7EF4;&#x62A4;&#x5806;&#x6240;&#x82B1;&#x8D39;&#x7684;&#x7A7A;&#x95F4;&#x548C;&#x65F6;&#x95F4;&#xFF0C;&#x56E0;&#x4E3A;&#x94FE;&#x8868;&#x7684;&#x6570;&#x91CF;&#x662F; m&#xFF0C;&#x6240;&#x4EE5;&#x7528;&#x5206;&#x6CBB;&#x6CD5;&#x9700;&#x8981;&#x82B1;&#x8D39; logm &#x7684;&#x65F6;&#x95F4;&#x6765;&#x5408;&#x5E76;&#x6240;&#x6709;&#x7684;&#x94FE;&#x8868;&#x3002;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(n * logm)&#xFF0C;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(1)&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Solution {
+    <span class="hljs-function">ListNode *<span class="hljs-title">MergeLists</span><span class="hljs-params">(ListNode *l1, ListNode *l2)</span> </span>{
+        ListNode *root = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>), *node = root;
+        <span class="hljs-keyword">while</span> (l1 &amp;&amp; l2) {
+            <span class="hljs-keyword">if</span> (l1-&gt;val &lt; l2-&gt;val) {
+                node-&gt;next = l1;
+                l1 = l1-&gt;next;
+            } <span class="hljs-keyword">else</span> {
+                node-&gt;next = l2;
+                l2 = l2-&gt;next;
+            }
+            node = node-&gt;next;
+        }
+        node-&gt;next = l1 ? l1 : l2;
+        <span class="hljs-keyword">return</span> root-&gt;next;
+    }
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode *<span class="hljs-title">mergeKLists</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;ListNode *&gt; &amp;lists)</span> </span>{
+        <span class="hljs-keyword">int</span> n = lists.size();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> interval = <span class="hljs-number">1</span>; interval &lt; n; interval *= <span class="hljs-number">2</span>) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i += interval * <span class="hljs-number">2</span>)
+                <span class="hljs-keyword">if</span> (i + interval &lt; n)
+                    lists[i] = MergeLists(lists[i], lists[i + interval]);
+        }
+        <span class="hljs-keyword">return</span> n == <span class="hljs-number">0</span> ? <span class="hljs-literal">nullptr</span> : lists[<span class="hljs-number">0</span>];
+    }
+};
+</code></pre>
 
                                 
                                 </section>
@@ -788,7 +1155,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"链表","level":"1.2","depth":1,"next":{"title":"二分查找","level":"1.3","depth":1,"path":"二分查找.md","ref":"二分查找.md","articles":[]},"previous":{"title":"目录","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"链表.md","mtime":"2019-07-16T10:34:01.490Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-16T10:36:32.864Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"链表","level":"1.2","depth":1,"next":{"title":"二分查找","level":"1.3","depth":1,"path":"二分查找.md","ref":"二分查找.md","articles":[]},"previous":{"title":"目录","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"链表.md","mtime":"2019-07-16T10:40:16.561Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-16T10:43:16.723Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
