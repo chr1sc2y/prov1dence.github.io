@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 09 Jul 2019 19:12:25 +1000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jul 2019 19:12:25 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 树（2）</title>
+      <link>https://zintrulcre.vip/posts/leetcode/tree-2/</link>
+      <pubDate>Thu, 18 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/tree-2/</guid>
+      <description>LeetCode 树（2） 题目 3. 二叉搜索树 95 不同的二叉搜索树 II 生成由 1 &amp;hellip; n 为节点所组成的二叉搜索树。 为了构造以 i 为根节点的二叉搜索树，我们需要先构造以 1 &amp;hellip; i</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 树（1）</title>
+      <link>https://zintrulcre.vip/posts/leetcode/tree-1/</link>
+      <pubDate>Sat, 13 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/tree-1/</guid>
+      <description>LeetCode 树（1） 题目 1. 树的遍历 144 二叉树的前序遍历 前序遍历一个二叉树。 前序遍历是按照根节点，左子节点，右子节点的顺序来遍历一个二叉树，有递归和迭代两</description>
+    </item>
     
     <item>
       <title>LeetCode 链表（2）</title>
@@ -82,24 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/kick-start/2019-round-c/</guid>
       <description>Kick Start 2019 Round C Wiggle Walk (6pts, 12pts) 在一个R * C的矩阵里面移动，遇到已经走过的格子直接跳过。数据保证移动时不会超出给定的矩阵。 Solution: Simulation 用一个visited数组记录</description>
-    </item>
-    
-    <item>
-      <title>Object Detection</title>
-      <link>https://zintrulcre.vip/posts/deep-learning/object-detection-yolo/</link>
-      <pubDate>Sun, 19 May 2019 19:40:23 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/deep-learning/object-detection-yolo/</guid>
-      <description>Object Detection Object detection deals with detecting instances of objects of a certain class, such as humans, animals, etc, in digital images and videos. Object detection has applications in many areas of computer vision, including image retrieval, face detection, video surveillance, and self-driving, etc. Current detection systems repurpose classifiers to perform detection. To detect an object, these systems take a classifier for that object and evaluate it at various locations and scales in a test image.</description>
-    </item>
-    
-    <item>
-      <title>Code Jam 2019 Round 1C</title>
-      <link>https://zintrulcre.vip/posts/code-jam/2019-round-1c/</link>
-      <pubDate>Tue, 07 May 2019 22:02:15 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/code-jam/2019-round-1c/</guid>
-      <description>Code Jam 2019 Round 1C Robot Programming Strategy (10pts, 18pts) 已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。 Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同时有三</description>
     </item>
     
   </channel>
