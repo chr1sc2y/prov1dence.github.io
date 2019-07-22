@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 18 Jul 2019 19:12:25 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jul 2019 10:10:25 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 并发</title>
+      <link>https://zintrulcre.vip/posts/leetcode/concurrency/</link>
+      <pubDate>Mon, 22 Jul 2019 10:10:25 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/concurrency/</guid>
+      <description>LeetCode 并发 题目 1114 按序打印 C++ mutex classFoo { mutex lock1, lock2; public: Foo() { lock1.lock(); lock2.lock(); } void first(function&amp;lt;void()&amp;gt; printFirst) { printFirst(); lock1.unlock(); } void second(function&amp;lt;void()&amp;gt; printSecond) { lock1.lock(); printSecond(); lock1.unlock(); lock2.unlock(); } void third(function&amp;lt;void()&amp;gt; printThird) { lock2.lock(); printThird(); lock2.unlock(); } }; C++ condition_variable classFoo { int i; mutex mut; condition_variable con_var1, con_var2; public: Foo() : i(1) { } void first(function&amp;lt;void()&amp;gt; printFirst) { unique_lock&amp;lt;mutex&amp;gt;</description>
+    </item>
     
     <item>
       <title>LeetCode 树（2）</title>
@@ -91,15 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/leetcode/bitmanipulation/</guid>
       <description>LeetCode 位运算 位运算包括： 与 &amp;amp; 或 | 异或 ^ 取反 ~ 左移 &amp;lt;&amp;lt; 右移 &amp;gt;&amp;gt; 技巧 移位运算 x &amp;lt;&amp;lt; 1：算数左移 数字的二进制表示的所有位向左移动一位，相当于乘以 2 在右边补 0</description>
-    </item>
-    
-    <item>
-      <title>Kick Start 2019 Round C</title>
-      <link>https://zintrulcre.vip/posts/kick-start/2019-round-c/</link>
-      <pubDate>Sun, 26 May 2019 23:29:45 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/kick-start/2019-round-c/</guid>
-      <description>Kick Start 2019 Round C Wiggle Walk (6pts, 12pts) 在一个R * C的矩阵里面移动，遇到已经走过的格子直接跳过。数据保证移动时不会超出给定的矩阵。 Solution: Simulation 用一个visited数组记录</description>
     </item>
     
   </channel>
