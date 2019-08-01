@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LeetCode 双指针"/>
+<meta name="twitter:description" content="LeetCode DFS 题目 287 寻找重复数 将出现的数字的绝对值 - 1 作为下标，把对应位置的数字乘以 -1 进行标记，因为只有一个数字重复了，所以如果在标记时如果发现对应位"/>
+
+    <meta property="og:title" content="LeetCode 双指针" />
+<meta property="og:description" content="LeetCode DFS 题目 287 寻找重复数 将出现的数字的绝对值 - 1 作为下标，把对应位置的数字乘以 -1 进行标记，因为只有一个数字重复了，所以如果在标记时如果发现对应位" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/twopointers/" />
+<meta property="article:published_time" content="2019-07-31T19:12:25&#43;10:00"/>
+<meta property="article:modified_time" content="2019-07-31T19:12:25&#43;10:00"/>
+
+
+    
+      <base href="https://zintrulcre.vip/posts/leetcode/twopointers/">
+    
+    <title>
+  LeetCode 双指针 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/leetcode/twopointers/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.55.2" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">LeetCode 双指针</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-07-31T19:12:25&#43;10:00'>
+                July 31, 2019
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/leetcode/">LeetCode</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        
+
+<h1 id="leetcode-dfs-https-leetcode-cn-com-tag-two-pointers"><a href="https://leetcode-cn.com/tag/two-pointers/">LeetCode DFS</a></h1>
+
+<h2 id="题目">题目</h2>
+
+<h4 id="287-寻找重复数-https-leetcode-cn-com-problems-find-the-duplicate-number-submissions"><a href="https://leetcode-cn.com/problems/find-the-duplicate-number/submissions/">287 寻找重复数</a></h4>
+
+<p>将出现的数字的绝对值 - 1 作为下标，把对应位置的数字乘以 -1 进行标记，因为只有一个数字重复了，所以如果在标记时如果发现对应位置的数字已经是负数则说明出现过相同的下标，返回该数字即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> findDuplicate(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; nums) {
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; nums.size(); ++i) {
+            <span style="color:#fff;font-weight:bold">int</span> index = abs(nums[i]) - <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">if</span> (nums[index] &lt; <span style="color:#ff0;font-weight:bold">0</span>)
+                <span style="color:#fff;font-weight:bold">return</span> abs(nums[i]);
+            nums[index] *= -<span style="color:#ff0;font-weight:bold">1</span>;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+    }
+};
+</code></pre></div>
+<h4 id="75-颜色分类-https-leetcode-cn-com-problems-sort-colors"><a href="https://leetcode-cn.com/problems/sort-colors/">75 颜色分类</a></h4>
+
+<p>类似于只有两个数的数组排序，只需要用两个变量 idx_0 = 0, idx_2 = n - 1 分别表示两端的下标，将 0 和 2 分别替换到数组的两端，将 1 留在中间即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">void</span> sortColors(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums) {
+        <span style="color:#fff;font-weight:bold">int</span> n = nums.size(), idx_0 = <span style="color:#ff0;font-weight:bold">0</span>, idx_2 = n - <span style="color:#ff0;font-weight:bold">1</span>;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt;= idx_2; ++i) {
+            <span style="color:#fff;font-weight:bold">if</span> (nums[i] == <span style="color:#ff0;font-weight:bold">2</span>) {
+                swap(nums[i], nums[idx_2]);
+                --idx_2, --i;
+            } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (nums[i] == <span style="color:#ff0;font-weight:bold">0</span>) {
+                swap(nums[i], nums[idx_0]);
+                ++idx_0;
+            }
+        }
+    }
+};
+</code></pre></div>
+<h4 id="42-接雨水-https-leetcode-cn-com-problems-trapping-rain-water-submissions"><a href="https://leetcode-cn.com/problems/trapping-rain-water/submissions/">42 接雨水</a></h4>
+
+<p>可以先将每个位置左边和右边最高的柱子高度都保存下来，再计算两者中较低的减去当前位置的柱子数量得到当前位置能够接住的雨水数量。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> trap(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;height) {
+        <span style="color:#fff;font-weight:bold">int</span> n = height.size(), res = <span style="color:#ff0;font-weight:bold">0</span>;
+        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; left(n, <span style="color:#ff0;font-weight:bold">0</span>), right(n, <span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; n; ++i)
+            left[i] = max(left[i - <span style="color:#ff0;font-weight:bold">1</span>], height[i - <span style="color:#ff0;font-weight:bold">1</span>]);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = n - <span style="color:#ff0;font-weight:bold">2</span>; i &gt;= <span style="color:#ff0;font-weight:bold">0</span>; --i)
+            right[i] = max(right[i + <span style="color:#ff0;font-weight:bold">1</span>], height[i + <span style="color:#ff0;font-weight:bold">1</span>]);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; n; ++i)
+            res += max(<span style="color:#ff0;font-weight:bold">0</span>, min(left[i], right[i]) - height[i]);
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<p>也可以用两个变量 l_max 和 r_max 分别记录左边和右边到目前为止最高的柱子高度，每次检查较低的一边，能够接住的雨水数量等于 min(l_max, r_max) 减去当前的柱子高度，同时更新柱子的最高高度。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> trap(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;height) {
+        <span style="color:#fff;font-weight:bold">int</span> n = height.size(), res = <span style="color:#ff0;font-weight:bold">0</span>, l_max = <span style="color:#ff0;font-weight:bold">0</span>, r_max = <span style="color:#ff0;font-weight:bold">0</span>, i = <span style="color:#ff0;font-weight:bold">0</span>, j = n - <span style="color:#ff0;font-weight:bold">1</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt;= j) {
+            <span style="color:#fff;font-weight:bold">if</span> (l_max &lt;= r_max) {
+                res += max(<span style="color:#ff0;font-weight:bold">0</span>, min(l_max, r_max) - height[i]);
+                l_max = max(l_max, height[i]);
+                ++i;
+            } <span style="color:#fff;font-weight:bold">else</span> {
+                res += max(<span style="color:#ff0;font-weight:bold">0</span>, min(l_max, r_max) - height[j]);
+                r_max = max(r_max, height[j]);
+                --j;
+            }
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="632-最小区间-https-leetcode-cn-com-problems-smallest-range"><a href="https://leetcode-cn.com/problems/smallest-range/">632 最小区间</a></h4>
+
+<p>比较容易想到的方法是从每个数组的第一个元素开始遍历，使用一个数组 idx 存储每一个数组当前遍历到的元素的下标，每次取这些元素中的最大最小值进行更新，这样做时间复杂度是 O(m * n)，其中 m 是数组的个数，n 是所有元素的个数，但是这样做会 TLE。相较于每次都遍历一遍整个二维数组，我们可以用一个小根堆把所有当前遍历到的元素中的最小值连带其数组下标及其下标保存下来，这样就能每次以 O(1) 的时间复杂度取到所有数组中当前元素的最小值，再用一个变量 max_val 存储所有数组中当前元素的最大值，每次从小根堆 pop 出堆顶元素后，先更新 res 结果数组，然后用这个元素对应下标的后一个下标的值更新 max_val，直到堆顶元素已经是数组的最后一个元素。时间复杂度是 O(m * logn)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+    <span style="color:#fff;font-weight:bold">struct</span> element {
+        <span style="color:#fff;font-weight:bold">int</span> val;
+        <span style="color:#fff;font-weight:bold">int</span> vec_idx;
+        <span style="color:#fff;font-weight:bold">int</span> idx;
+
+        element(<span style="color:#fff;font-weight:bold">int</span> val, <span style="color:#fff;font-weight:bold">int</span> vec_idx, <span style="color:#fff;font-weight:bold">int</span> idx) : val(val), vec_idx(vec_idx), idx(idx) {}
+    };
+
+    <span style="color:#fff;font-weight:bold">struct</span> Compare {
+        <span style="color:#fff;font-weight:bold">bool</span> <span style="color:#fff;font-weight:bold">operator</span>()(<span style="color:#fff;font-weight:bold">const</span> element &amp;e1, <span style="color:#fff;font-weight:bold">const</span> element &amp;e2) {
+            <span style="color:#fff;font-weight:bold">return</span> e1.val &gt; e2.val;
+        }
+    };
+
+<span style="color:#fff;font-weight:bold">public</span>:
+    vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; smallestRange(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; &amp;nums) {
+        <span style="color:#fff;font-weight:bold">int</span> n = nums.size(), max_val = INT_MIN;
+        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res(<span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">0</span>);
+        res[<span style="color:#ff0;font-weight:bold">1</span>] = INT_MAX;
+        priority_queue&lt;element, vector&lt;element&gt;, Compare&gt; heap;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; n; ++i) {
+            heap.push(element(nums[i][<span style="color:#ff0;font-weight:bold">0</span>], i, <span style="color:#ff0;font-weight:bold">0</span>));
+            max_val = max(max_val, nums[i][<span style="color:#ff0;font-weight:bold">0</span>]);
+        }
+        <span style="color:#fff;font-weight:bold">while</span> (<span style="color:#fff;font-weight:bold">true</span>) {
+            element e = heap.top();
+            heap.pop();
+            <span style="color:#fff;font-weight:bold">if</span> (res[<span style="color:#ff0;font-weight:bold">1</span>] - res[<span style="color:#ff0;font-weight:bold">0</span>] &gt; max_val - e.val)
+                res[<span style="color:#ff0;font-weight:bold">0</span>] = e.val, res[<span style="color:#ff0;font-weight:bold">1</span>] = max_val;
+            <span style="color:#fff;font-weight:bold">if</span> (e.idx == nums[e.vec_idx].size() - <span style="color:#ff0;font-weight:bold">1</span>)
+                <span style="color:#fff;font-weight:bold">break</span>;
+            ++e.idx;
+            e.val = nums[e.vec_idx][e.idx];
+            heap.push(e);
+            max_val = max(max_val, e.val);
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

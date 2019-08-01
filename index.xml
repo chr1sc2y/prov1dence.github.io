@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 27 Jul 2019 12:12:25 +1000</lastBuildDate>
+    <lastBuildDate>Wed, 31 Jul 2019 19:12:25 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 双指针</title>
+      <link>https://zintrulcre.vip/posts/leetcode/twopointers/</link>
+      <pubDate>Wed, 31 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/twopointers/</guid>
+      <description>LeetCode DFS 题目 287 寻找重复数 将出现的数字的绝对值 - 1 作为下标，把对应位置的数字乘以 -1 进行标记，因为只有一个数字重复了，所以如果在标记时如果发现对应位</description>
+    </item>
     
     <item>
       <title>LeetCode 深度优先搜索</title>
@@ -91,15 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-1/</guid>
       <description>LeetCode 动态规划 题目 1. 数字相关 263 丑数 判断一个数 num 是否是丑数。 通用的方法是自底向上求出大于等于 num 的第一个数来判断 num 是否是丑数。但这道题已经给出了数 n</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 二分查找</title>
-      <link>https://zintrulcre.vip/posts/leetcode/binarysearch/</link>
-      <pubDate>Sun, 23 Jun 2019 19:26:39 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/binarysearch/</guid>
-      <description>LeetCode 二分查找 二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。 易错点 计算中间值的方法 k =</description>
     </item>
     
   </channel>
