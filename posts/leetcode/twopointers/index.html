@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 双指针"/>
-<meta name="twitter:description" content="LeetCode DFS 题目 287 寻找重复数 将出现的数字的绝对值 - 1 作为下标，把对应位置的数字乘以 -1 进行标记，因为只有一个数字重复了，所以如果在标记时如果发现对应位"/>
+<meta name="twitter:description" content="LeetCode DFS 题目 11 盛最多水的容器 用两个指针分别表示数组的头和尾，每次将高度较低的元素的下标往中间移动，同时更新结果。 classSolution { public: int maxArea(vector&lt;int&gt;&amp; h) { int i = 0, j = h.size() - 1,"/>
 
     <meta property="og:title" content="LeetCode 双指针" />
-<meta property="og:description" content="LeetCode DFS 题目 287 寻找重复数 将出现的数字的绝对值 - 1 作为下标，把对应位置的数字乘以 -1 进行标记，因为只有一个数字重复了，所以如果在标记时如果发现对应位" />
+<meta property="og:description" content="LeetCode DFS 题目 11 盛最多水的容器 用两个指针分别表示数组的头和尾，每次将高度较低的元素的下标往中间移动，同时更新结果。 classSolution { public: int maxArea(vector&lt;int&gt;&amp; h) { int i = 0, j = h.size() - 1," />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/twopointers/" />
 <meta property="article:published_time" content="2019-07-31T19:12:25&#43;10:00"/>
@@ -114,6 +114,24 @@
 
 <h2 id="题目">题目</h2>
 
+<h4 id="11-盛最多水的容器-https-leetcode-cn-com-problems-container-with-most-water"><a href="https://leetcode-cn.com/problems/container-with-most-water/">11 盛最多水的容器</a></h4>
+
+<p>用两个指针分别表示数组的头和尾，每次将高度较低的元素的下标往中间移动，同时更新结果。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> maxArea(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; h) {
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>, j = h.size() - <span style="color:#ff0;font-weight:bold">1</span>, res = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt; j) {
+            res = max(res, min(h[i], h[j]) * (j - i));
+            <span style="color:#fff;font-weight:bold">if</span> (h[i] &lt; h[j])
+                ++i;
+            <span style="color:#fff;font-weight:bold">else</span>
+                --j;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
 <h4 id="287-寻找重复数-https-leetcode-cn-com-problems-find-the-duplicate-number-submissions"><a href="https://leetcode-cn.com/problems/find-the-duplicate-number/submissions/">287 寻找重复数</a></h4>
 
 <p>将出现的数字的绝对值 - 1 作为下标，把对应位置的数字乘以 -1 进行标记，因为只有一个数字重复了，所以如果在标记时如果发现对应位置的数字已经是负数则说明出现过相同的下标，返回该数字即可。</p>
@@ -146,6 +164,39 @@
                 ++idx_0;
             }
         }
+    }
+};
+</code></pre></div>
+<h4 id="15-三数之和-https-leetcode-cn-com-problems-3sum"><a href="https://leetcode-cn.com/problems/3sum/">15 三数之和</a></h4>
+
+<p>首先明确两数之和的做法：排序后用两个指针分别从头和尾往中间遍历，根据大小关系移动指针。三数之和无非就是先固定一个数，使得另外两个数之和等于这个数的负数，因此仍然要先对数组进行排序，为了固定一个数需要用一个 for 循环遍历数组，对于其后的所有元素用两数之和的方法进行求和。为了防止出现重复需要在计算两数之和后不断地移动指针直到当前元素与其前/后一个元素不相同。时间复杂度是 O(n ^ 2)，空间复杂度是 O(1)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; threeSum(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums) {
+        sort(nums.begin(), nums.end());
+        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; res;
+        <span style="color:#fff;font-weight:bold">int</span> n = nums.size(), i = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (i &lt; n) {
+            <span style="color:#fff;font-weight:bold">int</span> j = i + <span style="color:#ff0;font-weight:bold">1</span>, k = n - <span style="color:#ff0;font-weight:bold">1</span>, target = -nums[i];
+            <span style="color:#fff;font-weight:bold">while</span> (j &lt; k) {
+                <span style="color:#fff;font-weight:bold">if</span> (nums[j] + nums[k] == target) {
+                    res.push_back({nums[i], nums[j], nums[k]});
+                    <span style="color:#fff;font-weight:bold">do</span>
+                        ++j;
+                    <span style="color:#fff;font-weight:bold">while</span> (j &lt; k &amp;&amp; nums[j] == nums[j - <span style="color:#ff0;font-weight:bold">1</span>]);
+                    <span style="color:#fff;font-weight:bold">do</span>
+                        --k;
+                    <span style="color:#fff;font-weight:bold">while</span> (j &lt; k &amp;&amp; nums[k] == nums[k + <span style="color:#ff0;font-weight:bold">1</span>]);
+                } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (nums[j] + nums[k] &lt; target)
+                    ++j;
+                <span style="color:#fff;font-weight:bold">else</span>
+                    --k;
+            }
+            <span style="color:#fff;font-weight:bold">do</span>
+                ++i;
+            <span style="color:#fff;font-weight:bold">while</span> (i &lt; n &amp;&amp; nums[i] == nums[i - <span style="color:#ff0;font-weight:bold">1</span>]);
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
 </code></pre></div>
@@ -226,6 +277,64 @@
             e.val = nums[e.vec_idx][e.idx];
             heap.push(e);
             max_val = max(max_val, e.val);
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="76-最小覆盖子串-https-leetcode-cn-com-problems-minimum-window-substring"><a href="https://leetcode-cn.com/problems/minimum-window-substring/">76 最小覆盖子串</a></h4>
+
+<p>先从左往右找到一个符合条件的字符串，然后用滑动窗口的做法每次在左边去掉一个字符，往右边找到一个未被使用过的对应的字符，如果长度小于之前得到的字符串则更新结果。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+    <span style="color:#fff;font-weight:bold">struct</span> Element {
+        <span style="color:#fff;font-weight:bold">int</span> pos;
+        <span style="color:#fff;font-weight:bold">char</span> c;
+
+        Element(<span style="color:#fff;font-weight:bold">int</span> pos, <span style="color:#fff;font-weight:bold">char</span> c) : pos(pos), c(c) {}
+    };
+
+<span style="color:#fff;font-weight:bold">public</span>:
+    string minWindow(string s, string t) {
+        string res;
+        unordered_map&lt;<span style="color:#fff;font-weight:bold">char</span>, <span style="color:#fff;font-weight:bold">int</span>&gt; count;
+        vector&lt;Element&gt; ele;
+        unordered_set&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; used;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> c:t)
+            ++count[c];
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; s.size(); ++i)
+            <span style="color:#fff;font-weight:bold">if</span> (count.find(s[i]) != count.end())
+                ele.push_back(Element(i, s[i]));
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>, j = <span style="color:#ff0;font-weight:bold">0</span>, n = ele.size(), pos = <span style="color:#ff0;font-weight:bold">0</span>, l = n, start = <span style="color:#ff0;font-weight:bold">0</span>, end = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (j &lt; n &amp;&amp; !count.empty()) {
+            <span style="color:#fff;font-weight:bold">if</span> (count.find(ele[j].c) != count.end()) {
+                --count[ele[j].c];
+                used.insert(j);
+                end = max(end,j);
+                <span style="color:#fff;font-weight:bold">if</span> (count[ele[j].c] == <span style="color:#ff0;font-weight:bold">0</span>)
+                    count.erase(ele[j].c);
+            }
+            ++j;
+        }
+        <span style="color:#fff;font-weight:bold">if</span> (!count.empty())
+            <span style="color:#fff;font-weight:bold">return</span> res;
+        res = s.substr(ele[i].pos, ele[j - <span style="color:#ff0;font-weight:bold">1</span>].pos - ele[i].pos + <span style="color:#ff0;font-weight:bold">1</span>);
+        <span style="color:#fff;font-weight:bold">while</span> (start &lt; n) {
+            <span style="color:#fff;font-weight:bold">char</span> target = ele[start].c;
+            used.erase(start);
+            ++start;
+            <span style="color:#fff;font-weight:bold">int</span> k = start;
+            <span style="color:#fff;font-weight:bold">while</span> (k &lt; n) {
+                <span style="color:#fff;font-weight:bold">if</span> (ele[k].c == target &amp;&amp; used.find(k) == used.end()) {
+                    used.insert(k);
+                    end = min(n - <span style="color:#ff0;font-weight:bold">1</span>, max(end, k));
+                    <span style="color:#fff;font-weight:bold">if</span> (res.size() &gt; ele[end].pos - ele[start].pos + <span style="color:#ff0;font-weight:bold">1</span>)
+                        res = s.substr(ele[start].pos, ele[end].pos - ele[start].pos + <span style="color:#ff0;font-weight:bold">1</span>);
+                    <span style="color:#fff;font-weight:bold">break</span>;
+                }
+                ++k;
+            }
+            <span style="color:#fff;font-weight:bold">if</span> (k == n)
+                <span style="color:#fff;font-weight:bold">break</span>;
         }
         <span style="color:#fff;font-weight:bold">return</span> res;
     }

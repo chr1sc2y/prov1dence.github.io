@@ -18,7 +18,7 @@
       <pubDate>Wed, 31 Jul 2019 19:12:25 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/leetcode/twopointers/</guid>
-      <description>LeetCode DFS 题目 287 寻找重复数 将出现的数字的绝对值 - 1 作为下标，把对应位置的数字乘以 -1 进行标记，因为只有一个数字重复了，所以如果在标记时如果发现对应位</description>
+      <description>LeetCode DFS 题目 11 盛最多水的容器 用两个指针分别表示数组的头和尾，每次将高度较低的元素的下标往中间移动，同时更新结果。 classSolution { public: int maxArea(vector&amp;lt;int&amp;gt;&amp;amp; h) { int i = 0, j = h.size() - 1,</description>
     </item>
     
     <item>

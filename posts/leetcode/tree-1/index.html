@@ -510,6 +510,28 @@
     }
 };
 </code></pre></div>
+<h4 id="124-二叉树中的最大路径和-https-leetcode-cn-com-problems-binary-tree-maximum-path-sum"><a href="https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/">124 二叉树中的最大路径和</a></h4>
+
+<p>用递归的方式，在每个节点值加上其左右子树的最大路径来更新结果，并以其左右子树中较大的一个加上其节点值返回即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+    <span style="color:#fff;font-weight:bold">int</span> res;
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> maxPathSum(TreeNode *root) {
+        res = INT_MIN;
+        Traverse(root);
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+
+    <span style="color:#fff;font-weight:bold">int</span> Traverse(TreeNode *node) {
+        <span style="color:#fff;font-weight:bold">if</span> (!node)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">int</span> left = max(<span style="color:#ff0;font-weight:bold">0</span>, Traverse(node-&gt;left));
+        <span style="color:#fff;font-weight:bold">int</span> right = max(<span style="color:#ff0;font-weight:bold">0</span>, Traverse(node-&gt;right));
+        res = max(res, left + right + node-&gt;val);
+        <span style="color:#fff;font-weight:bold">return</span> max(left, right) + node-&gt;val;
+    }
+};
+</code></pre></div>
 <h3 id="2-构造二叉树">2. 构造二叉树</h3>
 
 <h4 id="105-从前序与中序遍历序列构造二叉树-https-leetcode-cn-com-problems-construct-binary-tree-from-preorder-and-inorder-traversal"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105 从前序与中序遍历序列构造二叉树</a></h4>
