@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 深度优先搜索"/>
-<meta name="twitter:description" content="LeetCode DFS 题目 1. DFS 733 图像渲染 从给定的 image[sr][sc] 开始 DFS 或 BFS，将相邻的值相同的点的值全部修改为 newColor，注意要判断给定的 image[sr][sc] 是否等于 newColor"/>
+<meta name="twitter:description" content="LeetCode DFS 题目 78 子集 典型的回溯，找出所有可能情况。 classSolution { vector&lt;vector&lt;int&gt;&gt; res; public: vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt; &amp;nums) { res = vector&lt;vector&lt;int&gt;&gt;(1, vector&lt;int&gt;()); vector&lt;int&gt; curr; DFS(nums, 0, curr); return res; } void DFS(vector&lt;int&gt; &amp;nums, int idx, vector&lt;int&gt; &amp;curr) { for (int i = idx; i &lt; nums.size(); &#43;&#43;i) { curr.push_back(nums[i]); res.push_back(curr); DFS(nums, i &#43; 1, curr); curr.pop_back(); }"/>
 
     <meta property="og:title" content="LeetCode 深度优先搜索" />
-<meta property="og:description" content="LeetCode DFS 题目 1. DFS 733 图像渲染 从给定的 image[sr][sc] 开始 DFS 或 BFS，将相邻的值相同的点的值全部修改为 newColor，注意要判断给定的 image[sr][sc] 是否等于 newColor" />
+<meta property="og:description" content="LeetCode DFS 题目 78 子集 典型的回溯，找出所有可能情况。 classSolution { vector&lt;vector&lt;int&gt;&gt; res; public: vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt; &amp;nums) { res = vector&lt;vector&lt;int&gt;&gt;(1, vector&lt;int&gt;()); vector&lt;int&gt; curr; DFS(nums, 0, curr); return res; } void DFS(vector&lt;int&gt; &amp;nums, int idx, vector&lt;int&gt; &amp;curr) { for (int i = idx; i &lt; nums.size(); &#43;&#43;i) { curr.push_back(nums[i]); res.push_back(curr); DFS(nums, i &#43; 1, curr); curr.pop_back(); }" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/dfs/" />
 <meta property="article:published_time" content="2019-07-27T12:12:25&#43;10:00"/>
@@ -114,8 +114,29 @@
 
 <h2 id="题目">题目</h2>
 
-<h3 id="1-dfs">1. DFS</h3>
+<h4 id="78-子集-https-leetcode-cn-com-problems-subsets"><a href="https://leetcode-cn.com/problems/subsets/">78 子集</a></h4>
 
+<p>典型的回溯，找出所有可能情况。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+    vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; res;
+<span style="color:#fff;font-weight:bold">public</span>:
+    vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; subsets(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums) {
+        res = vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt;(<span style="color:#ff0;font-weight:bold">1</span>, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;());
+        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; curr;
+        DFS(nums, <span style="color:#ff0;font-weight:bold">0</span>, curr);
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+
+    <span style="color:#fff;font-weight:bold">void</span> DFS(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums, <span style="color:#fff;font-weight:bold">int</span> idx, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;curr) {
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = idx; i &lt; nums.size(); ++i) {
+            curr.push_back(nums[i]);
+            res.push_back(curr);
+            DFS(nums, i + <span style="color:#ff0;font-weight:bold">1</span>, curr);
+            curr.pop_back();
+        }
+    }
+};
+</code></pre></div>
 <h4 id="733-图像渲染-https-leetcode-cn-com-problems-flood-fill"><a href="https://leetcode-cn.com/problems/flood-fill/">733 图像渲染</a></h4>
 
 <p>从给定的 image[sr][sc] 开始 DFS 或 BFS，将相邻的值相同的点的值全部修改为 newColor，注意要判断给定的 image[sr][sc] 是否等于 newColor，否则如果不使用额外空间的 visited 数组记录已经访问过的点的话会造成死循环栈溢出。</p>

@@ -27,7 +27,7 @@
       <pubDate>Sat, 27 Jul 2019 12:12:25 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/leetcode/dfs/</guid>
-      <description>LeetCode DFS 题目 1. DFS 733 图像渲染 从给定的 image[sr][sc] 开始 DFS 或 BFS，将相邻的值相同的点的值全部修改为 newColor，注意要判断给定的 image[sr][sc] 是否等于 newColor</description>
+      <description>LeetCode DFS 题目 78 子集 典型的回溯，找出所有可能情况。 classSolution { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; res; public: vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; subsets(vector&amp;lt;int&amp;gt; &amp;amp;nums) { res = vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;(1, vector&amp;lt;int&amp;gt;()); vector&amp;lt;int&amp;gt; curr; DFS(nums, 0, curr); return res; } void DFS(vector&amp;lt;int&amp;gt; &amp;amp;nums, int idx, vector&amp;lt;int&amp;gt; &amp;amp;curr) { for (int i = idx; i &amp;lt; nums.size(); ++i) { curr.push_back(nums[i]); res.push_back(curr); DFS(nums, i + 1, curr); curr.pop_back(); }</description>
     </item>
     
     <item>

@@ -532,6 +532,34 @@
     }
 };
 </code></pre></div>
+<h4 id="968-监控二叉树-https-leetcode-cn-com-problems-binary-tree-cameras"><a href="https://leetcode-cn.com/problems/binary-tree-cameras/">968 监控二叉树</a></h4>
+
+<p>贪心法，分情况讨论，三种状态分别是：0 表示节点未被监控，1 表示节点自带监控，2 表示节点被子节点监控；一个节点的两个字子节点组合起来分别由 6 种情况，分别是：若两个子节点都为 2（22），那么当前节点未被监控，需要被父节点监控，返回 0；若两个子节点至少有一个为 0（00，01，02，未被监控），那么当前节点需要装上监控以监控子节点，返回 1；剩下的 2 种情况是至少有一个子节点自带监控（11，12），那么当前节点被子节点监控，且其子节点都已被监控或自带监控，返回 2；最后需要单独判断树的根节点是否是 0 的状态，因为已经没有父节点可以进行监控。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+    <span style="color:#fff;font-weight:bold">int</span> res;
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> minCameraCover(TreeNode *root) {
+        res = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">if</span> (Traverse(root) == <span style="color:#ff0;font-weight:bold">0</span>)
+            ++res;
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+
+    <span style="color:#fff;font-weight:bold">int</span> Traverse(TreeNode *node) {
+        <span style="color:#fff;font-weight:bold">if</span> (!node)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">2</span>;
+        <span style="color:#fff;font-weight:bold">int</span> left = Traverse(node-&gt;left);
+        <span style="color:#fff;font-weight:bold">int</span> right = Traverse(node-&gt;right);
+        <span style="color:#fff;font-weight:bold">if</span> (left == <span style="color:#ff0;font-weight:bold">2</span> &amp;&amp; right == <span style="color:#ff0;font-weight:bold">2</span>)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">else</span> if (left == <span style="color:#ff0;font-weight:bold">0</span> || right == <span style="color:#ff0;font-weight:bold">0</span>) {
+            ++res;
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">1</span>;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">2</span>;
+    }
+};
+</code></pre></div>
 <h3 id="2-构造二叉树">2. 构造二叉树</h3>
 
 <h4 id="105-从前序与中序遍历序列构造二叉树-https-leetcode-cn-com-problems-construct-binary-tree-from-preorder-and-inorder-traversal"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105 从前序与中序遍历序列构造二叉树</a></h4>
