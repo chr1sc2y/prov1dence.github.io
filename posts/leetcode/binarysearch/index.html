@@ -490,6 +490,38 @@
     }
 };
 </code></pre></div>
+<h3 id="5-猜数">5. 猜数</h3>
+
+<h4 id="719-找出第-k-小的距离对-https-leetcode-cn-com-problems-find-k-th-smallest-pair-distance"><a href="https://leetcode-cn.com/problems/find-k-th-smallest-pair-distance/">719 找出第 k 小的距离对</a></h4>
+
+<p>最简单的做法遍历两遍算出所有数对的差值保存在一个小根堆中，然后依次找到小于等于 k 的最小距离，但这样做时间复杂度是 O(n ^ 2) 会超时。我们可以先将数组排序，然后用 low = 0, high = nums[n - 1] - nums[0] 表示可能结果的最小值和最大值，用二分法来判断中间值 mid 是否满足小于等于 mid 的数对差值的数是否小于等于 k，判断时因为数组是有序的，可以使用双指针让中间的差值维持在小于等于 mid，从而计算出小于等于 mid 的数对差值的数，时间复杂度是 O(nlogn + nlogm)，其中 n 是数组的长度，m 是数组最大值与最小值之差，nlogn 是排序的平均时间复杂度，而 nlogm 中 n 是使用双指针判断的时间复杂度，logm 是二分法的时间复杂度。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> smallestDistancePair(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums, <span style="color:#fff;font-weight:bold">int</span> k) {
+        sort(nums.begin(), nums.end());
+        <span style="color:#fff;font-weight:bold">int</span> n = nums.size(), low = <span style="color:#ff0;font-weight:bold">0</span>, high = nums[n - <span style="color:#ff0;font-weight:bold">1</span>] - nums[<span style="color:#ff0;font-weight:bold">0</span>], mid = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (low &lt; high) {
+            mid = low + (high - low) / <span style="color:#ff0;font-weight:bold">2</span>;
+            <span style="color:#fff;font-weight:bold">if</span> (IsDistMoreThanK(nums, mid, k))
+                high = mid;
+            <span style="color:#fff;font-weight:bold">else</span>
+                low = mid + <span style="color:#ff0;font-weight:bold">1</span>;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> high;
+    }
+
+    <span style="color:#fff;font-weight:bold">bool</span> IsDistMoreThanK(<span style="color:#fff;font-weight:bold">const</span> vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums, <span style="color:#fff;font-weight:bold">int</span> m, <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span> &amp;k) {
+        <span style="color:#fff;font-weight:bold">int</span> left = <span style="color:#ff0;font-weight:bold">0</span>, right = <span style="color:#ff0;font-weight:bold">0</span>, count = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (right &lt; nums.size()) {
+            <span style="color:#fff;font-weight:bold">while</span> (nums[right] - nums[left] &gt; m)
+                ++left;
+            count += right - left;
+            ++right;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> count &gt;= k;
+    }
+};
+</code></pre></div>
       </div>
 
       <footer>

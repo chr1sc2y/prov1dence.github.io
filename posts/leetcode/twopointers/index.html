@@ -200,6 +200,30 @@
     }
 };
 </code></pre></div>
+<h4 id="424-替换后的最长重复字符-https-leetcode-cn-com-problems-longest-repeating-character-replacement"><a href="https://leetcode-cn.com/problems/longest-repeating-character-replacement/">424 替换后的最长重复字符</a></h4>
+
+<p>对于一个子串，我们只需要知道这个子串中出现次数最多的字符的出现次数，就可以根据 j - i + 1 - max_count &lt;= k 知道这个子串是否能被替换为重复子串，因此用滑动窗口的方法固定一个子串，如果这个子串满足条件，那么我们将滑动窗口的右端 j 继续往后移动，否则需要将左端往后移动直到这个子串满足条件，j - i + 1 就是可能的最长重复子串的长度。时间复杂度是 O(n)，空间复杂度是 O(1)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> characterReplacement(string s, <span style="color:#fff;font-weight:bold">int</span> k) {
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>, j = <span style="color:#ff0;font-weight:bold">0</span>, res = <span style="color:#ff0;font-weight:bold">0</span>, n = s.size(), max_count = <span style="color:#ff0;font-weight:bold">0</span>;
+        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; count(<span style="color:#ff0;font-weight:bold">26</span>, <span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">while</span> (j &lt; n) {
+            ++count[s[j] - <span style="color:#0ff;font-weight:bold">&#39;A&#39;</span>];
+            max_count = max(max_count, count[s[j] - <span style="color:#0ff;font-weight:bold">&#39;A&#39;</span>]);
+            <span style="color:#fff;font-weight:bold">while</span> (j - i + <span style="color:#ff0;font-weight:bold">1</span> - max_count &gt; k) {
+                --count[s[i] - <span style="color:#0ff;font-weight:bold">&#39;A&#39;</span>];
+                ++i;
+                <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;c:count)
+                    max_count = max(max_count, c);
+            }
+            res = max(res, j - i + <span style="color:#ff0;font-weight:bold">1</span>);
+            ++j;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
 <h4 id="42-接雨水-https-leetcode-cn-com-problems-trapping-rain-water-submissions"><a href="https://leetcode-cn.com/problems/trapping-rain-water/submissions/">42 接雨水</a></h4>
 
 <p>可以先将每个位置左边和右边最高的柱子高度都保存下来，再计算两者中较低的减去当前位置的柱子数量得到当前位置能够接住的雨水数量。</p>
