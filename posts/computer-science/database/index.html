@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据库"/>
+<meta name="twitter:description" content="数据库 MySQL 函数依赖 一张数据库表中，在属性 X 的值确定的情况下，必定能确定属性 Y 的值，那么就可以说 Y 函数依赖于 X，写作 X -&gt; Y 在数据表中，不存在任意"/>
+
+    <meta property="og:title" content="数据库" />
+<meta property="og:description" content="数据库 MySQL 函数依赖 一张数据库表中，在属性 X 的值确定的情况下，必定能确定属性 Y 的值，那么就可以说 Y 函数依赖于 X，写作 X -&gt; Y 在数据表中，不存在任意" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/computer-science/database/" />
+<meta property="article:published_time" content="2015-07-05T08:57:52&#43;10:00"/>
+<meta property="article:modified_time" content="2015-07-05T08:57:52&#43;10:00"/>
+
+
+    
+      <base href="https://zintrulcre.vip/posts/computer-science/database/">
+    
+    <title>
+  数据库 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/computer-science/database/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.55.2" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">数据库</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2015-07-05T08:57:52&#43;10:00'>
+                July 5, 2015
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/computer-science/">Computer Science</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        
+
+<h1 id="数据库">数据库</h1>
+
+<h2 id="mysql">MySQL</h2>
+
+<h3 id="函数依赖">函数依赖</h3>
+
+<ul>
+<li>一张数据库表中，在属性 X 的值确定的情况下，必定能确定属性 Y 的值，那么就可以说 Y 函数依赖于 X，写作 X -&gt; Y</li>
+<li>在数据表中，不存在任意两条记录，使得它们在 X 属性上的值相同，而在 Y 属性上的值不同</li>
+</ul>
+
+<ol>
+<li>完全函数依赖
+
+<ul>
+<li>一张数据库表中，若 X -&gt; Y，且对于 X 的任何一个真子集（假如属性组 X 包含超过一个属性），X → Y 不成立，那么 Y 对于 X 完全函数依赖</li>
+</ul></li>
+</ol>
+
+<h3 id="范式-normal-form">范式 Normal Form</h3>
+
+<ul>
+<li>范式是数据库的表结构的设计标准，有 1NF, 2NF, 3NF, BCNF, 4NF, 5NF 等</li>
+</ul>
+
+<ol>
+<li><p>第一范式</p>
+
+<ul>
+<li>1NF 是指数据库表的每个属性都不可再分</li>
+<li>1NF 是所有关系型数据库的最基本要求</li>
+<li>坏处：数据冗余，插入异常，修改异常，删除异常</li>
+</ul></li>
+
+<li><p>第二范式</p>
+
+<ul>
+<li>2NF 是指在 1NF 的基础之上，消除了非主属性对于主键的部分函数依赖</li>
+<li>非主属性完全依赖于主键</li>
+</ul></li>
+
+<li><p>第三范式</p>
+
+<ul>
+<li>3NF 是指在 2NF 的基础之上，消除了非主属性对于主键的传递函数依赖</li>
+<li>非主属性不依赖于其它非主属性</li>
+</ul></li>
+</ol>
+
+<h3 id="索引-index">索引 Index</h3>
+
+<ul>
+<li>索引是对数据库表中一个或多个列的值进行排序的数据结构</li>
+<li>索引通过 B 树及其变种，从根节点开始快速地找到数据，而不是扫描整张表得到需要的数据；其目的是进行快速的数据查询或更新</li>
+<li>优点：加速数据检索；在使用分组和排序子句进行数据检索时，可以显著减少查询中分组和排序的时间</li>
+<li>缺点：索引需要额外的空间来存储，还需要在表中记录增减时进行维护，因此每条记录的增删改操作将会额外增加几次磁盘 IO</li>
+</ul>
+
+<ol>
+<li><p>B 树</p>
+
+<ul>
+<li>B 树是一种多叉平衡搜索树，结点是多个关键码的有序表，所有叶子节点位于同一层</li>
+<li>对于要查询的关键码，在某个结点处，先在有序表中查找，若找到则返回其指针指向的数据；否则查找对应的指针指向的子树</li>
+<li>对于存储在硬盘上的大型数据库文件，可以极大程度减少访问硬盘的次数，并大幅度提高数据检索的效率</li>
+</ul></li>
+
+<li><p>B+ 树</p>
+
+<ul>
+<li>在B+ 树中，非叶子节点只进行数据索引，不保存数据，只有叶子节点存有指向数据的指针，这使得非叶子节点能保存的关键字数量大大增加</li>
+<li>叶子节点的关键字从小到大有序排列，且叶子节点有序相连，左边节点的末尾指向右边节点的起始位置</li>
+<li>特点：每个节点能保存的关键字数量更多，因此树的层级更少；所有数据的地址都保存在叶子节点上，因此查询速度更稳定；进行全表扫描的时候只需要遍历所有的叶子节点即可；</li>
+<li>B+ 树是InnoDB存储引擎的索引实现</li>
+</ul></li>
+
+<li><p>B* 树</p>
+
+<ul>
+<li>在B* 树中，每个节点都存有其右边节点的指针</li>
+<li>B+ 树节点满时会分裂，而 B* 树节点满时会先检查其右边节点是否满，如果未满则直接向右边节点转移关键字；如果已满则从当前节点和右边节点各取出 <sup>1</sup>&frasl;<sub>3</sub> 的数据并创建一个新的节点进行保存</li>
+<li>特点：可以向右边节点转移关键字的，因此分裂次数更少</li>
+</ul></li>
+</ol>
+
+<h3 id="事务-transaction">事务 Transaction</h3>
+
+<ul>
+<li>事务是数据库中并发控制的基本单位</li>
+<li>事务是一个不可分割的操作序列，是数据库维护数据一致性的单位，在每个事务结束时，都能保持数据一致性</li>
+<li>事务拥有 4 个属性
+
+<ol>
+<li>原子性 Atomic：事务被视为不可分割的最小单元，其所有操作要么全部提交成功，要么全部失败回滚</li>
+<li>一致性 Consistency：数据库在事务执行前后都保持一致性状态。在一致性状态下，所有事务对一个数据的读取结果都是相同的</li>
+<li>隔离性 Isolation：一个事务所做的修改在最终提交以前，对其它事务是不可见的</li>
+<li>持久性 Durability：一旦事务提交，则其所做的修改将会永远保存到数据库中</li>
+</ol></li>
+</ul>
+
+<h3 id="锁">锁</h3>
+
+<ol>
+<li><p>悲观锁</p>
+
+<ul>
+<li>悲观并发控制，又名悲观锁 Pessimistic Concurrency Control</li>
+<li>悲观并发控制可以阻止一个事务以影响其他用户的方式来修改数据</li>
+<li>如果一个事务执行的操作对某行数据应用了锁，那只有当这个事务把锁释放，其他事务才能够执行与该锁冲突的操作</li>
+<li>悲观并发控制主要用于数据争用激烈的环境，以及发生并发冲突时使用锁保护数据的成本要低于回滚事务的成本的环境中</li>
+</ul></li>
+
+<li><p>乐观锁</p>
+
+<ul>
+<li>乐观并发控制， 又名乐观锁，Optimistic Concurrency Control</li>
+<li>乐观并发控制假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的部分数据</li>
+<li>在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据；如果是，那么正在提交的事务将会进行回滚</li>
+</ul></li>
+</ol>
+
+<p>##nosql</p>
+
+<ol>
+<li>redis API使用</li>
+</ol>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>
