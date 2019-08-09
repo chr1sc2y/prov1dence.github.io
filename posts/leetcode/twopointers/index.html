@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 双指针"/>
-<meta name="twitter:description" content="LeetCode DFS 题目 11 盛最多水的容器 用两个指针分别表示数组的头和尾，每次将高度较低的元素的下标往中间移动，同时更新结果。 classSolution { public: int maxArea(vector&lt;int&gt;&amp; h) { int i = 0, j = h.size() - 1,"/>
+<meta name="twitter:description" content="LeetCode DFS 题目 26 删除排序数组中的重复项 用两个指针 len 和 i 分别表示没有重复的项的下标与遍历数组的下标，将没有重复的项拷贝到 nums[len] 下然后 &#43;&#43;len 即可。 classSolution { public: int removeDuplicates(vector&lt;int&gt;&amp; nums)"/>
 
     <meta property="og:title" content="LeetCode 双指针" />
-<meta property="og:description" content="LeetCode DFS 题目 11 盛最多水的容器 用两个指针分别表示数组的头和尾，每次将高度较低的元素的下标往中间移动，同时更新结果。 classSolution { public: int maxArea(vector&lt;int&gt;&amp; h) { int i = 0, j = h.size() - 1," />
+<meta property="og:description" content="LeetCode DFS 题目 26 删除排序数组中的重复项 用两个指针 len 和 i 分别表示没有重复的项的下标与遍历数组的下标，将没有重复的项拷贝到 nums[len] 下然后 &#43;&#43;len 即可。 classSolution { public: int removeDuplicates(vector&lt;int&gt;&amp; nums)" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/twopointers/" />
 <meta property="article:published_time" content="2019-07-31T19:12:25&#43;10:00"/>
@@ -114,6 +114,49 @@
 
 <h2 id="题目">题目</h2>
 
+<h4 id="26-删除排序数组中的重复项-https-leetcode-cn-com-problems-remove-duplicates-from-sorted-array"><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/">26 删除排序数组中的重复项</a></h4>
+
+<p>用两个指针 len 和 i 分别表示没有重复的项的下标与遍历数组的下标，将没有重复的项拷贝到 nums[len] 下然后 ++len 即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> removeDuplicates(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; nums) {
+        <span style="color:#fff;font-weight:bold">int</span> count = <span style="color:#ff0;font-weight:bold">0</span>, len = <span style="color:#ff0;font-weight:bold">1</span>, n = nums.size();
+        <span style="color:#fff;font-weight:bold">if</span> (n == <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; n; ++i) {
+            <span style="color:#fff;font-weight:bold">if</span> (nums[i] == nums[i - <span style="color:#ff0;font-weight:bold">1</span>])
+                <span style="color:#fff;font-weight:bold">continue</span>;
+            nums[len] = nums[i];
+            ++len;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> len;
+    }
+};
+</code></pre></div>
+<h4 id="80-删除排序数组中的重复项-ii-https-leetcode-cn-com-problems-remove-duplicates-from-sorted-array-ii"><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/">80 删除排序数组中的重复项 II</a></h4>
+
+<p>用两个指针 len 和 i 分别表示没有最多重复 2 次的项的下标与遍历数组的下标，将重复数小于等于 1 的项拷贝到 nums[len] 下然后 ++len 即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> removeDuplicates(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; nums) {
+        <span style="color:#fff;font-weight:bold">int</span> count = <span style="color:#ff0;font-weight:bold">0</span>, len = <span style="color:#ff0;font-weight:bold">1</span>, n = nums.size();
+        <span style="color:#fff;font-weight:bold">if</span> (n == <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; nums.size(); ++i) {
+            <span style="color:#fff;font-weight:bold">if</span> (nums[i] == nums[i - <span style="color:#ff0;font-weight:bold">1</span>]) {
+                <span style="color:#fff;font-weight:bold">if</span> (count &gt; <span style="color:#ff0;font-weight:bold">0</span>)
+                    <span style="color:#fff;font-weight:bold">continue</span>;
+                ++count;
+            }
+            <span style="color:#fff;font-weight:bold">else</span>
+                count = <span style="color:#ff0;font-weight:bold">0</span>;
+            nums[len] = nums[i];
+            ++len;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> len;
+    }
+};
+</code></pre></div>
 <h4 id="11-盛最多水的容器-https-leetcode-cn-com-problems-container-with-most-water"><a href="https://leetcode-cn.com/problems/container-with-most-water/">11 盛最多水的容器</a></h4>
 
 <p>用两个指针分别表示数组的头和尾，每次将高度较低的元素的下标往中间移动，同时更新结果。</p>
@@ -411,6 +454,35 @@
             }
             <span style="color:#fff;font-weight:bold">if</span> (count.size() == K)
                 res += acc;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="239-滑动窗口最大值-https-leetcode-cn-com-problems-sliding-window-maximum"><a href="https://leetcode-cn.com/problems/sliding-window-maximum/">239 滑动窗口最大值</a></h4>
+
+<p>用一个类似单调栈的双端队列存储滑动窗口中的元素，当需要 push_back 进来的数大于其前面的数时，不断的将小于它的数 pop_back，这样一来双端队列的 front 位置一定是当前滑动窗口里最大的数，当滑动窗口移动时最左边的数如果等于双端队列中 front 位置的数时则 pop_front，这样一来 front 位置的数仍然是当前滑动窗口里最大的数。这样做时间复杂度是 O(n)，空间复杂度是 O(n)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; maxSlidingWindow(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums, <span style="color:#fff;font-weight:bold">int</span> k) {
+        <span style="color:#fff;font-weight:bold">int</span> n = nums.size();
+        deque&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; d;
+        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
+        <span style="color:#fff;font-weight:bold">if</span> (n == <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">return</span> res;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; k; ++i) {
+            <span style="color:#fff;font-weight:bold">while</span> (!d.empty() &amp;&amp; d.back() &lt; nums[i])
+                d.pop_back();
+            d.push_back(nums[i]);
+        }
+        res.push_back(d.front());
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = k; i &lt; n; ++i) {
+            <span style="color:#fff;font-weight:bold">if</span> (!d.empty() &amp;&amp; nums[i - k] == d.front())
+                d.pop_front();
+            <span style="color:#fff;font-weight:bold">while</span> (!d.empty() &amp;&amp; d.back() &lt; nums[i])
+                d.pop_back();
+            d.push_back(nums[i]);
+            res.push_back(d.front());
         }
         <span style="color:#fff;font-weight:bold">return</span> res;
     }

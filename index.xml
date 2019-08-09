@@ -18,7 +18,7 @@
       <pubDate>Wed, 31 Jul 2019 19:12:25 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/leetcode/twopointers/</guid>
-      <description>LeetCode DFS 题目 11 盛最多水的容器 用两个指针分别表示数组的头和尾，每次将高度较低的元素的下标往中间移动，同时更新结果。 classSolution { public: int maxArea(vector&amp;lt;int&amp;gt;&amp;amp; h) { int i = 0, j = h.size() - 1,</description>
+      <description>LeetCode DFS 题目 26 删除排序数组中的重复项 用两个指针 len 和 i 分别表示没有重复的项的下标与遍历数组的下标，将没有重复的项拷贝到 nums[len] 下然后 ++len 即可。 classSolution { public: int removeDuplicates(vector&amp;lt;int&amp;gt;&amp;amp; nums)</description>
     </item>
     
     <item>
