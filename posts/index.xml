@@ -18,7 +18,7 @@
       <pubDate>Mon, 05 Aug 2019 19:12:25 +1000</pubDate>
       
       <guid>https://zintrulcre.vip/posts/leetcode/heap/</guid>
-      <description>LeetCode 堆 题目 215 数组中的第 K 个最大元素 最典型的堆的应用。 classSolution { public: int findKthLargest(vector&amp;lt;int&amp;gt; &amp;amp;nums, int k) { priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;&amp;gt;&amp;gt; heap; for (auto &amp;amp;m:nums) { if (heap.size() &amp;lt; k || m &amp;gt; heap.top()) heap.push(m); if (heap.size() &amp;gt; k) heap.pop(); } return heap.top(); } }; 703 数据流中的第 K 大</description>
+      <description>LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。 classSolution { public: int findKthLargest(vector&amp;lt;int&amp;gt; &amp;amp;nums, int k) { priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;&amp;gt;&amp;gt; heap; for (auto &amp;amp;m:nums) { if (heap.size() &amp;lt; k || m &amp;gt; heap.top()) heap.push(m); if (heap.size() &amp;gt; k) heap.pop(); } return heap.top(); } }; 703 数据流中的第 K 大</description>
     </item>
     
     <item>

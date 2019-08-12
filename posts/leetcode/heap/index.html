@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 堆"/>
-<meta name="twitter:description" content="LeetCode 堆 题目 215 数组中的第 K 个最大元素 最典型的堆的应用。 classSolution { public: int findKthLargest(vector&lt;int&gt; &amp;nums, int k) { priority_queue&lt;int, vector&lt;int&gt;, greater&lt;&gt;&gt; heap; for (auto &amp;m:nums) { if (heap.size() &lt; k || m &gt; heap.top()) heap.push(m); if (heap.size() &gt; k) heap.pop(); } return heap.top(); } }; 703 数据流中的第 K 大"/>
+<meta name="twitter:description" content="LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。 classSolution { public: int findKthLargest(vector&lt;int&gt; &amp;nums, int k) { priority_queue&lt;int, vector&lt;int&gt;, greater&lt;&gt;&gt; heap; for (auto &amp;m:nums) { if (heap.size() &lt; k || m &gt; heap.top()) heap.push(m); if (heap.size() &gt; k) heap.pop(); } return heap.top(); } }; 703 数据流中的第 K 大"/>
 
     <meta property="og:title" content="LeetCode 堆" />
-<meta property="og:description" content="LeetCode 堆 题目 215 数组中的第 K 个最大元素 最典型的堆的应用。 classSolution { public: int findKthLargest(vector&lt;int&gt; &amp;nums, int k) { priority_queue&lt;int, vector&lt;int&gt;, greater&lt;&gt;&gt; heap; for (auto &amp;m:nums) { if (heap.size() &lt; k || m &gt; heap.top()) heap.push(m); if (heap.size() &gt; k) heap.pop(); } return heap.top(); } }; 703 数据流中的第 K 大" />
+<meta property="og:description" content="LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。 classSolution { public: int findKthLargest(vector&lt;int&gt; &amp;nums, int k) { priority_queue&lt;int, vector&lt;int&gt;, greater&lt;&gt;&gt; heap; for (auto &amp;m:nums) { if (heap.size() &lt; k || m &gt; heap.top()) heap.push(m); if (heap.size() &gt; k) heap.pop(); } return heap.top(); } }; 703 数据流中的第 K 大" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/heap/" />
 <meta property="article:published_time" content="2019-08-05T19:12:25+10:00" />
@@ -116,7 +116,7 @@
 
 <h4 id="215-数组中的第-k-个最大元素-https-leetcode-cn-com-problems-kth-largest-element-in-an-array"><a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215 数组中的第 K 个最大元素</a></h4>
 
-<p>最典型的堆的应用。</p>
+<p>最简单的堆的应用。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> findKthLargest(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums, <span style="color:#fff;font-weight:bold">int</span> k) {
