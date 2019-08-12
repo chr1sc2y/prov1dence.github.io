@@ -17,8 +17,8 @@
 <meta property="og:description" content="Cookie和Session 为了获取我们自己的提交记录，我们首先要进行登录的操作。但我们都知道HTTP是一种无状态的协议，它的每个请求都是独" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver3/" />
-<meta property="article:published_time" content="2019-01-11T13:15:17&#43;11:00"/>
-<meta property="article:modified_time" content="2019-01-11T13:15:17&#43;11:00"/>
+<meta property="article:published_time" content="2019-01-11T13:15:17+11:00" />
+<meta property="article:modified_time" content="2019-01-11T13:15:17+11:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.56.3" />
   </head>
 
   <body class=" ">
@@ -148,46 +148,47 @@ for cookie in result.cookies:
 <p>得到的结果是</p>
 
 <ul>
-<li><code>&lt;Response [200]&gt;</code> 状态码200，表示请求成功</li>
-<li><code>&lt;class 'requests.cookies.RequestsCookieJar'&gt;</code> cookies的类型是CookieJar</li>
-<li><code>&lt;class 'http.cookiejar.Cookie'&gt;</code> 第一条cookie的类型是Cookie</li>
-<li><code>&lt;Cookie__cfduid=d3e02d4309b848f9369e21671fabbce571548041181 for .leetcode.com/&gt;</code> 第一条cookie的信息</li>
-<li><code>&lt;class 'http.cookiejar.Cookie'&gt;</code> 第二条cookie的类型是Cookie</li>
-<li><code>&lt;Cookie csrftoken=13mQWE9tYN6g2IrlKY8oMLRc4VhVNoet4j328YdDapW2WC2nf93y5iCuzorovTDl for leetcode.com/&gt;</code> 第二条cookie的信息，也就是我们所需要的csrftoken</li>
-</ul>
+<li><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-<Response [200]>``` 状态码200，表示请求成功" data-lang="<Response [200]>``` 状态码200，表示请求成功">- ```&lt;class &#39;requests.cookies.RequestsCookieJar&#39;&gt;``` cookies的类型是CookieJar
+- ```&lt;class &#39;http.cookiejar.Cookie&#39;&gt;``` 第一条cookie的类型是Cookie
+- ```&lt;Cookie__cfduid=d3e02d4309b848f9369e21671fabbce571548041181 for .leetcode.com/&gt;``` 第一条cookie的信息
+- ```&lt;class &#39;http.cookiejar.Cookie&#39;&gt;``` 第二条cookie的类型是Cookie
+- ```&lt;Cookie csrftoken=13mQWE9tYN6g2IrlKY8oMLRc4VhVNoet4j328YdDapW2WC2nf93y5iCuzorovTDl for leetcode.com/&gt;``` 第二条cookie的信息，也就是我们所需要的csrftoken
 
-<p>这样一来我们便获取到了在提交表单信息时所需要的csrfmiddlewaretoken，之后我们便可以开始着手写登录的相关代码了。顺便一提，在使用Django进行后端开发的时候自动生成的csrf token的键也叫csrfmiddlewaretoken，不知道LeetCode是不是用Django作为后端开发框架的。</p>
+这样一来我们便获取到了在提交表单信息时所需要的csrfmiddlewaretoken，之后我们便可以开始着手写登录的相关代码了。顺便一提，在使用Django进行后端开发的时候自动生成的csrf token的键也叫csrfmiddlewaretoken，不知道LeetCode是不是用Django作为后端开发框架的。
 
-<h3 id="实现">实现</h3>
+### 实现
 
-<p>首先我们需要在爬虫开始运行之前获取登录信息，将Session作为类的成员变量保存下来，方便在获取submissions时使用。同时我们需要在与爬虫文件相同的目录下新建config.json，将自己的用户名和密码保存在该json文件里，这样就能顺利登陆了。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">    def start_requests(self):
-        self.Login()    # 登录
-        questionset_url = &#34;https://leetcode.com/api/problems/all/&#34;
-        yield scrapy.Request(url=questionset_url, callback=self.ParseQuestionSet)
+首先我们需要在爬虫开始运行之前获取登录信息，将Session作为类的成员变量保存下来，方便在获取submissions时使用。同时我们需要在与爬虫文件相同的目录下新建config.json，将自己的用户名和密码保存在该json文件里，这样就能顺利登陆了。</code></pre></div>
+<p>def start_requests(self):
+    self.Login()    # 登录
+    questionset_url = &ldquo;<a href="https://leetcode.com/api/problems/all/&quot;">https://leetcode.com/api/problems/all/&quot;</a>
+    yield scrapy.Request(url=questionset_url, callback=self.ParseQuestionSet)</p>
 
-    def Login(self):
-    login_url = &#34;https://leetcode.com/accounts/login/&#34;
-    login_headers = {
-        &#34;user_agent&#34;: &#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&#39;&#34;,
-        &#34;referer&#34;: &#34;https://leetcode.com/accounts/login/&#34;,
-        # &#34;content-type&#34;: &#34;multipart/form-data; boundary=----WebKitFormBoundary70YlQBtroATwu9Jx&#34;
-    }
-    self.session = requests.session()
-    result = self.session.get(login_url)
-    file = open(&#39;./config.json&#39;, &#39;r&#39;)
-    info = json.load(file)
-    data = {&#34;login&#34;: info[&#34;username&#34;], &#34;password&#34;: inf[&#34;password&#34;],
-            &#34;csrfmiddlewaretoken&#34;: self.session.cookies[&#39;csrftoken&#39;]}
-    self.session.post(login_url, data=data,headers=login_headers)
-    print(&#34;login info: &#34; + str(result))</pre></div>
+<p>def Login(self):
+login_url = &ldquo;<a href="https://leetcode.com/accounts/login/&quot;">https://leetcode.com/accounts/login/&quot;</a>
+login_headers = {
+    &ldquo;user_agent&rdquo;: &ldquo;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&rsquo;&ldquo;,
+    &ldquo;referer&rdquo;: &ldquo;<a href="https://leetcode.com/accounts/login/&quot;">https://leetcode.com/accounts/login/&quot;</a>,
+    # &ldquo;content-type&rdquo;: &ldquo;multipart/form-data; boundary=&mdash;-WebKitFormBoundary70YlQBtroATwu9Jx&rdquo;
+}
+self.session = requests.session()
+result = self.session.get(login_url)
+file = open(&lsquo;./config.json&rsquo;, &lsquo;r&rsquo;)
+info = json.load(file)
+data = {&ldquo;login&rdquo;: info[&ldquo;username&rdquo;], &ldquo;password&rdquo;: inf[&ldquo;password&rdquo;],
+        &ldquo;csrfmiddlewaretoken&rdquo;: self.session.cookies[&lsquo;csrftoken&rsquo;]}
+self.session.post(login_url, data=data,headers=login_headers)
+print(&ldquo;login info: &ldquo; + str(result))
+```</p>
+
 <p>注意如果在headers中填写了content-type的值，可能会产生一些奇怪的错误信息，并且后续不能正确地获取自己的submissions，只需要user_agent和refere的信息即可。</p>
 
 <p>如果看到输出<code>login info: &lt;Response [200]&gt;</code>就代表登录成功了！</p>
 
 <h2 id="参考资料">参考资料</h2>
 
-<p><a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/" target="_blank">Scrapy官方文档</a></p>
+<p><a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/" target="_blank">Scrapy官方文档</a></p></li>
+</ul>
 
       </div>
 

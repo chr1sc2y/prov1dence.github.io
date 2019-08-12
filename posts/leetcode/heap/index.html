@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LeetCode 堆"/>
+<meta name="twitter:description" content="LeetCode DFS 题目 215 数组中的第 K 个最大元素 最典型的堆的应用。 classSolution { public: int findKthLargest(vector&lt;int&gt; &amp;nums, int k) { priority_queue&lt;int, vector&lt;int&gt;, greater&lt;&gt;&gt; heap; for (auto &amp;m:nums) { if (heap.size() &lt; k || m &gt; heap.top()) heap.push(m); if (heap.size() &gt; k) heap.pop(); } return heap.top(); } }; 703 数据流中的第 K 大"/>
+
+    <meta property="og:title" content="LeetCode 堆" />
+<meta property="og:description" content="LeetCode DFS 题目 215 数组中的第 K 个最大元素 最典型的堆的应用。 classSolution { public: int findKthLargest(vector&lt;int&gt; &amp;nums, int k) { priority_queue&lt;int, vector&lt;int&gt;, greater&lt;&gt;&gt; heap; for (auto &amp;m:nums) { if (heap.size() &lt; k || m &gt; heap.top()) heap.push(m); if (heap.size() &gt; k) heap.pop(); } return heap.top(); } }; 703 数据流中的第 K 大" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/heap/" />
+<meta property="article:published_time" content="2019-08-05T19:12:25+10:00" />
+<meta property="article:modified_time" content="2019-08-05T19:12:25+10:00" />
+
+
+    
+      <base href="https://zintrulcre.vip/posts/leetcode/heap/">
+    
+    <title>
+  LeetCode 堆 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/leetcode/heap/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.56.3" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">LeetCode 堆</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-08-05T19:12:25&#43;10:00'>
+                August 5, 2019
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/leetcode/">LeetCode</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        
+
+<h1 id="leetcode-dfs-https-leetcode-cn-com-tag-heap"><a href="https://leetcode-cn.com/tag/heap/">LeetCode DFS</a></h1>
+
+<h2 id="题目">题目</h2>
+
+<h4 id="215-数组中的第-k-个最大元素-https-leetcode-cn-com-problems-kth-largest-element-in-an-array"><a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215 数组中的第 K 个最大元素</a></h4>
+
+<p>最典型的堆的应用。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> findKthLargest(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums, <span style="color:#fff;font-weight:bold">int</span> k) {
+        priority_queue&lt;<span style="color:#fff;font-weight:bold">int</span>, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;, greater&lt;&gt;&gt; heap;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;m:nums) {
+            <span style="color:#fff;font-weight:bold">if</span> (heap.size() &lt; k || m &gt; heap.top())
+                heap.push(m);
+            <span style="color:#fff;font-weight:bold">if</span> (heap.size() &gt; k)
+                heap.pop();
+        }
+        <span style="color:#fff;font-weight:bold">return</span> heap.top();
+    }
+};
+</code></pre></div>
+<h4 id="703-数据流中的第-k-大元素-https-leetcode-cn-com-problems-kth-largest-element-in-a-stream"><a href="https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/">703 数据流中的第 K 大元素</a></h4>
+
+<p>维护一个大小为 K 的小根堆，如果新的数比堆顶元素大则将这个数 push 进去并维护堆，当堆中的元素数量超过 K 时 pop 出堆顶元素并维护堆。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>KthLargest {
+    priority_queue&lt;<span style="color:#fff;font-weight:bold">int</span>, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;, greater&lt;&gt;&gt; min_heap;
+    <span style="color:#fff;font-weight:bold">int</span> k;
+<span style="color:#fff;font-weight:bold">public</span>:
+    KthLargest(<span style="color:#fff;font-weight:bold">int</span> k, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums) {
+        <span style="color:#fff;font-weight:bold">this</span>-&gt;k = k;
+        min_heap = priority_queue&lt;<span style="color:#fff;font-weight:bold">int</span>, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;, greater&lt;&gt;&gt;();
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;m:nums) {
+            <span style="color:#fff;font-weight:bold">if</span> (min_heap.size() &lt; k || min_heap.top() &lt; m)
+                min_heap.push(m);
+            <span style="color:#fff;font-weight:bold">if</span> (min_heap.size() &gt; k)
+                min_heap.pop();
+        }
+    }
+
+    <span style="color:#fff;font-weight:bold">int</span> add(<span style="color:#fff;font-weight:bold">int</span> val) {
+        <span style="color:#fff;font-weight:bold">if</span> (min_heap.size() &lt; k || min_heap.top() &lt; val)
+            min_heap.push(val);
+        <span style="color:#fff;font-weight:bold">if</span> (min_heap.size() &gt; k)
+            min_heap.pop();
+        <span style="color:#fff;font-weight:bold">return</span> min_heap.top();
+    }
+};
+</code></pre></div>
+<h4 id="347-前-k-个高频元素-https-leetcode-cn-com-problems-top-k-frequent-elements-submissions"><a href="https://leetcode-cn.com/problems/top-k-frequent-elements/submissions/">347 前 K 个高频元素</a></h4>
+
+<p>先遍历一次统计出数组中各个元素出现的次数，再用一个大根堆将前 k 个高频元素保存下来，最后再将这些元素依次 pop 出来存入结果数组。时间复杂度是 O(n)，空间复杂度是 O(n)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; topKFrequent(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums, <span style="color:#fff;font-weight:bold">int</span> k) {
+        priority_queue&lt;pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;, vector&lt;pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;&gt;, greater&lt;&gt;&gt; freq;
+        unordered_map&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt; count;
+        vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res(k, <span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;m:nums)
+            ++count[m];
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;c:count) {
+            freq.push(pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;(c.second, c.first));
+            <span style="color:#fff;font-weight:bold">if</span> (freq.size() &gt; k)
+                freq.pop();
+        }
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; k; ++i) {
+            pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt; p = freq.top();
+            freq.pop();
+            res[i] = p.second;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="451-根据字符出现频率排序-https-leetcode-cn-com-problems-sort-characters-by-frequency"><a href="https://leetcode-cn.com/problems/sort-characters-by-frequency/">451 根据字符出现频率排序</a></h4>
+
+<p>用一个大根堆保存每个字符出现的频率，然后依次将原字符串覆盖即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+    <span style="color:#fff;font-weight:bold">struct</span> Element {
+        <span style="color:#fff;font-weight:bold">int</span> asc;
+        <span style="color:#fff;font-weight:bold">int</span> num;
+
+        Element() : num(<span style="color:#ff0;font-weight:bold">0</span>) {}
+    };
+
+    <span style="color:#fff;font-weight:bold">struct</span> Compare {
+        <span style="color:#fff;font-weight:bold">bool</span> <span style="color:#fff;font-weight:bold">operator</span>()(Element &amp;e1, Element &amp;e2) {
+            <span style="color:#fff;font-weight:bold">return</span> e1.num &lt; e2.num;
+        }
+    };
+
+<span style="color:#fff;font-weight:bold">public</span>:
+    string frequencySort(string s) {
+        vector&lt;Element&gt; count(<span style="color:#ff0;font-weight:bold">200</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; <span style="color:#ff0;font-weight:bold">200</span>; ++i)
+            count[i].asc = i;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> c:s)
+            ++count[c].num;
+        priority_queue&lt;Element, vector&lt;Element&gt;, Compare&gt; heap;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;c:count)
+            <span style="color:#fff;font-weight:bold">if</span> (c.num != <span style="color:#ff0;font-weight:bold">0</span>)
+                heap.push(c);
+        <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (!heap.empty()) {
+            <span style="color:#fff;font-weight:bold">auto</span> t = heap.top();
+            heap.pop();
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; t.num; ++j)
+                s[i++] = t.asc;
+        }
+        <span style="color:#fff;font-weight:bold">return</span> s;
+    }
+};
+</code></pre></div>
+<h4 id="692-前-k-个高频单词-https-leetcode-cn-com-problems-top-k-frequent-words"><a href="https://leetcode-cn.com/problems/top-k-frequent-words/">692 前 K 个高频单词</a></h4>
+
+<p>用一个 pair<string, int> 或结构体保存每个字符串及其计数的信息，并维护一个小根堆，保证堆里存储前 K 个高频单词，放回堆里的所有元素。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+    <span style="color:#fff;font-weight:bold">struct</span> Comp {
+        <span style="color:#fff;font-weight:bold">bool</span> <span style="color:#fff;font-weight:bold">operator</span>()(pair&lt;string, <span style="color:#fff;font-weight:bold">int</span>&gt; <span style="color:#fff;font-weight:bold">const</span> &amp;p1, pair&lt;string, <span style="color:#fff;font-weight:bold">int</span>&gt; <span style="color:#fff;font-weight:bold">const</span> &amp;p2) {
+            <span style="color:#fff;font-weight:bold">if</span> (p1.second == p2.second)
+                <span style="color:#fff;font-weight:bold">return</span> p1.first &lt; p2.first;
+            <span style="color:#fff;font-weight:bold">return</span> p1.second &gt; p2.second;
+        }
+    };
+
+<span style="color:#fff;font-weight:bold">public</span>:
+    vector&lt;string&gt; topKFrequent(vector&lt;string&gt; &amp;words, <span style="color:#fff;font-weight:bold">int</span> k) {
+        vector&lt;string&gt; res(k);
+        unordered_map&lt;string, <span style="color:#fff;font-weight:bold">int</span>&gt; count;
+        priority_queue&lt;pair&lt;string, <span style="color:#fff;font-weight:bold">int</span>&gt;, vector&lt;pair&lt;string, <span style="color:#fff;font-weight:bold">int</span>&gt;&gt;, Comp&gt; heap;
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;word:words)
+            ++count[word];
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;c:count) {
+            heap.push(c);
+            <span style="color:#fff;font-weight:bold">if</span> (heap.size() &gt; k)
+                heap.pop();
+        }
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; k; ++i) {
+            res[i] = heap.top().first;
+            heap.pop();
+        }
+        reverse(res.begin(), res.end());
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="778-水位上升的泳池中游泳-https-leetcode-cn-com-problems-swim-in-rising-water"><a href="https://leetcode-cn.com/problems/swim-in-rising-water/">778 水位上升的泳池中游泳</a></h4>
+
+<p>类似于 AI 中用到的 Greedy Best-First Search 方法。不能用贪心是因为未访问过的路径中可能出现最优解，比如 [[0, 4, 7], [5, 8, 9], [2, 3, 1]] 这个矩阵，如果采用贪心会经过路径 0 -&gt; 4 -&gt; 7 -&gt; 9 -&gt; 1，而实际上最优路径是 0 -&gt; 5 - &gt; 2 -&gt; 3 -&gt; 1，所以需要把之前未经过的节点值保存下来，以便在贪心的过程中遇到当前节点大于之前未经过的节点时重新回到之前的位置继续搜索，保存的方法是用一个小根堆保存所有可能经过的下一步节点，这样就可以每次从堆顶取出下一步的最优值，而搜索的策略则用 DFS，每次尝试四个方向未访问过的节点。时间复杂度是 O(n)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+    <span style="color:#fff;font-weight:bold">struct</span> Element {
+        <span style="color:#fff;font-weight:bold">int</span> val;
+        <span style="color:#fff;font-weight:bold">int</span> x, y;
+
+        Element(<span style="color:#fff;font-weight:bold">int</span> val, <span style="color:#fff;font-weight:bold">int</span> x, <span style="color:#fff;font-weight:bold">int</span> y) : val(val), x(x), y(y) {}
+    };
+
+    <span style="color:#fff;font-weight:bold">struct</span> Compare {
+        <span style="color:#fff;font-weight:bold">bool</span> <span style="color:#fff;font-weight:bold">operator</span>()(Element <span style="color:#fff;font-weight:bold">const</span> &amp;e1, Element <span style="color:#fff;font-weight:bold">const</span> &amp;e2) {
+            <span style="color:#fff;font-weight:bold">return</span> e1.val &gt; e2.val;
+        }
+    };
+
+    <span style="color:#fff;font-weight:bold">int</span> dir[<span style="color:#ff0;font-weight:bold">4</span>][<span style="color:#ff0;font-weight:bold">2</span>] = {{<span style="color:#ff0;font-weight:bold">0</span>, -<span style="color:#ff0;font-weight:bold">1</span>}, {-<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>}, {<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">1</span>}, {<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>}};
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">int</span> swimInWater(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; &amp;grid) {
+        <span style="color:#fff;font-weight:bold">int</span> m = grid.size(), n = m ? grid[<span style="color:#ff0;font-weight:bold">0</span>].size() : <span style="color:#ff0;font-weight:bold">0</span>, res = <span style="color:#ff0;font-weight:bold">0</span>;
+        <span style="color:#fff;font-weight:bold">if</span> (m == <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+        priority_queue&lt;Element, vector&lt;Element&gt;, Compare&gt; heap;
+        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; visited(m, vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;(n, <span style="color:#fff;font-weight:bold">false</span>));
+        heap.push(Element(grid[<span style="color:#ff0;font-weight:bold">0</span>][<span style="color:#ff0;font-weight:bold">0</span>], <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>));
+        visited[<span style="color:#ff0;font-weight:bold">0</span>][<span style="color:#ff0;font-weight:bold">0</span>] = <span style="color:#fff;font-weight:bold">true</span>;
+        <span style="color:#fff;font-weight:bold">while</span> (!heap.empty()) {
+            Element e = heap.top();
+            heap.pop();
+            res = max(res, e.val);
+            <span style="color:#fff;font-weight:bold">if</span> (e.x == m - <span style="color:#ff0;font-weight:bold">1</span> &amp;&amp; e.y == n - <span style="color:#ff0;font-weight:bold">1</span>)
+                <span style="color:#fff;font-weight:bold">break</span>;
+            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;d:dir) {
+                <span style="color:#fff;font-weight:bold">int</span> x = e.x + d[<span style="color:#ff0;font-weight:bold">0</span>], y = e.y + d[<span style="color:#ff0;font-weight:bold">1</span>];
+                <span style="color:#fff;font-weight:bold">if</span> (x &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; x &lt; m &amp;&amp; y &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; y &lt; n &amp;&amp; !visited[x][y]) {
+                    heap.push(Element(grid[x][y], x, y));
+                    visited[x][y] = <span style="color:#fff;font-weight:bold">true</span>;
+                }
+            }
+        }
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    }
+};
+</code></pre></div>
+<h4 id="295-数据流的中位数-https-leetcode-cn-com-problems-find-median-from-data-stream"><a href="https://leetcode-cn.com/problems/find-median-from-data-stream/">295 数据流的中位数</a></h4>
+
+<p>最优的做法是用一个大根堆和一个小根堆，前者存数据流的后半部分，前者存数据流的前半部分，这样两个堆的堆顶分别是当前数据流的中间的较大和较小的数，每次去中位数只需要取堆顶元素即可，因此取数的时间复杂度是 O(1)，插入数的时间复杂度是 O(logk)，k 是数据流数据总数的一半。还可以用二分查找加上插入排序的做法，这样做插入的时间复杂度是 O(n)，需要将数据流中大于插入数据的所有数往右移动，查找的时间复杂度是 O(logn)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>MedianFinder {
+    priority_queue&lt;<span style="color:#fff;font-weight:bold">double</span>&gt; max_heap;
+    priority_queue&lt;<span style="color:#fff;font-weight:bold">double</span>, vector&lt;<span style="color:#fff;font-weight:bold">double</span>&gt;, greater&lt;&gt;&gt; min_heap;
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#007f7f">/** initialize your data structure here. */</span>
+    MedianFinder() {
+        max_heap = priority_queue&lt;<span style="color:#fff;font-weight:bold">double</span>&gt;();
+        min_heap = priority_queue&lt;<span style="color:#fff;font-weight:bold">double</span>, vector&lt;<span style="color:#fff;font-weight:bold">double</span>&gt;, greater&lt;&gt;&gt;();
+    }
+
+    <span style="color:#fff;font-weight:bold">void</span> addNum(<span style="color:#fff;font-weight:bold">int</span> num) {
+        <span style="color:#fff;font-weight:bold">if</span> (max_heap.empty() || max_heap.top() &gt; num)
+            max_heap.push(num);
+        <span style="color:#fff;font-weight:bold">else</span>
+            min_heap.push(num);
+        <span style="color:#fff;font-weight:bold">while</span> (max_heap.size() &gt; min_heap.size() + <span style="color:#ff0;font-weight:bold">1</span>) {
+            min_heap.push(max_heap.top());
+            max_heap.pop();
+        }
+        <span style="color:#fff;font-weight:bold">while</span> (min_heap.size() &gt; max_heap.size() + <span style="color:#ff0;font-weight:bold">1</span>) {
+            max_heap.push(min_heap.top());
+            min_heap.pop();
+        }
+    }
+
+    <span style="color:#fff;font-weight:bold">double</span> findMedian() {
+        <span style="color:#fff;font-weight:bold">int</span> ls = max_heap.size(), rs = min_heap.size();
+        <span style="color:#fff;font-weight:bold">if</span> ((ls + rs) % <span style="color:#ff0;font-weight:bold">2</span> == <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">return</span> (max_heap.top() + min_heap.top()) * <span style="color:#ff0;font-weight:bold">1.0</span> / <span style="color:#ff0;font-weight:bold">2</span>;
+        <span style="color:#fff;font-weight:bold">return</span> ls &gt; rs ? max_heap.top() : min_heap.top();
+    }
+};
+</code></pre></div>
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

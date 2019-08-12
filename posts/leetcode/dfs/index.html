@@ -17,8 +17,8 @@
 <meta property="og:description" content="LeetCode DFS 题目 78 子集 典型的回溯，找出所有可能情况。 classSolution { vector&lt;vector&lt;int&gt;&gt; res; public: vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt; &amp;nums) { res = vector&lt;vector&lt;int&gt;&gt;(1, vector&lt;int&gt;()); vector&lt;int&gt; curr; DFS(nums, 0, curr); return res; } void DFS(vector&lt;int&gt; &amp;nums, int idx, vector&lt;int&gt; &amp;curr) { for (int i = idx; i &lt; nums.size(); &#43;&#43;i) { curr.push_back(nums[i]); res.push_back(curr); DFS(nums, i &#43; 1, curr); curr.pop_back(); }" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/dfs/" />
-<meta property="article:published_time" content="2019-07-27T12:12:25&#43;10:00"/>
-<meta property="article:modified_time" content="2019-07-27T12:12:25&#43;10:00"/>
+<meta property="article:published_time" content="2019-07-27T12:12:25+10:00" />
+<meta property="article:modified_time" content="2019-07-27T12:12:25+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.56.3" />
   </head>
 
   <body class=" ">

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 31 Jul 2019 19:12:25 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Aug 2019 19:12:25 +1000</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LeetCode 堆</title>
+      <link>https://zintrulcre.vip/posts/leetcode/heap/</link>
+      <pubDate>Mon, 05 Aug 2019 19:12:25 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/heap/</guid>
+      <description>LeetCode DFS 题目 215 数组中的第 K 个最大元素 最典型的堆的应用。 classSolution { public: int findKthLargest(vector&amp;lt;int&amp;gt; &amp;amp;nums, int k) { priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;&amp;gt;&amp;gt; heap; for (auto &amp;amp;m:nums) { if (heap.size() &amp;lt; k || m &amp;gt; heap.top()) heap.push(m); if (heap.size() &amp;gt; k) heap.pop(); } return heap.top(); } }; 703 数据流中的第 K 大</description>
+    </item>
     
     <item>
       <title>LeetCode 双指针</title>
@@ -91,15 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-2/</guid>
       <description>LeetCode 动态规划 题目 3. 数组相关 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。 用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 动态规划（1）</title>
-      <link>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-1/</link>
-      <pubDate>Wed, 26 Jun 2019 18:08:10 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-1/</guid>
-      <description>LeetCode 动态规划 题目 1. 数字相关 263 丑数 判断一个数 num 是否是丑数。 通用的方法是自底向上求出大于等于 num 的第一个数来判断 num 是否是丑数。但这道题已经给出了数 n</description>
     </item>
     
   </channel>

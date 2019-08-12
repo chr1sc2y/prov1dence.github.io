@@ -17,8 +17,8 @@
 <meta property="og:description" content="Code Jam 2019 Round 1A Pylons (8pts, 23pts) 在m*n的网格里移动，每次移动后的位置不能与之前的位置在同一行/列/对角线上。 Solution: BackTracking 类似于八皇后问题，不过每次的限制条件只和上" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/code-jam/2019-round-1a/" />
-<meta property="article:published_time" content="2019-04-13T15:28:11&#43;10:00"/>
-<meta property="article:modified_time" content="2019-04-13T15:28:11&#43;10:00"/>
+<meta property="article:published_time" content="2019-04-13T15:28:11+10:00" />
+<meta property="article:modified_time" content="2019-04-13T15:28:11+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.56.3" />
   </head>
 
   <body class=" ">
@@ -122,8 +122,8 @@
 
 <ul>
 <li>时间复杂度：O(m^2 * n^2)</li>
-<li>空间复杂度：O(m * n)</li>
-</ul>
+
+<li><p>空间复杂度：O(m * n)</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#007f7f">// C++
 </span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
 </span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
@@ -145,49 +145,51 @@
 <span style="color:#fff;font-weight:bold">int</span> m, n;
 
 <span style="color:#fff;font-weight:bold">bool</span> BackTracking(<span style="color:#fff;font-weight:bold">int</span> t, <span style="color:#fff;font-weight:bold">int</span> i, <span style="color:#fff;font-weight:bold">int</span> j, vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; &amp;visited, vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; &amp;res) {
-    visited[i][j] = <span style="color:#fff;font-weight:bold">true</span>;
-    res[t] = {i, j};
-    <span style="color:#fff;font-weight:bold">if</span> (t + <span style="color:#ff0;font-weight:bold">1</span> == m * n)
-        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
-    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> x = <span style="color:#ff0;font-weight:bold">0</span>; x &lt; m; ++x) {
-        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> y = <span style="color:#ff0;font-weight:bold">0</span>; y &lt; n; ++y) {
-            <span style="color:#fff;font-weight:bold">int</span> r = (x + i) % m, c = (y + j) % n;
-            <span style="color:#fff;font-weight:bold">if</span> (!visited[r][c] &amp;&amp; r != i &amp;&amp; c != j &amp;&amp; r + c != i + j &amp;&amp; r - c != i - j &amp;&amp;
-                BackTracking(t + <span style="color:#ff0;font-weight:bold">1</span>, r, c, visited, res))
-                <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
-        }
+visited[i][j] = <span style="color:#fff;font-weight:bold">true</span>;
+res[t] = {i, j};
+<span style="color:#fff;font-weight:bold">if</span> (t + <span style="color:#ff0;font-weight:bold">1</span> == m * n)
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
+<span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> x = <span style="color:#ff0;font-weight:bold">0</span>; x &lt; m; ++x) {
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> y = <span style="color:#ff0;font-weight:bold">0</span>; y &lt; n; ++y) {
+        <span style="color:#fff;font-weight:bold">int</span> r = (x + i) % m, c = (y + j) % n;
+        <span style="color:#fff;font-weight:bold">if</span> (!visited[r][c] &amp;&amp; r != i &amp;&amp; c != j &amp;&amp; r + c != i + j &amp;&amp; r - c != i - j &amp;&amp;
+            BackTracking(t + <span style="color:#ff0;font-weight:bold">1</span>, r, c, visited, res))
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
     }
-    visited[i][j] = <span style="color:#fff;font-weight:bold">false</span>;
-    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+}
+visited[i][j] = <span style="color:#fff;font-weight:bold">false</span>;
+<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
 }
 
 <span style="color:#fff;font-weight:bold">int</span> main() {
-    <span style="color:#fff;font-weight:bold">int</span> total_test_case_number;
-    cin &gt;&gt; total_test_case_number;
-    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> case_number = <span style="color:#ff0;font-weight:bold">1</span>; case_number &lt;= total_test_case_number; ++case_number) {
-        <span style="color:#fff;font-weight:bold">bool</span> rev = <span style="color:#fff;font-weight:bold">false</span>;
-        cin &gt;&gt; m &gt;&gt; n;
-        <span style="color:#fff;font-weight:bold">if</span> (m &gt; n) {
-            rev = <span style="color:#fff;font-weight:bold">true</span>;
-            swap(n, m);
-        }
-        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; visited(m, vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;(n, <span style="color:#fff;font-weight:bold">false</span>));
-        vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; res(m * n, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;());
-        printf(<span style="color:#0ff;font-weight:bold">&#34;Case #%d: &#34;</span>, case_number);
-        <span style="color:#fff;font-weight:bold">if</span> (BackTracking(<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>, visited, res)) {
-            printf(<span style="color:#0ff;font-weight:bold">&#34;POSSIBLE</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
-            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; m * n; ++i)
-                <span style="color:#fff;font-weight:bold">if</span> (!rev)
-                    printf(<span style="color:#0ff;font-weight:bold">&#34;%d %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, res[i][<span style="color:#ff0;font-weight:bold">0</span>] + <span style="color:#ff0;font-weight:bold">1</span>, res[i][<span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>);
-                <span style="color:#fff;font-weight:bold">else</span>
-                    printf(<span style="color:#0ff;font-weight:bold">&#34;%d %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, res[i][<span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>, res[i][<span style="color:#ff0;font-weight:bold">0</span>] + <span style="color:#ff0;font-weight:bold">1</span>);
-        } <span style="color:#fff;font-weight:bold">else</span>
-            printf(<span style="color:#0ff;font-weight:bold">&#34;IMPOSSIBLE</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
+<span style="color:#fff;font-weight:bold">int</span> total_test_case_number;
+cin &gt;&gt; total_test_case_number;
+<span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> case_number = <span style="color:#ff0;font-weight:bold">1</span>; case_number &lt;= total_test_case_number; ++case_number) {
+    <span style="color:#fff;font-weight:bold">bool</span> rev = <span style="color:#fff;font-weight:bold">false</span>;
+    cin &gt;&gt; m &gt;&gt; n;
+    <span style="color:#fff;font-weight:bold">if</span> (m &gt; n) {
+        rev = <span style="color:#fff;font-weight:bold">true</span>;
+        swap(n, m);
     }
-
-    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+    vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; visited(m, vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;(n, <span style="color:#fff;font-weight:bold">false</span>));
+    vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; res(m * n, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;());
+    printf(<span style="color:#0ff;font-weight:bold">&#34;Case #%d: &#34;</span>, case_number);
+    <span style="color:#fff;font-weight:bold">if</span> (BackTracking(<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>, visited, res)) {
+        printf(<span style="color:#0ff;font-weight:bold">&#34;POSSIBLE</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; m * n; ++i)
+            <span style="color:#fff;font-weight:bold">if</span> (!rev)
+                printf(<span style="color:#0ff;font-weight:bold">&#34;%d %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, res[i][<span style="color:#ff0;font-weight:bold">0</span>] + <span style="color:#ff0;font-weight:bold">1</span>, res[i][<span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>);
+            <span style="color:#fff;font-weight:bold">else</span>
+                printf(<span style="color:#0ff;font-weight:bold">&#34;%d %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, res[i][<span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>, res[i][<span style="color:#ff0;font-weight:bold">0</span>] + <span style="color:#ff0;font-weight:bold">1</span>);
+    } <span style="color:#fff;font-weight:bold">else</span>
+        printf(<span style="color:#0ff;font-weight:bold">&#34;IMPOSSIBLE</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
 }
-</code></pre></div>
+
+<span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+</code></pre></div></li>
+</ul>
+
 <h2 id="alien-rhyme-10pts-27pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051635-0000000000104e05"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104e05">Alien Rhyme (10pts, 27pts)</a></h2>
 
 <p>找到后缀相同的一对单词，后缀的长度可以自己定义，其他单词的后缀不能与这一对相同，使得这样的单词对最多。</p>
@@ -203,8 +205,8 @@
 <li>m：最长的单词长度</li>
 <li>N：单词个数</li>
 </ul></li>
-<li>空间复杂度：O(N)</li>
-</ul>
+
+<li><p>空间复杂度：O(N)</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#007f7f">// C++
 </span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
 </span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
@@ -227,41 +229,43 @@
 
 
 <span style="color:#fff;font-weight:bold">int</span> main() {
-    <span style="color:#fff;font-weight:bold">int</span> total_test_case_number;
-    cin &gt;&gt; total_test_case_number;
-    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> case_number = <span style="color:#ff0;font-weight:bold">1</span>; case_number &lt;= total_test_case_number; ++case_number) {
-        <span style="color:#fff;font-weight:bold">int</span> N, sum = <span style="color:#ff0;font-weight:bold">0</span>, max_len = <span style="color:#ff0;font-weight:bold">0</span>;
-        cin &gt;&gt; N;
-        vector&lt;string&gt; words(N);
-        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> m = <span style="color:#ff0;font-weight:bold">0</span>; m &lt; N; ++m) {
-            cin &gt;&gt; words[m];
-            max_len = max(max_len, <span style="color:#fff;font-weight:bold">static_cast</span>&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(words[m].size()));
-            reverse(words[m].begin(), words[m].end());
-        }
-        unordered_map&lt;string, <span style="color:#fff;font-weight:bold">int</span>&gt; status;
-        vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt; visited(N, <span style="color:#fff;font-weight:bold">false</span>);
-        <span style="color:#fff;font-weight:bold">int</span> total = <span style="color:#ff0;font-weight:bold">0</span>;
-        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> len = max_len; len &gt; <span style="color:#ff0;font-weight:bold">0</span>; --len) {
-            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> m = <span style="color:#ff0;font-weight:bold">0</span>; m &lt; N; ++m) {
-                <span style="color:#fff;font-weight:bold">if</span> (visited[m] || words[m].size() &lt; len)
-                    <span style="color:#fff;font-weight:bold">continue</span>;
-                string str = words[m].substr(<span style="color:#ff0;font-weight:bold">0</span>, len);
-                <span style="color:#fff;font-weight:bold">if</span> (status.find(str) != status.end()) {
-                    <span style="color:#fff;font-weight:bold">if</span> (status[str] != -<span style="color:#ff0;font-weight:bold">1</span>) {
-                        sum += <span style="color:#ff0;font-weight:bold">2</span>;
-                        visited[status[str]] = <span style="color:#fff;font-weight:bold">true</span>, visited[m] = <span style="color:#fff;font-weight:bold">true</span>;
-                        status[str] = -<span style="color:#ff0;font-weight:bold">1</span>;
-                    }
-                } <span style="color:#fff;font-weight:bold">else</span>
-                    status[str] = m;
-            }
-        }
-        printf(<span style="color:#0ff;font-weight:bold">&#34;Case #%d: %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, case_number, sum);
+<span style="color:#fff;font-weight:bold">int</span> total_test_case_number;
+cin &gt;&gt; total_test_case_number;
+<span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> case_number = <span style="color:#ff0;font-weight:bold">1</span>; case_number &lt;= total_test_case_number; ++case_number) {
+    <span style="color:#fff;font-weight:bold">int</span> N, sum = <span style="color:#ff0;font-weight:bold">0</span>, max_len = <span style="color:#ff0;font-weight:bold">0</span>;
+    cin &gt;&gt; N;
+    vector&lt;string&gt; words(N);
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> m = <span style="color:#ff0;font-weight:bold">0</span>; m &lt; N; ++m) {
+        cin &gt;&gt; words[m];
+        max_len = max(max_len, <span style="color:#fff;font-weight:bold">static_cast</span>&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(words[m].size()));
+        reverse(words[m].begin(), words[m].end());
     }
-
-    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+    unordered_map&lt;string, <span style="color:#fff;font-weight:bold">int</span>&gt; status;
+    vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt; visited(N, <span style="color:#fff;font-weight:bold">false</span>);
+    <span style="color:#fff;font-weight:bold">int</span> total = <span style="color:#ff0;font-weight:bold">0</span>;
+    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> len = max_len; len &gt; <span style="color:#ff0;font-weight:bold">0</span>; --len) {
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> m = <span style="color:#ff0;font-weight:bold">0</span>; m &lt; N; ++m) {
+            <span style="color:#fff;font-weight:bold">if</span> (visited[m] || words[m].size() &lt; len)
+                <span style="color:#fff;font-weight:bold">continue</span>;
+            string str = words[m].substr(<span style="color:#ff0;font-weight:bold">0</span>, len);
+            <span style="color:#fff;font-weight:bold">if</span> (status.find(str) != status.end()) {
+                <span style="color:#fff;font-weight:bold">if</span> (status[str] != -<span style="color:#ff0;font-weight:bold">1</span>) {
+                    sum += <span style="color:#ff0;font-weight:bold">2</span>;
+                    visited[status[str]] = <span style="color:#fff;font-weight:bold">true</span>, visited[m] = <span style="color:#fff;font-weight:bold">true</span>;
+                    status[str] = -<span style="color:#ff0;font-weight:bold">1</span>;
+                }
+            } <span style="color:#fff;font-weight:bold">else</span>
+                status[str] = m;
+        }
+    }
+    printf(<span style="color:#0ff;font-weight:bold">&#34;Case #%d: %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, case_number, sum);
 }
-</code></pre></div>
+
+<span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+</code></pre></div></li>
+</ul>
+
 <h2 id="golf-gophers-11pts-21pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051635-0000000000104f1a"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104f1a">Golf Gophers (11pts, 21pts)</a></h2>
 
 <p>// TODO</p>
