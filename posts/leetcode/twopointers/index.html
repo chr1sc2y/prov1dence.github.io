@@ -157,6 +157,22 @@
     }
 };
 </code></pre></div>
+<h4 id="922-按奇偶排序数组-ii-https-leetcode-cn-com-problems-sort-array-by-parity-ii"><a href="https://leetcode-cn.com/problems/sort-array-by-parity-ii/">922 按奇偶排序数组 II</a></h4>
+
+<p>用两个下标 i 和 j 分别表示偶数位和奇数位的下标，如果偶数位下标对应的数不是偶数那么将其与奇数位下标对应的数不是奇数的数进行交换。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<span style="color:#fff;font-weight:bold">public</span>:
+    vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; sortArrayByParityII(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; A) {
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>, j = <span style="color:#ff0;font-weight:bold">1</span>; i &lt; A.size(); i += <span style="color:#ff0;font-weight:bold">2</span>)
+            <span style="color:#fff;font-weight:bold">if</span> (A[i] % <span style="color:#ff0;font-weight:bold">2</span> != <span style="color:#ff0;font-weight:bold">0</span>) {
+                <span style="color:#fff;font-weight:bold">while</span> (j &lt; A.size() &amp;&amp; A[j] % <span style="color:#ff0;font-weight:bold">2</span> != <span style="color:#ff0;font-weight:bold">0</span>)
+                    j += <span style="color:#ff0;font-weight:bold">2</span>;
+                swap(A[i], A[j]);
+            }
+        <span style="color:#fff;font-weight:bold">return</span> A;
+    }
+};
+</code></pre></div>
 <h4 id="11-盛最多水的容器-https-leetcode-cn-com-problems-container-with-most-water"><a href="https://leetcode-cn.com/problems/container-with-most-water/">11 盛最多水的容器</a></h4>
 
 <p>用两个指针分别表示数组的头和尾，每次将高度较低的元素的下标往中间移动，同时更新结果。</p>
