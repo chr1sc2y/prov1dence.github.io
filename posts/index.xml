@@ -22,15 +22,6 @@
     </item>
     
     <item>
-      <title>LeetCode 栈</title>
-      <link>https://zintrulcre.vip/posts/leetcode/stack/</link>
-      <pubDate>Mon, 05 Aug 2019 19:12:25 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/stack/</guid>
-      <description>LeetCode 栈 题目 739 每日温度 反向遍历数组，每次往后找大于当天温度的第一个数，但这样做会浪费时间做重复的遍历；如果某一天的温度 T[j] 大于当天的温度 T[i]，</description>
-    </item>
-    
-    <item>
       <title>LeetCode 双指针</title>
       <link>https://zintrulcre.vip/posts/leetcode/twopointers/</link>
       <pubDate>Wed, 31 Jul 2019 19:12:25 +1000</pubDate>
@@ -100,6 +91,15 @@
       
       <guid>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-3/</guid>
       <description>LeetCode 动态规划 题目 6. 字符串相关 712 两个字符串的最小ASCII删除和 给定两个字符串，计算使两个字符串相同所需要删除的字符的ASCII值的和的最小值。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 动态规划（2）</title>
+      <link>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-2/</link>
+      <pubDate>Fri, 28 Jun 2019 10:09:13 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-2/</guid>
+      <description>LeetCode 动态规划 题目 3. 数组相关 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。 用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之</description>
     </item>
     
   </channel>
