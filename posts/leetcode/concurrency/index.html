@@ -17,8 +17,8 @@
 <meta property="og:description" content="LeetCode 并发 题目 1114 按序打印 C&#43;&#43; mutex classFoo { mutex lock1, lock2; public: Foo() { lock1.lock(); lock2.lock(); } void first(function&lt;void()&gt; printFirst) { printFirst(); lock1.unlock(); } void second(function&lt;void()&gt; printSecond) { lock1.lock(); printSecond(); lock1.unlock(); lock2.unlock(); } void third(function&lt;void()&gt; printThird) { lock2.lock(); printThird(); lock2.unlock(); } }; C&#43;&#43; condition_variable classFoo { int i; mutex mut; condition_variable con_var1, con_var2; public: Foo() : i(1) { } void first(function&lt;void()&gt; printFirst) { unique_lock&lt;mutex&gt;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/concurrency/" />
-<meta property="article:published_time" content="2019-07-22T10:10:25+10:00" />
-<meta property="article:modified_time" content="2019-07-22T10:10:25+10:00" />
+<meta property="article:published_time" content="2019-07-22T10:10:25&#43;10:00"/>
+<meta property="article:modified_time" content="2019-07-22T10:10:25&#43;10:00"/>
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.56.3" />
+    <meta name="generator" content="Hugo 0.55.2" />
   </head>
 
   <body class=" ">

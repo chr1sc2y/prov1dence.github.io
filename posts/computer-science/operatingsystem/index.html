@@ -150,22 +150,37 @@
 <li><p>fork 函数</p>
 
 <ul>
-<li>fork 函数是 Unix 系统下以自身进程创建子进程的系统调用方法</li>
-<li>调用一次 fork 函数会有两个返回值，子进程的返回值是 0，父进程的返回值是子进程的 pid 且大于 0</li>
-</ul></li>
-
-<li><p>进程、线程状态查看命令：top/strace/gstack&hellip;</p></li>
-</ol>
-
-<h3 id="多线程相关api">多线程相关api</h3>
-
-<ol>
-<li>Linux
+<li>fork 函数是 Unix 系统下以自身进程创建子进程的系统调用方法，用于拷贝一个与父进程完全相同的子进程</li>
+<li>fork 的实现有两步
 
 <ul>
-<li>POSIX 标准</li>
-<li><code>#include &lt;pthread.h&gt;</code></li>
+<li>复制进程资源，包括进程 pcb，代码段和数据段，用户栈，内核栈，虚拟内存池，页表</li>
+<li>执行进程</li>
 </ul></li>
+<li>函数原型 pid_t fork();
+
+<ul>
+<li>该进程为父进程时，返回子进程的pid</li>
+<li>该进程为子进程时，返回 0</li>
+<li>fork 执行失败时，返回 -1</li>
+</ul></li>
+<li>测试
+```c++
+int pid = fork();
+if (pid == -1)
+    return -1;
+if (pid == 0)
+    printf(&ldquo;This is father process with pid %d\n&rdquo;, getpid()      );
+else
+    printf(&ldquo;This is child process with pid %d\n&rdquo;, getpid())     ;</li>
+</ul>
+
+<p>/*
+output
+This is child process with pid 87469
+This is father process with pid 87470
+*/
+```</p></li>
 </ol>
 
 <h3 id="锁">锁</h3>
@@ -278,10 +293,111 @@
 <li>虚拟内存是为了让物理内存扩充成为更大的逻辑内存，从而让程序获得更多的可用内存</li>
 </ul>
 
-<ol>
-<li>内存状态
-查看命令：free/memstat</li>
-</ol>
+<h2 id="缓存">缓存</h2>
+
+<ul>
+<li><p>命中率：当某个请求能够通过访问缓存而得到响应时，称为缓存命中；缓存命中率越高，缓存利用率越高</p></li>
+
+<li><p>最大空间：缓存通常位于内存中，内存的空间相对磁盘较小，因此当缓存存放的数据量超过最大空间时，需要淘汰部分数据来存放新到达的数据</p></li>
+</ul>
+
+<h3 id="淘汰策略">淘汰策略</h3>
+
+<ul>
+<li><p>FIFO（First In First Out）：先进先出策略</p>
+
+<ul>
+<li>如果需要经常访问最新的数据，可以使用 FIFO，使得最早到达的数据被淘汰</li>
+</ul></li>
+
+<li><p>LRU（Least Recently Used）：最近最久未使用策略</p>
+
+<ul>
+<li>优先淘汰最久未使用的数据，也就是上次被访问时间距离现在最久的数据</li>
+<li>保证内存中的数据都是热点数据，也就是经常被访问的数据，从而保证缓存命中率</li>
+</ul></li>
+
+<li><p>LFU（Least Frequently Used）：最不经常使用策略</p>
+
+<ul>
+<li>优先淘汰一段时间内使用次数最少的数据</li>
+</ul></li>
+</ul>
+
+<h3 id="内容分发网络-cdn-content-distribution-network">内容分发网络 CDN Content distribution network</h3>
+
+<ul>
+<li><p>一种互连的网络系统，利用更靠近用户的服务器将静态资源（HTML, CSS, JavaScript）分发给用户</p></li>
+
+<li><p>优点</p>
+
+<ul>
+<li>更快地将数据分发给用户</li>
+<li>通过部署多台服务器，从而提高系统整体的带宽性能</li>
+<li>多台服务器可以看成是一种冗余机制，从而具有高可用性</li>
+</ul></li>
+</ul>
+
+<h3 id="缓存问题">缓存问题</h3>
+
+<ul>
+<li><p>缓存穿透</p>
+
+<ul>
+<li>对某个一定不存在的数据进行请求，该请求将会穿透缓存到达数据库</li>
+<li>解决方案
+
+<ul>
+<li>对不存在的数据缓存一个空数据</li>
+<li>对这类请求进行过滤</li>
+</ul></li>
+</ul></li>
+
+<li><p>缓存雪崩</p>
+
+<ul>
+<li>在有缓存的系统中，系统非常依赖于缓存，缓存分担了很大一部分的数据请求；当由于数据没有被加载到缓存中，或者缓存数据在同一时间大面积失效，又或者缓存服务器宕机时，数据库会收到大量的请求，导致数据库崩溃</li>
+<li>解决方案
+
+<ul>
+<li>防止缓存在同一时间大面积过期：通过观察用户行为，合理设置缓存过期时间来实现</li>
+<li>防止缓存服务器宕机：使用分布式缓存；分布式缓存中每一个节点只缓存部分的数据，当某个节点宕机时可以保证其它节点的缓存仍然可用</li>
+<li>防止刚上线的系统还未将大量数据进行缓存：进行缓存预热，将相关的缓存数据直接加载到缓存系统</li>
+</ul></li>
+</ul></li>
+
+<li><p>缓存一致性</p>
+
+<ul>
+<li>要求数据更新的同时缓存数据也能够实时更新</li>
+<li>解决方案
+
+<ul>
+<li>在数据更新的同时立即更新缓存</li>
+<li>在读缓存之前先判断缓存是否是最新的，如果不是则先进行更新</li>
+</ul></li>
+</ul></li>
+
+<li><p>缓存无底洞</p>
+
+<ul>
+<li>为了满足业务要求添加大量的缓存节点，但性能不但没有好转反而出现了下降</li>
+<li>产生原因
+
+<ul>
+<li>缓存系统通常采用 hash 函数将 key 映射到对应的缓存节点，随着缓存节点数目的增加，key 分布到更多的节点上，导致客户端一次批量操作会涉及多次网络操作</li>
+<li>批量操作的耗时会随着节点数目的增加而不断增大</li>
+<li>网络连接数变多</li>
+</ul></li>
+<li>解决方案
+
+<ul>
+<li>优化批量数据操作命令</li>
+<li>减少网络通信次数</li>
+<li>降低接入成本，使用长连接/连接池/NIO</li>
+</ul></li>
+</ul></li>
+</ul>
 
 <h2 id="io">IO</h2>
 
@@ -320,91 +436,6 @@
 <ul>
 <li>非阻塞调用是指在调用结果返回之前，当前线程不会被挂起</li>
 </ul></li>
-</ol>
-
-<h3 id="linux-的-5-种-i-o-模型">Linux 的 5 种 I/O 模型</h3>
-
-<ul>
-<li>在 Linux下，网络 I/O 要经过两个阶段：
-
-<ol>
-<li>等待数据报文到达</li>
-<li>将数据从内核缓冲区拷贝到用户内存</li>
-</ol></li>
-<li>根据这两个阶段的不同形式，分为了不同的 I/O 模型</li>
-</ul>
-
-<ol>
-<li>阻塞 I/O 模型</li>
-</ol>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Computer-Science/Blocking%20IO.png" alt="Blocking I/O" /></p>
-
-<ul>
-<li>用户态调用 recvfrom，被阻塞</li>
-<li>内核态等待数据，拷贝数据到内核缓冲区，返回结果</li>
-<li>用户态解除阻塞状态</li>
-<li>特点：IO 执行的两个阶段都会被 block</li>
-</ul>
-
-<ol>
-<li>非阻塞 I/O 模型</li>
-</ol>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Computer-Science/Nonblocking%20IO.png" alt="Nonblocking I/O" /></p>
-
-<ul>
-<li>用户态不断调用 recvfrom</li>
-<li>如果内核态中的数据还没有准备好，那么立刻返回 error，且不会阻塞用且不会阻塞用户态；否则阻塞用户态，拷贝数据，并返回结果</li>
-<li>特点：用户态需要不断的发送 recvfrom 直到内核态数据准备好</li>
-</ul>
-
-<ol>
-<li>I/O 多路复用</li>
-</ol>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Computer-Science/IO%20Multiplexing.png" alt="I/O Multiplexing" /></p>
-
-<ul>
-<li>有 select/poll/epoll 等 I/O 复用机制</li>
-<li>机制被调用，用户态被阻塞，机制会同时阻塞多个文件描述符，当监测到某些文件描述符就绪时返回</li>
-<li>用户态调用 recvfrom，用户态被阻塞，直到数据拷贝结束</li>
-<li>特点：
-
-<ul>
-<li>机制可以同时处理多个连接</li>
-<li>当处理的连接数不多时，使用 I/O Multiplexing 不一定比使用多线程阻塞 I/O 更高效</li>
-</ul></li>
-</ul>
-
-<ol>
-<li>信号驱动 I/O</li>
-</ol>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Computer-Science/Signal-Driven%20IO.png" alt="Signal-Driven IO.png" /></p>
-
-<ul>
-<li>用户态向内核发送信号并立刻返回，</li>
-<li>当内核态中的数据准备好之后，向用户态发送信号</li>
-<li>用户态调用 recvfrom，用户态被阻塞，直到数据拷贝结束</li>
-<li>特点：只有文件拷贝阶段是阻塞的</li>
-</ul>
-
-<ol>
-<li>异步 I/O</li>
-</ol>
-
-<p><img src="https://raw.githubusercontent.com/ZintrulCre/zintrulcre.github.io/master/data/Computer-Science/Asynchronous%20IO.png" alt="Asynchronous IO" /></p>
-
-<ul>
-<li>用户态调用 aio_read，并立刻返回</li>
-<li>内核态等待数据，拷贝数据到内核缓冲区</li>
-<li>内核态给用户态发送一个 signal，通知用户数据已经就绪</li>
-<li>特点：两阶段均不阻塞</li>
-</ul>
-
-<ol>
-<li>IO 状态查看命令：iostat/df/du    </li>
 </ol>
 
 <h2 id="文件">文件</h2>

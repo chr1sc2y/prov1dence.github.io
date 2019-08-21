@@ -118,8 +118,7 @@
 <li><p>const 和 #define</p>
 
 <ul>
-<li>const 用于定义常量，有数据类型，编译器会对进行类型检查；#define 宏不做类型检查，只进行简单替换
-<br /></li>
+<li>const 用于定义常量，有数据类型，编译器会对进行类型检查；#define 宏不做类型检查，只进行简单替换</li>
 </ul></li>
 
 <li><p>const 和指针</p>
@@ -127,7 +126,7 @@
 <ul>
 <li>const char *p: p is a pointer to const char</li>
 <li>char const *p: p is a pointer to char const（同上）</li>
-<li>char * const p: p is a const pointer to char</li>
+<li>char *const p: p is a const pointer to char</li>
 </ul>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">int</span> main() {
 <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> *p1 = <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">char</span>(<span style="color:#0ff;font-weight:bold">&#39;a&#39;</span>);
@@ -179,7 +178,7 @@
 
 <ul>
 <li>修饰全局变量时，该静态全局变量的作用域只在当前源文件</li>
-<li>修饰函数时，该静态函数的作用域只在当前源文件</li>
+<li>修饰全局函数时，该静态全局函数的作用域只在当前源文件</li>
 <li>修饰局部变量时，该静态局部变量的作用域只在当前函数中；该变量只在第一次执行到声明时被初始化，其内存被分配在全局数据区，当程序结束时才被回收</li>
 </ul></li>
 
@@ -199,6 +198,7 @@
 <ul>
 <li>由编译器分配和释放，存储函数参数，局部变量等</li>
 <li>当系统剩余空间小于申请空间时，抛出异常提示栈溢出</li>
+<li>在一个进程中，位于用户虚拟地址空间顶部的是用户栈，编译器用它来实现函数的调用</li>
 </ul></li>
 
 <li><p>堆区 heap</p>
@@ -206,9 +206,29 @@
 <ul>
 <li>由程序分配和释放，例如使用 malloc, new</li>
 <li>若程序不进行释放，则在程序结束时被回收</li>
-<li>系统维护一个记录空闲内存地址的链表；申请内存时，系统遍历该链表，寻找第一个空间大于所申请内存的堆结点，将该结点从链表中删除，并分配此节点的空间；这块内存的首地址会记录本次分配的大小，执行 delete 语句的时候根据记录释放内存空间；因为堆结点空间一般会大于申请的空间，系统会将多余的空间放入空闲的链表中
+<li>系统维护一个记录空闲内存地址的链表；申请内存时，系统遍历该链表，寻找第一个空间大于所申请内存的堆结点，将该结点从链表中删除，并分配此节点的空间；这块内存的首地址会记录本次分配的大小，执行 delete 语句的时候根据记录释放内存空间；因为堆结点空间一般会大于申请的空间，系统会将多余的空间放入空闲的链表中</li>
+</ul></li>
 
-<br /></li>
+<li><p>自由存储区，存储由 malloc 等分配的内存，用 free 来回收</p></li>
+
+<li><p>全局/静态存储区，存储全局变量和静态变量</p>
+
+<ul>
+<li>在 C 语言中，全局变量分为初始化的和未初始化的，未被初始化的对象存储区可以通过 void* 来访问</li>
+<li>在 C++ 中它们共同占用同一块内存区域</li>
+</ul></li>
+
+<li><p>常量存储区，存储常量</p></li>
+</ol>
+
+<h2 id="指针">指针</h2>
+
+<ol>
+<li>void *
+
+<ul>
+<li>void * 是一个指针，它指向了内存里的某个区域，但是它所指向的内存区域没有任何类型信息或辅助信息，所以它可以随意地解读其指向的内存区域内的数据，它可以按 int 类型来解读，也可以按照 double 类型来解读；在使用前需要告知系统从其指向的内存区域取出多少个字节</li>
+<li>不能对void * 进行解引用操作</li>
 </ul></li>
 </ol>
 

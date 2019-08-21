@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="设计模式"/>
+<meta name="twitter:description" content="设计模式 创建型 单例模式 Singleton 目的：保证一个类只有一个实例，并提供该实例的全局访问 特点 私有构造函数用于保证不能通过构造函数来创建新的对象实例 公有静"/>
+
+    <meta property="og:title" content="设计模式" />
+<meta property="og:description" content="设计模式 创建型 单例模式 Singleton 目的：保证一个类只有一个实例，并提供该实例的全局访问 特点 私有构造函数用于保证不能通过构造函数来创建新的对象实例 公有静" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/computer-science/design-pattern/" />
+<meta property="article:published_time" content="2015-07-05T08:57:52&#43;10:00"/>
+<meta property="article:modified_time" content="2015-07-05T08:57:52&#43;10:00"/>
+
+
+    
+      <base href="https://zintrulcre.vip/posts/computer-science/design-pattern/">
+    
+    <title>
+  设计模式 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/computer-science/design-pattern/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.55.2" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">设计模式</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2015-07-05T08:57:52&#43;10:00'>
+                July 5, 2015
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/computer-science/">Computer Science</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        
+
+<h1 id="设计模式">设计模式</h1>
+
+<h2 id="创建型">创建型</h2>
+
+<h3 id="单例模式-singleton">单例模式 Singleton</h3>
+
+<ul>
+<li>目的：保证一个类只有一个实例，并提供该实例的全局访问</li>
+<li>特点
+
+<ul>
+<li>私有构造函数用于保证不能通过构造函数来创建新的对象实例</li>
+<li>公有静态函数用于返回唯一的私有静态变量</li>
+<li>私有静态变量</li>
+</ul></li>
+</ul>
+
+<h3 id="简单工厂-simple-factory">简单工厂 Simple Factory</h3>
+
+<ul>
+<li>目的：在创建一个对象时不向客户暴露内部细节，并提供一个创建对象的通用接口</li>
+<li>特点
+
+<ul>
+<li>把实例化的操作单独放到一个简单工厂类中，让简单工厂类来决定应该用哪个具体子类来实例化</li>
+<li>把客户类和具体子类的实现解耦，客户类不再需要知道有哪些子类以及应当实例化哪个子类</li>
+<li>客户类有多个，增加子类时，客户类不需要进行修改</li>
+</ul></li>
+</ul>
+
+<h3 id="工厂方法-factory-method">工厂方法 Factory Method</h3>
+
+<ul>
+<li>目的：定义一个创建对象的接口，由子类决定要实例化哪个类</li>
+<li>特点
+
+<ul>
+<li>把实例化操作推迟到子类</li>
+<li>在简单工厂中，由简单工厂类创建对象；在工厂方法中，由子类创建对象</li>
+</ul></li>
+</ul>
+
+<h3 id="抽象工厂-abstract-factory">抽象工厂 Abstract Factory</h3>
+
+<ul>
+<li>目的：提供一个接口，用于创建相关的对象家族</li>
+<li>特点
+
+<ul>
+<li>抽象工厂创建的是对象家族，也就是很多对象</li>
+<li>这些对象是相关的，也就是说必须一起创建</li>
+<li>工厂方法模式只用于创建单个对象</li>
+<li>抽象工厂用到了工厂方法来创建单一对象</li>
+<li>Client 通过 AbstractFactory 同时调用两个方法来创建出两个对象（对象家族），这两个对象有很大的相关性，Client 需要同时创建出这两个对象</li>
+<li>抽象工厂使用了组合，Cilent 组合了 AbstractFactory，而工厂方法只使用了继承</li>
+</ul></li>
+</ul>
+
+<h3 id="生成器-builder">生成器 Builder</h3>
+
+<ul>
+<li>目的：封装一个对象的构造过程，并允许按步骤构造</li>
+</ul>
+
+<h3 id="原型-prototype">原型 Prototype</h3>
+
+<ul>
+<li>目的：使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象</li>
+</ul>
+
+<h2 id="行为型">行为型</h2>
+
+<h3 id="责任链-chain-of-responsibility">责任链 Chain of Responsibility</h3>
+
+<ul>
+<li>目的：使多个对象都有机会处理请求，使请求的发送者和接收者解耦</li>
+<li>特点
+
+<ul>
+<li>将对象连成一条链，沿着链发送请求，直到有一个对象处理为止</li>
+</ul></li>
+</ul>
+
+<h3 id="命令-command">命令 Command</h3>
+
+<ul>
+<li>目的：将命令封装成对象</li>
+<li>特点
+
+<ul>
+<li>使用命令来参数化其它对象</li>
+<li>将命令放入队列中进行排队</li>
+<li>将命令的操作记录到日志中</li>
+<li>支持可撤销的操作</li>
+</ul></li>
+</ul>
+
+<h3 id="解释器-interpreter">解释器 Interpreter</h3>
+
+<ul>
+<li>目的：为语言创建解释器</li>
+<li>特点
+
+<ul>
+<li>通常由语言的语法和语法分析来定义</li>
+</ul></li>
+</ul>
+
+<h3 id="迭代器-iterator">迭代器 Iterator</h3>
+
+<ul>
+<li>目的：提供一种顺序访问聚合对象元素的方法，并且不暴露聚合对象的内部表示</li>
+<li>特点</li>
+</ul>
+
+<h3 id="中介者-mediator">中介者 Mediator</h3>
+
+<ul>
+<li>目的：集中相关对象之间复杂的沟通和控制方式</li>
+</ul>
+
+<h3 id="备忘录-memento">备忘录 Memento</h3>
+
+<ul>
+<li>目的：在不违反封装的情况下获得对象的内部状态，从而在需要时可以将对象恢复到最初状态</li>
+</ul>
+
+<h3 id="观察者-observer">观察者 Observer</h3>
+
+<ul>
+<li>目的：定义对象之间的一对多依赖，当一个对象状态改变时，它的所有依赖都会收到通知并且自动更新状态</li>
+</ul>
+
+<h3 id="状态-state">状态 State</h3>
+
+<ul>
+<li>目的：允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类</li>
+</ul>
+
+<h3 id="策略-strategy">策略 Strategy</h3>
+
+<ul>
+<li>目的：定义一系列算法，封装每个算法，并使它们可以互换</li>
+<li>特点
+
+<ul>
+<li>让算法独立于使用它的客户端</li>
+</ul></li>
+</ul>
+
+<h3 id="模板方法-template-method">模板方法 Template Method</h3>
+
+<ul>
+<li>目的：定义算法框架，并将一些步骤的实现延迟到子类</li>
+<li>特点
+
+<ul>
+<li>通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构</li>
+</ul></li>
+</ul>
+
+<h3 id="访问者-visitor">访问者 Visitor</h3>
+
+<ul>
+<li>目的：为一个对象结构（比如组合结构）增加新能力</li>
+</ul>
+
+<h3 id="空对象-null">空对象 Null</h3>
+
+<ul>
+<li>目的：用什么都不做的空对象来代替 NULL</li>
+<li>特点
+
+<ul>
+<li>一个方法返回 NULL，意味着方法的调用端需要去检查返回值是否是 NULL，这么做会导致非常多的冗余的检查代码</li>
+<li>如果某一个调用端忘记了做这个检查返回值，而直接使用返回的对象，有可能抛出空指针异常</li>
+</ul></li>
+</ul>
+
+<h2 id="结构型">结构型</h2>
+
+<h3 id="适配器-adapter">适配器 Adapter</h3>
+
+<ul>
+<li>目的：把一个类接口转换成另一个用户需要的接口</li>
+</ul>
+
+<h3 id="桥接-bridge">桥接 Bridge</h3>
+
+<ul>
+<li>目的：将抽象与实现分离开来，使它们可以独立变化</li>
+</ul>
+
+<h3 id="组合-composite">组合 Composite</h3>
+
+<ul>
+<li>目的：将对象组合成树形结构来表示整体/部分的层次关系，允许用户以相同的方式处理单独对象和组合对象</li>
+<li>特点
+
+<ul>
+<li>组合对象拥有一个或者多个组件对象，因此组合对象的操作可以委托给组件对象去处理，而组件对象可以是另一个组合对象或者叶子对象</li>
+</ul></li>
+</ul>
+
+<h3 id="装饰-decorator">装饰 Decorator</h3>
+
+<ul>
+<li>目的：为对象动态添加功能</li>
+</ul>
+
+<h3 id="外观-facade">外观 Facade</h3>
+
+<ul>
+<li>目的：提供一个统一的接口，用来访问子系统中的一群接口，从而让子系统更容易使用</li>
+</ul>
+
+<h3 id="享元-flyweight">享元 Flyweight</h3>
+
+<ul>
+<li>目的：利用共享的方式来支持大量细粒度的对象，这些对象一部分内部状态是相同的</li>
+</ul>
+
+<h3 id="代理-proxy">代理 Proxy</h3>
+
+<ul>
+<li>目的：控制对其它对象的访问</li>
+</ul>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>
