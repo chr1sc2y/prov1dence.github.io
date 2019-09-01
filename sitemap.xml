@@ -3,20 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zintrulcre.vip/posts/leetcode/heap/</loc>
-    <lastmod>2019-08-05T19:12:25+10:00</lastmod>
+    <loc>https://zintrulcre.vip/posts/leetcode/tree-3/</loc>
+    <lastmod>2019-08-24T19:12:25+10:00</lastmod>
   </url>
   
   <url>
     <loc>https://zintrulcre.vip/posts/</loc>
-    <lastmod>2019-08-05T19:12:25+10:00</lastmod>
+    <lastmod>2019-08-24T19:12:25+10:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zintrulcre.vip/</loc>
-    <lastmod>2019-08-05T19:12:25+10:00</lastmod>
+    <lastmod>2019-08-24T19:12:25+10:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/posts/leetcode/heap/</loc>
+    <lastmod>2019-08-05T19:12:25+10:00</lastmod>
   </url>
   
   <url>
@@ -162,6 +167,16 @@
   <url>
     <loc>https://zintrulcre.vip/posts/leetcode-archiver/leetcode-archiver1/</loc>
     <lastmod>2018-12-04T11:25:15+11:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/posts/computer-science/network-layer/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/posts/computer-science/network/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
