@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>LeetCode 排序</title>
+      <link>https://zintrulcre.vip/posts/leetcode/sort/</link>
+      <pubDate>Sat, 17 Aug 2019 19:12:25 +1000</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/leetcode/sort/</guid>
+      <description>LeetCode 堆 题目 56 合并区间 按照间隔的起始进行排序，判断下一个间隔的起始是否大于前一个间隔的末尾，如果大于的话就把之前的间隔加入结果数组，否则继续扩展</description>
+    </item>
+    
+    <item>
       <title>LeetCode 堆</title>
       <link>https://zintrulcre.vip/posts/leetcode/heap/</link>
       <pubDate>Mon, 05 Aug 2019 19:12:25 +1000</pubDate>
@@ -91,15 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/leetcode/linkedlist-1/</guid>
       <description>LeetCode 链表（1） 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。 依次按位进行相加。 classSolution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0;</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 动态规划（3）</title>
-      <link>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-3/</link>
-      <pubDate>Mon, 01 Jul 2019 18:22:45 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/dynamicprogramming-3/</guid>
-      <description>LeetCode 动态规划 题目 6. 字符串相关 712 两个字符串的最小ASCII删除和 给定两个字符串，计算使两个字符串相同所需要删除的字符的ASCII值的和的最小值。</description>
     </item>
     
   </channel>
