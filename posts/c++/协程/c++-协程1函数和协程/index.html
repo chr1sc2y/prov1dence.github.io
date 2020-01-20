@@ -155,14 +155,47 @@
 <p>协程的调用和普通函数的 call 操作类似，调用方会给其分配一个活动栈帧，将参数和返回地址入栈，并将执行权交给协程，而协程会先在堆上分配一个<strong>执行栈帧</strong>，并将参数复制到<strong>执行栈帧</strong>上，以便后续能够正确地删除这些参数。</p>
 <p>协程的 return 操作和普通函数的略有不同，当协程执行 return 操作时，他会将返回值存储在另一个地址，然后删除所有局部变量，并将执行权转交给调用方，</p>
 <h2 id="3-函数和协程的执行过程">3. 函数和协程的执行过程</h2>
-<p>假设 func() 是一个函数，他在函数体内调用了协程 co_func(int x)，那么编译器会在调用栈上创建新的活动栈帧，将参数和返回地址入栈，并将 ESP 移动到新的活动栈帧的栈顶位置（如图 1），接下来协程管理器会在堆上申请一块新的区域作为协程的<strong>执行栈帧</strong>，此时编译器会将 EBP 指向<strong>执行栈帧</strong>的顶部（如图 2）。</p>
-<p><img src="https://zintrulcre.vip/images/C++/1.png" alt="1"></p>
-<p><img src="https://zintrulcre.vip/images/C++/2.png" alt="2"></p>
-<p>如果在 co_func 执行的某一时刻触发了 suspend，那么<strong>执行栈帧</strong>中的数据将被保存到<strong>数据栈帧</strong>中，且改协程会返回一些返回值给调用方，这些返回值中通常含有 suspend 的位置，以及协程暂挂的句柄，这个句柄可以在接下来使用 resume 的时候恢复协程（如图3）。</p>
-<p><img src="https://zintrulcre.vip/images/C++/3.png" alt="3"></p>
-<p>现在因为某些原因触发了协程的 resume，恢复协程的调用方会调用 void resume (handle) 来恢复这个协程，此时编译器会再次创建新的活动栈帧用来记录参数和返回地址，同时激活<strong>执行栈帧</strong>，<strong>执行栈帧</strong>从<strong>数据栈帧</strong>读取数据，恢复协程（如图4）。</p>
-<p><img src="https://zintrulcre.vip/images/C++/4.png" alt="4"></p>
-
+<p>假设 func() 是一个函数，他在函数体内调用了协程 co_func(int x)，那么编译器会在调用栈上创建新的活动栈帧，将参数和返回地址入栈，并将 ESP 移动到新的活动栈帧的栈顶位置，如下所示。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Stack                       Register                Heap (Coroutine Manager)
+                            +----+
++------------+  &lt;----------  ESP
+func()                      +----+
++------------+
+...
+</code></pre></div><p>接下来协程管理器会在堆上申请一块新的区域作为协程的<strong>执行栈帧</strong>，此时编译器会将 EBP 指向<strong>执行栈帧</strong>的顶部（如下所示）。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Stack                       Register                Heap (Coroutine Manager)
+                            
++------------+  &lt;-------                            +------------+
+co_func()              |                  -------&gt;   co_func()
+x = 68                 |                  |          x = 68
+ret = func() + 0x789   |    +----+        |         +------------+
++------------+         ----  ESP          |
+func()                      +----+        |
++------------+               EBP  --------|
+...                         +----+
+</code></pre></div><p>如果在 co_func 执行的某一时刻触发了 suspend，那么<strong>执行栈帧</strong>中的数据将被保存到<strong>数据栈帧</strong>中，且改协程会返回一些返回值给调用方，这些返回值中通常含有 suspend 的位置，以及协程暂挂的句柄，这个句柄可以在接下来使用 resume 的时候恢复协程，如下所示。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Stack                       Register                Heap (Coroutine Manager)
+                            +----+        -------&gt;  +------------+
++------------+  &lt;----------  ESP          |          co_func()
+func()                      +----+        |          x = 68
++------------+               EBP          |          resume point = co_func() + 16
+handle  ---------------     +----+        |
+...                   |                   |
+                      |                   |
+                      ---------------------
+</code></pre></div><p>现在因为某些原因触发了协程的 resume，恢复协程的调用方会调用 void resume (handle) 来恢复这个协程，此时编译器会再次创建新的活动栈帧用来记录参数和返回地址，同时激活<strong>执行栈帧</strong>，<strong>执行栈帧</strong>从<strong>数据栈帧</strong>读取数据，恢复协程，如下所示。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Stack                       Register                Heap (Coroutine Manager)
+                            
++------------+  &lt;-------                            +------------+
+co_func()              |                  -------&gt;   co_func()
+x = 68                 |                  |          x = 68
+ret = func() + 0x789   |    +----+        |         +------------+
++------------+         ----  ESP          |
+func()                      +----+        |
++------------+               EBP  --------|
+handle                      +----+
+...                         
+</code></pre></div>
       </div>
 
       <footer>
