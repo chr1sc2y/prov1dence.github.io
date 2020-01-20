@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43; 协程（1）：函数和协程"/>
+<meta name="twitter:description" content="C&#43;&#43; 协程（1）：函数和协程 这篇文章的目的是探究 C&#43;&#43; 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。 1. 栈帧和函数 栈帧是一个函数执行"/>
+
+    <meta property="og:title" content="C&#43;&#43; 协程（1）：函数和协程" />
+<meta property="og:description" content="C&#43;&#43; 协程（1）：函数和协程 这篇文章的目的是探究 C&#43;&#43; 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。 1. 栈帧和函数 栈帧是一个函数执行" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/c&#43;&#43;/%E5%8D%8F%E7%A8%8B/c&#43;&#43;-%E5%8D%8F%E7%A8%8B1%E5%87%BD%E6%95%B0%E5%92%8C%E5%8D%8F%E7%A8%8B/" />
+<meta property="article:published_time" content="2020-01-20T20:15:05+08:00" />
+<meta property="article:modified_time" content="2020-01-20T20:15:05+08:00" />
+
+
+    
+      <base href="https://zintrulcre.vip/posts/c&#43;&#43;/%E5%8D%8F%E7%A8%8B/c&#43;&#43;-%E5%8D%8F%E7%A8%8B1%E5%87%BD%E6%95%B0%E5%92%8C%E5%8D%8F%E7%A8%8B/">
+    
+    <title>
+  C&#43;&#43; 协程（1）：函数和协程 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/c&#43;&#43;/%E5%8D%8F%E7%A8%8B/c&#43;&#43;-%E5%8D%8F%E7%A8%8B1%E5%87%BD%E6%95%B0%E5%92%8C%E5%8D%8F%E7%A8%8B/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.62.2" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">C&#43;&#43; 协程（1）：函数和协程</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-01-20T20:15:05&#43;08:00'>
+                January 20, 2020
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/c&#43;&#43;/">C&#43;&#43;</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        <h1 id="c-协程1函数和协程">C++ 协程（1）：函数和协程</h1>
+<p>这篇文章的目的是探究 C++ 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。</p>
+<h2 id="1-栈帧和函数">1. 栈帧和函数</h2>
+<p>栈帧是一个函数执行的环境，包括函数参数、函数返回地址、局部变量等信息。操作系统每次调用一个函数，都会为其分配一个新的栈帧，相关的概念有：</p>
+<ul>
+<li>ESP：栈指针寄存器（Extended Stack Pointer），其内存中存放一个始终指向系统栈最顶部栈帧栈顶的指针</li>
+<li>EBP：基址指针寄存器（Extended Base Pointer），其内存中存放一个始终指向系统最顶部栈帧栈底的指针</li>
+<li>函数栈帧：ESP和EBP之间的内存空间为当前栈帧，EBP标识了当前栈帧的底部，ESP标识了当前栈帧的顶部</li>
+</ul>
+<p>对于普通的函数来说，一般我们可以对其进行两种操作：call（调用）和 return（返回）。为了方便对比，此处不讨论 throw exception 的情况。在运行一个 C++ 程序时，编译器会先执行 C++ runtime，然后会调用 main 函数，再由 main 函数调用其他的函数。</p>
+<p>call 操作一般包含以下几个步骤：</p>
+<ol>
+<li>参数入栈：参数从右向左依次入栈</li>
+<li>返回地址入栈：将当前代码区的下一条待执行的指令入栈，以便在函数 return 之后执行</li>
+<li>代码区跳转：处理器跳转到被调函数的入口</li>
+<li>栈帧调整，包括：
+<ol>
+<li>保存当前栈帧状态值，EBP 入栈</li>
+<li>从当前栈帧切换到新的栈帧，更新 EBP，将 EBP 的值设置为 ESP 的值</li>
+<li>给新的栈帧分配内存空间，更新 ESP，将 ESP 的值减去所需空间的大小</li>
+</ol>
+</li>
+</ol>
+<p>当一个函数通过 return 语句返回时，执行的步骤与调用时相反：</p>
+<h2 id="2-协程">2. 协程</h2>
+<p>协程由程序所控制，即在用户态执行，而不是像线程一样由操作系统内核管理，使用协程时，不需要如线程一般频繁地进行上下文切换，性能能够得到很大的提升，因此协程的开销远远小于线程的开销。一般来说协程有三种特性：</p>
+<ol>
+<li>suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，但是保留当前栈帧。和函数的 return 类似，协程的 suspend 只能由协程自身发起</li>
+<li>resume 恢复：继续执行已经 suspend 的协程，重新激活协程的栈帧</li>
+<li>destroy 销毁：销毁协程的栈帧和其对应的内存</li>
+</ol>
+<p>可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是<strong>执行栈帧</strong>，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是<strong>数据栈帧</strong>，这部分即使在协程 suspend 的时候依然存在。</p>
+<h3 id="21-suspend">2.1 Suspend</h3>
+<p>协程通过某些特定的语句来执行 suspend 操作，在 C++ Coroutine TS 中有 co_await 和 co_yield。在执行 suspend 操作的时候，我们应该确保两点：</p>
+<ol>
+<li>将当前<strong>执行栈帧</strong>中的数据保存到<strong>数据栈帧</strong>中</li>
+<li>将协程 suspend 的位置写入<strong>数据栈帧</strong>中，以便后续的 resume 操作知道从哪里继续，或让 destroy 操作知道销毁哪一部分</li>
+</ol>
+<p>接下来，协程可以将执行权转交给调用方，而<strong>执行栈帧</strong>将被释放。</p>
+<h3 id="22-resume">2.2. Resume</h3>
+<p>我们可以使用 resume 操作来恢复一个已经 suspend 的协程，和函数的 call 类似，resume 操作将会分配一个新的<strong>执行栈帧</strong>来存储已经保存在<strong>数据栈帧</strong>中的数据，以及调用方的返回地址等，之后协程将加载之前 suspend 的位置并继续执行。</p>
+<h3 id="23-destroy">2.3 Destroy</h3>
+<p>Destroy 操作只能在已经 suspend 的协程上执行，和 resume 类似，他也会先分配<strong>执行栈帧</strong>，将调用方的返回地址存入其中，但它并不会继续执行 suspend 的位置之后的函数体，而是执行当前作用域内所有局部变量的析构函数，并释放这些内存。</p>
+<h3 id="24-call-和-return">2.4 Call 和 Return</h3>
+<p>协程的调用和普通函数的 call 操作类似，调用方会给其分配一个活动栈帧，将参数和返回地址入栈，并将执行权交给协程，而协程会先在堆上分配一个<strong>执行栈帧</strong>，并将参数复制到<strong>执行栈帧</strong>上，以便后续能够正确地删除这些参数。</p>
+<p>协程的 return 操作和普通函数的略有不同，当协程执行 return 操作时，他会将返回值存储在另一个地址，然后删除所有局部变量，并将执行权转交给调用方，</p>
+<h2 id="3-函数和协程的执行过程">3. 函数和协程的执行过程</h2>
+<p>假设 func() 是一个函数，他在函数体内调用了协程 co_func(int x)，那么编译器会在调用栈上创建新的活动栈帧，将参数和返回地址入栈，并将 ESP 移动到新的活动栈帧的栈顶位置（如图 1），接下来协程管理器会在堆上申请一块新的区域作为协程的<strong>执行栈帧</strong>，此时编译器会将 EBP 指向<strong>执行栈帧</strong>的顶部（如图 2）。</p>
+<p><img src="https://zintrulcre.vip/images/C++/1.png" alt="1"></p>
+<p><img src="https://zintrulcre.vip/images/C++/2.png" alt="2"></p>
+<p>如果在 co_func 执行的某一时刻触发了 suspend，那么<strong>执行栈帧</strong>中的数据将被保存到<strong>数据栈帧</strong>中，且改协程会返回一些返回值给调用方，这些返回值中通常含有 suspend 的位置，以及协程暂挂的句柄，这个句柄可以在接下来使用 resume 的时候恢复协程（如图3）。</p>
+<p><img src="https://zintrulcre.vip/images/C++/3.png" alt="3"></p>
+<p>现在因为某些原因触发了协程的 resume，恢复协程的调用方会调用 void resume (handle) 来恢复这个协程，此时编译器会再次创建新的活动栈帧用来记录参数和返回地址，同时激活<strong>执行栈帧</strong>，<strong>执行栈帧</strong>从<strong>数据栈帧</strong>读取数据，恢复协程（如图4）。</p>
+<p><img src="https://zintrulcre.vip/images/C++/4.png" alt="4"></p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

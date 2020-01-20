@@ -17,8 +17,8 @@
 <meta property="og:description" content="Code Jam 2019 Round 1A Pylons (8pts, 23pts) 在m*n的网格里移动，每次移动后的位置不能与之前的位置在同一行/列/对角线上。 Solution: BackTracking 类似于八皇后问题，不过每次的限制条件只和上" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/code-jam/2019-round-1a/" />
-<meta property="article:published_time" content="2019-04-13T15:28:11&#43;10:00"/>
-<meta property="article:modified_time" content="2019-04-13T15:28:11&#43;10:00"/>
+<meta property="article:published_time" content="2019-04-13T15:28:11+10:00" />
+<meta property="article:modified_time" content="2019-04-13T15:28:11+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,37 +108,30 @@
       </header>
 
       <div>
-        
-
-<h1 id="code-jam-2019-round-1a-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051635"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635">Code Jam 2019 Round 1A</a></h1>
-
-<h2 id="pylons-8pts-23pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051635-0000000000104e03"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104e03">Pylons (8pts, 23pts)</a></h2>
-
+        <h1 id="code-jam-2019-round-1ahttpscodingcompetitionswithgooglecomcodejamround0000000000051635"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635">Code Jam 2019 Round 1A</a></h1>
+<h2 id="pylons-8pts-23ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516350000000000104e03"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104e03">Pylons (8pts, 23pts)</a></h2>
 <p>在m*n的网格里移动，每次移动后的位置不能与之前的位置在同一行/列/对角线上。</p>
-
 <h3 id="solution-backtracking">Solution: BackTracking</h3>
-
 <p>类似于八皇后问题，不过每次的限制条件只和上一个位置有关，可以用回溯解决。</p>
-
 <ul>
 <li>时间复杂度：O(m^2 * n^2)</li>
 <li>空间复杂度：O(m * n)</li>
 </ul>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#007f7f">// C++
-</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cstdio&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;cstdio&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
 </span><span style="color:#0f0;font-weight:bold"></span>
 <span style="color:#fff;font-weight:bold">using</span> <span style="color:#fff;font-weight:bold">namespace</span> std;
 
@@ -173,55 +166,50 @@
         }
         vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; visited(m, vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;(n, <span style="color:#fff;font-weight:bold">false</span>));
         vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; res(m * n, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;());
-        printf(<span style="color:#0ff;font-weight:bold">&#34;Case #%d: &#34;</span>, case_number);
+        printf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">Case #%d: </span><span style="color:#0ff;font-weight:bold">&#34;</span>, case_number);
         <span style="color:#fff;font-weight:bold">if</span> (BackTracking(<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>, visited, res)) {
-            printf(<span style="color:#0ff;font-weight:bold">&#34;POSSIBLE</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
+            printf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">POSSIBLE</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
             <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; m * n; ++i)
                 <span style="color:#fff;font-weight:bold">if</span> (!rev)
-                    printf(<span style="color:#0ff;font-weight:bold">&#34;%d %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, res[i][<span style="color:#ff0;font-weight:bold">0</span>] + <span style="color:#ff0;font-weight:bold">1</span>, res[i][<span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>);
+                    printf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">%d %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, res[i][<span style="color:#ff0;font-weight:bold">0</span>] + <span style="color:#ff0;font-weight:bold">1</span>, res[i][<span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>);
                 <span style="color:#fff;font-weight:bold">else</span>
-                    printf(<span style="color:#0ff;font-weight:bold">&#34;%d %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, res[i][<span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>, res[i][<span style="color:#ff0;font-weight:bold">0</span>] + <span style="color:#ff0;font-weight:bold">1</span>);
+                    printf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">%d %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, res[i][<span style="color:#ff0;font-weight:bold">1</span>] + <span style="color:#ff0;font-weight:bold">1</span>, res[i][<span style="color:#ff0;font-weight:bold">0</span>] + <span style="color:#ff0;font-weight:bold">1</span>);
         } <span style="color:#fff;font-weight:bold">else</span>
-            printf(<span style="color:#0ff;font-weight:bold">&#34;IMPOSSIBLE</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
+            printf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">IMPOSSIBLE</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
     }
 
     <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
 }
-</code></pre></div>
-<h2 id="alien-rhyme-10pts-27pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051635-0000000000104e05"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104e05">Alien Rhyme (10pts, 27pts)</a></h2>
-
+</code></pre></div><h2 id="alien-rhyme-10pts-27ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516350000000000104e05"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104e05">Alien Rhyme (10pts, 27pts)</a></h2>
 <p>找到后缀相同的一对单词，后缀的长度可以自己定义，其他单词的后缀不能与这一对相同，使得这样的单词对最多。</p>
-
 <h3 id="solution-suffix">Solution: Suffix</h3>
-
 <p>先翻转每一个单词（如果不翻转的话取substr的时候就从中间开始取到最后，翻转的话只需要取前面m个字母）。从最长的单词长度依次递减，取每一个单词的后缀，如果两个单词有相同的后缀则把这两个单词去掉，结果+2。因为是从最长的单词长度开始依次取后缀，可以保证后缀相同的单词不被漏掉。</p>
-
 <ul>
 <li>时间复杂度：O(N * m)
-
 <ul>
 <li>m：最长的单词长度</li>
 <li>N：单词个数</li>
-</ul></li>
+</ul>
+</li>
 <li>空间复杂度：O(N)</li>
 </ul>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#007f7f">// C++
-</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cstdio&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;cstdio&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
 </span><span style="color:#0f0;font-weight:bold"></span>
-<span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&#34;Print.h&#34;</span><span style="color:#0f0;font-weight:bold">
+<span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&#34;Print.h&#34;</span><span style="color:#0f0;font-weight:bold">
 </span><span style="color:#0f0;font-weight:bold"></span>
 <span style="color:#fff;font-weight:bold">using</span> <span style="color:#fff;font-weight:bold">namespace</span> std;
 
@@ -256,14 +244,12 @@
                     status[str] = m;
             }
         }
-        printf(<span style="color:#0ff;font-weight:bold">&#34;Case #%d: %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, case_number, sum);
+        printf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">Case #%d: %d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, case_number, sum);
     }
 
     <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
 }
-</code></pre></div>
-<h2 id="golf-gophers-11pts-21pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051635-0000000000104f1a"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104f1a">Golf Gophers (11pts, 21pts)</a></h2>
-
+</code></pre></div><h2 id="golf-gophers-11pts-21ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516350000000000104f1a"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104f1a">Golf Gophers (11pts, 21pts)</a></h2>
 <p>// TODO</p>
 
       </div>

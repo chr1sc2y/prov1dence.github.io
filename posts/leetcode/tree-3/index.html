@@ -11,14 +11,14 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 树（3）"/>
-<meta name="twitter:description" content="LeetCode 树（3） 题目 4. 递归求解 617 合并二叉树 合并两个二叉树。 判断各个节点是否存在，全部合并到一棵树上即可。 classSolution { public: TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2) { if (!t1 &amp;&amp; !t2) return nullptr; else if (!t1) return t2; else"/>
+<meta name="twitter:description" content="LeetCode 树（3） 题目 4. 递归求解 617 合并二叉树 合并两个二叉树。 判断各个节点是否存在，全部合并到一棵树上即可。 class Solution { public: TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2) { if (!t1 &amp;&amp; !t2) return nullptr; else if (!t1) return t2;"/>
 
     <meta property="og:title" content="LeetCode 树（3）" />
-<meta property="og:description" content="LeetCode 树（3） 题目 4. 递归求解 617 合并二叉树 合并两个二叉树。 判断各个节点是否存在，全部合并到一棵树上即可。 classSolution { public: TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2) { if (!t1 &amp;&amp; !t2) return nullptr; else if (!t1) return t2; else" />
+<meta property="og:description" content="LeetCode 树（3） 题目 4. 递归求解 617 合并二叉树 合并两个二叉树。 判断各个节点是否存在，全部合并到一棵树上即可。 class Solution { public: TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2) { if (!t1 &amp;&amp; !t2) return nullptr; else if (!t1) return t2;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/tree-3/" />
-<meta property="article:published_time" content="2019-08-24T19:12:25&#43;10:00"/>
-<meta property="article:modified_time" content="2019-08-24T19:12:25&#43;10:00"/>
+<meta property="article:published_time" content="2019-08-24T19:12:25+10:00" />
+<meta property="article:modified_time" content="2019-08-24T19:12:25+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,20 +108,13 @@
       </header>
 
       <div>
-        
-
-<h1 id="leetcode-树-3-https-leetcode-cn-com-tag-tree"><a href="https://leetcode-cn.com/tag/tree/">LeetCode 树（3）</a></h1>
-
+        <h1 id="leetcode-树3httpsleetcode-cncomtagtree"><a href="https://leetcode-cn.com/tag/tree/">LeetCode 树（3）</a></h1>
 <h2 id="题目">题目</h2>
-
 <h3 id="4-递归求解">4. 递归求解</h3>
-
-<h4 id="617-合并二叉树-https-leetcode-cn-com-problems-merge-two-binary-trees"><a href="https://leetcode-cn.com/problems/merge-two-binary-trees/">617 合并二叉树</a></h4>
-
+<h4 id="617-合并二叉树httpsleetcode-cncomproblemsmerge-two-binary-trees"><a href="https://leetcode-cn.com/problems/merge-two-binary-trees/">617 合并二叉树</a></h4>
 <p>合并两个二叉树。</p>
-
 <p>判断各个节点是否存在，全部合并到一棵树上即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2) {
         <span style="color:#fff;font-weight:bold">if</span> (!t1 &amp;&amp; !t2)
@@ -136,13 +129,10 @@
         <span style="color:#fff;font-weight:bold">return</span> t1;
     }
 };
-</code></pre></div>
-<h4 id="226-翻转二叉树-https-leetcode-cn-com-problems-invert-binary-tree"><a href="https://leetcode-cn.com/problems/invert-binary-tree/">226 翻转二叉树</a></h4>
-
+</code></pre></div><h4 id="226-翻转二叉树httpsleetcode-cncomproblemsinvert-binary-tree"><a href="https://leetcode-cn.com/problems/invert-binary-tree/">226 翻转二叉树</a></h4>
 <p>翻转一个二叉树。</p>
-
 <p>先将左右子树分别翻转，再交换两者的位置。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     TreeNode *invertTree(TreeNode *root) {
         <span style="color:#fff;font-weight:bold">if</span> (!root)
@@ -153,13 +143,10 @@
         <span style="color:#fff;font-weight:bold">return</span> root;
     }
 };
-</code></pre></div>
-<h4 id="104-二叉树的最大深度-https-leetcode-cn-com-problems-maximum-depth-of-binary-tree"><a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/">104 二叉树的最大深度</a></h4>
-
+</code></pre></div><h4 id="104-二叉树的最大深度httpsleetcode-cncomproblemsmaximum-depth-of-binary-tree"><a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/">104 二叉树的最大深度</a></h4>
 <p>找出一个二叉树的最大深度。</p>
-
 <p>每层深度为 1，加上左右子树中更大的深度即为最大深度。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> maxDepth(TreeNode *root) {
         <span style="color:#fff;font-weight:bold">if</span> (!root)
@@ -167,13 +154,10 @@
         <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">1</span> + max(maxDepth(root-&gt;left), maxDepth(root-&gt;right));
     }
 };
-</code></pre></div>
-<h4 id="965-单值二叉树-https-leetcode-cn-com-problems-univalued-binary-tree"><a href="https://leetcode-cn.com/problems/univalued-binary-tree/">965 单值二叉树</a></h4>
-
+</code></pre></div><h4 id="965-单值二叉树httpsleetcode-cncomproblemsunivalued-binary-tree"><a href="https://leetcode-cn.com/problems/univalued-binary-tree/">965 单值二叉树</a></h4>
 <p>判断一个二叉树是否是一个单值二叉树。</p>
-
 <p>判断每个节点与其左右节点的值是否相同即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">bool</span> isUnivalTree(TreeNode *root) {
         <span style="color:#fff;font-weight:bold">if</span> (!root)
@@ -181,13 +165,10 @@
         <span style="color:#fff;font-weight:bold">return</span> (root-&gt;left ? root-&gt;val == root-&gt;left-&gt;val : <span style="color:#fff;font-weight:bold">true</span>) &amp;&amp; (root-&gt;right ? root-&gt;val == root-&gt;right-&gt;val : <span style="color:#fff;font-weight:bold">true</span>) &amp;&amp; isUnivalTree(root-&gt;left) &amp;&amp; isUnivalTree(root-&gt;right);
     }
 };
-</code></pre></div>
-<h4 id="559-n叉树的最大深度-https-leetcode-cn-com-problems-maximum-depth-of-n-ary-tree"><a href="https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree/">559 N叉树的最大深度</a></h4>
-
+</code></pre></div><h4 id="559-n叉树的最大深度httpsleetcode-cncomproblemsmaximum-depth-of-n-ary-tree"><a href="https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree/">559 N叉树的最大深度</a></h4>
 <p>找到一个 N 叉树的最大深度。</p>
-
 <p>每层深度为 1，加上其所有子树中最大的深度即为最大深度。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> maxDepth(Node* root) {
         <span style="color:#fff;font-weight:bold">if</span> (!root)
@@ -198,13 +179,10 @@
         <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">1</span> + depth;
     }
 };
-</code></pre></div>
-<h4 id="563-二叉树的坡度-https-leetcode-cn-com-problems-binary-tree-tilt"><a href="https://leetcode-cn.com/problems/binary-tree-tilt/">563 二叉树的坡度</a></h4>
-
+</code></pre></div><h4 id="563-二叉树的坡度httpsleetcode-cncomproblemsbinary-tree-tilt"><a href="https://leetcode-cn.com/problems/binary-tree-tilt/">563 二叉树的坡度</a></h4>
 <p>计算一个二叉树的坡度。</p>
-
 <p>对于每个节点，计算其左子树和右子树的和，将其差的绝对值加到总的坡度上，再返回左子树，右子树，与自己的值的和，递归调用即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> res;
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> findTilt(TreeNode *root) {
@@ -222,13 +200,10 @@
         <span style="color:#fff;font-weight:bold">return</span> node-&gt;val + left + right;
     }
 };
-</code></pre></div>
-<h4 id="508-出现次数最多的子树元素和-https-leetcode-cn-com-problems-most-frequent-subtree-sum-submissions"><a href="https://leetcode-cn.com/problems/most-frequent-subtree-sum/submissions/">508 出现次数最多的子树元素和</a></h4>
-
+</code></pre></div><h4 id="508-出现次数最多的子树元素和httpsleetcode-cncomproblemsmost-frequent-subtree-sumsubmissions"><a href="https://leetcode-cn.com/problems/most-frequent-subtree-sum/submissions/">508 出现次数最多的子树元素和</a></h4>
 <p>找出一个二叉树中出现次数最多的子树元素和。</p>
-
 <p>计算出一个节点的左子树和右子树的子树元素和，加上自身的值就是一个完整的子树元素和，递归调用计算所有的节点并计数即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     unordered_map&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt; count;
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; findFrequentTreeSum(TreeNode *root) {
@@ -241,7 +216,7 @@
                 n = c.second;
                 res.clear();
                 res.push_back(c.first);
-            } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (c.second == n)
+            } <span style="color:#fff;font-weight:bold">else</span> if (c.second == n)
                 res.push_back(c.first);
         }
         <span style="color:#fff;font-weight:bold">return</span> res;
@@ -255,15 +230,11 @@
         <span style="color:#fff;font-weight:bold">return</span> val;
     }
 };
-</code></pre></div>
-<h3 id="5-栈求解">5. 栈求解</h3>
-
-<h4 id="623-在二叉树中增加一行-https-leetcode-cn-com-problems-add-one-row-to-tree"><a href="https://leetcode-cn.com/problems/add-one-row-to-tree/">623 在二叉树中增加一行</a></h4>
-
+</code></pre></div><h3 id="5-栈求解">5. 栈求解</h3>
+<h4 id="623-在二叉树中增加一行httpsleetcode-cncomproblemsadd-one-row-to-tree"><a href="https://leetcode-cn.com/problems/add-one-row-to-tree/">623 在二叉树中增加一行</a></h4>
 <p>给一个二叉树，在第 d 层追加一行值为 v 的节点。</p>
-
 <p>用一个栈保存一层的所有节点，逐层遍历即可。注意 d = 1 时要单独处理。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     TreeNode *addOneRow(TreeNode *root, <span style="color:#fff;font-weight:bold">int</span> v, <span style="color:#fff;font-weight:bold">int</span> d) {
         <span style="color:#fff;font-weight:bold">if</span> (!root)
@@ -298,15 +269,11 @@
         <span style="color:#fff;font-weight:bold">return</span> root;
     }
 };
-</code></pre></div>
-<h3 id="6-找节点">6. 找节点</h3>
-
-<h4 id="1123-最深叶节点的最近公共祖先-https-leetcode-cn-com-problems-lowest-common-ancestor-of-deepest-leaves"><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-deepest-leaves/">1123. 最深叶节点的最近公共祖先</a></h4>
-
+</code></pre></div><h3 id="6-找节点">6. 找节点</h3>
+<h4 id="1123-最深叶节点的最近公共祖先httpsleetcode-cncomproblemslowest-common-ancestor-of-deepest-leaves"><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-deepest-leaves/">1123. 最深叶节点的最近公共祖先</a></h4>
 <p>找到一个二叉树最深的叶节点的最近公共祖先。</p>
-
 <p>可以先用层序遍历找到二叉树的深度，再通过一次递归找到所有叶节点的公共祖先。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     TreeNode *res;
     <span style="color:#fff;font-weight:bold">int</span> lvl;
 <span style="color:#fff;font-weight:bold">public</span>:
@@ -344,9 +311,8 @@
         <span style="color:#fff;font-weight:bold">return</span> left || right;
     }
 };
-</code></pre></div>
-<p>但实际上我们并不需要知道这棵树的深度，只需要知道最深的节点即是叶节点，并且如果一个节点的左子树和右子树的最深节点的深度相同，那么这个节点就是他们的最近公共祖先，返回这个节点即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+</code></pre></div><p>但实际上我们并不需要知道这棵树的深度，只需要知道最深的节点即是叶节点，并且如果一个节点的左子树和右子树的最深节点的深度相同，那么这个节点就是他们的最近公共祖先，返回这个节点即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     TreeNode *lcaDeepestLeaves(TreeNode *root) {
         <span style="color:#fff;font-weight:bold">return</span> FindLCA(root).first;

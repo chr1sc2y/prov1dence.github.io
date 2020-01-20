@@ -17,8 +17,8 @@
 <meta property="og:description" content="C&#43;&#43;智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器 private: int *counter;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/c&#43;&#43;/c&#43;&#43;-smart-pointer-3/" />
-<meta property="article:published_time" content="2019-01-25T17:47:38&#43;11:00"/>
-<meta property="article:modified_time" content="2019-01-25T17:47:38&#43;11:00"/>
+<meta property="article:published_time" content="2019-01-25T17:47:38+11:00" />
+<meta property="article:modified_time" content="2019-01-25T17:47:38+11:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,19 +108,15 @@
       </header>
 
       <div>
-        
-
-<h1 id="c-智能指针-3-shared-ptr">C++智能指针（3）：shared_ptr</h1>
-
+        <h1 id="c智能指针3shared_ptr">C++智能指针（3）：shared_ptr</h1>
 <h2 id="分析">分析</h2>
-
 <p>UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">private:
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">private:
     int *counter;
     T *pointer;
-    D *deleter;</pre></div>
-<p>计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
+    D *deleter;
+</code></pre></div><p>计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">template&lt;typename T, typename D&gt;
 void SharedPointer&lt;T, D&gt;::release() {
     if (pointer) {
         std::cout &lt;&lt; &#34;SharedPointer &#34; &lt;&lt; this &lt;&lt; &#34; counter remains &#34; &lt;&lt; *counter &lt;&lt; std::endl;
@@ -134,29 +130,29 @@ void SharedPointer&lt;T, D&gt;::release() {
             deleter = nullptr;
         }
     }
-}</pre></div>
-<p>reset函数将指针设为other的指针</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
+}
+</code></pre></div><p>reset函数将指针设为other的指针</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">template&lt;typename T, typename D&gt;
 void SharedPointer&lt;T, D&gt;::reset(const SharedPointer&lt;T, D&gt; &amp;other) {
     pointer = other.pointer;
     counter = other.counter;
     deleter = other.deleter;
     if (pointer)
         ++(*counter);
-}</pre></div>
-<p>析构函数可以直接调用release函数</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
+}
+</code></pre></div><p>析构函数可以直接调用release函数</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">template&lt;typename T, typename D&gt;
 SharedPointer&lt;T, D&gt;::~SharedPointer() {
     release();
-}</pre></div>
-<p>拷贝构造函数可以直接调用reset函数</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
+}
+</code></pre></div><p>拷贝构造函数可以直接调用reset函数</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">template&lt;typename T, typename D&gt;
 SharedPointer&lt;T, D&gt;::SharedPointer(const SharedPointer&lt;T, D&gt; &amp;other) {
     std::cout &lt;&lt; &#34;SharedPointer &#34; &lt;&lt; this &lt;&lt; &#34; copy constructor called.&#34; &lt;&lt; std::endl;
     reset(other);
-}</pre></div>
-<p>使用赋值操作符时先调用release函数，再调用reset函数</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
+}
+</code></pre></div><p>使用赋值操作符时先调用release函数，再调用reset函数</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">template&lt;typename T, typename D&gt;
 SharedPointer&lt;T, D&gt; &amp;SharedPointer&lt;T, D&gt;::operator=(const SharedPointer&lt;T, D&gt; &amp;other) {
     std::cout &lt;&lt; &#34;SharedPointer &#34; &lt;&lt; this &lt;&lt; &#34; assignment operator called.&#34; &lt;&lt; std::endl;
     if (this != &amp;other) {
@@ -164,11 +160,10 @@ SharedPointer&lt;T, D&gt; &amp;SharedPointer&lt;T, D&gt;::operator=(const Shared
         reset(other);
     }
     return *this;
-}</pre></div>
-<h2 id="实现">实现</h2>
-
+}
+</code></pre></div><h2 id="实现">实现</h2>
 <p>根据shared_ptr的源码，能够大致实现SharedPointer类</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;typename T, typename D&gt;
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">template&lt;typename T, typename D&gt;
 class SharedPointer {
 public:
     explicit SharedPointer(T *t = nullptr, D *d = nullptr);
@@ -258,11 +253,10 @@ SharedPointer&lt;T, D&gt; &amp;SharedPointer&lt;T, D&gt;::operator=(const Shared
         reset(other);
     }
     return *this;
-}</pre></div>
-<h2 id="测试">测试</h2>
-
+}
+</code></pre></div><h2 id="测试">测试</h2>
 <p>尝试使用拷贝构造函数和赋值操作符使多个SharedPointer对象使用同一个指针，以及使用reset函数清空智能指针对象的指针</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">int main() {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">int main() {
     Deleter *deleter = new Deleter();
     Obj *o = new Obj();
     SharedPointer&lt;Obj, Deleter&gt; s1(o, deleter);
@@ -283,14 +277,14 @@ SharedPointer 0x7ffeeebdd9e8 counter remains 2
 SharedPointer 0x7ffeeebdda00 counter remains 1
 SharedPointer 0x7ffeeebdda00 destructor called.
 Destruct
-*/</pre></div>
-<p>考虑如下一个类</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">class Object : public Obj {
+*/
+</code></pre></div><p>考虑如下一个类</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">class Object : public Obj {
 public:
     SharedPointer&lt;Object, Deleter&gt; S;
-};</pre></div>
-<p>创建两个Object类型的对象</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">int main() {
+};
+</code></pre></div><p>创建两个Object类型的对象</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">int main() {
     SharedPointer&lt;Object, Deleter&gt; s1(new Object());
     SharedPointer&lt;Object, Deleter&gt; s2(new Object());
     s1-&gt;S = s2;
@@ -309,15 +303,12 @@ SharedPointer 0x7f88eac02ab0 assignment operator called.
 SharedPointer 0x7f88eac02ae0 assignment operator called.
 SharedPointer 0x7ffee0bfa9f8 counter remains 2
 SharedPointer 0x7ffee0bfaa20 counter remains 2
-*/</pre></div>
-<p>两个Object类型的指针都包含了一个SharedPointer类型的智能指针对象，但这两个指针又依赖于SharedPointer对象去进行销毁，导致最后s1和s2的计数器都不能减为0，从而不能正确地销毁指针，导致了内存泄漏。这种现象叫做交叉引用。</p>
-
+*/
+</code></pre></div><p>两个Object类型的指针都包含了一个SharedPointer类型的智能指针对象，但这两个指针又依赖于SharedPointer对象去进行销毁，导致最后s1和s2的计数器都不能减为0，从而不能正确地销毁指针，导致了内存泄漏。这种现象叫做交叉引用。</p>
 <h2 id="总结">总结</h2>
-
 <p>SharedPointer利用<a href="https://en.wikipedia.org/wiki/Reference_counting">Reference counting</a>（计数引用）解决了多个对象使用同一个指针时自动销毁指针的问题，但又会发生交叉引用时不能够正确销毁指针的问题。</p>
-
-<h2 id="shared-pointer源码">shared_pointer源码</h2>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">template&lt;class _Tp&gt;
+<h2 id="shared_pointer源码">shared_pointer源码</h2>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">template&lt;class _Tp&gt;
 class _LIBCPP_TEMPLATE_VIS shared_ptr
 {
 public:
@@ -618,7 +609,8 @@ private:
 
     template &lt;class _Up&gt; friend class _LIBCPP_TEMPLATE_VIS shared_ptr;
     template &lt;class _Up&gt; friend class _LIBCPP_TEMPLATE_VIS weak_ptr;
-};</pre></div>
+};
+</code></pre></div>
       </div>
 
       <footer>

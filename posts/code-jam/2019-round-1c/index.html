@@ -17,8 +17,8 @@
 <meta property="og:description" content="Code Jam 2019 Round 1C Robot Programming Strategy (10pts, 18pts) 已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。 Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同时有三" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/code-jam/2019-round-1c/" />
-<meta property="article:published_time" content="2019-05-07T22:02:15&#43;10:00"/>
-<meta property="article:modified_time" content="2019-05-07T22:02:15&#43;10:00"/>
+<meta property="article:published_time" content="2019-05-07T22:02:15+10:00" />
+<meta property="article:modified_time" content="2019-05-07T22:02:15+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,65 +108,57 @@
       </header>
 
       <div>
-        
-
-<h1 id="code-jam-2019-round-1c-https-codingcompetitions-withgoogle-com-codejam-round-00000000000516b9"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9">Code Jam 2019 Round 1C</a></h1>
-
-<h2 id="robot-programming-strategy-10pts-18pts-https-codingcompetitions-withgoogle-com-codejam-round-00000000000516b9-0000000000134c90"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134c90">Robot Programming Strategy (10pts, 18pts)</a></h2>
-
+        <h1 id="code-jam-2019-round-1chttpscodingcompetitionswithgooglecomcodejamround00000000000516b9"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9">Code Jam 2019 Round 1C</a></h1>
+<h2 id="robot-programming-strategy-10pts-18ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516b90000000000134c90"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134c90">Robot Programming Strategy (10pts, 18pts)</a></h2>
 <p>已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。</p>
-
 <h3 id="solution-eliminiating">Solution: Eliminiating</h3>
-
 <p>每一轮遍历当前轮次所有人的出招，如果同时有三种情况（R, P, S）则没有必胜策略，直接输出IMPOSSIBLE；否则返回胜利或打平的策略。</p>
-
 <p>对于已经打败过的对手没有必要再考虑其之后的出招，所以用一个defeated数组保存已经打败过的对手以便直接跳过。因为当前轮次有可能超过对手的出招顺序长度，所以要用i % size获取对手当前的出招。</p>
-
 <ul>
 <li>时间复杂度：O(A ^ 2)</li>
 <li>空间复杂度：O(A)</li>
 </ul>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cstdio&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;cstdio&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
 </span><span style="color:#0f0;font-weight:bold"></span>
 <span style="color:#fff;font-weight:bold">using</span> <span style="color:#fff;font-weight:bold">namespace</span> std;
 
 <span style="color:#fff;font-weight:bold">char</span> Decide(<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> &amp;R, <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> &amp;P, <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> &amp;S) {
     <span style="color:#fff;font-weight:bold">if</span> (R &amp;&amp; P &amp;&amp; S)
-        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;X&#39;</span>;
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">X</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
     <span style="color:#fff;font-weight:bold">if</span> (R &amp;&amp; P)
-        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;P&#39;</span>;
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">P</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
     <span style="color:#fff;font-weight:bold">if</span> (R &amp;&amp; S)
-        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;R&#39;</span>;
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">R</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
     <span style="color:#fff;font-weight:bold">if</span> (P &amp;&amp; S)
-        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;S&#39;</span>;
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">S</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
     <span style="color:#fff;font-weight:bold">if</span> (R)
-        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;P&#39;</span>;
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">P</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
     <span style="color:#fff;font-weight:bold">if</span> (P)
-        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;S&#39;</span>;
-    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;R&#39;</span>;
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">S</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">R</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
 }
 
 <span style="color:#fff;font-weight:bold">bool</span> Defeate(<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> &amp;current, <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> &amp;opponent) {
-    <span style="color:#fff;font-weight:bold">return</span> (current == <span style="color:#0ff;font-weight:bold">&#39;R&#39;</span> &amp;&amp; opponent == <span style="color:#0ff;font-weight:bold">&#39;S&#39;</span>) || (current == <span style="color:#0ff;font-weight:bold">&#39;S&#39;</span> &amp;&amp; opponent == <span style="color:#0ff;font-weight:bold">&#39;P&#39;</span>) ||
-           (current == <span style="color:#0ff;font-weight:bold">&#39;P&#39;</span> &amp;&amp; opponent == <span style="color:#0ff;font-weight:bold">&#39;R&#39;</span>);
+    <span style="color:#fff;font-weight:bold">return</span> (current == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">R</span><span style="color:#0ff;font-weight:bold">&#39;</span> &amp;&amp; opponent == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">S</span><span style="color:#0ff;font-weight:bold">&#39;</span>) || (current == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">S</span><span style="color:#0ff;font-weight:bold">&#39;</span> &amp;&amp; opponent == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">P</span><span style="color:#0ff;font-weight:bold">&#39;</span>) ||
+           (current == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">P</span><span style="color:#0ff;font-weight:bold">&#39;</span> &amp;&amp; opponent == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">R</span><span style="color:#0ff;font-weight:bold">&#39;</span>);
 }
 
 <span style="color:#fff;font-weight:bold">void</span> solve(<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span> &amp;t) {
     <span style="color:#fff;font-weight:bold">int</span> A;
-    scanf(<span style="color:#0ff;font-weight:bold">&#34;%d&#34;</span>, &amp;A);
+    scanf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">%d</span><span style="color:#0ff;font-weight:bold">&#34;</span>, &amp;A);
     <span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>;
     vector&lt;string&gt; opponent(A);
     vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt; defeated(A, <span style="color:#fff;font-weight:bold">false</span>);
@@ -180,9 +172,9 @@
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> a = <span style="color:#ff0;font-weight:bold">0</span>; a &lt; A; ++a) {
             <span style="color:#fff;font-weight:bold">if</span> (!defeated[a]) {
                 ++current_opponent;
-                <span style="color:#fff;font-weight:bold">if</span> (opponent[a][i % opponent[a].size()] == <span style="color:#0ff;font-weight:bold">&#39;R&#39;</span>)
+                <span style="color:#fff;font-weight:bold">if</span> (opponent[a][i % opponent[a].size()] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">R</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
                     R = <span style="color:#fff;font-weight:bold">true</span>;
-                <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (opponent[a][i % opponent[a].size()] == <span style="color:#0ff;font-weight:bold">&#39;P&#39;</span>)
+                <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (opponent[a][i % opponent[a].size()] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">P</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
                     P = <span style="color:#fff;font-weight:bold">true</span>;
                 <span style="color:#fff;font-weight:bold">else</span>
                     S = <span style="color:#fff;font-weight:bold">true</span>;
@@ -191,8 +183,8 @@
         <span style="color:#fff;font-weight:bold">if</span> (current_opponent == <span style="color:#ff0;font-weight:bold">0</span>)
             <span style="color:#fff;font-weight:bold">break</span>;
         <span style="color:#fff;font-weight:bold">char</span> result = Decide(R, P, S);
-        <span style="color:#fff;font-weight:bold">if</span> (result == <span style="color:#0ff;font-weight:bold">&#39;X&#39;</span>) {
-            res = <span style="color:#0ff;font-weight:bold">&#34;IMPOSSIBLE&#34;</span>;
+        <span style="color:#fff;font-weight:bold">if</span> (result == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">X</span><span style="color:#0ff;font-weight:bold">&#39;</span>) {
+            res = <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">IMPOSSIBLE</span><span style="color:#0ff;font-weight:bold">&#34;</span>;
             <span style="color:#fff;font-weight:bold">break</span>;
         }
         res += result;
@@ -202,23 +194,19 @@
         }
         ++i;
     }
-    printf(<span style="color:#0ff;font-weight:bold">&#34;Case #%d: %s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, t, res.c_str());
+    printf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">Case #%d: %s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, t, res.c_str());
 }
 
 <span style="color:#fff;font-weight:bold">int</span> main() {
     <span style="color:#fff;font-weight:bold">int</span> T;
-    scanf(<span style="color:#0ff;font-weight:bold">&#34;%d&#34;</span>, &amp;T);
+    scanf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">%d</span><span style="color:#0ff;font-weight:bold">&#34;</span>, &amp;T);
     <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> t = <span style="color:#ff0;font-weight:bold">1</span>; t &lt;= T; ++t)
         solve(t);
     <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
 }
-</code></pre></div>
-<h2 id="power-arrangers-11pts-21pts-https-codingcompetitions-withgoogle-com-codejam-round-00000000000516b9-0000000000134e91"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134e91">Power Arrangers (11pts, 21pts)</a></h2>
-
+</code></pre></div><h2 id="power-arrangers-11pts-21ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516b90000000000134e91"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134e91">Power Arrangers (11pts, 21pts)</a></h2>
 <p>// TODO</p>
-
-<h2 id="bacterial-tactics-15pts-25pts-https-codingcompetitions-withgoogle-com-codejam-round-00000000000516b9-0000000000134cdf"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134cdf">Bacterial Tactics (15pts, 25pts)</a></h2>
-
+<h2 id="bacterial-tactics-15pts-25ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516b90000000000134cdf"><a href="https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134cdf">Bacterial Tactics (15pts, 25pts)</a></h2>
 <p>// TODO</p>
 
       </div>

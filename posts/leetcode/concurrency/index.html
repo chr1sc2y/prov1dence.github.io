@@ -11,14 +11,14 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 并发"/>
-<meta name="twitter:description" content="LeetCode 并发 题目 1114 按序打印 C&#43;&#43; mutex classFoo { mutex lock1, lock2; public: Foo() { lock1.lock(); lock2.lock(); } void first(function&lt;void()&gt; printFirst) { printFirst(); lock1.unlock(); } void second(function&lt;void()&gt; printSecond) { lock1.lock(); printSecond(); lock1.unlock(); lock2.unlock(); } void third(function&lt;void()&gt; printThird) { lock2.lock(); printThird(); lock2.unlock(); } }; C&#43;&#43; condition_variable classFoo { int i; mutex mut; condition_variable con_var1, con_var2; public: Foo() : i(1) { } void first(function&lt;void()&gt; printFirst) { unique_lock&lt;mutex&gt;"/>
+<meta name="twitter:description" content="LeetCode 并发 题目 1114 按序打印 C&#43;&#43; mutex class Foo { mutex lock1, lock2; public: Foo() { lock1.lock(); lock2.lock(); } void first(function&lt;void()&gt; printFirst) { printFirst(); lock1.unlock(); } void second(function&lt;void()&gt; printSecond) { lock1.lock(); printSecond(); lock1.unlock(); lock2.unlock(); } void third(function&lt;void()&gt; printThird) { lock2.lock(); printThird(); lock2.unlock(); } }; C&#43;&#43; condition_variable class Foo { int i; mutex mut; condition_variable con_var1, con_var2; public: Foo() : i(1) { } void first(function&lt;void()&gt; printFirst)"/>
 
     <meta property="og:title" content="LeetCode 并发" />
-<meta property="og:description" content="LeetCode 并发 题目 1114 按序打印 C&#43;&#43; mutex classFoo { mutex lock1, lock2; public: Foo() { lock1.lock(); lock2.lock(); } void first(function&lt;void()&gt; printFirst) { printFirst(); lock1.unlock(); } void second(function&lt;void()&gt; printSecond) { lock1.lock(); printSecond(); lock1.unlock(); lock2.unlock(); } void third(function&lt;void()&gt; printThird) { lock2.lock(); printThird(); lock2.unlock(); } }; C&#43;&#43; condition_variable classFoo { int i; mutex mut; condition_variable con_var1, con_var2; public: Foo() : i(1) { } void first(function&lt;void()&gt; printFirst) { unique_lock&lt;mutex&gt;" />
+<meta property="og:description" content="LeetCode 并发 题目 1114 按序打印 C&#43;&#43; mutex class Foo { mutex lock1, lock2; public: Foo() { lock1.lock(); lock2.lock(); } void first(function&lt;void()&gt; printFirst) { printFirst(); lock1.unlock(); } void second(function&lt;void()&gt; printSecond) { lock1.lock(); printSecond(); lock1.unlock(); lock2.unlock(); } void third(function&lt;void()&gt; printThird) { lock2.lock(); printThird(); lock2.unlock(); } }; C&#43;&#43; condition_variable class Foo { int i; mutex mut; condition_variable con_var1, con_var2; public: Foo() : i(1) { } void first(function&lt;void()&gt; printFirst)" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/concurrency/" />
-<meta property="article:published_time" content="2019-07-22T10:10:25&#43;10:00"/>
-<meta property="article:modified_time" content="2019-07-22T10:10:25&#43;10:00"/>
+<meta property="article:published_time" content="2019-07-22T10:10:25+10:00" />
+<meta property="article:modified_time" content="2019-07-22T10:10:25+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,16 +108,11 @@
       </header>
 
       <div>
-        
-
-<h1 id="leetcode-并发-https-leetcode-cn-com-problemset-concurrency"><a href="https://leetcode-cn.com/problemset/concurrency/">LeetCode 并发</a></h1>
-
+        <h1 id="leetcode-并发httpsleetcode-cncomproblemsetconcurrency"><a href="https://leetcode-cn.com/problemset/concurrency/">LeetCode 并发</a></h1>
 <h2 id="题目">题目</h2>
-
-<h4 id="1114-按序打印-https-leetcode-cn-com-problems-print-in-order"><a href="https://leetcode-cn.com/problems/print-in-order/">1114 按序打印</a></h4>
-
+<h4 id="1114-按序打印httpsleetcode-cncomproblemsprint-in-order"><a href="https://leetcode-cn.com/problems/print-in-order/">1114 按序打印</a></h4>
 <h5 id="c-mutex">C++ mutex</h5>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Foo {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Foo {
     mutex lock1, lock2;
 <span style="color:#fff;font-weight:bold">public</span>:
     Foo() {
@@ -143,9 +138,8 @@
         lock2.unlock();
     }
 };
-</code></pre></div>
-<h5 id="c-condition-variable">C++ condition_variable</h5>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Foo {
+</code></pre></div><h5 id="c-condition_variable">C++ condition_variable</h5>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Foo {
     <span style="color:#fff;font-weight:bold">int</span> i;
     mutex mut;
     condition_variable con_var1, con_var2;
@@ -175,9 +169,8 @@
         printThird();
     }
 };
-</code></pre></div>
-<h5 id="c-atomic">C++ atomic</h5>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Foo {
+</code></pre></div><h5 id="c-atomic">C++ atomic</h5>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Foo {
     atomic_int i;
 <span style="color:#fff;font-weight:bold">public</span>:
     Foo() : i(<span style="color:#ff0;font-weight:bold">1</span>) {
@@ -200,9 +193,8 @@
         i = <span style="color:#ff0;font-weight:bold">1</span>;
     }
 };
-</code></pre></div>
-<h5 id="c-promise">C++ promise</h5>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Foo {
+</code></pre></div><h5 id="c-promise">C++ promise</h5>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Foo {
     promise&lt;<span style="color:#fff;font-weight:bold">void</span>&gt; pro1, pro2;
 
 <span style="color:#fff;font-weight:bold">public</span>:
@@ -225,11 +217,9 @@
         printThird();
     }
 };
-</code></pre></div>
-<h4 id="1115-交替打印foobar-https-leetcode-cn-com-problems-print-foobar-alternately"><a href="https://leetcode-cn.com/problems/print-foobar-alternately/">1115 交替打印FooBar</a></h4>
-
+</code></pre></div><h4 id="1115-交替打印foobarhttpsleetcode-cncomproblemsprint-foobar-alternately"><a href="https://leetcode-cn.com/problems/print-foobar-alternately/">1115 交替打印FooBar</a></h4>
 <h5 id="c-mutex-1">C++ mutex</h5>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>FooBar {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> FooBar {
 <span style="color:#fff;font-weight:bold">private</span>:
     <span style="color:#fff;font-weight:bold">int</span> n;
     mutex mut1, mut2;
@@ -255,9 +245,8 @@
         }
     }
 };
-</code></pre></div>
-<h5 id="c-condition-variable-1">C++ condition_variable</h5>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>FooBar {
+</code></pre></div><h5 id="c-condition_variable-1">C++ condition_variable</h5>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> FooBar {
 <span style="color:#fff;font-weight:bold">private</span>:
     <span style="color:#fff;font-weight:bold">int</span> m, n;
     mutex mut;
@@ -287,9 +276,8 @@
         }
     }
 };
-</code></pre></div>
-<h5 id="c-atomic-1">C++ atomic</h5>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>FooBar {
+</code></pre></div><h5 id="c-atomic-1">C++ atomic</h5>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> FooBar {
 <span style="color:#fff;font-weight:bold">private</span>:
     <span style="color:#fff;font-weight:bold">int</span> n;
     atomic_int m;
@@ -314,9 +302,8 @@
         }
     }
 };
-</code></pre></div>
-<h5 id="c-promise-1">C++ promise</h5>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>FooBar {
+</code></pre></div><h5 id="c-promise-1">C++ promise</h5>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> FooBar {
 <span style="color:#fff;font-weight:bold">private</span>:
     <span style="color:#fff;font-weight:bold">int</span> n;
     vector&lt;promise&lt;<span style="color:#fff;font-weight:bold">void</span>&gt;&gt; pros1, pros2;
@@ -346,11 +333,9 @@
         }
     }
 };
-</code></pre></div>
-<h4 id="1116-打印零与奇偶数-https-leetcode-cn-com-problems-print-zero-even-odd"><a href="https://leetcode-cn.com/problems/print-zero-even-odd/">1116 打印零与奇偶数</a></h4>
-
+</code></pre></div><h4 id="1116-打印零与奇偶数httpsleetcode-cncomproblemsprint-zero-even-odd"><a href="https://leetcode-cn.com/problems/print-zero-even-odd/">1116 打印零与奇偶数</a></h4>
 <h5 id="c-mutex-2">C++ mutex</h5>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>ZeroEvenOdd {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> ZeroEvenOdd {
 <span style="color:#fff;font-weight:bold">private</span>:
     <span style="color:#fff;font-weight:bold">int</span> m, n;
     mutex mut_zero, mut_odd, mut_even;
@@ -392,11 +377,9 @@
         }
     }
 };
-</code></pre></div>
-<h4 id="1117-h2o-生成-https-leetcode-cn-com-problems-building-h2o-submissions"><a href="https://leetcode-cn.com/problems/building-h2o/submissions/">1117 H2O 生成</a></h4>
-
-<h5 id="c-condition-variable-2">C++ condition variable</h5>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>H2O {
+</code></pre></div><h4 id="1117-h2o-生成httpsleetcode-cncomproblemsbuilding-h2osubmissions"><a href="https://leetcode-cn.com/problems/building-h2o/submissions/">1117 H2O 生成</a></h4>
+<h5 id="c-condition-variable">C++ condition variable</h5>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> H2O {
     <span style="color:#fff;font-weight:bold">int</span> m = <span style="color:#ff0;font-weight:bold">1</span>;
     mutex mut;
     condition_variable con_var;

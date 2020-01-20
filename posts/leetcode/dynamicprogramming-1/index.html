@@ -17,8 +17,8 @@
 <meta property="og:description" content="LeetCode 动态规划 题目 1. 数字相关 263 丑数 判断一个数 num 是否是丑数。 通用的方法是自底向上求出大于等于 num 的第一个数来判断 num 是否是丑数。但这道题已经给出了数 n" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/dynamicprogramming-1/" />
-<meta property="article:published_time" content="2019-06-26T18:08:10&#43;10:00"/>
-<meta property="article:modified_time" content="2019-06-26T18:08:10&#43;10:00"/>
+<meta property="article:published_time" content="2019-06-26T18:08:10+10:00" />
+<meta property="article:modified_time" content="2019-06-26T18:08:10+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,20 +108,13 @@
       </header>
 
       <div>
-        
-
-<h1 id="leetcode-动态规划-https-leetcode-cn-com-problemset-all-search-e4-b8-91-e6-95-b0"><a href="https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0">LeetCode 动态规划</a></h1>
-
+        <h1 id="leetcode-动态规划httpsleetcode-cncomproblemsetallsearche4b891e695b0"><a href="https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0">LeetCode 动态规划</a></h1>
 <h2 id="题目">题目</h2>
-
 <h3 id="1-数字相关">1. 数字相关</h3>
-
-<h4 id="263-丑数-https-leetcode-cn-com-problems-ugly-number"><a href="https://leetcode-cn.com/problems/ugly-number/">263 丑数</a></h4>
-
+<h4 id="263-丑数httpsleetcode-cncomproblemsugly-number"><a href="https://leetcode-cn.com/problems/ugly-number/">263 丑数</a></h4>
 <p>判断一个数 num 是否是丑数。</p>
-
 <p>通用的方法是自底向上求出大于等于 num 的第一个数来判断 num 是否是丑数。但这道题已经给出了数 num，直接通过模运算就能得到结果了。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">bool</span> isUgly(<span style="color:#fff;font-weight:bold">int</span> num) {
         <span style="color:#fff;font-weight:bold">if</span> (num &lt; <span style="color:#ff0;font-weight:bold">1</span>)
@@ -135,13 +128,10 @@
         <span style="color:#fff;font-weight:bold">return</span> num == <span style="color:#ff0;font-weight:bold">1</span>;
     }
 };
-</code></pre></div>
-<h4 id="264-丑数-ii-https-leetcode-cn-com-problems-ugly-number-ii-comments"><a href="https://leetcode-cn.com/problems/ugly-number-ii/comments/">264 丑数 II</a></h4>
-
+</code></pre></div><h4 id="264-丑数-iihttpsleetcode-cncomproblemsugly-number-iicomments"><a href="https://leetcode-cn.com/problems/ugly-number-ii/comments/">264 丑数 II</a></h4>
 <p>求第 n 个丑数。</p>
-
 <p>用一个数组 ugly 来保存前 m 个丑数，用三个质因数 2，3，5 乘以其当前系数对应的丑数，得到新的丑数，最小的一个就是第 m + 1 个丑数。时间复杂度是 O(m * n)，其中 m 是质因数的个数，n 是要找的第 n 个丑数。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> nthUglyNumber(<span style="color:#fff;font-weight:bold">int</span> n) {
         vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; ugly(n, <span style="color:#ff0;font-weight:bold">1</span>);
@@ -160,13 +150,10 @@
         <span style="color:#fff;font-weight:bold">return</span> ugly[n - <span style="color:#ff0;font-weight:bold">1</span>];
     }
 };
-</code></pre></div>
-<h4 id="313-超级丑数-https-leetcode-cn-com-problems-super-ugly-number"><a href="https://leetcode-cn.com/problems/super-ugly-number/">313 超级丑数</a></h4>
-
+</code></pre></div><h4 id="313-超级丑数httpsleetcode-cncomproblemssuper-ugly-number"><a href="https://leetcode-cn.com/problems/super-ugly-number/">313 超级丑数</a></h4>
 <p>给定质因数数组 primes，求第 n 个丑数。</p>
-
 <p>跟上一题完全相同，只是把原有的三个质因数 2，3，5 换成了一个数组。时间复杂度是 O(n * m)，其中 n 是第 n 个丑数，m 是数组的长度。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> nthSuperUglyNumber(<span style="color:#fff;font-weight:bold">int</span> N, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; primes) {
         <span style="color:#fff;font-weight:bold">int</span> n = primes.size(), m = INT_MAX;;
@@ -183,13 +170,10 @@
         <span style="color:#fff;font-weight:bold">return</span> ugly[N - <span style="color:#ff0;font-weight:bold">1</span>];
     }
 };
-</code></pre></div>
-<h4 id="279-完全平方数-https-leetcode-cn-com-problems-perfect-squares"><a href="https://leetcode-cn.com/problems/perfect-squares/">279 完全平方数</a></h4>
-
+</code></pre></div><h4 id="279-完全平方数httpsleetcode-cncomproblemsperfect-squares"><a href="https://leetcode-cn.com/problems/perfect-squares/">279 完全平方数</a></h4>
 <p>给一个数 n，其可以被表示为 m 个完全平方数的，找到最小的 m。</p>
-
 <p>n 只能由比 n 小 1, 4, 9 等等的数的最优值加一得到，因此用一个数组 dp[n] 保存小于等于 n 的数被表示为 k 个完全平方数的和的最小的 k 的数量，根据状态转移方程 dp[n] = min({dp[n], dp[n - 1], dp[n - 4], dp[n - 9], &hellip;}) + 1 计算得到结果。时间复杂度是 O(n * w)，w 是比 n 小的完全平方数的个数，空间复杂度是 O(n)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> numSquares(<span style="color:#fff;font-weight:bold">int</span> n) {
         vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; dp(n + <span style="color:#ff0;font-weight:bold">1</span>, INT_MAX);
@@ -200,13 +184,10 @@
         <span style="color:#fff;font-weight:bold">return</span> dp[n];
     }
 };
-</code></pre></div>
-<h4 id="343-整数拆分-https-leetcode-cn-com-problems-integer-break"><a href="https://leetcode-cn.com/problems/integer-break/">343 整数拆分</a></h4>
-
+</code></pre></div><h4 id="343-整数拆分httpsleetcode-cncomproblemsinteger-break"><a href="https://leetcode-cn.com/problems/integer-break/">343 整数拆分</a></h4>
 <p>给一个数 n，将其拆分为至少两个数的和，求这些整数的最大乘积。</p>
-
 <p>n 可以被拆分为 2 个数的和，这两个数又可以被拆分为若干个数的和，因此只需要知道其被拆分为两个数时这两个数的最大乘积，自下往上地计算小于等于 n 的数被拆分时的最大乘积即可，状态转移方程是 dp[i] = max(dp[i], dp[j] * dp[i - j])。时间复杂度是 O(n ^ 2)，空间复杂度是 O(n)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> integerBreak(<span style="color:#fff;font-weight:bold">int</span> n) {
         vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; dp(n + <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>);
@@ -219,11 +200,9 @@
         <span style="color:#fff;font-weight:bold">return</span> dp[n];
     }
 };
-</code></pre></div>
-<h4 id="1155-掷骰子的-n-种方法-https-leetcode-cn-com-problems-number-of-dice-rolls-with-target-sum"><a href="https://leetcode-cn.com/problems/number-of-dice-rolls-with-target-sum/">1155 掷骰子的 N 种方法</a></h4>
-
-<p>对于每一个骰子来说，它可以在之前的基础上有 f 种投掷的方法，它之后的状态是 dp[i + 1][j + k]，i 是投掷过的骰子的个数，k 是它投掷不同的 f 种方法，j 是到它为止投掷出和为 j 的种树，自下而上动态规划即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+</code></pre></div><h4 id="1155-掷骰子的-n-种方法httpsleetcode-cncomproblemsnumber-of-dice-rolls-with-target-sum"><a href="https://leetcode-cn.com/problems/number-of-dice-rolls-with-target-sum/">1155 掷骰子的 N 种方法</a></h4>
+<p>对于每一个骰子来说，它可以在之前的基础上有 f 种投掷的方法，它之后的状态是 dp[i + 1][j + k]，i 是投掷过的骰子的个数，k 是它投掷不同的 f 种方法，j 是到它为止投掷出和为 j 的种数，自下而上动态规划即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> numRollsToTarget(<span style="color:#fff;font-weight:bold">int</span> d, <span style="color:#fff;font-weight:bold">int</span> f, <span style="color:#fff;font-weight:bold">int</span> target) {
         <span style="color:#fff;font-weight:bold">int</span> dp[d + <span style="color:#ff0;font-weight:bold">1</span>][target + f + <span style="color:#ff0;font-weight:bold">1</span>];
@@ -238,15 +217,11 @@
         <span style="color:#fff;font-weight:bold">return</span> dp[d][target];
     }
 };
-</code></pre></div>
-<h3 id="2-买卖股票">2. 买卖股票</h3>
-
-<h4 id="121-买卖股票的最佳时机-https-leetcode-cn-com-problems-best-time-to-buy-and-sell-stock"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">121 买卖股票的最佳时机</a></h4>
-
+</code></pre></div><h3 id="2-买卖股票">2. 买卖股票</h3>
+<h4 id="121-买卖股票的最佳时机httpsleetcode-cncomproblemsbest-time-to-buy-and-sell-stock"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">121 买卖股票的最佳时机</a></h4>
 <p>给一个股票数组，只能进行一次交易，求最大利润。</p>
-
 <p>最大化当前值与之前的最小值之差。时间复杂度是 O(n)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> maxProfit(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; prices) {
         <span style="color:#fff;font-weight:bold">int</span> min_val = INT_MAX, res = <span style="color:#ff0;font-weight:bold">0</span>;
@@ -257,13 +232,10 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="122-买卖股票的最佳时机-ii-https-leetcode-cn-com-problems-best-time-to-buy-and-sell-stock-ii"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">122 买卖股票的最佳时机 II</a></h4>
-
+</code></pre></div><h4 id="122-买卖股票的最佳时机-iihttpsleetcode-cncomproblemsbest-time-to-buy-and-sell-stock-ii"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">122 买卖股票的最佳时机 II</a></h4>
 <p>给一个股票数组，不限制交易次数，求最大利润。</p>
-
 <p>每一个严格递增的区间都是交易的时机，所以将严格递增区间内的差值全部加上即可。时间复杂度是 O(n)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> maxProfit(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;prices) {
         <span style="color:#fff;font-weight:bold">int</span> res = <span style="color:#ff0;font-weight:bold">0</span>;
@@ -272,13 +244,10 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="123-买卖股票的最佳时机-iii-https-leetcode-cn-com-problems-best-time-to-buy-and-sell-stock-iii"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/">123 买卖股票的最佳时机 III</a></h4>
-
+</code></pre></div><h4 id="123-买卖股票的最佳时机-iiihttpsleetcode-cncomproblemsbest-time-to-buy-and-sell-stock-iii"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/">123 买卖股票的最佳时机 III</a></h4>
 <p>给一个股票数组，只能进行两笔交易，求最大利润。</p>
-
 <p>因为要进行两笔交易，所以需要最大化两个值：一个是到第 i 天为止的最大收益，一个是第 i 天之后的最大收益。第一种方法是两次遍历，第一次计算到第 i 天为止的最大收益，第二次反向遍历计算第 i 天之后的最大收益，方法跟第一题相同，注意第二次买入操作必须在第一次卖出操作之后，不能发生在同一天。时间复杂度是 O(n)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> maxProfit(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;prices) {
         <span style="color:#fff;font-weight:bold">int</span> n = prices.size(), pre_min = INT_MAX, post_max = <span style="color:#ff0;font-weight:bold">0</span>, res = <span style="color:#ff0;font-weight:bold">0</span>;
@@ -296,9 +265,8 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<p>第二种方法则是基于每天只有四种可能的操作：第一次买入，第一次卖出 res1，第二次买入，和第二次卖出 res2。第一次买入需要最大化之前买入股票的最小花费，第一次卖出需要最大化到第 i 天为止的股票价格与第一次买入的差值，第二次买入需要最大化在第 i 天买入股票并减去第一次卖出的收益，最后第二次卖出需要最大化到第 i 天为止的股票价格与第二次买入的差值。最后得到第二次卖出的最优值。时间复杂度是 O(n)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+</code></pre></div><p>第二种方法则是基于每天只有四种可能的操作：第一次买入，第一次卖出 res1，第二次买入，和第二次卖出 res2。第一次买入需要最大化之前买入股票的最小花费，第一次卖出需要最大化到第 i 天为止的股票价格与第一次买入的差值，第二次买入需要最大化在第 i 天买入股票并减去第一次卖出的收益，最后第二次卖出需要最大化到第 i 天为止的股票价格与第二次买入的差值。最后得到第二次卖出的最优值。时间复杂度是 O(n)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> maxProfit(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;prices) {
         <span style="color:#fff;font-weight:bold">int</span> buy1 = INT_MIN, sell1 = <span style="color:#ff0;font-weight:bold">0</span>, buy2 = INT_MIN, sell2 = <span style="color:#ff0;font-weight:bold">0</span>;
@@ -307,18 +275,15 @@
             sell1 = max(sell1, p + buy1);
             buy2 = max(buy2, sell1 - p);
             sell2 = max(sell2, p + buy2);
-            cout &lt;&lt; buy1 &lt;&lt; <span style="color:#0ff;font-weight:bold">&#39; &#39;</span> &lt;&lt; sell1 &lt;&lt; <span style="color:#0ff;font-weight:bold">&#39; &#39;</span> &lt;&lt; buy2 &lt;&lt; <span style="color:#0ff;font-weight:bold">&#39; &#39;</span> &lt;&lt; sell2 &lt;&lt; <span style="color:#0ff;font-weight:bold">&#39; &#39;</span> &lt;&lt; endl;
+            cout &lt;&lt; buy1 &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold"> </span><span style="color:#0ff;font-weight:bold">&#39;</span> &lt;&lt; sell1 &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold"> </span><span style="color:#0ff;font-weight:bold">&#39;</span> &lt;&lt; buy2 &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold"> </span><span style="color:#0ff;font-weight:bold">&#39;</span> &lt;&lt; sell2 &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold"> </span><span style="color:#0ff;font-weight:bold">&#39;</span> &lt;&lt; endl;
         }
         <span style="color:#fff;font-weight:bold">return</span> sell2;
     }
 };
-</code></pre></div>
-<h4 id="309-最佳买卖股票时机含冷冻期-https-leetcode-cn-com-problems-best-time-to-buy-and-sell-stock-with-cooldown"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/">309 最佳买卖股票时机含冷冻期</a></h4>
-
+</code></pre></div><h4 id="309-最佳买卖股票时机含冷冻期httpsleetcode-cncomproblemsbest-time-to-buy-and-sell-stock-with-cooldown"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/">309 最佳买卖股票时机含冷冻期</a></h4>
 <p>给一个股票数组，不限制交易次数，卖出和买入之间需要隔一天，求最大利润。</p>
-
 <p>和上一题的第二种方法类似，我们可以用两个数组 buy 和 sell 分别表示买入和卖出操作，对于买入操作，需要最大化两天前卖出的最优值于今天买入的差值，对于卖出操作，需要最大化当天价格与前一天买入的最优值的差值。时间复杂度是 O(n)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> maxProfit(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; prices) {
         <span style="color:#fff;font-weight:bold">int</span> n = prices.size();
@@ -333,13 +298,10 @@
         <span style="color:#fff;font-weight:bold">return</span> sell[n - <span style="color:#ff0;font-weight:bold">1</span>];
     }
 };
-</code></pre></div>
-<h4 id="714-买卖股票的最佳时机含手续费-https-leetcode-cn-com-problems-best-time-to-buy-and-sell-stock-with-transaction-fee"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">714 买卖股票的最佳时机含手续费</a></h4>
-
+</code></pre></div><h4 id="714-买卖股票的最佳时机含手续费httpsleetcode-cncomproblemsbest-time-to-buy-and-sell-stock-with-transaction-fee"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">714 买卖股票的最佳时机含手续费</a></h4>
 <p>给一个股票数组，不限制交易次数，每次卖出有一定手续费，求最大利润。</p>
-
 <p>和上一题类似，区别在于没有了交易间隔，以及每次进行 sell 操作的时候需要减去手续费。时间复杂度是 O(n)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> maxProfit(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; prices, <span style="color:#fff;font-weight:bold">int</span> fee) {
         <span style="color:#fff;font-weight:bold">int</span> n = prices.size();
@@ -354,15 +316,11 @@
         <span style="color:#fff;font-weight:bold">return</span> sell[n - <span style="color:#ff0;font-weight:bold">1</span>];
     }
 };
-</code></pre></div>
-<h4 id="188-买卖股票的最佳时机-iv-https-leetcode-cn-com-problems-best-time-to-buy-and-sell-stock-iv"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/">188 买卖股票的最佳时机 IV</a></h4>
-
+</code></pre></div><h4 id="188-买卖股票的最佳时机-ivhttpsleetcode-cncomproblemsbest-time-to-buy-and-sell-stock-iv"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/">188 买卖股票的最佳时机 IV</a></h4>
 <p>给一个股票数组，最多能进行 k 笔交易，求最大利润。</p>
-
 <p>把上面五道题都做完之后这道题就很简单了。相比于第二题，因为这道题的 k 是未知的，所以要用一个循环将所有可能的 k 笔交易的最优值都计算出来，因此用一个三维数组 dp[n][k][2]，或是分开成两个二维数组 buy[n][k] 和 sell[n][k]，来表示前 n 天进行 k 笔交易的最优的买入和卖出值。同样的，买入和卖出操作都是在之前一次的卖出和买入的基础上进行的，使用 buy[i][j] = max({buy[i][j - 1], buy[i - 1][j], sell[i - 1][j - 1] - prices[i]}) 来表示前 i 天进行了 j 次交易的最优的买入值，第一项在 j &lt;= i / 2 时会填充为 buy[i][j - 1]的值，防止后面操作时不会取到空值或默认值造成错误，第二项是当前买入操作不能取得最优值的结果，第三项则是当前买入操作能取得最优值的结果；对应的卖出操作则是 sell[i][j] = max({sell[i][j - 1], sell[i - 1][j], buy[i - 1][j] + prices[i]})。</p>
-
 <p>值得注意的是，当 k 远大于数组长度的两倍，或 k 非常大时，构造二维数组会造成MLE，此时可以直接用第二题的思路解决。时间复杂度是 O(n * k)，空间复杂度是 O(n * k)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> maxProfit(<span style="color:#fff;font-weight:bold">int</span> k, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;prices) {
         <span style="color:#fff;font-weight:bold">int</span> n = prices.size(), res = <span style="color:#ff0;font-weight:bold">0</span>;

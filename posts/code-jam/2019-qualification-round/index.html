@@ -17,8 +17,8 @@
 <meta property="og:description" content="Code Jam 2019 Qualification Round Foregone Solution (6pts, 10pts, 1pts) 将一个带有数字4的数拆分为两个不带数字4的数。 Solution: Construction 输入的数一定带有数字4，对于每一位上的数字4，我们可以将其拆分为2&#43;2" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/code-jam/2019-qualification-round/" />
-<meta property="article:published_time" content="2019-04-06T13:40:27&#43;10:00"/>
-<meta property="article:modified_time" content="2019-04-06T13:40:27&#43;10:00"/>
+<meta property="article:published_time" content="2019-04-06T13:40:27+10:00" />
+<meta property="article:modified_time" content="2019-04-06T13:40:27+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,36 +108,29 @@
       </header>
 
       <div>
-        
-
-<h1 id="code-jam-2019-qualification-round-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051705"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705">Code Jam 2019 Qualification Round</a></h1>
-
-<h2 id="foregone-solution-6pts-10pts-1pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051705-0000000000088231"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/0000000000088231">Foregone Solution (6pts, 10pts, 1pts)</a></h2>
-
+        <h1 id="code-jam-2019-qualification-roundhttpscodingcompetitionswithgooglecomcodejamround0000000000051705"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705">Code Jam 2019 Qualification Round</a></h1>
+<h2 id="foregone-solution-6pts-10pts-1ptshttpscodingcompetitionswithgooglecomcodejamround00000000000517050000000000088231"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/0000000000088231">Foregone Solution (6pts, 10pts, 1pts)</a></h2>
 <p>将一个带有数字4的数拆分为两个不带数字4的数。</p>
-
 <h3 id="solution-construction">Solution: Construction</h3>
-
 <p>输入的数一定带有数字4，对于每一位上的数字4，我们可以将其拆分为2+2（或1+3）的两个数。输入数据最大是10的100次方，所以我们可以将其作为字符串处理。</p>
-
 <ul>
 <li>时间复杂度：O(n)</li>
 <li>空间复杂度：O(1)</li>
 </ul>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#007f7f">// C++
-</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
 </span><span style="color:#0f0;font-weight:bold"></span>
 <span style="color:#fff;font-weight:bold">using</span> <span style="color:#fff;font-weight:bold">namespace</span> std;
 
@@ -149,43 +142,38 @@
         cin &gt;&gt; N;
         string a, b;
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> c:N) {
-            a += c == <span style="color:#0ff;font-weight:bold">&#39;4&#39;</span> ? <span style="color:#0ff;font-weight:bold">&#39;2&#39;</span> : c;
-            b += c == <span style="color:#0ff;font-weight:bold">&#39;4&#39;</span> ? <span style="color:#0ff;font-weight:bold">&#39;2&#39;</span> : <span style="color:#0ff;font-weight:bold">&#39;0&#39;</span>;
+            a += c == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">4</span><span style="color:#0ff;font-weight:bold">&#39;</span> ? <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">2</span><span style="color:#0ff;font-weight:bold">&#39;</span> : c;
+            b += c == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">4</span><span style="color:#0ff;font-weight:bold">&#39;</span> ? <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">2</span><span style="color:#0ff;font-weight:bold">&#39;</span> : <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">0</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
         }
-        <span style="color:#fff;font-weight:bold">while</span> (a[<span style="color:#ff0;font-weight:bold">0</span>] == <span style="color:#0ff;font-weight:bold">&#39;0&#39;</span>)
+        <span style="color:#fff;font-weight:bold">while</span> (a[<span style="color:#ff0;font-weight:bold">0</span>] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">0</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
             a.erase(a.begin());
-        <span style="color:#fff;font-weight:bold">while</span> (b[<span style="color:#ff0;font-weight:bold">0</span>] == <span style="color:#0ff;font-weight:bold">&#39;0&#39;</span>)
+        <span style="color:#fff;font-weight:bold">while</span> (b[<span style="color:#ff0;font-weight:bold">0</span>] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">0</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
             b.erase(b.begin());
-        cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> &lt;&lt; t &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;: &#34;</span> &lt;&lt; a &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34; &#34;</span> &lt;&lt; b &lt;&lt; endl;
+        cout &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">Case #</span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; t &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">: </span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; a &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold"> </span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; b &lt;&lt; endl;
     }
 }
-</code></pre></div>
-<h2 id="you-can-go-your-own-way-5pts-9pts-10pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051705-00000000000881da"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/00000000000881da">You Can Go Your Own Way (5pts, 9pts, 10pts)</a></h2>
-
+</code></pre></div><h2 id="you-can-go-your-own-way-5pts-9pts-10ptshttpscodingcompetitionswithgooglecomcodejamround000000000005170500000000000881da"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/00000000000881da">You Can Go Your Own Way (5pts, 9pts, 10pts)</a></h2>
 <p>在n*n的矩阵里从(0,0)走到(n-1,n-1)，只能向右或向下走。矩阵里有一条已有的路径，不能与该路径有重合。最常规的做法是DFS/BFS，时间复杂度为O(n^2)。</p>
-
 <h3 id="solution-mirror">Solution: Mirror</h3>
-
 <p>因为只有一条已知路径，我们可以将其以对角线作镜像，得到的新路径一定与原路径没有重合。</p>
-
 <ul>
 <li>时间复杂度：O(2 * n - 2)</li>
 <li>空间复杂度：O(1)</li>
 </ul>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#007f7f">// C++
-</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
-</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;cmath&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;math.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;limits&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;algorithm&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;vector&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;stack&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;queue&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;string&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;set&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_map&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#0f0;font-weight:bold">#</span><span style="color:#0f0;font-weight:bold">include</span> <span style="color:#0f0;font-weight:bold">&lt;unordered_set&gt;</span><span style="color:#0f0;font-weight:bold">
 </span><span style="color:#0f0;font-weight:bold"></span>
 <span style="color:#fff;font-weight:bold">using</span> <span style="color:#fff;font-weight:bold">namespace</span> std;
 
@@ -197,21 +185,15 @@
         string str;
         cin &gt;&gt; N &gt;&gt; str;
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; N * <span style="color:#ff0;font-weight:bold">2</span> - <span style="color:#ff0;font-weight:bold">2</span>; ++i)
-            str[i] = str[i] == <span style="color:#0ff;font-weight:bold">&#39;E&#39;</span> ? <span style="color:#0ff;font-weight:bold">&#39;S&#39;</span> : <span style="color:#0ff;font-weight:bold">&#39;E&#39;</span>;
-        cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Case #&#34;</span> &lt;&lt; t &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;: &#34;</span> &lt;&lt; str &lt;&lt; endl;
+            str[i] = str[i] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">E</span><span style="color:#0ff;font-weight:bold">&#39;</span> ? <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">S</span><span style="color:#0ff;font-weight:bold">&#39;</span> : <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">E</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
+        cout &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">Case #</span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; t &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">: </span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; str &lt;&lt; endl;
     }
 }
-</code></pre></div>
-<h2 id="cryptopangrams-10pts-15pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051705-000000000008830b"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/000000000008830b">Cryptopangrams (10pts, 15pts)</a></h2>
-
+</code></pre></div><h2 id="cryptopangrams-10pts-15ptshttpscodingcompetitionswithgooglecomcodejamround0000000000051705000000000008830b"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/000000000008830b">Cryptopangrams (10pts, 15pts)</a></h2>
 <p>输入上限N和一个长为L的数组product，数组里的每一个数都是一个长为L+1的质数数组res里的相邻质数的乘积。质数数组里一共只有26个质数，返回将这26个质数排序后分别映射为A-Z的结果。对于比较小的N，可以把小于等于N的所有质数保存下来，计算出product[0]是哪两个质数的乘积，再计算出product[1]是哪两个质数的乘积，得到res[1]，再依次计算质数数组res里的其他数。在N比较大的时候时间和空间占用都会很高。</p>
-
 <h3 id="solution-greatest-common-denominator">Solution: Greatest Common Denominator</h3>
-
 <p>相较于先找到所有质数再找到product[0]是哪两个质数的乘积，我们可以使用小学学过的辗转相除法来求出这个质数，这样可以非常有效地降低时间和空间消耗。</p>
-
 <p>这道题测试用例的N最大值是10的100次方，用C++需要自己处理大数乘法（C++最大只支持128位的int型数）。</p>
-
 <ul>
 <li>时间复杂度：O(L)</li>
 <li>空间复杂度：O(L)</li>
@@ -243,10 +225,9 @@ T = <span style="color:#fff;font-weight:bold">int</span>(<span style="color:#fff
         <span style="color:#fff;font-weight:bold">if</span> m not in match:
             match.append(m)
     match.sort()
-    ret = [<span style="color:#fff;font-weight:bold">chr</span>(match.index(res[i]) + <span style="color:#fff;font-weight:bold">ord</span>(<span style="color:#0ff;font-weight:bold">&#39;A&#39;</span>)) <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#fff;font-weight:bold">len</span>(res))]
-    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Case #{t}: {str}&#34;</span>.format(t=t, <span style="color:#fff;font-weight:bold">str</span>=<span style="color:#0ff;font-weight:bold">&#34;&#34;</span>.join(ret)))</code></pre></div>
-<h2 id="dat-bae-14pts-20pts-https-codingcompetitions-withgoogle-com-codejam-round-0000000000051705-00000000000881de"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/00000000000881de">Dat Bae (14pts, 20pts)</a></h2>
-
+    ret = [<span style="color:#fff;font-weight:bold">chr</span>(match.index(res[i]) + <span style="color:#fff;font-weight:bold">ord</span>(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">A</span><span style="color:#0ff;font-weight:bold">&#39;</span>)) <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#fff;font-weight:bold">len</span>(res))]
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">Case #{t}: {str}</span><span style="color:#0ff;font-weight:bold">&#34;</span>.format(t=t, <span style="color:#fff;font-weight:bold">str</span>=<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">&#34;</span>.join(ret)))
+</code></pre></div><h2 id="dat-bae-14pts-20ptshttpscodingcompetitionswithgooglecomcodejamround000000000005170500000000000881de"><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/00000000000881de">Dat Bae (14pts, 20pts)</a></h2>
 <p>// TODO</p>
 
       </div>

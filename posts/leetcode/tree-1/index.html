@@ -17,8 +17,8 @@
 <meta property="og:description" content="LeetCode 树（1） 题目 1. 树的遍历 144 二叉树的前序遍历 前序遍历一个二叉树。 前序遍历是按照根节点，左子节点，右子节点的顺序来遍历一个二叉树，有递归和迭代两" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/tree-1/" />
-<meta property="article:published_time" content="2019-07-13T19:12:25&#43;10:00"/>
-<meta property="article:modified_time" content="2019-07-13T19:12:25&#43;10:00"/>
+<meta property="article:published_time" content="2019-07-13T19:12:25+10:00" />
+<meta property="article:modified_time" content="2019-07-13T19:12:25+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,20 +108,13 @@
       </header>
 
       <div>
-        
-
-<h1 id="leetcode-树-1-https-leetcode-cn-com-tag-tree"><a href="https://leetcode-cn.com/tag/tree/">LeetCode 树（1）</a></h1>
-
+        <h1 id="leetcode-树1httpsleetcode-cncomtagtree"><a href="https://leetcode-cn.com/tag/tree/">LeetCode 树（1）</a></h1>
 <h2 id="题目">题目</h2>
-
 <h3 id="1-树的遍历">1. 树的遍历</h3>
-
-<h4 id="144-二叉树的前序遍历-https-leetcode-cn-com-problems-binary-tree-preorder-traversal"><a href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/">144 二叉树的前序遍历</a></h4>
-
+<h4 id="144-二叉树的前序遍历httpsleetcode-cncomproblemsbinary-tree-preorder-traversal"><a href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/">144 二叉树的前序遍历</a></h4>
 <p>前序遍历一个二叉树。</p>
-
 <p>前序遍历是按照根节点，左子节点，右子节点的顺序来遍历一个二叉树，有递归和迭代两种方法。对于迭代方法，先将节点加入结果数组，然后用一个栈保存右，左子节点，依次访问，重复此过程。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
         vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; preorderTraversal(TreeNode *root) {
@@ -138,7 +131,7 @@
         Preorder(root-&gt;right);
     }
 };
-</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; preorderTraversal(TreeNode *root) {
         vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
@@ -158,13 +151,10 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="589-n叉树的前序遍历-https-leetcode-cn-com-problems-n-ary-tree-preorder-traversal"><a href="https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/">589 N叉树的前序遍历</a></h4>
-
+</code></pre></div><h4 id="589-n叉树的前序遍历httpsleetcode-cncomproblemsn-ary-tree-preorder-traversal"><a href="https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/">589 N叉树的前序遍历</a></h4>
 <p>前序遍历一个 N 叉树。</p>
-
 <p>跟二叉树的前序遍历类似，有递归和迭代两种做法。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; preorder(Node *root) {
@@ -181,7 +171,7 @@
             Preorder(c);
     }
 };
-</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; preorder(Node *root) {
         vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
@@ -199,13 +189,10 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="94-二叉树的中序遍历-https-leetcode-cn-com-problems-binary-tree-inorder-traversal"><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94 二叉树的中序遍历</a></h4>
-
+</code></pre></div><h4 id="94-二叉树的中序遍历httpsleetcode-cncomproblemsbinary-tree-inorder-traversal"><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94 二叉树的中序遍历</a></h4>
 <p>中序遍历一个二叉树。</p>
-
 <p>中序遍历是按照左子节点，根节点，右子节点的顺序来遍历一个二叉树，有递归和迭代两种方法。对于迭代方法，用一个栈保存父节点以便最后访问，先找到最左节点，将其加入结果数组，然后访问其右子节点，重复此过程。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; inorderTraversal(TreeNode* root) {
@@ -222,7 +209,7 @@
         Inorder(root-&gt;right);
     }
 };
-</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; inorderTraversal(TreeNode *root) {
         vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
@@ -245,13 +232,10 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="145-二叉树的后序遍历-https-leetcode-cn-com-problems-binary-tree-postorder-traversal"><a href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145 二叉树的后序遍历</a></h4>
-
+</code></pre></div><h4 id="145-二叉树的后序遍历httpsleetcode-cncomproblemsbinary-tree-postorder-traversal"><a href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145 二叉树的后序遍历</a></h4>
 <p>后序遍历一个二叉树。</p>
-
 <p>后序遍历是按照左子节点，右子节点，根节点的顺序来遍历一个二叉树，有递归和迭代两种方法。对于迭代方法，用一个栈保存父节点以便最后访问，先找到最左节点，如果其已经是叶子节点则将其加入结果数组，否则访问其右子节点，用 last 保存上一次访问过的右子节点防止再次访问，重复此过程。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; postorderTraversal(TreeNode* root) {
@@ -268,7 +252,7 @@
         res.push_back(root-&gt;val);
     }
 };
-</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; postorderTraversal(TreeNode *root) {
         vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
@@ -296,11 +280,9 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="590-n叉树的后序遍历-https-leetcode-cn-com-problems-n-ary-tree-postorder-traversal"><a href="https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/">590 N叉树的后序遍历</a></h4>
-
+</code></pre></div><h4 id="590-n叉树的后序遍历httpsleetcode-cncomproblemsn-ary-tree-postorder-traversal"><a href="https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/">590 N叉树的后序遍历</a></h4>
 <p>跟二叉树的后序遍历类似，有递归和迭代两种做法。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; postorder(Node *root) {
@@ -317,7 +299,7 @@
         res.push_back(root-&gt;val);
     }
 };
-</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; postorder(Node *root) {
         vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; res;
@@ -336,13 +318,10 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="102-二叉树的层次遍历-https-leetcode-cn-com-problems-binary-tree-level-order-traversal"><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/">102 二叉树的层次遍历</a></h4>
-
+</code></pre></div><h4 id="102-二叉树的层次遍历httpsleetcode-cncomproblemsbinary-tree-level-order-traversal"><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/">102 二叉树的层次遍历</a></h4>
 <p>给一个二叉树，返回其按层次遍历的节点值。</p>
-
 <p>用一个队列来保存该二叉树当前一层的所有节点，一边将这些节点 pop 并 push 进结果数组中，一边将这些节点的子节点 push 进队列。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; levelOrder(TreeNode *root) {
         vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; res;
@@ -368,13 +347,10 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="107-二叉树的层次遍历-ii-https-leetcode-cn-com-problems-binary-tree-level-order-traversal-ii"><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/">107 二叉树的层次遍历 II</a></h4>
-
+</code></pre></div><h4 id="107-二叉树的层次遍历-iihttpsleetcode-cncomproblemsbinary-tree-level-order-traversal-ii"><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/">107 二叉树的层次遍历 II</a></h4>
 <p>给一个二叉树，返回其节点值自底向上的层次遍历。</p>
-
 <p>跟上一题相同，只需要将结果数组倒置，或用一个栈保存结果，再 pop 进结果数组即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; levelOrderBottom(TreeNode *root) {
         vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; res;
@@ -401,13 +377,10 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="429-n-叉树的层序遍历-https-leetcode-cn-com-problems-n-ary-tree-level-order-traversal"><a href="https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/">429 N 叉树的层序遍历</a></h4>
-
+</code></pre></div><h4 id="429-n-叉树的层序遍历httpsleetcode-cncomproblemsn-ary-tree-level-order-traversal"><a href="https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/">429 N 叉树的层序遍历</a></h4>
 <p>层序遍历一个 N 叉树。</p>
-
 <p>用一个队列来保存该 N 叉树当前一层的所有节点，一边将这些节点 pop 并 push 进结果数组中，一边将这些节点的子节点 push 进队列。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; levelOrder(Node *root) {
         vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; res;
@@ -431,13 +404,10 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="987-二叉树的垂序遍历-https-leetcode-cn-com-problems-vertical-order-traversal-of-a-binary-tree"><a href="https://leetcode-cn.com/problems/vertical-order-traversal-of-a-binary-tree/">987 二叉树的垂序遍历</a></h4>
-
+</code></pre></div><h4 id="987-二叉树的垂序遍历httpsleetcode-cncomproblemsvertical-order-traversal-of-a-binary-tree"><a href="https://leetcode-cn.com/problems/vertical-order-traversal-of-a-binary-tree/">987 二叉树的垂序遍历</a></h4>
 <p>垂序遍历一个二叉树。</p>
-
 <p>用红黑树把二叉树中每个节点的位置保存下来，如果根节点的位置是 (x, y)，那么其左子节点和右子节点的位置分别是 (x - 1, y + 1) 和 (x + 1, y + 1)，再按顺序保存到结果数组即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     map&lt;<span style="color:#fff;font-weight:bold">int</span>, map&lt;<span style="color:#fff;font-weight:bold">int</span>, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt;&gt; matrix;
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; verticalTraversal(TreeNode *root) {
@@ -467,13 +437,10 @@
         Traverse(root-&gt;right, x + <span style="color:#ff0;font-weight:bold">1</span>, y + <span style="color:#ff0;font-weight:bold">1</span>);
     }
 };
-</code></pre></div>
-<h4 id="103-二叉树的锯齿形层次遍历-https-leetcode-cn-com-problems-binary-tree-zigzag-level-order-traversal"><a href="https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/">103 二叉树的锯齿形层次遍历</a></h4>
-
+</code></pre></div><h4 id="103-二叉树的锯齿形层次遍历httpsleetcode-cncomproblemsbinary-tree-zigzag-level-order-traversal"><a href="https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/">103 二叉树的锯齿形层次遍历</a></h4>
 <p>锯齿形层次遍历一个二叉树。</p>
-
 <p>用两个栈轮流从左往右和从右往左保存节点，再依次加入结果数组即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; zigzagLevelOrder(TreeNode *root) {
         stack&lt;TreeNode *&gt; s1, s2;
@@ -509,11 +476,9 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="124-二叉树中的最大路径和-https-leetcode-cn-com-problems-binary-tree-maximum-path-sum"><a href="https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/">124 二叉树中的最大路径和</a></h4>
-
+</code></pre></div><h4 id="124-二叉树中的最大路径和httpsleetcode-cncomproblemsbinary-tree-maximum-path-sum"><a href="https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/">124 二叉树中的最大路径和</a></h4>
 <p>用递归的方式，在每个节点值加上其左右子树的最大路径来更新结果，并以其左右子树中较大的一个加上其节点值返回即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> res;
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> maxPathSum(TreeNode *root) {
@@ -531,11 +496,9 @@
         <span style="color:#fff;font-weight:bold">return</span> max(left, right) + node-&gt;val;
     }
 };
-</code></pre></div>
-<h4 id="968-监控二叉树-https-leetcode-cn-com-problems-binary-tree-cameras"><a href="https://leetcode-cn.com/problems/binary-tree-cameras/">968 监控二叉树</a></h4>
-
+</code></pre></div><h4 id="968-监控二叉树httpsleetcode-cncomproblemsbinary-tree-cameras"><a href="https://leetcode-cn.com/problems/binary-tree-cameras/">968 监控二叉树</a></h4>
 <p>贪心法，分情况讨论，三种状态分别是：0 表示节点未被监控，1 表示节点自带监控，2 表示节点被子节点监控；一个节点的两个字子节点组合起来分别由 6 种情况，分别是：若两个子节点都为 2（22），那么当前节点未被监控，需要被父节点监控，返回 0；若两个子节点至少有一个为 0（00，01，02，未被监控），那么当前节点需要装上监控以监控子节点，返回 1；剩下的 2 种情况是至少有一个子节点自带监控（11，12），那么当前节点被子节点监控，且其子节点都已被监控或自带监控，返回 2；最后需要单独判断树的根节点是否是 0 的状态，因为已经没有父节点可以进行监控。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> res;
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> minCameraCover(TreeNode *root) {
@@ -552,22 +515,18 @@
         <span style="color:#fff;font-weight:bold">int</span> right = Traverse(node-&gt;right);
         <span style="color:#fff;font-weight:bold">if</span> (left == <span style="color:#ff0;font-weight:bold">2</span> &amp;&amp; right == <span style="color:#ff0;font-weight:bold">2</span>)
             <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
-        <span style="color:#fff;font-weight:bold">else</span> if (left == <span style="color:#ff0;font-weight:bold">0</span> || right == <span style="color:#ff0;font-weight:bold">0</span>) {
+        <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (left == <span style="color:#ff0;font-weight:bold">0</span> || right == <span style="color:#ff0;font-weight:bold">0</span>) {
             ++res;
             <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">1</span>;
         }
         <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">2</span>;
     }
 };
-</code></pre></div>
-<h3 id="2-构造二叉树">2. 构造二叉树</h3>
-
-<h4 id="105-从前序与中序遍历序列构造二叉树-https-leetcode-cn-com-problems-construct-binary-tree-from-preorder-and-inorder-traversal"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105 从前序与中序遍历序列构造二叉树</a></h4>
-
+</code></pre></div><h3 id="2-构造二叉树">2. 构造二叉树</h3>
+<h4 id="105-从前序与中序遍历序列构造二叉树httpsleetcode-cncomproblemsconstruct-binary-tree-from-preorder-and-inorder-traversal"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105 从前序与中序遍历序列构造二叉树</a></h4>
 <p>根据前序遍历与中序遍历的结果构造二叉树。</p>
-
 <p>前序遍历结果中的第一个元素一定是二叉树的根节点的值，因此在中序遍历结果中找到这个值，那么中序遍历结果中这个值左边的所有元素一定都在这个根节点的左子树上，右边的所有元素一定都在这个根节点的右子树上，假设左边的长度为 m，那么在前序遍历结果的第一个元素后的 m 个元素也都对应左子树上的这些元素，分别把这两部分递归调用构造新的子树即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     TreeNode *buildTree(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;preorder, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;inorder) {
         <span style="color:#fff;font-weight:bold">return</span> Build(preorder, <span style="color:#ff0;font-weight:bold">0</span>, preorder.size(), inorder, <span style="color:#ff0;font-weight:bold">0</span>, inorder.size());
@@ -585,13 +544,10 @@
         <span style="color:#fff;font-weight:bold">return</span> node;
     }
 };
-</code></pre></div>
-<h4 id="106-从中序与后序遍历序列构造二叉树-https-leetcode-cn-com-problems-construct-binary-tree-from-inorder-and-postorder-traversal"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">106 从中序与后序遍历序列构造二叉树</a></h4>
-
+</code></pre></div><h4 id="106-从中序与后序遍历序列构造二叉树httpsleetcode-cncomproblemsconstruct-binary-tree-from-inorder-and-postorder-traversal"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">106 从中序与后序遍历序列构造二叉树</a></h4>
 <p>根据后序遍历与中序遍历的结果构造二叉树。</p>
-
 <p>后序遍历结果中的最后一个元素一定是二叉树的根节点的值，因此在中序遍历结果中找到这个值，那么中序遍历结果中这个值左边的所有元素一定都在这个根节点的左子树上，右边的所有元素一定都在这个根节点的右子树上，假设左边的长度为 m，那么在后序遍历结果中从第一个元素往后 m 个元素也都对应左子树上的这些元素，分别把这两部分递归调用构造新的子树即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     TreeNode *buildTree(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;inorder, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;postorder) {
         <span style="color:#fff;font-weight:bold">return</span> Build(inorder, <span style="color:#ff0;font-weight:bold">0</span>, inorder.size(), postorder, <span style="color:#ff0;font-weight:bold">0</span>, postorder.size());
@@ -609,13 +565,10 @@
         <span style="color:#fff;font-weight:bold">return</span> node;
     }
 };
-</code></pre></div>
-<h4 id="889-根据前序和后序遍历构造二叉树-https-leetcode-cn-com-problems-construct-binary-tree-from-preorder-and-postorder-traversal"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/">889 根据前序和后序遍历构造二叉树</a></h4>
-
+</code></pre></div><h4 id="889-根据前序和后序遍历构造二叉树httpsleetcode-cncomproblemsconstruct-binary-tree-from-preorder-and-postorder-traversal"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/">889 根据前序和后序遍历构造二叉树</a></h4>
 <p>根据前序遍历与后序遍历的结果构造二叉树。</p>
-
 <p>前序遍历结果中的第一个元素对应后序遍历结果中的最后一个元素，都是二叉树的根节点的值，以此构建根节点；前序遍历结果中的第二个元素一定是根节点的左子节点，而后序遍历结果中的这个值一定是左子树上的最后一个值，那么只需要找到这个值在后序遍历结果中的位置，就可以确定左子树和右子树的长度，分别递归调用构造新的子树即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     TreeNode *constructFromPrePost(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;pre, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;post) {
         <span style="color:#fff;font-weight:bold">return</span> Build(pre, <span style="color:#ff0;font-weight:bold">0</span>, pre.size(), post, <span style="color:#ff0;font-weight:bold">0</span>, post.size());
@@ -635,13 +588,10 @@
         <span style="color:#fff;font-weight:bold">return</span> node;
     }
 };
-</code></pre></div>
-<h4 id="1008-先序遍历构造二叉树-https-leetcode-cn-com-problems-construct-binary-search-tree-from-preorder-traversal"><a href="https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/">1008 先序遍历构造二叉树</a></h4>
-
+</code></pre></div><h4 id="1008-先序遍历构造二叉树httpsleetcode-cncomproblemsconstruct-binary-search-tree-from-preorder-traversal"><a href="https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/">1008 先序遍历构造二叉树</a></h4>
 <p>给一个先序遍历的结果，构造其对应的二叉搜索树。</p>
-
 <p>根据先序遍历和二叉搜索树的定义，数组的第一个元素即是根节点，其后所有小于它的元素都在它的左子树上，所有大于它的元素都在它的右子树上，递归求解即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     TreeNode *bstFromPreorder(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;preorder) {
         <span style="color:#fff;font-weight:bold">return</span> Build(preorder, <span style="color:#ff0;font-weight:bold">0</span>, preorder.size());
@@ -659,13 +609,10 @@
         <span style="color:#fff;font-weight:bold">return</span> root;
     }
 };
-</code></pre></div>
-<h4 id="1028-从先序遍历还原二叉树-https-leetcode-cn-com-problems-recover-a-tree-from-preorder-traversal"><a href="https://leetcode-cn.com/problems/recover-a-tree-from-preorder-traversal/">1028 从先序遍历还原二叉树</a></h4>
-
+</code></pre></div><h4 id="1028-从先序遍历还原二叉树httpsleetcode-cncomproblemsrecover-a-tree-from-preorder-traversal"><a href="https://leetcode-cn.com/problems/recover-a-tree-from-preorder-traversal/">1028 从先序遍历还原二叉树</a></h4>
 <p>给一个先序遍历的结果和用不同长度的 &lsquo;-&rsquo; 相连的字符串，构造其对应的二叉树。</p>
-
-<p>&rsquo;-&rsquo; 的长度代表当前的层次，如果当前节点之后的 &lsquo;-&rsquo; 的长度等于当前的层次加一，那么其后的数构成当前节点的左节点；如果左节点之后的 &lsquo;-&rsquo; 的长度等于当前的层次加一，那么其后的数构成当前节点的右节点；否则如果当前节点之后或左节点之后的 &lsquo;-&rsquo; 的长度小于等于等钱层次则代表当前节点已经是叶子节点，其没有左右子节点，直接返回。用一个变量 pos 保存当前遍历到的字符串位置，递归调用该过程即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<p>&lsquo;-&rsquo; 的长度代表当前的层次，如果当前节点之后的 &lsquo;-&rsquo; 的长度等于当前的层次加一，那么其后的数构成当前节点的左节点；如果左节点之后的 &lsquo;-&rsquo; 的长度等于当前的层次加一，那么其后的数构成当前节点的右节点；否则如果当前节点之后或左节点之后的 &lsquo;-&rsquo; 的长度小于等于等钱层次则代表当前节点已经是叶子节点，其没有左右子节点，直接返回。用一个变量 pos 保存当前遍历到的字符串位置，递归调用该过程即可。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     TreeNode *recoverFromPreorder(string S) {
         <span style="color:#fff;font-weight:bold">int</span> pos = <span style="color:#ff0;font-weight:bold">0</span>;
@@ -674,18 +621,18 @@
 
     TreeNode *Build(<span style="color:#fff;font-weight:bold">const</span> string &amp;S, <span style="color:#fff;font-weight:bold">int</span> x, <span style="color:#fff;font-weight:bold">int</span> &amp;pos, <span style="color:#fff;font-weight:bold">int</span> lvl) {
         <span style="color:#fff;font-weight:bold">int</span> num = <span style="color:#ff0;font-weight:bold">0</span>, i = x;
-        <span style="color:#fff;font-weight:bold">while</span> (S[i] &gt;= <span style="color:#0ff;font-weight:bold">&#39;0&#39;</span> &amp;&amp; S[i] &lt;= <span style="color:#0ff;font-weight:bold">&#39;9&#39;</span>)
+        <span style="color:#fff;font-weight:bold">while</span> (S[i] &gt;= <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">0</span><span style="color:#0ff;font-weight:bold">&#39;</span> &amp;&amp; S[i] &lt;= <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">9</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
             ++i;
         TreeNode *node = <span style="color:#fff;font-weight:bold">new</span> TreeNode(stoi(S.substr(x, i - x + <span style="color:#ff0;font-weight:bold">1</span>)));
         pos = i;
-        <span style="color:#fff;font-weight:bold">while</span> (S[i] == <span style="color:#0ff;font-weight:bold">&#39;-&#39;</span>)
+        <span style="color:#fff;font-weight:bold">while</span> (S[i] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">-</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
             ++i;
         <span style="color:#fff;font-weight:bold">if</span> (i - pos == lvl + <span style="color:#ff0;font-weight:bold">1</span>)
             node-&gt;left = Build(S, i, pos, lvl + <span style="color:#ff0;font-weight:bold">1</span>);
         <span style="color:#fff;font-weight:bold">else</span>
             <span style="color:#fff;font-weight:bold">return</span> node;
         i = pos;
-        <span style="color:#fff;font-weight:bold">while</span> (S[i] == <span style="color:#0ff;font-weight:bold">&#39;-&#39;</span>)
+        <span style="color:#fff;font-weight:bold">while</span> (S[i] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">-</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
             ++i;
         <span style="color:#fff;font-weight:bold">if</span> (i - pos == lvl + <span style="color:#ff0;font-weight:bold">1</span>)
             node-&gt;right = Build(S, i, y, pos, lvl + <span style="color:#ff0;font-weight:bold">1</span>);

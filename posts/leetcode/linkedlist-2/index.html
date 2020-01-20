@@ -17,8 +17,8 @@
 <meta property="og:description" content="LeetCode 链表（2） 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。 在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/linkedlist-2/" />
-<meta property="article:published_time" content="2019-07-09T19:12:25&#43;10:00"/>
-<meta property="article:modified_time" content="2019-07-09T19:12:25&#43;10:00"/>
+<meta property="article:published_time" content="2019-07-09T19:12:25+10:00" />
+<meta property="article:modified_time" content="2019-07-09T19:12:25+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,20 +108,13 @@
       </header>
 
       <div>
-        
-
-<h1 id="leetcode-链表-2-https-leetcode-cn-com-tag-linked-list"><a href="https://leetcode-cn.com/tag/linked-list/">LeetCode 链表（2）</a></h1>
-
+        <h1 id="leetcode-链表2httpsleetcode-cncomtaglinked-list"><a href="https://leetcode-cn.com/tag/linked-list/">LeetCode 链表（2）</a></h1>
 <h2 id="题目">题目</h2>
-
 <h3 id="4-双指针">4. 双指针</h3>
-
-<h4 id="19-删除链表的倒数第n个节点-https-leetcode-cn-com-problems-remove-nth-node-from-end-of-list-submissions"><a href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/submissions/">19 删除链表的倒数第N个节点</a></h4>
-
+<h4 id="19-删除链表的倒数第n个节点httpsleetcode-cncomproblemsremove-nth-node-from-end-of-listsubmissions"><a href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/submissions/">19 删除链表的倒数第N个节点</a></h4>
 <p>删除链表的倒数第 n 个节点。</p>
-
 <p>在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，tail 先往前走 n 步，然后两个指针一起往前走直到 tail 没有后继指针，此时 prev 的后继指针就是倒数第 n 个位置，删除其即可。注意如果要删除的指针是头指针的话要单独处理。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     ListNode* removeNthFromEnd(ListNode* head, <span style="color:#fff;font-weight:bold">int</span> n) {
         ListNode *prev = head, *tail = head;
@@ -140,13 +133,10 @@
         <span style="color:#fff;font-weight:bold">return</span> head;
     }
 };
-</code></pre></div>
-<h4 id="61-旋转链表-https-leetcode-cn-com-problems-rotate-list-submissions"><a href="https://leetcode-cn.com/problems/rotate-list/submissions/">61 旋转链表</a></h4>
-
+</code></pre></div><h4 id="61-旋转链表httpsleetcode-cncomproblemsrotate-listsubmissions"><a href="https://leetcode-cn.com/problems/rotate-list/submissions/">61 旋转链表</a></h4>
 <p>给一个链表，将其每个节点向右移动 k 个位置。</p>
-
 <p>在链表中不易直接取到前 k 个位置，所以用两个指针，第一个先往前走 k 步，然后两个指针一起往前走直到第一个指针没有后继指针，就可以将头节点链接到第一个指针后，将第二个指针后置为空。注意 k 可能非常大，要先计算一次链表的长度 len 然后用 k % len 进行计算。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     ListNode *rotateRight(ListNode *head, <span style="color:#fff;font-weight:bold">int</span> k) {
         <span style="color:#fff;font-weight:bold">if</span> (!head)
@@ -168,13 +158,10 @@
         <span style="color:#fff;font-weight:bold">return</span> ret;
     }
 };
-</code></pre></div>
-<h4 id="876-链表的中间结点-https-leetcode-cn-com-problems-middle-of-the-linked-list-solution-lian-biao-de-zhong-jian-jie-dian-by-leetcode"><a href="https://leetcode-cn.com/problems/middle-of-the-linked-list/solution/lian-biao-de-zhong-jian-jie-dian-by-leetcode/">876 链表的中间结点</a></h4>
-
+</code></pre></div><h4 id="876-链表的中间结点httpsleetcode-cncomproblemsmiddle-of-the-linked-listsolutionlian-biao-de-zhong-jian-jie-dian-by-leetcode"><a href="https://leetcode-cn.com/problems/middle-of-the-linked-list/solution/lian-biao-de-zhong-jian-jie-dian-by-leetcode/">876 链表的中间结点</a></h4>
 <p>找链表的中间节点。</p>
-
 <p>用两个指针 slow 和 fast，fast 每次移动两步，slow 每次移动一步，当 fast 走到末尾的时候 slow 恰好到指针的中间。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     ListNode* middleNode(ListNode* head) {
         <span style="color:#fff;font-weight:bold">auto</span> slow = head, fast = head;
@@ -185,13 +172,10 @@
         <span style="color:#fff;font-weight:bold">return</span> slow;
     }
 };
-</code></pre></div>
-<h4 id="160-相交链表-https-leetcode-cn-com-problems-intersection-of-two-linked-lists-submissions"><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/submissions/">160 相交链表</a></h4>
-
+</code></pre></div><h4 id="160-相交链表httpsleetcode-cncomproblemsintersection-of-two-linked-listssubmissions"><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/submissions/">160 相交链表</a></h4>
 <p>找到两个链表相交的起始节点。</p>
-
 <p>假设链表 A 未相交的长度为 l1，链表 B 未相交的长度为 l2，相交部分的长度为 lc，为了让两个指针走相同的长度，只需要让两个指针在走到尾部的时候重新回到另一个链表的头部再继续走，最后当两个指针走过的长度都是 l1 + l2 + l3 时即相交。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         <span style="color:#fff;font-weight:bold">auto</span> a = headA, b = headB;
@@ -204,13 +188,10 @@
         <span style="color:#fff;font-weight:bold">return</span> a;
     }
 };
-</code></pre></div>
-<h4 id="141-环形链表-https-leetcode-cn-com-problems-linked-list-cycle"><a href="https://leetcode-cn.com/problems/linked-list-cycle/">141 环形链表</a></h4>
-
+</code></pre></div><h4 id="141-环形链表httpsleetcode-cncomproblemslinked-list-cycle"><a href="https://leetcode-cn.com/problems/linked-list-cycle/">141 环形链表</a></h4>
 <p>判断一个链表中是否有环。</p>
-
 <p>用两个指针 slow 和 fast，fast 每次移动两步，slow 每次移动一步，如果链表中有环那么这两个指针一定会最终相遇，否则 fast 将先到达末尾，当 fast == nullptr 或 fast-&gt;next == nullptr 即代表链表没有换并且 fast 已经到达末尾。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">bool</span> hasCycle(ListNode *head) {
         <span style="color:#fff;font-weight:bold">auto</span> slow = head, fast = head;
@@ -223,13 +204,10 @@
         <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
     }
 };
-</code></pre></div>
-<h4 id="142-环形链表-ii-https-leetcode-cn-com-problems-linked-list-cycle-ii"><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">142 环形链表 II</a></h4>
-
+</code></pre></div><h4 id="142-环形链表-iihttpsleetcode-cncomproblemslinked-list-cycle-ii"><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">142 环形链表 II</a></h4>
 <p>给一个链表，找到链表中入环的第一个节点。</p>
-
 <p>跟上一题相同，用两个指针 slow 和 fast，fast 每次移动两步，slow 每次移动一步，如果链表中有环那么这两个指针一定会最终相遇，此时 fast 指针移动的距离是 l1 + l2 + c，其中 l1 是链表中环外部分的长度，l2 是环内两个指针走过的共同部分的长度，c 是环的长度，而 slow 指针移动的距离则是 l1 + l2，因为 fast 指针的移动速度是 slow 的两倍，所以有 l1 + l2 + c = 2 * (l1 + l2)，因此 c = l1 + l2，又因为 slow 指针已经在环中走过了长度为 l2 的部分，只剩下长度为 l1 的部分，只需要用一个新的指针从链表的头部开始每次移动一步，同时让 slow 指针每次移动一步，最终他们都会移动 l1 的距离并在入环处相遇。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     ListNode *detectCycle(ListNode *head) {
         <span style="color:#fff;font-weight:bold">if</span> (!head || !head-&gt;next)
@@ -247,15 +225,11 @@
         <span style="color:#fff;font-weight:bold">return</span> lin;
     }
 };
-</code></pre></div>
-<h3 id="5-综合">5. 综合</h3>
-
-<h4 id="234-回文链表-https-leetcode-cn-com-problems-palindrome-linked-list-submissions"><a href="https://leetcode-cn.com/problems/palindrome-linked-list/submissions/">234 回文链表</a></h4>
-
+</code></pre></div><h3 id="5-综合">5. 综合</h3>
+<h4 id="234-回文链表httpsleetcode-cncomproblemspalindrome-linked-listsubmissions"><a href="https://leetcode-cn.com/problems/palindrome-linked-list/submissions/">234 回文链表</a></h4>
 <p>判断一个链表是否为回文链表。</p>
-
 <p>先找到链表的中间节点，然后将右边的链表翻转，将左边的链表从中间截断，再一次对比两边的每一个节点是否相等。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">bool</span> isPalindrome(ListNode *head) {
         <span style="color:#fff;font-weight:bold">if</span> (!head || !head-&gt;next)
@@ -286,13 +260,10 @@
         <span style="color:#fff;font-weight:bold">return</span> prev;
     }
 };
-</code></pre></div>
-<h4 id="109-有序链表转换二叉搜索树-https-leetcode-cn-com-problems-convert-sorted-list-to-binary-search-tree"><a href="https://leetcode-cn.com/problems/convert-sorted-list-to-binary-search-tree/">109 有序链表转换二叉搜索树</a></h4>
-
+</code></pre></div><h4 id="109-有序链表转换二叉搜索树httpsleetcode-cncomproblemsconvert-sorted-list-to-binary-search-tree"><a href="https://leetcode-cn.com/problems/convert-sorted-list-to-binary-search-tree/">109 有序链表转换二叉搜索树</a></h4>
 <p>给一个有序链表，将其转换为一个平衡二叉搜索树。</p>
-
 <p>先找到链表的中间节点，将其作为树的根节点，将中间节点的左边部分链表作为其左子树，右边部分链表作为其右子树。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     TreeNode *sortedListToBST(ListNode *head) {
         <span style="color:#fff;font-weight:bold">if</span> (!head)
@@ -308,13 +279,10 @@
         <span style="color:#fff;font-weight:bold">return</span> root;
     }
 };
-</code></pre></div>
-<h4 id="426-将二叉搜索树转化为排序的双向链表-https-leetcode-cn-com-problems-convert-binary-search-tree-to-sorted-doubly-linked-list-submissions"><a href="https://leetcode-cn.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/submissions/">426 将二叉搜索树转化为排序的双向链表</a></h4>
-
+</code></pre></div><h4 id="426-将二叉搜索树转化为排序的双向链表httpsleetcode-cncomproblemsconvert-binary-search-tree-to-sorted-doubly-linked-listsubmissions"><a href="https://leetcode-cn.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/submissions/">426 将二叉搜索树转化为排序的双向链表</a></h4>
 <p>将一个二叉搜索树转换为一个双向循环链表。</p>
-
 <p>对于一个根节点，其被转换为双向链表之后的前驱节点应该是其左子树中值最大的节点，也就是其左子节点的最右子节点，因此只需要先找到这个节点，然后将根节点与其首尾相连即可，在此之前应该先对根节点的左子树左对应的操作，右子树亦然。除此之外还要把最小的和最大的两个节点保存下来，将这两个节点首尾相连，形成循环链表。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     Node *first, *last;
 <span style="color:#fff;font-weight:bold">public</span>:
     Node *treeToDoublyList(Node *root) {
@@ -349,13 +317,10 @@
         root-&gt;right = right;
     }
 };
-</code></pre></div>
-<h4 id="143-重排链表-https-leetcode-cn-com-problems-reorder-list-submissions"><a href="https://leetcode-cn.com/problems/reorder-list/submissions/">143 重排链表</a></h4>
-
+</code></pre></div><h4 id="143-重排链表httpsleetcode-cncomproblemsreorder-listsubmissions"><a href="https://leetcode-cn.com/problems/reorder-list/submissions/">143 重排链表</a></h4>
 <p>将一个链表从 L0→L1→…→Ln-1→Ln 重新排列为 L0→Ln→L1→Ln-1→L2→Ln-2→&hellip;。</p>
-
 <p>先将链表从中间分为两部分，将后半部分反转，再将对应位置的节点依次链接上。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">void</span> reorderList(ListNode* head) {
         <span style="color:#fff;font-weight:bold">if</span> (!head)
@@ -391,13 +356,10 @@
         <span style="color:#fff;font-weight:bold">return</span> prev;
     }
 };
-</code></pre></div>
-<h4 id="138-复制带随机指针的链表-https-leetcode-cn-com-problems-copy-list-with-random-pointer-submissions"><a href="https://leetcode-cn.com/problems/copy-list-with-random-pointer/submissions/">138 复制带随机指针的链表</a></h4>
-
+</code></pre></div><h4 id="138-复制带随机指针的链表httpsleetcode-cncomproblemscopy-list-with-random-pointersubmissions"><a href="https://leetcode-cn.com/problems/copy-list-with-random-pointer/submissions/">138 复制带随机指针的链表</a></h4>
 <p>给一个链表，每个节点包含一个 random 指针指向链表的某一个节点，返回这个链表的深拷贝。</p>
-
 <p>因为在第一次遍历时 random 指针指向的节点可能并未被拷贝，可以先将所有节点先拷贝一次，用一个哈希表将节点的对应关系保存下来，再遍历一次将 random 指针指向的节点依次链接上，这样做空间复杂度是 O(n)。也可以先将每一个节点都拷贝一次，并将拷贝的节点链接到该节点后，再遍历两次分别修改 random 指针指向的节点以及将原链表及其拷贝分开，这样做空间复杂度是 O(1)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     Node *copyRandomList(Node *head) {
         <span style="color:#fff;font-weight:bold">if</span> (!head)
@@ -425,13 +387,10 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="23-合并k个排序链表-https-leetcode-cn-com-problems-merge-k-sorted-lists-submissions"><a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/submissions/">23 合并K个排序链表</a></h4>
-
+</code></pre></div><h4 id="23-合并k个排序链表httpsleetcode-cncomproblemsmerge-k-sorted-listssubmissions"><a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/submissions/">23 合并K个排序链表</a></h4>
 <p>合并 k 个有序链表。</p>
-
 <p>最简单的做法是每次遍历所有头节点，取出值最小的一个，将其加到要返回的链表中。时间复杂度是 O(m * n)，其中 m 是链表的个数，n 是节点的总个数，空间复杂度是 O(1)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     ListNode *mergeKLists(vector&lt;ListNode *&gt; &amp;lists) {
         ListNode *root = <span style="color:#fff;font-weight:bold">new</span> ListNode(<span style="color:#ff0;font-weight:bold">0</span>), *node = root;
@@ -449,11 +408,10 @@
         <span style="color:#fff;font-weight:bold">return</span> root-&gt;next;
     }
 };
-</code></pre></div>
-<p>在此基础上可以用一个小根堆来保存所有头节点，每次取出堆顶的节点，将该节点加入要返回的链表中，判断该节点是否有后继节点，如果有的话则将其加入堆中并维护，注意需要重载优先队列的比较函数。时间复杂度是 O(n * logm)，空间复杂度是 O(m)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+</code></pre></div><p>在此基础上可以用一个小根堆来保存所有头节点，每次取出堆顶的节点，将该节点加入要返回的链表中，判断该节点是否有后继节点，如果有的话则将其加入堆中并维护，注意需要重载优先队列的比较函数。时间复杂度是 O(n * logm)，空间复杂度是 O(m)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">struct</span> compare {
-        <span style="color:#fff;font-weight:bold">bool</span> <span style="color:#fff;font-weight:bold">operator</span>()(ListNode *l1, ListNode *l2) {
+        <span style="color:#fff;font-weight:bold">bool</span> operator()(ListNode *l1, ListNode *l2) {
             <span style="color:#fff;font-weight:bold">return</span> l1-&gt;val &gt; l2-&gt;val;
         }
     };
@@ -476,9 +434,8 @@
         <span style="color:#fff;font-weight:bold">return</span> root-&gt;next;
     }
 };
-</code></pre></div>
-<p>还可以用分治法两两合并链表，省去维护堆所花费的空间和时间，因为链表的数量是 m，所以用分治法需要花费 logm 的时间来合并所有的链表。时间复杂度是 O(n * logm)，空间复杂度是 O(1)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+</code></pre></div><p>还可以用分治法两两合并链表，省去维护堆所花费的空间和时间，因为链表的数量是 m，所以用分治法需要花费 logm 的时间来合并所有的链表。时间复杂度是 O(n * logm)，空间复杂度是 O(1)。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     ListNode *MergeLists(ListNode *l1, ListNode *l2) {
         ListNode *root = <span style="color:#fff;font-weight:bold">new</span> ListNode(<span style="color:#ff0;font-weight:bold">0</span>), *node = root;
         <span style="color:#fff;font-weight:bold">while</span> (l1 &amp;&amp; l2) {

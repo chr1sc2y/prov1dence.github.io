@@ -17,8 +17,8 @@
 <meta property="og:description" content="C&#43;&#43;智能指针（1.5）：move语义 move语义 定义 右值引用（Rvalue Referene）是 C&#43;&#43; 11中引入的新特性，它实现了转移语义（Mo" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/c&#43;&#43;/c&#43;&#43;-smart-pointer-1.5/" />
-<meta property="article:published_time" content="2019-01-02T09:55:05&#43;11:00"/>
-<meta property="article:modified_time" content="2019-01-02T09:55:05&#43;11:00"/>
+<meta property="article:published_time" content="2019-01-02T09:55:05+11:00" />
+<meta property="article:modified_time" content="2019-01-02T09:55:05+11:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,46 +108,36 @@
       </header>
 
       <div>
-        
-
-<h1 id="c-智能指针-1-5-move语义">C++智能指针（1.5）：move语义</h1>
-
+        <h1 id="c智能指针15move语义">C++智能指针（1.5）：move语义</h1>
 <h2 id="move语义">move语义</h2>
-
 <h3 id="定义">定义</h3>
-
 <p>右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（Perfect Forwarding），其主要目的有</p>
-
 <ul>
 <li>消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。</li>
 <li>能够更简洁明确地定义泛型函数。</li>
 </ul>
-
 <h3 id="实现">实现</h3>
-
-<p>move 语义的实现非常简单，它将传入的参数 _Tp&amp;&amp; <strong>t 使用静态类型转换 static_cast&lt;_Up&amp;&amp;&gt;(</strong>t) 转变成了成了对应类型的右值，也就是说使用 move 语义之后，编译器窃取（一般会在移动构造函数和移动赋值操作符里将原有对象指向 nullptr）了原有对象的右值，并延长了这个右值的生命周期并将其用来赋值给其他的对象，而没有对右值做任何拷贝操作。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>_Tp&gt;
+<p>move 语义的实现非常简单，它将传入的参数 _Tp&amp;&amp; __t 使用静态类型转换 static_cast&lt;_Up&amp;&amp;&gt;(__t) 转变成了成了对应类型的右值，也就是说使用 move 语义之后，编译器窃取（一般会在移动构造函数和移动赋值操作符里将原有对象指向 nullptr）了原有对象的右值，并延长了这个右值的生命周期并将其用来赋值给其他的对象，而没有对右值做任何拷贝操作。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> _Tp&gt;
 <span style="color:#fff;font-weight:bold">typename</span> remove_reference&lt;_Tp&gt;::type&amp;&amp;
 move(_Tp&amp;&amp; __t) _NOEXCEPT
 {
     <span style="color:#fff;font-weight:bold">typedef</span> <span style="color:#fff;font-weight:bold">typename</span> remove_reference&lt;_Tp&gt;::type _Up;
     <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">static_cast</span>&lt;_Up&amp;&amp;&gt;(__t);
 }
-</code></pre></div>
-<h3 id="测试">测试</h3>
-
+</code></pre></div><h3 id="测试">测试</h3>
 <p>定义一个 Object 类和一个 MoveObject 函数使用 move 语义返回一个 Object 的类对象，可以看到在 MoveObject 函数返回右值后，obj 对象调用了移动构造函数。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Object {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Object {
 <span style="color:#fff;font-weight:bold">public</span>:
-    Object() { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Construct&#34;</span> &lt;&lt; std::endl; }
+    Object() { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">Construct</span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; std::endl; }
 
-    Object(<span style="color:#fff;font-weight:bold">const</span> Object &amp;other) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Copy&#34;</span> &lt;&lt; std::endl; }
+    Object(<span style="color:#fff;font-weight:bold">const</span> Object &amp;other) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">Copy</span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; std::endl; }
 
-    Object(Object &amp;&amp;other) <span style="color:#fff;font-weight:bold">noexcept</span> { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Move&#34;</span> &lt;&lt; std::endl; }
+    Object(Object &amp;&amp;other) <span style="color:#fff;font-weight:bold">noexcept</span> { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">Move</span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; std::endl; }
 
-    ~Object() { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Destruct&#34;</span> &lt;&lt; std::endl; }
+    ~Object() { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">Destruct</span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; std::endl; }
 
-    <span style="color:#fff;font-weight:bold">void</span> Print() { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Print&#34;</span> &lt;&lt; std::endl; }
+    <span style="color:#fff;font-weight:bold">void</span> Print() { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">Print</span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; std::endl; }
 };
 </code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">Object MoveObject() {
     Object obj;
@@ -165,11 +155,8 @@ move(_Tp&amp;&amp; __t) _NOEXCEPT
 </span><span style="color:#007f7f">Destruct
 </span><span style="color:#007f7f">Destruct
 </span><span style="color:#007f7f">*/</span>
-</code></pre></div>
-<h3 id="返回值优化-rvo-return-value-optimisation">返回值优化（RVO，Return value optimisation）</h3>
-
+</code></pre></div><h3 id="返回值优化rvoreturn-value-optimisation">返回值优化（RVO，Return value optimisation）</h3>
 <p>返回值优化是一种编译器优化技术，允许编译器在调用点（<a href="https://en.wikipedia.org/wiki/Call_site">call site</a>）直接构造函数的返回值。</p>
-
 <p>定义一个 CopyObject 函数返回一个 Object 的类对象，原本 Function 函数在返回时应该会进行一次拷贝，然而调试结果却显示 obj 对象只在 Function 函数中被构造了一次，在程序结束时被析构了一次。这是因为编译器使用了 RVO 机制，这里 Function 函数返回的是一个左值，所以又称命名返回值优化（NRVO），在 C++ 11 里被称为拷贝省略（Copy Elision）。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">Object CopyObject() {
     Object obj;
@@ -185,8 +172,7 @@ move(_Tp&amp;&amp; __t) _NOEXCEPT
 </span><span style="color:#007f7f">Construct
 </span><span style="color:#007f7f">Destruct
 </span><span style="color:#007f7f"> */</span>
-</code></pre></div>
-<p>如果在 MoveObject 函数中使用move语义进行返回，函数实际返回的是一个右值引用（Obj&amp;&amp;），而不是函数定义中的对象（Obj），没有触发 RVO。也就是说，要触发 RVO 机制，必须保证函数实际的返回值类型和函数定义中的返回值类型一致。</p>
+</code></pre></div><p>如果在 MoveObject 函数中使用move语义进行返回，函数实际返回的是一个右值引用（Obj&amp;&amp;），而不是函数定义中的对象（Obj），没有触发 RVO。也就是说，要触发 RVO 机制，必须保证函数实际的返回值类型和函数定义中的返回值类型一致。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">Object MoveObject() {
     Object obj;
     <span style="color:#fff;font-weight:bold">return</span> move(obj);
@@ -203,8 +189,7 @@ move(_Tp&amp;&amp; __t) _NOEXCEPT
 </span><span style="color:#007f7f">Destruct
 </span><span style="color:#007f7f">Destruct
 </span><span style="color:#007f7f">*/</span>
-</code></pre></div>
-<p>如果把函数返回值类型也改为右值引用，那么 main 函数中的 obj 对象也会使用移动构造函数，触发 RVO 机制。</p>
+</code></pre></div><p>如果把函数返回值类型也改为右值引用，那么 main 函数中的 obj 对象也会使用移动构造函数，触发 RVO 机制。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">Object &amp;&amp;MoveObject() {
     Object obj;
     <span style="color:#fff;font-weight:bold">return</span> move(obj);
@@ -221,8 +206,7 @@ move(_Tp&amp;&amp; __t) _NOEXCEPT
 </span><span style="color:#007f7f">Move
 </span><span style="color:#007f7f">Destruct
 </span><span style="color:#007f7f">*/</span>
-</code></pre></div>
-<p>在 CopyObject 函数返回时增加判断条件，会发现其返回时也会调用移动构造函数，而没有触发 RVO 机制。没有触发 RVO 机制是因为编译器会使用父堆栈帧（parent stack frame）来避免返回值拷贝，但如果在返回时使用了判断语句，编译器在编译时将不能确定将哪一个作为返回值，因此不会触发 RVO 机制；而调用移动构造函数是因为在使用左值返回时编译器会优先使用移动构造函数，不支持移动构造时才调用拷贝构造函数。</p>
+</code></pre></div><p>在 CopyObject 函数返回时增加判断条件，会发现其返回时也会调用移动构造函数，而没有触发 RVO 机制。没有触发 RVO 机制是因为编译器会使用父堆栈帧（parent stack frame）来避免返回值拷贝，但如果在返回时使用了判断语句，编译器在编译时将不能确定将哪一个作为返回值，因此不会触发 RVO 机制；而调用移动构造函数是因为在使用左值返回时编译器会优先使用移动构造函数，不支持移动构造时才调用拷贝构造函数。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">Object CopyObject(<span style="color:#fff;font-weight:bold">bool</span> flag) {
     Object obj1, obj2;
     <span style="color:#fff;font-weight:bold">if</span> (flag)
@@ -243,11 +227,8 @@ move(_Tp&amp;&amp; __t) _NOEXCEPT
 </span><span style="color:#007f7f">Destruct
 </span><span style="color:#007f7f">Destruct
 </span><span style="color:#007f7f">*/</span>
-</code></pre></div>
-<h2 id="参考">参考</h2>
-
+</code></pre></div><h2 id="参考">参考</h2>
 <p><a href="https://www.ibm.com/developerworks/community/blogs/5894415f-be62-4bc0-81c5-3956e82276f3/entry/RVO_V_S_std_move?lang=en">RVO V.S. std::move</a></p>
-
 <p><a href="https://www.ibm.com/developerworks/cn/aix/library/1307_lisl_c11/index.html">右值引用与转移语义</a></p>
 
       </div>

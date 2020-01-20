@@ -11,14 +11,14 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 深度优先搜索"/>
-<meta name="twitter:description" content="LeetCode DFS 题目 78 子集 典型的回溯，找出所有可能情况。 classSolution { vector&lt;vector&lt;int&gt;&gt; res; public: vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt; &amp;nums) { res = vector&lt;vector&lt;int&gt;&gt;(1, vector&lt;int&gt;()); vector&lt;int&gt; curr; DFS(nums, 0, curr); return res; } void DFS(vector&lt;int&gt; &amp;nums, int idx, vector&lt;int&gt; &amp;curr) { for (int i = idx; i &lt; nums.size(); &#43;&#43;i) { curr.push_back(nums[i]); res.push_back(curr); DFS(nums, i &#43; 1, curr); curr.pop_back(); }"/>
+<meta name="twitter:description" content="LeetCode DFS 题目 78 子集 典型的回溯，找出所有可能情况。 class Solution { vector&lt;vector&lt;int&gt;&gt; res; public: vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt; &amp;nums) { res = vector&lt;vector&lt;int&gt;&gt;(1, vector&lt;int&gt;()); vector&lt;int&gt; curr; DFS(nums, 0, curr); return res; } void DFS(vector&lt;int&gt; &amp;nums, int idx, vector&lt;int&gt; &amp;curr) { for (int i = idx; i &lt; nums.size(); &#43;&#43;i) { curr.push_back(nums[i]); res.push_back(curr); DFS(nums, i &#43; 1, curr); curr.pop_back();"/>
 
     <meta property="og:title" content="LeetCode 深度优先搜索" />
-<meta property="og:description" content="LeetCode DFS 题目 78 子集 典型的回溯，找出所有可能情况。 classSolution { vector&lt;vector&lt;int&gt;&gt; res; public: vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt; &amp;nums) { res = vector&lt;vector&lt;int&gt;&gt;(1, vector&lt;int&gt;()); vector&lt;int&gt; curr; DFS(nums, 0, curr); return res; } void DFS(vector&lt;int&gt; &amp;nums, int idx, vector&lt;int&gt; &amp;curr) { for (int i = idx; i &lt; nums.size(); &#43;&#43;i) { curr.push_back(nums[i]); res.push_back(curr); DFS(nums, i &#43; 1, curr); curr.pop_back(); }" />
+<meta property="og:description" content="LeetCode DFS 题目 78 子集 典型的回溯，找出所有可能情况。 class Solution { vector&lt;vector&lt;int&gt;&gt; res; public: vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt; &amp;nums) { res = vector&lt;vector&lt;int&gt;&gt;(1, vector&lt;int&gt;()); vector&lt;int&gt; curr; DFS(nums, 0, curr); return res; } void DFS(vector&lt;int&gt; &amp;nums, int idx, vector&lt;int&gt; &amp;curr) { for (int i = idx; i &lt; nums.size(); &#43;&#43;i) { curr.push_back(nums[i]); res.push_back(curr); DFS(nums, i &#43; 1, curr); curr.pop_back();" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/dfs/" />
-<meta property="article:published_time" content="2019-07-27T12:12:25&#43;10:00"/>
-<meta property="article:modified_time" content="2019-07-27T12:12:25&#43;10:00"/>
+<meta property="article:published_time" content="2019-07-27T12:12:25+10:00" />
+<meta property="article:modified_time" content="2019-07-27T12:12:25+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,16 +108,11 @@
       </header>
 
       <div>
-        
-
-<h1 id="leetcode-dfs-https-leetcode-cn-com-tag-depth-first-search"><a href="https://leetcode-cn.com/tag/depth-first-search/">LeetCode DFS</a></h1>
-
+        <h1 id="leetcode-dfshttpsleetcode-cncomtagdepth-first-search"><a href="https://leetcode-cn.com/tag/depth-first-search/">LeetCode DFS</a></h1>
 <h2 id="题目">题目</h2>
-
-<h4 id="78-子集-https-leetcode-cn-com-problems-subsets"><a href="https://leetcode-cn.com/problems/subsets/">78 子集</a></h4>
-
+<h4 id="78-子集httpsleetcode-cncomproblemssubsets"><a href="https://leetcode-cn.com/problems/subsets/">78 子集</a></h4>
 <p>典型的回溯，找出所有可能情况。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; res;
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; subsets(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums) {
@@ -136,11 +131,9 @@
         }
     }
 };
-</code></pre></div>
-<h4 id="733-图像渲染-https-leetcode-cn-com-problems-flood-fill"><a href="https://leetcode-cn.com/problems/flood-fill/">733 图像渲染</a></h4>
-
+</code></pre></div><h4 id="733-图像渲染httpsleetcode-cncomproblemsflood-fill"><a href="https://leetcode-cn.com/problems/flood-fill/">733 图像渲染</a></h4>
 <p>从给定的 image[sr][sc] 开始 DFS 或 BFS，将相邻的值相同的点的值全部修改为 newColor，注意要判断给定的 image[sr][sc] 是否等于 newColor，否则如果不使用额外空间的 visited 数组记录已经访问过的点的话会造成死循环栈溢出。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> m, n;
     <span style="color:#fff;font-weight:bold">int</span> dir[<span style="color:#ff0;font-weight:bold">4</span>][<span style="color:#ff0;font-weight:bold">2</span>] = {{<span style="color:#ff0;font-weight:bold">0</span>,  <span style="color:#ff0;font-weight:bold">1</span>}, {<span style="color:#ff0;font-weight:bold">1</span>,  <span style="color:#ff0;font-weight:bold">0</span>}, {<span style="color:#ff0;font-weight:bold">0</span>,  -<span style="color:#ff0;font-weight:bold">1</span>}, {-<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>}};
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; visited;
@@ -164,11 +157,9 @@
         }
     }
 };
-</code></pre></div>
-<h4 id="463-岛屿的周长-https-leetcode-cn-com-problems-island-perimeter"><a href="https://leetcode-cn.com/problems/island-perimeter/">463 岛屿的周长</a></h4>
-
+</code></pre></div><h4 id="463-岛屿的周长httpsleetcode-cncomproblemsisland-perimeter"><a href="https://leetcode-cn.com/problems/island-perimeter/">463 岛屿的周长</a></h4>
 <p>对小岛进行 DFS，根据一个点周围有几个相邻的点来计算当前点的周长。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> x, y, res;
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; visited;
     <span style="color:#fff;font-weight:bold">int</span> dir[<span style="color:#ff0;font-weight:bold">4</span>][<span style="color:#ff0;font-weight:bold">2</span>] = {{<span style="color:#ff0;font-weight:bold">0</span>,  <span style="color:#ff0;font-weight:bold">1</span>},
@@ -205,11 +196,9 @@
         res += edge;
     }
 };
-</code></pre></div>
-<h4 id="200-岛屿数量-https-leetcode-cn-com-problems-number-of-islands"><a href="https://leetcode-cn.com/problems/number-of-islands/">200 岛屿数量</a></h4>
-
+</code></pre></div><h4 id="200-岛屿数量httpsleetcode-cncomproblemsnumber-of-islands"><a href="https://leetcode-cn.com/problems/number-of-islands/">200 岛屿数量</a></h4>
 <p>每次进行 DFS 的全部节点即为一个岛屿，DFS 完整个数组即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; visited;
     <span style="color:#fff;font-weight:bold">int</span> x, y, res;
     <span style="color:#fff;font-weight:bold">int</span> dir[<span style="color:#ff0;font-weight:bold">4</span>][<span style="color:#ff0;font-weight:bold">2</span>] = {{<span style="color:#ff0;font-weight:bold">0</span>,  <span style="color:#ff0;font-weight:bold">1</span>}, {<span style="color:#ff0;font-weight:bold">1</span>,  <span style="color:#ff0;font-weight:bold">0</span>}, {<span style="color:#ff0;font-weight:bold">0</span>,  -<span style="color:#ff0;font-weight:bold">1</span>}, {-<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>}};
@@ -221,7 +210,7 @@
             <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; x; ++i)
             <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; y; ++j)
-                <span style="color:#fff;font-weight:bold">if</span> (grid[i][j] == <span style="color:#0ff;font-weight:bold">&#39;1&#39;</span> &amp;&amp; !visited[i][j]) {
+                <span style="color:#fff;font-weight:bold">if</span> (grid[i][j] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">1</span><span style="color:#0ff;font-weight:bold">&#39;</span> &amp;&amp; !visited[i][j]) {
                     ++res;
                     DFS(grid, i, j);
                 }
@@ -233,16 +222,14 @@
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> d = <span style="color:#ff0;font-weight:bold">0</span>; d &lt; <span style="color:#ff0;font-weight:bold">4</span>; ++d) {
             <span style="color:#fff;font-weight:bold">int</span> a = i + dir[d][<span style="color:#ff0;font-weight:bold">0</span>];
             <span style="color:#fff;font-weight:bold">int</span> b = j + dir[d][<span style="color:#ff0;font-weight:bold">1</span>];
-            <span style="color:#fff;font-weight:bold">if</span> (a &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; a &lt; x &amp;&amp; b &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; b &lt; y &amp;&amp; grid[a][b] == <span style="color:#0ff;font-weight:bold">&#39;1&#39;</span> &amp;&amp; !visited[a][b])
+            <span style="color:#fff;font-weight:bold">if</span> (a &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; a &lt; x &amp;&amp; b &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; b &lt; y &amp;&amp; grid[a][b] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">1</span><span style="color:#0ff;font-weight:bold">&#39;</span> &amp;&amp; !visited[a][b])
                 DFS(grid, a, b);
         }
     }
 };
-</code></pre></div>
-<h4 id="695-岛屿的最大面积-https-leetcode-cn-com-problems-max-area-of-island"><a href="https://leetcode-cn.com/problems/max-area-of-island/">695 岛屿的最大面积</a></h4>
-
+</code></pre></div><h4 id="695-岛屿的最大面积httpsleetcode-cncomproblemsmax-area-of-island"><a href="https://leetcode-cn.com/problems/max-area-of-island/">695 岛屿的最大面积</a></h4>
 <p>对每个岛屿进行 DFS，每次都更新最大面积即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; visited;
     <span style="color:#fff;font-weight:bold">int</span> x, y, res;
     <span style="color:#fff;font-weight:bold">int</span> dir[<span style="color:#ff0;font-weight:bold">4</span>][<span style="color:#ff0;font-weight:bold">2</span>] = {{<span style="color:#ff0;font-weight:bold">0</span>,  <span style="color:#ff0;font-weight:bold">1</span>}, {<span style="color:#ff0;font-weight:bold">1</span>,  <span style="color:#ff0;font-weight:bold">0</span>}, {<span style="color:#ff0;font-weight:bold">0</span>,  -<span style="color:#ff0;font-weight:bold">1</span>}, {-<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>}};
@@ -274,11 +261,9 @@
         }
     }
 };
-</code></pre></div>
-<h4 id="841-钥匙和房间-https-leetcode-cn-com-problems-keys-and-rooms"><a href="https://leetcode-cn.com/problems/keys-and-rooms/">841 钥匙和房间</a></h4>
-
+</code></pre></div><h4 id="841-钥匙和房间httpsleetcode-cncomproblemskeys-and-rooms"><a href="https://leetcode-cn.com/problems/keys-and-rooms/">841 钥匙和房间</a></h4>
 <p>对每个房间进行 DFS。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt; visited;
     <span style="color:#fff;font-weight:bold">int</span> m, n;
 <span style="color:#fff;font-weight:bold">public</span>:
@@ -299,11 +284,9 @@
         <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
     }
 };
-</code></pre></div>
-<h4 id="113-路径总和-ii-https-leetcode-cn-com-problems-path-sum-ii"><a href="https://leetcode-cn.com/problems/path-sum-ii/">113 路径总和 II</a></h4>
-
+</code></pre></div><h4 id="113-路径总和-iihttpsleetcode-cncomproblemspath-sum-ii"><a href="https://leetcode-cn.com/problems/path-sum-ii/">113 路径总和 II</a></h4>
 <p>对整个树进行 DFS，在叶子节点进行判断。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; res;
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; pathSum(TreeNode *root, <span style="color:#fff;font-weight:bold">int</span> sum) {
@@ -327,52 +310,48 @@
         path.pop_back();
     }
 };
-</code></pre></div>
-<h4 id="130-被围绕的区域-https-leetcode-cn-com-problems-surrounded-regions"><a href="https://leetcode-cn.com/problems/surrounded-regions/">130 被围绕的区域</a></h4>
-
+</code></pre></div><h4 id="130-被围绕的区域httpsleetcode-cncomproblemssurrounded-regions"><a href="https://leetcode-cn.com/problems/surrounded-regions/">130 被围绕的区域</a></h4>
 <p>对最外围的所有 &lsquo;O&rsquo; 进行 DFS 并进行标记，最后在遍历一遍整个矩阵，将所有未被标记的 &lsquo;O&rsquo; 改为 &lsquo;X&rsquo;。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> dir[<span style="color:#ff0;font-weight:bold">4</span>][<span style="color:#ff0;font-weight:bold">2</span>] = {{<span style="color:#ff0;font-weight:bold">0</span>,  <span style="color:#ff0;font-weight:bold">1</span>}, {<span style="color:#ff0;font-weight:bold">1</span>,  <span style="color:#ff0;font-weight:bold">0</span>}, {<span style="color:#ff0;font-weight:bold">0</span>,  -<span style="color:#ff0;font-weight:bold">1</span>}, {-<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>}};
     <span style="color:#fff;font-weight:bold">int</span> m, n;
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">void</span> solve(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">char</span>&gt;&gt; &amp;board) {
         m = board.size(), n = m ? board[<span style="color:#ff0;font-weight:bold">0</span>].size() : <span style="color:#ff0;font-weight:bold">0</span>;
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; m; ++i) {
-            <span style="color:#fff;font-weight:bold">if</span> (board[i][<span style="color:#ff0;font-weight:bold">0</span>] == <span style="color:#0ff;font-weight:bold">&#39;O&#39;</span>)
+            <span style="color:#fff;font-weight:bold">if</span> (board[i][<span style="color:#ff0;font-weight:bold">0</span>] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">O</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
                 DFS(board, i, <span style="color:#ff0;font-weight:bold">0</span>);
-            <span style="color:#fff;font-weight:bold">if</span> (board[i][n - <span style="color:#ff0;font-weight:bold">1</span>] == <span style="color:#0ff;font-weight:bold">&#39;O&#39;</span>)
+            <span style="color:#fff;font-weight:bold">if</span> (board[i][n - <span style="color:#ff0;font-weight:bold">1</span>] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">O</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
                 DFS(board, i, n - <span style="color:#ff0;font-weight:bold">1</span>);
         }
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">1</span>; j &lt; n - <span style="color:#ff0;font-weight:bold">1</span>; ++j) {
-            <span style="color:#fff;font-weight:bold">if</span> (board[<span style="color:#ff0;font-weight:bold">0</span>][j] == <span style="color:#0ff;font-weight:bold">&#39;O&#39;</span>)
+            <span style="color:#fff;font-weight:bold">if</span> (board[<span style="color:#ff0;font-weight:bold">0</span>][j] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">O</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
                 DFS(board, <span style="color:#ff0;font-weight:bold">0</span>, j);
-            <span style="color:#fff;font-weight:bold">if</span> (board[m - <span style="color:#ff0;font-weight:bold">1</span>][j] == <span style="color:#0ff;font-weight:bold">&#39;O&#39;</span>)
+            <span style="color:#fff;font-weight:bold">if</span> (board[m - <span style="color:#ff0;font-weight:bold">1</span>][j] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">O</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
                 DFS(board, m - <span style="color:#ff0;font-weight:bold">1</span>, j);
         }
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;bo:board)
             <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;b:bo)
-                b = (b == <span style="color:#0ff;font-weight:bold">&#39;O&#39;</span> ? <span style="color:#0ff;font-weight:bold">&#39;X&#39;</span> : (b == <span style="color:#0ff;font-weight:bold">&#39;M&#39;</span> ? <span style="color:#0ff;font-weight:bold">&#39;O&#39;</span> : b));
+                b = (b == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">O</span><span style="color:#0ff;font-weight:bold">&#39;</span> ? <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">X</span><span style="color:#0ff;font-weight:bold">&#39;</span> : (b == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">M</span><span style="color:#0ff;font-weight:bold">&#39;</span> ? <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">O</span><span style="color:#0ff;font-weight:bold">&#39;</span> : b));
     }
 
     <span style="color:#fff;font-weight:bold">void</span> DFS(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">char</span>&gt;&gt; &amp;board, <span style="color:#fff;font-weight:bold">int</span> x, <span style="color:#fff;font-weight:bold">int</span> y) {
-        board[x][y] = <span style="color:#0ff;font-weight:bold">&#39;M&#39;</span>;
+        board[x][y] = <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">M</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;d:dir) {
             <span style="color:#fff;font-weight:bold">int</span> i = x + d[<span style="color:#ff0;font-weight:bold">0</span>], j = y + d[<span style="color:#ff0;font-weight:bold">1</span>];
-            <span style="color:#fff;font-weight:bold">if</span> (i &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; i &lt; m &amp;&amp; j &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; j &lt; n &amp;&amp; board[i][j] == <span style="color:#0ff;font-weight:bold">&#39;O&#39;</span>)
+            <span style="color:#fff;font-weight:bold">if</span> (i &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; i &lt; m &amp;&amp; j &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; j &lt; n &amp;&amp; board[i][j] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">O</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
                 DFS(board, i, j);
         }
     }
 };
-</code></pre></div>
-<h4 id="529-扫雷游戏-https-leetcode-cn-com-problems-minesweeper-submissions"><a href="https://leetcode-cn.com/problems/minesweeper/submissions/">529 扫雷游戏</a></h4>
-
+</code></pre></div><h4 id="529-扫雷游戏httpsleetcode-cncomproblemsminesweepersubmissions"><a href="https://leetcode-cn.com/problems/minesweeper/submissions/">529 扫雷游戏</a></h4>
 <p>先计算出每个位置周围的 8 个位置的炸弹的数量，如果数量大于等于 1，那么标记出来并且结束搜索，如果数量为 0，那么继续向周围 8 个位置搜索。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> m, n;
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">char</span>&gt;&gt; updateBoard(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">char</span>&gt;&gt; &amp;board, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;click) {
-        <span style="color:#fff;font-weight:bold">if</span> (board[click[<span style="color:#ff0;font-weight:bold">0</span>]][click[<span style="color:#ff0;font-weight:bold">1</span>]] == <span style="color:#0ff;font-weight:bold">&#39;M&#39;</span>) {
-            board[click[<span style="color:#ff0;font-weight:bold">0</span>]][click[<span style="color:#ff0;font-weight:bold">1</span>]] = <span style="color:#0ff;font-weight:bold">&#39;X&#39;</span>;
+        <span style="color:#fff;font-weight:bold">if</span> (board[click[<span style="color:#ff0;font-weight:bold">0</span>]][click[<span style="color:#ff0;font-weight:bold">1</span>]] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">M</span><span style="color:#0ff;font-weight:bold">&#39;</span>) {
+            board[click[<span style="color:#ff0;font-weight:bold">0</span>]][click[<span style="color:#ff0;font-weight:bold">1</span>]] = <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">X</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
             <span style="color:#fff;font-weight:bold">return</span> board;
         }
         m = board.size(), n = m ? board[<span style="color:#ff0;font-weight:bold">0</span>].size() : <span style="color:#ff0;font-weight:bold">0</span>;
@@ -384,24 +363,22 @@
         <span style="color:#fff;font-weight:bold">int</span> b = <span style="color:#ff0;font-weight:bold">0</span>;
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = x - <span style="color:#ff0;font-weight:bold">1</span>; i &lt;= x + <span style="color:#ff0;font-weight:bold">1</span>; ++i)
             <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = y - <span style="color:#ff0;font-weight:bold">1</span>; j &lt;= y + <span style="color:#ff0;font-weight:bold">1</span>; ++j)
-                <span style="color:#fff;font-weight:bold">if</span> (i &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; i &lt; m &amp;&amp; j &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; j &lt; n &amp;&amp; board[i][j] == <span style="color:#0ff;font-weight:bold">&#39;M&#39;</span>)
+                <span style="color:#fff;font-weight:bold">if</span> (i &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; i &lt; m &amp;&amp; j &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; j &lt; n &amp;&amp; board[i][j] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">M</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
                     ++b;
         <span style="color:#fff;font-weight:bold">if</span> (b != <span style="color:#ff0;font-weight:bold">0</span>) {
-            board[x][y] = <span style="color:#fff;font-weight:bold">static_cast</span>&lt;<span style="color:#fff;font-weight:bold">char</span>&gt;(b + <span style="color:#0ff;font-weight:bold">&#39;0&#39;</span>);
+            board[x][y] = <span style="color:#fff;font-weight:bold">static_cast</span>&lt;<span style="color:#fff;font-weight:bold">char</span>&gt;(b + <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">0</span><span style="color:#0ff;font-weight:bold">&#39;</span>);
             <span style="color:#fff;font-weight:bold">return</span>;
         }
-        board[x][y] = <span style="color:#0ff;font-weight:bold">&#39;B&#39;</span>;
+        board[x][y] = <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">B</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = x - <span style="color:#ff0;font-weight:bold">1</span>; i &lt;= x + <span style="color:#ff0;font-weight:bold">1</span>; ++i)
             <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = y - <span style="color:#ff0;font-weight:bold">1</span>; j &lt;= y + <span style="color:#ff0;font-weight:bold">1</span>; ++j)
-                <span style="color:#fff;font-weight:bold">if</span> (i &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; i &lt; m &amp;&amp; j &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; j &lt; n &amp;&amp; board[i][j] == <span style="color:#0ff;font-weight:bold">&#39;E&#39;</span>)
+                <span style="color:#fff;font-weight:bold">if</span> (i &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; i &lt; m &amp;&amp; j &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; j &lt; n &amp;&amp; board[i][j] == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">E</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
                     DFS(board, i, j);
     }
 };
-</code></pre></div>
-<h4 id="473-火柴拼正方形-https-leetcode-cn-com-problems-matchsticks-to-square-submissions"><a href="https://leetcode-cn.com/problems/matchsticks-to-square/submissions/">473 火柴拼正方形</a></h4>
-
+</code></pre></div><h4 id="473-火柴拼正方形httpsleetcode-cncomproblemsmatchsticks-to-squaresubmissions"><a href="https://leetcode-cn.com/problems/matchsticks-to-square/submissions/">473 火柴拼正方形</a></h4>
 <p>因为要求用所有的火柴来拼成正方形，所以先判断所有的火柴组成的是否是 4 的倍数以及是否有数字大于 sum / 4 ，然后将数组从大到小排序，这样可以用贪心的策略减少搜索的次数，否则需要进行回溯，最后对整个数组进行 DFS。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> match, n, sum;
     vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt; visited;
 <span style="color:#fff;font-weight:bold">public</span>:
@@ -426,7 +403,7 @@
     <span style="color:#fff;font-weight:bold">bool</span> DFS(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums, <span style="color:#fff;font-weight:bold">int</span> m, <span style="color:#fff;font-weight:bold">int</span> acc) {
         <span style="color:#fff;font-weight:bold">if</span> (acc &gt; sum / <span style="color:#ff0;font-weight:bold">4</span>)
             <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-        <span style="color:#fff;font-weight:bold">else</span> if (acc == sum / <span style="color:#ff0;font-weight:bold">4</span>)
+        <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (acc == sum / <span style="color:#ff0;font-weight:bold">4</span>)
             <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = m + <span style="color:#ff0;font-weight:bold">1</span>; i &lt; n; ++i)
             <span style="color:#fff;font-weight:bold">if</span> (!visited[i] &amp;&amp; DFS(nums, i, acc + nums[i])) {
@@ -436,11 +413,9 @@
         <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
     }
 };
-</code></pre></div>
-<h4 id="980-不同路径-iii-https-leetcode-cn-com-problems-unique-paths-iii"><a href="https://leetcode-cn.com/problems/unique-paths-iii/">980 不同路径 III</a></h4>
-
+</code></pre></div><h4 id="980-不同路径-iiihttpsleetcode-cncomproblemsunique-paths-iii"><a href="https://leetcode-cn.com/problems/unique-paths-iii/">980 不同路径 III</a></h4>
 <p>用一个变量 zeros 把矩阵中 0 的数量记录下来，每次遍历到 0 即 zeros - 1，直到 zeros == 0 且当前点的四个方向上有终点，那么结果 +1 并返回，继续下一步的 DFS。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> m, n, zeros, res;
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; visited;
     <span style="color:#fff;font-weight:bold">int</span> dir[<span style="color:#ff0;font-weight:bold">4</span>][<span style="color:#ff0;font-weight:bold">2</span>] = {{<span style="color:#ff0;font-weight:bold">0</span>,  <span style="color:#ff0;font-weight:bold">1</span>},
@@ -478,11 +453,9 @@
         visited[r][c] = <span style="color:#fff;font-weight:bold">false</span>;
     }
 };
-</code></pre></div>
-<h4 id="37-解数独-https-leetcode-cn-com-problems-sudoku-solver"><a href="https://leetcode-cn.com/problems/sudoku-solver/">37 解数独</a></h4>
-
+</code></pre></div><h4 id="37-解数独httpsleetcode-cncomproblemssudoku-solver"><a href="https://leetcode-cn.com/problems/sudoku-solver/">37 解数独</a></h4>
 <p>对每个 &lsquo;.&rsquo; 格子进行从 &lsquo;1&rsquo; 到 &lsquo;9&rsquo; 的回溯，判断当前行，列，以及 3 * 3 的格子中是否有相同的值，直到到达矩阵的最后。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> m, n;
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">void</span> solveSudoku(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">char</span>&gt;&gt; &amp;board) {
@@ -493,16 +466,16 @@
     <span style="color:#fff;font-weight:bold">bool</span> DFS(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">char</span>&gt;&gt; &amp;board, <span style="color:#fff;font-weight:bold">int</span> i, <span style="color:#fff;font-weight:bold">int</span> j) {
         <span style="color:#fff;font-weight:bold">if</span> (j &gt;= n)
             <span style="color:#fff;font-weight:bold">return</span> DFS(board, i + <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>);
-        <span style="color:#fff;font-weight:bold">else</span> if (i &gt;= m)
+        <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (i &gt;= m)
             <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
-        <span style="color:#fff;font-weight:bold">else</span> if (board[i][j] != <span style="color:#0ff;font-weight:bold">&#39;.&#39;</span>)
+        <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (board[i][j] != <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">.</span><span style="color:#0ff;font-weight:bold">&#39;</span>)
             <span style="color:#fff;font-weight:bold">return</span> DFS(board, i, j + <span style="color:#ff0;font-weight:bold">1</span>);
-        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">char</span> c = <span style="color:#0ff;font-weight:bold">&#39;1&#39;</span>; c &lt;= <span style="color:#0ff;font-weight:bold">&#39;9&#39;</span>; ++c) {
+        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">char</span> c = <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">1</span><span style="color:#0ff;font-weight:bold">&#39;</span>; c &lt;= <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">9</span><span style="color:#0ff;font-weight:bold">&#39;</span>; ++c) {
             <span style="color:#fff;font-weight:bold">if</span> (CheckNum(board, i, j, c)) {
                 board[i][j] = c;
                 <span style="color:#fff;font-weight:bold">if</span> (DFS(board, i, j + <span style="color:#ff0;font-weight:bold">1</span>))
                     <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
-                board[i][j] = <span style="color:#0ff;font-weight:bold">&#39;.&#39;</span>;
+                board[i][j] = <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">.</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
             }
         }
         <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
@@ -519,11 +492,9 @@
         <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
     }
 };
-</code></pre></div>
-<h4 id="79-单词搜索-https-leetcode-cn-com-problems-word-search"><a href="https://leetcode-cn.com/problems/word-search/">79 单词搜索</a></h4>
-
+</code></pre></div><h4 id="79-单词搜索httpsleetcode-cncomproblemsword-search"><a href="https://leetcode-cn.com/problems/word-search/">79 单词搜索</a></h4>
 <p>在矩阵里进行一次 DFS 即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> m, n;
     <span style="color:#fff;font-weight:bold">int</span> dir[<span style="color:#ff0;font-weight:bold">4</span>][<span style="color:#ff0;font-weight:bold">2</span>] = {{<span style="color:#ff0;font-weight:bold">0</span>,  <span style="color:#ff0;font-weight:bold">1</span>}, {<span style="color:#ff0;font-weight:bold">1</span>,  <span style="color:#ff0;font-weight:bold">0</span>}, {<span style="color:#ff0;font-weight:bold">0</span>,  -<span style="color:#ff0;font-weight:bold">1</span>}, {-<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">0</span>}};
     vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt;&gt; visited;
@@ -539,7 +510,7 @@
     }
 
     <span style="color:#fff;font-weight:bold">bool</span> DFS(vector&lt;vector&lt;<span style="color:#fff;font-weight:bold">char</span>&gt;&gt; &amp;board, <span style="color:#fff;font-weight:bold">int</span> i, <span style="color:#fff;font-weight:bold">int</span> j, string word) {
-        <span style="color:#fff;font-weight:bold">if</span> (word == <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>)
+        <span style="color:#fff;font-weight:bold">if</span> (word == <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">&#34;</span>)
             <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
         visited[i][j] = <span style="color:#fff;font-weight:bold">true</span>;
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;d:dir) {
@@ -552,11 +523,9 @@
         <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
     }
 };
-</code></pre></div>
-<h4 id="212-单词搜索-ii-https-leetcode-cn-com-problems-word-search-ii"><a href="https://leetcode-cn.com/problems/word-search-ii/">212 单词搜索 II</a></h4>
-
+</code></pre></div><h4 id="212-单词搜索-iihttpsleetcode-cncomproblemsword-search-ii"><a href="https://leetcode-cn.com/problems/word-search-ii/">212 单词搜索 II</a></h4>
 <p>最简单的方法是对每一个单词在矩阵里进行一次 DFS，这样的话时间复杂度是 O(m * n * k * l)，其中 m 是矩阵的长，n 是矩阵的宽，l是单词的数量，k 是所有单词的最长长度。我们可以为所有单词建立一个字典树，然后再在矩阵里进行一次 DFS，在矩阵的每个点处判断当前的字母是否在字典树的根节点的 next 数组中，如果是的话搜索其周围的字母以及继续遍历字典树，这样做的时间复杂度是 O(m * n * k)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">struct</span> TrieNode {
         vector&lt;TrieNode *&gt; next;
         <span style="color:#fff;font-weight:bold">bool</span> end;
@@ -581,8 +550,8 @@
         BuildTrie(words);
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; m; ++i)
             <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = <span style="color:#ff0;font-weight:bold">0</span>; j &lt; n; ++j)
-                <span style="color:#fff;font-weight:bold">if</span> (root-&gt;next[board[i][j] - <span style="color:#0ff;font-weight:bold">&#39;a&#39;</span>])
-                    DFS(board, i, j, root-&gt;next[board[i][j] - <span style="color:#0ff;font-weight:bold">&#39;a&#39;</span>], string(<span style="color:#ff0;font-weight:bold">1</span>, board[i][j]));
+                <span style="color:#fff;font-weight:bold">if</span> (root-&gt;next[board[i][j] - <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">a</span><span style="color:#0ff;font-weight:bold">&#39;</span>])
+                    DFS(board, i, j, root-&gt;next[board[i][j] - <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">a</span><span style="color:#0ff;font-weight:bold">&#39;</span>], string(<span style="color:#ff0;font-weight:bold">1</span>, board[i][j]));
         ret = vector&lt;string&gt;(res.begin(), res.end());
         <span style="color:#fff;font-weight:bold">return</span> ret;
     }
@@ -593,9 +562,9 @@
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;s:words) {
             node = root;
             <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> c:s) {
-                <span style="color:#fff;font-weight:bold">if</span> (!node-&gt;next[c - <span style="color:#0ff;font-weight:bold">&#39;a&#39;</span>])
-                    node-&gt;next[c - <span style="color:#0ff;font-weight:bold">&#39;a&#39;</span>] = <span style="color:#fff;font-weight:bold">new</span> TrieNode();
-                node = node-&gt;next[c - <span style="color:#0ff;font-weight:bold">&#39;a&#39;</span>];
+                <span style="color:#fff;font-weight:bold">if</span> (!node-&gt;next[c - <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">a</span><span style="color:#0ff;font-weight:bold">&#39;</span>])
+                    node-&gt;next[c - <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">a</span><span style="color:#0ff;font-weight:bold">&#39;</span>] = <span style="color:#fff;font-weight:bold">new</span> TrieNode();
+                node = node-&gt;next[c - <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">a</span><span style="color:#0ff;font-weight:bold">&#39;</span>];
             }
             node-&gt;end = <span style="color:#fff;font-weight:bold">true</span>;
         }
@@ -609,17 +578,15 @@
         visited[i][j] = <span style="color:#fff;font-weight:bold">true</span>;
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">auto</span> &amp;d:dir) {
             <span style="color:#fff;font-weight:bold">int</span> a = i + d[<span style="color:#ff0;font-weight:bold">0</span>], b = j + d[<span style="color:#ff0;font-weight:bold">1</span>];
-            <span style="color:#fff;font-weight:bold">if</span> (a &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; a &lt; m &amp;&amp; b &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; b &lt; n &amp;&amp; node-&gt;next[board[a][b] - <span style="color:#0ff;font-weight:bold">&#39;a&#39;</span>] &amp;&amp; !visited[a][b])
-                DFS(board, a, b, node-&gt;next[board[a][b] - <span style="color:#0ff;font-weight:bold">&#39;a&#39;</span>], word + board[a][b]);
+            <span style="color:#fff;font-weight:bold">if</span> (a &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; a &lt; m &amp;&amp; b &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; b &lt; n &amp;&amp; node-&gt;next[board[a][b] - <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">a</span><span style="color:#0ff;font-weight:bold">&#39;</span>] &amp;&amp; !visited[a][b])
+                DFS(board, a, b, node-&gt;next[board[a][b] - <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">a</span><span style="color:#0ff;font-weight:bold">&#39;</span>], word + board[a][b]);
         }
         visited[i][j] = <span style="color:#fff;font-weight:bold">false</span>;
     }
 };
-</code></pre></div>
-<h4 id="749-隔离病毒-https-leetcode-cn-com-problems-contain-virus"><a href="https://leetcode-cn.com/problems/contain-virus/">749 隔离病毒</a></h4>
-
+</code></pre></div><h4 id="749-隔离病毒httpsleetcode-cncomproblemscontain-virus"><a href="https://leetcode-cn.com/problems/contain-virus/">749 隔离病毒</a></h4>
 <p>矩阵会持续地变化，每一轮 DFS 结束后需要进行两个操作，一是将已经隔离的病毒进行标记，二是将未隔离的病毒进行感染（延伸），可以先将所有的未隔离的病毒先保存下来再依次进行延伸，写起来比较复杂。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">int</span> m, n;
     <span style="color:#fff;font-weight:bold">int</span> dir[<span style="color:#ff0;font-weight:bold">4</span>][<span style="color:#ff0;font-weight:bold">2</span>] = {{<span style="color:#ff0;font-weight:bold">0</span>,  <span style="color:#ff0;font-weight:bold">1</span>},
                      {<span style="color:#ff0;font-weight:bold">1</span>,  <span style="color:#ff0;font-weight:bold">0</span>},
@@ -696,17 +663,15 @@
         }
     }
 };
-</code></pre></div>
-<h4 id="51-n皇后-https-leetcode-cn-com-problems-n-queens"><a href="https://leetcode-cn.com/problems/n-queens/">51 N皇后</a></h4>
-
+</code></pre></div><h4 id="51-n皇后httpsleetcode-cncomproblemsn-queens"><a href="https://leetcode-cn.com/problems/n-queens/">51 N皇后</a></h4>
 <p>很经典的回溯问题，用 DFS 搜索每一种可能直到搜索完最后一行，用当前位置的横纵坐标的和和差分别判断两个对角线上是否有皇后即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;vector&lt;string&gt;&gt; solveNQueens(<span style="color:#fff;font-weight:bold">int</span> n) {
         vector&lt;vector&lt;string&gt;&gt; res;
-        string temp = <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>;
+        string temp = <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">&#34;</span>;
         <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; n; ++i)
-            temp += <span style="color:#0ff;font-weight:bold">&#34;.&#34;</span>;
+            temp += <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">.</span><span style="color:#0ff;font-weight:bold">&#34;</span>;
         vector&lt;string&gt; board(n, temp);
         unordered_map&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">bool</span>&gt; left_diagonal, right_diagonal;
         vector&lt;<span style="color:#fff;font-weight:bold">bool</span>&gt; row(n, <span style="color:#fff;font-weight:bold">false</span>), col(n, <span style="color:#fff;font-weight:bold">false</span>);
@@ -733,9 +698,9 @@
                 col[j] = <span style="color:#fff;font-weight:bold">true</span>;
                 left_diagonal[i + j] = <span style="color:#fff;font-weight:bold">true</span>;
                 right_diagonal[i - j] = <span style="color:#fff;font-weight:bold">true</span>;
-                board[i][j] = <span style="color:#0ff;font-weight:bold">&#39;Q&#39;</span>;
+                board[i][j] = <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">Q</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
                 Backtrack(i + <span style="color:#ff0;font-weight:bold">1</span>, n, board, res, col, left_diagonal, right_diagonal);
-                board[i][j] = <span style="color:#0ff;font-weight:bold">&#39;.&#39;</span>;
+                board[i][j] = <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">.</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
                 col[j] = <span style="color:#fff;font-weight:bold">false</span>;
                 left_diagonal[i + j] = <span style="color:#fff;font-weight:bold">false</span>;
                 right_diagonal[i - j] = <span style="color:#fff;font-weight:bold">false</span>;

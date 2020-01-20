@@ -1,22 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zintrulcre.vip/posts/leetcode/tree-3/</loc>
-    <lastmod>2019-08-24T19:12:25+10:00</lastmod>
+    <loc>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%8D%8F%E7%A8%8B/c&#43;&#43;-%E5%8D%8F%E7%A8%8B1%E5%87%BD%E6%95%B0%E5%92%8C%E5%8D%8F%E7%A8%8B/</loc>
+    <lastmod>2020-01-20T20:15:05+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://zintrulcre.vip/posts/</loc>
-    <lastmod>2019-08-24T19:12:25+10:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-01-20T20:15:05+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://zintrulcre.vip/</loc>
+    <lastmod>2020-01-20T20:15:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/posts/leetcode/tree-3/</loc>
     <lastmod>2019-08-24T19:12:25+10:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -175,8 +178,12 @@
   </url>
   
   <url>
-    <loc>https://zintrulcre.vip/series/</loc>
+    <loc>https://zintrulcre.vip/posts/computer-science/temp/</loc>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/series/</loc>
   </url>
   
 </urlset>

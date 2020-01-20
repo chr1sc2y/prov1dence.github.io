@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Linux:
+我平时的学习基本上都在Linux下完成的，我现在有两台电脑，一台iMac，一台笔记本，笔记本上就装的Linux，然后每天都会用很多指令， 比如说用pipeline管道输出后用grep做正则搜索，用ifconfig和netstat查看网络状态，用top看进程资源，用iostat看cpu和硬盘状态 还有就是最基础的cd ls cp rm mkdir find whereis，还有远程的scp 还有一个查看程序运行时的系统调用，在Linux下是strace，Mac下是dtruss，有些命令在两个平台不一样 Linux下对文件操作有两种方式：系统调用（底层调用，面向硬件），和库函数调用（应用）。系统调用：open, close, read, write, ioctl等，用于底层文件访问
+调试： 用vim编辑（会一些vim的快捷键，比如dd删除一行，gg定位到头部，6$定位到某一行），用gdb调试，打log出来看，用过有个叫log4cplus的框架，有内存错误或者内存泄漏的问题就用valgrind调试。还有用GNU profiler来查看一些函数的调用次数，调用点相关的信息（编译器的话在Linux上GCC，在MAC上用自带的clang，单元测试用gtest。）
+C&#43;&#43; 内存分配
+ 栈区：参数，局部变量 2.堆区：new，向高地址扩展，不连续 3.自由存储区，malloc 4.全局/静态存储区，存储全局变量和静态变量 5.常量存储区，存储常量 new 分配失败： 1. int* p = new (std::nothrow) int(1); 返回空指针 2. 用 try {} catch (const bad_alloc &amp;b) {} 捕捉异常  auto_ptr：有拷贝构造和赋值操作，所有权转移 unique_ptr：独占式拥有，保证同一时间内只有一个智能指针可以指向特定指针，同时销毁，可以移交拥有权 shared_ptr：多个智能指针指向相同指针对象，在最后一个shared_ptr被销毁时对象被释放；搭配 weak_ptr、bad_weak_ptr等辅助类来实现，可以定制型删除器，因为默认只会把指针删掉，如果是个数组不会删后面的 循环引用就是说有两个类对象的智能指针，他们分别有一个成员变量是对方的类型，并且指向了对方的智能指针，形成了一个环状，那么他们就无法被正确的释放掉 weak_ptr：只引用，不计数，如果一个指针被一些shared_ptr和weak_ptr同时引用，当这些shared_ptr都释放掉，不管还有没有weak_ptr引用该内存，内存都会被释放，解决了循环引用
+线程通信：锁（互斥锁，读写所，自旋锁，条件变量，原子变量，临界区），信号量，信号，屏障"/>
+
+    <meta property="og:title" content="" />
+<meta property="og:description" content="Linux:
+我平时的学习基本上都在Linux下完成的，我现在有两台电脑，一台iMac，一台笔记本，笔记本上就装的Linux，然后每天都会用很多指令， 比如说用pipeline管道输出后用grep做正则搜索，用ifconfig和netstat查看网络状态，用top看进程资源，用iostat看cpu和硬盘状态 还有就是最基础的cd ls cp rm mkdir find whereis，还有远程的scp 还有一个查看程序运行时的系统调用，在Linux下是strace，Mac下是dtruss，有些命令在两个平台不一样 Linux下对文件操作有两种方式：系统调用（底层调用，面向硬件），和库函数调用（应用）。系统调用：open, close, read, write, ioctl等，用于底层文件访问
+调试： 用vim编辑（会一些vim的快捷键，比如dd删除一行，gg定位到头部，6$定位到某一行），用gdb调试，打log出来看，用过有个叫log4cplus的框架，有内存错误或者内存泄漏的问题就用valgrind调试。还有用GNU profiler来查看一些函数的调用次数，调用点相关的信息（编译器的话在Linux上GCC，在MAC上用自带的clang，单元测试用gtest。）
+C&#43;&#43; 内存分配
+ 栈区：参数，局部变量 2.堆区：new，向高地址扩展，不连续 3.自由存储区，malloc 4.全局/静态存储区，存储全局变量和静态变量 5.常量存储区，存储常量 new 分配失败： 1. int* p = new (std::nothrow) int(1); 返回空指针 2. 用 try {} catch (const bad_alloc &amp;b) {} 捕捉异常  auto_ptr：有拷贝构造和赋值操作，所有权转移 unique_ptr：独占式拥有，保证同一时间内只有一个智能指针可以指向特定指针，同时销毁，可以移交拥有权 shared_ptr：多个智能指针指向相同指针对象，在最后一个shared_ptr被销毁时对象被释放；搭配 weak_ptr、bad_weak_ptr等辅助类来实现，可以定制型删除器，因为默认只会把指针删掉，如果是个数组不会删后面的 循环引用就是说有两个类对象的智能指针，他们分别有一个成员变量是对方的类型，并且指向了对方的智能指针，形成了一个环状，那么他们就无法被正确的释放掉 weak_ptr：只引用，不计数，如果一个指针被一些shared_ptr和weak_ptr同时引用，当这些shared_ptr都释放掉，不管还有没有weak_ptr引用该内存，内存都会被释放，解决了循环引用
+线程通信：锁（互斥锁，读写所，自旋锁，条件变量，原子变量，临界区），信号量，信号，屏障" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/computer-science/temp/" />
+
+
+
+    
+      <base href="https://zintrulcre.vip/posts/computer-science/temp/">
+    
+    <title>
+   · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/computer-science/temp/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.62.2" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title"></h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='0001-01-01T00:00:00Z'>
+                January 1, 0001
+              </time>
+            </span>
+            
+          </div>
+          
+          
+        </div>
+      </header>
+
+      <div>
+        <p>Linux:</p>
+<p>我平时的学习基本上都在Linux下完成的，我现在有两台电脑，一台iMac，一台笔记本，笔记本上就装的Linux，然后每天都会用很多指令，
+比如说用pipeline管道输出后用grep做正则搜索，用ifconfig和netstat查看网络状态，用top看进程资源，用iostat看cpu和硬盘状态
+还有就是最基础的cd ls cp rm mkdir find whereis，还有远程的scp
+还有一个查看程序运行时的系统调用，在Linux下是strace，Mac下是dtruss，有些命令在两个平台不一样
+Linux下对文件操作有两种方式：系统调用（底层调用，面向硬件），和库函数调用（应用）。系统调用：open, close, read, write, ioctl等，用于底层文件访问</p>
+<p>调试：
+用vim编辑（会一些vim的快捷键，比如dd删除一行，gg定位到头部，6$定位到某一行），用gdb调试，打log出来看，用过有个叫log4cplus的框架，有内存错误或者内存泄漏的问题就用valgrind调试。还有用GNU profiler来查看一些函数的调用次数，调用点相关的信息（编译器的话在Linux上GCC，在MAC上用自带的clang，单元测试用gtest。）</p>
+<p>C++ 内存分配</p>
+<ol>
+<li>栈区：参数，局部变量 2.堆区：new，向高地址扩展，不连续 3.自由存储区，malloc 4.全局/静态存储区，存储全局变量和静态变量 5.常量存储区，存储常量
+new 分配失败： 1. int* p = new (std::nothrow) int(1); 返回空指针  2. 用 try {} catch (const bad_alloc &amp;b) {} 捕捉异常</li>
+</ol>
+<p>auto_ptr：有拷贝构造和赋值操作，所有权转移
+unique_ptr：独占式拥有，保证同一时间内只有一个智能指针可以指向特定指针，同时销毁，可以移交拥有权
+shared_ptr：多个智能指针指向相同指针对象，在最后一个shared_ptr被销毁时对象被释放；搭配 weak_ptr、bad_weak_ptr等辅助类来实现，可以定制型删除器，因为默认只会把指针删掉，如果是个数组不会删后面的
+循环引用就是说有两个类对象的智能指针，他们分别有一个成员变量是对方的类型，并且指向了对方的智能指针，形成了一个环状，那么他们就无法被正确的释放掉
+weak_ptr：只引用，不计数，如果一个指针被一些shared_ptr和weak_ptr同时引用，当这些shared_ptr都释放掉，不管还有没有weak_ptr引用该内存，内存都会被释放，解决了循环引用</p>
+<p>线程通信：锁（互斥锁，读写所，自旋锁，条件变量，原子变量，临界区），信号量，信号，屏障</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

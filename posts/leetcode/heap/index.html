@@ -11,14 +11,14 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 堆"/>
-<meta name="twitter:description" content="LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。 classSolution { public: int findKthLargest(vector&lt;int&gt; &amp;nums, int k) { priority_queue&lt;int, vector&lt;int&gt;, greater&lt;&gt;&gt; heap; for (auto &amp;m:nums) { if (heap.size() &lt; k || m &gt; heap.top()) heap.push(m); if (heap.size() &gt; k) heap.pop(); } return heap.top(); } }; 347 前 K 个高频元素 先"/>
+<meta name="twitter:description" content="LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。 class Solution { public: int findKthLargest(vector&lt;int&gt; &amp;nums, int k) { priority_queue&lt;int, vector&lt;int&gt;, greater&lt;&gt;&gt; heap; for (auto &amp;m:nums) { if (heap.size() &lt; k || m &gt; heap.top()) heap.push(m); if (heap.size() &gt; k) heap.pop(); } return heap.top(); } }; 347 前 K 个高频元素"/>
 
     <meta property="og:title" content="LeetCode 堆" />
-<meta property="og:description" content="LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。 classSolution { public: int findKthLargest(vector&lt;int&gt; &amp;nums, int k) { priority_queue&lt;int, vector&lt;int&gt;, greater&lt;&gt;&gt; heap; for (auto &amp;m:nums) { if (heap.size() &lt; k || m &gt; heap.top()) heap.push(m); if (heap.size() &gt; k) heap.pop(); } return heap.top(); } }; 347 前 K 个高频元素 先" />
+<meta property="og:description" content="LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。 class Solution { public: int findKthLargest(vector&lt;int&gt; &amp;nums, int k) { priority_queue&lt;int, vector&lt;int&gt;, greater&lt;&gt;&gt; heap; for (auto &amp;m:nums) { if (heap.size() &lt; k || m &gt; heap.top()) heap.push(m); if (heap.size() &gt; k) heap.pop(); } return heap.top(); } }; 347 前 K 个高频元素" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/leetcode/heap/" />
-<meta property="article:published_time" content="2019-08-05T19:12:25&#43;10:00"/>
-<meta property="article:modified_time" content="2019-08-05T19:12:25&#43;10:00"/>
+<meta property="article:published_time" content="2019-08-05T19:12:25+10:00" />
+<meta property="article:modified_time" content="2019-08-05T19:12:25+10:00" />
 
 
     
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.2" />
+    <meta name="generator" content="Hugo 0.62.2" />
   </head>
 
   <body class=" ">
@@ -108,16 +108,11 @@
       </header>
 
       <div>
-        
-
-<h1 id="leetcode-堆-https-leetcode-cn-com-tag-heap"><a href="https://leetcode-cn.com/tag/heap/">LeetCode 堆</a></h1>
-
+        <h1 id="leetcode-堆httpsleetcode-cncomtagheap"><a href="https://leetcode-cn.com/tag/heap/">LeetCode 堆</a></h1>
 <h2 id="题目">题目</h2>
-
-<h4 id="215-数组中的第-k-个最大元素-https-leetcode-cn-com-problems-kth-largest-element-in-an-array"><a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215 数组中的第 K 个最大元素</a></h4>
-
+<h4 id="215-数组中的第-k-个最大元素httpsleetcode-cncomproblemskth-largest-element-in-an-array"><a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215 数组中的第 K 个最大元素</a></h4>
 <p>最简单的堆的应用。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     <span style="color:#fff;font-weight:bold">int</span> findKthLargest(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums, <span style="color:#fff;font-weight:bold">int</span> k) {
         priority_queue&lt;<span style="color:#fff;font-weight:bold">int</span>, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;, greater&lt;&gt;&gt; heap;
@@ -130,11 +125,9 @@
         <span style="color:#fff;font-weight:bold">return</span> heap.top();
     }
 };
-</code></pre></div>
-<h4 id="347-前-k-个高频元素-https-leetcode-cn-com-problems-top-k-frequent-elements-submissions"><a href="https://leetcode-cn.com/problems/top-k-frequent-elements/submissions/">347 前 K 个高频元素</a></h4>
-
+</code></pre></div><h4 id="347-前-k-个高频元素httpsleetcode-cncomproblemstop-k-frequent-elementssubmissions"><a href="https://leetcode-cn.com/problems/top-k-frequent-elements/submissions/">347 前 K 个高频元素</a></h4>
 <p>先遍历一次统计出数组中各个元素出现的次数，再用一个大根堆将前 k 个高频元素保存下来，最后再将这些元素依次 pop 出来存入结果数组。时间复杂度是 O(n)，空间复杂度是 O(n)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
 <span style="color:#fff;font-weight:bold">public</span>:
     vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; topKFrequent(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; &amp;nums, <span style="color:#fff;font-weight:bold">int</span> k) {
         priority_queue&lt;pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;, vector&lt;pair&lt;<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">int</span>&gt;&gt;, greater&lt;&gt;&gt; freq;
@@ -155,11 +148,9 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="451-根据字符出现频率排序-https-leetcode-cn-com-problems-sort-characters-by-frequency"><a href="https://leetcode-cn.com/problems/sort-characters-by-frequency/">451 根据字符出现频率排序</a></h4>
-
+</code></pre></div><h4 id="451-根据字符出现频率排序httpsleetcode-cncomproblemssort-characters-by-frequency"><a href="https://leetcode-cn.com/problems/sort-characters-by-frequency/">451 根据字符出现频率排序</a></h4>
 <p>用一个大根堆保存每个字符出现的频率，然后依次将原字符串覆盖即可。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">struct</span> Element {
         <span style="color:#fff;font-weight:bold">int</span> asc;
         <span style="color:#fff;font-weight:bold">int</span> num;
@@ -168,7 +159,7 @@
     };
 
     <span style="color:#fff;font-weight:bold">struct</span> Compare {
-        <span style="color:#fff;font-weight:bold">bool</span> <span style="color:#fff;font-weight:bold">operator</span>()(Element &amp;e1, Element &amp;e2) {
+        <span style="color:#fff;font-weight:bold">bool</span> operator()(Element &amp;e1, Element &amp;e2) {
             <span style="color:#fff;font-weight:bold">return</span> e1.num &lt; e2.num;
         }
     };
@@ -194,13 +185,11 @@
         <span style="color:#fff;font-weight:bold">return</span> s;
     }
 };
-</code></pre></div>
-<h4 id="692-前-k-个高频单词-https-leetcode-cn-com-problems-top-k-frequent-words"><a href="https://leetcode-cn.com/problems/top-k-frequent-words/">692 前 K 个高频单词</a></h4>
-
-<p>用一个 pair<string, int> 或结构体保存每个字符串及其计数的信息，并维护一个小根堆，保证堆里存储前 K 个高频单词，放回堆里的所有元素。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+</code></pre></div><h4 id="692-前-k-个高频单词httpsleetcode-cncomproblemstop-k-frequent-words"><a href="https://leetcode-cn.com/problems/top-k-frequent-words/">692 前 K 个高频单词</a></h4>
+<p>用一个 pair&lt;string, int&gt; 或结构体保存每个字符串及其计数的信息，并维护一个小根堆，保证堆里存储前 K 个高频单词，放回堆里的所有元素。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">struct</span> Comp {
-        <span style="color:#fff;font-weight:bold">bool</span> <span style="color:#fff;font-weight:bold">operator</span>()(pair&lt;string, <span style="color:#fff;font-weight:bold">int</span>&gt; <span style="color:#fff;font-weight:bold">const</span> &amp;p1, pair&lt;string, <span style="color:#fff;font-weight:bold">int</span>&gt; <span style="color:#fff;font-weight:bold">const</span> &amp;p2) {
+        <span style="color:#fff;font-weight:bold">bool</span> operator()(pair&lt;string, <span style="color:#fff;font-weight:bold">int</span>&gt; <span style="color:#fff;font-weight:bold">const</span> &amp;p1, pair&lt;string, <span style="color:#fff;font-weight:bold">int</span>&gt; <span style="color:#fff;font-weight:bold">const</span> &amp;p2) {
             <span style="color:#fff;font-weight:bold">if</span> (p1.second == p2.second)
                 <span style="color:#fff;font-weight:bold">return</span> p1.first &lt; p2.first;
             <span style="color:#fff;font-weight:bold">return</span> p1.second &gt; p2.second;
@@ -227,11 +216,9 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="778-水位上升的泳池中游泳-https-leetcode-cn-com-problems-swim-in-rising-water"><a href="https://leetcode-cn.com/problems/swim-in-rising-water/">778 水位上升的泳池中游泳</a></h4>
-
+</code></pre></div><h4 id="778-水位上升的泳池中游泳httpsleetcode-cncomproblemsswim-in-rising-water"><a href="https://leetcode-cn.com/problems/swim-in-rising-water/">778 水位上升的泳池中游泳</a></h4>
 <p>类似于 AI 中用到的 Greedy Best-First Search 方法。不能用贪心是因为未访问过的路径中可能出现最优解，比如 [[0, 4, 7], [5, 8, 9], [2, 3, 1]] 这个矩阵，如果采用贪心会经过路径 0 -&gt; 4 -&gt; 7 -&gt; 9 -&gt; 1，而实际上最优路径是 0 -&gt; 5 - &gt; 2 -&gt; 3 -&gt; 1，所以需要把之前未经过的节点值保存下来，以便在贪心的过程中遇到当前节点大于之前未经过的节点时重新回到之前的位置继续搜索，保存的方法是用一个小根堆保存所有可能经过的下一步节点，这样就可以每次从堆顶取出下一步的最优值，而搜索的策略则用 DFS，每次尝试四个方向未访问过的节点。时间复杂度是 O(n)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>Solution {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Solution {
     <span style="color:#fff;font-weight:bold">struct</span> Element {
         <span style="color:#fff;font-weight:bold">int</span> val;
         <span style="color:#fff;font-weight:bold">int</span> x, y;
@@ -240,7 +227,7 @@
     };
 
     <span style="color:#fff;font-weight:bold">struct</span> Compare {
-        <span style="color:#fff;font-weight:bold">bool</span> <span style="color:#fff;font-weight:bold">operator</span>()(Element <span style="color:#fff;font-weight:bold">const</span> &amp;e1, Element <span style="color:#fff;font-weight:bold">const</span> &amp;e2) {
+        <span style="color:#fff;font-weight:bold">bool</span> operator()(Element <span style="color:#fff;font-weight:bold">const</span> &amp;e1, Element <span style="color:#fff;font-weight:bold">const</span> &amp;e2) {
             <span style="color:#fff;font-weight:bold">return</span> e1.val &gt; e2.val;
         }
     };
@@ -272,11 +259,9 @@
         <span style="color:#fff;font-weight:bold">return</span> res;
     }
 };
-</code></pre></div>
-<h4 id="703-数据流中的第-k-大元素-https-leetcode-cn-com-problems-kth-largest-element-in-a-stream"><a href="https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/">703 数据流中的第 K 大元素</a></h4>
-
+</code></pre></div><h4 id="703-数据流中的第-k-大元素httpsleetcode-cncomproblemskth-largest-element-in-a-stream"><a href="https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/">703 数据流中的第 K 大元素</a></h4>
 <p>维护一个大小为 K 的小根堆，如果新的数比堆顶元素大则将这个数 push 进去并维护堆，当堆中的元素数量超过 K 时 pop 出堆顶元素并维护堆。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>KthLargest {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> KthLargest {
     priority_queue&lt;<span style="color:#fff;font-weight:bold">int</span>, vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;, greater&lt;&gt;&gt; min_heap;
     <span style="color:#fff;font-weight:bold">int</span> k;
 <span style="color:#fff;font-weight:bold">public</span>:
@@ -299,11 +284,9 @@
         <span style="color:#fff;font-weight:bold">return</span> min_heap.top();
     }
 };
-</code></pre></div>
-<h4 id="295-数据流的中位数-https-leetcode-cn-com-problems-find-median-from-data-stream"><a href="https://leetcode-cn.com/problems/find-median-from-data-stream/">295 数据流的中位数</a></h4>
-
+</code></pre></div><h4 id="295-数据流的中位数httpsleetcode-cncomproblemsfind-median-from-data-stream"><a href="https://leetcode-cn.com/problems/find-median-from-data-stream/">295 数据流的中位数</a></h4>
 <p>最优的做法是用一个大根堆和一个小根堆，前者存数据流的后半部分，前者存数据流的前半部分，这样两个堆的堆顶分别是当前数据流的中间的较大和较小的数，每次去中位数只需要取堆顶元素即可，因此取数的时间复杂度是 O(1)，插入数的时间复杂度是 O(logk)，k 是数据流数据总数的一半。还可以用二分查找加上插入排序的做法，这样做插入的时间复杂度是 O(n)，需要将数据流中大于插入数据的所有数往右移动，查找的时间复杂度是 O(logn)。</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span><span style="color:#f00"> </span>MedianFinder {
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> MedianFinder {
     priority_queue&lt;<span style="color:#fff;font-weight:bold">double</span>&gt; max_heap;
     priority_queue&lt;<span style="color:#fff;font-weight:bold">double</span>, vector&lt;<span style="color:#fff;font-weight:bold">double</span>&gt;, greater&lt;&gt;&gt; min_heap;
 <span style="color:#fff;font-weight:bold">public</span>:
