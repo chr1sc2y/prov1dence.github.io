@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 20 Jan 2020 20:15:05 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 15 Mar 2020 17:24:27 +0800</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>coverity 的 WRAPPER_ESCAPE 告警</title>
+      <link>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%9F%BA%E7%A1%80/wrapper_escape-in-coverity/</link>
+      <pubDate>Sun, 15 Mar 2020 17:24:27 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%9F%BA%E7%A1%80/wrapper_escape-in-coverity/</guid>
+      <description>coverity 的 WRAPPER_ESCAPE 告警 const char* Foo() { std::string str_msg(&amp;#34;test&amp;#34;); return str_msg.c_str(); } int main() { const char *p_msg = Foo(); printf(&amp;#34;%s\n&amp;#34;, p_msg); return 0; } // output:（为空，或乱码） D? 上面代码中的 Foo 函数会被 coverity 报告 WRAPPER_ESCA</description>
+    </item>
     
     <item>
       <title>C&#43;&#43; 协程（1）：函数和协程</title>
@@ -91,15 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/leetcode/tree-1/</guid>
       <description>LeetCode 树（1） 题目 1. 树的遍历 144 二叉树的前序遍历 前序遍历一个二叉树。 前序遍历是按照根节点，左子节点，右子节点的顺序来遍历一个二叉树，有递归和迭代两</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 链表（2）</title>
-      <link>https://zintrulcre.vip/posts/leetcode/linkedlist-2/</link>
-      <pubDate>Tue, 09 Jul 2019 19:12:25 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/linkedlist-2/</guid>
-      <description>LeetCode 链表（2） 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。 在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，</description>
     </item>
     
   </channel>

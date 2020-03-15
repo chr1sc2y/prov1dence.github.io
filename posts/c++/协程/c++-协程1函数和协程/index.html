@@ -162,7 +162,7 @@
 func()                      +----+
 +------------+
 ...
-</code></pre></div><p>接下来协程管理器会在堆上申请一块新的区域作为协程的<strong>执行栈帧</strong>，此时编译器会将 EBP 指向<strong>执行栈帧</strong>的顶部（如下所示）。</p>
+</code></pre></div><p>接下来协程管理器会在堆上申请一块新的区域作为协程的<strong>执行栈帧</strong>，此时编译器会将 EBP 指向<strong>执行栈帧</strong>的顶部，如下所示。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Stack                       Register                Heap (Coroutine Manager)
                             
 +------------+  &lt;-------                            +------------+
