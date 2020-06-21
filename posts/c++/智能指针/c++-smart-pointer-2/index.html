@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.72.0" />
   </head>
 
   <body class=" ">
@@ -169,14 +169,14 @@
 
 <span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T, <span style="color:#fff;font-weight:bold">typename</span> D&gt;
 UniquePointer&lt;T, D&gt;::UniquePointer(T *t, <span style="color:#fff;font-weight:bold">const</span> D &amp;d) {
-    std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">UniquePointer </span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold"> constructor called.</span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;UniquePointer &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34; constructor called.&#34;</span> &lt;&lt; std::endl;
     <span style="color:#fff;font-weight:bold">this</span>-&gt;pointer = t;
     <span style="color:#fff;font-weight:bold">this</span>-&gt;deleter = d;
 }
 
 <span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T, <span style="color:#fff;font-weight:bold">typename</span> D&gt;
 UniquePointer&lt;T, D&gt;::~UniquePointer() {
-    std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">UniquePointer </span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold"> destructor called.</span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;UniquePointer &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34; destructor called.&#34;</span> &lt;&lt; std::endl;
     deleter(<span style="color:#fff;font-weight:bold">this</span>-&gt;pointer);
 }
 
@@ -207,14 +207,14 @@ T *UniquePointer&lt;T, D&gt;::release() {
 
 <span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T, <span style="color:#fff;font-weight:bold">typename</span> D&gt;
 UniquePointer&lt;T, D&gt;::UniquePointer(UniquePointer&lt;T, D&gt; &amp;&amp;other) <span style="color:#fff;font-weight:bold">noexcept</span> {
-    std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">UniquePointer </span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold"> move constructor called.</span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;UniquePointer &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34; move constructor called.&#34;</span> &lt;&lt; std::endl;
     <span style="color:#fff;font-weight:bold">this</span>-&gt;pointer = other.release();
     deleter(std::move(other.deleter));
 }
 
 <span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T, <span style="color:#fff;font-weight:bold">typename</span> D&gt;
 UniquePointer&lt;T, D&gt; &amp;UniquePointer&lt;T, D&gt;::<span style="color:#fff;font-weight:bold">operator</span>=(UniquePointer&lt;T, D&gt; &amp;&amp;other) <span style="color:#fff;font-weight:bold">noexcept</span> {
-    std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">UniquePointer </span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold"> assignment operator called.</span><span style="color:#0ff;font-weight:bold">&#34;</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;UniquePointer &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34; assignment operator called.&#34;</span> &lt;&lt; std::endl;
     <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">this</span>-&gt;pointer != other.pointer) {
         reset(other.release());
         deleter = std::move(other.deleter);

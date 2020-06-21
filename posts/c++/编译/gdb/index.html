@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GDB 调试入门"/>
+<meta name="twitter:description" content="GDB 调试入门 0. 序 调试程序是开发过程中必不可少的一环，在 Windows 或 MacOS 上开发时，可以使用 VS 和 CLion 等 IDE 上自带的调试功能来打断点或查看变量和堆栈，但 Linux 并没有图"/>
+
+    <meta property="og:title" content="GDB 调试入门" />
+<meta property="og:description" content="GDB 调试入门 0. 序 调试程序是开发过程中必不可少的一环，在 Windows 或 MacOS 上开发时，可以使用 VS 和 CLion 等 IDE 上自带的调试功能来打断点或查看变量和堆栈，但 Linux 并没有图" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/c&#43;&#43;/%E7%BC%96%E8%AF%91/gdb/" />
+<meta property="article:published_time" content="2020-04-22T17:46:06+08:00" />
+<meta property="article:modified_time" content="2020-04-22T17:46:06+08:00" />
+
+
+    
+      <base href="https://zintrulcre.vip/posts/c&#43;&#43;/%E7%BC%96%E8%AF%91/gdb/">
+    
+    <title>
+  GDB 调试入门 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/c&#43;&#43;/%E7%BC%96%E8%AF%91/gdb/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.72.0" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">GDB 调试入门</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-04-22T17:46:06&#43;08:00'>
+                April 22, 2020
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/c&#43;&#43;/">C&#43;&#43;</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        <h1 id="gdb-调试入门">GDB 调试入门</h1>
+<h2 id="0-序">0. 序</h2>
+<p>调试程序是开发过程中必不可少的一环，在 Windows 或 MacOS 上开发时，可以使用 VS 和 CLion 等 IDE 上自带的调试功能来打断点或查看变量和堆栈，但 Linux 并没有图形化的操作界面，而如果只通过打 log 的方式来查找问题的话效率将会非常低下，此时我们可以利用 GDB 来提升我们的开发效率。</p>
+<p><a href="https://en.wikipedia.org/wiki/GNU_Debugger">GDB</a> 是 GNU Debugger 的简写，是 <a href="https://zh.wikipedia.org/wiki/GNU">GNU</a> 软件系统中的标准<a href="https://en.wikipedia.org/wiki/Debugger">调试器</a>。GDB 具备各种调试功能，包括但不限于打断点、单步执行、打印变量、查看寄存器、查看函数调用堆栈等，能够有效地针对函数的运行进行追踪和警告；使用 GDB 调试时，可以监督和修改程序的变量，并且这些修改是独立于主程序之外的。GDB 主要用于调试编译型语言，对 C，C++，Go，Fortran 等语言有内置的支持，但它不支持解释型语言。</p>
+<h2 id="1-环境搭建">1. 环境搭建</h2>
+<h3 id="11-编写程序">1.1 编写程序</h3>
+<p>为了进行调试，我们需要准备一个简单的 C++ 程序：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#f00">$</span> cat test.cpp
+<span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">void</span> Func(<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> *s) {
+    <span style="color:#fff;font-weight:bold">int</span> *p = <span style="color:#fff;font-weight:bold">nullptr</span>;
+    <span style="color:#fff;font-weight:bold">int</span> &amp;r = <span style="color:#fff;font-weight:bold">static_cast</span>&lt;<span style="color:#fff;font-weight:bold">int</span>&amp;&gt;(*p);
+
+    <span style="color:#fff;font-weight:bold">int</span> num = std::atoi(s);
+    r = num;
+    printf(<span style="color:#0ff;font-weight:bold">&#34;%d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, r);
+}
+
+<span style="color:#fff;font-weight:bold">int</span> main (<span style="color:#fff;font-weight:bold">int</span> argc, <span style="color:#fff;font-weight:bold">char</span> *argv[]) {
+    <span style="color:#fff;font-weight:bold">if</span> (argc != <span style="color:#ff0;font-weight:bold">2</span>) {
+        printf(<span style="color:#0ff;font-weight:bold">&#34;test [int]</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
+        <span style="color:#fff;font-weight:bold">return</span> -<span style="color:#ff0;font-weight:bold">1</span>;
+    }
+    Func(argv[<span style="color:#ff0;font-weight:bold">1</span>]);
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+
+</code></pre></div><h3 id="12-编译">1.2 编译</h3>
+<p>对于 C/C++ 程序，在使用 gcc/clang 编译的时候需要加上参数 -g，才能生成完整的调试信息并在 GDB 中调试：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#f00">$</span> clang++ -g -std=c++<span style="color:#ff0;font-weight:bold">11</span> -m64 -o test test.cpp
+</code></pre></div><h2 id="2-调试示例">2. 调试示例</h2>
+<p>GDB 有非常多的功能，当我们忘记如何使用这些功能时，可以在 GDB 交互界面里输入 <code>help</code> 或 <code>help all</code> 来查看指令：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) help
+List of classes of commands:
+...
+</code></pre></div><h3 id="21-启动">2.1 启动</h3>
+<p>我们可以使用 <code>gdb [executable file]</code> 来启动调试：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ gdb test.cpp
+...
+Reading symbols from test...done.
+(gdb)
+</code></pre></div><p>也可以直接使用 <code>gdb</code> 来进入交互界面，再使用 <code>file</code> 来指定要调试的程序：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ gdb
+...
+(gdb) file test
+Reading symbols from test...done.
+</code></pre></div><h3 id="22-运行">2.2 运行</h3>
+<p>对于带参数的程序，我们可以使用 <code>set args [arg] ...</code> 设置参数，再使用 <code>run</code> 来运行：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) set args 1
+(gdb) run
+Starting program: test 1
+...
+</code></pre></div><p>当然也可以直接在 <code>run</code> 后加上参数来运行：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) run 1
+Starting program: test 1
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000400749 in Func (s=0x7fffffffe167 &#34;/data/home/joelzychen/test/test&#34;) at test.cpp:8
+8           r = num;
+</code></pre></div><p>我们发现程序出现了 Segmentation fault，此时可以通过打断点来调试程序。</p>
+<h3 id="23-断点">2.3 断点</h3>
+<p>通过错误信息我们可以看到是函数 Func 中，test.cpp 的第 8 行出现了错误，于是我们可以打上两个断点，一个在进入 Func 函数时，一个在 test.cpp 文件的第 8 行，并使用 <code>info breakpoints</code> 或 <code>info b</code> 来查看我们设置了哪些断点：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) b test.cpp:8
+Breakpoint 1 at 0x400742: file test.cpp, line 8.
+(gdb) b Func
+Breakpoint 2 at 0x40071c: file test.cpp, line 4.
+(gdb) info b
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000400742 in Func(char const*) at test.cpp:8
+2       breakpoint     keep y   0x000000000040071c in Func(char const*) at test.cpp:4
+</code></pre></div><h3 id="24-调试">2.4 调试</h3>
+<p>设置好断点之后就可以使用 <code>run</code> 开始运行了：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) run
+Starting program: test 1
+
+Breakpoint 2, Func (s=0x7fffffffe167 &#34;/data/home/joelzychen/test/test&#34;) at test.cpp:4
+4           int *p = nullptr;
+</code></pre></div><p>因为我们在 Func 函数的开头设置了一个断点，所以程序在进入 Func 函数时暂停了；我们可以使用 <code>list</code> 或 <code>l [function name]</code> 来查看函数的上下文：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) l Func
+1       #include &lt;iostream&gt;
+2
+3       void Func(const char *s) {
+4           int *p = nullptr;
+5           int &amp;r = static_cast&lt;int&amp;&gt;(*p);
+6
+7           int num = std::atoi(s);
+8           r = num;
+9           printf(&#34;%d\n&#34;, r);
+10      }
+</code></pre></div><p>此时我们可以使用 <code>print</code> 或 <code>p</code> 来查看变量：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) p s
+$1 = 0x7fffffffe187 &#34;1&#34;
+(gdb) p *s
+$2 = 49 &#39;1&#39;
+</code></pre></div><p>到目前为止还没有出现问题，我们可以使用 <code>continue</code> 或 <code>c</code> 走到下一个断点处：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) c
+Continuing.
+
+Breakpoint 2, Func (s=0x7fffffffe187 &#34;1&#34;) at test.cpp:8
+8           r = num;
+</code></pre></div><p>查看一下当前作用域的一些变量：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) p s
+$8 = 0x7fffffffe187 &#34;1&#34;
+(gdb) p p
+$9 = (int *) 0x0
+(gdb) p *p
+Cannot access memory at address 0x0
+(gdb) p r
+$10 = (int &amp;) @0x0: &lt;error reading variable&gt;
+(gdb) p &amp;r
+$11 = (int *) 0x0
+(gdb) p num
+$12 = 1
+</code></pre></div><p>会发现 r 这个 int&amp; 绑定到了一个被解引用的空指针上，所以 &amp;r == nullptr，因此不能读取 r 的值，我们可以用 <code>next</code> 或 <code>n</code> 来进行单步执行，看看接下来会发生什么：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) n
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000400749 in Func (s=0x7fffffffe187 &#34;1&#34;) at test.cpp:8
+8           r = num;
+</code></pre></div><p>果然发生了 Segmentation fault。</p>
+<h2 id="3-gdb-命令">3. GDB 命令</h2>
+<p>根据刚才的示例程序，可以整理出一些常用的 GDB 命令。</p>
+<h3 id="31-启动">3.1 启动</h3>
+<ol>
+<li>
+<p>将 GDB 链接到一个可执行文件并启动</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">gdb [executable file]
+   
+gdb
+(gdb) file [executable file]
+</code></pre></div></li>
+<li>
+<p>将 GDB 链接到一个正在运行的进程并启动</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">gdb
+(gdb) attach [PID]
+</code></pre></div></li>
+</ol>
+<h3 id="32-断点">3.2 断点</h3>
+<ol>
+<li>
+<p>增加断点</p>
+<ul>
+<li><code>b [function name]</code></li>
+<li><code>b [file:line]</code></li>
+</ul>
+</li>
+<li>
+<p>查看断点</p>
+<ul>
+<li><code>info b</code></li>
+</ul>
+</li>
+<li>
+<p>删除断点</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">delete [breakpoint number]
+d [breakpoint number]
+clear # 删除当前行的断点
+clear [function name] # 删除某个函数处的断点
+clear [file:line] # 删除某一行的断点
+</code></pre></div></li>
+<li>
+<p>禁用和启用断点</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">disable # 禁用所有断点
+disable [breakpoint number] # 禁用某个断点
+enable # 启用所有断点
+enable [breakpoint number] # 启用某个断点
+</code></pre></div></li>
+</ol>
+<h3 id="33-运行">3.3 运行</h3>
+<ol>
+<li>从头开始运行
+<ul>
+<li><code>run</code></li>
+</ul>
+</li>
+<li>单步执行
+<ul>
+<li><code>next</code> 或 <code>n</code></li>
+</ul>
+</li>
+<li>进入函数内部
+<ul>
+<li><code>step</code> 或 <code>s</code></li>
+<li><code>stepi</code> 执行一条机器指令</li>
+</ul>
+</li>
+</ol>
+<h3 id="34-查看">3.4 查看</h3>
+<ol>
+<li>
+<p>查看代码</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">list # 从头开始依次打印，默认每次打印 10 行
+l # 同上
+l [function name] # 从函数定义开始打印
+l [file:line] # 从某一行开始打印
+set listsize 20 # 修改每次打印的行数
+</code></pre></div></li>
+<li>
+<p>查看变量</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">print [expression] # 打印表达式
+p [expression] # 同上
+ptype [expression] # 打印表达式的类型
+info args # 打印函数参数
+info locals # 打印局部变量
+info registers # 打印寄存器信息
+</code></pre></div></li>
+</ol>
+<h3 id="35-修改">3.5 修改</h3>
+<ol>
+<li>
+<p>修改变量</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">set variable i = 10 # 将变量 i 设置为 10
+set var i = 10 # 同上
+p i = 10 # 将变量 i 设置为 10，并打印
+</code></pre></div></li>
+</ol>
+<h3 id="36-调用信息">3.6 调用信息</h3>
+<ol>
+<li>查看函数调用栈信息
+<ul>
+<li><code>backtrace</code> 或 <code>bt</code></li>
+<li><code>where</code></li>
+</ul>
+</li>
+<li>查看当前栈帧
+<ul>
+<li><code>frame</code> 或 <code>f</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="4-corefile">4. corefile</h2>
+<p><a href="https://en.wikipedia.org/wiki/Core_dump">core dump</a> / crash dump / memory dump / system dump 都是指一个程序在特定时间崩溃（crash）时的内存记录，它包含了很多关键信息，比如寄存器（包括程序计数器和堆栈指针），内存管理信息，操作系统标志信息等。corefile 就是转储（dump）时的快照，corefile可以被重新执行用以调试错误信息。</p>
+<h3 id="41-生成">4.1 生成</h3>
+<p>为了让系统能够生成 corefile，需要先检查配置：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ ulimit -c
+unlimited
+</code></pre></div><p>如果结果是 0 则说明系统禁止了 corefile 的生成，需要执行 <code>ulimit -c unlimited</code> 来让 corefile 能够正常生成。以刚才的示例程序为例，先执行 test 文件，生成一个 corefile：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ ./test 1
+段错误 (core dumped)
+$ ll /data/corefile
+-rw------- 1 joelzychen dev      450560 4月  22 17:07 core_test_1587546447.28284
+</code></pre></div><p>能够看到系统在特定的目录下（可以修改）生成了一个 corefile 叫做 core_test_1587546447.28284，我们使用 gdb 来对这个 corefile 进行调试。</p>
+<h3 id="42-调试">4.2 调试</h3>
+<p>要执行 corefile 还需要准备对应的可执行文件，运行 <code>gdb [executable file] [corefile]</code> 就能开始调试了：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ gdb test /data/corefile/core_test_1587546447.28284
+...
+Core was generated by `./test 1&#39;.
+Program terminated with signal 11, Segmentation fault.
+#0  0x0000000000400749 in Func (s=0x7ffed098c19e &#34;1&#34;) at test.cpp:8
+8           r = num;
+</code></pre></div><p>因为示例程序比较简单，因此函数调用栈也比较少，我们可以先使用 <code>bt</code> 打印函数调用栈信息：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) bt
+#0  0x0000000000400749 in Func (s=0x7ffed098c19e &#34;1&#34;) at test.cpp:8
+#1  0x00000000004007c0 in main (argc=2, argv=0x7ffed098afb8) at test.cpp:17
+</code></pre></div><p>我们通过 <code>frame 0</code> 或 <code>f 0</code> 进入程序崩溃的栈帧来查看相关信息：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) f 0
+#0  0x0000000000400749 in Func (s=0x7ffed098c19e &#34;1&#34;) at test.cpp:8
+8           r = num;
+(gdb) info args
+s = 0x7ffed098c19e &#34;1&#34;
+(gdb) info locals
+p = 0x0
+r = @0x0: &lt;error reading variable&gt;
+num = 1
+(gdb) ptype r
+type = int &amp;
+(gdb) ptype p
+type = int *
+</code></pre></div><p>查看一下当前栈帧的汇编代码：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) disas
+Dump of assembler code for function Func(char const*):
+   0x0000000000400710 &lt;+0&gt;:     push   %rbp
+   0x0000000000400711 &lt;+1&gt;:     mov    %rsp,%rbp
+   0x0000000000400714 &lt;+4&gt;:     sub    $0x20,%rsp
+   0x0000000000400718 &lt;+8&gt;:     mov    %rdi,-0x8(%rbp)
+   0x000000000040071c &lt;+12&gt;:    movq   $0x0,-0x10(%rbp)
+   0x0000000000400724 &lt;+20&gt;:    mov    -0x10(%rbp),%rdi
+   0x0000000000400728 &lt;+24&gt;:    mov    %rdi,-0x18(%rbp)
+   0x000000000040072c &lt;+28&gt;:    mov    -0x8(%rbp),%rdi
+   0x0000000000400730 &lt;+32&gt;:    callq  0x4005a0 &lt;atoi@plt&gt;
+   0x0000000000400735 &lt;+37&gt;:    movabs $0x400860,%rdi
+   0x000000000040073f &lt;+47&gt;:    mov    %eax,-0x1c(%rbp)
+   0x0000000000400742 &lt;+50&gt;:    mov    -0x1c(%rbp),%eax
+   0x0000000000400745 &lt;+53&gt;:    mov    -0x18(%rbp),%rcx
+=&gt; 0x0000000000400749 &lt;+57&gt;:    mov    %eax,(%rcx)
+   0x000000000040074b &lt;+59&gt;:    mov    -0x18(%rbp),%rcx
+   0x000000000040074f &lt;+63&gt;:    mov    (%rcx),%esi
+   0x0000000000400751 &lt;+65&gt;:    mov    $0x0,%al
+   0x0000000000400753 &lt;+67&gt;:    callq  0x400550 &lt;printf@plt&gt;
+   0x0000000000400758 &lt;+72&gt;:    mov    %eax,-0x20(%rbp)
+   0x000000000040075b &lt;+75&gt;:    add    $0x20,%rsp
+   0x000000000040075f &lt;+79&gt;:    pop    %rbp
+   0x0000000000400760 &lt;+80&gt;:    retq
+End of assembler dump.
+</code></pre></div><p>查看寄存器状态：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) i r
+rax            0x1      1
+rbx            0x0      0
+rcx            0x0      0
+rdx            0xa      10
+rsi            0x0      0
+rdi            0x400860 4196448
+rbp            0x7ffed098aea0   0x7ffed098aea0
+rsp            0x7ffed098ae80   0x7ffed098ae80
+r8             0x7f9c88bbf060   140310285643872
+r9             0x7ffed098c19f   140732398092703
+r10            0x1      1
+r11            0x0      0
+r12            0x40061c 4195868
+r13            0x7ffed098afb0   140732398088112
+r14            0x0      0
+r15            0x0      0
+rip            0x400749 0x400749 &lt;Func(char const*)+57&gt;
+eflags         0x10206  [ PF IF RF ]
+cs             0x33     51
+ss             0x2b     43
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+</code></pre></div><h2 id="5-总结">5. 总结</h2>
+<p>本文主要通过一个示例程序演示了在 Linux 环境下 GDB 的基本使用方法，整理了 GDB 的常用指令，以及调试 C/C++ 程序和 corefile 的步骤。在实际应用中 GDB 能个极大程度地提高开发和调试效率，更多的使用技巧还需要结合实践来练习。</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

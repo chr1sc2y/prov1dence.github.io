@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.72.0" />
   </head>
 
   <body class=" ">
@@ -111,13 +111,13 @@
         <h1 id="coverity-的-wrapper_escape-告警">coverity 的 WRAPPER_ESCAPE 告警</h1>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* Foo()
 {
-    std::string str_msg(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">test</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
+    std::string str_msg(<span style="color:#0ff;font-weight:bold">&#34;test&#34;</span>);
     <span style="color:#fff;font-weight:bold">return</span> str_msg.c_str();
 }
 
 <span style="color:#fff;font-weight:bold">int</span> main() {
     <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> *p_msg = Foo();
-    printf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, p_msg);
+    printf(<span style="color:#0ff;font-weight:bold">&#34;%s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, p_msg);
     <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
 }
 
@@ -129,11 +129,11 @@
 </code></pre></div><p>大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。</p>
 <p>而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">int</span> main() {
-    std::string str_msg(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">test</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
+    std::string str_msg(<span style="color:#0ff;font-weight:bold">&#34;test&#34;</span>);
     <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> *p_msg = str_msg.c_str();
-    printf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, p_msg);
-    str_msg[<span style="color:#ff0;font-weight:bold">2</span>] = <span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">x</span><span style="color:#0ff;font-weight:bold">&#39;</span>;
-    printf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, p_msg);
+    printf(<span style="color:#0ff;font-weight:bold">&#34;%s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, p_msg);
+    str_msg[<span style="color:#ff0;font-weight:bold">2</span>] = <span style="color:#0ff;font-weight:bold">&#39;x&#39;</span>;
+    printf(<span style="color:#0ff;font-weight:bold">&#34;%s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, p_msg);
     <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
 }
 
@@ -143,7 +143,7 @@ text
 </code></pre></div><p>想要正确地使用返回的 const char*，我们可以在堆上分配一块内从，将要使用的字符串拷贝到其中并返回：</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* Foo()
 {
-    std::string str_msg(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">test</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
+    std::string str_msg(<span style="color:#0ff;font-weight:bold">&#34;test&#34;</span>);
     <span style="color:#fff;font-weight:bold">uint32_t</span> u32_msg_size = str_msg.size() + <span style="color:#ff0;font-weight:bold">1</span>;
     <span style="color:#fff;font-weight:bold">char</span> *p_return = <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">char</span>[u32_msg_size];
     strcpy_s(p_return, u32_msg_size, str_msg.c_str());
@@ -152,7 +152,7 @@ text
 
 <span style="color:#fff;font-weight:bold">int</span> main() {
     <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> *p_msg = Foo();
-    printf(<span style="color:#0ff;font-weight:bold"></span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">%s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, p_msg);
+    printf(<span style="color:#0ff;font-weight:bold">&#34;%s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, p_msg);
     <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
 }
 
