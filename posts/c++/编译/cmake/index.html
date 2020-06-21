@@ -586,7 +586,7 @@ Scanning dependencies of target Exp2
 <span style="color:#ff0;font-weight:bold">5</span>
 <span style="color:#ff0;font-weight:bold">32</span>
 </code></pre></div><p>可以看到在 build 目录下生成了一个名为 libcalculator_static.a 的静态库文件，这个名字是由使用 add_library 指令时的第一个参数指定的。</p>
-<h2 id="4-构建依赖于动态库的xiangmu">4. 构建依赖于动态库的xiangmu</h2>
+<h2 id="4-构建依赖于动态库的项目">4. 构建依赖于动态库的项目</h2>
 <h3 id="41-使用-gcc-编译动态库文件">4.1 使用 GCC 编译动态库文件</h3>
 <p>仍然使用之前已有的文件，在 archive 目录下生成动态库文件：</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">[joelzychen@DevCloud ~/cmake-tutorial/archive]$ rm calculator.o libcalculator.a
