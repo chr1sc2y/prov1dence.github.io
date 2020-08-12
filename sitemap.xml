@@ -3,17 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zintrulcre.vip/posts/c&#43;&#43;/%E7%BC%96%E8%AF%91/cmake/</loc>
-    <lastmod>2020-06-21T15:46:06+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://zintrulcre.vip/posts/</loc>
-    <lastmod>2020-06-21T15:46:06+08:00</lastmod>
+    <lastmod>2020-08-12T18:32:52+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://zintrulcre.vip/</loc>
+    <lastmod>2020-08-12T18:32:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/posts/parallel-computing/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%85%A5%E9%97%A8-joelzychen/</loc>
+    <lastmod>2020-08-12T18:32:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/posts/c&#43;&#43;/boost/boost.typeindex-%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8E%A2%E7%A9%B6/</loc>
+    <lastmod>2020-07-31T20:31:06+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/posts/c&#43;&#43;/%E7%BC%96%E8%AF%91/cmake/</loc>
     <lastmod>2020-06-21T15:46:06+08:00</lastmod>
   </url>
   
@@ -198,7 +208,59 @@
   </url>
   
   <url>
+    <loc>https://zintrulcre.vip/notes/c&#43;&#43;-core-guidelines-%E7%AC%94%E8%AE%B0/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/notes/c&#43;&#43;-%E5%86%85%E5%AD%98%E6%B1%A0/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/notes/c&#43;&#43;-%E7%AC%94%E8%AE%B0/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/notes/linux-%E6%8C%87%E4%BB%A4/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/notes/rtti/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/notes/temp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/notes/vs%E6%8C%87%E4%BB%A4/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/notes/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/effective-c&#43;&#43;-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/notes/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/effective-modern-c&#43;&#43;-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/notes/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81%E7%9A%84%E8%AE%BE%E8%AE%A1-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/posts/cloud-computing/docker/</loc>
+  </url>
+  
+  <url>
     <loc>https://zintrulcre.vip/posts/computer-science/temp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/posts/network/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B%E4%BD%BF%E7%94%A8-muduo-c&#43;&#43;-%E7%BD%91%E7%BB%9C%E5%BA%93%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zintrulcre.vip/notes/</loc>
   </url>
   
   <url>

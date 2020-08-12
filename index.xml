@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 21 Jun 2020 15:46:06 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2020 18:32:52 +0800</lastBuildDate>
     
 	<atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>并行计算入门</title>
+      <link>https://zintrulcre.vip/posts/parallel-computing/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%85%A5%E9%97%A8-joelzychen/</link>
+      <pubDate>Wed, 12 Aug 2020 18:32:52 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/parallel-computing/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%85%A5%E9%97%A8-joelzychen/</guid>
+      <description>并行计算入门 [TOC] 1 概述 1.1 并行计算 高性能计算（High Performance Computing）是计算机科学中的一个领域，其目的可以概括为优化性能，它包括了缓存技术</description>
+    </item>
+    
+    <item>
+      <title>boost::typeIndex 的相关探究</title>
+      <link>https://zintrulcre.vip/posts/c&#43;&#43;/boost/boost.typeindex-%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8E%A2%E7%A9%B6/</link>
+      <pubDate>Fri, 31 Jul 2020 20:31:06 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/boost/boost.typeindex-%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8E%A2%E7%A9%B6/</guid>
+      <description>boost::typeIndex 的相关探究 Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 Boost::typeindex 的使用，但并没有讲到其实现原理。 1. typeid 操作符 typeid 是 C++ 中的一个操作符，可以用于获取类型的信息，常常用</description>
+    </item>
     
     <item>
       <title>CMake 入门</title>
@@ -82,24 +100,6 @@
       
       <guid>https://zintrulcre.vip/posts/leetcode/twopointers/</guid>
       <description>LeetCode DFS 题目 26 删除排序数组中的重复项 用两个指针 len 和 i 分别表示没有重复的项的下标与遍历数组的下标，将没有重复的项拷贝到 nums[len] 下然后 ++len 即可。 class Solution { public: int removeDuplicates(vector&amp;lt;int&amp;gt;&amp;amp;</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 深度优先搜索</title>
-      <link>https://zintrulcre.vip/posts/leetcode/dfs/</link>
-      <pubDate>Sat, 27 Jul 2019 12:12:25 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/dfs/</guid>
-      <description>LeetCode DFS 题目 78 子集 典型的回溯，找出所有可能情况。 class Solution { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; res; public: vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; subsets(vector&amp;lt;int&amp;gt; &amp;amp;nums) { res = vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;(1, vector&amp;lt;int&amp;gt;()); vector&amp;lt;int&amp;gt; curr; DFS(nums, 0, curr); return res; } void DFS(vector&amp;lt;int&amp;gt; &amp;amp;nums, int idx, vector&amp;lt;int&amp;gt; &amp;amp;curr) { for (int i = idx; i &amp;lt; nums.size(); ++i) { curr.push_back(nums[i]); res.push_back(curr); DFS(nums, i + 1, curr); curr.pop_back();</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 并发</title>
-      <link>https://zintrulcre.vip/posts/leetcode/concurrency/</link>
-      <pubDate>Mon, 22 Jul 2019 10:10:25 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/concurrency/</guid>
-      <description>LeetCode 并发 题目 1114 按序打印 C++ mutex class Foo { mutex lock1, lock2; public: Foo() { lock1.lock(); lock2.lock(); } void first(function&amp;lt;void()&amp;gt; printFirst) { printFirst(); lock1.unlock(); } void second(function&amp;lt;void()&amp;gt; printSecond) { lock1.lock(); printSecond(); lock1.unlock(); lock2.unlock(); } void third(function&amp;lt;void()&amp;gt; printThird) { lock2.lock(); printThird(); lock2.unlock(); } }; C++ condition_variable class Foo { int i; mutex mut; condition_variable con_var1, con_var2; public: Foo() : i(1) { } void first(function&amp;lt;void()&amp;gt; printFirst)</description>
     </item>
     
   </channel>

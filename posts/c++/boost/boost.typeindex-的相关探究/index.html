@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="boost::typeIndex 的相关探究"/>
+<meta name="twitter:description" content="boost::typeIndex 的相关探究 Effective Modern C&#43;&#43; 的 Item 4: Know how to view deduced types. 中提到了 Boost::typeindex 的使用，但并没有讲到其实现原理。 1. typeid 操作符 typeid 是 C&#43;&#43; 中的一个操作符，可以用于获取类型的信息，常常用"/>
+
+    <meta property="og:title" content="boost::typeIndex 的相关探究" />
+<meta property="og:description" content="boost::typeIndex 的相关探究 Effective Modern C&#43;&#43; 的 Item 4: Know how to view deduced types. 中提到了 Boost::typeindex 的使用，但并没有讲到其实现原理。 1. typeid 操作符 typeid 是 C&#43;&#43; 中的一个操作符，可以用于获取类型的信息，常常用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/c&#43;&#43;/boost/boost.typeindex-%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8E%A2%E7%A9%B6/" />
+<meta property="article:published_time" content="2020-07-31T20:31:06+08:00" />
+<meta property="article:modified_time" content="2020-07-31T20:31:06+08:00" />
+
+
+    
+      <base href="https://zintrulcre.vip/posts/c&#43;&#43;/boost/boost.typeindex-%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8E%A2%E7%A9%B6/">
+    
+    <title>
+  boost::typeIndex 的相关探究 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/c&#43;&#43;/boost/boost.typeindex-%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8E%A2%E7%A9%B6/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.74.3" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">boost::typeIndex 的相关探究</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-07-31T20:31:06&#43;08:00'>
+                July 31, 2020
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/c&#43;&#43;/">C&#43;&#43;</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        <h2 id="boosttypeindex-的相关探究">boost::typeIndex 的相关探究</h2>
+<p>Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 <code>Boost::typeindex</code> 的使用，但并没有讲到其实现原理。</p>
+<h2 id="1-typeidhttpsencppreferencecomwcpplanguagetypeid-操作符">1. <a href="https://en.cppreference.com/w/cpp/language/typeid">typeid</a> 操作符</h2>
+<p>typeid 是 C++ 中的一个操作符，可以用于获取类型的信息，常常用在必须知道多态对象的动态类型，或是识别静态类型的地方。</p>
+<p>我们可以写一个简单的 demo 用于获取对象类型相关的信息，需要包含 <code>tepyinfo</code> 头文件：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;typeinfo&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">using</span> <span style="color:#fff;font-weight:bold">namespace</span> std;
+
+<span style="color:#fff;font-weight:bold">class</span> Foo {};
+
+<span style="color:#fff;font-weight:bold">int</span> main()
+{
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;1: &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">typeid</span>(<span style="color:#ff0;font-weight:bold">1</span>).name() &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;int: &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">typeid</span>(<span style="color:#fff;font-weight:bold">int</span>).name() &lt;&lt; endl; <span style="color:#007f7f">// 和 sizeof 操作符类似，typeid 也可以直接对数据类型（比如 int）进行操作
+</span><span style="color:#007f7f"></span>    
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;typeid: &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">typeid</span>(<span style="color:#fff;font-weight:bold">typeid</span>(<span style="color:#fff;font-weight:bold">int</span>)).name() &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;typeid: &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">typeid</span>(<span style="color:#fff;font-weight:bold">const</span> type_info &amp;).name() &lt;&lt; endl;
+
+    <span style="color:#fff;font-weight:bold">const</span> Foo *foo = <span style="color:#fff;font-weight:bold">new</span> Foo();
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;foo: &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">typeid</span>(foo).name() &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;*foo: &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">typeid</span>(*foo).name() &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Foo: &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">typeid</span>(Foo).name() &lt;&lt; endl;
+}
+
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">[joelzychen@DevCloud ~/typeid]$ g++ -std=c++11 -otypeid_test typeid_test.cpp 
+[joelzychen@DevCloud ~/typeid]$ ./typeid_test 
+1: i
+int: i
+typeid: N10__cxxabiv123__fundamental_type_infoE
+typeid: St9type_info
+foo: PK3Foo
+*foo: 3Foo
+Foo: 3Foo
+</code></pre></div><p><code>std::type_info::name()</code> 函数返回的字符串中，在 GCC 和 Clang 的实现里一般 i 代表 int，P 代表 pointer，K 代表 const，数字用于标识其后跟随了几个字符；我们可以将这段代码使用微软的 MSVC 编译运行，得到更加直观的输出：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">1: int
+int: int
+typeid: class type_info
+typeid: class type_info
+foo: class Foo const *
+*foo: class Foo
+Foo: class Foo
+</code></pre></div><p>可以看到大多数结果都与我们的预期相符，但在调用 <code>typeid(const type_info &amp;).name()</code> 返回的结果却不是我们所期望的 <code>const type_info &amp;</code>，其中的 const 和 reference 特性并没有得到保留；再举一个简单的例子：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;typeinfo&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">using</span> <span style="color:#fff;font-weight:bold">namespace</span> std;
+
+<span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T&gt;
+<span style="color:#fff;font-weight:bold">static</span> <span style="color:#fff;font-weight:bold">void</span> PrintType(<span style="color:#fff;font-weight:bold">const</span> T &amp;t)
+{
+    std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;T: &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">typeid</span>(T).name() &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;t: &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">typeid</span>(t).name() &lt;&lt; std::endl;
+}
+
+<span style="color:#fff;font-weight:bold">int</span> main()
+{
+    <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span> *p_i;
+    PrintType(p_i);
+}
+
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">[joelzychen@DevCloud ~/typeid]$ g++ -std=c++11 -otypeid_test typeid_test.cpp 
+[joelzychen@DevCloud ~/typeid]$ ./typeid_test 
+T: PKi
+t: PKi
+</code></pre></div><p><code>PrintType</code> 这个模板接收到的 <code>T</code> 的确是 <code>PKi</code>（<code>const int*</code>）类型，但和之前的例子类似，<code>t</code> 的 <code>const reference</code> 特性并没有得到保留</p>
+<h2 id="2-使用-boosttypeindextype_id_with_cvr-代替-typeid">2. 使用 boost::typeindex::type_id_with_cvr 代替 typeid</h2>
+<p><code>boost</code> 库中有一个类似于 <code>typeid</code> 操作符的函数 <code>boost::typeindex::type_id_with_cvr</code> 可以用于获取对象类型，我们可以利用这个模板函数来获取更精确的类型：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;iostream&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;typeinfo&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;boost/type_index.hpp&gt;</span><span style="color:#0f0;font-weight:bold">
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">using</span> <span style="color:#fff;font-weight:bold">namespace</span> std;
+
+<span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T&gt;
+<span style="color:#fff;font-weight:bold">static</span> <span style="color:#fff;font-weight:bold">void</span> PrintType(<span style="color:#fff;font-weight:bold">const</span> T &amp;t)
+{    
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;T: &#34;</span> &lt;&lt; boost::typeindex::type_id_with_cvr&lt;T&gt;().pretty_name() &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;t: &#34;</span> &lt;&lt; boost::typeindex::type_id_with_cvr&lt;<span style="color:#fff;font-weight:bold">decltype</span>(t)&gt;().pretty_name() &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;typeid: &#34;</span> &lt;&lt; boost::typeindex::type_id_with_cvr&lt;<span style="color:#fff;font-weight:bold">decltype</span>(<span style="color:#fff;font-weight:bold">typeid</span>(<span style="color:#fff;font-weight:bold">int</span>))&gt;().pretty_name() &lt;&lt; endl;
+}
+
+<span style="color:#fff;font-weight:bold">int</span> main()
+{
+    <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span> *p_i{ <span style="color:#fff;font-weight:bold">nullptr</span> };
+    PrintType(p_i);
+}
+
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">[joelzychen@DevCloud ~/typeid]$ g++ -std=c++11 -otypeid_test typeid_test.cpp -I/usr/include/boost-1.73.0/gcc-head/include
+[joelzychen@DevCloud ~/typeid]$ ./typeid_test 
+T: int const*
+t: int const* const&amp;
+typeid: std::type_info const&amp;
+</code></pre></div><p>可以看到 <code>typeid</code> 真正的返回值类型是 <code>std::type_info const&amp;</code>，<code>boost::typeindex::type_id_with_cvr</code> 通过某种机制保留了其 <code>const</code> 和 <code>reference</code> 的特性并通过 pretty_name() 函数将结果转换成了字符串进行输出；和 <code>typeid</code> 操作符不同的是， <code>type_id_with_cvr</code> 函数只能接收模板参数类型或通过 <code>decltype</code> 推导出的类型，而不能接收一个变量。</p>
+<h2 id="3-type_id_with_cvr-的实现">3 type_id_with_cvr() 的实现</h2>
+<p><code>type_id_with_cvr</code> 这个模板函数定义在 <code>boost/type_index.hpp</code> 中，它实际上是调用了 <code>stl_type_index</code> 类的静态模板函数 <code>type_id_with_cvr</code>：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007f7f">// boost/type_index.hpp
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">namespace</span> boost { <span style="color:#fff;font-weight:bold">namespace</span> typeindex {
+<span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> T&gt;
+<span style="color:#fff;font-weight:bold">inline</span> type_index type_id_with_cvr() BOOST_NOEXCEPT {
+    <span style="color:#fff;font-weight:bold">return</span> type_index::type_id_with_cvr&lt;T&gt;();
+}
+}
+
+<span style="color:#007f7f">// boost/type_index/stl_type_index.hpp
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">namespace</span> boost {
+<span style="color:#fff;font-weight:bold">class</span> stl_type_index : <span style="color:#fff;font-weight:bold">public</span> type_index_facade&lt;stl_type_index, std::type_info&gt; <span style="color:#007f7f">// 省略了 BOOST_NO_STD_TYPEINFO 宏的判断
+</span><span style="color:#007f7f"></span>{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">typedef</span> std::type_info type_info_t; <span style="color:#007f7f">// 省略了 BOOST_NO_STD_TYPEINFO 宏的判断
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">private</span>:
+    <span style="color:#fff;font-weight:bold">const</span> type_info_t* data_;
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">inline</span> stl_type_index(<span style="color:#fff;font-weight:bold">const</span> type_info_t&amp; data) BOOST_NOEXCEPT
+        : data_(&amp;data) <span style="color:#007f7f">// 利用 typeid 操作符返回的 const type_info_t&amp; 对象进行构造
+</span><span style="color:#007f7f"></span>    {}
+    
+    <span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> T&gt;
+    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">static</span> stl_type_index type_id_with_cvr() BOOST_NOEXCEPT;
+}
+}
+</code></pre></div><p><code>boost::typeindex::type_id_with_cvr</code> 函数将其第二个模板参数 <code>detail::cvr_saver&lt;T&gt;</code> 作为实参调用了 <code>typeid</code> 操作符，并利用返回的 <code>const type_info_t&amp;</code> 对象构造了 <code>stl_type_index</code> 对象；</p>
+<p><code>detail::cvr_saver</code> 是一个空的模板类，只带有模板参数 <code>&lt;class T&gt;</code> 的信息，可以利用 <code>typeid</code> 来获取这个特例化模板类的 <code>type_info</code>。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007f7f">// boost/type_index/stl_type_index.hpp
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">namespace</span> boost {
+<span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> T&gt;
+<span style="color:#fff;font-weight:bold">inline</span> stl_type_index stl_type_index::type_id_with_cvr() BOOST_NOEXCEPT {
+    <span style="color:#fff;font-weight:bold">typedef</span> BOOST_DEDUCED_TYPENAME boost::conditional&lt;
+        boost::is_reference&lt;T&gt;::value ||  boost::is_const&lt;T&gt;::value || boost::is_volatile&lt;T&gt;::value,
+        detail::cvr_saver&lt;T&gt;,
+        T
+    &gt;::type type; <span style="color:#007f7f">// 等价于 using type = boost::conditional&lt;...&gt;
+</span><span style="color:#007f7f"></span>    
+    <span style="color:#fff;font-weight:bold">return</span> typeid(type);
+}
+}
+                 
+<span style="color:#007f7f">// boost/type_traits/conditional.hpp
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">namespace</span> detail {
+    <span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> T&gt; <span style="color:#fff;font-weight:bold">class</span> cvr_saver{};
+}
+
+<span style="color:#fff;font-weight:bold">namespace</span> boost {
+<span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">bool</span> b, <span style="color:#fff;font-weight:bold">class</span> T, <span style="color:#fff;font-weight:bold">class</span> U&gt; <span style="color:#fff;font-weight:bold">struct</span> conditional { <span style="color:#fff;font-weight:bold">typedef</span> T type; };
+}
+
+</code></pre></div><h2 id="4-class-stl_type_facade">4 class stl_type_facade</h2>
+<p><code>class type_index_facade</code> 是 <code>class stl_type_index</code> 的基类，其源码在 <code>type_index_facade.hpp</code> 文件中，使用了门面模式的设计：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007f7f">// boost/type_index/stl_type_index.hpp
+</span><span style="color:#007f7f">// 将派生类 Derived 作为模板参数
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> Derived, <span style="color:#fff;font-weight:bold">class</span> TypeInfo&gt;
+<span style="color:#fff;font-weight:bold">class</span> type_index_facade {
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">typedef</span> TypeInfo                                type_info_t;
+
+    <span style="color:#007f7f">// 调用子类的 raw_name()，没有使用虚函数的方式，而是利用模板实现了静态多态
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* name() <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT {
+        <span style="color:#fff;font-weight:bold">return</span> derived().raw_name();
+    }
+
+    <span style="color:#007f7f">// 返回 human-readable 的字符串，调用子类的 name()
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">inline</span> std::string pretty_name() <span style="color:#fff;font-weight:bold">const</span> {
+        <span style="color:#fff;font-weight:bold">return</span> derived().name();
+    }
+
+    <span style="color:#007f7f">// 比较派生类的 raw_name()，需要派生类实现 raw_name() 函数
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">bool</span> equal(<span style="color:#fff;font-weight:bold">const</span> Derived&amp; rhs) <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT {
+        <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* <span style="color:#fff;font-weight:bold">const</span> left = derived().raw_name();
+        <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* <span style="color:#fff;font-weight:bold">const</span> right = rhs.raw_name();
+        <span style="color:#fff;font-weight:bold">return</span> left == right || !std::strcmp(left, right);
+    }
+
+    <span style="color:#007f7f">// 比较派生类的 raw_name()，需要派生类实现 raw_name() 函数
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">bool</span> before(<span style="color:#fff;font-weight:bold">const</span> Derived&amp; rhs) <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT {
+        <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* <span style="color:#fff;font-weight:bold">const</span> left = derived().raw_name();
+        <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* <span style="color:#fff;font-weight:bold">const</span> right = rhs.raw_name();
+        <span style="color:#fff;font-weight:bold">return</span> left != right &amp;&amp; std::strcmp(left, right) &lt; <span style="color:#ff0;font-weight:bold">0</span>;
+    }
+
+    <span style="color:#007f7f">// 获取一个类型的哈希值，默认对派生类的 raw_name() 进行哈希
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">inline</span> std::size_t hash_code() <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT {
+        <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* <span style="color:#fff;font-weight:bold">const</span> name_raw = derived().raw_name();
+        <span style="color:#fff;font-weight:bold">return</span> boost::hash_range(name_raw, name_raw + std::strlen(name_raw));
+    }
+}
+</code></pre></div><p>除此之外，<code>class type_index_facade</code> 基类还重载了各类对比操作符，输出流操作符和类的哈希值算法：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007f7f">// boost/type_index/stl_type_index.hpp
+</span><span style="color:#007f7f">// 省略了其它类型的对比操作符
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> Derived, <span style="color:#fff;font-weight:bold">class</span> TypeInfo&gt;
+<span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">bool</span> <span style="color:#fff;font-weight:bold">operator</span> == (<span style="color:#fff;font-weight:bold">const</span> TypeInfo&amp; lhs, <span style="color:#fff;font-weight:bold">const</span> type_index_facade&lt;Derived, TypeInfo&gt;&amp; rhs) BOOST_NOEXCEPT {
+    <span style="color:#fff;font-weight:bold">return</span> Derived(lhs) == rhs;	<span style="color:#007f7f">// 需要派生类实现以 const TypeInfo&amp; 作为参数的构造函数
+</span><span style="color:#007f7f"></span>}
+
+<span style="color:#007f7f">// 重载输出流操作符
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> CharT, <span style="color:#fff;font-weight:bold">class</span> TriatT, <span style="color:#fff;font-weight:bold">class</span> Derived, <span style="color:#fff;font-weight:bold">class</span> TypeInfo&gt;
+<span style="color:#fff;font-weight:bold">inline</span> std::basic_ostream&lt;CharT, TriatT&gt;&amp; <span style="color:#fff;font-weight:bold">operator</span>&lt;&lt;(
+    std::basic_ostream&lt;CharT, TriatT&gt;&amp; ostr, 
+    <span style="color:#fff;font-weight:bold">const</span> type_index_facade&lt;Derived, TypeInfo&gt;&amp; ind) 
+{
+    ostr &lt;&lt; <span style="color:#fff;font-weight:bold">static_cast</span>&lt;Derived <span style="color:#fff;font-weight:bold">const</span>&amp;&gt;(ind).pretty_name();
+    <span style="color:#fff;font-weight:bold">return</span> ostr;
+}
+
+<span style="color:#007f7f">// 类的哈希值算法
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> Derived, <span style="color:#fff;font-weight:bold">class</span> TypeInfo&gt;
+<span style="color:#fff;font-weight:bold">inline</span> std::size_t hash_value(<span style="color:#fff;font-weight:bold">const</span> type_index_facade&lt;Derived, TypeInfo&gt;&amp; lhs) BOOST_NOEXCEPT {
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">static_cast</span>&lt;Derived <span style="color:#fff;font-weight:bold">const</span>&amp;&gt;(lhs).hash_code();
+}
+</code></pre></div><p>如果想要进行 <code>class type_index_facade</code> 基类的全部操作，还需要派生类至少实现至少以下两个函数：</p>
+<ol>
+<li><code>raw_name()</code>，基类的很多函数都依赖于派生类的这个函数</li>
+<li><code>Derived(const TypeInfo&amp;)</code>，即以 <code>const TypeInfo&amp;</code> 作为参数的构造函数，用于与 <code>TypeInfo</code> 对象进行对比</li>
+</ol>
+<h2 id="5-class-type_type_index">5 class type_type_index</h2>
+<p><code>stl_type_index</code> 是 <code>stl_type_facade</code> 的派生类，它的私有成员变量的类型 <code>type_info_t</code> 是通过 <code>typedef</code> 定义出来的，<code>BOOST_NO_STD_TYPEINFO</code> 是意义是编译器的 <code>namespace std</code> 下没有 <code>type_info</code> 这个类型，这时会将全局命名空间的 <code>type_info</code> 定义为 <code>type_info_t</code> 。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">public</span>:
+<span style="color:#0f0;font-weight:bold">#ifdef BOOST_NO_STD_TYPEINFO
+</span><span style="color:#0f0;font-weight:bold"></span>    <span style="color:#fff;font-weight:bold">typedef</span> type_info type_info_t;
+<span style="color:#0f0;font-weight:bold">#else
+</span><span style="color:#0f0;font-weight:bold"></span>    <span style="color:#fff;font-weight:bold">typedef</span> std::type_info type_info_t;
+<span style="color:#0f0;font-weight:bold">#endif
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">private</span>:
+    <span style="color:#fff;font-weight:bold">const</span> type_info_t* data_;
+</code></pre></div><p>为了方便理解暂时省略 <code>BOOST_NO_STD_TYPEINFO</code> 宏的定义；派生类 <code>stl_type_index</code> 的声明大致如下：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> stl_type_index : <span style="color:#fff;font-weight:bold">public</span> type_index_facade&lt;stl_type_index, std::type_info&gt; 
+{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">typedef</span> std::type_info type_info_t;
+
+<span style="color:#fff;font-weight:bold">private</span>:
+    <span style="color:#fff;font-weight:bold">const</span> type_info_t* data_; <span style="color:#007f7f">// 唯一的私有成员 const type_info_t*
+</span><span style="color:#007f7f"></span>
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">inline</span> stl_type_index() BOOST_NOEXCEPT
+        : data_(&amp;<span style="color:#fff;font-weight:bold">typeid</span>(<span style="color:#fff;font-weight:bold">void</span>))
+    {}
+
+    <span style="color:#fff;font-weight:bold">inline</span> stl_type_index(<span style="color:#fff;font-weight:bold">const</span> type_info_t&amp; data) BOOST_NOEXCEPT
+        : data_(&amp;data) <span style="color:#007f7f">// 以 const TypeInfo&amp; 作为参数的构造函数，对比操作符和 type_id_with_cvr() 函数都依赖于这个构造函数
+</span><span style="color:#007f7f"></span>    {}
+
+    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">const</span> type_info_t&amp;  type_info() <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT; <span style="color:#007f7f">// 获取私有成员数据
+</span><span style="color:#007f7f"></span>
+    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>*  raw_name() <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT; <span style="color:#007f7f">// raw_name() 函数
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>*  name() <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT;
+    <span style="color:#fff;font-weight:bold">inline</span> std::string  pretty_name() <span style="color:#fff;font-weight:bold">const</span>;
+
+    <span style="color:#fff;font-weight:bold">inline</span> std::size_t  hash_code() <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT;
+    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">bool</span>         equal(<span style="color:#fff;font-weight:bold">const</span> stl_type_index&amp; rhs) <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT;
+    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">bool</span>         before(<span style="color:#fff;font-weight:bold">const</span> stl_type_index&amp; rhs) <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT;
+
+    <span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> T&gt;
+    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">static</span> stl_type_index type_id() BOOST_NOEXCEPT;
+
+    <span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> T&gt;
+    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">static</span> stl_type_index type_id_with_cvr() BOOST_NOEXCEPT;
+
+    <span style="color:#fff;font-weight:bold">template</span> &lt;<span style="color:#fff;font-weight:bold">class</span> T&gt;
+    <span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">static</span> stl_type_index type_id_runtime(<span style="color:#fff;font-weight:bold">const</span> T&amp; value) BOOST_NOEXCEPT;
+};
+
+</code></pre></div><p>派生类 <code>stl_type_index</code> 的 <code>equal</code>, <code>before</code>, <code>hash_code</code> 的实现都和基类类似，操作的对象都是 <code>raw_name()</code>：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">inline</span> std::size_t stl_type_index::hash_code() <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT {
+<span style="color:#0f0;font-weight:bold">#ifdef BOOST_TYPE_INDEX_STD_TYPE_INDEX_HAS_HASH_CODE
+</span><span style="color:#0f0;font-weight:bold"></span>    <span style="color:#fff;font-weight:bold">return</span> data_-&gt;hash_code();
+<span style="color:#0f0;font-weight:bold">#else
+</span><span style="color:#0f0;font-weight:bold"></span>    <span style="color:#fff;font-weight:bold">return</span> boost::hash_range(raw_name(), raw_name() + std::strlen(raw_name()));
+<span style="color:#0f0;font-weight:bold">#endif
+</span><span style="color:#0f0;font-weight:bold"></span>}
+
+<span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">bool</span> stl_type_index::equal(<span style="color:#fff;font-weight:bold">const</span> stl_type_index&amp; rhs) <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT {
+<span style="color:#0f0;font-weight:bold">#ifdef BOOST_TYPE_INDEX_CLASSINFO_COMPARE_BY_NAMES
+</span><span style="color:#0f0;font-weight:bold"></span>    <span style="color:#fff;font-weight:bold">return</span> raw_name() == rhs.raw_name() || !std::strcmp(raw_name(), rhs.raw_name());
+<span style="color:#0f0;font-weight:bold">#else
+</span><span style="color:#0f0;font-weight:bold"></span>    <span style="color:#fff;font-weight:bold">return</span> !!(*data_ == *rhs.data_);
+<span style="color:#0f0;font-weight:bold">#endif
+</span><span style="color:#0f0;font-weight:bold"></span>}
+
+<span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">bool</span> stl_type_index::before(<span style="color:#fff;font-weight:bold">const</span> stl_type_index&amp; rhs) <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT {
+<span style="color:#0f0;font-weight:bold">#ifdef BOOST_TYPE_INDEX_CLASSINFO_COMPARE_BY_NAMES
+</span><span style="color:#0f0;font-weight:bold"></span>    <span style="color:#fff;font-weight:bold">return</span> raw_name() != rhs.raw_name() &amp;&amp; std::strcmp(raw_name(), rhs.raw_name()) &lt; <span style="color:#ff0;font-weight:bold">0</span>;
+<span style="color:#0f0;font-weight:bold">#else
+</span><span style="color:#0f0;font-weight:bold"></span>    <span style="color:#fff;font-weight:bold">return</span> !!data_-&gt;before(*rhs.data_);
+<span style="color:#0f0;font-weight:bold">#endif
+</span><span style="color:#0f0;font-weight:bold"></span>}
+</code></pre></div><p><code>name()</code> 和 <code>raw_name()</code> 都调用了私有成员的 <code>name()</code> 函数，即 <code>std::type_info::name()</code>：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* stl_type_index::raw_name() <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT {
+<span style="color:#0f0;font-weight:bold">#ifdef _MSC_VER </span><span style="color:#007f7f">// 不同编译器对 typeid 的实现不同，因此 boost 库在进行封装时同时实现了 raw_name() 和 name() 两个函数
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">return</span> data_-&gt;raw_name();
+<span style="color:#0f0;font-weight:bold">#else
+</span><span style="color:#0f0;font-weight:bold"></span>    <span style="color:#fff;font-weight:bold">return</span> data_-&gt;name();
+<span style="color:#0f0;font-weight:bold">#endif
+</span><span style="color:#0f0;font-weight:bold"></span>}
+
+<span style="color:#fff;font-weight:bold">inline</span> <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* stl_type_index::name() <span style="color:#fff;font-weight:bold">const</span> BOOST_NOEXCEPT {
+    <span style="color:#fff;font-weight:bold">return</span> data_-&gt;name();
+}
+
+</code></pre></div><p>在第 2 部分中调用的 <code>pretty_name()</code> 函数原型如下：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">inline</span> std::string stl_type_index::pretty_name() <span style="color:#fff;font-weight:bold">const</span> {
+    <span style="color:#fff;font-weight:bold">static</span> <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> cvr_saver_name[] = <span style="color:#0ff;font-weight:bold">&#34;boost::typeindex::detail::cvr_saver&lt;&#34;</span>;
+    <span style="color:#fff;font-weight:bold">static</span> BOOST_CONSTEXPR_OR_CONST std::string::size_type cvr_saver_name_len = <span style="color:#fff;font-weight:bold">sizeof</span>(cvr_saver_name) - <span style="color:#ff0;font-weight:bold">1</span>;
+
+    <span style="color:#007f7f">// 对于 GCC 和 Clang，demangled_name 函数会去执行解码操作；而对于 MSVC，因为通过 std::type_info::name() 获取的就是已经解码后的字符串，因此函数里不再进行解码
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">const</span> boost::core::scoped_demangled_name demangled_name(data_-&gt;name());
+    
+    <span style="color:#007f7f">// begin 是通过 demangled_name.get() 获取到的 svr_saver 类型对象的全文，用 GDB 断点到此处打印出来可以看到其字符串内容
+</span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// (gdb) p begin
+</span><span style="color:#007f7f"></span>	<span style="color:#007f7f">// $1 = 0x605010 &#34;boost::typeindex::detail::cvr_saver&lt;int const&gt; ()&#34;
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* begin = demangled_name.get();
+    <span style="color:#fff;font-weight:bold">if</span> (!begin) {
+        boost::throw_exception(std::runtime_error(<span style="color:#0ff;font-weight:bold">&#34;Type name demangling failed&#34;</span>));
+    }
+
+    <span style="color:#fff;font-weight:bold">const</span> std::string::size_type len = std::strlen(begin);
+    <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* end = begin + len;
+
+    <span style="color:#007f7f">// 字符串对比，裁剪两边多余的字符
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">if</span> (len &gt; cvr_saver_name_len) {
+        <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* b = std::strstr(begin, cvr_saver_name);
+        <span style="color:#fff;font-weight:bold">if</span> (b) {
+            b += cvr_saver_name_len;
+
+            <span style="color:#007f7f">// Trim leading spaces
+</span><span style="color:#007f7f"></span>            <span style="color:#fff;font-weight:bold">while</span> (*b == <span style="color:#0ff;font-weight:bold">&#39; &#39;</span>) {         <span style="color:#007f7f">// the string is zero terminated, we won&#39;t exceed the buffer size
+</span><span style="color:#007f7f"></span>                ++ b;
+            }
+
+            <span style="color:#007f7f">// Skip the closing angle bracket
+</span><span style="color:#007f7f"></span>            <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* e = end - <span style="color:#ff0;font-weight:bold">1</span>;
+            <span style="color:#fff;font-weight:bold">while</span> (e &gt; b &amp;&amp; *e != <span style="color:#0ff;font-weight:bold">&#39;&gt;&#39;</span>) {
+                -- e;
+            }
+
+            <span style="color:#007f7f">// Trim trailing spaces
+</span><span style="color:#007f7f"></span>            <span style="color:#fff;font-weight:bold">while</span> (e &gt; b &amp;&amp; *(e - <span style="color:#ff0;font-weight:bold">1</span>) == <span style="color:#0ff;font-weight:bold">&#39; &#39;</span>) {
+                -- e;
+            }
+
+            <span style="color:#fff;font-weight:bold">if</span> (b &lt; e) {
+                <span style="color:#007f7f">// Parsing seems to have succeeded, the type name is not empty
+</span><span style="color:#007f7f"></span>                begin = b;
+                end = e;
+            }
+        }
+    }
+
+    <span style="color:#fff;font-weight:bold">return</span> std::string(begin, end);
+}
+
+</code></pre></div><p>至此就了解了除了 <code>demangled_name</code> 函数以外的所有实现细节了，不难理解其实 <code>stl_type_index</code> 这个类就是对  <code>std::type_info</code> 类的封装，<code>type_id_with_cvr</code> 和 <code>pretty_name</code> 两个函数分别细化了 <code>typeid</code> 操作符和 <code>std::type_info::name()</code> 函数。</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

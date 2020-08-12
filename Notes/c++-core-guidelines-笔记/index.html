@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="P.1: 直接在代码中表达想法 原因：编译器和许多程序员都不会阅读你的评论，或者设计文档。代码中的内容已经定义了语义，并且可以被编译器和其他工具检测。"/>
+
+    <meta property="og:title" content="" />
+<meta property="og:description" content="P.1: 直接在代码中表达想法 原因：编译器和许多程序员都不会阅读你的评论，或者设计文档。代码中的内容已经定义了语义，并且可以被编译器和其他工具检测。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/notes/c&#43;&#43;-core-guidelines-%E7%AC%94%E8%AE%B0/" />
+
+
+
+    
+      <base href="https://zintrulcre.vip/notes/c&#43;&#43;-core-guidelines-%E7%AC%94%E8%AE%B0/">
+    
+    <title>
+   · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/notes/c&#43;&#43;-core-guidelines-%E7%AC%94%E8%AE%B0/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.74.3" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1></h1>
+    </header>
+
+    <h3 id="p1-直接在代码中表达想法">P.1: 直接在代码中表达想法</h3>
+<p><strong>原因</strong>：编译器和许多程序员都不会阅读你的评论，或者设计文档。代码中的内容已经定义了语义，并且可以被编译器和其他工具检测。</p>
+<p><strong>示例</strong></p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">class</span> Data {
+<span style="color:#fff;font-weight:bold">public</span>:
+    Month month() <span style="color:#fff;font-weight:bold">const</span>; <span style="color:#007f7f">// 好
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">int</span> month();		 <span style="color:#007f7f">// 差
+</span><span style="color:#007f7f"></span>};
+</code></pre></div><h3 id="f15在传递参数时使用简单且常见的方法">F.15：在传递参数时使用简单且常见的方法</h3>
+<p>普通的传参方法：</p>
+<p><img src="http://isocpp.github.io/CppCoreGuidelines/param-passing-normal.png" alt="Normal parameter passing table"></p>
+<p>进阶的传参方法：</p>
+<p><img src="http://isocpp.github.io/CppCoreGuidelines/param-passing-advanced.png" alt="Advanced parameter passing table"></p>
+<p>总结：</p>
+<ol>
+<li>对于仅用作输出的参数，使用 return value 的形式</li>
+<li>对于既用作输入又用作输出的参数，使用 pass by reference 的形式</li>
+<li>对于仅用作输入的参数
+<ul>
+<li>如果拷贝操作的开销很小（比如普通数据类型），使用 pass by value 的形式</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">void</span> f1(<span style="color:#fff;font-weight:bold">const</span> string&amp; s);  <span style="color:#007f7f">// 好: pass by reference to const 的开销很小
+</span><span style="color:#007f7f"></span>
+<span style="color:#fff;font-weight:bold">void</span> f2(string s);         <span style="color:#007f7f">// 差: 拷贝的开销可能很大
+</span><span style="color:#007f7f"></span>
+<span style="color:#fff;font-weight:bold">void</span> f3(<span style="color:#fff;font-weight:bold">int</span> x);            <span style="color:#007f7f">// 好：很好的方法
+</span><span style="color:#007f7f"></span>
+<span style="color:#fff;font-weight:bold">void</span> f4(<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">int</span>&amp; x);     <span style="color:#007f7f">// 差：引用会造成额外的开销
+</span></code></pre></div><h3 id="f60当允许参数为空指针时用-t-替代-t">F.60：当允许参数为空指针时，用 T* 替代 T&amp;</h3>
+<p>当我们需要传递一个可能为空的指针时，使用 T* 更好。</p>
+<p>构造出一个 nullptr 的引用是可行的，但不合法，这种错误非常罕见。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">T *p = <span style="color:#fff;font-weight:bold">nullptr</span>;
+T &amp;r = <span style="color:#fff;font-weight:bold">static_cast</span>&lt;T&amp;&gt;(*p);
+</code></pre></div><p>使用 GDB 调试可以看到</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(gdb) p p
+$6 = (int *) 0x0
+(gdb) p r
+$7 = (int &amp;) @0x0: &lt;error reading variable&gt;
+(gdb) p &amp;r
+$8 = (int *) 0x0
+</code></pre></div><h3 id="f42仅在指向位置时返回-t">F.42：仅在指向位置时返回 T*</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">Node* Traverse(Node* t, <span style="color:#fff;font-weight:bold">int</span> val)
+{
+    <span style="color:#fff;font-weight:bold">if</span> (!t) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nullptr</span>;
+    <span style="color:#fff;font-weight:bold">if</span> (t-&gt;val == val) <span style="color:#fff;font-weight:bold">return</span> t;
+    <span style="color:#fff;font-weight:bold">if</span> ((<span style="color:#fff;font-weight:bold">auto</span> p = Traverse(t-&gt;left, val))) <span style="color:#fff;font-weight:bold">return</span> p;
+    <span style="color:#fff;font-weight:bold">if</span> ((<span style="color:#fff;font-weight:bold">auto</span> p = Traverse(t-&gt;right, val))) <span style="color:#fff;font-weight:bold">return</span> p;
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nullptr</span>;
+}
+</code></pre></div><p>返回指向某个位置的指针并不意味着发生了所有权转移。位置也可以用 iterator，indices 和 reference 表示，如果位置不能为空的话可以使用 T&amp; 替代 T*。</p>
+<h3 id="f43永远不要返回一个指向局部对象的指针或引用">F.43：永远不要返回一个指向局部对象的指针或引用</h3>
+<p>返回一个 T* 悬空指针或 T&amp; 悬空引用都可能造成程序崩溃和数据损坏。但 static 变量是静态分配的，所以返回一个 static 变量是不会造成悬空的。</p>
+<h3 id="f46int-main">F.46：int main()</h3>
+<p>这是一条 C++ 的语言规则，将 main 声明为 void 会限制其可移植性。</p>
+<h3 id="f51当可以选择时优先使用默认参数而不是重载">F.51：当可以选择时，优先使用默认参数而不是重载</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007f7f">// 默认参数
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">void</span> Print(<span style="color:#fff;font-weight:bold">const</span> string &amp;s, format f = {});
+
+<span style="color:#007f7f">// 重载
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">void</span> Print(<span style="color:#fff;font-weight:bold">const</span> string &amp;s);
+<span style="color:#fff;font-weight:bold">void</span> Print(<span style="color:#fff;font-weight:bold">const</span> string &amp;s, format f);
+</code></pre></div><h1 id="google-代码规范">Google 代码规范</h1>
+<h3 id="42-隐式类型转换">4.2 隐式类型转换</h3>
+<p>对于<strong>转换运算符</strong>和<strong>单参数构造函数</strong>，使用 <code>explicit</code> 关键字。</p>
+<h3 id="44-struct-和-class">4.4 struct 和 class</h3>
+<p>仅对承载数据的被动对象使用 <code>struct</code>，其它一概使用 <code>class</code>。</p>
+<h3 id="45-继承">4.5 继承</h3>
+<p>C++ 实践中，继承主要用于两种场合：<code>实现继承</code>，子类继承父类的实现代码；<code>接口继承</code>，子类仅继承父类的方法名称。</p>
+<p><strong>优点</strong></p>
+<ul>
+<li>继承可以复用基类代码，减少了代码量</li>
+<li>继承是在编译时声明，程序员和编译器都可以理解相应操作并发现错误</li>
+<li>接口继承可以强制类实现特定的 API，在类没有实现这些 API 时，编译器可以发现问题</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>对于实现继承，子类的实现代码散布在父类和子类之间，要理解其实现变得更加困难</li>
+<li>子类不能重写父类的非虚函数，也不能修改其实现</li>
+<li>基类也可能定义了一些数据成员，必须区分基类的实际布局</li>
+</ul>
+<p><strong>结论</strong></p>
+<ul>
+<li>只在”是一个“的情况下使用继承，只使用 <code>public</code> 继承</li>
+<li>如果类里有虚函数，那么析构函数也应该是虚函数</li>
+<li>数据成员都必须是<code>private</code></li>
+<li>对于重载的虚函数，使用 <code>override</code>或<code>final</code> 关键字显式地进行标记</li>
+</ul>
+<h3 id="51-输出参数">5.1 输出参数</h3>
+<p>优先使用返回值作为函数输出，输入参数在前，输出参数在后。</p>
+<h3 id="53-引用参数">5.3 引用参数</h3>
+<p><strong>结论</strong></p>
+<ul>
+<li>如果函数需要修改变量的值，则参数必须声明为指针</li>
+<li>输入参数是值参或 <code>const reference</code> 或 <code>const pointer</code>，输出参数是<code>pointer</code></li>
+<li></li>
+</ul>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

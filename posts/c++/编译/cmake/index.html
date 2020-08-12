@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.72.0" />
+    <meta name="generator" content="Hugo 0.74.3" />
   </head>
 
   <body class=" ">
@@ -742,7 +742,26 @@ Scanning dependencies of target Exp2
 <span style="color:#ff0;font-weight:bold">7</span>
 <span style="color:#ff0;font-weight:bold">128</span>
 </code></pre></div><p>可以看到得到的二进制文件的相关信息和使用前几种方法得到的都是相同的。</p>
-<h2 id="5-总结">5. 总结</h2>
+<h2 id="5-常用命令">5. 常用命令</h2>
+<h3 id="51-项目相关">5.1 项目相关</h3>
+<ul>
+<li>cmake_minimum_required(VERSION 3.10)：指定 cmake 的最低版本要求</li>
+<li>project(project_name)：指定项目的名称</li>
+<li>set(CMAKE_CXX_FLAGS -g -Wall -pthread)：设置普通变量，缓存变量或环境变量</li>
+</ul>
+<h3 id="52-编译相关">5.2 编译相关</h3>
+<ul>
+<li>include_directories：指定头文件的目录，类似于 GCC 编译时的 <code>-I</code> 参数；等价于将头文件目录添加到环境变量 CPLUS_INCLUDE_PATH 中</li>
+<li>aux_source_directory：在目录中（不含子目录）查找所有源文件，并将这些源文件存储在变量 SOURCE_DIR 中</li>
+<li>add_executable：使用列出的源文件构建可执行文件</li>
+<li>add_definitions：宏定义</li>
+</ul>
+<h3 id="53-链接相关">5.3 链接相关</h3>
+<ul>
+<li>link_directories：指定库文件的目录，类似于 GCC 链接时的 <code>-L</code> 参数；等价于将库文件目录添加到环境变量 LD_LIBRARY_PATH 中</li>
+<li>target_link_libraries：将指定的静态库连接到可执行文件上，singleton 和 libsingleton.a 两种形式等价</li>
+</ul>
+<h2 id="6-总结">6. 总结</h2>
 <p>本文通过几个示例程序对比了在 Linux 下使用 GCC 和 cmake 来编译和构建程序的基本步骤，了解了一些 cmake 的基础指令。实际开发中的项目往往会非常大，以致于不能够直接使用 GCC 来编译整个项目，在这种场景下使用 cmake 进行构建往往能够节省时间和提高效率，让我们能够专注在项目的开发上。在实际应用中编写 CMakeLists.txt 的时候还会遇到非常多的问题、不熟悉的指令和其他的使用技巧，这些都需要结合<a href="https://cmake.org/cmake/help/latest/index.html">教程</a>和实践来进一步学习。</p>
 
       </div>
