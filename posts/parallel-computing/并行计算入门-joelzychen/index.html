@@ -141,20 +141,22 @@
 <h3 id="21-访存模型">2.1 访存模型</h3>
 <p>共享内存模型的的计算机中通常有非常多的内核，每个内核都有本地的处理器和缓存；相对的，在互联网络上或其它结点中的处理器和存储一般称为全局的；根据不同的互联网络和访问存储器的方式，一个共享内存机器可以被分为以下几类：</p>
 <ol>
-<li>Uniform Memory Access</li>
-</ol>
+<li>
+<p>Uniform Memory Access</p>
 <p><strong>均匀存储访问</strong>（Uniform Memory Access, UMA）模型的特点是所有的处理器都拥有本地的高速缓存（L1 Cache, L2 Cache），所有的处理器都均匀地共享物理存储（Memory），并且每一个处理器访问任何存储字都需要相同的时间。</p>
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/resource/master/parallel-computing/uma.png" alt="uma"></p>
-<ol start="2">
-<li>Non-Uniform Memory Access</li>
-</ol>
+</li>
+<li>
+<p>Non-Uniform Memory Access</p>
 <p><strong>非均匀存储访问</strong>（Non-Uniform Memory Access, NUMA）模型的共享存储器在物理上是分布式的，所有的本地存储器构成了全局地址空间；处理器在访问本地存储器时的速度比访问全局存储器（共享存储器，或其他处理器的本地存储器）快，处理器访问内存的时间取决于内存相对于处理器的位置。</p>
 <p>不同的处理器访问共享存储器时，位置的不同会导致访问延迟。</p>
-<ol start="3">
-<li>Cache-Only Memory Architecture</li>
-</ol>
+</li>
+<li>
+<p>Cache-Only Memory Architecture</p>
 <p><strong>高速缓存存储结构</strong>（Cache-Only Memory Architecture, COMA）是将 NUMA 中的分布存储器换成了高速缓存，每个处理器上没有存储层次结构，所有的高速缓存共同构成了全局地址空间。</p>
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/resource/master/parallel-computing/numa.png" alt="numa"></p>
+</li>
+</ol>
 <h3 id="22-flynn-分类法">2.2 Flynn 分类法</h3>
 <p><strong>Flynn 分类法</strong>（Flynn&rsquo;s Taxonomy）是一种高效能计算机的分类方式，他根据指令和数据的执行方式将计算机系统分成了四类：</p>
 <ol>
@@ -177,36 +179,38 @@
 </ol>
 <h3 id="23-加速比">2.3 加速比</h3>
 <ol>
-<li>加速比</li>
-</ol>
+<li>
+<p>加速比</p>
 <p><strong>加速比</strong>（Speedup）用于衡量我们现在使用的并行算法比串行算法快了多少，也就是将程序并行化之后提升的效率，其公式是：</p>
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/resource/master/parallel-computing/speedup.svg" alt="speedup"></p>
 <p>其中 p 代表 CPU 数量，T_1 代表使用串行算法的执行时间，T_p 代表当有 p 个处理器时使用并行算法的执行时间；当 S_p == p ，即 T_1 == p * T_p 时，S_p 称为<strong>线性加速比</strong>（Linear Speedup）。</p>
-<ol start="2">
-<li>阿姆达尔定律</li>
-</ol>
+</li>
+<li>
+<p>阿姆达尔定律</p>
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/resource/master/parallel-computing/amdahls-law.svg" alt="amdahls-law"></p>
 <p><strong>阿姆达尔定律</strong>（Amdahl&rsquo;s law）用于估计程序可以达到的最大加速比，W_s 和 W_p 分别表示程序串行部分和并行部分所占的百分比，W_s + W_p 表示程序串行执行的时间（此时并行部分 W_p 相当于被单个处理器执行），W_s + W_p/p 表示程序使用 p 个处理器执行的时间；当 p -&gt; ∞ 时，其上限是 (W_s + W_p) / W_s。</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; <span style="color:#ff0;font-weight:bold">1000000000</span>; ++i) std::this_thread::sleep_for(std::chrono::seconds(<span style="color:#ff0;font-weight:bold">1</span>));   <span style="color:#007f7f">// sequential
 </span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; <span style="color:#ff0;font-weight:bold">1000000000</span>; ++i) std::this_thread::sleep_for(std::chrono::seconds(<span style="color:#ff0;font-weight:bold">1</span>));   <span style="color:#007f7f">// parallel
 </span></code></pre></div><p><img src="https://raw.githubusercontent.com/ZintrulCre/resource/master/parallel-computing/amdahl's-law.png" alt="amdahl"></p>
-<ol start="3">
-<li>古斯塔夫森定律</li>
-</ol>
+</li>
+<li>
+<p>古斯塔夫森定律</p>
 <p><strong>古斯塔夫森定律</strong>（Gustafson&rsquo;s Law）通过使用 来描述加速比，p 代表处理器的数量，a 代表程序串行化的部分；</p>
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/resource/master/parallel-computing/gustafson.png" alt="gustafson"></p>
 <p>阿姆达尔定律描述的是增加处理起的数量并不一定能提高加速比，只有增加程序并行部分的比例，才能提高加速比。</p>
 <p>古斯塔夫森定律描述的是随着程序并行化比例的提高，加速比与处理器个数成正比的比例（斜率）也在增加。</p>
-<ol start="4">
-<li>性能</li>
-</ol>
+</li>
+<li>
+<p>性能</p>
 <p><strong>性能</strong>（Efficiency）是由加速比派生出的量度性能的指标，它可以表示每个处理器的加速比，即每个处理器在这个算法中的利用率，其公式是：</p>
 <p><img src="https://raw.githubusercontent.com/ZintrulCre/resource/master/parallel-computing/efficiency.svg" alt="efficiency"></p>
-<ol start="5">
-<li>时钟加速比</li>
-</ol>
+</li>
+<li>
+<p>时钟加速比</p>
 <p>S(p) = t_s / t_p</p>
 <p><strong>时钟加速比</strong>（Speedup in Wall-Clock Time）的公式很简单，用使用串行算法花费的时钟时间除以使用并行算法花费的时钟时间即可，但是因为时钟时间包括了网络延迟，IO，缓存争用等无关因素，所以它与加速比和算法的复杂度并不相关，只能用于粗略地衡量加速比。</p>
+</li>
+</ol>
 <h2 id="3-并行计算框架">3 并行计算框架</h2>
 <h3 id="31-openmp">3.1 OpenMP</h3>
 <p><strong>OpenMP</strong>（Open Multi-Processing）是一套针对多处理器<strong>共享内存</strong>机器进行多线程并行编程的 API，支持的语言有 C，C++ 和 Fortran，支持的编译器有现在主流的 GCC 和 Clang 等；</p>
