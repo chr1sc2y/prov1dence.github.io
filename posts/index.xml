@@ -14,11 +14,11 @@
     
     <item>
       <title>C&#43;&#43; 单例模式的模板实现</title>
-      <link>https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 10 Sep 2020 21:25:43 +0800</pubDate>
       
-      <guid>https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0/</guid>
-      <description>C++ 单例模式的模板实现 单例模式一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例（</description>
+      <guid>https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0/</guid>
+      <description>C++ 单例模式的模板实现 单例模式是一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例</description>
     </item>
     
     <item>

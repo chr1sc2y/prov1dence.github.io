@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43; 单例模式的模板实现"/>
+<meta name="twitter:description" content="C&#43;&#43; 单例模式的模板实现 单例模式是一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例"/>
+
+    <meta property="og:title" content="C&#43;&#43; 单例模式的模板实现" />
+<meta property="og:description" content="C&#43;&#43; 单例模式的模板实现 单例模式是一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0/" />
+<meta property="article:published_time" content="2020-09-10T21:25:43+08:00" />
+<meta property="article:modified_time" content="2020-09-10T21:25:43+08:00" />
+
+
+    
+      <base href="https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0/">
+    
+    <title>
+  C&#43;&#43; 单例模式的模板实现 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.74.3" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">C&#43;&#43; 单例模式的模板实现</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-09-10T21:25:43&#43;08:00'>
+                September 10, 2020
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/design-pattern/">Design Pattern</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        <h1 id="c-单例模式的模板实现">C++ 单例模式的模板实现</h1>
+<p>单例模式是一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例（single instance），这个类称为单例类，它会提供一个全局的访问入口（global access point），关于单例模式的讨论可以参考<a href="http://www.italiancpp.org/2017/03/19/singleton-revisited-eng/">Singleton revisited</a>；基于这两个特点，单例模式可以有以下几种实现：</p>
+<h2 id="meyers-singleton">Meyer’s Singleton</h2>
+<p><em>Scott Meyers</em> 在 <em>Effective C++</em> 的 <em>Item 4: Make sure that objects are initialized before they&rsquo;re used</em> 里面提出了一种利用 C++ 的 <code>static</code> 关键字来实现的单例模式，这种实现非常简洁高效，它的特点是：</p>
+<ol>
+<li>仅当程序第一次执行到 <code>GetInstance</code> 函数时，执行 <code>instance</code> 对象的初始化；</li>
+<li>在 C++ 11 之后，被 <code>static</code> 修饰的变量可以保证是线程安全的；</li>
+</ol>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T&gt;
+<span style="color:#fff;font-weight:bold">class</span> Singleton
+{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">static</span> T&amp; GetInstance()
+    {
+        <span style="color:#fff;font-weight:bold">static</span> T instance;
+        <span style="color:#fff;font-weight:bold">return</span> instance;
+    }
+    
+    Singleton(T&amp;&amp;) = <span style="color:#fff;font-weight:bold">delete</span>;
+    Singleton(<span style="color:#fff;font-weight:bold">const</span> T&amp;) = <span style="color:#fff;font-weight:bold">delete</span>;
+    <span style="color:#fff;font-weight:bold">void</span> <span style="color:#fff;font-weight:bold">operator</span>= (<span style="color:#fff;font-weight:bold">const</span> T&amp;) = <span style="color:#fff;font-weight:bold">delete</span>;
+
+<span style="color:#fff;font-weight:bold">protected</span>:
+    Singleton() = <span style="color:#fff;font-weight:bold">default</span>;
+    <span style="color:#fff;font-weight:bold">virtual</span> ~Singleton() = <span style="color:#fff;font-weight:bold">default</span>;
+};
+</code></pre></div><p>通过禁用单例类的 copy constructor，move constructor 和 operator= 可以防止类的唯一实例被拷贝或移动；不暴露单例类的 constructor 和 destructor 可以保证单例类不会通过其他途径被实例化，同时将两者定义为 protected 可以让其被子类继承并使用。</p>
+<h2 id="lazy-singleton">Lazy Singleton</h2>
+<p>Lazy Singleton 是一种比较传统的实现方法，通过其名字可以看出来它也具有 lazy-evaluation 的特点，但在实现的时候需要考虑线程安全的问题：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T, <span style="color:#fff;font-weight:bold">bool</span> is_thread_safe = <span style="color:#fff;font-weight:bold">true</span>&gt;
+<span style="color:#fff;font-weight:bold">class</span> LazySingleton
+{
+<span style="color:#fff;font-weight:bold">private</span>:
+    <span style="color:#fff;font-weight:bold">static</span> unique_ptr&lt;T&gt; t_;
+    <span style="color:#fff;font-weight:bold">static</span> mutex mtx_;
+
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">static</span> T&amp; GetInstance()
+    {
+        <span style="color:#fff;font-weight:bold">if</span> (is_thread_safe == <span style="color:#fff;font-weight:bold">false</span>)
+        {
+            <span style="color:#fff;font-weight:bold">if</span> (t_ == <span style="color:#fff;font-weight:bold">nullptr</span>)
+                t_ = unique_ptr&lt;T&gt;(<span style="color:#fff;font-weight:bold">new</span> T);
+            <span style="color:#fff;font-weight:bold">return</span> *t_;
+        }
+        
+        <span style="color:#fff;font-weight:bold">if</span> (t_ == <span style="color:#fff;font-weight:bold">nullptr</span>)
+        {
+            unique_lock&lt;mutex&gt; unique_locker(mtx_);
+            <span style="color:#fff;font-weight:bold">if</span> (t_ == <span style="color:#fff;font-weight:bold">nullptr</span>)
+                t_ = unique_ptr&lt;T&gt;(<span style="color:#fff;font-weight:bold">new</span> T);
+            <span style="color:#fff;font-weight:bold">return</span> *t_;
+        }
+
+    }
+
+    LazySingleton(T&amp;&amp;) = <span style="color:#fff;font-weight:bold">delete</span>;
+    LazySingleton(<span style="color:#fff;font-weight:bold">const</span> T&amp;) = <span style="color:#fff;font-weight:bold">delete</span>;
+    <span style="color:#fff;font-weight:bold">void</span> <span style="color:#fff;font-weight:bold">operator</span>= (<span style="color:#fff;font-weight:bold">const</span> T&amp;) = <span style="color:#fff;font-weight:bold">delete</span>;
+
+<span style="color:#fff;font-weight:bold">protected</span>:
+    LazySingleton() = <span style="color:#fff;font-weight:bold">default</span>;
+    <span style="color:#fff;font-weight:bold">virtual</span> ~LazySingleton() = <span style="color:#fff;font-weight:bold">default</span>;
+};
+
+<span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T, <span style="color:#fff;font-weight:bold">bool</span> is_thread_safe&gt;
+unique_ptr&lt;T&gt; LazySingleton&lt;T, is_thread_safe&gt;::t_;
+
+<span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T, <span style="color:#fff;font-weight:bold">bool</span> is_thread_safe&gt;
+mutex LazySingleton&lt;T, is_thread_safe&gt;::mtx_;
+</code></pre></div><p>我们通过模板参数 <code>is_thread_safe</code> 来控制这个类是否是线程安全的，因为在某些场景下我们会希望每个线程拥有一个实例：</p>
+<ol>
+<li>当 <code>is_thread_safe == false</code>，即非线程安全时，我们在 <code>GetInstance</code> 函数中直接判断，初始化并返回单例对象；这里使用了 <code>unique_ptr</code> 防止线程销毁时发生内存泄漏，也可以在析构函数中销毁指针；</li>
+<li>当 <code>is_thread_safe == true</code> 时，我们通过 double-checked locking 来进行检查并加锁，防止单例类在每个线程上都被实例化。</li>
+</ol>
+<h2 id="eager-singleton">Eager Singleton</h2>
+<p>和 Lazy Singleton 相反，Eager Singleton 利用 static member variable 的特性，在程序进入 main 函数之前进行初始化，这样就绕开了线程安全的问题：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T&gt;
+<span style="color:#fff;font-weight:bold">class</span> EagerSingleton
+{
+<span style="color:#fff;font-weight:bold">private</span>:
+    <span style="color:#fff;font-weight:bold">static</span> T* t_;
+
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">static</span> T&amp; GetInstance()
+    {
+        <span style="color:#fff;font-weight:bold">return</span> *t_;
+    }
+
+    EagerSingleton(T&amp;&amp;) = <span style="color:#fff;font-weight:bold">delete</span>;
+    EagerSingleton(<span style="color:#fff;font-weight:bold">const</span> T&amp;) = <span style="color:#fff;font-weight:bold">delete</span>;
+    <span style="color:#fff;font-weight:bold">void</span> <span style="color:#fff;font-weight:bold">operator</span>= (<span style="color:#fff;font-weight:bold">const</span> T&amp;) = <span style="color:#fff;font-weight:bold">delete</span>;
+
+<span style="color:#fff;font-weight:bold">protected</span>:
+    EagerSingleton() = <span style="color:#fff;font-weight:bold">default</span>;
+    <span style="color:#fff;font-weight:bold">virtual</span> ~EagerSingleton() = <span style="color:#fff;font-weight:bold">default</span>;
+};
+
+<span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T&gt;
+T* EagerSingleton&lt;T&gt;::t_ = <span style="color:#fff;font-weight:bold">new</span> (std::nothrow) T;
+</code></pre></div><p>但是它也有两个问题：</p>
+<ol>
+<li>即使单例对象不被使用，单例类对象也会进行初始化；</li>
+<li><a href="https://isocpp.org/wiki/faq/ctors#static-init-order">static initialization order fiasco</a>，即 t_ 对象和 <code>GetInstance</code> 函数的初始化先后顺序是不固定的；</li>
+</ol>
+<h2 id="testing">Testing</h2>
+<p>将上面实现的四种 Singleton 分别继承下来作为 functor 传入线程对象进行测试：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">class</span> Foo : <span style="color:#fff;font-weight:bold">public</span> Singleton&lt;Foo&gt;
+{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">void</span> <span style="color:#fff;font-weight:bold">operator</span>() ()
+    {
+        cout &lt;&lt; &amp;GetInstance() &lt;&lt; endl;
+    }
+};
+
+<span style="color:#fff;font-weight:bold">class</span> LazyFoo : <span style="color:#fff;font-weight:bold">public</span> LazySingleton&lt;LazyFoo, <span style="color:#fff;font-weight:bold">false</span>&gt;
+{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">void</span> <span style="color:#fff;font-weight:bold">operator</span>() ()
+    {
+        cout &lt;&lt; &amp;GetInstance() &lt;&lt; endl;
+    }
+};
+
+<span style="color:#fff;font-weight:bold">class</span> ThreadSafeLazyFoo : <span style="color:#fff;font-weight:bold">public</span> LazySingleton&lt;ThreadSafeLazyFoo&gt;
+{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">void</span> <span style="color:#fff;font-weight:bold">operator</span>() ()
+    {
+        cout &lt;&lt; &amp;GetInstance() &lt;&lt; endl;
+    }
+};
+
+<span style="color:#fff;font-weight:bold">class</span> EagerFoo : <span style="color:#fff;font-weight:bold">public</span> EagerSingleton&lt;EagerFoo&gt;
+{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#fff;font-weight:bold">void</span> <span style="color:#fff;font-weight:bold">operator</span>() ()
+    {
+        cout &lt;&lt; &amp;GetInstance() &lt;&lt; endl;
+    }
+};
+
+<span style="color:#fff;font-weight:bold">void</span> SingletonTest()
+{
+    <span style="color:#fff;font-weight:bold">thread</span> t1((Foo()));
+    <span style="color:#fff;font-weight:bold">thread</span> t2((Foo()));
+    t1.join();
+    t2.join();
+    this_thread::sleep_for(chrono::milliseconds(<span style="color:#ff0;font-weight:bold">100</span>));
+    
+    t1 = <span style="color:#fff;font-weight:bold">thread</span>((LazyFoo()));
+    t2 = <span style="color:#fff;font-weight:bold">thread</span>((LazyFoo()));
+    t1.join();
+    t2.join();
+    this_thread::sleep_for(chrono::milliseconds(<span style="color:#ff0;font-weight:bold">100</span>));
+    
+    t1 = <span style="color:#fff;font-weight:bold">thread</span>((ThreadSafeLazyFoo()));
+    t2 = <span style="color:#fff;font-weight:bold">thread</span>((ThreadSafeLazyFoo()));
+    t1.join();
+    t2.join();
+    this_thread::sleep_for(chrono::milliseconds(<span style="color:#ff0;font-weight:bold">100</span>));
+    
+    t1 = <span style="color:#fff;font-weight:bold">thread</span>((EagerFoo()));
+    t2 = <span style="color:#fff;font-weight:bold">thread</span>((EagerFoo()));
+    t1.join();
+    t2.join();
+}
+</code></pre></div><p>输出结果为：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">0x60d110
+0x60d110
+0x7f92380008c0
+0x7f92300008c0
+0x7f92300008e0
+0x7f92300008e0
+0x1132010
+0x1132010
+</code></pre></div><p>可以看到只有第二组非线程安全的 <code>LazySingleton</code> 在两个线程中输出的实例地址是不同的，其它的 Singleton 均是线程安全的。</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>
