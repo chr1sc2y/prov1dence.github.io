@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 10 Sep 2020 21:25:43 +0800</lastBuildDate>
-    
-	<atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 10 Sep 2020 21:25:43 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43; 单例模式的模板实现</title>
       <link>https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0/</link>
@@ -23,10 +19,10 @@
     
     <item>
       <title>并行计算入门</title>
-      <link>https://zintrulcre.vip/posts/parallel-computing/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%85%A5%E9%97%A8-joelzychen/</link>
+      <link>https://zintrulcre.vip/posts/parallel-computing/parallel-computing/</link>
       <pubDate>Wed, 12 Aug 2020 18:32:52 +0800</pubDate>
       
-      <guid>https://zintrulcre.vip/posts/parallel-computing/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%85%A5%E9%97%A8-joelzychen/</guid>
+      <guid>https://zintrulcre.vip/posts/parallel-computing/parallel-computing/</guid>
       <description>并行计算入门 [TOC] 1 概述 1.1 并行计算 高性能计算（High Performance Computing）是计算机科学中的一个领域，其目的可以概括为优化性能，它包括了缓存技术</description>
     </item>
     
