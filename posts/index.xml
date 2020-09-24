@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 10 Sep 2020 21:25:43 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Sep 2020 16:43:27 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Effective C&#43;&#43; notes</title>
+      <link>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%9F%BA%E7%A1%80/effective-cpp/</link>
+      <pubDate>Thu, 24 Sep 2020 16:43:27 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%9F%BA%E7%A1%80/effective-cpp/</guid>
+      <description>Effective C++ 笔记 [TOC] 0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如 class Bar { public: //</description>
+    </item>
+    
     <item>
       <title>C&#43;&#43; 单例模式的模板实现</title>
       <link>https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://zintrulcre.vip/posts/leetcode/sort/</guid>
       <description>LeetCode 排序 题目 56 合并区间 按照间隔的起始进行排序，判断下一个间隔的起始是否大于前一个间隔的末尾，如果大于的话就把之前的间隔加入结果数组，否则继续扩</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 堆</title>
-      <link>https://zintrulcre.vip/posts/leetcode/heap/</link>
-      <pubDate>Mon, 05 Aug 2019 19:12:25 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/heap/</guid>
-      <description>LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。 class Solution { public: int findKthLargest(vector&amp;lt;int&amp;gt; &amp;amp;nums, int k) { priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;&amp;gt;&amp;gt; heap; for (auto &amp;amp;m:nums) { if (heap.size() &amp;lt; k || m &amp;gt; heap.top()) heap.push(m); if (heap.size() &amp;gt; k) heap.pop(); } return heap.top(); } }; 347 前 K 个高频元素</description>
     </item>
     
   </channel>
