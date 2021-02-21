@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43; 智能指针的简单实现"/>
+<meta name="twitter:description" content="C&#43;&#43; 智能指针的简单实现 [TOC] 1 std::auto_ptr C&#43;&#43; 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类： template&lt;typename T&gt; class Object { public: // constructor Object() : t_() { cout &lt;&lt; &#34;Object::Constructor &#34; &lt;&lt; this &lt;&lt; endl; } Object(T t) :"/>
+
+    <meta property="og:title" content="C&#43;&#43; 智能指针的简单实现" />
+<meta property="og:description" content="C&#43;&#43; 智能指针的简单实现 [TOC] 1 std::auto_ptr C&#43;&#43; 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类： template&lt;typename T&gt; class Object { public: // constructor Object() : t_() { cout &lt;&lt; &#34;Object::Constructor &#34; &lt;&lt; this &lt;&lt; endl; } Object(T t) :" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/c&#43;&#43;/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/smart-pointer/" />
+<meta property="article:published_time" content="2021-02-21T21:20:18+08:00" />
+<meta property="article:modified_time" content="2021-02-21T21:20:18+08:00" />
+
+
+    
+      <base href="https://zintrulcre.vip/posts/c&#43;&#43;/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/smart-pointer/">
+    
+    <title>
+  C&#43;&#43; 智能指针的简单实现 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/c&#43;&#43;/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/smart-pointer/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.76.5" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">C&#43;&#43; 智能指针的简单实现</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2021-02-21T21:20:18&#43;08:00'>
+                February 21, 2021
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/c&#43;&#43;-pointer/">C&#43;&#43; Pointer</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://zintrulcre.vip/tags/c&#43;&#43;/">C&#43;&#43;</a>
+      <span class="separator">•</span>
+    <a href="https://zintrulcre.vip/tags/pointer/">Pointer</a>
+      <span class="separator">•</span>
+    <a href="https://zintrulcre.vip/tags/c&#43;&#43;11/">C&#43;&#43;11</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <h1 id="c-智能指针的简单实现">C++ 智能指针的简单实现</h1>
+<p>[TOC]</p>
+<h2 id="1-stdauto_ptr">1 std::auto_ptr</h2>
+<p>C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T&gt;
+<span style="color:#fff;font-weight:bold">class</span> Object
+{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#007f7f">// constructor
+</span><span style="color:#007f7f"></span>    Object() : t_() { cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Object::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; endl; }
+    Object(T t) : t_(t) { cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Object::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; endl; }
+
+    <span style="color:#007f7f">// copy-ctor
+</span><span style="color:#007f7f"></span>    Object(<span style="color:#fff;font-weight:bold">const</span> Object &amp;other) { cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Object::Copy-ctor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; endl; }
+
+    <span style="color:#007f7f">// destructor
+</span><span style="color:#007f7f"></span>    ~Object() { cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Object::Destructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; endl; }
+
+    <span style="color:#fff;font-weight:bold">void</span> Set(T t) { t_ = t; }
+
+    <span style="color:#fff;font-weight:bold">void</span> Print() { cout &lt;&lt; t_ &lt;&lt; endl; }
+
+<span style="color:#fff;font-weight:bold">private</span>:
+    T t_;
+};
+</code></pre></div><p>如果在堆上为类对象分配了内存，在离开其作用域的时候又没将其释放，则会造成内存泄漏：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> AutoPointerFoo()
+{
+    Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;* o = <span style="color:#fff;font-weight:bold">new</span> Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(<span style="color:#ff0;font-weight:bold">1</span>);
+    o-&gt;Print();
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer 
+Object::Constructor 0x7b7058 <span style="color:#007f7f"># o</span>
+<span style="color:#ff0;font-weight:bold">1</span>
+</code></pre></div><p>为了解决这个问题，C++ 98 在标准中增加了最原始的<a href="https://en.wikipedia.org/wiki/Smart_pointer">智能指针</a> <code>std::auto_ptr</code>，它利用 <a href="https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization">RAII</a> 的机制提供了自动内存管理的功能，即利用栈上对象来管理堆上内存，当智能指针对象离开其作用域时，默认在其析构函数中释放其管理的堆上变量；它能够在一定程度上减少内存泄露的发生，以下是参考 GCC 中的 <code>std::auto_ptr</code> 实现的 <code>AutoPointer</code> 类，做了一定程度的简化，增加了一些输出方便追踪资源分配过程：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T&gt;
+<span style="color:#fff;font-weight:bold">class</span> AutoPointer
+{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#007f7f">// constructor
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">explicit</span> AutoPointer(T* t = <span style="color:#fff;font-weight:bold">nullptr</span>) <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(t) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;AutoPointer::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+
+    <span style="color:#007f7f">// copy-ctor
+</span><span style="color:#007f7f"></span>    AutoPointer(AutoPointer&lt;T&gt;&amp; other) <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(other.Release()) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;AutoPointer::Copyctor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+
+    <span style="color:#007f7f">// assignment operator
+</span><span style="color:#007f7f"></span>    AutoPointer&lt;T&gt;&amp; <span style="color:#fff;font-weight:bold">operator</span>=(AutoPointer&lt;T&gt;&amp; other)
+    {
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;AutoPointer::Assignment &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl;
+        Reset(other.Release());
+        <span style="color:#fff;font-weight:bold">return</span> *<span style="color:#fff;font-weight:bold">this</span>;
+    }
+
+    <span style="color:#007f7f">// destructor
+</span><span style="color:#007f7f"></span>    ~AutoPointer() <span style="color:#fff;font-weight:bold">noexcept</span>
+    {
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;AutoPointer::Destructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl;
+        <span style="color:#fff;font-weight:bold">delete</span> ptr_;
+    }
+
+    T&amp; <span style="color:#fff;font-weight:bold">operator</span>*() <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> *ptr_; }
+
+    T* <span style="color:#fff;font-weight:bold">operator</span>-&gt;() <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> ptr_; }
+
+    T* Get() <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> ptr_; }
+
+    T* Release() <span style="color:#fff;font-weight:bold">noexcept</span>
+    {
+        T* ptr_ret = ptr_;
+        ptr_ = <span style="color:#fff;font-weight:bold">nullptr</span>;
+        <span style="color:#fff;font-weight:bold">return</span> ptr_ret;
+    }
+
+    <span style="color:#fff;font-weight:bold">void</span> Reset(T* ptr_para) <span style="color:#fff;font-weight:bold">noexcept</span>
+    {
+        <span style="color:#fff;font-weight:bold">if</span> (ptr_ != ptr_para)
+        {
+            <span style="color:#fff;font-weight:bold">delete</span> ptr_;
+            ptr_ = ptr_para;
+        }
+    }
+
+<span style="color:#fff;font-weight:bold">private</span>:
+    T *ptr_;
+};
+</code></pre></div><p>在初始化时，我们需要手动在堆上分配一个对象，并将其作为参数传入；接下来就可以将智能指针对象当作普通的指针使用了，同时也并不需要关心其生命周期，并能够用使用普通指针的方法来使用智能指针：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> AutoPointerFoo()
+{
+    Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;* o = <span style="color:#fff;font-weight:bold">new</span> Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(<span style="color:#ff0;font-weight:bold">1</span>);
+    AutoPointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; a(o);
+    (*o).Set(<span style="color:#ff0;font-weight:bold">2</span>);
+    (*o).Print();
+    o-&gt;Set(<span style="color:#ff0;font-weight:bold">3</span>);
+    o-&gt;Print();
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer 
+Object::Constructor 0x48f058 <span style="color:#007f7f"># o</span>
+AutoPointer::Constructor 0xbee47668 <span style="color:#007f7f"># a</span>
+<span style="color:#ff0;font-weight:bold">2</span>
+<span style="color:#ff0;font-weight:bold">3</span>
+AutoPointer::Destructor 0xbee47668 <span style="color:#007f7f"># a</span>
+Object::Destructor 0x48f058 <span style="color:#007f7f"># o</span>
+</code></pre></div><p>类中最重要的两个函数是 <code>Release</code> 和 <code>Reset</code>，前者用来解除对象当前所管理的指针对象并返回，后者会释放对象当前所管理的指针对象，并将传入的指针对象置为新的管理对象，两者搭配起来实现了拷贝构造函数和赋值操作符；而这两个函数的存在则带来了第一个问题，即在进行拷贝构造或者赋值操作的时候，被操作的 <code>AutoPointer</code> 对象可能在无意识的情况下失去对其自身所管理对象的所有权，从而可能造成 <code>segmentation fault</code>：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> Foo()
+{
+    AutoPointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; p1(<span style="color:#fff;font-weight:bold">new</span> Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(<span style="color:#ff0;font-weight:bold">6</span>));
+    AutoPointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; p2(p1);
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;p2: &#34;</span>; p2-&gt;Print();
+    cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;p1: &#34;</span>; p1-&gt;Print();
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer 
+Object::Constructor 0x1cbd058 <span style="color:#007f7f"># o</span>
+AutoPointer::Constructor 0xbed23668 <span style="color:#007f7f"># a1</span>
+AutoPointer::Copyctor 0xbed23664 <span style="color:#007f7f"># a2</span>
+a2: <span style="color:#ff0;font-weight:bold">1</span>
+Segmentation fault
+</code></pre></div><p>第二个问题是 <code>AutoPointer</code> 默认只会使用 <code>delete</code> 来进行删除操作，如果一个 <code>AutoPointer</code> 对象管理了一个数组，则会在离开其作用域时发生内存泄漏，开启 AddressSanitizer 可以检查到：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> AutoPointerFoo()
+{
+    <span style="color:#fff;font-weight:bold">int</span> *a = <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">int</span>[<span style="color:#ff0;font-weight:bold">1000000</span>];
+    AutoPointer&lt;<span style="color:#fff;font-weight:bold">int</span>&gt; p(a);
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer 
+AutoPointer::Constructor 0xbe9955e0 <span style="color:#007f7f"># new[]</span>
+AutoPointer::Destructor 0xbe9955e0 <span style="color:#007f7f"># delete</span>
+=================================================================
+==2543==ERROR: AddressSanitizer: alloc-dealloc-mismatch (operator new [] vs operator delete) on 0xb412e800
+<span style="color:#007f7f"># ...</span>
+</code></pre></div><p>除此之外，如果使用同一个 <code>Object</code> 指针对多个 <code>AutoPointer</code> 对象进行初始化，那么这个 <code>Object</code> 对象会被多次 <code>delete</code>，在运行时造成 <code>double free</code> 的报错：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> AutoPointerFoo()
+{
+    Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;* o = <span style="color:#fff;font-weight:bold">new</span> Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(<span style="color:#ff0;font-weight:bold">1</span>);
+    AutoPointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; a1(o);
+    AutoPointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; a2(o);
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer 
+Object::Constructor 0x9c3058 <span style="color:#007f7f"># o</span>
+AutoPointer::Constructor 0xbee80668 <span style="color:#007f7f"># a1</span>
+AutoPointer::Constructor 0xbee80664 <span style="color:#007f7f"># a2</span>
+AutoPointer::Destructor 0xbee80664 <span style="color:#007f7f"># a2</span>
+Object::Destructor 0x9c3058 <span style="color:#007f7f"># o</span>
+AutoPointer::Destructor 0xbee80668 <span style="color:#007f7f"># a1</span>
+Object::Destructor 0x9c3058 <span style="color:#007f7f"># o</span>
+free(): double free detected in tcache <span style="color:#ff0;font-weight:bold">2</span>
+Aborted
+</code></pre></div><h2 id="2-unique_ptr">2 unique_ptr</h2>
+<p>为了解决 <code>std::auto_ptr</code> 中出现的问题，C++ 11 参考了 <code>boost::unique_ptr</code> 的设计，向标准库中引入了 <code>std::unique_ptr</code>，下面是参考其实现的 <code>UniquePointer</code> 模板类，做了相当程度的简化：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> ElementType, <span style="color:#fff;font-weight:bold">typename</span> DeleterType = DefaultDeleter&gt;
+<span style="color:#fff;font-weight:bold">class</span> UniquePointer
+{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#007f7f">// constructors
+</span><span style="color:#007f7f"></span>    UniquePointer() <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(<span style="color:#fff;font-weight:bold">nullptr</span>) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;UniquePointer::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+    <span style="color:#fff;font-weight:bold">explicit</span> UniquePointer(ElementType* p) <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(p) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;UniquePointer::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+    UniquePointer(ElementType* p, DeleterType d) <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(p), deleter_(d) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;UniquePointer::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+
+    <span style="color:#007f7f">// move-ctor
+</span><span style="color:#007f7f"></span>    UniquePointer(UniquePointer&lt;ElementType, DeleterType&gt;&amp;&amp; other) <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(other.Release()), deleter_(std::move(other.deleter_)) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;UniquePointer::Move-ctor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+    <span style="color:#007f7f">// move assignment operator
+</span><span style="color:#007f7f"></span>    UniquePointer&lt;ElementType, DeleterType&gt;&amp; <span style="color:#fff;font-weight:bold">operator</span>=(UniquePointer&lt;ElementType, DeleterType&gt;&amp;&amp; other) <span style="color:#fff;font-weight:bold">noexcept</span>
+    {
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;UniquePointer::MoveAssignment &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl;
+        ptr_ = other.Release();
+        deleter_ = std::move(other.deleter_);
+        <span style="color:#fff;font-weight:bold">return</span> *<span style="color:#fff;font-weight:bold">this</span>;
+    }
+
+    <span style="color:#007f7f">// copy-ctor
+</span><span style="color:#007f7f"></span>    UniquePointer(UniquePointer&lt;ElementType, DeleterType&gt;&amp; other) <span style="color:#fff;font-weight:bold">noexcept</span> = <span style="color:#fff;font-weight:bold">delete</span>;
+    <span style="color:#007f7f">// assignment operator
+</span><span style="color:#007f7f"></span>    UniquePointer&lt;ElementType, DeleterType&gt;&amp; <span style="color:#fff;font-weight:bold">operator</span>=(UniquePointer&lt;ElementType, DeleterType&gt;&amp; other) = <span style="color:#fff;font-weight:bold">delete</span>;
+
+    <span style="color:#007f7f">// destructor
+</span><span style="color:#007f7f"></span>    ~UniquePointer() <span style="color:#fff;font-weight:bold">noexcept</span>
+    {
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;UniquePointer::Destructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl;
+        <span style="color:#fff;font-weight:bold">if</span> (ptr_)
+        {
+            GetDeleter()(ptr_);
+            ptr_ = <span style="color:#fff;font-weight:bold">nullptr</span>;
+        }
+    }
+
+    ElementType&amp; <span style="color:#fff;font-weight:bold">operator</span>*() <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> *ptr_; }
+
+    ElementType* <span style="color:#fff;font-weight:bold">operator</span>-&gt;() <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> ptr_; }
+
+    ElementType* Get() <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> ptr_; }
+
+    <span style="color:#fff;font-weight:bold">const</span> DeleterType&amp; GetDeleter() <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> deleter_; }
+
+    ElementType* Release() <span style="color:#fff;font-weight:bold">noexcept</span>
+    {
+        ElementType* ret = <span style="color:#fff;font-weight:bold">nullptr</span>;
+        std::swap(ptr_, ret);
+        <span style="color:#fff;font-weight:bold">return</span> ret;
+    }
+
+    <span style="color:#fff;font-weight:bold">void</span> Reset(ElementType* p) <span style="color:#fff;font-weight:bold">noexcept</span>
+    {
+        <span style="color:#fff;font-weight:bold">if</span> (ptr_ != p)
+        {
+            <span style="color:#fff;font-weight:bold">delete</span> ptr_;
+            ptr_ = p;
+        }
+    }
+
+<span style="color:#fff;font-weight:bold">private</span>:
+    ElementType* ptr_;
+    DeleterType deleter_;
+};
+</code></pre></div><p>相较于 <code>AutoPointer</code>，<code>UniquePointer</code> 做出的改变主要有两点：第一点是 <code>UniquePointer</code> 对其管理的指针拥有独占所有权，通过禁用拷贝构造和赋值操作的方式防止了所有权转移的发生：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> UniquePointerFoo()
+{
+    Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;* o = <span style="color:#fff;font-weight:bold">new</span> Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(<span style="color:#ff0;font-weight:bold">1</span>);
+    UniquePointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; u1(o);
+    UniquePointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; u2{ u1 }; <span style="color:#007f7f">// error: use of deleted function ‘UniquePointer&lt;ElementType, DeleterType&gt;::UniquePointer(UniquePointer&lt;ElementType, DeleterType&gt;&amp;) [with ElementType = Object&lt;int&gt;; DeleterType = DefaultDeleter]’
+</span><span style="color:#007f7f"></span>}
+</code></pre></div><p>同时又增加了移动构造和移动赋值操作，通过 move 语义来让我们可以在特定情况下显式地转移指针：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> UniquePointerFoo()
+{
+    Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;* o = <span style="color:#fff;font-weight:bold">new</span> Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(<span style="color:#ff0;font-weight:bold">1</span>);
+    UniquePointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; u1(o);
+    UniquePointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; u2(std::move(u1));
+    UniquePointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; u3;
+    u3 = std::move(u2);
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer 
+Object::Constructor 0x3af058				<span style="color:#007f7f"># o</span>
+UniquePointer::Constructor 0xbec29664		<span style="color:#007f7f"># u1</span>
+UniquePointer::Move-ctor 0xbec2965c			<span style="color:#007f7f"># u2</span>
+UniquePointer::Constructor 0xbec29654		<span style="color:#007f7f"># u3</span>
+UniquePointer::MoveAssignment 0xbec29654	<span style="color:#007f7f"># u3</span>
+UniquePointer::Destructor 0xbec29654		<span style="color:#007f7f"># u3</span>
+Object::Destructor 0x3af058					<span style="color:#007f7f"># o</span>
+UniquePointer::Destructor 0xbec2965c		<span style="color:#007f7f"># u2</span>
+UniquePointer::Destructor 0xbec29664		<span style="color:#007f7f"># u1</span>
+</code></pre></div><p>第二点是在模板参数中增加了自定义删除器，删除器是一个 functor，我们可以在其 <code>operator()</code> 操作符中自定义 <code>UniquePointer</code> 在析构时对其管理的指针进行的操作，例如使用 <code>delete[]</code> 来释放内存，或是关闭相关的 Socket 等：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">struct</span> ArrayDeleter
+{
+    <span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> T&gt;
+    <span style="color:#fff;font-weight:bold">void</span> <span style="color:#fff;font-weight:bold">operator</span>()(T* p) <span style="color:#fff;font-weight:bold">const</span>
+    {
+        <span style="color:#fff;font-weight:bold">static_assert</span>(<span style="color:#fff;font-weight:bold">sizeof</span>(p) &gt; <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#0ff;font-weight:bold">&#34;can&#39;t delete pointer to incomplete type&#34;</span>);
+        <span style="color:#fff;font-weight:bold">delete</span>[] p;
+    }
+};
+
+<span style="color:#fff;font-weight:bold">void</span> UniquePointerFoo()
+{
+    <span style="color:#fff;font-weight:bold">int</span>* int_arr = <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">int</span>[<span style="color:#ff0;font-weight:bold">1000000</span>];
+    ArrayDeleter array_deleter;
+    UniquePointer&lt;<span style="color:#fff;font-weight:bold">int</span>, ArrayDeleter&gt; u(int_arr, array_deleter);
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer 
+UniquePointer::Constructor 0xbe9ad660
+UniquePointer::Destructor 0xbe9ad660
+</code></pre></div><p>正因为 <code>UniquePointer</code> 对资源具有独占所有权，不能同时有多个 <code>UniquePointer</code> 拥有相同的资源，因此 <code>AutoPointer</code> 中的第三个问题并不能通过使用 <code>UniquePointer</code> 来解决。</p>
+<h2 id="3-shared_ptr">3 shared_ptr</h2>
+<p><code>std::shared_ptr</code> 的应用场景在于当我们需要让多个智能指针对象同时拥有同一个指针，而又希望在这些对象都退出其作用域的时候去销毁指针。它使用了一个引用计数器来记录指针在同一时间被几个智能指针对象所共享，当这个引用计数减少为 0 时，说明已经不再有对象拥有这个指针，此时则需要进行资源的销毁。</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// A smart pointer with reference-counted copy semantics.  The
+</span><span style="color:#007f7f">// object pointed to is deleted when the last shared_ptr pointing to
+</span><span style="color:#007f7f">// it is destroyed or reset.
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> _Tp, _Lock_policy _Lp&gt; <span style="color:#fff;font-weight:bold">class</span> __shared_ptr
+<span style="color:#007f7f">// ...
+</span></code></pre></div><p>由 <code>std::shared_ptr</code> 管理的指针对象（以及引用计数器）存放在堆上，如果在同一时间有两个持有相同资源但位于不同线程中的智能指针同时访问他们所持有的资源，则可能会导致线程安全问题，因此我们还需要使用一定的机制来防止线程安全问题的发生；一般来说对引用计数器的加减修改是原子的，但对于共享资源的访问则需要使用互斥锁等机制保证线程安全。</p>
+<p>以下是参考 <code>std::shared_ptr</code> 实现的 <code>SharedPointer</code> 类：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> ElementType, <span style="color:#fff;font-weight:bold">typename</span> DeleterType = DefaultDeleter&gt;
+<span style="color:#fff;font-weight:bold">class</span> SharedPointer
+{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#007f7f">// constructors
+</span><span style="color:#007f7f"></span>    SharedPointer() <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(<span style="color:#fff;font-weight:bold">nullptr</span>), ref_count_(<span style="color:#fff;font-weight:bold">nullptr</span>), deleter_(<span style="color:#fff;font-weight:bold">nullptr</span>), mutex_(<span style="color:#fff;font-weight:bold">nullptr</span>) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;SharedPointer::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+    <span style="color:#fff;font-weight:bold">explicit</span> SharedPointer(ElementType* p) <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(p), ref_count_(<span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">int</span>(<span style="color:#ff0;font-weight:bold">1</span>)), deleter_(<span style="color:#fff;font-weight:bold">new</span> DeleterType()), mutex_(<span style="color:#fff;font-weight:bold">new</span> mutex()) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;SharedPointer::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+    SharedPointer(ElementType* p, DeleterType *d) <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(p), ref_count_(<span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">int</span>(<span style="color:#ff0;font-weight:bold">1</span>)), deleter_(d), mutex_(<span style="color:#fff;font-weight:bold">new</span> mutex()) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;SharedPointer::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+    <span style="color:#fff;font-weight:bold">explicit</span> SharedPointer(<span style="color:#fff;font-weight:bold">const</span> WeakPointer&lt;ElementType, DeleterType&gt;&amp; wp) <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(wp.ptr_), ref_count_(wp.ref_count_), deleter_(wp.deleter_), mutex_(wp.mutex_)
+    {
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;SharedPointer::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl;
+        IncreaseReferenceCount();
+    }
+
+    <span style="color:#007f7f">// copy-ctor
+</span><span style="color:#007f7f"></span>    SharedPointer(<span style="color:#fff;font-weight:bold">const</span> SharedPointer&lt;ElementType&gt;&amp; other) <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(other.ptr_), ref_count_(other.ref_count_), deleter_(other.deleter_), mutex_(other.mutex_)
+    {
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;SharedPointer::Copy-ctor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl;
+        IncreaseReferenceCount();
+    }
+
+    <span style="color:#007f7f">// assignment operator
+</span><span style="color:#007f7f"></span>    SharedPointer&amp; <span style="color:#fff;font-weight:bold">operator</span>=(SharedPointer&lt;ElementType&gt;&amp; other)
+    {
+        <span style="color:#fff;font-weight:bold">if</span> (ptr_ != other.ptr_)
+        {
+            Release();
+            ptr_ = other.ptr_;
+            ref_count_ = other.ref_count_;
+            mutex_ = other.mutex_;
+            deleter_ = other.deleter_;
+            IncreaseReferenceCount();
+        }
+        <span style="color:#fff;font-weight:bold">return</span> *<span style="color:#fff;font-weight:bold">this</span>;
+    }
+
+    <span style="color:#007f7f">// destructor
+</span><span style="color:#007f7f"></span>    ~SharedPointer() <span style="color:#fff;font-weight:bold">noexcept</span>
+    {
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;SharedPointer::Destructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl;
+        Release();
+    }
+
+    <span style="color:#fff;font-weight:bold">void</span> Swap(SharedPointer&lt;ElementType, DeleterType&gt;&amp; other)
+    {
+        std::swap(ptr_, other.ptr_);
+        std::swap(ref_count_, other.ref_count_);
+        std::swap(deleter_, other.deleter_);
+        std::swap(mutex_, other.mutex_);
+    }
+
+    <span style="color:#fff;font-weight:bold">void</span> Reset() { SharedPointer().Swap(*<span style="color:#fff;font-weight:bold">this</span>); }
+    <span style="color:#fff;font-weight:bold">void</span> Reset(ElementType* p, DeleterType* d = <span style="color:#fff;font-weight:bold">nullptr</span>) { SharedPointer(p, d).Swap(*<span style="color:#fff;font-weight:bold">this</span>); }
+
+    <span style="color:#fff;font-weight:bold">int</span> UseCount() { <span style="color:#fff;font-weight:bold">return</span> ref_count_ ? *ref_count_ : <span style="color:#ff0;font-weight:bold">0</span>; }
+
+    ElementType&amp; <span style="color:#fff;font-weight:bold">operator</span>*() <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> *ptr_; }
+
+    ElementType* <span style="color:#fff;font-weight:bold">operator</span>-&gt;() <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> ptr_; }
+
+    ElementType* Get() <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> ptr_; }
+
+    <span style="color:#fff;font-weight:bold">const</span> DeleterType&amp; GetDeleter() <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> *deleter_; }
+    
+    <span style="color:#fff;font-weight:bold">void</span> Release()
+    {
+        <span style="color:#fff;font-weight:bold">if</span> (!ptr_)
+            <span style="color:#fff;font-weight:bold">return</span>;
+        <span style="color:#fff;font-weight:bold">bool</span> delete_flag = <span style="color:#fff;font-weight:bold">false</span>;
+        mutex_-&gt;lock();
+        <span style="color:#fff;font-weight:bold">if</span> (--(*ref_count_) == <span style="color:#ff0;font-weight:bold">0</span>)
+        {
+            GetDeleter()(ptr_);
+            <span style="color:#fff;font-weight:bold">delete</span> ref_count_;
+            <span style="color:#fff;font-weight:bold">delete</span> deleter_;
+            delete_flag = <span style="color:#fff;font-weight:bold">true</span>;
+        }
+        mutex_-&gt;unlock();
+        
+        <span style="color:#fff;font-weight:bold">if</span> (delete_flag)
+        {
+            <span style="color:#fff;font-weight:bold">delete</span> mutex_;
+        }
+        
+    }
+
+	<span style="color:#fff;font-weight:bold">void</span> IncreaseReferenceCount()
+	{
+        <span style="color:#fff;font-weight:bold">if</span> (!ptr_)
+            <span style="color:#fff;font-weight:bold">return</span>;
+		mutex_-&gt;lock();
+        ++(*ref_count_);
+		mutex_-&gt;unlock();
+	}
+    
+    ElementType* ptr_;
+    <span style="color:#fff;font-weight:bold">int</span> *ref_count_;
+    DeleterType* deleter_;
+	mutex* mutex_;
+};
+</code></pre></div><p>现在可以正确地让一个指针被多个智能指针对象所持有了：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> SharedPointerFoo()
+{
+    Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;* o = <span style="color:#fff;font-weight:bold">new</span> Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;(<span style="color:#ff0;font-weight:bold">1</span>);
+    SharedPointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; s1(o);
+    SharedPointer&lt;Object&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&gt; s2(s1);
+    s1.Reset(<span style="color:#fff;font-weight:bold">nullptr</span>);
+    s2.Reset(<span style="color:#fff;font-weight:bold">nullptr</span>);
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer 
+Object::Constructor 0x1ac7058 <span style="color:#007f7f"># o1</span>
+SharedPointer::Constructor 0xbe89c65c <span style="color:#007f7f"># p1</span>
+SharedPointer::Copy-ctor 0xbe89c64c <span style="color:#007f7f"># p2</span>
+SharedPointer::Constructor 0xbe89c630 <span style="color:#007f7f"># p1.Reset</span>
+SharedPointer::Destructor 0xbe89c630 <span style="color:#007f7f"># p1.Reset</span>
+SharedPointer::Constructor 0xbe89c630 <span style="color:#007f7f"># p2.Reset</span>
+SharedPointer::Destructor 0xbe89c630 <span style="color:#007f7f"># p2.Reset</span>
+Object::Destructor 0x1ac7058 <span style="color:#007f7f"># o1</span>
+SharedPointer::Destructor 0xbe89c64c <span style="color:#007f7f"># p2</span>
+SharedPointer::Destructor 0xbe89c65c <span style="color:#007f7f"># p1</span>
+</code></pre></div><p>但又出现了<a href="https://www.learncpp.com/cpp-tutorial/circular-dependency-issues-with-stdshared_ptr-and-stdweak_ptr/">循环引用</a>的问题，例如：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> SharedPointerFoo()
+{
+    <span style="color:#fff;font-weight:bold">struct</span> Node
+    {
+        <span style="color:#fff;font-weight:bold">int</span> i_;
+        SharedPointer&lt;Node&gt; prev_;
+        SharedPointer&lt;Node&gt; next_;
+
+        Node(<span style="color:#fff;font-weight:bold">int</span> i) : i_(i) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Node::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+        ~Node() { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Node::Destructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+    };
+
+    Node *n1 = <span style="color:#fff;font-weight:bold">new</span> Node(<span style="color:#ff0;font-weight:bold">1</span>), *n2 = <span style="color:#fff;font-weight:bold">new</span> Node(<span style="color:#ff0;font-weight:bold">2</span>);
+    SharedPointer&lt;Node&gt; s1(n1), s2(n2);
+    cout &lt;&lt; s1.UseCount() &lt;&lt; <span style="color:#0ff;font-weight:bold">&#39; &#39;</span> &lt;&lt; s2.UseCount() &lt;&lt; endl;
+    s1-&gt;next_ = s2;
+    s2-&gt;prev_ = s1;
+    cout &lt;&lt; s1.UseCount() &lt;&lt; <span style="color:#0ff;font-weight:bold">&#39; &#39;</span> &lt;&lt; s2.UseCount() &lt;&lt; endl;
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer 
+SharedPointer::Constructor 0x3f905c <span style="color:#007f7f"># n1-&gt;prev_</span>
+SharedPointer::Constructor 0x3f906c <span style="color:#007f7f"># n1-&gt;next_</span>
+Node::Constructor 0x3f9058 <span style="color:#007f7f"># n1</span>
+SharedPointer::Constructor 0x3f948c <span style="color:#007f7f"># n2-&gt;prev_</span>
+SharedPointer::Constructor 0x3f949c <span style="color:#007f7f"># n2-&gt;next_</span>
+Node::Constructor 0x3f9488 <span style="color:#007f7f"># n2</span>
+SharedPointer::Constructor 0xbeca0658 <span style="color:#007f7f"># s1</span>
+SharedPointer::Constructor 0xbeca0648 <span style="color:#007f7f"># s2</span>
+<span style="color:#ff0;font-weight:bold">1</span> <span style="color:#ff0;font-weight:bold">1</span>
+<span style="color:#ff0;font-weight:bold">2</span> <span style="color:#ff0;font-weight:bold">2</span>
+SharedPointer::Destructor 0xbeca0648 <span style="color:#007f7f"># s2</span>
+SharedPointer::Destructor 0xbeca0658 <span style="color:#007f7f"># s1</span>
+</code></pre></div><p>这里虽然 <code>s1</code> 和 <code>s2</code> 两个 <code>SharedPointer&lt;Node&gt;</code> 在函数退出时被成功地销毁了，但它们所持有的 <code>n1</code> 和 <code>n2</code> 两个对象却没有，因为 <code>s1</code> 和 <code>s2</code> 的引用计数都没有减少为 0，只有当 <code>s1-&gt;next_</code> 不再指向 <code>s2</code>，且 <code>s2-&gt;prev_</code> 不再指向 <code>s1</code> 时，两者的引用计数才能够正确的减少为 0。</p>
+<h2 id="4-weak_ptr">4 weak_ptr</h2>
+<p><code>std::weak_ptr</code> 是一种弱引用智能指针，它和 <code>std::shared_ptr</code> 的唯一区别是它必须由 <code>std::shared_ptr</code> 或 <code>std::weak_ptr</code> 显式转换而来，而不能由使用 <code>new</code> 创建的对象进行构造，因此其管理的资源实际上是被另一个 <code>std::shared_ptr</code> 所持有的，而其本身则只是提供了对被管理资源的访问能力，同时也不对被管理资源的生命周期造成影响，即不会修改 <code>std::shared_ptr</code> 的引用计数。</p>
+<p>下面是参考 <code>std::weak_ptr</code> 实现的 <code>WeakPointer</code> 类：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> ElementType, <span style="color:#fff;font-weight:bold">typename</span> DeleterType&gt; <span style="color:#fff;font-weight:bold">class</span> SharedPointer;
+
+<span style="color:#fff;font-weight:bold">template</span>&lt;<span style="color:#fff;font-weight:bold">typename</span> ElementType, <span style="color:#fff;font-weight:bold">typename</span> DeleterType = DefaultDeleter&gt;
+<span style="color:#fff;font-weight:bold">class</span> WeakPointer
+{
+<span style="color:#fff;font-weight:bold">public</span>:
+    <span style="color:#007f7f">// constructors
+</span><span style="color:#007f7f"></span>    WeakPointer() <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(<span style="color:#fff;font-weight:bold">nullptr</span>), ref_count_(<span style="color:#fff;font-weight:bold">nullptr</span>), deleter_(<span style="color:#fff;font-weight:bold">nullptr</span>), mutex_(<span style="color:#fff;font-weight:bold">nullptr</span>) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;WeakPointer::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+    <span style="color:#fff;font-weight:bold">explicit</span> WeakPointer(SharedPointer&lt;ElementType, DeleterType&gt;&amp; sp) <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(sp.ptr_), ref_count_(sp.ref_count_), deleter_(sp.deleter_), mutex_(sp.mutex_) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;WeakPointer::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+
+    <span style="color:#007f7f">// copy-ctor
+</span><span style="color:#007f7f"></span>    WeakPointer(WeakPointer&lt;ElementType&gt;&amp; other) <span style="color:#fff;font-weight:bold">noexcept</span> : ptr_(other.ptr_), ref_count_(other.ref_count_), deleter_(other.deleter_), mutex_(other.mutex_)
+    {
+        std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;WeakPointer::Copy-ctor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl;
+    }
+
+    <span style="color:#007f7f">// assignment operator
+</span><span style="color:#007f7f"></span>    WeakPointer&amp; <span style="color:#fff;font-weight:bold">operator</span>=(SharedPointer&lt;ElementType, DeleterType&gt;&amp; sp)
+    {
+        ptr_ = sp.ptr_;
+        ref_count_ = sp.ref_count_;
+        mutex_ = sp.mutex_;
+        deleter_ = sp.deleter_;
+        <span style="color:#fff;font-weight:bold">return</span> *<span style="color:#fff;font-weight:bold">this</span>;
+    }
+
+    <span style="color:#007f7f">// destructor
+</span><span style="color:#007f7f"></span>    ~WeakPointer() <span style="color:#fff;font-weight:bold">noexcept</span> { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;WeakPointer::Destructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+
+    <span style="color:#fff;font-weight:bold">void</span> Swap(WeakPointer&amp; other)
+    {
+        std::swap(ptr_, other.ptr_);
+        std::swap(ref_count_, other.ref_count_);
+        std::swap(deleter_, other.deleter_);
+        std::swap(mutex_, other.mutex_);
+    }
+
+    <span style="color:#fff;font-weight:bold">void</span> Reset() { WeakPointer().Swap(*<span style="color:#fff;font-weight:bold">this</span>); }
+
+    SharedPointer&lt;ElementType, DeleterType&gt; Lock() <span style="color:#fff;font-weight:bold">const</span>
+    {
+        <span style="color:#fff;font-weight:bold">return</span> Expired() ? SharedPointer&lt;ElementType, DeleterType&gt;()
+                         : SharedPointer&lt;ElementType, DeleterType&gt;(*<span style="color:#fff;font-weight:bold">this</span>);
+    }
+
+    <span style="color:#fff;font-weight:bold">int</span> UseCount() { <span style="color:#fff;font-weight:bold">return</span> *ref_count_; }
+
+    <span style="color:#fff;font-weight:bold">const</span> DeleterType&amp; GetDeleter() <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">noexcept</span> { <span style="color:#fff;font-weight:bold">return</span> *deleter_; }
+
+    <span style="color:#fff;font-weight:bold">bool</span> Expired() <span style="color:#fff;font-weight:bold">const</span> { <span style="color:#fff;font-weight:bold">return</span> *ref_count_ == <span style="color:#ff0;font-weight:bold">0</span>; }
+
+    ElementType* ptr_;
+    <span style="color:#fff;font-weight:bold">int</span> *ref_count_;
+    DeleterType* deleter_;
+	mutex* mutex_;
+};
+</code></pre></div><p><code>std::weak_ptr</code> 不能控制被管理资源的生命周期，因此我们在使用的时候需要先判断被管理资源是否存在，我们可以借助 <code>std::weak_ptr::lock</code> 获取一个新的 <code>std::shared_ptr</code> 对象以达到安全访问资源的目的：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> WeakPointerFoo()
+{
+    Object&lt;string&gt; *o = <span style="color:#fff;font-weight:bold">new</span> Object&lt;string&gt;(<span style="color:#0ff;font-weight:bold">&#34;test&#34;</span>);
+    SharedPointer&lt;Object&lt;string&gt;&gt; s(o);
+    WeakPointer&lt;Object&lt;string&gt;&gt; w(s);
+    s.Reset();
+
+    <span style="color:#fff;font-weight:bold">auto</span> p = w.Lock().Get();
+    cout &lt;&lt; w.Expired() &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#fff;font-weight:bold">static_cast</span>&lt;<span style="color:#fff;font-weight:bold">void</span>*&gt;(p) &lt;&lt; endl;
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer
+Object::Constructor 0xf8c058 <span style="color:#007f7f"># o</span>
+SharedPointer::Constructor 0xbe97a630 <span style="color:#007f7f"># s</span>
+WeakPointer::Constructor 0xbe97a620 <span style="color:#007f7f"># w</span>
+SharedPointer::Constructor 0xbe97a608 <span style="color:#007f7f"># temporary variable in s.Reset()</span>
+SharedPointer::Destructor 0xbe97a608 <span style="color:#007f7f"># temporary variable in s.Reset()</span>
+Object::Destructor 0xf8c058 <span style="color:#007f7f"># o</span>
+SharedPointer::Constructor 0xbe97a65c <span style="color:#007f7f"># temporary variable in w.Lock()</span>
+SharedPointer::Destructor 0xbe97a65c <span style="color:#007f7f"># temporary variable in w.Lock()</span>
+<span style="color:#ff0;font-weight:bold">1</span> <span style="color:#007f7f"># w.Expired()</span>
+<span style="color:#ff0;font-weight:bold">0</span> <span style="color:#007f7f"># p</span>
+WeakPointer::Destructor 0xbe97a620 <span style="color:#007f7f"># w</span>
+SharedPointer::Destructor 0xbe97a630 <span style="color:#007f7f"># s</span>
+</code></pre></div><p>如果把上面的 <code>s.Reset()</code> 去掉，那么 <code>w.Lock()</code> 则会返回一个包含有 <code>Object&lt;string&gt;</code> 对象的 <code>SharedPointer</code>，上面的 <code>*o</code> 也不会在 <code>s.Reset()</code> 之后析构掉：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> WeakPointerFoo()
+{
+    Object&lt;string&gt; *o = <span style="color:#fff;font-weight:bold">new</span> Object&lt;string&gt;(<span style="color:#0ff;font-weight:bold">&#34;test&#34;</span>);
+    SharedPointer&lt;Object&lt;string&gt;&gt; s(o);
+    WeakPointer&lt;Object&lt;string&gt;&gt; w(s);
+    <span style="color:#007f7f">// s.Reset();
+</span><span style="color:#007f7f"></span>
+    <span style="color:#fff;font-weight:bold">auto</span> p = w.Lock().Get();
+    cout &lt;&lt; w.Expired() &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#fff;font-weight:bold">static_cast</span>&lt;<span style="color:#fff;font-weight:bold">void</span>*&gt;(p) &lt;&lt; endl;
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer
+Object::Constructor 0xb5c058 <span style="color:#007f7f"># o</span>
+SharedPointer::Constructor 0xbef4562c <span style="color:#007f7f"># s</span>
+WeakPointer::Constructor 0xbef4561c <span style="color:#007f7f"># w</span>
+SharedPointer::Constructor 0xbef45658 <span style="color:#007f7f"># temporary variable in s.Reset()</span>
+SharedPointer::Destructor 0xbef45658 <span style="color:#007f7f"># temporary variable in s.Reset()</span>
+<span style="color:#ff0;font-weight:bold">0</span> <span style="color:#007f7f"># w.Expired()</span>
+0xb5c058 <span style="color:#007f7f"># p</span>
+WeakPointer::Destructor 0xbef4561c <span style="color:#007f7f"># temporary variable in w.Lock()</span>
+SharedPointer::Destructor 0xbef4562c <span style="color:#007f7f"># # temporary variable in w.Lock()</span>
+Object::Destructor 0xb5c058 <span style="color:#007f7f"># o</span>
+</code></pre></div><p>对于循环引用的问题，将需要互相指向的智能指针改为 <code>WeakPointer</code> 则可以成功避免指针对象不能正常析构的问题：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">void</span> WeakPointerFoo()
+{
+	<span style="color:#fff;font-weight:bold">struct</span> Node
+    {
+        <span style="color:#fff;font-weight:bold">int</span> i_;
+        WeakPointer&lt;Node&gt; prev_;
+        WeakPointer&lt;Node&gt; next_;
+
+        Node(<span style="color:#fff;font-weight:bold">int</span> i) : i_(i) { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Node::Constructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+        ~Node() { std::cout &lt;&lt; <span style="color:#0ff;font-weight:bold">&#34;Node::Destructor &#34;</span> &lt;&lt; <span style="color:#fff;font-weight:bold">this</span> &lt;&lt; std::endl; }
+    };
+
+    Node *n1 = <span style="color:#fff;font-weight:bold">new</span> Node(<span style="color:#ff0;font-weight:bold">1</span>), *n2 = <span style="color:#fff;font-weight:bold">new</span> Node(<span style="color:#ff0;font-weight:bold">2</span>);
+    SharedPointer&lt;Node&gt; p1(n1), p2(n2);
+    cout &lt;&lt; p1.UseCount() &lt;&lt; <span style="color:#0ff;font-weight:bold">&#39; &#39;</span> &lt;&lt; p2.UseCount() &lt;&lt; endl;
+    p1-&gt;next_ = p2;
+    p2-&gt;prev_ = p1;
+    cout &lt;&lt; p1.UseCount() &lt;&lt; <span style="color:#0ff;font-weight:bold">&#39; &#39;</span> &lt;&lt; p2.UseCount() &lt;&lt; endl;
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./bin/smart-pointer 
+WeakPointer::Constructor 0xb505c <span style="color:#007f7f"># n1-&gt;prev_</span>
+WeakPointer::Constructor 0xb506c <span style="color:#007f7f"># n1-&gt;next_</span>
+Node::Constructor 0xb5058 <span style="color:#007f7f"># n1</span>
+WeakPointer::Constructor 0xb548c <span style="color:#007f7f"># n2-&gt;prev_</span>
+WeakPointer::Constructor 0xb549c <span style="color:#007f7f"># n2-&gt;next_</span>
+Node::Constructor 0xb5488 <span style="color:#007f7f"># n2</span>
+SharedPointer::Constructor 0xbe904658 <span style="color:#007f7f"># s1</span>
+SharedPointer::Constructor 0xbe904648 <span style="color:#007f7f"># s2</span>
+<span style="color:#ff0;font-weight:bold">1</span> <span style="color:#ff0;font-weight:bold">1</span>
+<span style="color:#ff0;font-weight:bold">1</span> <span style="color:#ff0;font-weight:bold">1</span>
+SharedPointer::Destructor 0xbe904648 <span style="color:#007f7f"># s2</span>
+Node::Destructor 0xb5488 <span style="color:#007f7f"># n2</span>
+WeakPointer::Destructor 0xb549c <span style="color:#007f7f"># n2-&gt;next_</span>
+WeakPointer::Destructor 0xb548c <span style="color:#007f7f"># n2-&gt;prev_</span>
+SharedPointer::Destructor 0xbe904658 <span style="color:#007f7f"># s1</span>
+Node::Destructor 0xb5058 <span style="color:#007f7f"># n1</span>
+WeakPointer::Destructor 0xb506c <span style="color:#007f7f"># n1-&gt;next_</span>
+WeakPointer::Destructor 0xb505c <span style="color:#007f7f"># n1-&gt;prev_</span>
+</code></pre></div>
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

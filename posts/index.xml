@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 30 Sep 2020 16:20:25 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Feb 2021 21:20:18 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43; 智能指针的简单实现</title>
+      <link>https://zintrulcre.vip/posts/c&#43;&#43;/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/smart-pointer/</link>
+      <pubDate>Sun, 21 Feb 2021 21:20:18 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/smart-pointer/</guid>
+      <description>C++ 智能指针的简单实现 [TOC] 1 std::auto_ptr C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类： template&amp;lt;typename T&amp;gt; class Object { public: // constructor Object() : t_() { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } Object(T t) :</description>
+    </item>
+    
+    <item>
+      <title>负载均衡和一致性哈希</title>
+      <link>https://zintrulcre.vip/posts/service-governance/load-balancing/</link>
+      <pubDate>Sun, 25 Oct 2020 23:06:52 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/service-governance/load-balancing/</guid>
+      <description>负载均衡和一致性哈希 [TOC] 反向代理 reverse proxy 是指以代理服务器来接收由客户端发送来的请求，并通过一定的策略将其转变发给实际处理请求的后端服务器；主要应用</description>
+    </item>
+    
     <item>
       <title>C&#43;&#43; 并发入门：以 LeetCode 1114 为例</title>
       <link>https://zintrulcre.vip/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%9F%BA%E7%A1%80/wrapper_escape-in-coverity/</guid>
       <description>coverity 的 WRAPPER_ESCAPE 告警 const char* Foo() { std::string str_msg(&amp;#34;test&amp;#34;); return str_msg.c_str(); } int main() { const char *p_msg = Foo(); printf(&amp;#34;%s\n&amp;#34;, p_msg); return 0; } // output:（为空，或乱码） D? 上面代码中的 Foo 函数会被 coverity 报告 WRAPPER_ESCA</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43; 协程（1）：函数和协程</title>
-      <link>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%8D%8F%E7%A8%8B/c&#43;&#43;-%E5%8D%8F%E7%A8%8B1%E5%87%BD%E6%95%B0%E5%92%8C%E5%8D%8F%E7%A8%8B/</link>
-      <pubDate>Mon, 20 Jan 2020 20:15:05 +0800</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%8D%8F%E7%A8%8B/c&#43;&#43;-%E5%8D%8F%E7%A8%8B1%E5%87%BD%E6%95%B0%E5%92%8C%E5%8D%8F%E7%A8%8B/</guid>
-      <description>C++ 协程（1）：函数和协程 这篇文章的目的是探究 C++ 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。 1. 栈帧和函数 栈帧是一个函数执行</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 树（3）</title>
-      <link>https://zintrulcre.vip/posts/leetcode/tree-3/</link>
-      <pubDate>Sat, 24 Aug 2019 19:12:25 +1000</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/leetcode/tree-3/</guid>
-      <description>LeetCode 树（3） 题目 4. 递归求解 617 合并二叉树 合并两个二叉树。 判断各个节点是否存在，全部合并到一棵树上即可。 class Solution { public: TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2) { if (!t1 &amp;amp;&amp;amp; !t2) return nullptr; else if (!t1) return t2;</description>
     </item>
     
   </channel>
