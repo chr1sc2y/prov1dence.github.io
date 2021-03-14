@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 21 Feb 2021 21:20:18 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Mar 2021 16:05:52 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 源码学习（1）：类型和对象</title>
+      <link>https://zintrulcre.vip/posts/python/source-code-1/</link>
+      <pubDate>Sun, 14 Mar 2021 16:05:52 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/python/source-code-1/</guid>
+      <description>Python 源码学习（1）：类型和对象 [TOC] Python 是一门解释型，动态类型，多范式的编程语言，当我们从 python.org 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C</description>
+    </item>
+    
     <item>
       <title>C&#43;&#43; 智能指针的简单实现</title>
       <link>https://zintrulcre.vip/posts/c&#43;&#43;/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/smart-pointer/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://zintrulcre.vip/posts/c&#43;&#43;/%E7%BC%96%E8%AF%91/gdb/</guid>
       <description>GDB 调试入门 0. 序 调试程序是开发过程中必不可少的一环，在 Windows 或 MacOS 上开发时，可以使用 VS 和 CLion 等 IDE 上自带的调试功能来打断点或查看变量和堆栈，但 Linux 并没有图</description>
-    </item>
-    
-    <item>
-      <title>coverity 的 WRAPPER_ESCAPE 告警</title>
-      <link>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%9F%BA%E7%A1%80/wrapper_escape-in-coverity/</link>
-      <pubDate>Sun, 15 Mar 2020 17:24:27 +0800</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%9F%BA%E7%A1%80/wrapper_escape-in-coverity/</guid>
-      <description>coverity 的 WRAPPER_ESCAPE 告警 const char* Foo() { std::string str_msg(&amp;#34;test&amp;#34;); return str_msg.c_str(); } int main() { const char *p_msg = Foo(); printf(&amp;#34;%s\n&amp;#34;, p_msg); return 0; } // output:（为空，或乱码） D? 上面代码中的 Foo 函数会被 coverity 报告 WRAPPER_ESCA</description>
     </item>
     
   </channel>

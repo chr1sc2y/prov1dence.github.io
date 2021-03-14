@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python 源码学习（1）：类型和对象"/>
+<meta name="twitter:description" content="Python 源码学习（1）：类型和对象 [TOC] Python 是一门解释型，动态类型，多范式的编程语言，当我们从 python.org 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C"/>
+
+    <meta property="og:title" content="Python 源码学习（1）：类型和对象" />
+<meta property="og:description" content="Python 源码学习（1）：类型和对象 [TOC] Python 是一门解释型，动态类型，多范式的编程语言，当我们从 python.org 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/python/source-code-1/" />
+<meta property="article:published_time" content="2021-03-14T16:05:52+08:00" />
+<meta property="article:modified_time" content="2021-03-14T16:05:52+08:00" />
+
+
+    
+      <base href="https://zintrulcre.vip/posts/python/source-code-1/">
+    
+    <title>
+  Python 源码学习（1）：类型和对象 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/python/source-code-1/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.75.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Python 源码学习（1）：类型和对象</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2021-03-14T16:05:52&#43;08:00'>
+                March 14, 2021
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/python/">python</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        <h1 id="python-源码学习1类型和对象">Python 源码学习（1）：类型和对象</h1>
+<p>[TOC]</p>
+<p>Python 是一门解释型，动态类型，多范式的编程语言，当我们从 <a href="https://www.python.org/">python.org</a> 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 <a href="https://github.com/python/cpython">CPython</a>，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git clone https://github.com/python/cpython
+$ tree -d -L <span style="color:#ff0;font-weight:bold">2</span> .
+.
+<span style="color:#0ff;font-weight:bold">`</span>-- cpython
+    |-- Doc			<span style="color:#007f7f"># 文档</span>
+    |-- Grammar
+    |-- Include 	<span style="color:#007f7f"># C 头文件</span>
+    |-- Lib			<span style="color:#007f7f"># 用 Python 写的库文件</span>
+    |-- Mac			<span style="color:#007f7f"># 用于在 macOS 上构建的文件</span>
+    |-- Misc		<span style="color:#007f7f"># 杂项</span>
+    |-- Modules		<span style="color:#007f7f"># 用 C 写的库文件</span>
+    |-- Objects 	<span style="color:#007f7f"># 核心类型，以及对象模型的定义</span>
+    |-- PC			<span style="color:#007f7f"># 用于在 Windows 上构建的文件</span>
+    |-- PCbuild 	<span style="color:#007f7f"># 用于在老版本的 Windows 上构建的文件</span>
+    |-- Parser		<span style="color:#007f7f"># Python 解析器源码</span>
+    |-- Programs	<span style="color:#007f7f"># Python 可执行文件和其他</span>
+    |-- Python		<span style="color:#007f7f"># CPython 编译器源码</span>
+    |-- Tools		<span style="color:#007f7f"># 构建时的工具</span>
+    <span style="color:#0ff;font-weight:bold">`</span>-- m4
+
+<span style="color:#ff0;font-weight:bold">16</span> directories
+</code></pre></div><p>本系列主要以阅读和分析 CPython 源码的方式学习 Python。</p>
+<h2 id="1-对象模型">1 对象模型</h2>
+<p>Python 是一门面向对象的语言，我们可以使用 Python 中的 <code>type()</code> 函数查看一个对象所属的类：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt;&gt;&gt; type(1)
+&lt;class <span style="color:#0ff;font-weight:bold">&#39;int&#39;</span>&gt;
+&gt;&gt;&gt; type(True)
+&lt;class <span style="color:#0ff;font-weight:bold">&#39;bool&#39;</span>&gt;
+</code></pre></div><p>可以看到整数对象和布尔值对象的类型分别是 <code>&lt;class 'int'&gt;</code> 和 <code>&lt;class 'bool'&gt;</code>；</p>
+<p>而实际上，在 Python 中无论是整数，布尔值还是基本数据类型，甚至自定义的 class，都是对象：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">class</span> Foo:
+    <span style="color:#fff;font-weight:bold">pass</span>
+
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#fff;font-weight:bold">type</span>(<span style="color:#fff;font-weight:bold">int</span>))
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#fff;font-weight:bold">type</span>(Foo))
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;class <span style="color:#0ff;font-weight:bold">&#39;type&#39;</span>&gt;
+&lt;class <span style="color:#0ff;font-weight:bold">&#39;type&#39;</span>&gt;
+</code></pre></div><p>可以看到 <code>int</code> 类型和自定义类 <code>Foo</code> 的类型都是 <code>&lt;class 'type'&gt;</code>，它们是 <code>type</code> 这个类的实例对象；<code>type</code> 类型是专门用于定义类型的类型，也称为<strong>元类型</strong>；实际上， <code>type</code> 这个类型本身也是一个对象，它所属的类也是 <code>type</code>：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt;&gt;&gt; type(<span style="color:#fff;font-weight:bold">type</span>) 
+&lt;class <span style="color:#0ff;font-weight:bold">&#39;type&#39;</span>&gt;
+</code></pre></div><p>同时，Python 中的所有类型，无论是 <code>int</code>, <code>type</code>, 还是自定义类 <code>Foo</code> 都是继承自一个叫 <code>object</code> 的基类，而 <code>object</code> 则是继承链的终点：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt;&gt;&gt; int.__base__
+&lt;class <span style="color:#0ff;font-weight:bold">&#39;object&#39;</span>&gt;
+&gt;&gt;&gt; type.__base__
+&lt;class <span style="color:#0ff;font-weight:bold">&#39;object&#39;</span>&gt;
+&gt;&gt;&gt; print(Foo.__base__)
+&lt;class <span style="color:#0ff;font-weight:bold">&#39;object&#39;</span>&gt;
+&gt;&gt;&gt; print(object.__base__)
+None
+</code></pre></div><p>而 <code>object</code> 基类也是一个 <code>type</code> 类型的对象：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt;&gt;&gt; type(object)
+&lt;class <span style="color:#0ff;font-weight:bold">&#39;type&#39;</span>&gt;
+</code></pre></div><p>上面的关系用图表达出来则是：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/python/type-0.png" alt="process"></p>
+<p>可以看到，所有类型的基类都是 <code>object</code>，所有类型的类型都是 <code>type</code>，这就是 Python 的<strong>对象模型</strong>（object model），也是 Objects/ 目录下源码所包含的内容。</p>
+<h2 id="2-核心类型与对象">2 核心类型与对象</h2>
+<p>虽然在 Python 的语法层面有非常多所谓的类型（包括 <code>int</code>, <code>type</code>, <code>Foo</code> 等），但实际上它们在源码（C 语言）层面上都是结构体对象。</p>
+<h3 id="21-对象">2.1 对象</h3>
+<h4 id="pyobject">PyObject</h4>
+<p>Python 中所有的类型都由 <strong><code>PyObject</code></strong> 结构体扩展而来，这个结构体中有以下几个成员变量：</p>
+<ol>
+<li><code>Py_ssize_t ob_refcnt</code> 用于保存对象的<strong>引用计数</strong>；</li>
+<li><code>PyTypeObject *ob_type</code> 指向对象的<strong>类型对象</strong>，用来标识对象属于的类型，并存储类型的<strong>元数据</strong>；</li>
+<li><code>_PyObject_HEAD_EXTRA</code> 宏代表了两个 <code>PyObject*</code> 双向链表的指针，用于把堆上的所有对象链接起来，只会在开启了 <code>Py_TRACE_REFS</code> 宏的时候进行构造，方便调试；</li>
+</ol>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#007f7f">// Include/object.h
+</span><span style="color:#007f7f"></span>
+<span style="color:#007f7f">/* Define pointers to support a doubly-linked list of all live heap objects. */</span>
+<span style="color:#0f0;font-weight:bold">#define _PyObject_HEAD_EXTRA            \
+</span><span style="color:#0f0;font-weight:bold">    struct _object *_ob_next;           \
+</span><span style="color:#0f0;font-weight:bold">    struct _object *_ob_prev;
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#007f7f">/* Nothing is actually declared to be a PyObject, but every pointer to
+</span><span style="color:#007f7f"> * a Python object can be cast to a PyObject*.  This is inheritance built
+</span><span style="color:#007f7f"> * by hand.  Similarly every pointer to a variable-size Python object can,
+</span><span style="color:#007f7f"> * in addition, be cast to PyVarObject*.
+</span><span style="color:#007f7f"> */</span>
+<span style="color:#fff;font-weight:bold">typedef</span> <span style="color:#fff;font-weight:bold">struct</span> _object {
+    _PyObject_HEAD_EXTRA	<span style="color:#007f7f">// 双向链表，用于追踪堆中所有对象，在开启了 Py_TRACE_REFS 宏的时候有用
+</span><span style="color:#007f7f"></span>    Py_ssize_t ob_refcnt;	<span style="color:#007f7f">// 引用计数，用于垃圾回收
+</span><span style="color:#007f7f"></span>    PyTypeObject *ob_type;	<span style="color:#007f7f">// 指针，指向当前对象的类型对象，用于查询对象的类型
+</span><span style="color:#007f7f"></span>} PyObject;
+</code></pre></div><h4 id="pyvarobject">PyVarObject</h4>
+<p>Python 中有可以自由修改长度的 <code>PyVarObject</code> 变长对象，它由一个 <code>PyObject</code> 对象和一个存储变长部分的长度（元素个数）的变量 <code>ob_size</code> 组成：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">typedef</span> <span style="color:#fff;font-weight:bold">struct</span> {
+    PyObject ob_base;
+    Py_ssize_t ob_size; <span style="color:#007f7f">/* Number of items in variable part */</span>
+} PyVarObject;
+</code></pre></div><p><code>PyObject</code> 和 <code>PyVarObject</code> 一般是作为头部被包含在一个变量结构体中的，根据该变量大小是否固定来选择使用哪一种：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Include/object.h
+</span><span style="color:#007f7f"></span><span style="color:#007f7f">/* PyObject_HEAD defines the initial segment of every PyObject. */</span>
+<span style="color:#0f0;font-weight:bold">#define PyObject_HEAD          PyObject ob_base;
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#007f7f">/* PyObject_VAR_HEAD defines the initial segment of all variable-size
+</span><span style="color:#007f7f"> * container objects.  These end with a declaration of an array with 1
+</span><span style="color:#007f7f"> * element, but enough space is malloc&#39;ed so that the array actually
+</span><span style="color:#007f7f"> * has room for ob_size elements.  Note that ob_size is an element count,
+</span><span style="color:#007f7f"> * not necessarily a byte count.
+</span><span style="color:#007f7f"> */</span>
+<span style="color:#0f0;font-weight:bold">#define PyObject_VAR_HEAD      PyVarObject ob_base;
+</span></code></pre></div><p>Python 中最典型的变长对象就是列表 List，它和 <code>std::vector</code> 比较类似，列表对象里有三个成员变量，包括：</p>
+<ul>
+<li>基础的变长对象 <code>PyVarObject ob_base</code>，其中 <code>ob_base.ob_size</code> 用于表示列表当前的元素个数；</li>
+<li>指向动态数组的指针 <code>PyObject **ob_item</code>；</li>
+<li>动态数组当前的容量 <code>Py_ssize_t allocated</code>：</li>
+</ul>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Inlucde/cpython/listobject.h
+</span><span style="color:#007f7f"></span>
+<span style="color:#fff;font-weight:bold">typedef</span> <span style="color:#fff;font-weight:bold">struct</span> {
+    PyObject_VAR_HEAD
+    <span style="color:#007f7f">/* Vector of pointers to list elements.  list[0] is ob_item[0], etc. */</span>
+    PyObject **ob_item;
+
+    <span style="color:#007f7f">/* ob_item contains space for &#39;allocated&#39; elements.  The number
+</span><span style="color:#007f7f">     * currently in use is ob_size.
+</span><span style="color:#007f7f">     * Invariants:
+</span><span style="color:#007f7f">     *     0 &lt;= ob_size &lt;= allocated
+</span><span style="color:#007f7f">     *     len(list) == ob_size
+</span><span style="color:#007f7f">     *     ob_item == NULL implies ob_size == allocated == 0
+</span><span style="color:#007f7f">     * list.sort() temporarily sets allocated to -1 to detect mutations.
+</span><span style="color:#007f7f">     *
+</span><span style="color:#007f7f">     * Items must normally not be NULL, except during construction when
+</span><span style="color:#007f7f">     * the list is not yet visible outside the function that builds it.
+</span><span style="color:#007f7f">     */</span>
+    Py_ssize_t allocated;
+} PyListObject;
+</code></pre></div><h3 id="22-类型">2.2 类型</h3>
+<h4 id="pytypeobject">PyTypeObject</h4>
+<p><code>PyObject</code> 类中的 <code>PyTypeObject *ob_type</code> 是一个指向<strong>对象类型</strong>的指针，它是<strong>类</strong>在 Python 中的表现形式；<code>PyTypeObject</code> 不仅决定了 <code>PyObject</code> 对象属于什么类型，还包含了非常多的<strong>元数据</strong>，例如：</p>
+<ol>
+<li><code>PyObject_VAR_HEAD</code> 表示 <code>PyTypeObject</code> 本身是一个<strong>变长对象</strong>；</li>
+<li><code>const char *tp_name</code> 表示类型的名字；</li>
+<li><code>struct _typeobject *tp_base</code> 是指向基类的指针，保存类型的继承信息；</li>
+<li><code>Py_ssize_t tp_basicsize, tp_itemsize</code> 表示创建实力对象时分配的内存大小；</li>
+<li><code>setattrfunc tp_setattr</code> 设置值，<code>getattrfunc tp_getattr</code> 获取值，<code>destructor tp_dealloc</code> 析构，<code>hashfunc tp_hash</code> 哈希等函数指针表示该类型所支持的标准操作；</li>
+</ol>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#007f7f">// Include/object.h
+</span><span style="color:#007f7f"></span>
+<span style="color:#007f7f">/* PyTypeObject structure is defined in cpython/object.h.
+</span><span style="color:#007f7f">   In Py_LIMITED_API, PyTypeObject is an opaque structure. */</span>
+<span style="color:#fff;font-weight:bold">typedef</span> <span style="color:#fff;font-weight:bold">struct</span> _typeobject PyTypeObject;
+
+<span style="color:#007f7f">// Include/cpython/object.h
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">struct</span> _typeobject {
+    PyObject_VAR_HEAD <span style="color:#007f7f">// 即 PyVarObject ob_base;
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span> *tp_name; <span style="color:#007f7f">/* For printing, in format &#34;&lt;module&gt;.&lt;name&gt;&#34; */</span>
+    Py_ssize_t tp_basicsize, tp_itemsize; <span style="color:#007f7f">/* For allocation */</span>
+
+    <span style="color:#007f7f">/* Methods to implement standard operations */</span>
+
+    destructor tp_dealloc;
+    Py_ssize_t tp_vectorcall_offset;
+    getattrfunc tp_getattr;
+    setattrfunc tp_setattr;
+    PyAsyncMethods *tp_as_async; <span style="color:#007f7f">/* formerly known as tp_compare (Python 2)
+</span><span style="color:#007f7f">                                    or tp_reserved (Python 3) */</span>
+
+    <span style="color:#007f7f">// Strong reference on a heap type, borrowed reference on a static type
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">struct</span> _typeobject *tp_base;
+    
+    <span style="color:#007f7f">/* More standard operations (here for binary compatibility) */</span>
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>};
+</code></pre></div><p>Python 中的每一种<strong>类型对象</strong>都是<strong>全局唯一</strong>的，他们在源码中以<strong>全局变量</strong>的形式存在，例如 <code>int</code> 类型：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/longobject.c
+</span><span style="color:#007f7f"></span>PyTypeObject PyLong_Type = {
+    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span style="color:#ff0;font-weight:bold">0</span>)
+    <span style="color:#0ff;font-weight:bold">&#34;int&#34;</span>,                                      <span style="color:#007f7f">/* tp_name */</span>
+    offsetof(PyLongObject, ob_digit),           <span style="color:#007f7f">/* tp_basicsize */</span>
+    <span style="color:#fff;font-weight:bold">sizeof</span>(digit),                              <span style="color:#007f7f">/* tp_itemsize */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_dealloc */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_vectorcall_offset */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_getattr */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_setattr */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_as_async */</span>
+    long_to_decimal_string,                     <span style="color:#007f7f">/* tp_repr */</span>
+    &amp;long_as_number,                            <span style="color:#007f7f">/* tp_as_number */</span>
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>};
+</code></pre></div><p><code>PyVarObject_HEAD_INIT</code> 宏用于初始化 <code>PyVarObject</code> 中的 <code>ob_refcnt</code>, <code>ob_type</code> 和 <code>ob_size</code>：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#0f0;font-weight:bold">#define PyObject_HEAD_INIT(type)        \
+</span><span style="color:#0f0;font-weight:bold">    { 1, type },
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#0f0;font-weight:bold">#define PyVarObject_HEAD_INIT(type, size)       \
+</span><span style="color:#0f0;font-weight:bold">    { PyObject_HEAD_INIT(type) size },
+</span><span style="color:#0f0;font-weight:bold"></span>
+</code></pre></div><p>可以看到在 <code>PyLong_Type</code> 中，<code>ob_type</code> 被初始化为 <code>&amp;PyType_Type</code>，它是专门用于<strong>定义类型对象的类型</strong>，抑或叫做<strong>类型的类型</strong>或<strong>原类型</strong>。</p>
+<h4 id="pytype_type">PyType_Type</h4>
+<p>在前面已经了解到，<code>type</code> <strong>类型对象</strong>所属的类也是 <code>type</code>，那么<strong>类型对象</strong> <code>PyTypeObject</code> 本身也是一个类对象，它也拥有指向其<strong>类型对象</strong>的指针 <code>PyTypeObject *ob_type</code>；对于<strong>类型对象</strong>本身来说，它的<strong>类型对象</strong>都基于一个叫做 <code>PyType_Type</code>（即<strong>元类型</strong>）的 <code>PyTypeObject</code> 类对象：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/typeobject.c
+</span><span style="color:#007f7f"></span>PyTypeObject PyType_Type = {
+    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span style="color:#ff0;font-weight:bold">0</span>)		<span style="color:#007f7f">// PyType_Type 在初始化的时候将指向自身的指针传递并用于构造了一个 PyVarObject 类型的对象 ob_base，其中 ob_base-&gt;ob_type = &amp;PyType_Type，参考附录 1
+</span><span style="color:#007f7f"></span>    <span style="color:#0ff;font-weight:bold">&#34;type&#34;</span>,                                     <span style="color:#007f7f">/* tp_name */</span>
+    <span style="color:#fff;font-weight:bold">sizeof</span>(PyHeapTypeObject),                   <span style="color:#007f7f">/* tp_basicsize */</span>
+    <span style="color:#fff;font-weight:bold">sizeof</span>(PyMemberDef),                        <span style="color:#007f7f">/* tp_itemsize */</span>
+    (destructor)type_dealloc,                   <span style="color:#007f7f">/* tp_dealloc */</span>
+    offsetof(PyTypeObject, tp_vectorcall),      <span style="color:#007f7f">/* tp_vectorcall_offset */</span>
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>};
+</code></pre></div><p>Python 中<strong>类型对象</strong>都定义在了 Objects/ 目录下，例如 <code>bool</code> 类型：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/boolobject.c
+</span><span style="color:#007f7f"></span>
+<span style="color:#007f7f">/* The type object for bool.  Note that this cannot be subclassed! */</span>
+
+PyTypeObject PyBool_Type = {
+    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span style="color:#ff0;font-weight:bold">0</span>)		<span style="color:#007f7f">// 同 PyType_Type，ob_base-&gt;ob_type = &amp;PyType_Type
+</span><span style="color:#007f7f"></span>    <span style="color:#0ff;font-weight:bold">&#34;bool&#34;</span>,										<span style="color:#007f7f">// tp_name = &#34;bool&#34;
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">sizeof</span>(<span style="color:#fff;font-weight:bold">struct</span> _longobject),					<span style="color:#007f7f">/* tp_basicsize */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,											<span style="color:#007f7f">/* tp_itemsize */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_dealloc */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_vectorcall_offset */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_getattr */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_setattr */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_as_async */</span>
+    bool_repr,                                  <span style="color:#007f7f">/* tp_repr */</span>
+    &amp;bool_as_number,                            <span style="color:#007f7f">/* tp_as_number */</span>
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_base */</span>
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>};
+</code></pre></div><p>在 Python 中，无论是内建类型（<code>int</code>, <code>bool</code> 等），还是自定义类型（<code>Foo</code>），都是通过 <code>PyTypeObject</code> 这个结构体构造的，且一定满足 <code>ob_base-&gt;ob_type = &amp;PyType_Type</code>。</p>
+<p>前文提到 <code>tp_base</code> 是指向基类的指针，保存类型的继承信息，但实际上在定义 <code>PyBool_Type</code> 的时候可以看到 <code>tp_base = 0</code>，实际上这个 <code>tp_base</code> 是在 <code>PyType_Ready</code> 函数中被赋值为 <code>PyBaseObject_Type</code> 的：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/typeobject.c
+</span><span style="color:#007f7f"></span>
+<span style="color:#fff;font-weight:bold">int</span>
+PyType_Ready(PyTypeObject *type)
+{
+    PyTypeObject *base;
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>	<span style="color:#007f7f">/* Initialize tp_base (defaults to BaseObject unless that&#39;s us) */</span>
+    base = type-&gt;tp_base;
+    <span style="color:#fff;font-weight:bold">if</span> (base == <span style="color:#fff;font-weight:bold">NULL</span> &amp;&amp; type != &amp;PyBaseObject_Type) {
+        base = &amp;PyBaseObject_Type;
+        <span style="color:#fff;font-weight:bold">if</span> (type-&gt;tp_flags &amp; Py_TPFLAGS_HEAPTYPE) {
+            type-&gt;tp_base = (PyTypeObject*)Py_NewRef((PyObject*)base);
+        }
+        <span style="color:#fff;font-weight:bold">else</span> {
+            type-&gt;tp_base = base;
+        }
+    }
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>}
+</code></pre></div><p>这里 <code>PyTypeObject *base</code> 被赋值为的 <code>PyBaseObject_Type</code> 就是前文提到的<strong>基类型</strong>。</p>
+<h4 id="pybaseobject_type">PyBaseObject_Type</h4>
+<p><code>PyBaseObject_Type</code> 定义在 typeobject.c 文件中：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/typeobject.c
+</span><span style="color:#007f7f"></span>PyTypeObject PyBaseObject_Type = {
+    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span style="color:#ff0;font-weight:bold">0</span>)		<span style="color:#007f7f">// 同 PyType_Type，ob_base-&gt;ob_type = &amp;PyType_Type
+</span><span style="color:#007f7f"></span>    <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span>,                                   <span style="color:#007f7f">/* tp_name */</span>
+    <span style="color:#fff;font-weight:bold">sizeof</span>(PyObject),                           <span style="color:#007f7f">/* tp_basicsize */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_itemsize */</span>
+    object_dealloc,                             <span style="color:#007f7f">/* tp_dealloc */</span>
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>    object_repr,                                <span style="color:#007f7f">/* tp_repr */</span>
+	<span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_base */</span>
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>};
+</code></pre></div><p>可以看到无论是 <code>PyBool_Type</code>，<code>PyType_Type</code> 还是 <code>PyBaseObject_Type</code>，都有两个共同点：</p>
+<ol>
+<li>它们是以同样的方式 <code>PyVarObject_HEAD_INIT(&amp;PyType_Type, 0)</code> 定义其类型的，因此它们的类型都是 <code>PyTypeObject</code>；</li>
+<li>它们指向基类的指针 <code>tp_base</code> 初始化时都是 NULL；</li>
+</ol>
+<p>不同的地方是，在使用 <code>PyType_Ready</code> 函数为它们的基类指针 <code>tp_base</code> 赋值时，只有 <code>PyBaseObject_Type.tp_base</code> 不会被赋值，其他的 <code>tp_base</code> 则都会被赋值为 <code>PyBaseObject_Type</code>，这也印证了 <code>PyBaseObject_Type</code> 是继承链的终点。</p>
+<p>我们可以将上面的关系整理为一个图：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/python/type-1.png" alt="process"></p>
+<h2 id="附录">附录</h2>
+<h3 id="1-pytype_type-构造">1 PyType_Type 构造</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">struct</span> Bar;
+
+<span style="color:#fff;font-weight:bold">struct</span> Foo
+{
+	Bar* p_b;
+	<span style="color:#fff;font-weight:bold">int</span> ref_count;
+};
+
+<span style="color:#fff;font-weight:bold">struct</span> Bar
+{
+	Foo f;
+	<span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* name;
+};
+
+Bar b
+{
+	Foo{ &amp;b, <span style="color:#ff0;font-weight:bold">1</span> },
+	<span style="color:#0ff;font-weight:bold">&#34;ClassBar&#34;</span>
+};
+
+<span style="color:#fff;font-weight:bold">int</span> main()
+{
+	printf(<span style="color:#0ff;font-weight:bold">&#34;%s</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, b.f.p_b-&gt;name);
+	<span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./test
+ClassBar
+</code></pre></div>
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>
