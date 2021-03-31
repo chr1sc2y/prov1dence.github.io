@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python 源码学习（2）：int 类型"/>
+<meta name="twitter:description" content="Python 源码学习（2）：int 类型 [TOC] Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 PyBaseObject_Type 类型的"/>
+
+    <meta property="og:title" content="Python 源码学习（2）：int 类型" />
+<meta property="og:description" content="Python 源码学习（2）：int 类型 [TOC] Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 PyBaseObject_Type 类型的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/python/source-code-2/" />
+<meta property="article:published_time" content="2021-03-31T15:37:52+08:00" />
+<meta property="article:modified_time" content="2021-03-31T15:37:52+08:00" />
+
+
+    
+      <base href="https://zintrulcre.vip/posts/python/source-code-2/">
+    
+    <title>
+  Python 源码学习（2）：int 类型 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/python/source-code-2/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.75.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Python 源码学习（2）：int 类型</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2021-03-31T15:37:52&#43;08:00'>
+                March 31, 2021
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/python/">python</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        <h1 id="python-源码学习2int-类型">Python 源码学习（2）：int 类型</h1>
+<p>[TOC]</p>
+<p>Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 <code>PyBaseObject_Type</code> 类型的 <code>PyType_Type</code> 类型的实例对象，本文则主要探究 Python 中 int 类型的实现。</p>
+<p>不同于 C 和 C++ 中的 <code>int</code> 类型，Python 中的 <code>int</code> 类型最大的特点是它一般是<strong>不会溢出</strong>的，对比用 C 和 Python 分别输出两个一百万相乘的结果：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; x = <span style="color:#ff0;font-weight:bold">10000000000</span>
+&gt;&gt;&gt; <span style="color:#fff;font-weight:bold">print</span>(x)
+<span style="color:#ff0;font-weight:bold">10000000000</span>
+</code></pre></div><p>在 C 语言中会发生溢出：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++">printf(<span style="color:#0ff;font-weight:bold">&#34;%d</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, <span style="color:#ff0;font-weight:bold">1000000</span> * <span style="color:#ff0;font-weight:bold">1000000</span>);
+printf(<span style="color:#0ff;font-weight:bold">&#34;%u</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, <span style="color:#ff0;font-weight:bold">1000000</span> * <span style="color:#ff0;font-weight:bold">1000000</span>);
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">-727379968
+<span style="color:#ff0;font-weight:bold">3567587328</span>
+</code></pre></div><h2 id="1-int-类型在内存中的存储方式">1 int 类型在内存中的存储方式</h2>
+<h3 id="11-内存结构">1.1 内存结构</h3>
+<p>Python 中的 <code>int</code> 整数类型实际上是一个名为 <code>PyLongObject</code>  的结构体，定义在 <code>longintrepr.h</code> 文件中：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Include/object.h
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#define PyObject_VAR_HEAD      PyVarObject ob_base;
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#007f7f">// Objects/longobject.h
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#if PYLONG_BITS_IN_DIGIT == 30
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#fff;font-weight:bold">typedef</span> <span style="color:#fff;font-weight:bold">uint32_t</span> digit;
+<span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#elif PYLONG_BITS_IN_DIGIT == 15
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#fff;font-weight:bold">typedef</span> <span style="color:#fff;font-weight:bold">unsigned</span> <span style="color:#fff;font-weight:bold">short</span> digit;
+<span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#endif
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#fff;font-weight:bold">typedef</span> <span style="color:#fff;font-weight:bold">struct</span> _longobject PyLongObject; <span style="color:#007f7f">/* Revealed in longintrepr.h */</span>
+
+<span style="color:#007f7f">// Include/longintrepr.h
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">struct</span> _longobject {
+    PyObject_VAR_HEAD
+    digit ob_digit[<span style="color:#ff0;font-weight:bold">1</span>];
+};
+</code></pre></div><p>它由两部分组成，分别是：</p>
+<ol>
+<li>
+<p>一个变长对象 <code>PyVarObject ob_base</code>，其中包括引用计数 <code>Py_ssize_t ob_refcnt</code>、类型指针 <code>PyTypeObject *ob_type</code>、变长部分的长度 <code>Py_ssize_t ob_size</code>，表明 <code>PyLongObject</code> 也是一个<strong>变长对象</strong>；</p>
+</li>
+<li>
+<p>一个 <code>digit</code> 类型的数组 <code>ob_digit</code> ，用于存储整数值，数组长度默认为 1，在初始化时如果长度不够则会被扩大； <code>digit</code> 是一个被 <code>PYLONG_BITS_IN_DIGIT </code> 宏控制的类型，在编译 Python 解释器时可以通过修改这个宏来指定其类型；如果没有指定 <code>PYLONG_BITS_IN_DIGIT </code> 宏的值，则默认会根据操作系统的类型来决定，当指针占用 8 字节以上空间时（64 位以上操作系统），<code>PYLONG_BITS_IN_DIGIT = 30</code>，<code>digit</code> 即为 <code>uint32_t</code>，否则 <code>PYLONG_BITS_IN_DIGIT = 15</code>，<code>digit</code> 则是 <code>unsigned short</code>：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">
+</code></pre></div></li>
+</ol>
+<p>#ifndef PYLONG_BITS_IN_DIGIT
+#if SIZEOF_VOID_P &gt;= 8
+#define PYLONG_BITS_IN_DIGIT 30
+#else
+#define PYLONG_BITS_IN_DIGIT 15
+#endif
+#endif</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+`PyLongObject` 的内存结构大致如图：
+
+![PyLongObject](https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/python/PyLongObject.png)
+
+### 1.2 数据表示
+
+在 `ob_digit` 数组中，数据的表示遵循两个原则：
+
+1. `ob_size` 的绝对值表示 `ob_digit` 数组的长度，`ob_size = 0` 表示 `PyLongObject` 的数值等于 0；数据的正负由 `ob_size` 的正负来标识，`ob_size &gt; 0` 表示 `PyLongObject &gt; 0`，`ob_size &lt; 0` 表示 `PyLongObject &lt; 0`；
+2. `ob_digit` 数组的每一个元素都是一个最大为 `2^30`（假设 `PYLONG_BITS_IN_DIGIT == 30`）的整数，如果整数超过了这个值，则会清零并使其后一位自增 1，假设 `ob_size = n`，那么数据的绝对值则等于 `ob_digit[0] + ob_digit[1] * 2^30 + ob_digit[2] * 2^60 + ... + ob_digit[n-1] * 2^(30 * (n-1))`；
+
+例如对于整数 4294967297，可以被表示为 `1 + 4 * 2^30`，因此其 `ob_size = 2`, `ob_digit[0] = 1`, `ob_digit[1] = 4`，其内存结构大致如图：
+
+![PyLongObject-1](https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/python/PyLongObject-1.png)
+
+通过这种大数存储方式，Python 从语言层面解决了 `2^(30*2147483648) - 1` 以下（`ob_size` 的类型 `Py_ssize_t` 是通过 `typedef long int Py_ssize_t` 定义的）的大数的溢出问题。
+
+### 1.3 创建对象
+
+在 Python 中， `PyLongObject` 对象一般是通过 `_PyLong_New` 函数创建出来的：
+
+```cpp
+/* Allocate a new int object with size digits.
+Return NULL and set exception if we run out of memory. */
+
+#define MAX_LONG_DIGITS \
+ ((PY_SSIZE_T_MAX - offsetof(PyLongObject, ob_digit))/sizeof(digit))
+
+PyLongObject *
+_PyLong_New(Py_ssize_t size)
+{
+ PyLongObject *result;
+ /* Number of bytes needed is: offsetof(PyLongObject, ob_digit) +
+    sizeof(digit)*size.  Previous incarnations of this code used
+    sizeof(PyVarObject) instead of the offsetof, but this risks being
+    incorrect in the presence of padding between the PyVarObject header
+    and the digits. */
+ if (size &gt; (Py_ssize_t)MAX_LONG_DIGITS) {
+     PyErr_SetString(PyExc_OverflowError,
+                     &#34;too many digits in integer&#34;);
+     return NULL;
+ }
+ result = PyObject_MALLOC(offsetof(PyLongObject, ob_digit) +
+                          size*sizeof(digit));
+ if (!result) {
+     PyErr_NoMemory();
+     return NULL;
+ }
+ _PyObject_InitVar((PyVarObject*)result, &amp;PyLong_Type, size);
+ return result;
+}
+</code></pre></div><p>这个函数非常简单，主要是做了两件事：</p>
+<ol>
+<li>内存分配前后的检查，包括参数 <code>size</code> 不能超过 <code>MAX_LONG_DIGITS</code>，也就是说 <code>PyLongObject</code> 所表示的整数大小不能超过 <code>2^(30*2147483648) - 1</code>，以及生成使用 <code>malloc</code> 分配内存失败后的报错信息；</li>
+<li>为 <code>PyLongObject</code> 对象申请内存，其大小分为两部分，第一部分是 <code>PyVarObject</code> 在内存对齐后所占用的空间，即 <code>offsetof(PyLongObject, ob_digit)</code>；第二部分是 <code>ob_digit</code> 数组所占用的空间，其中参数 <code>size</code> 是 <code>ob_digit</code> 数组的长度。</li>
+</ol>
+<h3 id="14-数据转化">1.4 数据转化</h3>
+<p>每一个 <code>PyLongObject</code> 对象都拥有不同的内存地址，我们可以通过 Python 中的 <code>id</code> 函数来查看一个变量的标识，这个标识会因内存地址的不同而改变：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">5</span>):
+	<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#fff;font-weight:bold">id</span>(i))
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python3 main.py 
+<span style="color:#ff0;font-weight:bold">139748219328384</span>
+<span style="color:#ff0;font-weight:bold">139748219328416</span>
+<span style="color:#ff0;font-weight:bold">139748219328448</span>
+<span style="color:#ff0;font-weight:bold">139748219328480</span>
+<span style="color:#ff0;font-weight:bold">139748219328512</span>
+</code></pre></div><p>可以看出 0 到 4 这 5 个数的标识里每两个都相差了 32，刚好符合每一个 <code>PyLongObject</code> 对象所占用的空间 32 字节，而不是 C 语言里一个 <code>long</code> 类型变量通常所占用的 4 字节或 8 字节，这是因为所有原始的数据都会被转化为 <code>PyLongObject</code> 对象。</p>
+<p>数据转化的方法有很多，以 <code>PyLong_FromLong</code> 为例，它会将一个 <code>long</code> 类型的整数转化为 <code>PyLongObject</code> 对象：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/longobject.c
+</span><span style="color:#007f7f"></span><span style="color:#007f7f">/* interpreter state */</span>
+<span style="color:#0f0;font-weight:bold">#define _PY_NSMALLPOSINTS           257
+</span><span style="color:#0f0;font-weight:bold">#define _PY_NSMALLNEGINTS           5
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#0f0;font-weight:bold">#define NSMALLNEGINTS           _PY_NSMALLNEGINTS
+</span><span style="color:#0f0;font-weight:bold">#define NSMALLPOSINTS           _PY_NSMALLPOSINTS
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#0f0;font-weight:bold">#define IS_SMALL_INT(ival) (-NSMALLNEGINTS &lt;= (ival) &amp;&amp; (ival) &lt; NSMALLPOSINTS)
+</span><span style="color:#0f0;font-weight:bold"></span>
+PyObject *
+PyLong_FromLong(<span style="color:#fff;font-weight:bold">long</span> ival)
+{
+    PyLongObject *v;
+    <span style="color:#fff;font-weight:bold">unsigned</span> <span style="color:#fff;font-weight:bold">long</span> abs_ival;
+    <span style="color:#fff;font-weight:bold">unsigned</span> <span style="color:#fff;font-weight:bold">long</span> t;  <span style="color:#007f7f">/* unsigned so &gt;&gt; doesn&#39;t propagate sign bit */</span>
+    <span style="color:#fff;font-weight:bold">int</span> ndigits = <span style="color:#ff0;font-weight:bold">0</span>;
+    <span style="color:#fff;font-weight:bold">int</span> sign;
+
+    <span style="color:#fff;font-weight:bold">if</span> (IS_SMALL_INT(ival)) {
+        <span style="color:#fff;font-weight:bold">return</span> get_small_int((sdigit)ival);
+    }
+
+    <span style="color:#fff;font-weight:bold">if</span> (ival &lt; <span style="color:#ff0;font-weight:bold">0</span>) {
+        <span style="color:#007f7f">/* negate: can&#39;t write this as abs_ival = -ival since that
+</span><span style="color:#007f7f">           invokes undefined behaviour when ival is LONG_MIN */</span>
+        abs_ival = <span style="color:#ff0;font-weight:bold">0U</span>-(<span style="color:#fff;font-weight:bold">unsigned</span> <span style="color:#fff;font-weight:bold">long</span>)ival;
+        sign = -<span style="color:#ff0;font-weight:bold">1</span>;
+    }
+    <span style="color:#fff;font-weight:bold">else</span> {
+        abs_ival = (<span style="color:#fff;font-weight:bold">unsigned</span> <span style="color:#fff;font-weight:bold">long</span>)ival;
+        sign = ival == <span style="color:#ff0;font-weight:bold">0</span> ? <span style="color:#ff0;font-weight:bold">0</span> : <span style="color:#ff0;font-weight:bold">1</span>;
+    }
+
+    <span style="color:#007f7f">/* Fast path for single-digit ints */</span>
+    <span style="color:#fff;font-weight:bold">if</span> (!(abs_ival &gt;&gt; PyLong_SHIFT)) {
+        v = _PyLong_New(<span style="color:#ff0;font-weight:bold">1</span>);
+        <span style="color:#fff;font-weight:bold">if</span> (v) {
+            Py_SET_SIZE(v, sign);
+            v-&gt;ob_digit[<span style="color:#ff0;font-weight:bold">0</span>] = Py_SAFE_DOWNCAST(
+                abs_ival, <span style="color:#fff;font-weight:bold">unsigned</span> <span style="color:#fff;font-weight:bold">long</span>, digit);
+        }
+        <span style="color:#fff;font-weight:bold">return</span> (PyObject*)v;
+    }
+
+<span style="color:#0f0;font-weight:bold">#if PyLong_SHIFT==15
+</span><span style="color:#0f0;font-weight:bold"></span>    <span style="color:#007f7f">/* 2 digits */</span>
+    <span style="color:#fff;font-weight:bold">if</span> (!(abs_ival &gt;&gt; <span style="color:#ff0;font-weight:bold">2</span>*PyLong_SHIFT)) {
+        v = _PyLong_New(<span style="color:#ff0;font-weight:bold">2</span>);
+        <span style="color:#fff;font-weight:bold">if</span> (v) {
+            Py_SET_SIZE(v, <span style="color:#ff0;font-weight:bold">2</span> * sign);
+            v-&gt;ob_digit[<span style="color:#ff0;font-weight:bold">0</span>] = Py_SAFE_DOWNCAST(
+                abs_ival &amp; PyLong_MASK, <span style="color:#fff;font-weight:bold">unsigned</span> <span style="color:#fff;font-weight:bold">long</span>, digit);
+            v-&gt;ob_digit[<span style="color:#ff0;font-weight:bold">1</span>] = Py_SAFE_DOWNCAST(
+                  abs_ival &gt;&gt; PyLong_SHIFT, <span style="color:#fff;font-weight:bold">unsigned</span> <span style="color:#fff;font-weight:bold">long</span>, digit);
+        }
+        <span style="color:#fff;font-weight:bold">return</span> (PyObject*)v;
+    }
+<span style="color:#0f0;font-weight:bold">#endif
+</span><span style="color:#0f0;font-weight:bold"></span>
+    <span style="color:#007f7f">/* Larger numbers: loop to determine number of digits */</span>
+    t = abs_ival;
+    <span style="color:#fff;font-weight:bold">while</span> (t) {
+        ++ndigits;
+        t &gt;&gt;= PyLong_SHIFT;
+    }
+    v = _PyLong_New(ndigits);
+    <span style="color:#fff;font-weight:bold">if</span> (v != <span style="color:#fff;font-weight:bold">NULL</span>) {
+        digit *p = v-&gt;ob_digit;
+        Py_SET_SIZE(v, ndigits * sign);
+        t = abs_ival;
+        <span style="color:#fff;font-weight:bold">while</span> (t) {
+            *p++ = Py_SAFE_DOWNCAST(
+                t &amp; PyLong_MASK, <span style="color:#fff;font-weight:bold">unsigned</span> <span style="color:#fff;font-weight:bold">long</span>, digit);
+            t &gt;&gt;= PyLong_SHIFT;
+        }
+    }
+    <span style="color:#fff;font-weight:bold">return</span> (PyObject *)v;
+}
+</code></pre></div><p>虽然看起来比较长，但其实思路非常简单：</p>
+<ol>
+<li>创建用于存储返回值的指针 <code>PyLongObject *z</code>，保存数据绝对值的变量 <code>unsigned long abs_ival, t</code>，标识数组长度的 <code>int ndigits</code> 和标识数据正负的 <code>int sign</code>；</li>
+<li>如果数据范围在 [-5, 257) 内，则通过 <code>get_small_int</code> 函数返回结果；</li>
+<li>获取数据的绝对值和正负符号；</li>
+<li>如果数据绝对值没有超过 <code>ob_digit</code> 数组的单个元素所能表示的大小，则通过一个快速路径返回结果；</li>
+<li>对于较大的数据，确定其 <code>ob_digit</code> 数组的长度，逐位置入。</li>
+</ol>
+<p>可以注意到，第 2 步针对 [-5, 257) 区间内的小整数做了特殊处理，最终在调用到 <code>__PyLong_GetSmallInt_internal</code> 函数时，会通过 <code>tstate-&gt;interp-&gt;small_ints[index]</code> 缓存数组获取小整数对应的指针对象并将其返回，这里的 <code>small_ints</code> 数组是一个全局变量，一般称为<strong>小整数对象池</strong>，是针对常用的小整数做的一个优化：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/longobject.c
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">static</span> <span style="color:#fff;font-weight:bold">inline</span> PyObject* __PyLong_GetSmallInt_internal(<span style="color:#fff;font-weight:bold">int</span> value)
+{
+    PyThreadState *tstate = _PyThreadState_GET();
+<span style="color:#0f0;font-weight:bold">#ifdef Py_DEBUG
+</span><span style="color:#0f0;font-weight:bold"></span>    _Py_EnsureTstateNotNULL(tstate);
+<span style="color:#0f0;font-weight:bold">#endif
+</span><span style="color:#0f0;font-weight:bold"></span>    assert(-_PY_NSMALLNEGINTS &lt;= value &amp;&amp; value &lt; _PY_NSMALLPOSINTS);
+    size_t index = _PY_NSMALLNEGINTS + value;
+    PyObject *obj = (PyObject*)tstate-&gt;interp-&gt;small_ints[index];
+    <span style="color:#007f7f">// _PyLong_GetZero() and _PyLong_GetOne() must not be called
+</span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// before _PyLong_Init() nor after _PyLong_Fini()
+</span><span style="color:#007f7f"></span>    assert(obj != <span style="color:#fff;font-weight:bold">NULL</span>);
+    <span style="color:#fff;font-weight:bold">return</span> obj;
+}
+</code></pre></div><h2 id="2-数学运算">2 数学运算</h2>
+<p><code>PyLongObject</code> 的类型对象是 <code>PyLong_Type</code>，<code>PyLong_Type</code> 的成员变量  <code>PyNumberMethods *tp_as_number</code> 由 <code>static PyNumberMethods long_as_number*</code> 结构体指针初始化，其中包含了许多数学运算的函数指针，当我们对 <code>PyLong_Type</code> 进行数学运算时，实际上会调用这些函数：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/longobject.c
+</span><span style="color:#007f7f"></span>PyTypeObject PyLong_Type = {
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>    &amp;long_as_number,                            <span style="color:#007f7f">/* tp_as_number */</span>
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>};
+
+<span style="color:#fff;font-weight:bold">static</span> PyNumberMethods long_as_number = {
+    (binaryfunc)long_add,       <span style="color:#007f7f">/*nb_add*/</span>
+    (binaryfunc)long_sub,       <span style="color:#007f7f">/*nb_subtract*/</span>
+    (binaryfunc)long_mul,       <span style="color:#007f7f">/*nb_multiply*/</span>
+    long_mod,                   <span style="color:#007f7f">/*nb_remainder*/</span>
+    long_divmod,                <span style="color:#007f7f">/*nb_divmod*/</span>
+    long_pow,                   <span style="color:#007f7f">/*nb_power*/</span>
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>};
+</code></pre></div><h3 id="21-加法">2.1 加法</h3>
+<p><code>PyLong_Type</code>  的加法运算对应的函数是 <code>long_add</code>，其实现和相关的宏定义如下：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/longobject.c
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#define CHECK_BINOP(v,w)                                \
+</span><span style="color:#0f0;font-weight:bold">    do {                                                \
+</span><span style="color:#0f0;font-weight:bold">        if (!PyLong_Check(v) || !PyLong_Check(w))       \
+</span><span style="color:#0f0;font-weight:bold">            Py_RETURN_NOTIMPLEMENTED;                   \
+</span><span style="color:#0f0;font-weight:bold">    } while(0)
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#007f7f">/* convert a PyLong of size 1, 0 or -1 to an sdigit */</span>
+<span style="color:#0f0;font-weight:bold">#define MEDIUM_VALUE(x) (assert(-1 &lt;= Py_SIZE(x) &amp;&amp; Py_SIZE(x) &lt;= 1),   \
+</span><span style="color:#0f0;font-weight:bold">         Py_SIZE(x) &lt; 0 ? -(sdigit)(x)-&gt;ob_digit[0] :   \
+</span><span style="color:#0f0;font-weight:bold">             (Py_SIZE(x) == 0 ? (sdigit)0 :                             \
+</span><span style="color:#0f0;font-weight:bold">              (sdigit)(x)-&gt;ob_digit[0]))
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">static</span> PyObject *
+long_add(PyLongObject *a, PyLongObject *b)
+{
+    PyLongObject *z;
+
+    CHECK_BINOP(a, b);
+
+    <span style="color:#fff;font-weight:bold">if</span> (Py_ABS(Py_SIZE(a)) &lt;= <span style="color:#ff0;font-weight:bold">1</span> &amp;&amp; Py_ABS(Py_SIZE(b)) &lt;= <span style="color:#ff0;font-weight:bold">1</span>) {
+        <span style="color:#fff;font-weight:bold">return</span> PyLong_FromLong(MEDIUM_VALUE(a) + MEDIUM_VALUE(b));
+    }
+    <span style="color:#fff;font-weight:bold">if</span> (Py_SIZE(a) &lt; <span style="color:#ff0;font-weight:bold">0</span>) {
+        <span style="color:#fff;font-weight:bold">if</span> (Py_SIZE(b) &lt; <span style="color:#ff0;font-weight:bold">0</span>) {
+            z = x_add(a, b);
+            <span style="color:#fff;font-weight:bold">if</span> (z != <span style="color:#fff;font-weight:bold">NULL</span>) {
+                <span style="color:#007f7f">/* x_add received at least one multiple-digit int,
+</span><span style="color:#007f7f">                   and thus z must be a multiple-digit int.
+</span><span style="color:#007f7f">                   That also means z is not an element of
+</span><span style="color:#007f7f">                   small_ints, so negating it in-place is safe. */</span>
+                assert(Py_REFCNT(z) == <span style="color:#ff0;font-weight:bold">1</span>);
+                Py_SET_SIZE(z, -(Py_SIZE(z)));
+            }
+        }
+        <span style="color:#fff;font-weight:bold">else</span>
+            z = x_sub(b, a);
+    }
+    <span style="color:#fff;font-weight:bold">else</span> {
+        <span style="color:#fff;font-weight:bold">if</span> (Py_SIZE(b) &lt; <span style="color:#ff0;font-weight:bold">0</span>)
+            z = x_sub(a, b);
+        <span style="color:#fff;font-weight:bold">else</span>
+            z = x_add(a, b);
+    }
+    <span style="color:#fff;font-weight:bold">return</span> (PyObject *)z;
+}
+</code></pre></div><p>可以看到它的实现非常简单，主要分为以下几个步骤：</p>
+<ol>
+<li>创建一个用于存储返回值的指针 <code>PyLongObject *z</code>；</li>
+<li>检查两个参数是否都是 <code>PyLongObject</code> 类型的指针 <code>CHECK_BINOP(a, b)</code>；</li>
+<li>如果两个参数都满足 <code>ob_size &lt;= 1</code>（即绝对值均小于 <code>2^30</code>），那么先通过 <code>MEDIUM_VALUE</code> 获取两个 <code>ob_digit[0]</code> 的值，并将两数直接相加（一定不会溢出），再通过 <code>PyLong_FromLong</code> 将这个数包装为一个 <code>PyLongObject</code> 指针并返回；通常我们进行运算的数都不会太大，因此这里可以利用简化的运算步骤和 CPU 分支预测来提高效率；</li>
+<li>判断两者的正负关系，将问题简化为绝对值加减法，利用辅助函数 <code>x_add</code> 和 <code>x_sub</code> 进行运算并返回结果。</li>
+</ol>
+<h3 id="22-绝对值加法">2.2 绝对值加法</h3>
+<p>绝对值加法函数 <code>x_add</code> 的定义如下：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#0f0;font-weight:bold">#if PYLONG_BITS_IN_DIGIT == 30
+</span><span style="color:#0f0;font-weight:bold">#define PyLong_SHIFT    30
+</span><span style="color:#0f0;font-weight:bold"></span><span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span><span style="color:#0f0;font-weight:bold">#endif
+</span><span style="color:#0f0;font-weight:bold">#define PyLong_BASE     ((digit)1 &lt;&lt; PyLong_SHIFT)
+</span><span style="color:#0f0;font-weight:bold">#define PyLong_MASK     ((digit)(PyLong_BASE - 1))
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#007f7f">/* Add the absolute values of two integers. */</span>
+<span style="color:#fff;font-weight:bold">static</span> PyLongObject *
+x_add(PyLongObject *a, PyLongObject *b)
+{
+    Py_ssize_t size_a = Py_ABS(Py_SIZE(a)), size_b = Py_ABS(Py_SIZE(b));
+    PyLongObject *z;
+    Py_ssize_t i;
+    digit carry = <span style="color:#ff0;font-weight:bold">0</span>;
+
+    <span style="color:#007f7f">/* Ensure a is the larger of the two: */</span>
+    <span style="color:#fff;font-weight:bold">if</span> (size_a &lt; size_b) {
+        { PyLongObject *temp = a; a = b; b = temp; }
+        { Py_ssize_t size_temp = size_a;
+            size_a = size_b;
+            size_b = size_temp; }
+    }
+    z = _PyLong_New(size_a+<span style="color:#ff0;font-weight:bold">1</span>);
+    <span style="color:#fff;font-weight:bold">if</span> (z == <span style="color:#fff;font-weight:bold">NULL</span>)
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">NULL</span>;
+    <span style="color:#fff;font-weight:bold">for</span> (i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; size_b; ++i) {
+        carry += a-&gt;ob_digit[i] + b-&gt;ob_digit[i];
+        z-&gt;ob_digit[i] = carry &amp; PyLong_MASK;
+        carry &gt;&gt;= PyLong_SHIFT;
+    }
+    <span style="color:#fff;font-weight:bold">for</span> (; i &lt; size_a; ++i) {
+        carry += a-&gt;ob_digit[i];
+        z-&gt;ob_digit[i] = carry &amp; PyLong_MASK;
+        carry &gt;&gt;= PyLong_SHIFT;
+    }
+    z-&gt;ob_digit[i] = carry;
+    <span style="color:#fff;font-weight:bold">return</span> long_normalize(z);
+}
+</code></pre></div><p>其步骤大致分为以下几步：</p>
+<ol>
+<li>获取两个参数的 <code>ob_size</code> 的绝对值，创建存储返回值的指针 <code>PyLongObject *z</code>，</li>
+<li>如果 <code>a-&gt;ob_size &lt; b-&gt;ob_size</code> 则交换两者，保证 a 的值较大；</li>
+<li>将 z 的 <code>ob_size</code> 设置为 <code>size_a + 1</code>，保证不会溢出；</li>
+<li>以 <code>i = 0</code> 为下标，从小到大依次对两数的每一位进行相加操作，将没有超过 <code>2^30</code> 的部分存储在 <code>z-&gt;ob_digit[i]</code> 中，超过的部分进位保存在 <code>carry</code> 中；这里充分利用了两个小于 <code>2^30</code> 的数相加不会溢出的特性；如果 <code>size_a &gt; size_b</code> 还需要将 <code>a-&gt;ob_digit</code> 多余的部分按照相同的方法置入 <code>z-&gt;ob_digit</code>里；</li>
+<li>得到的结果 <code>z</code> 中，其 <code>ob_digit</code> 的最后一个元素可能等于 0，因此通过 <code>long_normalize</code> 函数将其转换为符合 <code>PyLongObject</code> 定义的格式返回。</li>
+</ol>
+<p>整个过程可以抽象为类似 <code>2^30</code> 进制的加法，和十进制加法的过程几乎完全一样，只不过是把十进制每一位的数字换成了一个最大值为 <code>2^30</code> 的数字，每逢 <code>2^30</code> 进一位；举个例，假设有 <code>a-&gt;ob_digit = {4, 5, 6}</code>, <code>b-&gt;ob_digit = {1073741823, 1073741823}</code>，那么整个加法的步骤为：</p>
+<ol>
+<li><code>v-&gt;ob_digit[0] = (4 + 1073741823) % 1073741824 = 3</code>, <code>carry = 1</code>；</li>
+<li><code>v-&gt;ob_digit[1] = (5 + 1073741823 + 1) % 1073741824 = 5</code>, <code>carry = 1</code>；</li>
+<li><code>v-&gt;ob_digit[2] = (6 + 1) % 1073741824 = 7</code>, <code>carry = 0</code>；</li>
+<li><code>v-&gt;ob_digit[3] = 0</code>；</li>
+</ol>
+<p>结果即 <code>v-&gt;ob_digit = {3, 5, 7, 0}</code>，最后一个元素 0 需要通过 <code>long_normalize</code> 函数去掉。</p>
+<h3 id="23-绝对值减法">2.3 绝对值减法</h3>
+<p>绝对值减法的实现如下：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">/* Subtract the absolute values of two integers. */</span>
+<span style="color:#fff;font-weight:bold">static</span> PyLongObject *
+x_sub(PyLongObject *a, PyLongObject *b)
+{
+    Py_ssize_t size_a = Py_ABS(Py_SIZE(a)), size_b = Py_ABS(Py_SIZE(b));
+    PyLongObject *z;
+    Py_ssize_t i;
+    <span style="color:#fff;font-weight:bold">int</span> sign = <span style="color:#ff0;font-weight:bold">1</span>;
+    digit borrow = <span style="color:#ff0;font-weight:bold">0</span>;
+
+    <span style="color:#007f7f">/* Ensure a is the larger of the two: */</span>
+    <span style="color:#fff;font-weight:bold">if</span> (size_a &lt; size_b) {
+        sign = -<span style="color:#ff0;font-weight:bold">1</span>;
+        { PyLongObject *temp = a; a = b; b = temp; }
+        { Py_ssize_t size_temp = size_a;
+            size_a = size_b;
+            size_b = size_temp; }
+    }
+    <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (size_a == size_b) {
+        <span style="color:#007f7f">/* Find highest digit where a and b differ: */</span>
+        i = size_a;
+        <span style="color:#fff;font-weight:bold">while</span> (--i &gt;= <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; a-&gt;ob_digit[i] == b-&gt;ob_digit[i])
+            ;
+        <span style="color:#fff;font-weight:bold">if</span> (i &lt; <span style="color:#ff0;font-weight:bold">0</span>)
+            <span style="color:#fff;font-weight:bold">return</span> (PyLongObject *)PyLong_FromLong(<span style="color:#ff0;font-weight:bold">0</span>);
+        <span style="color:#fff;font-weight:bold">if</span> (a-&gt;ob_digit[i] &lt; b-&gt;ob_digit[i]) {
+            sign = -<span style="color:#ff0;font-weight:bold">1</span>;
+            { PyLongObject *temp = a; a = b; b = temp; }
+        }
+        size_a = size_b = i+<span style="color:#ff0;font-weight:bold">1</span>;
+    }
+    z = _PyLong_New(size_a);
+    <span style="color:#fff;font-weight:bold">if</span> (z == <span style="color:#fff;font-weight:bold">NULL</span>)
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">NULL</span>;
+    <span style="color:#fff;font-weight:bold">for</span> (i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; size_b; ++i) {
+        <span style="color:#007f7f">/* The following assumes unsigned arithmetic
+</span><span style="color:#007f7f">           works module 2**N for some N&gt;PyLong_SHIFT. */</span>
+        borrow = a-&gt;ob_digit[i] - b-&gt;ob_digit[i] - borrow;
+        z-&gt;ob_digit[i] = borrow &amp; PyLong_MASK;
+        borrow &gt;&gt;= PyLong_SHIFT;
+        borrow &amp;= <span style="color:#ff0;font-weight:bold">1</span>; <span style="color:#007f7f">/* Keep only one sign bit */</span>
+    }
+    <span style="color:#fff;font-weight:bold">for</span> (; i &lt; size_a; ++i) {
+        borrow = a-&gt;ob_digit[i] - borrow;
+        z-&gt;ob_digit[i] = borrow &amp; PyLong_MASK;
+        borrow &gt;&gt;= PyLong_SHIFT;
+        borrow &amp;= <span style="color:#ff0;font-weight:bold">1</span>; <span style="color:#007f7f">/* Keep only one sign bit */</span>
+    }
+    assert(borrow == <span style="color:#ff0;font-weight:bold">0</span>);
+    <span style="color:#fff;font-weight:bold">if</span> (sign &lt; <span style="color:#ff0;font-weight:bold">0</span>) {
+        Py_SET_SIZE(z, -Py_SIZE(z));
+    }
+    <span style="color:#fff;font-weight:bold">return</span> maybe_small_long(long_normalize(z));
+}
+</code></pre></div><p>其步骤和绝对值加法类似，大致分为以下几步：</p>
+<ol>
+<li>获取两个参数的 <code>ob_size</code> 的绝对值，创建存储返回值的指针 <code>PyLongObject *z</code>，</li>
+<li>如果 <code>a-&gt;ob_size &lt; b-&gt;ob_size</code> 则交换两者，保证 a 的值较大，并用 <code>sign</code> 记录运算结果为负；如果 <code>a-&gt;ob_size == b-&gt;ob_size</code> 则从最高位依次往低位找到第一次出现 <code>a-&gt;ob_digit[i] != b-&gt;ob_digit[i]</code> 的位置，比较 <code>a-&gt;ob_digit[i]</code> 和 <code>b-&gt;ob_digit[i]</code>，并决定是否交换两者以及 <code>sign</code> 的值；</li>
+<li>将 z 的 <code>ob_size</code> 设置为 <code>size_a</code>；</li>
+<li>以 <code>i = 0</code> 为下标，从小到大依次对两数的每一位进行相减操作，如果被减数 <code>a-&gt;ob_digit[i]</code>  小于减数 <code>b-&gt;ob_digit[i]</code> 则要向高位 <code>a-&gt;ob_digit[i + 1]</code> 借 1；在十进制的减法中向高位借到的数是 10，这里向 <code>digit</code> 数组的高位借到的则是 <code>2^30</code>；但 <code>digit</code> 是通过 <code>typedef uint32_t digit</code> 定义出来，通过公式 <code>borrow = a-&gt;ob_digit[i] - b-&gt;ob_digit[i] - borrow</code> 实际上得到的是 <code>2^32 + a-&gt;ob_digit[i] - b-&gt;ob_digit[i]</code>，所以还需要与 <code>PyLong_MASK</code> 做 <code>&amp;</code> 操作，取后 30 位，便能得到借位相减后的结果，再将结果存储在 <code>z-&gt;ob_digit[i]</code> 中；借位部分 <code>borrow</code> 向右位移 30 位后还剩 2 位，只需要将其与 1 进行 <code>&amp;</code> 操作即可知道此次减法运算是否有借位；如果 <code>size_a &gt; size_b</code> 还需要将 <code>a-&gt;ob_digit</code> 多余的部分按照相同的方法置入 <code>z-&gt;ob_digit</code>里；</li>
+<li>得到的结果 <code>z</code> 中，其 <code>ob_digit</code> 的最后一个元素可能等于 0，因此通过 <code>long_normalize</code> 函数将其转换为符合 <code>PyLongObject</code> 定义的格式返回。</li>
+</ol>
+<p>可以看到这里的步骤也跟十进制减法几乎完全相同，都跟 NOIP 入门的大数加减法加法思路相同。</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>
