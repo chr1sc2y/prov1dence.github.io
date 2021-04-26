@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 31 Mar 2021 15:37:52 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Apr 2021 21:44:52 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ProtoBuf 语法和编码原理入门</title>
+      <link>https://zintrulcre.vip/posts/serialization/protocol-buffer/</link>
+      <pubDate>Mon, 26 Apr 2021 21:44:52 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/serialization/protocol-buffer/</guid>
+      <description>ProtoBuf 语法和编码原理入门 [toc] 序列化是指将结构化数据转换成易于存储或发送的数据格式的过程， Protocol Buffer 简称 ProtoBuf，是一种语言无关，平台无关的序列化</description>
+    </item>
+    
     <item>
       <title>Python 源码学习（2）：int 类型</title>
       <link>https://zintrulcre.vip/posts/python/source-code-2/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://zintrulcre.vip/posts/c&#43;&#43;/boost/boost.typeindex-%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8E%A2%E7%A9%B6/</guid>
       <description>boost::typeIndex 的相关探究 Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 Boost::typeindex 的使用，但并没有讲到其实现原理。 1. typeid 操作符 typeid 是 C++ 中的一个操作符，可以用于获取类型的信息，常常用</description>
-    </item>
-    
-    <item>
-      <title>CMake 入门</title>
-      <link>https://zintrulcre.vip/posts/c&#43;&#43;/%E7%BC%96%E8%AF%91/cmake/</link>
-      <pubDate>Sun, 21 Jun 2020 15:46:06 +0800</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/%E7%BC%96%E8%AF%91/cmake/</guid>
-      <description>CMake 入门 0. 序 CMake 是一个跨平台的开源构建工具，使用 CMake 能够方便地管理依赖多个库的目录层次结构并生成 makefile 和使用 GNU make 来编译和连接程序。 1. 构建单个文件 1.1 使用</description>
     </item>
     
   </channel>
