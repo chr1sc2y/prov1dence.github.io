@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python 源码学习（3）：list 类型"/>
+<meta name="twitter:description" content="Python 源码学习（3）：list 类型 [TOC] Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中： // Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for"/>
+
+    <meta property="og:title" content="Python 源码学习（3）：list 类型" />
+<meta property="og:description" content="Python 源码学习（3）：list 类型 [TOC] Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中： // Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/python/source-code-3-list-and-dict/" />
+<meta property="article:published_time" content="2021-05-06T20:07:52+08:00" />
+<meta property="article:modified_time" content="2021-05-06T20:07:52+08:00" />
+
+
+    
+      <base href="https://zintrulcre.vip/posts/python/source-code-3-list-and-dict/">
+    
+    <title>
+  Python 源码学习（3）：list 类型 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/python/source-code-3-list-and-dict/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.75.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Python 源码学习（3）：list 类型</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2021-05-06T20:07:52&#43;08:00'>
+                May 6, 2021
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/python/">python</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        <h1 id="python-源码学习3list-类型">Python 源码学习（3）：list 类型</h1>
+<p>[TOC]</p>
+<p>Python 中的 list 类型在源码中是一个名为 <code>PyListObject</code> 的结构体，定义在 <code>listobject.h</code> 文件中：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Include/cpython/listobject.h
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">typedef</span> <span style="color:#fff;font-weight:bold">struct</span> {
+    PyObject_VAR_HEAD
+    <span style="color:#007f7f">/* Vector of pointers to list elements.  list[0] is ob_item[0], etc. */</span>
+    PyObject **ob_item;
+
+    <span style="color:#007f7f">/* ob_item contains space for &#39;allocated&#39; elements.  The number
+</span><span style="color:#007f7f">     * currently in use is ob_size.
+</span><span style="color:#007f7f">     * Invariants:
+</span><span style="color:#007f7f">     *     0 &lt;= ob_size &lt;= allocated
+</span><span style="color:#007f7f">     *     len(list) == ob_size
+</span><span style="color:#007f7f">     *     ob_item == NULL implies ob_size == allocated == 0
+</span><span style="color:#007f7f">     * list.sort() temporarily sets allocated to -1 to detect mutations.
+</span><span style="color:#007f7f">     *
+</span><span style="color:#007f7f">     * Items must normally not be NULL, except during construction when
+</span><span style="color:#007f7f">     * the list is not yet visible outside the function that builds it.
+</span><span style="color:#007f7f">     */</span>
+    Py_ssize_t allocated;
+} PyListObject;
+</code></pre></div><p>它的实现和 C++ 中的 <code>std::vector</code> 类似，都是通过维护一个动态数组，在增加数据的时候动态扩大数组的容量来实现的；<code>PyListObject</code> 结构中包含了一个变长对象头部 <code>PyObject_VAR_HEAD</code>，<code>ob_size</code> 表示当前动态数组的长度，<code>**ob_item</code> 是指向动态数组的指针，<code>allocated</code> 是动态数组的容量；我们可以从它的类型指针 <code>PyTypeObject PyList_Type</code> 中找到用来操作 list 对象的相关方法：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/listobject.c
+</span><span style="color:#007f7f"></span>PyTypeObject PyList_Type = {
+    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span style="color:#ff0;font-weight:bold">0</span>)
+    <span style="color:#0ff;font-weight:bold">&#34;list&#34;</span>,
+    <span style="color:#fff;font-weight:bold">sizeof</span>(PyListObject),
+    list_methods,                               <span style="color:#007f7f">/* tp_methods */</span>
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>};
+
+<span style="color:#fff;font-weight:bold">static</span> PyMethodDef list_methods[] = {
+    {<span style="color:#0ff;font-weight:bold">&#34;__getitem__&#34;</span>, (PyCFunction)list_subscript, METH_O|METH_COEXIST, <span style="color:#0ff;font-weight:bold">&#34;x.__getitem__(y) &lt;==&gt; x[y]&#34;</span>},
+    LIST___REVERSED___METHODDEF
+    LIST___SIZEOF___METHODDEF
+    LIST_CLEAR_METHODDEF
+    LIST_COPY_METHODDEF
+    LIST_APPEND_METHODDEF
+    LIST_INSERT_METHODDEF
+    LIST_EXTEND_METHODDEF
+    LIST_POP_METHODDEF
+    LIST_REMOVE_METHODDEF
+    LIST_INDEX_METHODDEF
+    LIST_COUNT_METHODDEF
+    LIST_REVERSE_METHODDEF
+    LIST_SORT_METHODDEF
+    {<span style="color:#0ff;font-weight:bold">&#34;__class_getitem__&#34;</span>, (PyCFunction)Py_GenericAlias, METH_O|METH_CLASS, PyDoc_STR(<span style="color:#0ff;font-weight:bold">&#34;See PEP 585&#34;</span>)},
+    {<span style="color:#fff;font-weight:bold">NULL</span>,              <span style="color:#fff;font-weight:bold">NULL</span>}           <span style="color:#007f7f">/* sentinel */</span>
+};
+
+<span style="color:#0f0;font-weight:bold">#define LIST_APPEND_METHODDEF    \
+</span><span style="color:#0f0;font-weight:bold">    {&#34;append&#34;, (PyCFunction)list_append, METH_O, list_append__doc__},
+</span><span style="color:#0f0;font-weight:bold"></span>
+PyDoc_STRVAR(list_append__doc__,
+<span style="color:#0ff;font-weight:bold">&#34;append($self, object, /)</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>
+<span style="color:#0ff;font-weight:bold">&#34;--</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>
+<span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>
+<span style="color:#0ff;font-weight:bold">&#34;Append object to the end of the list.&#34;</span>);
+
+<span style="color:#0f0;font-weight:bold">#define LIST_COPY_METHODDEF    \
+</span><span style="color:#0f0;font-weight:bold">    {&#34;copy&#34;, (PyCFunction)list_copy, METH_NOARGS, list_copy__doc__},
+</span><span style="color:#0f0;font-weight:bold"></span>
+PyDoc_STRVAR(list_copy__doc__,
+<span style="color:#0ff;font-weight:bold">&#34;copy($self, /)</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>
+<span style="color:#0ff;font-weight:bold">&#34;--</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>
+<span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>
+<span style="color:#0ff;font-weight:bold">&#34;Return a shallow copy of the list.&#34;</span>);
+</code></pre></div><p>Python 中也把所谓的函数封装成了一个叫做 <code>PyMethodDef</code> 的类型，其中包括了函数的名称 <code>*ml_name</code>、对应的 C 函数实现 <code>ml_meth</code>、C 函数所需要的标志 <code>ml_flags</code>，以及函数说明 <code>*ml_doc</code>：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Include/methodobject.h
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">struct</span> PyMethodDef {
+    <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>  *ml_name;   <span style="color:#007f7f">/* The name of the built-in function/method */</span>
+    PyCFunction ml_meth;    <span style="color:#007f7f">/* The C function that implements it */</span>
+    <span style="color:#fff;font-weight:bold">int</span>         ml_flags;   <span style="color:#007f7f">/* Combination of METH_xxx flags, which mostly
+</span><span style="color:#007f7f">                               describe the args expected by the C func */</span>
+    <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>  *ml_doc;    <span style="color:#007f7f">/* The __doc__ attribute, or NULL */</span>
+};
+<span style="color:#fff;font-weight:bold">typedef</span> <span style="color:#fff;font-weight:bold">struct</span> PyMethodDef PyMethodDef;
+</code></pre></div><h2 id="1-append">1 append</h2>
+<p>如 <code>list_append__doc__</code> 中所描述的，<code>list_append</code> 函数的目的是向 list 的末尾添加新的元素：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/listobject.c
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">static</span> PyObject *
+list_append(PyListObject *self, PyObject *object)
+<span style="color:#007f7f">/*[clinic end generated code: output=7c096003a29c0eae input=43a3fe48a7066e91]*/</span>
+{
+    <span style="color:#fff;font-weight:bold">if</span> (app1(self, object) == <span style="color:#ff0;font-weight:bold">0</span>)
+        Py_RETURN_NONE;
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">NULL</span>;
+}
+
+<span style="color:#fff;font-weight:bold">static</span> <span style="color:#fff;font-weight:bold">int</span>
+app1(PyListObject *self, PyObject *v)
+{
+    Py_ssize_t n = PyList_GET_SIZE(self);
+
+    assert (v != <span style="color:#fff;font-weight:bold">NULL</span>);
+    assert((size_t)n + <span style="color:#ff0;font-weight:bold">1</span> &lt; PY_SSIZE_T_MAX);
+    <span style="color:#fff;font-weight:bold">if</span> (list_resize(self, n+<span style="color:#ff0;font-weight:bold">1</span>) &lt; <span style="color:#ff0;font-weight:bold">0</span>)
+        <span style="color:#fff;font-weight:bold">return</span> -<span style="color:#ff0;font-weight:bold">1</span>;
+
+    Py_INCREF(v);
+    PyList_SET_ITEM(self, n, v);
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+
+<span style="color:#fff;font-weight:bold">static</span> <span style="color:#fff;font-weight:bold">int</span>
+list_resize(PyListObject *self, Py_ssize_t newsize)
+{
+    PyObject **items;
+    size_t new_allocated, num_allocated_bytes;
+    Py_ssize_t allocated = self-&gt;allocated;
+
+    <span style="color:#007f7f">/* Bypass realloc() when a previous overallocation is large enough
+</span><span style="color:#007f7f">       to accommodate the newsize.  If the newsize falls lower than half
+</span><span style="color:#007f7f">       the allocated size, then proceed with the realloc() to shrink the list.
+</span><span style="color:#007f7f">    */</span>
+    <span style="color:#fff;font-weight:bold">if</span> (allocated &gt;= newsize &amp;&amp; newsize &gt;= (allocated &gt;&gt; <span style="color:#ff0;font-weight:bold">1</span>)) {
+        assert(self-&gt;ob_item != <span style="color:#fff;font-weight:bold">NULL</span> || newsize == <span style="color:#ff0;font-weight:bold">0</span>);
+        Py_SET_SIZE(self, newsize);
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+    }
+
+    <span style="color:#007f7f">/* This over-allocates proportional to the list size, making room
+</span><span style="color:#007f7f">     * for additional growth.  The over-allocation is mild, but is
+</span><span style="color:#007f7f">     * enough to give linear-time amortized behavior over a long
+</span><span style="color:#007f7f">     * sequence of appends() in the presence of a poorly-performing
+</span><span style="color:#007f7f">     * system realloc().
+</span><span style="color:#007f7f">     * Add padding to make the allocated size multiple of 4.
+</span><span style="color:#007f7f">     * The growth pattern is:  0, 4, 8, 16, 24, 32, 40, 52, 64, 76, ...
+</span><span style="color:#007f7f">     * Note: new_allocated won&#39;t overflow because the largest possible value
+</span><span style="color:#007f7f">     *       is PY_SSIZE_T_MAX * (9 / 8) + 6 which always fits in a size_t.
+</span><span style="color:#007f7f">     */</span>
+    new_allocated = ((size_t)newsize + (newsize &gt;&gt; <span style="color:#ff0;font-weight:bold">3</span>) + <span style="color:#ff0;font-weight:bold">6</span>) &amp; ~(size_t)<span style="color:#ff0;font-weight:bold">3</span>;
+    <span style="color:#007f7f">/* Do not overallocate if the new size is closer to overallocated size
+</span><span style="color:#007f7f">     * than to the old size.
+</span><span style="color:#007f7f">     */</span>
+    <span style="color:#fff;font-weight:bold">if</span> (newsize - Py_SIZE(self) &gt; (Py_ssize_t)(new_allocated - newsize))
+        new_allocated = ((size_t)newsize + <span style="color:#ff0;font-weight:bold">3</span>) &amp; ~(size_t)<span style="color:#ff0;font-weight:bold">3</span>;
+
+    <span style="color:#fff;font-weight:bold">if</span> (newsize == <span style="color:#ff0;font-weight:bold">0</span>)
+        new_allocated = <span style="color:#ff0;font-weight:bold">0</span>;
+    num_allocated_bytes = new_allocated * <span style="color:#fff;font-weight:bold">sizeof</span>(PyObject *);
+    items = (PyObject **)PyMem_Realloc(self-&gt;ob_item, num_allocated_bytes);
+    <span style="color:#fff;font-weight:bold">if</span> (items == <span style="color:#fff;font-weight:bold">NULL</span>) {
+        PyErr_NoMemory();
+        <span style="color:#fff;font-weight:bold">return</span> -<span style="color:#ff0;font-weight:bold">1</span>;
+    }
+    self-&gt;ob_item = items;
+    Py_SET_SIZE(self, newsize);
+    self-&gt;allocated = new_allocated;
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+}
+</code></pre></div><p>可以看到在 <code>list_append</code> 中先调用了 <code>list_resize</code>，这个函数可能会进行两个操作：</p>
+<ol>
+<li>在添加元素后，如果新的动态数组长度 <code>newsize</code> 在区间  <code>[allocated / 2, allocated]</code> 内（小于当前容量 <code>allocated</code> 且大于等于当前容量的一半 <code>allocated &gt;&gt; 1</code>），则将数组容量缩小为 <code>newsize</code>；</li>
+<li>否则通过公式 <code>new_allocated = ((size_t)newsize + (newsize &gt;&gt; 3) + 6) &amp; ~(size_t)3</code> 计算出 <code>append</code> 之后动态数组应该被分配的新容量 <code>new_allocated</code>，并重新分配内存。</li>
+</ol>
+<p>其中第二步的公式不太直观，可以列表观察具体值的变化：</p>
+<table>
+<thead>
+<tr>
+<th>动态数组长度 ob_size</th>
+<th>当前容量 allocated</th>
+<th>append 后新的长度 newsize</th>
+<th>append 后新的容量 new_allocated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>(1 + 0 + 6) &amp; 252 = 111 &amp; 11111100 = 4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>4 ∈ [2, 4]（不变）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>8</td>
+<td>5</td>
+<td>(5 + 0 + 6) &amp; 252 = 1011 &amp; 11111100 = 8</td>
+</tr>
+<tr>
+<td>7</td>
+<td>8</td>
+<td>8</td>
+<td>8 ∈ [4, 8]（不变）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>16</td>
+<td>9</td>
+<td>(9 + 1 + 6) &amp; 252 = 10000 &amp; 11111100 = 16</td>
+</tr>
+<tr>
+<td>15</td>
+<td>16</td>
+<td>16</td>
+<td>16 ∈ [8, 16]（不变）</td>
+</tr>
+<tr>
+<td>16</td>
+<td>16</td>
+<td>17</td>
+<td>(16 + 2 + 6) &amp; 252 = 10011 &amp; 11111100 = 24</td>
+</tr>
+</tbody>
+</table>
+<p>可以观察到，只有当 append 后新的长度 <code>newsize</code> 大于当前容量 <code>allocated</code> 时，才会将容量调整为一个更大的值，这个值以 4 的倍数来补足和填充；使用 <code>python</code> 测试代码来验证上表的计算结果：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> sys
+
+l = []
+s = sys.getsizeof(l)
+<span style="color:#fff;font-weight:bold">print</span>((sys.getsizeof(l) - s) // <span style="color:#ff0;font-weight:bold">8</span>)
+
+<span style="color:#fff;font-weight:bold">for</span> _ in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">17</span>):
+	l.append(<span style="color:#ff0;font-weight:bold">0</span>)
+	<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;newsize&#34;</span>, <span style="color:#fff;font-weight:bold">len</span>(l), <span style="color:#0ff;font-weight:bold">&#34;new_allocated&#34;</span>, (sys.getsizeof(l) - s) // <span style="color:#ff0;font-weight:bold">8</span>)
+
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python3 main.py 
+newsize <span style="color:#ff0;font-weight:bold">1</span> new_allocated <span style="color:#ff0;font-weight:bold">4</span>
+newsize <span style="color:#ff0;font-weight:bold">2</span> new_allocated <span style="color:#ff0;font-weight:bold">4</span>
+newsize <span style="color:#ff0;font-weight:bold">3</span> new_allocated <span style="color:#ff0;font-weight:bold">4</span>
+newsize <span style="color:#ff0;font-weight:bold">4</span> new_allocated <span style="color:#ff0;font-weight:bold">4</span>
+newsize <span style="color:#ff0;font-weight:bold">5</span> new_allocated <span style="color:#ff0;font-weight:bold">8</span>
+newsize <span style="color:#ff0;font-weight:bold">6</span> new_allocated <span style="color:#ff0;font-weight:bold">8</span>
+newsize <span style="color:#ff0;font-weight:bold">7</span> new_allocated <span style="color:#ff0;font-weight:bold">8</span>
+newsize <span style="color:#ff0;font-weight:bold">8</span> new_allocated <span style="color:#ff0;font-weight:bold">8</span>
+newsize <span style="color:#ff0;font-weight:bold">9</span> new_allocated <span style="color:#ff0;font-weight:bold">16</span>
+newsize <span style="color:#ff0;font-weight:bold">10</span> new_allocated <span style="color:#ff0;font-weight:bold">16</span>
+newsize <span style="color:#ff0;font-weight:bold">11</span> new_allocated <span style="color:#ff0;font-weight:bold">16</span>
+newsize <span style="color:#ff0;font-weight:bold">12</span> new_allocated <span style="color:#ff0;font-weight:bold">16</span>
+newsize <span style="color:#ff0;font-weight:bold">13</span> new_allocated <span style="color:#ff0;font-weight:bold">16</span>
+newsize <span style="color:#ff0;font-weight:bold">14</span> new_allocated <span style="color:#ff0;font-weight:bold">16</span>
+newsize <span style="color:#ff0;font-weight:bold">15</span> new_allocated <span style="color:#ff0;font-weight:bold">16</span>
+newsize <span style="color:#ff0;font-weight:bold">16</span> new_allocated <span style="color:#ff0;font-weight:bold">16</span>
+newsize <span style="color:#ff0;font-weight:bold">17</span> new_allocated <span style="color:#ff0;font-weight:bold">24</span>
+</code></pre></div><p>使用 Python3.9 前后的版本测试较大数据时可能会有出入，因为计算 <code>new_allocated</code> 的过程进行过修改：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/python/list_resize.png" alt="list_resize"></p>
+<p>和 <code>std::vector</code> 类似，由摊还分析的方法可知 <code>list_append</code> 的平均时间复杂度为 <em>O</em>(<em>1</em>)。</p>
+<h2 id="2-copy">2 copy</h2>
+<p>如 <code>list_copy__doc__</code> 中所描述的，<code>list_copy</code> 函数的目的是返回一个<strong>浅拷贝</strong>（<a href="https://en.wikipedia.org/wiki/Object_copying">shallow copy</a>）的 list：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#fff;font-weight:bold">static</span> PyObject *
+list_copy(PyListObject *self, PyObject *Py_UNUSED(ignored))
+{
+    <span style="color:#fff;font-weight:bold">return</span> list_copy_impl(self);
+}
+
+<span style="color:#fff;font-weight:bold">static</span> PyObject *
+list_copy_impl(PyListObject *self)
+{
+    <span style="color:#fff;font-weight:bold">return</span> list_slice(self, <span style="color:#ff0;font-weight:bold">0</span>, Py_SIZE(self));
+}
+
+<span style="color:#fff;font-weight:bold">static</span> PyObject *
+list_slice(PyListObject *a, Py_ssize_t ilow, Py_ssize_t ihigh)
+{
+    PyListObject *np;
+    PyObject **src, **dest;
+    Py_ssize_t i, len;
+    len = ihigh - ilow;
+    np = (PyListObject *) list_new_prealloc(len);
+    <span style="color:#fff;font-weight:bold">if</span> (np == <span style="color:#fff;font-weight:bold">NULL</span>)
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">NULL</span>;
+
+    src = a-&gt;ob_item + ilow;
+    dest = np-&gt;ob_item;
+    <span style="color:#fff;font-weight:bold">for</span> (i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; len; i++) {
+        PyObject *v = src[i];
+        Py_INCREF(v);
+        dest[i] = v;
+    }
+    Py_SET_SIZE(np, len);
+    <span style="color:#fff;font-weight:bold">return</span> (PyObject *)np;
+}
+</code></pre></div><p>从 <code>PyListObject</code> 的定义中可以得知动态数组指针 <code>PyObject **ob_item</code> 所指向的动态数组中存储的是对象的指针，因此在 <code>list_slice</code> 函数中，也只是简单地将 <code>PyListObject *a</code> 中每一个 <code>PyObject</code> 的指针依次赋予 <code>PyListObject *np</code>，并将其引用计数加 1；对于被拷贝的 list 中的任意一个值得修改都会反映到拷贝到的 list 上：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a = [<span style="color:#ff0;font-weight:bold">1</span>, True, [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>]]
+b = a
+<span style="color:#fff;font-weight:bold">print</span>(a, b)
+a[<span style="color:#ff0;font-weight:bold">0</span>], a[<span style="color:#ff0;font-weight:bold">1</span>], a[<span style="color:#ff0;font-weight:bold">2</span>] = <span style="color:#ff0;font-weight:bold">0</span>, False, [<span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">4</span>]
+<span style="color:#fff;font-weight:bold">print</span>(a, b)
+</code></pre></div><p>这里的 <code>b = a</code> 中在 C++ 中一般表示拷贝构造或拷贝赋值操作，但在 Python 中实际上则会调用 <code>list_copy</code>：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python3 main.py 
+[1, True, [1, 2]] [1, True, [1, 2]]
+[0, False, [3, 4]] [0, False, [3, 4]]
+</code></pre></div><p>如果想要对一个 list 进行深拷贝，可以调用 <code>copy</code> 模块的 <code>deepcopy</code> 函数，这是一个用 Python 实现的模块：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">def</span> deepcopy(x, memo=None, _nil=[]):
+    <span style="color:#0ff;font-weight:bold">&#34;&#34;&#34;Deep copy operation on arbitrary Python objects.
+</span><span style="color:#0ff;font-weight:bold">
+</span><span style="color:#0ff;font-weight:bold">    See the module&#39;s __doc__ string for more info.
+</span><span style="color:#0ff;font-weight:bold">    &#34;&#34;&#34;</span>
+
+    <span style="color:#fff;font-weight:bold">if</span> memo is None:
+        memo = {}
+
+    d = <span style="color:#fff;font-weight:bold">id</span>(x)
+    y = memo.get(d, _nil)
+    <span style="color:#fff;font-weight:bold">if</span> y is not _nil:
+        <span style="color:#fff;font-weight:bold">return</span> y
+
+    cls = <span style="color:#fff;font-weight:bold">type</span>(x)
+
+    copier = _deepcopy_dispatch.get(cls)
+    <span style="color:#fff;font-weight:bold">if</span> copier is not None:
+        y = copier(x, memo)
+    <span style="color:#fff;font-weight:bold">else</span>:
+        <span style="color:#fff;font-weight:bold">if</span> <span style="color:#fff;font-weight:bold">issubclass</span>(cls, <span style="color:#fff;font-weight:bold">type</span>):
+            y = _deepcopy_atomic(x, memo)
+        <span style="color:#fff;font-weight:bold">else</span>:
+            copier = <span style="color:#fff;font-weight:bold">getattr</span>(x, <span style="color:#0ff;font-weight:bold">&#34;__deepcopy__&#34;</span>, None)
+            <span style="color:#fff;font-weight:bold">if</span> copier is not None:
+                y = copier(memo)
+            <span style="color:#fff;font-weight:bold">else</span>:
+    	<span style="color:#007f7f"># ...</span>
+
+    <span style="color:#007f7f"># If is its own copy, don&#39;t memoize.</span>
+    <span style="color:#fff;font-weight:bold">if</span> y is not x:
+        memo[d] = y
+        _keep_alive(x, memo) <span style="color:#007f7f"># Make sure x lives at least as long as d</span>
+    <span style="color:#fff;font-weight:bold">return</span> y
+</code></pre></div><p><code>deepcopy</code> 会通过 <code>_deepcopy_dispatch.get</code> 来获取内置容器的拷贝器，将内置容器中的数据依次递归地进行拷贝；为了防止某些容器存储的值当中包含指向自己的指针，或是无限重复的数据，函数中会使用一个 dict 变量 <code>memo</code> 来记录已经被拷贝过的数据，防止 <code>deepcopy</code> 无限地递归下去。</p>
+<p>如果容器中存储的是自定义类型的对象，<code>deepcopy</code> 会通过 <code>copier = getattr(x, &quot;__deepcopy__&quot;, None)</code> 获取到这个类型中的函数 <code>__deepcopy__</code>，并将其作为一个拷贝器用来生成新的对象，这也就意味着我们需要实现 <code>__deepcopy__</code> 函数来保证它可以被正确地深拷贝，以一个自定义的有向图结构为例：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> copy
+
+<span style="color:#fff;font-weight:bold">class</span> DirectedGraphNode:
+
+    <span style="color:#fff;font-weight:bold">def</span> __init__(self, idx, node_list):
+        self.idx = idx
+        self.node_list = node_list
+
+    <span style="color:#fff;font-weight:bold">def</span> point_to(self, node):
+        self.node_list.append(node)
+
+    <span style="color:#fff;font-weight:bold">def</span> __repr__(self):
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#39;id {}, idx {}, node_list {}&#39;</span>.format(<span style="color:#fff;font-weight:bold">id</span>(self), self.idx, [node.idx <span style="color:#fff;font-weight:bold">for</span> node in self.node_list])
+
+    <span style="color:#fff;font-weight:bold">def</span> __deepcopy__(self, memo):
+        <span style="color:#fff;font-weight:bold">print</span>(f<span style="color:#0ff;font-weight:bold">&#34;DirectedGraphNode: __deepcopy__ from {repr(self)}&#34;</span>)
+        <span style="color:#fff;font-weight:bold">if</span> self in memo:
+            exist_obj = memo.get(self)
+            <span style="color:#fff;font-weight:bold">return</span> exist_obj
+        cp_obj = DirectedGraphNode(self.idx, [])
+        memo[self] = cp_obj
+        <span style="color:#fff;font-weight:bold">for</span> node in self.node_list:
+            cp_obj.point_to(copy.deepcopy(node, memo))
+        <span style="color:#fff;font-weight:bold">print</span>(f<span style="color:#0ff;font-weight:bold">&#34;    copy done, self: {repr(self)}&#34;</span>)
+        <span style="color:#fff;font-weight:bold">return</span> cp_obj
+
+a = DirectedGraphNode(<span style="color:#ff0;font-weight:bold">1</span>, [])
+b = DirectedGraphNode(<span style="color:#ff0;font-weight:bold">2</span>, [])
+a.point_to(b)
+b.point_to(a)
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#fff;font-weight:bold">repr</span>(a))
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#fff;font-weight:bold">repr</span>(b))
+
+c = copy.deepcopy(a)
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#fff;font-weight:bold">repr</span>(c))
+<span style="color:#fff;font-weight:bold">for</span> node in c.node_list:
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#fff;font-weight:bold">repr</span>(node))
+</code></pre></div><p>在它的 <code>__deepcopy__</code> 函数中，我们以其中一个节点出发，先构造出新的节点对象 <code>cp_obj</code>，再将它指向的所有节点以递归的方式依次进行深拷贝，如果在拷贝的过程中发现节点是已经被拷贝过的，则直接返回 <code>exist_obj</code>：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python3 main.py 
+id 139867268624336, idx 1, node_list [2]
+id 139867268624240, idx 2, node_list [1]
+DirectedGraphNode: __deepcopy__ from id 139867268624336, idx 1, node_list [2]
+DirectedGraphNode: __deepcopy__ from id 139867268624240, idx 2, node_list [1]
+DirectedGraphNode: __deepcopy__ from id 139867268624336, idx 1, node_list [2]
+    copy <span style="color:#fff;font-weight:bold">done</span>, self: id 139867268624240, idx 2, node_list [1]
+    copy <span style="color:#fff;font-weight:bold">done</span>, self: id 139867268624336, idx 1, node_list [2]
+id 139867268624048, idx 1, node_list [2]
+id 139867268623040, idx 2, node_list [1]
+</code></pre></div>
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>

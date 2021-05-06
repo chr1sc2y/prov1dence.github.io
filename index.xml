@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 26 Apr 2021 21:44:52 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 May 2021 20:07:52 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 源码学习（3）：list 类型</title>
+      <link>https://zintrulcre.vip/posts/python/source-code-3-list-and-dict/</link>
+      <pubDate>Thu, 06 May 2021 20:07:52 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/python/source-code-3-list-and-dict/</guid>
+      <description>Python 源码学习（3）：list 类型 [TOC] Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中： // Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for</description>
+    </item>
+    
     <item>
       <title>ProtoBuf 语法和编码原理入门</title>
       <link>https://zintrulcre.vip/posts/serialization/protocol-buffer/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://zintrulcre.vip/posts/parallel-computing/parallel-computing/</guid>
       <description>并行计算入门 [TOC] 1 概述 1.1 并行计算 高性能计算（High Performance Computing）是计算机科学中的一个领域，其目的可以概括为优化性能，它包括了缓存技术</description>
-    </item>
-    
-    <item>
-      <title>boost::typeIndex 的相关探究</title>
-      <link>https://zintrulcre.vip/posts/c&#43;&#43;/boost/boost.typeindex-%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8E%A2%E7%A9%B6/</link>
-      <pubDate>Fri, 31 Jul 2020 20:31:06 +0800</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/boost/boost.typeindex-%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8E%A2%E7%A9%B6/</guid>
-      <description>boost::typeIndex 的相关探究 Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 Boost::typeindex 的使用，但并没有讲到其实现原理。 1. typeid 操作符 typeid 是 C++ 中的一个操作符，可以用于获取类型的信息，常常用</description>
     </item>
     
   </channel>
