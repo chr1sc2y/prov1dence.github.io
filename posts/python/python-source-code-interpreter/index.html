@@ -10,11 +10,11 @@
     <meta name="keywords" content="ZintrulCre, 尾張">
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Python 源码学习：Python 解释器"/>
-<meta name="twitter:description" content="Python 源码学习：Python 解释器 [TOC] Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 C"/>
+<meta name="twitter:title" content="Python 源码学习（4）：编译器和虚拟机"/>
+<meta name="twitter:description" content="Python 源码学习（4）：编译器和虚拟机 [TOC] Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自"/>
 
-    <meta property="og:title" content="Python 源码学习：Python 解释器" />
-<meta property="og:description" content="Python 源码学习：Python 解释器 [TOC] Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 C" />
+    <meta property="og:title" content="Python 源码学习（4）：编译器和虚拟机" />
+<meta property="og:description" content="Python 源码学习（4）：编译器和虚拟机 [TOC] Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zintrulcre.vip/posts/python/python-source-code-interpreter/" />
 <meta property="article:published_time" content="2021-05-26T10:18:52+08:00" />
@@ -25,7 +25,7 @@
       <base href="https://zintrulcre.vip/posts/python/python-source-code-interpreter/">
     
     <title>
-  Python 源码学习：Python 解释器 · 尾張
+  Python 源码学习（4）：编译器和虚拟机 · 尾張
 </title>
 
     
@@ -87,7 +87,7 @@
     <article>
       <header>
         <div class="post-title">
-          <h1 class="title">Python 源码学习：Python 解释器</h1>
+          <h1 class="title">Python 源码学习（4）：编译器和虚拟机</h1>
         </div>
         <div class="post-meta">
           <div class="date">
@@ -108,7 +108,7 @@
       </header>
 
       <div>
-        <h1 id="python-源码学习python-解释器">Python 源码学习：Python 解释器</h1>
+        <h1 id="python-源码学习4编译器和虚拟机">Python 源码学习（4）：编译器和虚拟机</h1>
 <p>[TOC]</p>
 <p>Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 <a href="https://github.com/python/cpython">CPython</a>。</p>
 <p><strong>Python 解释器</strong>（<em>Python Interpreter</em>）由 <strong>Python 编译器</strong>（<em>Python Compiler</em>）和 <strong>Python 虚拟机</strong>（<em>Python Virutal Machine</em>）两部分组成。当我们通过 Python 命令执行 Python 代码时，Python 编译器会将 Python 代码编译为 <strong>Python 字节码</strong>（<em><a href="https://www.quora.com/What-is-the-difference-between-byte-code-and-machine-code-and-what-are-its-advantages">bytecode</a></em>）；随后 Python 虚拟机会读取并逐步执行这些字节码。</p>

@@ -7,14 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 26 May 2021 10:18:52 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Aug 2021 17:38:52 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Python 源码学习：Python 解释器</title>
+      <title>Python 源码学习（5）：协程</title>
+      <link>https://zintrulcre.vip/posts/python/python-source-code-coroutine/</link>
+      <pubDate>Wed, 04 Aug 2021 17:38:52 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/python/python-source-code-coroutine/</guid>
+      <description>Python 源码学习（5）：协程 [TOC] 协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；</description>
+    </item>
+    
+    <item>
+      <title>Python 源码学习（4）：编译器和虚拟机</title>
       <link>https://zintrulcre.vip/posts/python/python-source-code-interpreter/</link>
       <pubDate>Wed, 26 May 2021 10:18:52 +0800</pubDate>
       
       <guid>https://zintrulcre.vip/posts/python/python-source-code-interpreter/</guid>
-      <description>Python 源码学习：Python 解释器 [TOC] Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 C</description>
+      <description>Python 源码学习（4）：编译器和虚拟机 [TOC] Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自</description>
     </item>
     
     <item>
@@ -87,15 +96,6 @@
       
       <guid>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%9F%BA%E7%A1%80/effective-cpp/</guid>
       <description>Effective C++ 笔记 [TOC] 0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如 class Bar { public: //</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43; 单例模式的模板实现</title>
-      <link>https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0/</link>
-      <pubDate>Thu, 10 Sep 2020 21:25:43 +0800</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0/</guid>
-      <description>C++ 单例模式的模板实现 单例模式是一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例</description>
     </item>
     
   </channel>

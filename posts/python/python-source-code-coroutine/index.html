@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python 源码学习（5）：协程"/>
+<meta name="twitter:description" content="Python 源码学习（5）：协程 [TOC] 协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；"/>
+
+    <meta property="og:title" content="Python 源码学习（5）：协程" />
+<meta property="og:description" content="Python 源码学习（5）：协程 [TOC] 协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/python/python-source-code-coroutine/" />
+<meta property="article:published_time" content="2021-08-04T17:38:52+08:00" />
+<meta property="article:modified_time" content="2021-08-04T17:38:52+08:00" />
+
+
+    
+      <base href="https://zintrulcre.vip/posts/python/python-source-code-coroutine/">
+    
+    <title>
+  Python 源码学习（5）：协程 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/python/python-source-code-coroutine/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.75.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Python 源码学习（5）：协程</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2021-08-04T17:38:52&#43;08:00'>
+                August 4, 2021
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/python/">python</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        <h1 id="python-源码学习5协程">Python 源码学习（5）：协程</h1>
+<p>[TOC]</p>
+<p><strong>协程</strong> <em>coroutine</em> 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的<strong>生成器</strong> <em>generator</em> 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。</p>
+<h2 id="1-生成器">1 生成器</h2>
+<p>如果 Python 中的函数含有 yield 关键字，那么在调用这个函数时，它不会如同普通的函数一样运行到 <code>return</code> 语句并返回一个变量，而是会立即返回一个生成器对象；以一个斐波那契数列生成函数为例：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">def</span> FibonacciSequenceGenerator():
+    a, b = <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">1</span>
+    <span style="color:#fff;font-weight:bold">while</span> True:
+        <span style="color:#fff;font-weight:bold">yield</span> a + b
+        a, b = b, a + b
+
+<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#34;__main__&#34;</span>:
+    fsg = FibonacciSequenceGenerator()
+    <span style="color:#fff;font-weight:bold">print</span>(fsg)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#fff;font-weight:bold">type</span>(fsg))
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python3 main.py
+&lt;generator object FibonacciSequenceGenerator at 0x7fb4720b1ac0&gt;
+&lt;class <span style="color:#0ff;font-weight:bold">&#39;generator&#39;</span>&gt;
+</code></pre></div><p>可以看到函数 <code>FibonacciSequenceGenerator</code> 返回了一个类型为 <code>generator</code> 的生成器对象 <code>f</code>；对于生成器对象，我们不能像操作普通函数一样直接进行函数调用，而是要使用 <code>next()</code> 或 <code>fsg.send()</code> 来进行函数切换，使得生成器函数开始或继续执行，直到 <code>yield</code> 所在行或是函数末尾再将执行权交还给调用方：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">100</span>):
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#fff;font-weight:bold">next</span>(fsg))
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python3 main.py
+<span style="color:#ff0;font-weight:bold">1</span>
+<span style="color:#ff0;font-weight:bold">2</span>
+<span style="color:#ff0;font-weight:bold">3</span>
+<span style="color:#ff0;font-weight:bold">5</span>
+<span style="color:#007f7f"># ...</span>
+<span style="color:#ff0;font-weight:bold">218922995834555169026</span>
+<span style="color:#ff0;font-weight:bold">354224848179261915075</span>
+<span style="color:#ff0;font-weight:bold">573147844013817084101</span>
+</code></pre></div><p>生成器的这种行为与线程切换非常类似，它包含了执行，保存，恢复上下文的步骤，用生成器来模拟线程的行为可以避免从用户态到内核态的切换，从而提升效率。</p>
+<h2 id="2-协程">2 协程</h2>
+<h3 id="21-生成器对象">2.1 生成器对象</h3>
+<p>通过类型对象的 <code>tp_name</code> 变量可以找到生成器 <code>generator</code> 对象在源码中对应的结构体是 <code>PyGenObject</code>，它的类型对象是 <code>PyGen_Type</code>：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007f7f">// Inlcude/genobject.h
+</span><span style="color:#007f7f"></span>
+<span style="color:#007f7f">/* _PyGenObject_HEAD defines the initial segment of generator
+</span><span style="color:#007f7f">   and coroutine objects. */</span>
+<span style="color:#0f0;font-weight:bold">#define _PyGenObject_HEAD(prefix)                                           \
+</span><span style="color:#0f0;font-weight:bold">    PyObject_HEAD                                                           \
+</span><span style="color:#0f0;font-weight:bold">    </span><span style="color:#007f7f">/* Note: gi_frame can be NULL if the generator is &#34;finished&#34; */</span><span style="color:#0f0;font-weight:bold">         \
+</span><span style="color:#0f0;font-weight:bold">    PyFrameObject *prefix##_frame;                                          \
+</span><span style="color:#0f0;font-weight:bold">    </span><span style="color:#007f7f">/* True if generator is being executed. */</span><span style="color:#0f0;font-weight:bold">                              \
+</span><span style="color:#0f0;font-weight:bold">    char prefix##_running;                                                  \
+</span><span style="color:#0f0;font-weight:bold">    </span><span style="color:#007f7f">/* The code object backing the generator */</span><span style="color:#0f0;font-weight:bold">                             \
+</span><span style="color:#0f0;font-weight:bold">    PyObject *prefix##_code;                                                \
+</span><span style="color:#0f0;font-weight:bold">    </span><span style="color:#007f7f">/* List of weak reference. */</span><span style="color:#0f0;font-weight:bold">                                           \
+</span><span style="color:#0f0;font-weight:bold">    PyObject *prefix##_weakreflist;                                         \
+</span><span style="color:#0f0;font-weight:bold">    </span><span style="color:#007f7f">/* Name of the generator. */</span><span style="color:#0f0;font-weight:bold">                                            \
+</span><span style="color:#0f0;font-weight:bold">    PyObject *prefix##_name;                                                \
+</span><span style="color:#0f0;font-weight:bold">    </span><span style="color:#007f7f">/* Qualified name of the generator. */</span><span style="color:#0f0;font-weight:bold">                                  \
+</span><span style="color:#0f0;font-weight:bold">    PyObject *prefix##_qualname;                                            \
+</span><span style="color:#0f0;font-weight:bold">    _PyErr_StackItem prefix##_exc_state;
+</span><span style="color:#0f0;font-weight:bold"></span>
+<span style="color:#fff;font-weight:bold">typedef</span> <span style="color:#fff;font-weight:bold">struct</span> {
+    <span style="color:#007f7f">/* The gi_ prefix is intended to remind of generator-iterator. */</span>
+    _PyGenObject_HEAD(gi)
+} PyGenObject;
+
+<span style="color:#007f7f">// Inlcude/genobject.c
+</span><span style="color:#007f7f"></span>
+
+PyTypeObject PyGen_Type = {
+    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span style="color:#ff0;font-weight:bold">0</span>)
+    <span style="color:#0ff;font-weight:bold">&#34;generator&#34;</span>,                                <span style="color:#007f7f">/* tp_name */</span>
+    <span style="color:#fff;font-weight:bold">sizeof</span>(PyGenObject),                        <span style="color:#007f7f">/* tp_basicsize */</span>
+    <span style="color:#ff0;font-weight:bold">0</span>,                                          <span style="color:#007f7f">/* tp_itemsize */</span>
+    <span style="color:#007f7f">/* methods */</span>
+    (destructor)gen_dealloc,                    <span style="color:#007f7f">/* tp_dealloc */</span>
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>    (iternextfunc)gen_iternext,                 <span style="color:#007f7f">/* tp_iternext */</span>
+    _PyGen_Finalize,                            <span style="color:#007f7f">/* tp_finalize */</span>
+};
+
+</code></pre></div><p><code>PyGenObject</code> 结构体中的成员变量不多，分别是：</p>
+<ul>
+<li>定长对象公共头部 <code>PyObject_HEAD</code>，其中包括引用计数 <code>ob_refcnt</code> 和类型对象指针 <code>ob_type</code>；</li>
+<li>生成器是否正在运行的标志 <code>gi_running</code>；</li>
+<li>生成器运行时依赖的栈帧对象 <code>gi_frame</code>；</li>
+<li>生成器对应的代码对象 <code>gi_code</code>；</li>
+<li>生成器的弱引用列表 <code>gi_weakreflist</code>；</li>
+<li>生成器的名称 <code>gi_name</code> 和 <code>gi_qualname</code>；</li>
+<li>生成器的异常状态 <code>gi_exec_state</code>；</li>
+</ul>
+<p>生成器在刚被创建时，并不会立即执行，并且其栈帧对象中最后一条执行过的指令也为空：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#fff;font-weight:bold">print</span>(fsg.gi_running)
+    <span style="color:#fff;font-weight:bold">print</span>(fsg.gi_frame.f_lasti)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python3 main.py 
+False
+-1
+</code></pre></div><p>当然它的栈帧对象也是和代码对象相关联的：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#fff;font-weight:bold">print</span>(fsg.gi_code)
+    <span style="color:#fff;font-weight:bold">print</span>(fsg.gi_frame)
+    <span style="color:#fff;font-weight:bold">print</span>(fsg.gi_frame.f_code)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python3 main.py 
+&lt;code object FibonacciSequenceGenerator at 0x7f8283e49c90, file <span style="color:#0ff;font-weight:bold">&#34;main.py&#34;</span>, line 89&gt;
+&lt;frame at 0x7f8283f17610, file <span style="color:#0ff;font-weight:bold">&#39;main.py&#39;</span>, line 89, code FibonacciSequenceGenerator&gt;
+&lt;code object FibonacciSequenceGenerator at 0x7f8283e49c90, file <span style="color:#0ff;font-weight:bold">&#34;main.py&#34;</span>, line 89&gt;
+</code></pre></div><h3 id="22-执行">2.2 执行</h3>
+<h4 id="next">next</h4>
+<p><code>next()</code> 函数是 Python 的内置函数，用于驱动生成器的执行，或者说将程序的调用栈从当前函数切换到生成器中；其源码如下：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Python/bltinmodule.c
+</span><span style="color:#007f7f"></span>builtin_next(PyObject *self, PyObject *<span style="color:#fff;font-weight:bold">const</span> *args, Py_ssize_t nargs)
+{
+    PyObject *it, *res;
+
+    <span style="color:#fff;font-weight:bold">if</span> (!_PyArg_CheckPositional(<span style="color:#0ff;font-weight:bold">&#34;next&#34;</span>, nargs, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>))
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">NULL</span>;
+
+    it = args[<span style="color:#ff0;font-weight:bold">0</span>];
+    <span style="color:#fff;font-weight:bold">if</span> (!PyIter_Check(it)) {
+        PyErr_Format(PyExc_TypeError,
+            <span style="color:#0ff;font-weight:bold">&#34;&#39;%.200s&#39; object is not an iterator&#34;</span>,
+            Py_TYPE(it)-&gt;tp_name);
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">NULL</span>;
+    }
+
+    res = (*Py_TYPE(it)-&gt;tp_iternext)(it);
+    <span style="color:#fff;font-weight:bold">if</span> (res != <span style="color:#fff;font-weight:bold">NULL</span>) {
+        <span style="color:#fff;font-weight:bold">return</span> res;
+    } <span style="color:#fff;font-weight:bold">else</span> if (nargs &gt; <span style="color:#ff0;font-weight:bold">1</span>) {
+        PyObject *def = args[<span style="color:#ff0;font-weight:bold">1</span>];
+        <span style="color:#fff;font-weight:bold">if</span> (PyErr_Occurred()) {
+            <span style="color:#fff;font-weight:bold">if</span>(!PyErr_ExceptionMatches(PyExc_StopIteration))
+                <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">NULL</span>;
+            PyErr_Clear();
+        }
+        Py_INCREF(def);
+        <span style="color:#fff;font-weight:bold">return</span> def;
+    } <span style="color:#fff;font-weight:bold">else</span> if (PyErr_Occurred()) {
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">NULL</span>;
+    } <span style="color:#fff;font-weight:bold">else</span> {
+        PyErr_SetNone(PyExc_StopIteration);
+        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">NULL</span>;
+    }
+}
+
+</code></pre></div><p>除去前后两大块类型检查，最核心的部分是 <code>res = (*it-&gt;ob_type-&gt;tp_iternext)(it)</code>，即获取参数中 <code>args[0]</code> 的类型对象，并调用其 <code>tp_iternext</code> 函数指针，再检查返回的结果；因此当我们对生成器对象 <code>fsg</code> 调用 <code>next</code> 函数时，实际上是调用了生成器类型对象 <code>PyGen_Type</code> 的 <code>gen_iternext</code> 函数，来驱动生成器开始或继续运行，而这个 <code>gen_iternext</code> 函数则调用了 <code>gen_send_ex</code> 函数：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/genobject.c
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">static</span> PyObject *
+gen_iternext(PyGenObject *gen)
+{
+    <span style="color:#fff;font-weight:bold">return</span> gen_send_ex(gen, <span style="color:#fff;font-weight:bold">NULL</span>, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>);
+}
+
+<span style="color:#fff;font-weight:bold">static</span> PyObject *
+gen_send_ex(PyGenObject *gen, PyObject *arg, <span style="color:#fff;font-weight:bold">int</span> exc, <span style="color:#fff;font-weight:bold">int</span> closing)
+{
+    PyFrameObject *f = gen-&gt;gi_frame;
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>    
+    <span style="color:#007f7f">/* Generators always return to their most recent caller, not
+</span><span style="color:#007f7f">     * necessarily their creator. */</span>
+    Py_XINCREF(tstate-&gt;frame);
+    assert(f-&gt;f_back == <span style="color:#fff;font-weight:bold">NULL</span>);
+    f-&gt;f_back = tstate-&gt;frame;
+    
+    gen-&gt;gi_running = <span style="color:#ff0;font-weight:bold">1</span>;
+    gen-&gt;gi_exc_state.previous_item = tstate-&gt;exc_info;
+    tstate-&gt;exc_info = &amp;gen-&gt;gi_exc_state;
+
+    <span style="color:#fff;font-weight:bold">if</span> (exc) {
+        assert(_PyErr_Occurred(tstate));
+        _PyErr_ChainStackItem(<span style="color:#fff;font-weight:bold">NULL</span>);
+    }
+
+    result = _PyEval_EvalFrame(tstate, f, exc);
+    tstate-&gt;exc_info = gen-&gt;gi_exc_state.previous_item;
+    gen-&gt;gi_exc_state.previous_item = <span style="color:#fff;font-weight:bold">NULL</span>;
+    gen-&gt;gi_running = <span style="color:#ff0;font-weight:bold">0</span>;
+
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>}
+</code></pre></div><p><code>gen_send_ex</code> 函数很长，但其中最关键的只有上面截取的部分，这部分代码首先将生成器对象的栈帧挂到当前调用链上 <code>f-&gt;f_back = tstate-&gt;frame;</code>，并修改生成器对象的运行状态 <code>gen-&gt;gi_running = 1</code>，接下来再通过调用 <code>_PyEval_EvalFrame</code> 来执行生成器栈帧，关于 <code>_PyEval_EvalFrame</code> 函数的流程已经在前文讨论过，简单地来说就是通过在一个循环中通过 <code>switch case</code> 不断地执行生成器对象对应的字节码。</p>
+<h4 id="send">send</h4>
+<p>和 <code>next</code> 函数类似，<code>send</code> 函数也可以用来驱动生成器执行，从调用形式上来看它们之间唯一的区别就是 <code>send</code> 函数会额外的传入一个参数，而从 <code>send</code> 函数的源码中可以看到它同样地也会调用 <code>gen_send_ex</code> 函数，不过其第二个参数是一个对象指针（而不像 <code>gen_iternext</code> 函数中一样传入了一个 <code>NULL</code>）：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Objects/genobject.c
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">static</span> PyMethodDef gen_methods[] = {
+    {<span style="color:#0ff;font-weight:bold">&#34;send&#34;</span>,(PyCFunction)_PyGen_Send, METH_O, send_doc},
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>};
+
+PyObject *
+_PyGen_Send(PyGenObject *gen, PyObject *arg)
+{
+    <span style="color:#fff;font-weight:bold">return</span> gen_send_ex(gen, arg, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>);
+}
+</code></pre></div><p>查看一下两者对应的字节码指令中的区别：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> os, sys
+
+<span style="color:#fff;font-weight:bold">def</span> FibonacciSequenceGenerator():
+    a, b = <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">1</span>
+    <span style="color:#fff;font-weight:bold">while</span> True:
+        <span style="color:#fff;font-weight:bold">yield</span> a + b
+        a, b = b, a + b
+
+<span style="color:#fff;font-weight:bold">def</span> DriveCo(co):
+    r = <span style="color:#fff;font-weight:bold">next</span>(fsg)
+    r = fsg.send(<span style="color:#ff0;font-weight:bold">1</span>)
+
+<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#34;__main__&#34;</span>:
+    fsg = FibonacciSequenceGenerator()
+    DriveCo(fsg)
+    <span style="color:#fff;font-weight:bold">import</span> dis
+    dis.dis(DriveCo)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python3 main.py 
+ <span style="color:#ff0;font-weight:bold">10</span>           <span style="color:#ff0;font-weight:bold">0</span> LOAD_GLOBAL              <span style="color:#ff0;font-weight:bold">0</span> (next)
+              <span style="color:#ff0;font-weight:bold">2</span> LOAD_GLOBAL              <span style="color:#ff0;font-weight:bold">1</span> (fsg)
+              <span style="color:#ff0;font-weight:bold">4</span> CALL_FUNCTION            <span style="color:#ff0;font-weight:bold">1</span>
+              <span style="color:#ff0;font-weight:bold">6</span> STORE_FAST               <span style="color:#ff0;font-weight:bold">1</span> (r)
+
+ <span style="color:#ff0;font-weight:bold">11</span>           <span style="color:#ff0;font-weight:bold">8</span> LOAD_GLOBAL              <span style="color:#ff0;font-weight:bold">1</span> (fsg)
+             <span style="color:#ff0;font-weight:bold">10</span> LOAD_METHOD              <span style="color:#ff0;font-weight:bold">2</span> (send)
+             <span style="color:#ff0;font-weight:bold">12</span> LOAD_CONST               <span style="color:#ff0;font-weight:bold">1</span> (1)
+             <span style="color:#ff0;font-weight:bold">14</span> CALL_METHOD              <span style="color:#ff0;font-weight:bold">1</span>
+             <span style="color:#ff0;font-weight:bold">16</span> STORE_FAST               <span style="color:#ff0;font-weight:bold">1</span> (r)
+             <span style="color:#ff0;font-weight:bold">18</span> LOAD_CONST               <span style="color:#ff0;font-weight:bold">0</span> (None)
+             <span style="color:#ff0;font-weight:bold">20</span> RETURN_VALUE
+</code></pre></div><p>可以看到相比于 <code>next</code> 函数的字节码指令，<code>send</code> 函数只是在调用函数（<code>CALL_FUNCTION</code> / <code>CALL_METHOD</code>）前加上了 <code>LOAD_CONST</code> 指令来将参数置入栈顶。</p>
+<h3 id="23-暂停">2.3 暂停</h3>
+<p>在 Python 中可以使用内置的 <code>yield</code> 函数来暂停生成器对象的执行并返回一个值，我们可以研究一下 <code>FibonacciSequenceGenerator</code> 函数以及 <code>yield</code> 语句对应的字节码指令：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#fff;font-weight:bold">import</span> dis
+    dis.dis(fsg)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python3 main.py 
+  <span style="color:#ff0;font-weight:bold">2</span>           <span style="color:#ff0;font-weight:bold">0</span> LOAD_CONST               <span style="color:#ff0;font-weight:bold">1</span> ((0, 1))
+              <span style="color:#ff0;font-weight:bold">2</span> UNPACK_SEQUENCE          <span style="color:#ff0;font-weight:bold">2</span>
+              <span style="color:#ff0;font-weight:bold">4</span> STORE_FAST               <span style="color:#ff0;font-weight:bold">0</span> (a)
+              <span style="color:#ff0;font-weight:bold">6</span> STORE_FAST               <span style="color:#ff0;font-weight:bold">1</span> (b)
+
+  <span style="color:#ff0;font-weight:bold">4</span>     &gt;&gt;    <span style="color:#ff0;font-weight:bold">8</span> LOAD_FAST                <span style="color:#ff0;font-weight:bold">0</span> (a)
+             <span style="color:#ff0;font-weight:bold">10</span> LOAD_FAST                <span style="color:#ff0;font-weight:bold">1</span> (b)
+             <span style="color:#ff0;font-weight:bold">12</span> BINARY_ADD
+             <span style="color:#ff0;font-weight:bold">14</span> YIELD_VALUE
+             <span style="color:#ff0;font-weight:bold">16</span> POP_TOP
+
+  <span style="color:#ff0;font-weight:bold">5</span>          <span style="color:#ff0;font-weight:bold">18</span> LOAD_FAST                <span style="color:#ff0;font-weight:bold">1</span> (b)
+             <span style="color:#ff0;font-weight:bold">20</span> LOAD_FAST                <span style="color:#ff0;font-weight:bold">0</span> (a)
+             <span style="color:#ff0;font-weight:bold">22</span> LOAD_FAST                <span style="color:#ff0;font-weight:bold">1</span> (b)
+             <span style="color:#ff0;font-weight:bold">24</span> BINARY_ADD
+             <span style="color:#ff0;font-weight:bold">26</span> ROT_TWO
+             <span style="color:#ff0;font-weight:bold">28</span> STORE_FAST               <span style="color:#ff0;font-weight:bold">0</span> (a)
+             <span style="color:#ff0;font-weight:bold">30</span> STORE_FAST               <span style="color:#ff0;font-weight:bold">1</span> (b)
+             <span style="color:#ff0;font-weight:bold">32</span> JUMP_ABSOLUTE            <span style="color:#ff0;font-weight:bold">8</span>
+             <span style="color:#ff0;font-weight:bold">34</span> LOAD_CONST               <span style="color:#ff0;font-weight:bold">0</span> (None)
+             <span style="color:#ff0;font-weight:bold">36</span> RETURN_VALUE
+</code></pre></div><p>其中第 2 行（<code>a, b = 0, 1</code>）和第 5 行（<code>a, b = b, a + b</code>）都是在进行 a, b 变量的赋值操作，而在第 4 行则可以看到在执行 <code>yield a + b</code> 操作时，实际上是先通过 <code>LOAD_FAST</code> 和 <code>BINARY_ADD</code> 将新计算出的值保存在栈顶，再进行了 <code>YIELD_VALUE</code> 和 <code>POP_TOP</code> 指令操作，查看一下这两个指令的源码：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007f7f">// Python/ceval.c
+</span><span style="color:#007f7f"></span>
+PyObject* _Py_HOT_FUNCTION
+_PyEval_EvalFrameDefault(PyThreadState *tstate, PyFrameObject *f, <span style="color:#fff;font-weight:bold">int</span> throwflag)
+{
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">case</span> TARGET(POP_TOP): {
+            PyObject *value = POP();
+            Py_DECREF(value);
+            FAST_DISPATCH();
+        }
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">case</span> TARGET(YIELD_VALUE): {
+            retval = POP();
+
+            <span style="color:#fff;font-weight:bold">if</span> (co-&gt;co_flags &amp; CO_ASYNC_GENERATOR) {
+                PyObject *w = _PyAsyncGenValueWrapperNew(retval);
+                Py_DECREF(retval);
+                <span style="color:#fff;font-weight:bold">if</span> (w == <span style="color:#fff;font-weight:bold">NULL</span>) {
+                    retval = <span style="color:#fff;font-weight:bold">NULL</span>;
+                    <span style="color:#fff;font-weight:bold">goto</span> error;
+                }
+                retval = w;
+            }
+
+            f-&gt;f_stacktop = stack_pointer;
+            <span style="color:#fff;font-weight:bold">goto</span> exiting;
+        }
+    <span style="color:#007f7f">// ...
+</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">return</span> _Py_CheckFunctionResult(tstate, <span style="color:#fff;font-weight:bold">NULL</span>, retval, __func__);
+}
+</code></pre></div><p>可以看到 <code>YIELD_VALUE</code>  指令的操作非常简单，它会先取出栈顶的数据作为 yield 语句的返回值，再修改指向当前栈帧顶部的指针所指向的地址，最后通过 <code>goto</code> 语句结束执行；随后，<code>_PyEval_EvalFrameDefault</code> 函数会将生成器对象的栈帧从当前调用链中移除，并返回 <code>retval</code>。</p>
+<h2 id="3-总结">3 总结</h2>
+<p>至此可以发现 Python 中的生成器是完全符合协程的定义（可以在用户态中断和恢复）的；同时由于 Python 虚拟机本身的实现是 <strong>基于栈的</strong>（<em>Stack-Based</em>），因此生成器对象在字节码层面的实现也是非常简洁的。而协程可以在线程的基础之上，借助基于 epoll 等 IO 多路复用的事件循环，来驱动不同的子程序（<em>subroutine</em>）和上下文的执行，实现形似阻塞式但实际是异步的编程模型，适用于 IO 密集型场景。</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>
