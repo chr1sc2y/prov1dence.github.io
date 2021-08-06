@@ -72,6 +72,15 @@
     </item>
     
     <item>
+      <title>启发式搜索和强化学习</title>
+      <link>https://zintrulcre.vip/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</link>
+      <pubDate>Thu, 10 Dec 2020 20:07:52 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</guid>
+      <description>启发式搜索和强化学习 The Pac-Man Projects 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。 [TOC] 1 盲目搜索 盲目搜索（Blind Search）指不</description>
+    </item>
+    
+    <item>
       <title>负载均衡和一致性哈希</title>
       <link>https://zintrulcre.vip/posts/service-governance/load-balancing/</link>
       <pubDate>Sun, 25 Oct 2020 23:06:52 +0800</pubDate>
@@ -87,15 +96,6 @@
       
       <guid>https://zintrulcre.vip/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</guid>
       <description>C++ 并发入门：以 LeetCode 1114 为例 [toc] 题目 直接做题：1114 按序打印 解法 1. std::mutex 如果你对 c++ 11 略为熟悉的话，应该能够想到用 std::mutex 来解这道题，在函数构造时（主线程）对</description>
-    </item>
-    
-    <item>
-      <title>Effective C&#43;&#43; notes</title>
-      <link>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%9F%BA%E7%A1%80/effective-cpp/</link>
-      <pubDate>Thu, 24 Sep 2020 16:43:27 +0800</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/%E5%9F%BA%E7%A1%80/effective-cpp/</guid>
-      <description>Effective C++ 笔记 [TOC] 0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如 class Bar { public: //</description>
     </item>
     
   </channel>

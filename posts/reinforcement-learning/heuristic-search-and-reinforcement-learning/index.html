@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Zhengyu Chen">
+    <meta name="description" content="ZintrulCre @ 尾張">
+    <meta name="keywords" content="ZintrulCre, 尾張">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="启发式搜索和强化学习"/>
+<meta name="twitter:description" content="启发式搜索和强化学习 The Pac-Man Projects 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。 [TOC] 1 盲目搜索 盲目搜索（Blind Search）指不"/>
+
+    <meta property="og:title" content="启发式搜索和强化学习" />
+<meta property="og:description" content="启发式搜索和强化学习 The Pac-Man Projects 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。 [TOC] 1 盲目搜索 盲目搜索（Blind Search）指不" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zintrulcre.vip/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/" />
+<meta property="article:published_time" content="2020-12-10T20:07:52+08:00" />
+<meta property="article:modified_time" content="2020-12-10T20:07:52+08:00" />
+
+
+    
+      <base href="https://zintrulcre.vip/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/">
+    
+    <title>
+  启发式搜索和强化学习 · 尾張
+</title>
+
+    
+      <link rel="canonical" href="https://zintrulcre.vip/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zintrulcre.vip/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zintrulcre.vip/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.75.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zintrulcre.vip">
+      尾張
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zintrulcre.vip/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">启发式搜索和强化学习</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-12-10T20:07:52&#43;08:00'>
+                December 10, 2020
+              </time>
+            </span>
+            
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zintrulcre.vip/categories/reinforcement-learning/">reinforcement learning</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        <h1 id="启发式搜索和强化学习">启发式搜索和强化学习</h1>
+<p><a href="https://inst.eecs.berkeley.edu/~cs188/fa18/projects.html">The Pac-Man Projects</a> 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。</p>
+<p>[TOC]</p>
+<h2 id="1-盲目搜索">1 盲目搜索</h2>
+<p><strong>盲目搜索</strong>（Blind Search）指不利用任何额外信息（输入数据，或辅助函数），只依赖于算法本身的搜索，例如 BFS，DFS，Dijkstra 等；</p>
+<h3 id="dfs">DFS</h3>
+<p><code>The Pac-Man Projects </code> 已经实现了吃豆人游戏的后台逻辑和图形渲染框架，我们只需要在 <code>search.py</code> 文件中实现具体的搜索算法，并根据搜索算法生成寻路路径，即可让吃豆人移动，先来实现一个简单的 DFS：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">def</span> DepthFirstSearch(problem):
+    <span style="color:#fff;font-weight:bold">from</span> util <span style="color:#fff;font-weight:bold">import</span> Stack
+    open_list = Stack()
+    visited = []
+    open_list.push((problem.getStartState(), []))
+    <span style="color:#fff;font-weight:bold">while</span> not open_list.isEmpty():
+        current_node, path = open_list.pop()
+        <span style="color:#fff;font-weight:bold">if</span> problem.isGoalState(current_node):
+            <span style="color:#fff;font-weight:bold">return</span> path
+        <span style="color:#fff;font-weight:bold">if</span> current_node in visited:
+            <span style="color:#fff;font-weight:bold">continue</span>
+        visited.append(current_node)
+        <span style="color:#fff;font-weight:bold">for</span> next_node, action, cost in problem.getSuccessors(current_node):
+            <span style="color:#fff;font-weight:bold">if</span> next_node not in visited:
+                open_list.push((next_node, path + [action]))
+dfs = DepthFirstSearch
+</code></pre></div><p>在吃豆人游戏的框架下，为寻路函数传入的 <code>problem</code> 参数可以理解为一个 <code>class SearchProblem</code> 类型的抽象基类，实际的问题有 <code>PositionSearchProblem</code>（找到单个终点），<code>FoodSearchProblem</code>（找到所有食物），<code>CapsuleSearchProblem</code>（找到增益药丸和所有食物）等，这些子类都需要实现以下函数：</p>
+<ul>
+<li><code>getStartState()</code>：获取起始状态；</li>
+<li><code>isGoalState(state)</code>：判断 <code>state</code> 节点是否是目标节点；</li>
+<li><code>getSuccessors(statu)</code>：获取 <code>state</code> 节点的所有后续节点；</li>
+<li><code>getCostOfActions(actions)</code>：<code>actions</code> 是一个由上下左右方向组成的一个动作列表，函数返回这个列表的总花费（cost）；</li>
+</ul>
+<p>运行一下看看 DFS 的效果：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python pacman.py -l smallEmpty -z 0.8 -p SearchAgent -a fn=dfs     
+[SearchAgent] using <span style="color:#fff;font-weight:bold">function</span> dfs
+[SearchAgent] using problem <span style="color:#fff;font-weight:bold">type</span> PositionSearchProblem
+Path found with total cost of <span style="color:#ff0;font-weight:bold">56</span> in 0.002992 seconds
+Search nodes expanded: <span style="color:#ff0;font-weight:bold">56</span>
+Pacman emerges victorious! Score: <span style="color:#ff0;font-weight:bold">454</span>
+Average Score: 454.0
+Scores:        454.0
+Win Rate:      1/1 (1.00)
+Record:        Win
+</code></pre></div><p>运行的参数列表中有几个参数：</p>
+<ul>
+<li><code>-l smallEmpty</code>：在名为 smallEmpty 的地图上运行，地图定义在 layouts 目录下；</li>
+<li><code>-z 0.8</code>：客户端表现缩放为 0.8 倍</li>
+<li><code>-p SearchAgent</code>：指定实际的问题，这里的 <code>SearchAgent</code> 是 <code>fn='depthFirstSearch', prob='PositionSearchProblem'</code> 的缩写；</li>
+</ul>
+<p>实际运行效果如下：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/smallempty-dfs.gif" alt="smallempty-dfs"></p>
+<p>可以看到吃豆人 agent 绕了很远的路才到达终点，因为 DFS 在<a href="https://en.wikipedia.org/wiki/Computational_complexity_theory">计算复杂性理论</a>中是<strong>不完备</strong>（<a href="https://en.wikipedia.org/wiki/Complete_(complexity)">complete</a>）且<strong>非最优</strong>（<a href="https://en.wikipedia.org/wiki/Program_optimization">optimality</a>）的。</p>
+<h3 id="bfs">BFS</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">def</span> BreadthFirstSearch(problem):
+    <span style="color:#fff;font-weight:bold">from</span> util <span style="color:#fff;font-weight:bold">import</span> Queue
+    open_list = Queue()
+    visited = <span style="color:#fff;font-weight:bold">set</span>()
+    open_list.push((problem.getStartState(), []))
+    <span style="color:#fff;font-weight:bold">while</span> not open_list.isEmpty():
+        current_node, path = open_list.pop()
+        <span style="color:#fff;font-weight:bold">if</span> problem.isGoalState(current_node):
+            <span style="color:#fff;font-weight:bold">return</span> path
+        <span style="color:#fff;font-weight:bold">if</span> current_node in visited:
+            <span style="color:#fff;font-weight:bold">continue</span>
+        visited.add(current_node)
+        <span style="color:#fff;font-weight:bold">for</span> next_node, action, cost in problem.getSuccessors(current_node):
+            <span style="color:#fff;font-weight:bold">if</span> next_node not in visited:
+                open_list.push((next_node, path + [action]))
+bfs = BreadthFirstSearch
+</code></pre></div><p>BFS 的运行效果如下：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python pacman.py -l smallEmpty -z 0.8 -p SearchAgent -a fn=bfs
+[SearchAgent] using <span style="color:#fff;font-weight:bold">function</span> bfs
+[SearchAgent] using problem <span style="color:#fff;font-weight:bold">type</span> PositionSearchProblem
+Path found with total cost of <span style="color:#ff0;font-weight:bold">14</span> in 0.001995 seconds
+Search nodes expanded: <span style="color:#ff0;font-weight:bold">63</span>
+Pacman emerges victorious! Score: <span style="color:#ff0;font-weight:bold">496</span>
+Average Score: 496.0
+Scores:        496.0
+Win Rate:      1/1 (1.00)
+Record:        Win
+</code></pre></div><p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/smallempty-bfs.gif" alt="smallempty-bfs"></p>
+<p>可以看到使用 BFS 的 agent 通过最短路径到达了终点，因为 BFS 是<strong>完备</strong>且<strong>最优</strong>的。</p>
+<h3 id="iterative-deepening-search">Iterative Deepening Search</h3>
+<p>IDS 的思路是重复进行限制层数的 DFS 来找到最优解，它综合了 DFS 的优点（空间复杂度）和 BFS 的优点（完备且最优），但是在时间复杂度上表现比较差（可以参考输出结果中的 Search nodes expanded）：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">def</span> IterativeDeepeningSearch(problem):
+    <span style="color:#fff;font-weight:bold">import</span> sys
+    <span style="color:#fff;font-weight:bold">from</span> util <span style="color:#fff;font-weight:bold">import</span> Stack
+
+    <span style="color:#fff;font-weight:bold">def</span> depthLimitSearch(problem, depth):
+        visited = []
+        open_list = Stack()
+        open_list.push((problem.getStartState(), [], visited))
+        <span style="color:#fff;font-weight:bold">while</span> not open_list.isEmpty():
+            current_node, path, visited = open_list.pop()
+            <span style="color:#fff;font-weight:bold">if</span> problem.isGoalState(current_node):
+                <span style="color:#fff;font-weight:bold">return</span> path
+            <span style="color:#fff;font-weight:bold">if</span> <span style="color:#fff;font-weight:bold">len</span>(path) == depth or depth == <span style="color:#ff0;font-weight:bold">0</span>:
+                <span style="color:#fff;font-weight:bold">continue</span>
+            <span style="color:#fff;font-weight:bold">if</span> current_node in visited:
+                <span style="color:#fff;font-weight:bold">continue</span>
+            actions = problem.getSuccessors(current_node)
+            <span style="color:#fff;font-weight:bold">for</span> next_node, action, cost in actions:
+                <span style="color:#fff;font-weight:bold">if</span> next_node not in visited:
+                    open_list.push((next_node, path + [action], visited+[current_node]))
+
+    <span style="color:#fff;font-weight:bold">for</span> depth in <span style="color:#fff;font-weight:bold">range</span>(sys.maxsize**<span style="color:#ff0;font-weight:bold">10</span>):
+        path = depthLimitSearch(problem, depth)
+        <span style="color:#fff;font-weight:bold">if</span> path:
+            <span style="color:#fff;font-weight:bold">return</span> path
+            
+ids = IterativeDeepeningSearch
+</code></pre></div><p>这个算法对于只有小面积可搜索空间的地图效果比较好：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python pacman.py -l smallMaze -z 0.8 -p SearchAgent -a fn=ids
+[SearchAgent] using <span style="color:#fff;font-weight:bold">function</span> ids
+[SearchAgent] using problem <span style="color:#fff;font-weight:bold">type</span> PositionSearchProblem
+Path found with total cost of <span style="color:#ff0;font-weight:bold">19</span> in 0.008976 seconds
+Search nodes expanded: <span style="color:#ff0;font-weight:bold">923</span>
+Pacman emerges victorious! Score: <span style="color:#ff0;font-weight:bold">491</span>
+Average Score: 491.0
+Scores:        491.0
+Win Rate:      1/1 (1.00)
+Record:        Win
+</code></pre></div><p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/smallmaze-ids.gif" alt="smallmaze-ids"></p>
+<p>但是对于拥有大面积可搜索空间的地图，搜索时间会非常长：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python pacman.py -l smallEmpty -z 0.8 -p SearchAgent -a fn=ids
+[SearchAgent] using <span style="color:#fff;font-weight:bold">function</span> ids
+[SearchAgent] using problem <span style="color:#fff;font-weight:bold">type</span> PositionSearchProblem
+Path found with total cost of <span style="color:#ff0;font-weight:bold">14</span> in 0.710854 seconds
+Search nodes expanded: <span style="color:#ff0;font-weight:bold">94552</span>
+Pacman emerges victorious! Score: <span style="color:#ff0;font-weight:bold">496</span>
+Average Score: 496.0
+Scores:        496.0
+Win Rate:      1/1 (1.00)
+Record:        Win
+</code></pre></div><p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/smallempty-ids.gif" alt="smallempty-ids"></p>
+<h3 id="uniform-cost-search">Uniform Cost Search</h3>
+<p>UCS 和 Dijkstra 类似，用一个小根堆保存当前节点到起始节点的距离，依次展开路径花费最小的节点，直到找到终点为止，而一般来说 Dijkstra 没有一个固定的终点：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">def</span> UniformCostSearch(problem):
+    <span style="color:#fff;font-weight:bold">from</span> util <span style="color:#fff;font-weight:bold">import</span> PriorityQueue
+    frontier = PriorityQueue()
+    visited = []
+    frontier.push((problem.getStartState(), [], <span style="color:#ff0;font-weight:bold">0</span>), <span style="color:#ff0;font-weight:bold">0</span>)
+    <span style="color:#fff;font-weight:bold">while</span> not frontier.isEmpty():
+        current_node, path, current_cost = frontier.pop()
+        <span style="color:#fff;font-weight:bold">if</span> problem.isGoalState(current_node):
+            <span style="color:#fff;font-weight:bold">return</span> path
+        <span style="color:#fff;font-weight:bold">if</span> current_node in visited:
+            <span style="color:#fff;font-weight:bold">continue</span>
+        visited.append(current_node)
+        <span style="color:#fff;font-weight:bold">for</span> next_node, action, cost in problem.getSuccessors(current_node):
+            <span style="color:#fff;font-weight:bold">if</span> next_node not in visited:
+                frontier.push((next_node, path + [action], current_cost + cost), current_cost + cost)
+ucs = UniformCostSearch
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python pacman.py -l smallEmpty -z 0.8 -p SearchAgent -a fn=ucs
+[SearchAgent] using <span style="color:#fff;font-weight:bold">function</span> ucs
+[SearchAgent] using problem <span style="color:#fff;font-weight:bold">type</span> PositionSearchProblem
+Path found with total cost of <span style="color:#ff0;font-weight:bold">14</span> in 0.002992 seconds
+Search nodes expanded: <span style="color:#ff0;font-weight:bold">63</span>
+Pacman emerges victorious! Score: <span style="color:#ff0;font-weight:bold">496</span>
+Average Score: 496.0
+Scores:        496.0
+Win Rate:      1/1 (1.00)
+Record:        Win
+</code></pre></div><p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/smallempty-ucs.gif" alt="smallempty-ucs"></p>
+<h2 id="2-启发式搜索">2 启发式搜索</h2>
+<p>传统的盲目搜索算法因为受制于完备性、最优性、时间、空间复杂度等因素，在实际的应用中很少被使用；而在路径规划，最优化算法和人工智能领域，使用<strong>启发式搜索</strong>（Heuristic Search）能够更好地在准确性和计算速度之间取得平衡。</p>
+<p><strong>启发式搜索</strong> <a href="https://en.wikipedia.org/wiki/Heuristic_(computer_science)">Heuristic Search</a> 又叫做有信息搜索 Informed Search，启发式搜索不同于盲目搜索的地方有两点：一是启发式搜索依赖于启发函数，<strong>启发函数</strong> Heuristic Function 是用于<strong>估计</strong>当前节点到目标节点距离的一类函数；二是它需要利用<strong>输入数据</strong>并将其作为启发函数的参数，以衡量当前位置到目标位置的距离关系。</p>
+<p>启发式搜索通过衡量当前位置到目标位置的距离关系，使得搜索过程的移动方向优先朝向目标位置更近的方向前进，以提高搜索效率。</p>
+<h3 id="启发函数">启发函数</h3>
+<p>启发函数 h(n) 用于给出从特定节点到目标节点的距离的<strong>估计值</strong>（而不是真实值）；许多寻路问题都是 NP 完备（<a href="https://en.wikipedia.org/wiki/NP-completeness">NP-completeness</a>）的，因此在最坏情况下它们的算法时间复杂度都是指数级的；找到一个好的启发函数可以更高效地得到一个更优的解；启发函数算法的优劣直接决定了启发式搜索的效率。</p>
+<p>最简单的启发函数有：</p>
+<ul>
+<li>null heuristic：估计值始终等于 0，相当于退化成了 UCS（只计算当前节点到起始节点的距离）；</li>
+<li>曼哈顿距离：两点在南北方向上的距离加上在东西方向上的距离，即 <code>abs(a − x) + abs(b − y)</code>；</li>
+<li>欧几里得距离：两点在欧氏空间中的直线距离，即 <code>sqrt((a - x) ^ 2 + (b - y) ^ 2)</code>；</li>
+</ul>
+<h3 id="a">A*</h3>
+<p>A* 是一种应用很广泛的启发式搜索算法，其主要思路与 Dijkstra 和 UCS 类似，都是利用一个小根堆，不断地取出堆顶节点并判断其是否是目标节点，不同的是它会为每一个已知节点计算出从起点和终点的距离之和 <code>f(x) = g(x) + h(x)</code>，其中 <code>g(x)</code> 是从起点到当前节点的实际距离，<code>h(x)</code> 是使用启发函数计算得到的从当前节点到目标节点的估计距离：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">def</span> AStarSearch(problem, heuristic=nullHeuristic):
+    <span style="color:#fff;font-weight:bold">from</span> util <span style="color:#fff;font-weight:bold">import</span> PriorityQueueWithFunction
+    <span style="color:#fff;font-weight:bold">def</span> AStarHeuristic(item):
+        state, _, cost = item
+        h = heuristic(state, problem=problem)
+        g = cost
+        <span style="color:#fff;font-weight:bold">return</span> g + h
+
+    frontier = PriorityQueueWithFunction(AStarHeuristic)
+    visited = []
+
+    frontier.push((problem.getStartState(),[], <span style="color:#ff0;font-weight:bold">0</span>))
+    <span style="color:#fff;font-weight:bold">while</span> not frontier.isEmpty():
+        currentNode, path, currentCost = frontier.pop()
+        <span style="color:#fff;font-weight:bold">if</span> problem.isGoalState(currentNode):
+            <span style="color:#fff;font-weight:bold">return</span> path
+        <span style="color:#fff;font-weight:bold">if</span> currentNode not in visited:
+            visited.append(currentNode)
+            <span style="color:#fff;font-weight:bold">for</span> nextNode, action, cost in problem.getSuccessors(currentNode):
+                <span style="color:#fff;font-weight:bold">if</span> nextNode not in visited:
+                    frontier.push((nextNode, path + [action], currentCost + cost))
+
+astar = AStarSearch
+</code></pre></div><p>对于多节点的搜索问题，需要综合考虑所有目标节点对于当前节点的影响；我们可以利用贪心的思想，让吃豆人优先靠近距离较近的豆子，也就是使得距离当前节点更近的目标节点的启发函数值更小，这样距离吃豆人更近的豆子就会更有可能具有更小的 <code>f(x)</code> 值；在为启发函数传入的参数中， <code>state</code> 是一个包含当前位置 <code>position</code> 和所有目标点信息结构 <code>grid</code> 的二元组，可以使用 <code>grid.asList()</code> 将所有目标点转换为一个数组：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">def</span> FoodHeuristic(state, problem):
+    position, food_grid = state
+    food_gridList = food_grid <span style="color:#fff;font-weight:bold">if</span> <span style="color:#fff;font-weight:bold">isinstance</span>(food_grid, <span style="color:#fff;font-weight:bold">list</span>) <span style="color:#fff;font-weight:bold">else</span> food_grid.asList()
+    <span style="color:#fff;font-weight:bold">from</span> util <span style="color:#fff;font-weight:bold">import</span> manhattanDistance
+    minx, miny = position
+    maxx, maxy = position
+    <span style="color:#fff;font-weight:bold">for</span> food in food_gridList:
+        foodx, foody = food
+        minx = <span style="color:#fff;font-weight:bold">min</span>(foodx,minx)
+        maxx = <span style="color:#fff;font-weight:bold">max</span>(foodx,maxx)
+        miny = <span style="color:#fff;font-weight:bold">min</span>(foody,miny)
+        maxy = <span style="color:#fff;font-weight:bold">max</span>(foody,maxy)
+    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">abs</span>(minx-maxx) + <span style="color:#fff;font-weight:bold">abs</span>(miny-maxy)
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python pacman.py -l tinySearch -p SearchAgent -a fn=astar,prob=FoodSearchProblem,heuristic=FoodHeuristic
+[SearchAgent] using <span style="color:#fff;font-weight:bold">function</span> astar and heuristic foodHeuristic
+[SearchAgent] using problem <span style="color:#fff;font-weight:bold">type</span> FoodSearchProblem
+Path found with total cost of <span style="color:#ff0;font-weight:bold">27</span> in 0.294214 seconds
+Search nodes expanded: <span style="color:#ff0;font-weight:bold">1544</span>
+Pacman emerges victorious! Score: <span style="color:#ff0;font-weight:bold">573</span>
+Average Score: 573.0
+Scores:        573.0
+Win Rate:      1/1 (1.00)
+Record:        Win
+</code></pre></div><p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/tinySearch-astar.gif" alt="tinySearch-astar"></p>
+<p>换个地图看看效果：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python pacman.py -l mediumDottedMaze -p SearchAgent -a fn=astar,prob=FoodSearchProblem,heuristic=FoodHeuristic
+[SearchAgent] using <span style="color:#fff;font-weight:bold">function</span> astar and heuristic foodHeuristic
+[SearchAgent] using problem <span style="color:#fff;font-weight:bold">type</span> FoodSearchProblem
+Path found with total cost of <span style="color:#ff0;font-weight:bold">74</span> in 0.091756 seconds
+Search nodes expanded: <span style="color:#ff0;font-weight:bold">389</span>
+Pacman emerges victorious! Score: <span style="color:#ff0;font-weight:bold">646</span>
+Average Score: 646.0
+Scores:        646.0
+Win Rate:      1/1 (1.00)
+Record:        Win
+</code></pre></div><p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/mediumdottedmaze-astar.gif" alt="mediumdottedmaze-astar"></p>
+<p>相比之下，如果使用 <code>nullHeuristic</code>（退化为 UCS）的话搜索花费的时间则会长很多：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python pacman.py -l tinySearch -p SearchAgent -a fn=ucs,prob=FoodSearchProblem
+[SearchAgent] using <span style="color:#fff;font-weight:bold">function</span> ucs
+[SearchAgent] using problem <span style="color:#fff;font-weight:bold">type</span> FoodSearchProblem
+Path found with total cost of <span style="color:#ff0;font-weight:bold">27</span> in 2.880744 seconds
+Search nodes expanded: <span style="color:#ff0;font-weight:bold">5057</span>
+Pacman emerges victorious! Score: <span style="color:#ff0;font-weight:bold">573</span>
+Average Score: 573.0
+Scores:        573.0
+Win Rate:      1/1 (1.00)
+Record:        Win
+</code></pre></div><p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/tinySearch-astar-null-heuristic.gif" alt="tinySearch-astar-null-heuristic"></p>
+<h2 id="3-强化学习">3 强化学习</h2>
+<h3 id="强化学习">强化学习</h3>
+<p>强化学习是指通过与环境进行交互和反馈来学习一种策略的过程，在这个过程中，一个强化学习的实体 <em>agent</em> 通过与环境 <em>Environment</em> 进行交互并采取一系列行为 <em>Action</em> 来获得一定的收益 <em>Reward</em>，从而更新采取相应行为的权重。</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/reinforcement-learning-process.png" alt="reinforcement-learning-process"></p>
+<p>强化学习的目标是通过学习得到某个策略 <em>Policy</em>，使得 <em>agent</em> 从 <em>environment</em> 中获得的<strong>长期收益</strong>最大化，因此在一般的问题中，在没有达到最终的目的前，<em>reward</em> 通常都是负数（随时间的增加而减少），而仅在达到最终的目的时获得较大的正反馈，这样的学习任务通常称为 episodic task（例如吃豆人游戏中的单节点搜索问题）；在另一类问题中，可能需要完成多个目标才能到达最终状态，其 <em>reward</em> 离散地分布在一个连续的空间中，这一类任务称为 continuing task（例如吃豆人游戏中的多节点搜索问题），对于 continuing task，我们可以定义其 reward 为：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/discounted-reward.svg" alt="discounted-reward"></p>
+<p>其中 <em>γ</em> 是衰减率（discount factor），衰减率可以使得我们更加偏好近期收益；引入衰减系数的理由有很多，例如避免陷入无限循环，降低远期利益的不确定性，最大化近期利益，利用近期利益产生新的利益因而其更有价值等等。</p>
+<p>而强化学习的结果是就是 <em>Gt</em>，通过 <em>argmax</em> 取得的值能够给出在每个状态下我们应该采取的行动，我们可以把这个策略记做 <em>π(a|s)</em>，它表示在状态 s 下采取行动 a 的概率。</p>
+<h3 id="马尔科夫决策过程">马尔科夫决策过程</h3>
+<p><strong>马尔科夫决策过程</strong>（<a href="https://en.wikipedia.org/wiki/Markov_decision_process">Markov Decision Process</a>, MDP）是指在每个状态下，agent 对于行动 <em>a</em> 的选取只依赖于当前的状态，与任何之前的行为都没有关系；几乎所有的强化学习问题都可以使用 MDP 解决，一个标准的马尔可夫决策过程由一个四元组组成：</p>
+<ul>
+<li><em>S</em>：<em>State</em>，<strong>状态</strong>空间的集合，<em>S0</em> 表示初始状态；</li>
+<li><em>A</em>：<em>Action</em>，<strong>行为</strong>空间的集合，包含每个状态可以进行的动作；</li>
+<li><em>r(s' | s, a)</em>：<em>Reward</em>，在 s 状态下，进行 a 操作并转移到 s‘ 状态下的<strong>奖励</strong>；</li>
+<li><em>P(s' | s, a)</em>：<em>Probability</em>，在 s 状态下，进行 a 操作并转移到 s‘ 状态下的<strong>概率</strong>；</li>
+</ul>
+<p>求解 MDP 问题的常见方法有 Value iteration，Policy iteration，Q-Learning，Deep Q-Learning Network 等等。</p>
+<h3 id="value-iteration">Value Iteration</h3>
+<p>Value Iteration 是一种基于模型的（model-based）算法，使用 Value Iteration 来解决 MDP 问题的前提是我们知道关于模型的所有信息，即 MDP 四元组的所有内容。</p>
+<p>假设现在有一个 3*4 叫做 GridWorld 的地图如图所示，以左下角格子为 (0, 0) 原点，其中 (1, 1) 为不可通过的墙，(2, 3) 为奖励为 +1 的终点，(1, 3) 为 -1 的终点；我们定义每一个位置的价值为 <em>V(state)</em>，即对于 <em>state(x, y)</em>，<em>V(state)</em> 表示其能获取的最大价值；每一个位置初始化时其 <em>value</em> 均为 0：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/value-iteration-0.png" alt="value-iteration-0"></p>
+<p>在迭代过程中，使用贝尔曼方程（<a href="https://en.wikipedia.org/wiki/Bellman_equation">Bellman Equation</a>）更新<strong>所有位置</strong>的 <em>value</em>，它描述了最佳策略必须满足的条件，前半部分 <em>r(s, a, s')</em> 代表采取了 <em>a</em> 行为之后得到的 reward，后半部分；我们需要在每轮迭代中计算每个状态的价值即 <em>V(s)</em>，直到两次迭代结果的差值小于给定的阈值才能认为其收敛了，这里的 <em>V(s)</em> 也叫做 q-value：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/bellman-equation.png" alt="bellman-equation"></p>
+<p>经过前三次迭代分别得到：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/value-iteration-1.png" alt="value-iteration-1"></p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/value-iteration-2.png" alt="value-iteration-2"></p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/value-iteration-3.png" alt="value-iteration-3"></p>
+<p>收敛速度是指数级，并且随着迭代的不断进行，终将得到最优的 <em>V(s)</em>；或者说当迭代次数趋近于无穷大的时候，将得到 <em>V(s)</em> 的最优解；经过 100 次迭代后将得到：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/value-iteration-100.png" alt="value-iteration-100"></p>
+<p>取 argmax 即可得到最优的策略（即上图中的小箭头）；也可以看到采取每一种行动对应的 Probaility：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/value-iteration-100-argmax.png" alt="value-iteration-100-argmax"></p>
+<p>进行 Value Iteration 的流程主要对应 <code>runValueIteration</code> 和 <code>computeQValueFromValues</code> 两个函数，迭代结束后选择策略则对应 <code>computeActionFromValues</code> 函数：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># valueIterationAgents.py</span>
+
+<span style="color:#fff;font-weight:bold">class</span> ValueIterationAgent(ValueEstimationAgent):
+    <span style="color:#0ff;font-weight:bold">&#34;&#34;&#34;
+</span><span style="color:#0ff;font-weight:bold">        A ValueIterationAgent takes a Markov decision process
+</span><span style="color:#0ff;font-weight:bold">        (see mdp.py) on initialization and runs value iteration
+</span><span style="color:#0ff;font-weight:bold">        for a given number of iterations using the supplied
+</span><span style="color:#0ff;font-weight:bold">        discount factor.
+</span><span style="color:#0ff;font-weight:bold">    &#34;&#34;&#34;</span>
+    <span style="color:#fff;font-weight:bold">def</span> __init__(self, mdp, discount = <span style="color:#ff0;font-weight:bold">0.9</span>, iterations = <span style="color:#ff0;font-weight:bold">100</span>):
+        <span style="color:#0ff;font-weight:bold">&#34;&#34;&#34;
+</span><span style="color:#0ff;font-weight:bold">          Some useful mdp methods you will use:
+</span><span style="color:#0ff;font-weight:bold">              mdp.getStates()
+</span><span style="color:#0ff;font-weight:bold">              mdp.getPossibleActions(state)
+</span><span style="color:#0ff;font-weight:bold">              mdp.getTransitionStatesAndProbs(state, action)
+</span><span style="color:#0ff;font-weight:bold">              mdp.getReward(state, action, nextState)
+</span><span style="color:#0ff;font-weight:bold">              mdp.isTerminal(state)
+</span><span style="color:#0ff;font-weight:bold">        &#34;&#34;&#34;</span>
+        self.mdp = mdp
+        self.discount = discount
+        self.iterations = iterations
+        self.values = util.Counter() <span style="color:#007f7f"># A Counter is a dict with default 0</span>
+        self.runValueIteration()
+
+    <span style="color:#fff;font-weight:bold">def</span> runValueIteration(self):
+        <span style="color:#fff;font-weight:bold">for</span> _ in np.arange(<span style="color:#ff0;font-weight:bold">0</span>, self.iterations):
+            next_values = util.Counter()
+
+            <span style="color:#fff;font-weight:bold">for</span> state in self.mdp.getStates():
+                <span style="color:#fff;font-weight:bold">if</span> self.mdp.isTerminal(state):
+                    <span style="color:#fff;font-weight:bold">continue</span>
+
+                q_values = util.Counter()
+
+                <span style="color:#fff;font-weight:bold">for</span> action in self.mdp.getPossibleActions(state):
+                    q_values[action] = self.computeQValueFromValues(state, action)
+
+                key_max_value = q_values.argMax()
+                next_values[state] = q_values[key_max_value]
+
+            self.values = next_values
+
+    <span style="color:#fff;font-weight:bold">def</span> getValue(self, state):
+        <span style="color:#fff;font-weight:bold">return</span> self.values[state]
+
+
+    <span style="color:#fff;font-weight:bold">def</span> computeQValueFromValues(self, state, action):
+        <span style="color:#0ff;font-weight:bold">&#34;&#34;&#34;
+</span><span style="color:#0ff;font-weight:bold">          Compute the Q-value of action in state from the
+</span><span style="color:#0ff;font-weight:bold">          value function stored in self.values.
+</span><span style="color:#0ff;font-weight:bold">        &#34;&#34;&#34;</span>
+        next_states_probs = self.mdp.getTransitionStatesAndProbs(state, action)
+        q_value = <span style="color:#ff0;font-weight:bold">0</span>
+
+        <span style="color:#fff;font-weight:bold">for</span> (next_state, next_state_prob) in next_states_probs:
+            q_value += next_state_prob * (self.mdp.getReward(state, action, next_state) + self.discount * self.values[next_state])
+
+        <span style="color:#fff;font-weight:bold">return</span> q_value
+    
+    <span style="color:#fff;font-weight:bold">def</span> computeActionFromValues(self, state):
+        <span style="color:#0ff;font-weight:bold">&#34;&#34;&#34;
+</span><span style="color:#0ff;font-weight:bold">          The policy is the best action in the given state
+</span><span style="color:#0ff;font-weight:bold">          according to the values currently stored in self.values.
+</span><span style="color:#0ff;font-weight:bold">
+</span><span style="color:#0ff;font-weight:bold">          You may break ties any way you see fit.  Note that if
+</span><span style="color:#0ff;font-weight:bold">          there are no legal actions, which is the case at the
+</span><span style="color:#0ff;font-weight:bold">          terminal state, you should return None.
+</span><span style="color:#0ff;font-weight:bold">        &#34;&#34;&#34;</span>
+        <span style="color:#fff;font-weight:bold">if</span> self.mdp.isTerminal(state):
+            <span style="color:#fff;font-weight:bold">return</span> None
+
+        actions = self.mdp.getPossibleActions(state)
+        values = util.Counter()
+
+        <span style="color:#fff;font-weight:bold">for</span> action in actions:
+            values[action] = self.computeQValueFromValues(state, action)
+
+        policy = values.argMax()
+        <span style="color:#fff;font-weight:bold">return</span> policy
+
+
+    <span style="color:#fff;font-weight:bold">def</span> getPolicy(self, state):
+        <span style="color:#fff;font-weight:bold">return</span> self.computeActionFromValues(state)
+
+    <span style="color:#fff;font-weight:bold">def</span> getAction(self, state):
+        <span style="color:#0ff;font-weight:bold">&#34;Returns the policy at the state (no exploration).&#34;</span>
+        <span style="color:#fff;font-weight:bold">return</span> self.computeActionFromValues(state)
+
+    <span style="color:#fff;font-weight:bold">def</span> getQValue(self, state, action):
+        <span style="color:#fff;font-weight:bold">return</span> self.computeQValueFromValues(state, action)
+
+</code></pre></div><h3 id="q-learning">Q-Learning</h3>
+<p><a href="https://en.wikipedia.org/wiki/Q-learning">Q-Learning</a> 的思路与 Value Iteration 有一些类似，但它是一种模型无关的（model-free）算法，使用 Q-Learning 的时候我们的 agent 无需事先知道当前环境中的 <em>State</em>，<em>Action</em> 等 MDP 四元组内容，</p>
+<p>在使用 Value Ietration 的时候，我们需要在每一个 episode 对所有的 <em>State</em> 和 <em>Action</em> 进行更新，但在实际问题中 <em>State</em> 的数量可能非常多以致于我们不可能遍历完所有的状态，这时候我们可以借助 Q-Learning，在对于环境未知的前提下，不断地与环境进行交互和探索，计算出有限的环境样本中 Q-Value，并维护一个 Q-Table：</p>
+<table>
+<thead>
+<tr>
+<th><em>S</em></th>
+<th><em>r(s' | s, action 1)</em></th>
+<th><em>r(s' | s, action 2)</em></th>
+<th>&hellip;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>S1</em> (0, 0)</td>
+<td>3</td>
+<td>-1</td>
+<td></td>
+</tr>
+<tr>
+<td><em>S2</em> (0, 1)</td>
+<td>-2</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>在刚开始时，agent 对于环境一无所知，因此 Q-Table 应该被初始化为一个零矩阵；当我们处于某个状态 <em>s</em> （例如表里的 <em>S1</em>）时，根据 Q-Table 中当前的最优值和一定的策略（<a href="https://en.wikipedia.org/wiki/Multi-armed_bandit">Multi-armed bandit</a> 问题，利用 ε-greedy，UCB 等解决）选择对应的动作 <em>a</em> （假设选择了表里的 <em>action 1</em>，对应 <em>r = 3</em>）进行探索，并根据获得的即时奖励 <em>r</em> 来更新奖励，这里的 <em>r</em> 只是即时获得的奖励（<em>r = 3</em>），因为还要考虑所转移到的状态 <em>s'</em> （表里的 <em>S2</em>）在未来可能会获取到的最大奖励（<em>r' = 4</em>）；</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/q-learning-paper.png" alt="q-learning-paper"></p>
+<p>真正的奖励 <em>Q(St, At)</em> 由公式中的两部分组成，前半部分 <em>r</em> 是通过动作 <em>a</em> 即时获得的奖励（<em>r = 3</em>），后半部分 <em>γ * max(a')Q(s', a')</em> 是对未来行为的最大期望奖励（<em>r' = 4</em>），且后半部分往往是不确定的，因此需要乘以衰减率 <em>γ</em>：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/q-function.png" alt="q-function"></p>
+<p>在通过计算得到当前行为所能获得的预期奖励后，将其减去表中对当前环境的估计奖励 <em>Q(s,a)</em>（<em>r = 3</em>），再乘以学习率，就能用来更新 Q-Table 中的值了。</p>
+<p>agent 不断地与环境进行探索并发生状态转换，直到到达目标；我们将 agent 的每一轮探索（从任意起始状态出发，经历若干个 <em>action</em>，直到到达目标状态）称为一个 episode；在进行指定 episode 次数的训练之后，取 argmax 得到的策略就是当前的最优解。</p>
+<p>现在利用 epsilon-greedy 作为探索策略，训练 10 个 episode：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python gridworld.py -a q -k <span style="color:#ff0;font-weight:bold">10</span> --noise 0.0 -e 0.9
+</code></pre></div><p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/q-learning-epsilon-greedy-10-episodes.gif" alt="q-learning-epsilon-greedy-10-episodes"></p>
+<p>得到结果之后，对每一个状态 <em>s</em> 的所有动作 <em>a</em> 取 <em>argmax</em> 即可得到在当前 epsilon 值和 episode 值下的最优解：</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/q-learning-epsilon-greedy-10-episodes.png" alt="q-learning-epsilon-greedy-10-episodes"></p>
+<p>Q-Learning 的实现大致如下：</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">class</span> QLearningAgent(ReinforcementAgent):
+    <span style="color:#fff;font-weight:bold">def</span> __init__(self, **args):
+        ReinforcementAgent.__init__(self, **args)
+        self.q_values = defaultdict(<span style="color:#fff;font-weight:bold">lambda</span>: <span style="color:#ff0;font-weight:bold">0.0</span>)
+
+    <span style="color:#fff;font-weight:bold">def</span> getQValue(self, state, action):
+        <span style="color:#0ff;font-weight:bold">&#34;&#34;&#34;
+</span><span style="color:#0ff;font-weight:bold">          Returns Q(state,action)
+</span><span style="color:#0ff;font-weight:bold">          Should return 0.0 if we have never seen a state
+</span><span style="color:#0ff;font-weight:bold">          or the Q node value otherwise
+</span><span style="color:#0ff;font-weight:bold">        &#34;&#34;&#34;</span>
+        <span style="color:#fff;font-weight:bold">return</span> self.q_values[(state, action)]
+
+    <span style="color:#fff;font-weight:bold">def</span> computeValueFromQValues(self, state):
+        <span style="color:#0ff;font-weight:bold">&#34;&#34;&#34;
+</span><span style="color:#0ff;font-weight:bold">          Returns max_action Q(state,action)
+</span><span style="color:#0ff;font-weight:bold">          where the max is over legal actions.  Note that if
+</span><span style="color:#0ff;font-weight:bold">          there are no legal actions, which is the case at the
+</span><span style="color:#0ff;font-weight:bold">          terminal state, you should return a value of 0.0.
+</span><span style="color:#0ff;font-weight:bold">        &#34;&#34;&#34;</span>
+        next_actions = self.getLegalActions(state)
+
+        <span style="color:#fff;font-weight:bold">if</span> not next_actions:
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0.0</span>
+        <span style="color:#fff;font-weight:bold">else</span>:
+            q_value_actions = [(self.getQValue(state, action), action) <span style="color:#fff;font-weight:bold">for</span> action in next_actions]
+            <span style="color:#007f7f"># return the max in q_value_actions which is q_value</span>
+            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">sorted</span>(q_value_actions, key=<span style="color:#fff;font-weight:bold">lambda</span> x: x[<span style="color:#ff0;font-weight:bold">0</span>])[-<span style="color:#ff0;font-weight:bold">1</span>][<span style="color:#ff0;font-weight:bold">0</span>]
+
+    <span style="color:#fff;font-weight:bold">def</span> computeActionFromQValues(self, state):
+        <span style="color:#0ff;font-weight:bold">&#34;&#34;&#34;
+</span><span style="color:#0ff;font-weight:bold">          Compute the best action to take in a state.  Note that if there
+</span><span style="color:#0ff;font-weight:bold">          are no legal actions, which is the case at the terminal state,
+</span><span style="color:#0ff;font-weight:bold">          you should return None.
+</span><span style="color:#0ff;font-weight:bold">        &#34;&#34;&#34;</span>
+        next_actions = self.getLegalActions(state)
+
+        <span style="color:#fff;font-weight:bold">if</span> not next_actions:
+            <span style="color:#fff;font-weight:bold">return</span> None
+        <span style="color:#fff;font-weight:bold">else</span>:
+            actions = []
+            max_q_value = self.getQValue(state, next_actions[<span style="color:#ff0;font-weight:bold">0</span>])
+
+            <span style="color:#007f7f"># find actions with max q value</span>
+            <span style="color:#fff;font-weight:bold">for</span> action in next_actions:
+                action_q_value = self.getQValue(state, action)
+                <span style="color:#fff;font-weight:bold">if</span> max_q_value &lt; action_q_value:
+                    max_q_value = action_q_value
+                    actions = [action]
+                <span style="color:#fff;font-weight:bold">elif</span> max_q_value == action_q_value:
+                    actions.append(action)
+
+            <span style="color:#007f7f"># break ties randomly for better behavior. The random.choice() function will help.</span>
+            <span style="color:#fff;font-weight:bold">return</span> random.choice(actions)
+
+    <span style="color:#fff;font-weight:bold">def</span> getAction(self, state):
+        <span style="color:#0ff;font-weight:bold">&#34;&#34;&#34;
+</span><span style="color:#0ff;font-weight:bold">          Compute the action to take in the current state.  With
+</span><span style="color:#0ff;font-weight:bold">          probability self.epsilon, we should take a random action and
+</span><span style="color:#0ff;font-weight:bold">          take the best policy action otherwise.  Note that if there are
+</span><span style="color:#0ff;font-weight:bold">          no legal actions, which is the case at the terminal state, you
+</span><span style="color:#0ff;font-weight:bold">          should choose None as the action.
+</span><span style="color:#0ff;font-weight:bold">        &#34;&#34;&#34;</span>
+        <span style="color:#007f7f"># Pick Action</span>
+        legalActions = self.getLegalActions(state)
+        action = None
+        <span style="color:#fff;font-weight:bold">if</span> legalActions:
+            <span style="color:#fff;font-weight:bold">if</span> util.flipCoin(self.epsilon):
+                <span style="color:#fff;font-weight:bold">return</span> random.choice(legalActions)
+            <span style="color:#fff;font-weight:bold">else</span>:
+                action = self.getPolicy(state)
+
+        <span style="color:#fff;font-weight:bold">return</span> action
+
+    <span style="color:#fff;font-weight:bold">def</span> update(self, state, action, nextState, reward):
+        <span style="color:#0ff;font-weight:bold">&#34;&#34;&#34;
+</span><span style="color:#0ff;font-weight:bold">          The parent class calls this to observe a
+</span><span style="color:#0ff;font-weight:bold">          state = action =&gt; nextState and reward transition.
+</span><span style="color:#0ff;font-weight:bold">          You should do your Q-Value update here
+</span><span style="color:#0ff;font-weight:bold">
+</span><span style="color:#0ff;font-weight:bold">          NOTE: You should never call this function,
+</span><span style="color:#0ff;font-weight:bold">          it will be called on your behalf
+</span><span style="color:#0ff;font-weight:bold">        &#34;&#34;&#34;</span>
+        state_action_q_value = self.getQValue(state, action)
+        self.q_values[(state, action)] = state_action_q_value + self.alpha * (reward + self.discount * self.getValue(nextState) - state_action_q_value)
+
+    <span style="color:#fff;font-weight:bold">def</span> getPolicy(self, state):
+        <span style="color:#fff;font-weight:bold">return</span> self.computeActionFromQValues(sta<span style="color:#f00">、</span>te)
+
+    <span style="color:#fff;font-weight:bold">def</span> getValue(self, state):
+        <span style="color:#fff;font-weight:bold">return</span> self.computeValueFromQValues(state)
+
+</code></pre></div><h3 id="dqn">DQN</h3>
+<p>Q-Learning 依赖于 Q-Table，其存在的问题是当 Q-Table 中的状态非常多，或状态的维度非常多的时候，内存可能无法存储所有的状态，此时我们可以利用神经网络来拟合整个 Q-Table，即使用 <a href="https://www.tensorflow.org/agents/tutorials/0_intro_rl">Deep Q-Learning Network</a>。DQN 主要用来解决拥有近乎无限的 <em>State</em>，但 <em>Action</em> 有限的问题，它将当前 <em>State</em> 作为输入，输出各个 <em>Action</em> 的 Q-Value。</p>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/deep-q-learning-network.png" alt="deep-q-learning-network"></p>
+<h3 id="启发式搜索和强化学习的对比">启发式搜索和强化学习的对比</h3>
+<p><img src="https://raw.githubusercontent.com/ZintrulCre/warehouse/master/resources/reinforcement-learning/pacman-contest.gif" alt="pacman-contest"></p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zintrulcre" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+      
+      <a href="https://github.com/luizdepra/hugo-coder/tree/"></a>
+    
+  </section>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    </main>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132809676-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  </body>
+
+</html>
