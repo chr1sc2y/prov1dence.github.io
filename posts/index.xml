@@ -81,21 +81,21 @@
     </item>
     
     <item>
+      <title>C&#43;&#43; 闭包和匿名函数</title>
+      <link>https://zintrulcre.vip/posts/c&#43;&#43;/closure-and-anonymous-function/</link>
+      <pubDate>Sat, 14 Nov 2020 21:20:18 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/closure-and-anonymous-function/</guid>
+      <description>C++ 闭包和匿名函数 [TOC] 本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。 1 闭包和仿函数 闭包（Closure）可以被理解为一个附带数据的操作</description>
+    </item>
+    
+    <item>
       <title>负载均衡和一致性哈希</title>
       <link>https://zintrulcre.vip/posts/service-governance/load-balancing/</link>
       <pubDate>Sun, 25 Oct 2020 23:06:52 +0800</pubDate>
       
       <guid>https://zintrulcre.vip/posts/service-governance/load-balancing/</guid>
       <description>负载均衡和一致性哈希 [TOC] 反向代理 reverse proxy 是指以代理服务器来接收由客户端发送来的请求，并通过一定的策略将其转变发给实际处理请求的后端服务器；主要应用</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43; 并发入门：以 LeetCode 1114 为例</title>
-      <link>https://zintrulcre.vip/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</link>
-      <pubDate>Wed, 30 Sep 2020 16:20:25 +0800</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</guid>
-      <description>C++ 并发入门：以 LeetCode 1114 为例 [toc] 题目 直接做题：1114 按序打印 解法 1. std::mutex 如果你对 c++ 11 略为熟悉的话，应该能够想到用 std::mutex 来解这道题，在函数构造时（主线程）对</description>
     </item>
     
   </channel>
