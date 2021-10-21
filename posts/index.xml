@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 04 Aug 2021 17:38:52 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Oct 2021 18:01:12 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Prometheus 入门</title>
+      <link>https://zintrulcre.vip/posts/cloud/intro-to-prometheus/</link>
+      <pubDate>Thu, 21 Oct 2021 18:01:12 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/cloud/intro-to-prometheus/</guid>
+      <description>Prometheus 入门 [toc] Prometheus 是一个开源的监控解决方案，也是云原生基金会 CNCF 的毕业项目，它能够提供指标数据的采集、存储、查询、告警等功能。本文主要介绍 Prometheus 的基础概念</description>
+    </item>
+    
     <item>
       <title>Python 源码学习（5）：协程</title>
       <link>https://zintrulcre.vip/posts/python/python-source-code-coroutine/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://zintrulcre.vip/posts/c&#43;&#43;/closure-and-anonymous-function/</guid>
       <description>C++ 闭包和匿名函数 [TOC] 本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。 1 闭包和仿函数 闭包（Closure）可以被理解为一个附带数据的操作</description>
-    </item>
-    
-    <item>
-      <title>负载均衡和一致性哈希</title>
-      <link>https://zintrulcre.vip/posts/service-governance/load-balancing/</link>
-      <pubDate>Sun, 25 Oct 2020 23:06:52 +0800</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/service-governance/load-balancing/</guid>
-      <description>负载均衡和一致性哈希 [TOC] 反向代理 reverse proxy 是指以代理服务器来接收由客户端发送来的请求，并通过一定的策略将其转变发给实际处理请求的后端服务器；主要应用</description>
     </item>
     
   </channel>
