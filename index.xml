@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 21 Oct 2021 18:01:12 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Nov 2021 23:41:52 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kafka 入门</title>
+      <link>https://zintrulcre.vip/posts/message-broker/kafka/</link>
+      <pubDate>Mon, 29 Nov 2021 23:41:52 +0800</pubDate>
+      
+      <guid>https://zintrulcre.vip/posts/message-broker/kafka/</guid>
+      <description>Kafka 入门 [TOC] 概述 Kafka 最初是为了解决 LinkedIn 数据管道问题应运而生的。它的设计目的是提供一个高性能的消息系统，可以处理多种数据类型，并能够实时提供纯净且结构</description>
+    </item>
+    
     <item>
       <title>Prometheus 入门</title>
       <link>https://zintrulcre.vip/posts/cloud/intro-to-prometheus/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://zintrulcre.vip/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</guid>
       <description>启发式搜索和强化学习 The Pac-Man Projects 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。 [TOC] 1 盲目搜索 盲目搜索（Blind Search）指不</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43; 闭包和匿名函数</title>
-      <link>https://zintrulcre.vip/posts/c&#43;&#43;/closure-and-anonymous-function/</link>
-      <pubDate>Sat, 14 Nov 2020 21:20:18 +0800</pubDate>
-      
-      <guid>https://zintrulcre.vip/posts/c&#43;&#43;/closure-and-anonymous-function/</guid>
-      <description>C++ 闭包和匿名函数 [TOC] 本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。 1 闭包和仿函数 闭包（Closure）可以被理解为一个附带数据的操作</description>
     </item>
     
   </channel>
