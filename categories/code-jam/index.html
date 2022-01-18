@@ -6,7 +6,7 @@
 <title>Code Jam | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Zhengyu's Blog">
-<meta name=author content="Zhengyu">
+<meta name=author content>
 <link rel=canonical href=http://zintrulcre.github.io/categories/code-jam/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -73,7 +73,7 @@ Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同
 对于已经打败过的对手没有必要再考虑其之后的出招，所以用一个defeated数组保存已经打败过的对手以便直接跳过。因为当前轮次有可能超过对手的出招顺序长度，所以要用i % size获取对手当前的出招。
 时间复杂度：O(A ^ 2) 空间复杂度：O(A) #include &lt;iostream>#include &lt;cmath>#include &lt;cstdio>#include &lt;math.h>#include &lt;limits>#include &lt;algorithm>#include &lt;vector>#include &lt;stack>#include &lt;queue>#include &lt;string>#include &lt;map>#include &lt;set>#include &lt;unordered_map>#include &lt;unordered_set> using namespace std; char Decide(const char &R, const char &P, const char &S) { if (R && P && S) return 'X'; if (R && P) return 'P'; if (R && S) return 'R'; if (P && S) return 'S'; if (R) return 'P'; if (P) return 'S'; return 'R'; } bool Defeate(const char &current, const char &opponent) { return (current == 'R' && opponent == 'S') || (current == 'S' && opponent == 'P') || (current == 'P' && opponent == 'R'); } void solve(const int &t) { int A; scanf("%d", &A); int i = 0; vector&lt;string> opponent(A); vector&lt;bool> defeated(A, false); bool R, P, S; string res; for (int a = 0; a &lt; A; ++a) cin >> opponent[a]; while (true) { int current_opponent = 0; R = false, P = false, S = false; for (int a = 0; a &lt; A; ++a) { if (!...</p>
 </section>
-<footer class=entry-footer><span title="2019-05-07 22:02:15 +1000 +1000">May 7, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2019-05-07 22:02:15 +1000 +1000">May 7, 2019</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to Code Jam 2019 Round 1C" href=http://zintrulcre.github.io/posts/code-jam/2019-round-1c/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -86,7 +86,7 @@ Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同
 Solution: BackTracking 类似于八皇后问题，不过每次的限制条件只和上一个位置有关，可以用回溯解决。
 时间复杂度：O(m^2 * n^2) 空间复杂度：O(m * n) // C++ #include &lt;iostream>#include &lt;cmath>#include &lt;cstdio>#include &lt;math.h>#include &lt;limits>#include &lt;algorithm>#include &lt;vector>#include &lt;stack>#include &lt;queue>#include &lt;string>#include &lt;map>#include &lt;set>#include &lt;unordered_map>#include &lt;unordered_set> using namespace std; int m, n; bool BackTracking(int t, int i, int j, vector&lt;vector&lt;bool>> &visited, vector&lt;vector&lt;int>> &res) { visited[i][j] = true; res[t] = {i, j}; if (t + 1 == m * n) return true; for (int x = 0; x &lt; m; ++x) { for (int y = 0; y &lt; n; ++y) { int r = (x + i) % m, c = (y + j) % n; if (!...</p>
 </section>
-<footer class=entry-footer><span title="2019-04-13 15:28:11 +1000 +1000">April 13, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2019-04-13 15:28:11 +1000 +1000">April 13, 2019</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to Code Jam 2019 Round 1A" href=http://zintrulcre.github.io/posts/code-jam/2019-round-1a/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -99,7 +99,7 @@ Solution: BackTracking 类似于八皇后问题，不过每次的限制条件只
 Solution: Construction 输入的数一定带有数字4，对于每一位上的数字4，我们可以将其拆分为2+2（或1+3）的两个数。输入数据最大是10的100次方，所以我们可以将其作为字符串处理。
 时间复杂度：O(n) 空间复杂度：O(1) // C++ #include &lt;iostream>#include &lt;cmath>#include &lt;math.h>#include &lt;limits>#include &lt;algorithm>#include &lt;vector>#include &lt;stack>#include &lt;queue>#include &lt;string>#include &lt;map>#include &lt;set>#include &lt;unordered_map>#include &lt;unordered_set> using namespace std; int main() { int T; cin >> T; for (int t = 1; t &lt;= T; ++t) { string N; cin >> N; string a, b; for (auto c:N) { a += c == '4' ?...</p>
 </section>
-<footer class=entry-footer><span title="2019-04-06 13:40:27 +1000 +1000">April 6, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2019-04-06 13:40:27 +1000 +1000">April 6, 2019</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to Code Jam 2019 Qualification Round" href=http://zintrulcre.github.io/posts/code-jam/2019-qualification-round/></a>
 </article>
 </main>

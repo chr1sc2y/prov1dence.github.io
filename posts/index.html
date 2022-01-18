@@ -6,7 +6,7 @@
 <title>Posts | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Posts - 尾張">
-<meta name=author content="Zhengyu">
+<meta name=author content>
 <link rel=canonical href=http://zintrulcre.github.io/posts/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -65,6 +65,28 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>小米 AX1800 使用 ShellClash 科学上网
+</h2>
+</header>
+<section class=entry-content>
+<p>小米 AX1800 使用 ShellClash 科学上网 本文介绍如何在小米 AX1800 上使用 ShellClash 科学上网。
+1 固件降级 小米 AX1800 1.0.336 版本固件
+在 MiWiFi 后台的常用设置 -> 系统状态中点击手动升级，使用 1.0.336 版本的固件对路由器进行降级，整个过程不需要任何额外的操作。
+完成后第一次进入后台配置时选择不自动更新，或在小米 Wi-Fi 手机 App 中关闭自动更新功能。
+更新完成后路由器会重置为路由器底部贴条的设置。
+2 解锁 SSH 首先登陆小米路由器后台 192.168.31.1，将浏览器地址栏中 stok= 后面的一部分的即为拷贝下来。
+获取 SSH 权限 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {"code":0} 即代表成功，这样就解锁了 SSH 到路由器上的权限。
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20's%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg'%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B
+修改 root 密码 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {"code":0} 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20echo%20-e%20'admin%5Cnadmin'%20%7C%20passwd%20root%3B
+连接 SSH 打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。
+ssh root@192....</p>
+</section>
+<footer class=entry-footer><span title="2022-01-18 22:29:36 +0800 CST">January 18, 2022</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to 小米 AX1800 使用 ShellClash 科学上网" href=http://zintrulcre.github.io/posts/proxy/ax1800/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>Kafka 入门
 </h2>
 </header>
@@ -85,7 +107,7 @@
 使用消息代理后，生产者和消费者即可解耦，不再需要有任何联系，也不需要受对方的影响，只要保持使用一致的消息格式即可。
 消息和批次 Kafka 的数据单元被称为消息，消息类似于关系型数据库里的一个数据行或一条记录；消息由字节数组组成，当消息以一种可控的方式写入不同的分区时，会用到 key，Kafka 会为 key 生成一个一致性散列值，然后使用散列值对主题分区数进行取模，为消息选取分区。这样可以保证具有相同 key 的消息总是被写到相同的分区上。...</p>
 </section>
-<footer class=entry-footer><span title="2021-11-29 23:41:52 +0800 CST">November 29, 2021</span>&nbsp;·&nbsp;14 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2021-11-29 23:41:52 +0800 CST">November 29, 2021</span>&nbsp;·&nbsp;14 min</footer>
 <a class=entry-link aria-label="post link to Kafka 入门" href=http://zintrulcre.github.io/posts/message-broker/kafka/></a>
 </article>
 <article class=post-entry>
@@ -106,7 +128,7 @@ Prometheus Server
 Prometheus 服务器主要包含了使用 pull 模式抓取监控数据，通过本地存储（本地磁盘）和远程存储（OpenTSDB, InfluxDB, ElasticSearch 等）保存数据，使用 PromQL 查询数据三大功能。
 PromQL (Prometheus Query Language) 是 Prometheus 内置的数据查询语言，提供了对时间序列数据的查询，聚合和逻辑运算等操作的支持，被广泛地应用在数据的查询，可视化和告警中。关于 PromQL 的相关操作可以参考 探索PromQL。...</p>
 </section>
-<footer class=entry-footer><span title="2021-10-21 18:01:12 +0800 CST">October 21, 2021</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2021-10-21 18:01:12 +0800 CST">October 21, 2021</span>&nbsp;·&nbsp;3 min</footer>
 <a class=entry-link aria-label="post link to Prometheus 入门" href=http://zintrulcre.github.io/posts/cloud/intro-to-prometheus/></a>
 </article>
 <article class=post-entry>
@@ -120,7 +142,7 @@ PromQL (Prometheus Query Language) 是 Prometheus 内置的数据查询语言，
 def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, a + b if __name__ == "__main__": fsg = FibonacciSequenceGenerator() print(fsg) print(type(fsg)) $ python3 main.py &lt;generator object FibonacciSequenceGenerator at 0x7fb4720b1ac0> &lt;class 'generator'> 可以看到函数 FibonacciSequenceGenerator 返回了一个类型为 generator 的生成器对象 f；对于生成器对象，我们不能像操作普通函数一样直接进行函数调用，而是要使用 next() 或 fsg.send() 来进行函数切换，使得生成器函数开始或继续执行，直到 yield 所在行或是函数末尾再将执行权交还给调用方：
 for i in range(100): print(next(fsg)) $ python3 main....</p>
 </section>
-<footer class=entry-footer><span title="2021-08-04 17:38:52 +0800 CST">August 4, 2021</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2021-08-04 17:38:52 +0800 CST">August 4, 2021</span>&nbsp;·&nbsp;5 min</footer>
 <a class=entry-link aria-label="post link to Python 源码学习（5）：协程" href=http://zintrulcre.github.io/posts/python/python-source-code-coroutine/></a>
 </article>
 <article class=post-entry>
@@ -134,20 +156,8 @@ Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler�
 1 Python 编译器 1.1 代码对象 Python 提供了内置函数 compile，可以编译 Python 代码并生成一个包含字节码信息的对象，举例如下：
 # test.py def Square(a): return a * a print(f"result:\t\t{Square(5)}") # main.py f = "test.py" code_obj = compile(open(f).read(), f, 'exec') exec(code_obj) print(f"code_obj:\t{code_obj}") print(f"type:\t\t{type(code_obj)}") $ python3 main.py result: 25 code_obj: &lt;code object &lt;module> at 0x7f052c156b30, file "test....</p>
 </section>
-<footer class=entry-footer><span title="2021-05-26 10:18:52 +0800 CST">May 26, 2021</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2021-05-26 10:18:52 +0800 CST">May 26, 2021</span>&nbsp;·&nbsp;13 min</footer>
 <a class=entry-link aria-label="post link to Python 源码学习（4）：编译器和虚拟机" href=http://zintrulcre.github.io/posts/python/python-source-code-interpreter/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Python 源码学习（3）：list 类型
-</h2>
-</header>
-<section class=entry-content>
-<p>Python 源码学习（3）：list 类型 Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中：
-// Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for 'allocated' elements. The number * currently in use is ob_size. * Invariants: * 0 &lt;= ob_size &lt;= allocated * len(list) == ob_size * ob_item == NULL implies ob_size == allocated == 0 * list.sort() temporarily sets allocated to -1 to detect mutations....</p>
-</section>
-<footer class=entry-footer><span title="2021-05-06 20:07:52 +0800 CST">May 6, 2021</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Zhengyu</footer>
-<a class=entry-link aria-label="post link to Python 源码学习（3）：list 类型" href=http://zintrulcre.github.io/posts/python/source-code-3-list-and-dict/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

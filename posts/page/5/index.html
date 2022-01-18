@@ -6,7 +6,7 @@
 <title>Posts | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Posts - 尾張">
-<meta name=author content="Zhengyu">
+<meta name=author content>
 <link rel=canonical href=http://zintrulcre.github.io/posts/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -65,6 +65,19 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>coverity 的 WRAPPER_ESCAPE 告警
+</h2>
+</header>
+<section class=entry-content>
+<p>coverity 的 WRAPPER_ESCAPE 告警 const char* Foo() { std::string str_msg("test"); return str_msg.c_str(); } int main() { const char *p_msg = Foo(); printf("%s\n", p_msg); return 0; } // output:（为空，或乱码） D? 上面代码中的 Foo 函数会被 coverity 报告 WRAPPER_ESCAPE，详细说明是：
+Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope 大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
+而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：...</p>
+</section>
+<footer class=entry-footer><span title="2020-03-15 17:24:27 +0800 CST">March 15, 2020</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to coverity 的 WRAPPER_ESCAPE 告警" href=http://zintrulcre.github.io/posts/c++/basics/wrapper_escape-in-coverity/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>C++ 协程（1）：函数和协程
 </h2>
 </header>
@@ -77,7 +90,7 @@ call 操作一般包含以下几个步骤：
 2. 协程 协程由程序所控制，即在用户态执行，而不是像线程一样由操作系统内核管理，使用协程时，不需要如线程一般频繁地进行上下文切换，性能能够得到很大的提升，因此协程的开销远远小于线程的开销。一般来说协程有三种特性：
 suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，但是保留当前栈帧。和函数的 return 类似，协程的 suspend 只能由协程自身发起 resume 恢复：继续执行已经 suspend 的协程，重新激活协程的栈帧 destroy 销毁：销毁协程的栈帧和其对应的内存 可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是执行栈帧，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是数据栈帧，这部分即使在协程 suspend 的时候依然存在。...</p>
 </section>
-<footer class=entry-footer><span title="2020-01-20 20:15:05 +0800 CST">January 20, 2020</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2020-01-20 20:15:05 +0800 CST">January 20, 2020</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to C++ 协程（1）：函数和协程" href=http://zintrulcre.github.io/posts/c++/coroutine/c++-coroutine-function-and-coroutine/></a>
 </article>
 <article class=post-entry>
@@ -92,7 +105,7 @@ class Solution { public: TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2) { if (
 先将左右子树分别翻转，再交换两者的位置。
 class Solution { public: TreeNode *invertTree(TreeNode *root) { if (!root) return nullptr; TreeNode *left = invertTree(root->left), *right = invertTree(root->right); root->right = left; root->left = right; return root; } }; 104 二叉树的最大深度 找出一个二叉树的最大深度。...</p>
 </section>
-<footer class=entry-footer><span title="2019-08-24 19:12:25 +1000 +1000">August 24, 2019</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2019-08-24 19:12:25 +1000 +1000">August 24, 2019</span>&nbsp;·&nbsp;3 min</footer>
 <a class=entry-link aria-label="post link to LeetCode 树（3）" href=http://zintrulcre.github.io/posts/leetcode/tree-3/></a>
 </article>
 <article class=post-entry>
@@ -104,7 +117,7 @@ class Solution { public: TreeNode *invertTree(TreeNode *root) { if (!root) retur
 <p>LeetCode 排序 题目 56 合并区间 按照间隔的起始进行排序，判断下一个间隔的起始是否大于前一个间隔的末尾，如果大于的话就把之前的间隔加入结果数组，否则继续扩展当前的间隔。
 class Solution { public: vector&lt;vector&lt;int>> merge(vector&lt;vector&lt;int>> &intervals) { vector&lt;vector&lt;int>> res; int n = intervals.size(); if (n == 0) return res; sort(intervals.begin(), intervals.end(), [](vector&lt;int> const &v1, vector&lt;int> const &v2) { return v1[0] &lt; v2[0]; }); int start = intervals[0][0], end = intervals[0][1]; for (int i = 1; i &lt; n; ++i) { if (intervals[i][0] > end) { res.push_back(vector&lt;int>{start, end}); start = intervals[i][0]; } end = max(end, intervals[i][1]); } res....</p>
 </section>
-<footer class=entry-footer><span title="2019-08-17 19:12:25 +1000 +1000">August 17, 2019</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2019-08-17 19:12:25 +1000 +1000">August 17, 2019</span>&nbsp;·&nbsp;3 min</footer>
 <a class=entry-link aria-label="post link to LeetCode 排序" href=http://zintrulcre.github.io/posts/leetcode/sort/></a>
 </article>
 <article class=post-entry>
@@ -117,20 +130,8 @@ class Solution { public: vector&lt;vector&lt;int>> merge(vector&lt;vector&lt;int
 class Solution { public: int findKthLargest(vector&lt;int> &nums, int k) { priority_queue&lt;int, vector&lt;int>, greater&lt;>> heap; for (auto &m:nums) { if (heap.size() &lt; k || m > heap.top()) heap.push(m); if (heap.size() > k) heap.pop(); } return heap.top(); } }; 347 前 K 个高频元素 先遍历一次统计出数组中各个元素出现的次数，再用一个大根堆将前 k 个高频元素保存下来，最后再将这些元素依次 pop 出来存入结果数组。时间复杂度是 O(n)，空间复杂度是 O(n)。
 class Solution { public: vector&lt;int> topKFrequent(vector&lt;int> &nums, int k) { priority_queue&lt;pair&lt;int, int>, vector&lt;pair&lt;int, int>>, greater&lt;>> freq; unordered_map&lt;int, int> count; vector&lt;int> res(k, 0); for (auto &m:nums) ++count[m]; for (auto &c:count) { freq....</p>
 </section>
-<footer class=entry-footer><span title="2019-08-05 19:12:25 +1000 +1000">August 5, 2019</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2019-08-05 19:12:25 +1000 +1000">August 5, 2019</span>&nbsp;·&nbsp;4 min</footer>
 <a class=entry-link aria-label="post link to LeetCode 堆" href=http://zintrulcre.github.io/posts/leetcode/heap/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 双指针
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode DFS 题目 26 删除排序数组中的重复项 用两个指针 len 和 i 分别表示没有重复的项的下标与遍历数组的下标，将没有重复的项拷贝到 nums[len] 下然后 ++len 即可。
-class Solution { public: int removeDuplicates(vector&lt;int>& nums) { int count = 0, len = 1, n = nums.size(); if (n == 0) return 0; for (int i = 1; i &lt; n; ++i) { if (nums[i] == nums[i - 1]) continue; nums[len] = nums[i]; ++len; } return len; } }; 80 删除排序数组中的重复项 II 用两个指针 len 和 i 分别表示没有最多重复 2 次的项的下标与遍历数组的下标，将重复数小于等于 1 的项拷贝到 nums[len] 下然后 ++len 即可。...</p>
-</section>
-<footer class=entry-footer><span title="2019-07-31 19:12:25 +1000 +1000">July 31, 2019</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Zhengyu</footer>
-<a class=entry-link aria-label="post link to LeetCode 双指针" href=http://zintrulcre.github.io/posts/leetcode/twopointers/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

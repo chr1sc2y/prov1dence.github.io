@@ -6,7 +6,7 @@
 <title>C++ | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Zhengyu's Blog">
-<meta name=author content="Zhengyu">
+<meta name=author content>
 <link rel=canonical href=http://zintrulcre.github.io/categories/c++/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -76,7 +76,7 @@ call 操作一般包含以下几个步骤：
 2. 协程 协程由程序所控制，即在用户态执行，而不是像线程一样由操作系统内核管理，使用协程时，不需要如线程一般频繁地进行上下文切换，性能能够得到很大的提升，因此协程的开销远远小于线程的开销。一般来说协程有三种特性：
 suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，但是保留当前栈帧。和函数的 return 类似，协程的 suspend 只能由协程自身发起 resume 恢复：继续执行已经 suspend 的协程，重新激活协程的栈帧 destroy 销毁：销毁协程的栈帧和其对应的内存 可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是执行栈帧，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是数据栈帧，这部分即使在协程 suspend 的时候依然存在。...</p>
 </section>
-<footer class=entry-footer><span title="2020-01-20 20:15:05 +0800 CST">January 20, 2020</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2020-01-20 20:15:05 +0800 CST">January 20, 2020</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to C++ 协程（1）：函数和协程" href=http://zintrulcre.github.io/posts/c++/coroutine/c++-coroutine-function-and-coroutine/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -89,7 +89,7 @@ suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，
 private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
 template&lt;typename T, typename D> void SharedPointer&lt;T, D>::release() { if (pointer) { std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " counter remains " &lt;&lt; *counter &lt;&lt; std::endl; if (--(*counter) == 0) { std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " destructor called." &lt;&lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针...</p>
 </section>
-<footer class=entry-footer><span title="2019-01-25 17:47:38 +1100 +1100">January 25, 2019</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2019-01-25 17:47:38 +1100 +1100">January 25, 2019</span>&nbsp;·&nbsp;7 min</footer>
 <a class=entry-link aria-label="post link to C++ 智能指针（3）：shared_ptr" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-3/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -105,7 +105,7 @@ UniquePointer(UniquePointer&lt;T> &&other) noexcept; UniquePointer &operator=(Un
 class Deleter { template&lt;typename T> void operator()(T *p) { if (p) delete p; } }; template&lt;typename T, typename D> class UniquePointer { ... private: T *pointer; Deleter deleter; }; 实现 根据unique_ptr的源码，能够大致实现UniquePointer类
 template&lt;typename T, typename D> class UniquePointer { public: explicit UniquePointer(T *t, const D &d); ~UniquePointer(); T &operator*(); T *operator->(); T *release(); void reset(T *p); UniquePointer(UniquePointer &&other) noexcept; UniquePointer &operator=(UniquePointer &&other) noexcept; UniquePointer(const UniquePointer &other) = delete; UniquePointer &operator=(const UniquePointer &other) = delete; private: T *pointer; D deleter; }; template&lt;typename T, typename D> UniquePointer&lt;T, D>::UniquePointer(T *t, const D &d) { std::cout &lt;&lt; "UniquePointer " &lt;&lt; this &lt;&lt; " constructor called....</p>
 </section>
-<footer class=entry-footer><span title="2019-01-19 01:02:02 +1100 +1100">January 19, 2019</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2019-01-19 01:02:02 +1100 +1100">January 19, 2019</span>&nbsp;·&nbsp;6 min</footer>
 <a class=entry-link aria-label="post link to C++ 智能指针（2）：unique_ptr" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-2/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -119,7 +119,7 @@ template&lt;typename T, typename D> class UniquePointer { public: explicit Uniqu
 template &lt;class _Tp> typename remove_reference&lt;_Tp>::type&& move(_Tp&& __t) _NOEXCEPT { typedef typename remove_reference&lt;_Tp>::type _Up; return static_cast&lt;_Up&&>(__t); } 测试 定义一个 Object 类和一个 MoveObject 函数使用 move 语义返回一个 Object 的类对象，可以看到在 MoveObject 函数返回右值后，obj 对象调用了移动构造函数。
 class Object { public: Object() { std::cout &lt;&lt; "Construct" &lt;&lt; std::endl; } Object(const Object &other) { std::cout &lt;&lt; "Copy" &lt;&lt; std::endl; } Object(Object &&other) noexcept { std::cout &lt;&lt; "Move" &lt;&lt; std::endl; } ~Object() { std::cout &lt;&lt; "Destruct" &lt;&lt; std::endl; } void Print() { std::cout &lt;&lt; "Print" &lt;&lt; std::endl; } }; Object MoveObject() { Object obj; return move(obj); } int main() { Object obj = MoveObject(); return 0; } /* output: Construct Move Destruct Destruct */ 返回值优化（RVO，Return value optimisation） 返回值优化是一种编译器优化技术，允许编译器在调用点（call site）直接构造函数的返回值。...</p>
 </section>
-<footer class=entry-footer><span title="2019-01-02 09:55:05 +1100 +1100">January 2, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2019-01-02 09:55:05 +1100 +1100">January 2, 2019</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to C++ 智能指针（1.5）：move 语义" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-1.5/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -132,7 +132,7 @@ class Object { public: Object() { std::cout &lt;&lt; "Construct" &lt;&lt; std::e
 class Object { public: Object() { std::cout &lt;&lt; "Construct" &lt;&lt; std::endl; } Object(const Object &other) { std::cout &lt;&lt; "Copy" &lt;&lt; std::endl; } Object(Object &&other) noexcept { std::cout &lt;&lt; "Move" &lt;&lt; std::endl; } ~Object() { std::cout &lt;&lt; "Destruct" &lt;&lt; std::endl; } void Print() { std::cout &lt;&lt; "Print" &lt;&lt; std::endl; } }; 创建一个指向 Object 类型的指针
 int main() { Object *o = new Object(); o->Print(); return 0; } /* output: Construct Print */ 我们没有进行delete o的操作，导致o没有被正确地析构，造成了内存泄漏。作为对比，创建一个Obj类型的对象...</p>
 </section>
-<footer class=entry-footer><span title="2018-12-27 15:21:35 +1100 +1100">December 27, 2018</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2018-12-27 15:21:35 +1100 +1100">December 27, 2018</span>&nbsp;·&nbsp;4 min</footer>
 <a class=entry-link aria-label="post link to C++ 智能指针（1）：auto_ptr" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-1/></a>
 </article>
 <footer class=page-footer>

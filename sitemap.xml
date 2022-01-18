@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://zintrulcre.github.io/categories/</loc>
+    <lastmod>2022-01-18T22:29:36+08:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/posts/</loc>
+    <lastmod>2022-01-18T22:29:36+08:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/categories/proxy/</loc>
+    <lastmod>2022-01-18T22:29:36+08:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/posts/proxy/ax1800/</loc>
+    <lastmod>2022-01-18T22:29:36+08:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/</loc>
+    <lastmod>2022-01-18T22:29:36+08:00</lastmod>
+  </url><url>
     <loc>http://zintrulcre.github.io/about/</loc>
     <lastmod>2022-01-18T21:48:35+08:00</lastmod>
-  </url><url>
-    <loc>http://zintrulcre.github.io/categories/</loc>
-    <lastmod>2021-11-29T23:41:52+08:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/posts/message-broker/kafka/</loc>
     <lastmod>2021-11-29T23:41:52+08:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/categories/message-broker/</loc>
-    <lastmod>2021-11-29T23:41:52+08:00</lastmod>
-  </url><url>
-    <loc>http://zintrulcre.github.io/posts/</loc>
-    <lastmod>2021-11-29T23:41:52+08:00</lastmod>
-  </url><url>
-    <loc>http://zintrulcre.github.io/</loc>
     <lastmod>2021-11-29T23:41:52+08:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/categories/cloud/</loc>
@@ -233,8 +239,6 @@
     <loc>http://zintrulcre.github.io/posts/cloud-computing/docker/</loc>
   </url><url>
     <loc>http://zintrulcre.github.io/posts/computer-science/temp/</loc>
-  </url><url>
-    <loc>http://zintrulcre.github.io/posts/proxy/ax1800/</loc>
   </url><url>
     <loc>http://zintrulcre.github.io/archives/</loc>
   </url>

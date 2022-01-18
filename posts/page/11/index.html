@@ -6,7 +6,7 @@
 <title>Posts | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Posts - 尾張">
-<meta name=author content="Zhengyu">
+<meta name=author content>
 <link rel=canonical href=http://zintrulcre.github.io/posts/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -65,6 +65,29 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>LeetCode Archiver(2)：获取题目信息
+</h2>
+</header>
+<section class=entry-content>
+<p>创建爬虫 在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用genspider命令新建一个爬虫：
+cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。
+新建好爬虫之后可以看到在项目的spiders文件夹下新增了一个名为 QuestionSetSpider.py的文件，这就是我们刚才新建的爬虫文件。这个爬虫文件会自动生成以下代码
+# -*- coding: utf-8 -*- import scrapy class QuestionSetSpider(scrapy.Spider): name = 'QuestionSetSpider' allowed_domains = ['leetcode.com'] start_urls = ['http://leetcode.com/'] def parse(self, response): pass QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类； self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫； self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误； self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数 获取题目详细信息 分析 LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。
+为了爬取题目的详细信息，我们首先要从题目列表进入每个题目对应的链接。
+首先打开leetcode的problem列表，按F12打开Chrome的开发者工具，进入Network标签栏，勾选上Preserve log，刷新该页面。
+可以看到，网页向 https://leetcode.com/api/problems/all/ 发送了一个名为"all/“的GET类型的Request，这就是获取所有题目链接和相关信息的请求。如果此时已经安装了Toggle JavaScript插件，我们可以直接右键点击“Open in new tab”，查看该请求返回的Response。
+更方便的方法是使用postman向服务器发送一个相同的Request，并将其保存下来，这样如果我们下次需要查看相应的Response的时候就不需要再使用开发者工具了。
+返回的Response是一个json对象，其中的"stat_status_pairs"键所对应的值是所有包含题目信息的list，而列表中的[“stat”][“question__title_slug”]就是题目所在的页面。以Largest Perimeter Triangle为例，将其title_slug拼接到https://leetcode.com/problems/ 后，进入页面https://leetcode.com/problems/largest-perimeter-triangle/ 。同样地，打开开发者工具，刷新页面，可以看到服务器返回了很多项graphql的查询数据，通过查看Request Payload可以找到其中operationName为"questionData"的一项，这就是当前题目的详细信息。
+将Payload复制粘贴到postman的Body中，在Headers中设置Content-Type为application/json，发送请求，可以看到返回的是一个json对象，包含了该题目所对应的所有信息。
+接下来我们就可以对该题目的信息进行处理了。
+实现 为了获取题目列表的json对象，我们需要先重写start_requests函数。
+def start_requests(self): self.Login() # 用户登录，后续会用到 questionset_url = "https://leetcode....</p>
+</section>
+<footer class=entry-footer><span title="2018-12-21 15:06:01 +1100 +1100">December 21, 2018</span>&nbsp;·&nbsp;2 min</footer>
+<a class=entry-link aria-label="post link to LeetCode Archiver(2)：获取题目信息" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver2/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>在Google Cloud Platform上运行Jupyter Notebook
 </h2>
 </header>
@@ -76,7 +99,7 @@
 )
 根据需求填写和选择 Name, Region, Zone, Machine Type和Boot Disk。在 Firewall 选项中选中 Allow HTTP traffic 和 Allow HTTPS traffic, 在下方的 Disks 选项卡中取消勾选 Delete boot disk when instance is deleted。最后点击 Create，虚拟机实例就创建好了。...</p>
 </section>
-<footer class=entry-footer><span title="2018-12-14 17:03:12 +1100 +1100">December 14, 2018</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2018-12-14 17:03:12 +1100 +1100">December 14, 2018</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to 在Google Cloud Platform上运行Jupyter Notebook" href=http://zintrulcre.github.io/posts/cloud/run-jupyter-notebook-on-gcp/></a>
 </article>
 <article class=post-entry>
@@ -105,7 +128,7 @@ scrapy startproject LeetCode_Crawler 注意项目名称是不能包含连字符 
 scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.py #中间件文件 pipelines.py #管道文件 settings.py #设置文件 __pycache__ spiders #爬虫文件夹，所有爬虫文件都应在该文件夹下 __init__.py __pycache__ 至此Scrapy项目的创建就完成了。
 参考资料 Scrapy官方文档</p>
 </section>
-<footer class=entry-footer><span title="2018-12-04 11:25:15 +1100 +1100">December 4, 2018</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2018-12-04 11:25:15 +1100 +1100">December 4, 2018</span>&nbsp;·&nbsp;1 min</footer>
 <a class=entry-link aria-label="post link to LeetCode Archiver(1)：Scrapy框架和Requests库" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver1/></a>
 </article>
 <article class=post-entry>
@@ -118,7 +141,7 @@ scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 _
 # 是宏，宏不做类型检查，只进行简单替换；在编译前被处理，编译阶段的程序是宏处理后的结果 typedef 用于声明自定义数据类型，简化代码 const 用于定义常量，有数据类型，编译器会对进行类型检查 const 和指针
 const char *p: p is a pointer to const char char const *p: p is a pointer to char const（同上） char *const p: p is a const pointer to char int main() { const char *p1 = new char('a'); char const *p2 = new char('b'); char *const p3 = new char('c'); *p1 = 'd'; // error: read-only variable is notassignable *p2 = 'e'; // error: read-only variable is notassignable p3 = new char('f'); // error: cannot assign tovariable 'p3' with const-qualified type 'char *const' p3 = nullptr; // error: cannot assign to variable'p3' with const-qualified type 'char *const' } const 和类...</p>
 </section>
-<footer class=entry-footer><span title="2015-07-05 08:57:52 +1000 +1000">July 5, 2015</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2015-07-05 08:57:52 +1000 +1000">July 5, 2015</span>&nbsp;·&nbsp;5 min</footer>
 <a class=entry-link aria-label="post link to C++ 基础知识整理" href=http://zintrulcre.github.io/posts/c++/basics/basics/></a>
 </article>
 <article class=post-entry>
@@ -129,24 +152,8 @@ const char *p: p is a pointer to const char char const *p: p is a pointer to cha
 <section class=entry-content>
 <p>查看 container 的 log file 所在的目录：docker inspect &lt;containername> | grep log</p>
 </section>
-<footer class=entry-footer>1 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer>1 min</footer>
 <a class=entry-link aria-label="post link to " href=http://zintrulcre.github.io/posts/cloud-computing/docker/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>
-</h2>
-</header>
-<section class=entry-content>
-<p>Linux:
-我平时的学习基本上都在Linux下完成的，我现在有两台电脑，一台iMac，一台笔记本，笔记本上就装的Linux，然后每天都会用很多指令， 比如说用pipeline管道输出后用grep做正则搜索，用ifconfig和netstat查看网络状态，用top看进程资源，用iostat看cpu和硬盘状态 还有就是最基础的cd ls cp rm mkdir find whereis，还有远程的scp 还有一个查看程序运行时的系统调用，在Linux下是strace，Mac下是dtruss，有些命令在两个平台不一样 Linux下对文件操作有两种方式：系统调用（底层调用，面向硬件），和库函数调用（应用）。系统调用：open, close, read, write, ioctl等，用于底层文件访问
-调试： 用vim编辑（会一些vim的快捷键，比如dd删除一行，gg定位到头部，6$定位到某一行），用gdb调试，打log出来看，用过有个叫log4cplus的框架，有内存错误或者内存泄漏的问题就用valgrind调试。还有用GNU profiler来查看一些函数的调用次数，调用点相关的信息（编译器的话在Linux上GCC，在MAC上用自带的clang，单元测试用gtest。）
-C++ 内存分配
-栈区：参数，局部变量 2.堆区：new，向高地址扩展，不连续 3.自由存储区，malloc 4.全局/静态存储区，存储全局变量和静态变量 5.常量存储区，存储常量 new 分配失败： 1. int* p = new (std::nothrow) int(1); 返回空指针 2. 用 try {} catch (const bad_alloc &b) {} 捕捉异常 auto_ptr：有拷贝构造和赋值操作，所有权转移 unique_ptr：独占式拥有，保证同一时间内只有一个智能指针可以指向特定指针，同时销毁，可以移交拥有权 shared_ptr：多个智能指针指向相同指针对象，在最后一个shared_ptr被销毁时对象被释放；搭配 weak_ptr、bad_weak_ptr等辅助类来实现，可以定制型删除器，因为默认只会把指针删掉，如果是个数组不会删后面的 循环引用就是说有两个类对象的智能指针，他们分别有一个成员变量是对方的类型，并且指向了对方的智能指针，形成了一个环状，那么他们就无法被正确的释放掉 weak_ptr：只引用，不计数，如果一个指针被一些shared_ptr和weak_ptr同时引用，当这些shared_ptr都释放掉，不管还有没有weak_ptr引用该内存，内存都会被释放，解决了循环引用
-线程通信：锁（互斥锁，读写所，自旋锁，条件变量，原子变量，临界区），信号量，信号，屏障</p>
-</section>
-<footer class=entry-footer>1 min&nbsp;·&nbsp;Zhengyu</footer>
-<a class=entry-link aria-label="post link to " href=http://zintrulcre.github.io/posts/computer-science/temp/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

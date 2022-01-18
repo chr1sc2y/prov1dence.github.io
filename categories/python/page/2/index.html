@@ -6,7 +6,7 @@
 <title>Python | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Zhengyu's Blog">
-<meta name=author content="Zhengyu">
+<meta name=author content>
 <link rel=canonical href=http://zintrulcre.github.io/categories/python/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -81,7 +81,7 @@ login_url = "https://leetcode.com/accounts/login/" session = requests.session() 
 实现 首先我们需要在爬虫开始运行之前获取登录信息，将Session作为类的成员变量保存下来，方便在获取submissions时使用。同时我们需要在与爬虫文件相同的目录下新建config.json，将自己的用户名和密码保存在该json文件里，这样就能顺利登陆了。
 def start_requests(self): self.Login() # 登录 questionset_url = "https://leetcode.com/api/problems/all/" yield scrapy....</p>
 </section>
-<footer class=entry-footer><span title="2019-01-11 13:15:17 +1100 +1100">January 11, 2019</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2019-01-11 13:15:17 +1100 +1100">January 11, 2019</span>&nbsp;·&nbsp;1 min</footer>
 <a class=entry-link aria-label="post link to LeetCode Archiver(3)： 登录" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver3/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -104,7 +104,7 @@ cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中Question
 实现 为了获取题目列表的json对象，我们需要先重写start_requests函数。
 def start_requests(self): self.Login() # 用户登录，后续会用到 questionset_url = "https://leetcode....</p>
 </section>
-<footer class=entry-footer><span title="2018-12-21 15:06:01 +1100 +1100">December 21, 2018</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2018-12-21 15:06:01 +1100 +1100">December 21, 2018</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to LeetCode Archiver(2)：获取题目信息" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver2/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -133,7 +133,7 @@ scrapy startproject LeetCode_Crawler 注意项目名称是不能包含连字符 
 scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.py #中间件文件 pipelines.py #管道文件 settings.py #设置文件 __pycache__ spiders #爬虫文件夹，所有爬虫文件都应在该文件夹下 __init__.py __pycache__ 至此Scrapy项目的创建就完成了。
 参考资料 Scrapy官方文档</p>
 </section>
-<footer class=entry-footer><span title="2018-12-04 11:25:15 +1100 +1100">December 4, 2018</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2018-12-04 11:25:15 +1100 +1100">December 4, 2018</span>&nbsp;·&nbsp;1 min</footer>
 <a class=entry-link aria-label="post link to LeetCode Archiver(1)：Scrapy框架和Requests库" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver1/></a>
 </article>
 <footer class=page-footer>

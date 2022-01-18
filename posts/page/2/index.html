@@ -6,7 +6,7 @@
 <title>Posts | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Posts - 尾張">
-<meta name=author content="Zhengyu">
+<meta name=author content>
 <link rel=canonical href=http://zintrulcre.github.io/posts/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -65,6 +65,18 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Python 源码学习（3）：list 类型
+</h2>
+</header>
+<section class=entry-content>
+<p>Python 源码学习（3）：list 类型 Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中：
+// Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for 'allocated' elements. The number * currently in use is ob_size. * Invariants: * 0 &lt;= ob_size &lt;= allocated * len(list) == ob_size * ob_item == NULL implies ob_size == allocated == 0 * list.sort() temporarily sets allocated to -1 to detect mutations....</p>
+</section>
+<footer class=entry-footer><span title="2021-05-06 20:07:52 +0800 CST">May 6, 2021</span>&nbsp;·&nbsp;7 min</footer>
+<a class=entry-link aria-label="post link to Python 源码学习（3）：list 类型" href=http://zintrulcre.github.io/posts/python/source-code-3-list-and-dict/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>ProtoBuf 语法和编码原理入门
 </h2>
 </header>
@@ -75,7 +87,7 @@
 $ protoc --version libprotoc 3.15.7 以一个简单的 proto 文件为例，它的语法和 C++ 类似：
 // msg.proto syntax = "proto3";package Message;message SearchRequest { reserved 6, 9 to 12; reserved "foo", "bar"; string query = 1; int32 page_number = 2; int32 result_per_page = 3;}message ResultType { message Result { string url = 1; string title = 2; repeated string snippets = 3; }}message SearchResponse { repeated ResultType....</p>
 </section>
-<footer class=entry-footer><span title="2021-04-26 21:44:52 +0800 CST">April 26, 2021</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2021-04-26 21:44:52 +0800 CST">April 26, 2021</span>&nbsp;·&nbsp;6 min</footer>
 <a class=entry-link aria-label="post link to ProtoBuf 语法和编码原理入门" href=http://zintrulcre.github.io/posts/serialization/protocol-buffer/></a>
 </article>
 <article class=post-entry>
@@ -90,7 +102,7 @@ $ protoc --version libprotoc 3.15.7 以一个简单的 proto 文件为例，它�
 printf("%d\n", 1000000 * 1000000); printf("%u\n", 1000000 * 1000000); -727379968 3567587328 1 int 类型在内存中的存储方式 1.1 内存结构 Python 中的 int 整数类型实际上是一个名为 PyLongObject 的结构体，定义在 longintrepr.h 文件中：
 // Include/object.h #define PyObject_VAR_HEAD PyVarObject ob_base; // Objects/longobject....</p>
 </section>
-<footer class=entry-footer><span title="2021-03-31 15:37:52 +0800 CST">March 31, 2021</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2021-03-31 15:37:52 +0800 CST">March 31, 2021</span>&nbsp;·&nbsp;8 min</footer>
 <a class=entry-link aria-label="post link to Python 源码学习（2）：int 类型" href=http://zintrulcre.github.io/posts/python/source-code-2/></a>
 </article>
 <article class=post-entry>
@@ -102,7 +114,7 @@ printf("%d\n", 1000000 * 1000000); printf("%u\n", 1000000 * 1000000); -727379968
 <p>Python 源码学习（1）：类型和对象 Python 是一门解释型，动态类型，多范式的编程语言，当我们从 python.org 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 CPython，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：
 $ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |-- Doc # 文档 |-- Grammar |-- Include # C 头文件 |-- Lib # 用 Python 写的库文件 |-- Mac # 用于在 macOS 上构建的文件 |-- Misc # 杂项 |-- Modules # 用 C 写的库文件 |-- Objects # 核心类型，以及对象模型的定义 |-- PC # 用于在 Windows 上构建的文件 |-- PCbuild # 用于在老版本的 Windows 上构建的文件 |-- Parser # Python 解析器源码 |-- Programs # Python 可执行文件和其他 |-- Python # CPython 编译器源码 |-- Tools # 构建时的工具 `-- m4 16 directories 本系列主要以阅读和分析 CPython 源码的方式学习 Python。...</p>
 </section>
-<footer class=entry-footer><span title="2021-03-14 16:05:52 +0800 CST">March 14, 2021</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2021-03-14 16:05:52 +0800 CST">March 14, 2021</span>&nbsp;·&nbsp;6 min</footer>
 <a class=entry-link aria-label="post link to Python 源码学习（1）：类型和对象" href=http://zintrulcre.github.io/posts/python/source-code-1/></a>
 </article>
 <article class=post-entry>
@@ -114,22 +126,8 @@ $ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |--
 <p>C++ 智能指针的简单实现 1 std::auto_ptr C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类：
 template&lt;typename T> class Object { public: // constructor Object() : t_() { cout &lt;&lt; "Object::Constructor " &lt;&lt; this &lt;&lt; endl; } Object(T t) : t_(t) { cout &lt;&lt; "Object::Constructor " &lt;&lt; this &lt;&lt; endl; } // copy-ctor Object(const Object &other) { cout &lt;&lt; "Object::Copy-ctor " &lt;&lt; this &lt;&lt; endl; } // destructor ~Object() { cout &lt;&lt; "Object::Destructor " &lt;&lt; this &lt;&lt; endl; } void Set(T t) { t_ = t; } void Print() { cout &lt;&lt; t_ &lt;&lt; endl; } private: T t_; }; 如果在堆上为类对象分配了内存，在离开其作用域的时候又没将其释放，则会造成内存泄漏：...</p>
 </section>
-<footer class=entry-footer><span title="2021-02-21 21:20:18 +0800 CST">February 21, 2021</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Zhengyu</footer>
+<footer class=entry-footer><span title="2021-02-21 21:20:18 +0800 CST">February 21, 2021</span>&nbsp;·&nbsp;9 min</footer>
 <a class=entry-link aria-label="post link to C++ 智能指针的简单实现" href=http://zintrulcre.github.io/posts/c++/smart-pointer/smart-pointer/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>启发式搜索和强化学习
-</h2>
-</header>
-<section class=entry-content>
-<p>启发式搜索和强化学习 The Pac-Man Projects 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。
-1 盲目搜索 盲目搜索（Blind Search）指不利用任何额外信息（输入数据，或辅助函数），只依赖于算法本身的搜索，例如 BFS，DFS，Dijkstra 等；
-DFS The Pac-Man Projects 已经实现了吃豆人游戏的后台逻辑和图形渲染框架，我们只需要在 search.py 文件中实现具体的搜索算法，并根据搜索算法生成寻路路径，即可让吃豆人移动，先来实现一个简单的 DFS：
-def DepthFirstSearch(problem): from util import Stack open_list = Stack() visited = [] open_list.push((problem.getStartState(), [])) while not open_list.isEmpty(): current_node, path = open_list.pop() if problem.isGoalState(current_node): return path if current_node in visited: continue visited.append(current_node) for next_node, action, cost in problem.getSuccessors(current_node): if next_node not in visited: open_list.push((next_node, path + [action])) dfs = DepthFirstSearch 在吃豆人游戏的框架下，为寻路函数传入的 problem 参数可以理解为一个 class SearchProblem 类型的抽象基类，实际的问题有 PositionSearchProblem（找到单个终点），FoodSearchProblem（找到所有食物），CapsuleSearchProblem（找到增益药丸和所有食物）等，这些子类都需要实现以下函数：...</p>
-</section>
-<footer class=entry-footer><span title="2020-12-10 20:07:52 +0800 CST">December 10, 2020</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Zhengyu</footer>
-<a class=entry-link aria-label="post link to 启发式搜索和强化学习" href=http://zintrulcre.github.io/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
