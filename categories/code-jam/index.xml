@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Code Jam on 尾張</title>
+    <link>http://example.org/categories/code-jam/</link>
+    <description>Recent content in Code Jam on 尾張</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 May 2019 22:02:15 +1000</lastBuildDate><atom:link href="http://example.org/categories/code-jam/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Code Jam 2019 Round 1C</title>
+      <link>http://example.org/posts/code-jam/2019-round-1c/</link>
+      <pubDate>Tue, 07 May 2019 22:02:15 +1000</pubDate>
+      
+      <guid>http://example.org/posts/code-jam/2019-round-1c/</guid>
+      <description>Code Jam 2019 Round 1C Robot Programming Strategy (10pts, 18pts) 已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。
+Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同时有三种情况（R, P, S）则没有必胜策略，直接输出IMPOSSIBLE；否则返回胜利或打平的策略。
+对于已经打败过的对手没有必要再考虑其之后的出招，所以用一个defeated数组保存已经打败过的对手以便直接跳过。因为当前轮次有可能超过对手的出招顺序长度，所以要用i % size获取对手当前的出招。
+ 时间复杂度：O(A ^ 2) 空间复杂度：O(A)  #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; char Decide(const char &amp;amp;R, const char &amp;amp;P, const char &amp;amp;S) { if (R &amp;amp;&amp;amp; P &amp;amp;&amp;amp; S) return &amp;#39;X&amp;#39;; if (R &amp;amp;&amp;amp; P) return &amp;#39;P&amp;#39;; if (R &amp;amp;&amp;amp; S) return &amp;#39;R&amp;#39;; if (P &amp;amp;&amp;amp; S) return &amp;#39;S&amp;#39;; if (R) return &amp;#39;P&amp;#39;; if (P) return &amp;#39;S&amp;#39;; return &amp;#39;R&amp;#39;; } bool Defeate(const char &amp;amp;current, const char &amp;amp;opponent) { return (current == &amp;#39;R&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;S&amp;#39;) || (current == &amp;#39;S&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;P&amp;#39;) || (current == &amp;#39;P&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;R&amp;#39;); } void solve(const int &amp;amp;t) { int A; scanf(&amp;#34;%d&amp;#34;, &amp;amp;A); int i = 0; vector&amp;lt;string&amp;gt; opponent(A); vector&amp;lt;bool&amp;gt; defeated(A, false); bool R, P, S; string res; for (int a = 0; a &amp;lt; A; ++a) cin &amp;gt;&amp;gt; opponent[a]; while (true) { int current_opponent = 0; R = false, P = false, S = false; for (int a = 0; a &amp;lt; A; ++a) { if (!</description>
+    </item>
+    
+    <item>
+      <title>Code Jam 2019 Round 1A</title>
+      <link>http://example.org/posts/code-jam/2019-round-1a/</link>
+      <pubDate>Sat, 13 Apr 2019 15:28:11 +1000</pubDate>
+      
+      <guid>http://example.org/posts/code-jam/2019-round-1a/</guid>
+      <description>Code Jam 2019 Round 1A Pylons (8pts, 23pts) 在m*n的网格里移动，每次移动后的位置不能与之前的位置在同一行/列/对角线上。
+Solution: BackTracking 类似于八皇后问题，不过每次的限制条件只和上一个位置有关，可以用回溯解决。
+ 时间复杂度：O(m^2 * n^2) 空间复杂度：O(m * n)  // C++ #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; int m, n; bool BackTracking(int t, int i, int j, vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt; &amp;amp;visited, vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; &amp;amp;res) { visited[i][j] = true; res[t] = {i, j}; if (t + 1 == m * n) return true; for (int x = 0; x &amp;lt; m; ++x) { for (int y = 0; y &amp;lt; n; ++y) { int r = (x + i) % m, c = (y + j) % n; if (!</description>
+    </item>
+    
+    <item>
+      <title>Code Jam 2019 Qualification Round</title>
+      <link>http://example.org/posts/code-jam/2019-qualification-round/</link>
+      <pubDate>Sat, 06 Apr 2019 13:40:27 +1000</pubDate>
+      
+      <guid>http://example.org/posts/code-jam/2019-qualification-round/</guid>
+      <description>Code Jam 2019 Qualification Round Foregone Solution (6pts, 10pts, 1pts) 将一个带有数字4的数拆分为两个不带数字4的数。
+Solution: Construction 输入的数一定带有数字4，对于每一位上的数字4，我们可以将其拆分为2+2（或1+3）的两个数。输入数据最大是10的100次方，所以我们可以将其作为字符串处理。
+ 时间复杂度：O(n) 空间复杂度：O(1)  // C++ #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; int main() { int T; cin &amp;gt;&amp;gt; T; for (int t = 1; t &amp;lt;= T; ++t) { string N; cin &amp;gt;&amp;gt; N; string a, b; for (auto c:N) { a += c == &amp;#39;4&amp;#39; ?</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>reinforcement learning on 尾張</title>
+    <link>http://example.org/categories/reinforcement-learning/</link>
+    <description>Recent content in reinforcement learning on 尾張</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Dec 2020 20:07:52 +0800</lastBuildDate><atom:link href="http://example.org/categories/reinforcement-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>启发式搜索和强化学习</title>
+      <link>http://example.org/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</link>
+      <pubDate>Thu, 10 Dec 2020 20:07:52 +0800</pubDate>
+      
+      <guid>http://example.org/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</guid>
+      <description>启发式搜索和强化学习 The Pac-Man Projects 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。
+[TOC]
+1 盲目搜索 盲目搜索（Blind Search）指不利用任何额外信息（输入数据，或辅助函数），只依赖于算法本身的搜索，例如 BFS，DFS，Dijkstra 等；
+DFS The Pac-Man Projects  已经实现了吃豆人游戏的后台逻辑和图形渲染框架，我们只需要在 search.py 文件中实现具体的搜索算法，并根据搜索算法生成寻路路径，即可让吃豆人移动，先来实现一个简单的 DFS：
+def DepthFirstSearch(problem): from util import Stack open_list = Stack() visited = [] open_list.push((problem.getStartState(), [])) while not open_list.isEmpty(): current_node, path = open_list.pop() if problem.isGoalState(current_node): return path if current_node in visited: continue visited.append(current_node) for next_node, action, cost in problem.getSuccessors(current_node): if next_node not in visited: open_list.push((next_node, path + [action])) dfs = DepthFirstSearch 在吃豆人游戏的框架下，为寻路函数传入的 problem 参数可以理解为一个 class SearchProblem 类型的抽象基类，实际的问题有 PositionSearchProblem（找到单个终点），FoodSearchProblem（找到所有食物），CapsuleSearchProblem（找到增益药丸和所有食物）等，这些子类都需要实现以下函数：</description>
+    </item>
+    
+  </channel>
+</rss>

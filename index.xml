@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>尾張</title>
+    <link>http://example.org/</link>
+    <description>Recent content on 尾張</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 Nov 2021 23:41:52 +0800</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kafka 入门</title>
+      <link>http://example.org/posts/message-broker/kafka/</link>
+      <pubDate>Mon, 29 Nov 2021 23:41:52 +0800</pubDate>
+      
+      <guid>http://example.org/posts/message-broker/kafka/</guid>
+      <description>Kafka 入门 [TOC]
+概述 Kafka 最初是为了解决 LinkedIn 数据管道问题应运而生的。它的设计目的是提供一个高性能的消息系统，可以处理多种数据类型，并能够实时提供纯净且结构化的用户活动数据和系统度量指标。
+它不只是一个数据存储系统（类似于传统的关系型数据库、键值存储引擎、搜索引擎或缓存系统），还是一个持续变化和不断增长的流处理系统。现在 Kafka 已经被广泛地应用在社交网络的实时数据流处理当中，成为了下一代数据架构的基础。Kafka 经常会被拿来与现有的企业级消息系统、大数据系统（如 Hadoop）和数据集成 ETL 工具等技术作比较。
+从发布和订阅消息流的角度来看，Kafka 类似于 ActiveMQ、RabbitMQ 或 IBM 的 MQSeries 等产品，其特点在于它以集群的方式运行，可以自由伸缩，处理大量的应用程序；其次，Kafka 可以按照要求持久化数据，即提供了数据传递的保证——可复制、持久化，保留多长时间完全可以由开发者决定。此外，消息系统只会传递消息，而 Kafka 的流式处理能力让我们只用很少的代码就能够动态地处理派生流和数据集。
+1 基础概念 消息代理 在一个基于发布与订阅的消息系统中，数据消息的发送者不直接把消息发送给接收者，而是通过一个消息代理 message broker 传递消息，接收者订阅消息代理，并以特定的方式接收消息。Kafka 就是一个消息代理。
+消息代理 message broker 是一种针对处理消息流而优化的数据库，它作为独立的中间服务运行，生产者和消费者作为客户端连接到消息代理服务，在使用消息代理的架构中主要有 3 种角色：
+ 生产者将消息写入消息代理；生产者一般是异步架构的，当生产者发送消息时，它只会等待消息代理确认消息已经被缓存，而不等待消息被消费者处理 消息代理负责消息的存储，发送、重传等，一般会包含多个消息队列 message queue 消费者从消息代理接收消息并进行处理；消费者只依赖于消息代理，与生产者完全隔离  消息代理的优势主要有以下几点：
+  实现异步处理，提升性能
+把消息处理流程使用消息代理异步化，不会阻塞生产者服务，生产者服务可以在得到处理结果之前继续执行，并提高其并发处理的能力。
+  提高系统的可伸缩性
+生产者将大量消息推送到消息代理中，消息代理可以将这些消息分发给不同的消费者，使得多个消费者并行地处理消息，当消费者负载变化时，可以很容易地对消费者服务进行水平伸缩
+  削峰填谷
+当生产者推送消息的速度比消费者处理消息的速度更快时，可以使用消息队列作为消息的缓冲，来削弱峰值流量，防止系统被短时间内的流量冲垮
+  应用解耦
+使用消息代理后，生产者和消费者即可解耦，不再需要有任何联系，也不需要受对方的影响，只要保持使用一致的消息格式即可。
+  消息和批次 Kafka 的数据单元被称为消息，消息类似于关系型数据库里的一个数据行或一条记录；消息由字节数组组成，当消息以一种可控的方式写入不同的分区时，会用到 key，Kafka 会为 key 生成一个一致性散列值，然后使用散列值对主题分区数进行取模，为消息选取分区。这样可以保证具有相同 key 的消息总是被写到相同的分区上。</description>
+    </item>
+    
+    <item>
+      <title>Prometheus 入门</title>
+      <link>http://example.org/posts/cloud/intro-to-prometheus/</link>
+      <pubDate>Thu, 21 Oct 2021 18:01:12 +0800</pubDate>
+      
+      <guid>http://example.org/posts/cloud/intro-to-prometheus/</guid>
+      <description>Prometheus 入门 [toc]
+Prometheus 是一个开源的监控解决方案，也是云原生基金会 CNCF 的毕业项目，它能够提供指标数据的采集、存储、查询、告警等功能。本文主要介绍 Prometheus 的基础概念和应用中需要注意的一些问题。
+1 监控系统 1.1 监控模式 监控系统执行监控检查的模式有两种，分别是 pull 和 push。Prometheus 采用了 pull 模式进行数据收集，同时也支持使用 Pushgateway 的 push 模式进行数据中转。
+pull 方式的特点是有拉取间隔，不能及时获取数值的变化，因此需要进一步的数据处理；它的优点是在告警时可以按照策略分片，仅拉取需要的数据，并且支持聚合场景；缺点是监控的数据量庞大，对存储有较高的要求，切需要考虑数据的冷热分离。
+push 方式的特点是由服务主动将数据推向监控系统，实时性更高；它的缺点是推送数据的不可预知性，因为当大量数据被推送到监控系统时，数据的缓存和解析会消耗大量资源，此时如果因为网络原因数据的收发没有得到确认，很容易产生数据的重发和重复，因此需要进行去重等操作。
+pull 模式在云原生环境中更有优势，因为我们可以通过服务发现对所有需要进行监控的节点进行统一的数据拉取，如果使用 push 模式则需要在每个被监控的服务中部署上报数据的客户端，并配置监控服务器的信息，这会加大部署的难度。
+1.2 Prometheus Prometheus 是一套开源的数据采集与监控框架，可以做后台服务器的监控告警，此处用来采集被测服务的性能指标数据，包括CPU占用比率、内存消耗、网络IO等。
+特点 Prometheus 最主要的特点有 4 个：
+ 通过 PromQL 实现多维度数据模型的灵活查询；这使得监控指标可以关联到多个标签，并对时间序列进行切片和切块，以支持各种查询和告警场景 定义了开放指标数据的标准，可以方便地自定义探针（exporter） 利用 Pushgateway 组件可以以 push 的方式接收监控数据 提供了容器化版本  架构 Prometheus 的架构主要由以下部分组成：
+  Prometheus Server
+Prometheus 服务器主要包含了使用 pull 模式抓取监控数据，通过本地存储（本地磁盘）和远程存储（OpenTSDB, InfluxDB, ElasticSearch 等）保存数据，使用 PromQL 查询数据三大功能。
+PromQL (Prometheus Query Language) 是 Prometheus 内置的数据查询语言，提供了对时间序列数据的查询，聚合和逻辑运算等操作的支持，被广泛地应用在数据的查询，可视化和告警中。关于 PromQL 的相关操作可以参考 探索PromQL。</description>
+    </item>
+    
+    <item>
+      <title>Python 源码学习（5）：协程</title>
+      <link>http://example.org/posts/python/python-source-code-coroutine/</link>
+      <pubDate>Wed, 04 Aug 2021 17:38:52 +0800</pubDate>
+      
+      <guid>http://example.org/posts/python/python-source-code-coroutine/</guid>
+      <description>Python 源码学习（5）：协程 [TOC]
+协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的生成器 generator 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。
+1 生成器 如果 Python 中的函数含有 yield 关键字，那么在调用这个函数时，它不会如同普通的函数一样运行到 return 语句并返回一个变量，而是会立即返回一个生成器对象；以一个斐波那契数列生成函数为例：
+def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, a + b if __name__ == &amp;#34;__main__&amp;#34;: fsg = FibonacciSequenceGenerator() print(fsg) print(type(fsg)) $ python3 main.py &amp;lt;generator object FibonacciSequenceGenerator at 0x7fb4720b1ac0&amp;gt; &amp;lt;class &amp;#39;generator&amp;#39;&amp;gt; 可以看到函数 FibonacciSequenceGenerator 返回了一个类型为 generator 的生成器对象 f；对于生成器对象，我们不能像操作普通函数一样直接进行函数调用，而是要使用 next() 或 fsg.send() 来进行函数切换，使得生成器函数开始或继续执行，直到 yield 所在行或是函数末尾再将执行权交还给调用方：</description>
+    </item>
+    
+    <item>
+      <title>Python 源码学习（4）：编译器和虚拟机</title>
+      <link>http://example.org/posts/python/python-source-code-interpreter/</link>
+      <pubDate>Wed, 26 May 2021 10:18:52 +0800</pubDate>
+      
+      <guid>http://example.org/posts/python/python-source-code-interpreter/</guid>
+      <description>Python 源码学习（4）：编译器和虚拟机 [TOC]
+Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 CPython。
+Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler）和 Python 虚拟机（Python Virutal Machine）两部分组成。当我们通过 Python 命令执行 Python 代码时，Python 编译器会将 Python 代码编译为 Python 字节码（bytecode）；随后 Python 虚拟机会读取并逐步执行这些字节码。
+1 Python 编译器 1.1 代码对象 Python 提供了内置函数 compile，可以编译 Python 代码并生成一个包含字节码信息的对象，举例如下：
+# test.py def Square(a): return a * a print(f&amp;#34;result:\t\t{Square(5)}&amp;#34;) # main.py f = &amp;#34;test.py&amp;#34; code_obj = compile(open(f).read(), f, &amp;#39;exec&amp;#39;) exec(code_obj) print(f&amp;#34;code_obj:\t{code_obj}&amp;#34;) print(f&amp;#34;type:\t\t{type(code_obj)}&amp;#34;) $ python3 main.py result: 25 code_obj: &amp;lt;code object &amp;lt;module&amp;gt; at 0x7f052c156b30, file &amp;#34;test.</description>
+    </item>
+    
+    <item>
+      <title>Python 源码学习（3）：list 类型</title>
+      <link>http://example.org/posts/python/source-code-3-list-and-dict/</link>
+      <pubDate>Thu, 06 May 2021 20:07:52 +0800</pubDate>
+      
+      <guid>http://example.org/posts/python/source-code-3-list-and-dict/</guid>
+      <description>Python 源码学习（3）：list 类型 [TOC]
+Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中：
+// Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for &amp;#39;allocated&amp;#39; elements. The number * currently in use is ob_size. * Invariants: * 0 &amp;lt;= ob_size &amp;lt;= allocated * len(list) == ob_size * ob_item == NULL implies ob_size == allocated == 0 * list.</description>
+    </item>
+    
+    <item>
+      <title>ProtoBuf 语法和编码原理入门</title>
+      <link>http://example.org/posts/serialization/protocol-buffer/</link>
+      <pubDate>Mon, 26 Apr 2021 21:44:52 +0800</pubDate>
+      
+      <guid>http://example.org/posts/serialization/protocol-buffer/</guid>
+      <description>ProtoBuf 语法和编码原理入门 [toc]
+序列化是指将结构化数据转换成易于存储或发送的数据格式的过程，Protocol Buffer 简称 ProtoBuf，是一种语言无关，平台无关的序列化工具，由谷歌在 2008 年开源。相较于常见的序列化工具 XML, JSON, YAML, CSV 等，ProtoBuf 的优势主要包括序列化后数据量小，序列化和反序列化过程速度快，使用时只需定义 proto 文件使得其维护成本低，可向后兼容等；但因为其数据以二进制数据流的形式存在，也有人类不可读的劣势。
+本文主要介绍 ProtoBuf 的使用方法，包括 .proto 文件的语法，以及如何使用 protoc 工具来生成不通语言的代码；以及其编码原理。
+1 语法 首先从 https://github.com/protocolbuffers/protobuf 找到最新版本的 ProtoBuf，下载预编译好的二进制文件 protoc 解压到环境变量目录，本文使用的是 3.15.7 版本：
+$ protoc --version libprotoc 3.15.7 以一个简单的 proto 文件为例，它的语法和 C++ 类似：
+// msg.proto syntax = &amp;#34;proto3&amp;#34;;package Message;message SearchRequest { reserved 6, 9 to 12; reserved &amp;#34;foo&amp;#34;, &amp;#34;bar&amp;#34;; string query = 1; int32 page_number = 2; int32 result_per_page = 3;}message ResultType { message Result { string url = 1; string title = 2; repeated string snippets = 3; }}message SearchResponse {  repeated ResultType.</description>
+    </item>
+    
+    <item>
+      <title>Python 源码学习（2）：int 类型</title>
+      <link>http://example.org/posts/python/source-code-2/</link>
+      <pubDate>Wed, 31 Mar 2021 15:37:52 +0800</pubDate>
+      
+      <guid>http://example.org/posts/python/source-code-2/</guid>
+      <description>Python 源码学习（2）：int 类型 [TOC]
+Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 PyBaseObject_Type 类型的 PyType_Type 类型的实例对象，本文则主要探究 Python 中 int 类型的实现。
+不同于 C 和 C++ 中的 int 类型，Python 中的 int 类型最大的特点是它一般是不会溢出的，对比用 C 和 Python 分别输出两个一百万相乘的结果：
+&amp;gt;&amp;gt;&amp;gt; x = 10000000000 &amp;gt;&amp;gt;&amp;gt; print(x) 10000000000 在 C 语言中会发生溢出：
+printf(&amp;#34;%d\n&amp;#34;, 1000000 * 1000000); printf(&amp;#34;%u\n&amp;#34;, 1000000 * 1000000); -727379968 3567587328 1 int 类型在内存中的存储方式 1.1 内存结构 Python 中的 int 整数类型实际上是一个名为 PyLongObject 的结构体，定义在 longintrepr.h 文件中：
+// Include/object.h #define PyObject_VAR_HEAD PyVarObject ob_base;  // Objects/longobject.</description>
+    </item>
+    
+    <item>
+      <title>Python 源码学习（1）：类型和对象</title>
+      <link>http://example.org/posts/python/source-code-1/</link>
+      <pubDate>Sun, 14 Mar 2021 16:05:52 +0800</pubDate>
+      
+      <guid>http://example.org/posts/python/source-code-1/</guid>
+      <description>Python 源码学习（1）：类型和对象 [TOC]
+Python 是一门解释型，动态类型，多范式的编程语言，当我们从 python.org 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 CPython，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：
+$ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |-- Doc	# 文档 |-- Grammar |-- Include # C 头文件 |-- Lib	# 用 Python 写的库文件 |-- Mac	# 用于在 macOS 上构建的文件 |-- Misc	# 杂项 |-- Modules	# 用 C 写的库文件 |-- Objects # 核心类型，以及对象模型的定义 |-- PC	# 用于在 Windows 上构建的文件 |-- PCbuild # 用于在老版本的 Windows 上构建的文件 |-- Parser	# Python 解析器源码 |-- Programs	# Python 可执行文件和其他 |-- Python	# CPython 编译器源码 |-- Tools	# 构建时的工具 `-- m4 16 directories 本系列主要以阅读和分析 CPython 源码的方式学习 Python。</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 智能指针的简单实现</title>
+      <link>http://example.org/posts/c&#43;&#43;/smart-pointer/smart-pointer/</link>
+      <pubDate>Sun, 21 Feb 2021 21:20:18 +0800</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/smart-pointer/smart-pointer/</guid>
+      <description>C++ 智能指针的简单实现 [TOC]
+1 std::auto_ptr C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类：
+template&amp;lt;typename T&amp;gt; class Object { public: // constructor  Object() : t_() { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } Object(T t) : t_(t) { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // copy-ctor  Object(const Object &amp;amp;other) { cout &amp;lt;&amp;lt; &amp;#34;Object::Copy-ctor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // destructor  ~Object() { cout &amp;lt;&amp;lt; &amp;#34;Object::Destructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } void Set(T t) { t_ = t; } void Print() { cout &amp;lt;&amp;lt; t_ &amp;lt;&amp;lt; endl; } private: T t_; }; 如果在堆上为类对象分配了内存，在离开其作用域的时候又没将其释放，则会造成内存泄漏：</description>
+    </item>
+    
+    <item>
+      <title>启发式搜索和强化学习</title>
+      <link>http://example.org/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</link>
+      <pubDate>Thu, 10 Dec 2020 20:07:52 +0800</pubDate>
+      
+      <guid>http://example.org/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</guid>
+      <description>启发式搜索和强化学习 The Pac-Man Projects 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。
+[TOC]
+1 盲目搜索 盲目搜索（Blind Search）指不利用任何额外信息（输入数据，或辅助函数），只依赖于算法本身的搜索，例如 BFS，DFS，Dijkstra 等；
+DFS The Pac-Man Projects  已经实现了吃豆人游戏的后台逻辑和图形渲染框架，我们只需要在 search.py 文件中实现具体的搜索算法，并根据搜索算法生成寻路路径，即可让吃豆人移动，先来实现一个简单的 DFS：
+def DepthFirstSearch(problem): from util import Stack open_list = Stack() visited = [] open_list.push((problem.getStartState(), [])) while not open_list.isEmpty(): current_node, path = open_list.pop() if problem.isGoalState(current_node): return path if current_node in visited: continue visited.append(current_node) for next_node, action, cost in problem.getSuccessors(current_node): if next_node not in visited: open_list.push((next_node, path + [action])) dfs = DepthFirstSearch 在吃豆人游戏的框架下，为寻路函数传入的 problem 参数可以理解为一个 class SearchProblem 类型的抽象基类，实际的问题有 PositionSearchProblem（找到单个终点），FoodSearchProblem（找到所有食物），CapsuleSearchProblem（找到增益药丸和所有食物）等，这些子类都需要实现以下函数：</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 闭包和匿名函数</title>
+      <link>http://example.org/posts/c&#43;&#43;/closure-and-anonymous-function/</link>
+      <pubDate>Sat, 14 Nov 2020 21:20:18 +0800</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/closure-and-anonymous-function/</guid>
+      <description>C++ 闭包和匿名函数 [TOC]
+本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。
+1 闭包和仿函数 闭包（Closure）可以被理解为一个附带数据的操作，WikiPedia 对闭包的定义是 &amp;ldquo;In programming languages, a closure, also lexical closure or function closure, is a technique for implementing lexically scoped name binding in a language with first-class functions.&amp;quot;，其中有两层含义：
+ 词法作用域（lexically scoped）的名字绑定（name binding）：在词法作用域（C++ 的词法作用域是静态绑定的，包括块、函数、类、命名空间、全局作用域等）中，变量名与其词法上下文的标识符相关联，而独立于运行时的调用栈； 函数被当作头等公民（first-class citizen）：在运行时可以构造一个函数对象并将其作为参数传递给其他函数；  显然 C++ 98 并不符合这两点定义，因此 C++ 98 中并没有严格意义上的闭包，但我们可以用仿函数（Functor）来模拟闭包的行为；仿函数即一个重载了小括号操作符的类，这个类拥有与函数相近的行为方式，它拥有自己的私有成员变量，例如：
+class Adder { public: int operator()(int num) { sum += num; return sum; } Adder() : sum(0) {} Adder(int num) : sum(num) {} private: int sum; }; int main() { Adder adder(0); cout &amp;lt;&amp;lt; adder(1) &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; adder(2) &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; adder(3) &amp;lt;&amp;lt; endl; } $ g++ -std=c++98 -o adder adder.</description>
+    </item>
+    
+    <item>
+      <title>负载均衡和一致性哈希</title>
+      <link>http://example.org/posts/service-governance/load-balancing/</link>
+      <pubDate>Sun, 25 Oct 2020 23:06:52 +0800</pubDate>
+      
+      <guid>http://example.org/posts/service-governance/load-balancing/</guid>
+      <description>负载均衡和一致性哈希 [TOC]
+反向代理 reverse proxy 是指以代理服务器来接收由客户端发送来的请求，并通过一定的策略将其转变发给实际处理请求的后端服务器；主要应用于负载均衡、动态缓存、安全认证、内网穿透、SSL 加密等；而负载均衡 load balancing 是指在多个 slot（槽，一般是某种计算资源）中分配负载，以优化资源利用率和避免单点故障问题的方法，是高可用性分布式系统的必备中间件；常用的开源 load balancer 有 nginx，LVS，Haproxy 等；负载均衡可以视为反向代理的一种应用，负载均衡的方法大致可以分为传统负载均衡算法和哈希算法两种，本文简单地总结了这些算法的原理。
+1 传统负载均衡算法  随机 random：将 key 随机分配到某一个 slot 上，根据概率论可知，吞吐量越大，随机算法的效果越好； 加权随机 weighted random：为每一个 slot 分配一个权重，在随机的时候考虑权重的影响；可以通过在所有 slot 的权重总和中随机出一个数字 k，找到 k 所在的 slot 位置来实现； 轮询 round robin：按顺序依次将 key 分配给每一个 slot； 加权轮询 weighted round robin：为每一个 slot 分配一个权重，在按序分配时为权重更高的 slot 分配更多的 key； 平滑加权轮询 smooth weighted round robin：一种能够均匀地分散调度序列的加权轮询方法，分为以下几个步骤：  选出当前权重最高的 slot，将 key 分配给它； 将选出的 slot 的权重数值减去其初始权重； 将所有 slot 的权重数值都加上它们的原始权重； 重复以上步骤；   最少连接数 least connections：将 key 分配给当前具有最少连接数量的 slot；  2 Mod-N 哈希 在有些场景下，传统负载均衡算法无法满足我们的需求，例如：</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 并发入门：以 LeetCode 1114 为例</title>
+      <link>http://example.org/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</link>
+      <pubDate>Wed, 30 Sep 2020 16:20:25 +0800</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</guid>
+      <description>C++ 并发入门：以 LeetCode 1114 为例 [toc]
+题目 直接做题：1114 按序打印
+解法 1. std::mutex 如果你对 c++ 11 略为熟悉的话，应该能够想到用 std::mutex 来解这道题，在函数构造时（主线程）对 std::mutex 进行 lock，然后在各个线程调用的函数中依次对 std::mutex 对象进行 unlock：
+class Foo { mutex mtx1, mtx2; public: Foo() { mtx1.lock(), mtx2.lock(); } void first(function&amp;lt;void()&amp;gt; printFirst) { printFirst(); mtx1.unlock(); } void second(function&amp;lt;void()&amp;gt; printSecond) { mtx1.lock(); printSecond(); mtx1.unlock(); mtx2.unlock(); } void third(function&amp;lt;void()&amp;gt; printThird) { mtx2.lock(); printThird(); mtx2.unlock(); } }; Mutex 即 mutual exclusion，是用来防止多个线程同时访问共享资源对象的机制，在同一时间只有一个线程可以拥有一个 mutex 对象，其他线程调用 std::mutex::lock 函数时会阻塞直到其获取锁资源。
+这段代码能够 ac，但实际上这种使用 mutex 的方法是错误的，因为根据 c++ 标准，在一个线程尝试对一个 mutex 对象进行 unlock 操作时，mutex 对象的所有权必须在这个线程上；也就是说，应该由同一个线程来对一个 mutex 对象进行 lock 和 unlock 操作，否则会产生未定义行为。题目中提到了 first, second, third 三个函数分别是由三个不同的线程来调用的，但我们是在 Foo 对象构造时（可以是在 create 这几个线程的主线程中，也可以是在三个线程中的任意一个）对两个 mutex 对象进行 lock 操作的，因此，调用 first 和 second 函数的两个线程中至少有一个在尝试获取其他线程所拥有的 mutex 对象的所有权。</description>
+    </item>
+    
+    <item>
+      <title>Effective C&#43;&#43; notes</title>
+      <link>http://example.org/posts/c&#43;&#43;/basics/effective-cpp/</link>
+      <pubDate>Thu, 24 Sep 2020 16:43:27 +0800</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/basics/effective-cpp/</guid>
+      <description>Effective C++ 笔记 [TOC]
+0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如
+class Bar { public: // explicit Bar(); // 是 default 构造函数  // explicit Bar(int x = 0) // 不是 default 构造函数  explicit Bar(int x = 0, bool b = true); // 是 default 构造函数 private: int x; bool b; }; explicit 关键字：阻止执行隐式类型转换，其优点是禁止了编译器执行非预期的类型转换，例如
+void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象  Bar obj_1; // 构造一个 Bar 类型的对象 Foo (obj_1); // 没问题，传递一个 Bar 类型的对象给 Foo 函数 Foo (Bar()); // 没问题，构造一个 Bar 类型的对象，并传递给 Foo 函数 Foo (2); // 如果 Bar 的构造函数没有被声明为 explicit，那么会调用 Bar 的构造函数构造一个成员变量 x = 2 的对象，也就是说发生了隐式类型转换；如果其构造函数被声明为 explicit，那么就不会构造出 Bar 类型的对象 copy 构造函数：用同类型的对象初始化新的对象，它定义了一个对象如何 pass by reference。</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 单例模式的模板实现</title>
+      <link>http://example.org/posts/design-pattern/c&#43;&#43;-template-singleton/</link>
+      <pubDate>Thu, 10 Sep 2020 21:25:43 +0800</pubDate>
+      
+      <guid>http://example.org/posts/design-pattern/c&#43;&#43;-template-singleton/</guid>
+      <description>C++ 单例模式的模板实现 单例模式是一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例（single instance），这个类称为单例类，它会提供一个全局的访问入口（global access point），关于单例模式的讨论可以参考Singleton revisited；基于这两个特点，单例模式可以有以下几种实现：
+Meyer’s Singleton Scott Meyers 在 Effective C++ 的 Item 4: Make sure that objects are initialized before they&amp;rsquo;re used 里面提出了一种利用 C++ 的 static 关键字来实现的单例模式，这种实现非常简洁高效，它的特点是：
+ 仅当程序第一次执行到 GetInstance 函数时，执行 instance 对象的初始化； 在 C++ 11 之后，被 static 修饰的变量可以保证是线程安全的；  template&amp;lt;typename T&amp;gt; class Singleton { public: static T&amp;amp; GetInstance() { static T instance; return instance; } Singleton(T&amp;amp;&amp;amp;) = delete; Singleton(const T&amp;amp;) = delete; void operator= (const T&amp;amp;) = delete; protected: Singleton() = default; virtual ~Singleton() = default; }; 通过禁用单例类的 copy constructor，move constructor 和 operator= 可以防止类的唯一实例被拷贝或移动；不暴露单例类的 constructor 和 destructor 可以保证单例类不会通过其他途径被实例化，同时将两者定义为 protected 可以让其被子类继承并使用。</description>
+    </item>
+    
+    <item>
+      <title>并行计算入门</title>
+      <link>http://example.org/posts/parallel-computing/parallel-computing/</link>
+      <pubDate>Wed, 12 Aug 2020 18:32:52 +0800</pubDate>
+      
+      <guid>http://example.org/posts/parallel-computing/parallel-computing/</guid>
+      <description>并行计算入门 [TOC]
+1 概述 1.1 并行计算 高性能计算（High Performance Computing）是计算机科学中的一个领域，其目的可以概括为优化性能，它包括了缓存技术、数据结构和算法、IO 优化、指令重组（instruction reorganization）、编译器优化等；
+并行计算（Parallel Computing）是高性能计算下的一个细分领域，其主要思想是将复杂问题分解成若干个部分，将每一个部分交给独立的处理器（计算资源）进行计算，以提高效率；针对不同的问题，并行计算需要专用的并行架构，架构既可以是专门设计的，含有多个处理器的单一硬件或超级计算机，也可以是以某种方式互连的若干台的独立计算机构成的集群；并没有一个统一的并行计算架构适用于每一个问题，如果使用了错误的架构，并行计算甚至会导致性能下降。
+1.2 硬件架构 中央处理器（Central Processing Unit）的主要功能是解释计算机指令，它由控制单元（Control Unit）、算术逻辑单元（Arithmetic Logic Unit）、乱序控制单元（Out-of-Order Control Unit）、分支预测器（Branch Predictor）、数据缓存（Data Cache）等部件组成；CPU 被设计为可以快速地处理各种通用计算任务并最小化延迟，但在并发性（时钟频率）方面受到限制；
+图形处理器（Graphics Processing Unit, GPU）是英伟达（NVIDIA）在 1999 年 8 月发布 NVIDIA GeForce 256 时提出的概念；现代 GPU 的模型设计可以概括为几个关键点：
+  GPU 的设计目的是最大化吞吐量（Throughput）
+  能够将程序中数据可并行的部分从 CPU 转移到 GPU
+  能够使用尽可能多的线程进行并行计算
+  GPU 拥有的内核数量相较于 CPU 多得多，可以有数千个同时运行的内核执行大规模并行计算，因此在早期专门应用于图形数据的处理，但随着近十几年的发展，其强大的并行处理能力也使其可以处理非图形数据，尤其在深度学习领域非常受欢迎；
+在制造工艺的限制下，芯片的密度和最大面积都是有限的（摩尔定律），因此芯片设计实际上是功能和元件数量的权衡；出于对通用性的要求，CPU 的芯片设计必须使用较多种类的原件以增加其功能，同时放弃部分具有复杂功能的元件数量，而 GPU 的芯片设计则是通过移除部分具有复杂功能的元件来换取更多的空间，并集成更多的基本功能元件；
+GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集群（Processor Cluster）组成。每个流多处理器都关联一个控制单元 和 L1 Cache，这样的设计使得一个芯片可以同时支持上百个指令流的并行执行；通常一个流多处理器在与全局 GDDR-5 内存交换数据之前都会利用与之关联 L1 Cache 和 L2 Cache 来减少数据传输的延迟；而又因为 GPU 通常拥有足够大的计算量，使得其不需要与 CPU 一样非常频繁地从内存中获取数据，因此 GPU 的缓存层一般是小于 CPU 的。</description>
+    </item>
+    
+    <item>
+      <title>boost::typeIndex 的相关探究</title>
+      <link>http://example.org/posts/c&#43;&#43;/boost/boost-typeindex/</link>
+      <pubDate>Fri, 31 Jul 2020 20:31:06 +0800</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/boost/boost-typeindex/</guid>
+      <description>boost::typeIndex 的相关探究 Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 Boost::typeindex 的使用，但并没有讲到其实现原理。
+1. typeid 操作符 typeid 是 C++ 中的一个操作符，可以用于获取类型的信息，常常用在必须知道多态对象的动态类型，或是识别静态类型的地方。
+我们可以写一个简单的 demo 用于获取对象类型相关的信息，需要包含 tepyinfo 头文件：
+#include &amp;lt;iostream&amp;gt;#include &amp;lt;typeinfo&amp;gt; using namespace std; class Foo {}; int main() { cout &amp;lt;&amp;lt; &amp;#34;1: &amp;#34; &amp;lt;&amp;lt; typeid(1).name() &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;int: &amp;#34; &amp;lt;&amp;lt; typeid(int).name() &amp;lt;&amp;lt; endl; // 和 sizeof 操作符类似，typeid 也可以直接对数据类型（比如 int）进行操作  cout &amp;lt;&amp;lt; &amp;#34;typeid: &amp;#34; &amp;lt;&amp;lt; typeid(typeid(int)).name() &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;typeid: &amp;#34; &amp;lt;&amp;lt; typeid(const type_info &amp;amp;).</description>
+    </item>
+    
+    <item>
+      <title>CMake 入门</title>
+      <link>http://example.org/posts/c&#43;&#43;/compilation/cmake/</link>
+      <pubDate>Sun, 21 Jun 2020 15:46:06 +0800</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/compilation/cmake/</guid>
+      <description>CMake 入门 0. 序 CMake 是一个跨平台的开源构建工具，使用 CMake 能够方便地管理依赖多个库的目录层次结构并生成 makefile 和使用 GNU make 来编译和连接程序。
+1. 构建单个文件 1.1 使用 GCC 编译 假设现在我们希望编写一个函数来实现安全的 int 类型加法防止数据溢出，这个源文件没有任何依赖的源码或静态库：
+// safe_add.cpp #include &amp;lt;iostream&amp;gt;#include &amp;lt;memory&amp;gt;#define INT_MAX 2147483647 #define ERROR_DATA_OVERFLOW 2  int SafeIntAdd(std::unique_ptr&amp;lt;int&amp;gt; &amp;amp;sum, int a, int b) { if (a &amp;gt; INT_MAX - b) { *sum = INT_MAX; return ERROR_DATA_OVERFLOW; } *sum = a + b; return EXIT_SUCCESS; } int main() { int a, b; std::cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b; std::unique_ptr&amp;lt;int&amp;gt; sum(new int(1)); int res = SafeIntAdd(sum, a, b); std::cout &amp;lt;&amp;lt; *sum &amp;lt;&amp;lt; std::endl; return res; } 我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：</description>
+    </item>
+    
+    <item>
+      <title>GDB 调试入门</title>
+      <link>http://example.org/posts/c&#43;&#43;/compilation/gdb/</link>
+      <pubDate>Wed, 22 Apr 2020 17:46:06 +0800</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/compilation/gdb/</guid>
+      <description>GDB 调试入门 0. 序 调试程序是开发过程中必不可少的一环，在 Windows 或 MacOS 上开发时，可以使用 VS 和 CLion 等 IDE 上自带的调试功能来打断点或查看变量和堆栈，但 Linux 并没有图形化的操作界面，而如果只通过打 log 的方式来查找问题的话效率将会非常低下，此时我们可以利用 GDB 来提升我们的开发效率。
+GDB 是 GNU Debugger 的简写，是 GNU 软件系统中的标准调试器。GDB 具备各种调试功能，包括但不限于打断点、单步执行、打印变量、查看寄存器、查看函数调用堆栈等，能够有效地针对函数的运行进行追踪和警告；使用 GDB 调试时，可以监督和修改程序的变量，并且这些修改是独立于主程序之外的。GDB 主要用于调试编译型语言，对 C，C++，Go，Fortran 等语言有内置的支持，但它不支持解释型语言。
+1. 环境搭建 1.1 编写程序 为了进行调试，我们需要准备一个简单的 C++ 程序：
+$ cat test.cpp #include &amp;lt;iostream&amp;gt; void Func(const char *s) { int *p = nullptr; int &amp;amp;r = static_cast&amp;lt;int&amp;amp;&amp;gt;(*p); int num = std::atoi(s); r = num; printf(&amp;#34;%d\n&amp;#34;, r); } int main (int argc, char *argv[]) { if (argc !</description>
+    </item>
+    
+    <item>
+      <title>coverity 的 WRAPPER_ESCAPE 告警</title>
+      <link>http://example.org/posts/c&#43;&#43;/basics/wrapper_escape-in-coverity/</link>
+      <pubDate>Sun, 15 Mar 2020 17:24:27 +0800</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/basics/wrapper_escape-in-coverity/</guid>
+      <description>coverity 的 WRAPPER_ESCAPE 告警 const char* Foo() { std::string str_msg(&amp;#34;test&amp;#34;); return str_msg.c_str(); } int main() { const char *p_msg = Foo(); printf(&amp;#34;%s\n&amp;#34;, p_msg); return 0; } // output:（为空，或乱码） D? 上面代码中的 Foo 函数会被 coverity 报告 WRAPPER_ESCAPE，详细说明是：
+Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope 大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
+而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 协程（1）：函数和协程</title>
+      <link>http://example.org/posts/c&#43;&#43;/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</link>
+      <pubDate>Mon, 20 Jan 2020 20:15:05 +0800</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</guid>
+      <description>C++ 协程（1）：函数和协程 这篇文章的目的是探究 C++ 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。
+1. 栈帧和函数 栈帧是一个函数执行的环境，包括函数参数、函数返回地址、局部变量等信息。操作系统每次调用一个函数，都会为其分配一个新的栈帧，相关的概念有：
+ ESP：栈指针寄存器（Extended Stack Pointer），其内存中存放一个始终指向系统栈最顶部栈帧栈顶的指针 EBP：基址指针寄存器（Extended Base Pointer），其内存中存放一个始终指向系统最顶部栈帧栈底的指针 函数栈帧：ESP和EBP之间的内存空间为当前栈帧，EBP标识了当前栈帧的底部，ESP标识了当前栈帧的顶部  对于普通的函数来说，一般我们可以对其进行两种操作：call（调用）和 return（返回）。为了方便对比，此处不讨论 throw exception 的情况。在运行一个 C++ 程序时，编译器会先执行 C++ runtime，然后会调用 main 函数，再由 main 函数调用其他的函数。
+call 操作一般包含以下几个步骤：
+ 参数入栈：参数从右向左依次入栈 返回地址入栈：将当前代码区的下一条待执行的指令入栈，以便在函数 return 之后执行 代码区跳转：处理器跳转到被调函数的入口 栈帧调整，包括：  保存当前栈帧状态值，EBP 入栈 从当前栈帧切换到新的栈帧，更新 EBP，将 EBP 的值设置为 ESP 的值 给新的栈帧分配内存空间，更新 ESP，将 ESP 的值减去所需空间的大小    当一个函数通过 return 语句返回时，执行的步骤与调用时相反：
+2. 协程 协程由程序所控制，即在用户态执行，而不是像线程一样由操作系统内核管理，使用协程时，不需要如线程一般频繁地进行上下文切换，性能能够得到很大的提升，因此协程的开销远远小于线程的开销。一般来说协程有三种特性：
+ suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，但是保留当前栈帧。和函数的 return 类似，协程的 suspend 只能由协程自身发起 resume 恢复：继续执行已经 suspend 的协程，重新激活协程的栈帧 destroy 销毁：销毁协程的栈帧和其对应的内存  可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是执行栈帧，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是数据栈帧，这部分即使在协程 suspend 的时候依然存在。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 树（3）</title>
+      <link>http://example.org/posts/leetcode/tree-3/</link>
+      <pubDate>Sat, 24 Aug 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/tree-3/</guid>
+      <description>LeetCode 树（3） 题目 4. 递归求解 617 合并二叉树 合并两个二叉树。
+判断各个节点是否存在，全部合并到一棵树上即可。
+class Solution { public: TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2) { if (!t1 &amp;amp;&amp;amp; !t2) return nullptr; else if (!t1) return t2; else if (!t2) return t1; t1-&amp;gt;val += t2-&amp;gt;val; t1-&amp;gt;left = mergeTrees(t1-&amp;gt;left, t2-&amp;gt;left); t1-&amp;gt;right = mergeTrees(t1-&amp;gt;right, t2-&amp;gt;right); return t1; } }; 226 翻转二叉树 翻转一个二叉树。
+先将左右子树分别翻转，再交换两者的位置。
+class Solution { public: TreeNode *invertTree(TreeNode *root) { if (!root) return nullptr; TreeNode *left = invertTree(root-&amp;gt;left), *right = invertTree(root-&amp;gt;right); root-&amp;gt;right = left; root-&amp;gt;left = right; return root; } }; 104 二叉树的最大深度 找出一个二叉树的最大深度。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 排序</title>
+      <link>http://example.org/posts/leetcode/sort/</link>
+      <pubDate>Sat, 17 Aug 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/sort/</guid>
+      <description>LeetCode 排序 题目 56 合并区间 按照间隔的起始进行排序，判断下一个间隔的起始是否大于前一个间隔的末尾，如果大于的话就把之前的间隔加入结果数组，否则继续扩展当前的间隔。
+class Solution { public: vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; merge(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; &amp;amp;intervals) { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; res; int n = intervals.size(); if (n == 0) return res; sort(intervals.begin(), intervals.end(), [](vector&amp;lt;int&amp;gt; const &amp;amp;v1, vector&amp;lt;int&amp;gt; const &amp;amp;v2) { return v1[0] &amp;lt; v2[0]; }); int start = intervals[0][0], end = intervals[0][1]; for (int i = 1; i &amp;lt; n; ++i) { if (intervals[i][0] &amp;gt; end) { res.push_back(vector&amp;lt;int&amp;gt;{start, end}); start = intervals[i][0]; } end = max(end, intervals[i][1]); } res.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 堆</title>
+      <link>http://example.org/posts/leetcode/heap/</link>
+      <pubDate>Mon, 05 Aug 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/heap/</guid>
+      <description>LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。
+class Solution { public: int findKthLargest(vector&amp;lt;int&amp;gt; &amp;amp;nums, int k) { priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;&amp;gt;&amp;gt; heap; for (auto &amp;amp;m:nums) { if (heap.size() &amp;lt; k || m &amp;gt; heap.top()) heap.push(m); if (heap.size() &amp;gt; k) heap.pop(); } return heap.top(); } }; 347 前 K 个高频元素 先遍历一次统计出数组中各个元素出现的次数，再用一个大根堆将前 k 个高频元素保存下来，最后再将这些元素依次 pop 出来存入结果数组。时间复杂度是 O(n)，空间复杂度是 O(n)。
+class Solution { public: vector&amp;lt;int&amp;gt; topKFrequent(vector&amp;lt;int&amp;gt; &amp;amp;nums, int k) { priority_queue&amp;lt;pair&amp;lt;int, int&amp;gt;, vector&amp;lt;pair&amp;lt;int, int&amp;gt;&amp;gt;, greater&amp;lt;&amp;gt;&amp;gt; freq; unordered_map&amp;lt;int, int&amp;gt; count; vector&amp;lt;int&amp;gt; res(k, 0); for (auto &amp;amp;m:nums) ++count[m]; for (auto &amp;amp;c:count) { freq.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 双指针</title>
+      <link>http://example.org/posts/leetcode/twopointers/</link>
+      <pubDate>Wed, 31 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/twopointers/</guid>
+      <description>LeetCode DFS 题目 26 删除排序数组中的重复项 用两个指针 len 和 i 分别表示没有重复的项的下标与遍历数组的下标，将没有重复的项拷贝到 nums[len] 下然后 ++len 即可。
+class Solution { public: int removeDuplicates(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int count = 0, len = 1, n = nums.size(); if (n == 0) return 0; for (int i = 1; i &amp;lt; n; ++i) { if (nums[i] == nums[i - 1]) continue; nums[len] = nums[i]; ++len; } return len; } }; 80 删除排序数组中的重复项 II 用两个指针 len 和 i 分别表示没有最多重复 2 次的项的下标与遍历数组的下标，将重复数小于等于 1 的项拷贝到 nums[len] 下然后 ++len 即可。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 深度优先搜索</title>
+      <link>http://example.org/posts/leetcode/dfs/</link>
+      <pubDate>Sat, 27 Jul 2019 12:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/dfs/</guid>
+      <description>LeetCode DFS 题目 78 子集 典型的回溯，找出所有可能情况。
+class Solution { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; res; public: vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; subsets(vector&amp;lt;int&amp;gt; &amp;amp;nums) { res = vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;(1, vector&amp;lt;int&amp;gt;()); vector&amp;lt;int&amp;gt; curr; DFS(nums, 0, curr); return res; } void DFS(vector&amp;lt;int&amp;gt; &amp;amp;nums, int idx, vector&amp;lt;int&amp;gt; &amp;amp;curr) { for (int i = idx; i &amp;lt; nums.size(); ++i) { curr.push_back(nums[i]); res.push_back(curr); DFS(nums, i + 1, curr); curr.pop_back(); } } }; 733 图像渲染 从给定的 image[sr][sc] 开始 DFS 或 BFS，将相邻的值相同的点的值全部修改为 newColor，注意要判断给定的 image[sr][sc] 是否等于 newColor，否则如果不使用额外空间的 visited 数组记录已经访问过的点的话会造成死循环栈溢出。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 并发</title>
+      <link>http://example.org/posts/leetcode/concurrency/</link>
+      <pubDate>Mon, 22 Jul 2019 10:10:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/concurrency/</guid>
+      <description>LeetCode 并发 题目 1114 按序打印 C++ mutex class Foo { mutex lock1, lock2; public: Foo() { lock1.lock(); lock2.lock(); } void first(function&amp;lt;void()&amp;gt; printFirst) { printFirst(); lock1.unlock(); } void second(function&amp;lt;void()&amp;gt; printSecond) { lock1.lock(); printSecond(); lock1.unlock(); lock2.unlock(); } void third(function&amp;lt;void()&amp;gt; printThird) { lock2.lock(); printThird(); lock2.unlock(); } }; C++ condition_variable class Foo { int i; mutex mut; condition_variable con_var1, con_var2; public: Foo() : i(1) { } void first(function&amp;lt;void()&amp;gt; printFirst) { unique_lock&amp;lt;mutex&amp;gt; lock(mut); printFirst(); ++i; con_var1.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 树（2）</title>
+      <link>http://example.org/posts/leetcode/tree-2/</link>
+      <pubDate>Thu, 18 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/tree-2/</guid>
+      <description>LeetCode 树（2） 题目 3. 二叉搜索树 95 不同的二叉搜索树 II 生成由 1 &amp;hellip; n 为节点所组成的二叉搜索树。
+为了构造以 i 为根节点的二叉搜索树，我们需要先构造以 1 &amp;hellip; i - 1 为左子树的所有二叉搜索树与以 i + 1 &amp;hellip; n 为右子树的所有二叉搜索树，再将这些子树排列组合得到以 i 为根节点的所有二叉搜索树。
+class Solution { public: vector&amp;lt;TreeNode *&amp;gt; generateTrees(int n) { if (n == 0) return {}; return Generate(1, n); } vector&amp;lt;TreeNode *&amp;gt; Generate(int m, int n) { vector&amp;lt;TreeNode *&amp;gt; nodes; if (m == n) nodes.push_back(new TreeNode(n)); if (m &amp;gt; n) nodes.push_back(nullptr); if (m &amp;gt;= n) return nodes; for (int i = m; i &amp;lt;= n; ++i) { vector&amp;lt;TreeNode *&amp;gt; left = Generate(m, i - 1); vector&amp;lt;TreeNode *&amp;gt; right = Generate(i + 1, n); for (auto &amp;amp;l:left) for (auto &amp;amp;r:right) { TreeNode *node = new TreeNode(i); node-&amp;gt;left = l, node-&amp;gt;right = r; nodes.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 树（1）</title>
+      <link>http://example.org/posts/leetcode/tree-1/</link>
+      <pubDate>Sat, 13 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/tree-1/</guid>
+      <description>LeetCode 树（1） 题目 1. 树的遍历 144 二叉树的前序遍历 前序遍历一个二叉树。
+前序遍历是按照根节点，左子节点，右子节点的顺序来遍历一个二叉树，有递归和迭代两种方法。对于迭代方法，先将节点加入结果数组，然后用一个栈保存右，左子节点，依次访问，重复此过程。
+class Solution { vector&amp;lt;int&amp;gt; res; public: vector&amp;lt;int&amp;gt; preorderTraversal(TreeNode *root) { res = vector&amp;lt;int&amp;gt;(); Preorder(root); return res; } void Preorder(TreeNode *root) { if (!root) return; res.push_back(root-&amp;gt;val); Preorder(root-&amp;gt;left); Preorder(root-&amp;gt;right); } }; class Solution { public: vector&amp;lt;int&amp;gt; preorderTraversal(TreeNode *root) { vector&amp;lt;int&amp;gt; res; if (!root) return res; stack&amp;lt;TreeNode *&amp;gt; pre; pre.push(root); while (!pre.empty()) { TreeNode *node = pre.top(); pre.pop(); res.push_back(node-&amp;gt;val); if (node-&amp;gt;right) pre.push(node-&amp;gt;right); if (node-&amp;gt;left) pre.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 链表（2）</title>
+      <link>http://example.org/posts/leetcode/linkedlist-2/</link>
+      <pubDate>Tue, 09 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/linkedlist-2/</guid>
+      <description>LeetCode 链表（2） 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。
+在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，tail 先往前走 n 步，然后两个指针一起往前走直到 tail 没有后继指针，此时 prev 的后继指针就是倒数第 n 个位置，删除其即可。注意如果要删除的指针是头指针的话要单独处理。
+class Solution { public: ListNode* removeNthFromEnd(ListNode* head, int n) { ListNode *prev = head, *tail = head; for (int i = 0; i &amp;lt; n; ++i) tail = tail-&amp;gt;next; if (!tail) { head = head-&amp;gt;next; delete prev; return head; } while (tail-&amp;gt;next) tail = tail-&amp;gt;next, prev = prev-&amp;gt;next; ListNode *next = prev-&amp;gt;next; prev-&amp;gt;next = next-&amp;gt;next; delete next; return head; } }; 61 旋转链表 给一个链表，将其每个节点向右移动 k 个位置。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 链表（1）</title>
+      <link>http://example.org/posts/leetcode/linkedlist-1/</link>
+      <pubDate>Thu, 04 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/linkedlist-1/</guid>
+      <description>LeetCode 链表（1） 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。
+依次按位进行相加。
+class Solution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head = l1, tail = l1; while (l1 &amp;amp;&amp;amp; l2) { val = l1-&amp;gt;val + l2-&amp;gt;val + acc; acc = val / 10; l1-&amp;gt;val = val % 10; if (!l1-&amp;gt;next) l1-&amp;gt;next = l2-&amp;gt;next, l2-&amp;gt;next = nullptr; tail = l1; l1 = l1-&amp;gt;next, l2 = l2-&amp;gt;next; } while (l1) { val = l1-&amp;gt;val + acc; acc = val / 10; l1-&amp;gt;val = val % 10; tail = l1; l1 = l1-&amp;gt;next; } if (acc) tail-&amp;gt;next = new ListNode(1); return head; } }; 21 合并两个有序链表 合并两个有序链表。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 动态规划（3）</title>
+      <link>http://example.org/posts/leetcode/dynamicprogramming-3/</link>
+      <pubDate>Mon, 01 Jul 2019 18:22:45 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/dynamicprogramming-3/</guid>
+      <description>LeetCode 动态规划 题目 6. 字符串相关 712 两个字符串的最小ASCII删除和 给定两个字符串，计算使两个字符串相同所需要删除的字符的ASCII值的和的最小值。
+对于两个字符串中的字符 s1[i] 和 s2[j]，如果s1[i] == s2[j]，那么这两个字符都不需要被删除，所以 dp[i][j] = dp[i - 1][j - 1]，否则至少有一个应该被删除，取两个中的最小值，状态转移方程是dp[i][j] = min(dp[i - 1][j] + s1[i], dp[i][j - 1] + s2[j])。时间复杂度是 O(m * n)，空间复杂度是 O(m * n)。
+class Solution { public: int minimumDeleteSum(string s1, string s2) { int n1 = s1.size(), n2 = s2.size(); vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; dp(n1 + 1, vector&amp;lt;int&amp;gt;(n2 + 1, 0)); for (int i = 1; i &amp;lt;= n1; ++i) dp[i][0] = dp[i - 1][0] + s1[i - 1]; for (int j = 1; j &amp;lt;= n2; ++j) dp[0][j] = dp[0][j - 1] + s2[j - 1]; for (int i = 0; i &amp;lt; n1; ++i) for (int j = 0; j &amp;lt; n2; ++j) if (s1[i] == s2[j]) dp[i + 1][j + 1] = dp[i][j]; else dp[i + 1][j + 1] = min(dp[i][j] + s1[i] + s2[j], min(dp[i][j + 1] + s1[i], dp[i + 1][j] + s2[j])); return dp[n1][n2]; } }; 5 最长回文子串 找到一个字符串中的最长回文子串。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 动态规划（2）</title>
+      <link>http://example.org/posts/leetcode/dynamicprogramming-2/</link>
+      <pubDate>Fri, 28 Jun 2019 10:09:13 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/dynamicprogramming-2/</guid>
+      <description>LeetCode 动态规划 题目 3. 数组相关 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。
+用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之前的每个数字 j，如果 nums[i] &amp;gt; nums[j]，那么 j 和 i 可以形成一个上升子序列，让 dp[i] = max(dp[i], dp[j] + 1) 就能得到最长的上升子序列了。
+class Solution { public: int lengthOfLIS(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(), res = 2; if (n &amp;lt;= 1) return n; vector&amp;lt;int&amp;gt; dp(n, 1); for (int i = 1; i &amp;lt; n; ++i) for (int j = 0; j &amp;lt; i; ++j) if (nums[i] &amp;gt; nums[j]) { dp[i] = max(dp[i], dp[j] + 1); res = max(res, dp[i]); } return res; } }; 53 最大子序和 找一个数组中具有最大和的连续子数组的和。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 动态规划（1）</title>
+      <link>http://example.org/posts/leetcode/dynamicprogramming-1/</link>
+      <pubDate>Wed, 26 Jun 2019 18:08:10 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/dynamicprogramming-1/</guid>
+      <description>LeetCode 动态规划 题目 1. 数字相关 263 丑数 判断一个数 num 是否是丑数。
+通用的方法是自底向上求出大于等于 num 的第一个数来判断 num 是否是丑数。但这道题已经给出了数 num，直接通过模运算就能得到结果了。
+class Solution { public: bool isUgly(int num) { if (num &amp;lt; 1) return false; while (num % 2 == 0) num /= 2; while (num % 3 == 0) num /= 3; while (num % 5 == 0) num /= 5; return num == 1; } }; 264 丑数 II 求第 n 个丑数。
+用一个数组 ugly 来保存前 m 个丑数，用三个质因数 2，3，5 乘以其当前系数对应的丑数，得到新的丑数，最小的一个就是第 m + 1 个丑数。时间复杂度是 O(m * n)，其中 m 是质因数的个数，n 是要找的第 n 个丑数。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 二分查找</title>
+      <link>http://example.org/posts/leetcode/binarysearch/</link>
+      <pubDate>Sun, 23 Jun 2019 19:26:39 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/binarysearch/</guid>
+      <description>LeetCode 二分查找 二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。
+易错点   计算中间值的方法
+ k = i + (j - i) / 2 k = (i + j) / 2  第二种方法一般都会造成整型数据溢出，所以只用第一种方法。
+  循环条件
+  如果要找唯一的值，且下限i和上限j都会在更新时在中间值k的基础上+1或-1，那么循环条件是 i &amp;lt;= j，j能被取到，j = nums.size() - 1，计算中间值用 k = i + (j - i + 1) / 2
+  如果要找大于等于或小于等于某条件的值，且下限i和上限j其中之一不会在k的基础上+1或-1，那么循环条件是 i &amp;lt; j，j不能被取到，j = nums.size()，计算中间值用 k = i + (j - i) / 2
+  两种方法有各自的应用场景，没用对的话会出现边界值的问题，或是死循环导致TLE。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 位运算</title>
+      <link>http://example.org/posts/leetcode/bitmanipulation/</link>
+      <pubDate>Wed, 19 Jun 2019 19:26:39 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/bitmanipulation/</guid>
+      <description>LeetCode 位运算 位运算包括：
+ 与 &amp;amp; 或 | 异或 ^ 取反 ~ 左移 &amp;laquo; 右移 &amp;raquo;  技巧   移位运算
+ x &amp;laquo; 1：算数左移  数字的二进制表示的所有位向左移动一位，相当于乘以 2 在右边补 0   x &amp;raquo; 1：算数右移  数字的二进制表示的所有位向右移动一位，相当于除以 2 在左边补符号位，即正数补 0，负数（在补码的基础上）补 1   负数移位  负数是以补码的形式存储的，负数进行右移运算时需要将其取反转换成反码，加一转换成补码，再将其向右移动一位得到新的补码，再将其减一得到新的反码，再取反转换成原码才能得到结果。例如 -7 的二进制表示是 10000111（因为 32 位太长所以这里用 8 位 int 型表示），其反码是 11111000，补码是11111001，向右移动一位是 11111100，减一得到新的反码 11111011，原码是10000100，也就是 -4；补码向左移一位是 11110010，减一得到新的反码 11110001，原码是 10001110，也就是 -14 比较简单的理解方式是左移乘以 2，右移除以 2。例如 -7 &amp;raquo; 1 = -7 / 2 = -4，-7 &amp;laquo; 1 = -14      题目 1.</description>
+    </item>
+    
+    <item>
+      <title>Kick Start 2019 Round C</title>
+      <link>http://example.org/posts/kick-start/2019-round-c/</link>
+      <pubDate>Sun, 26 May 2019 23:29:45 +1000</pubDate>
+      
+      <guid>http://example.org/posts/kick-start/2019-round-c/</guid>
+      <description>Kick Start 2019 Round C Wiggle Walk (6pts, 12pts) 在一个R * C的矩阵里面移动，遇到已经走过的格子直接跳过。数据保证移动时不会超出给定的矩阵。
+Solution: Simulation 用一个visited数组记录已经走过的格子，遇到走过的格子则直接跳过往后遍历。讲道理这个方法时间复杂度是过不了Hidden Test Set的，但是我也不知道为什么就过了。
+ 时间复杂度：O(n^2) 空间复杂度：O(n^2)  // C++ #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt; visited(50001, vector&amp;lt;bool&amp;gt;(50001, false)); void Forward(char &amp;amp;p, int &amp;amp;r, int &amp;amp;c) { if (p == &amp;#39;E&amp;#39;) { while (visited[r][c + 1]) ++c; visited[r][++c] = true; } else if (p == &amp;#39;W&amp;#39;) { while (visited[r][c - 1]) --c; visited[r][--c] = true; } else if (p == &amp;#39;N&amp;#39;) { while (visited[r - 1][c]) --r; visited[--r][c] = true; } else if (p == &amp;#39;S&amp;#39;) { while (visited[r + 1][c]) ++r; visited[++r][c] = true; } } void solve(const int &amp;amp;t) { int n, R, C, r, c; string str; scanf(&amp;#34;%d %d %d %d %d&amp;#34;, &amp;amp;n, &amp;amp;R, &amp;amp;C, &amp;amp;r, &amp;amp;c); cin &amp;gt;&amp;gt; str; visited = vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt;(50001, vector&amp;lt;bool&amp;gt;(50001, false)); visited[r][c] = true; for (int i = 0; i &amp;lt; n; ++i) Forward(str[i], r, c); printf(&amp;#34;Case #%d: %d %d\n&amp;#34;, t, r, c); } int main() { int T; scanf(&amp;#34;%d&amp;#34;, &amp;amp;T); for (int t = 1; t &amp;lt;= T; ++t) solve(t); return 0; } Circuit Board (14pts, 20pts) 在矩阵里找到每一行最大值与最小值不超过K的最大子矩阵。</description>
+    </item>
+    
+    <item>
+      <title>Object Detection</title>
+      <link>http://example.org/posts/deep-learning/object-detection-yolo/</link>
+      <pubDate>Sun, 19 May 2019 19:40:23 +1000</pubDate>
+      
+      <guid>http://example.org/posts/deep-learning/object-detection-yolo/</guid>
+      <description>Object Detection Object detection deals with detecting instances of objects of a certain class, such as humans, animals, etc, in digital images and videos. Object detection has applications in many areas of computer vision, including image retrieval, face detection, video surveillance, and self-driving, etc. Current detection systems repurpose classifiers to perform detection. To detect an object, these systems take a classifier for that object and evaluate it at various locations and scales in a test image.</description>
+    </item>
+    
+    <item>
+      <title>Code Jam 2019 Round 1C</title>
+      <link>http://example.org/posts/code-jam/2019-round-1c/</link>
+      <pubDate>Tue, 07 May 2019 22:02:15 +1000</pubDate>
+      
+      <guid>http://example.org/posts/code-jam/2019-round-1c/</guid>
+      <description>Code Jam 2019 Round 1C Robot Programming Strategy (10pts, 18pts) 已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。
+Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同时有三种情况（R, P, S）则没有必胜策略，直接输出IMPOSSIBLE；否则返回胜利或打平的策略。
+对于已经打败过的对手没有必要再考虑其之后的出招，所以用一个defeated数组保存已经打败过的对手以便直接跳过。因为当前轮次有可能超过对手的出招顺序长度，所以要用i % size获取对手当前的出招。
+ 时间复杂度：O(A ^ 2) 空间复杂度：O(A)  #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; char Decide(const char &amp;amp;R, const char &amp;amp;P, const char &amp;amp;S) { if (R &amp;amp;&amp;amp; P &amp;amp;&amp;amp; S) return &amp;#39;X&amp;#39;; if (R &amp;amp;&amp;amp; P) return &amp;#39;P&amp;#39;; if (R &amp;amp;&amp;amp; S) return &amp;#39;R&amp;#39;; if (P &amp;amp;&amp;amp; S) return &amp;#39;S&amp;#39;; if (R) return &amp;#39;P&amp;#39;; if (P) return &amp;#39;S&amp;#39;; return &amp;#39;R&amp;#39;; } bool Defeate(const char &amp;amp;current, const char &amp;amp;opponent) { return (current == &amp;#39;R&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;S&amp;#39;) || (current == &amp;#39;S&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;P&amp;#39;) || (current == &amp;#39;P&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;R&amp;#39;); } void solve(const int &amp;amp;t) { int A; scanf(&amp;#34;%d&amp;#34;, &amp;amp;A); int i = 0; vector&amp;lt;string&amp;gt; opponent(A); vector&amp;lt;bool&amp;gt; defeated(A, false); bool R, P, S; string res; for (int a = 0; a &amp;lt; A; ++a) cin &amp;gt;&amp;gt; opponent[a]; while (true) { int current_opponent = 0; R = false, P = false, S = false; for (int a = 0; a &amp;lt; A; ++a) { if (!</description>
+    </item>
+    
+    <item>
+      <title>Kick Start 2019 Round B</title>
+      <link>http://example.org/posts/kick-start/2019-round-b/</link>
+      <pubDate>Sun, 21 Apr 2019 14:41:22 +1000</pubDate>
+      
+      <guid>http://example.org/posts/kick-start/2019-round-b/</guid>
+      <description>Kick Start 2019 Round B Building Palindromes (5pts, 12pts) 判断给定区间内的子字符串是否是回文串。
+Solution: Prefix Sum 判断字符串是否是回文串只需要判断字符串里个数为奇数的字符的数量是否小于等于1，但如果每次都遍历一遍给定的区间肯定会超时，所以我们需要对给定的原始字符串进行预处理，计算出每一个位置的前缀和（从下标为0到下标为i - 1的位置的字符的总数）。这样在查询的时候就只有O(1)的时间复杂度了。
+ 时间复杂度：O(N) 空间复杂度：O(N)  // C++ #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; int main() { int total_test_case_number; cin &amp;gt;&amp;gt; total_test_case_number; for (int case_number = 1; case_number &amp;lt;= total_test_case_number; ++case_number) { int N, Q, m, n, total = 0; cin &amp;gt;&amp;gt; N &amp;gt;&amp;gt; Q; string words; cin &amp;gt;&amp;gt; words; vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; odds(N + 1, vector&amp;lt;int&amp;gt;(26)); for (int i = 1; i &amp;lt;= N; ++i) { for (int j = 0; j &amp;lt; 26; ++j) odds[i][j] = odds[i - 1][j]; ++odds[i][words[i - 1] - &amp;#39;A&amp;#39;]; } for (int q = 0; q &amp;lt; Q; ++q) { cin &amp;gt;&amp;gt; m &amp;gt;&amp;gt; n; int odd = 0; for (int j = 0; j &amp;lt; 26; ++j) odd += ((odds[n][j] - odds[m - 1][j]) % 2 !</description>
+    </item>
+    
+    <item>
+      <title>Code Jam 2019 Round 1A</title>
+      <link>http://example.org/posts/code-jam/2019-round-1a/</link>
+      <pubDate>Sat, 13 Apr 2019 15:28:11 +1000</pubDate>
+      
+      <guid>http://example.org/posts/code-jam/2019-round-1a/</guid>
+      <description>Code Jam 2019 Round 1A Pylons (8pts, 23pts) 在m*n的网格里移动，每次移动后的位置不能与之前的位置在同一行/列/对角线上。
+Solution: BackTracking 类似于八皇后问题，不过每次的限制条件只和上一个位置有关，可以用回溯解决。
+ 时间复杂度：O(m^2 * n^2) 空间复杂度：O(m * n)  // C++ #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; int m, n; bool BackTracking(int t, int i, int j, vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt; &amp;amp;visited, vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; &amp;amp;res) { visited[i][j] = true; res[t] = {i, j}; if (t + 1 == m * n) return true; for (int x = 0; x &amp;lt; m; ++x) { for (int y = 0; y &amp;lt; n; ++y) { int r = (x + i) % m, c = (y + j) % n; if (!</description>
+    </item>
+    
+    <item>
+      <title>Code Jam 2019 Qualification Round</title>
+      <link>http://example.org/posts/code-jam/2019-qualification-round/</link>
+      <pubDate>Sat, 06 Apr 2019 13:40:27 +1000</pubDate>
+      
+      <guid>http://example.org/posts/code-jam/2019-qualification-round/</guid>
+      <description>Code Jam 2019 Qualification Round Foregone Solution (6pts, 10pts, 1pts) 将一个带有数字4的数拆分为两个不带数字4的数。
+Solution: Construction 输入的数一定带有数字4，对于每一位上的数字4，我们可以将其拆分为2+2（或1+3）的两个数。输入数据最大是10的100次方，所以我们可以将其作为字符串处理。
+ 时间复杂度：O(n) 空间复杂度：O(1)  // C++ #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; int main() { int T; cin &amp;gt;&amp;gt; T; for (int t = 1; t &amp;lt;= T; ++t) { string N; cin &amp;gt;&amp;gt; N; string a, b; for (auto c:N) { a += c == &amp;#39;4&amp;#39; ?</description>
+    </item>
+    
+    <item>
+      <title>Kick Start 2019 Round A</title>
+      <link>http://example.org/posts/kick-start/2019-round-a/</link>
+      <pubDate>Tue, 26 Mar 2019 14:25:36 +1100</pubDate>
+      
+      <guid>http://example.org/posts/kick-start/2019-round-a/</guid>
+      <description>Kick Start 2019 Round A Training (7pts, 13pts) 一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。
+$$ \sum_{i}^{j} max(rating) - rating[i] $$
+Solution: Sort + Prefix Sum 先对数组排序，然后在长度为N的有序数组中遍历长为P的所有连续子数组，计算子数组中的最大值与其他值的差值之和。
+$$ \sum_{i}^{j - 1} rating[j] - rating[i] $$
+如果直接遍历长为P的子数组会浪费很多时间，可以将上面的公式简化为如下。
+$$ \sum_{i}^{j - 1} rating[j] - rating[i] = rating[j] * (j - 1 - i) - \sum_{i}^{j - 1} rating[i] $$
+为了避免重复计算 $$ \sum_{i}^{j - 1} rating[i] $$，可以用一个长为N+1的数组将原始数组的前缀和保存下来，这样每次直接计算 prefix[j] - prefix[i] 就能得到 $$ \sum_{i}^{j - 1} rating[i] $$ 了，时间复杂度是O(N)。</description>
+    </item>
+    
+    <item>
+      <title>Methods to Prevent Overfitting in Deep Learning</title>
+      <link>http://example.org/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</link>
+      <pubDate>Wed, 20 Mar 2019 09:55:04 +1100</pubDate>
+      
+      <guid>http://example.org/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</guid>
+      <description>Methods to Prevent Overfitting in Deep Learning Overfitting Overfitting refers to that when a model fits the training data well but cannot predict the test data correctly, we may say that the model lacks the ability of generalization. It is important to figure out how it happens, and how we can prevent overfitting from the very beginning.
+Detect Overfitting The simplest way to detect overfitting is to split the dataset into two parts: the training set for training the model, and the test set for testing the accuracy of the model on a dataset that it has never seen before.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://example.org/about/</link>
+      <pubDate>Sat, 26 Jan 2019 12:21:35 +1100</pubDate>
+      
+      <guid>http://example.org/about/</guid>
+      <description>Resume: English / 简体中文
+Contact me: zintrulcre@gmail.com</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 智能指针（3）：shared_ptr</title>
+      <link>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-3/</link>
+      <pubDate>Fri, 25 Jan 2019 17:47:38 +1100</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
+      <description>C++智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器
+private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
+template&amp;lt;typename T, typename D&amp;gt; void SharedPointer&amp;lt;T, D&amp;gt;::release() { if (pointer) { std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; counter remains &amp;quot; &amp;lt;&amp;lt; *counter &amp;lt;&amp;lt; std::endl; if (--(*counter) == 0) { std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; destructor called.&amp;quot; &amp;lt;&amp;lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 智能指针（2）：unique_ptr</title>
+      <link>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-2/</link>
+      <pubDate>Sat, 19 Jan 2019 01:02:02 +1100</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-2/</guid>
+      <description>C++智能指针（2）：unique_ptr 分析 在使用 AutoPointer 的时候会发生所有权转移和内存泄漏的问题，所以我们可以对 AutoPointer 类稍加修改，修复这两个问题。
+所有权转移 为了规避可能发生所有权转移的情况，我们可以直接禁止它使用拷贝构造函数和赋值操作符。
+UniquePointer(UniquePointer&amp;lt;T&amp;gt; &amp;amp;other) = delete; UniquePointer&amp;lt;T&amp;gt; &amp;amp;operator=(const UniquePointer&amp;lt;T&amp;gt; &amp;amp;other) = delete; 但很多时候我们都需要使用到传递指针的操作，如果只是使用 deleted 函数禁止拷贝构造函数和赋值操作符，那么这个智能指针存在的意义就不大了，我们可以通过 move 语义来实现移动构造函数和移动赋值操作符，从而在使用 UniquePointer 的时候可以在特定情况下进行所有权转移。
+UniquePointer(UniquePointer&amp;lt;T&amp;gt; &amp;amp;&amp;amp;other) noexcept; UniquePointer &amp;amp;operator=(UniquePointer &amp;amp;&amp;amp;other) noexcept; 内存泄漏 为了防止发生内存泄漏，我们可以在UniquePointer的私有成员中增加一个删除器，并根据当前指针对象的类型指定删除器，从而防止发生内存泄漏。
+class Deleter { template&amp;lt;typename T&amp;gt; void operator()(T *p) { if (p) delete p; } }; template&amp;lt;typename T, typename D&amp;gt; class UniquePointer { ... private: T *pointer; Deleter deleter; }; 实现 根据unique_ptr的源码，能够大致实现UniquePointer类
+template&amp;lt;typename T, typename D&amp;gt; class UniquePointer { public: explicit UniquePointer(T *t, const D &amp;amp;d); ~UniquePointer(); T &amp;amp;operator*(); T *operator-&amp;gt;(); T *release(); void reset(T *p); UniquePointer(UniquePointer &amp;amp;&amp;amp;other) noexcept; UniquePointer &amp;amp;operator=(UniquePointer &amp;amp;&amp;amp;other) noexcept; UniquePointer(const UniquePointer &amp;amp;other) = delete; UniquePointer &amp;amp;operator=(const UniquePointer &amp;amp;other) = delete; private: T *pointer; D deleter; }; template&amp;lt;typename T, typename D&amp;gt; UniquePointer&amp;lt;T, D&amp;gt;::UniquePointer(T *t, const D &amp;amp;d) { std::cout &amp;lt;&amp;lt; &amp;#34;UniquePointer &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; constructor called.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode Archiver(3)： 登录</title>
+      <link>http://example.org/posts/leetcode-archiver/leetcode-archiver3/</link>
+      <pubDate>Fri, 11 Jan 2019 13:15:17 +1100</pubDate>
+      
+      <guid>http://example.org/posts/leetcode-archiver/leetcode-archiver3/</guid>
+      <description>Cookie和Session 为了获取我们自己的提交记录，我们首先要进行登录的操作。但我们都知道HTTP是一种无状态的协议，它的每个请求都是独立的。无论是GET还是POST请求，都包含了处理当前这一条请求的所有信息，但它并不会涉及到状态的变化。因此，为了在无状态的HTTP协议上维护一个持久的状态，引入了Cookie和Session的概念，两者都是为了辨识用户相关信息而储存在内存或硬盘上的加密数据。
+Cookie是由客户端浏览器维护的。客户端浏览器会在需要时把Cookie保存在内存中，当其再次向该域名相关的网站发出request时，浏览器会把url和Cookie一起作为request的一部分发送给服务器。服务器通过解析该Cookie来确认用户的状态，并对Cookie的内容作出相应的修改。一般来说，如果不设置过期时间，非持久Cookie会保存在内存中，浏览器关闭后就被删除了。
+Session是由服务器维护的。当客户端第一次向服务器发出request后，服务器会为该客户端创建一个Session。当该客户端再次访问服务器时，服务器会根据该Session来获取相关信息。一般来说，服务器会为Seesion设置一个失效时间，当距离接收到客户端上一次发送request的时间超过这个失效时间后，服务器会主动删除Session。
+两种方法都可以用来维护登录的状态。为了简便起见，本项目目前使用Session作为维护登录状态的方法。
+获取数据 分析 首先我们进入登录页面，打开开发者工具，勾选Preserve log。为了知道在登录时浏览器向服务器提交了哪些数据，我们可以先输入一个错误的用户名和密码，便于抓包。
+通过分析&amp;quot;login/&amp;ldquo;这条request，我们可以知道我们所需要的一些关键信息，例如headers中的user-agent和referer，表单数据（form data）中的csrfmiddlewaretoken，login和password。显然，user-agent和referer我们可以直接复制下来，login和password是我们填写的用户名和密码。还有一个很陌生的csrfmiddlewaretoken。这是CSRF的中间件token，CSRF是Cross-Site Request Forgery，相关知识可以查询跨站请求伪造的维基百科。那么现在我们就要分析这个token是从何而来。
+获取csrfmiddlewaretoken 我们将刚才获取到的csrfmiddlewaretoken复制下来，在开发者工具中使用搜索功能，可以发现这个csrfmiddlewaretoken出现在了登录之前的一些request对应的response中。例如在刚才打开登录页面，发送GET请求时，response的headers的set-cookie中出现了&amp;quot;csrftoken=&amp;hellip;&amp;ldquo;，而这里csrftoken的值与我们需要在登录表单中提交的值完全相同。因此，我们可以通过获取刚才的response中的Cookies来获取csrfmiddlewaretoken的值。
+首先我们通过发送GET请求来分析一下Cookies的构成
+login_url = &amp;quot;https://leetcode.com/accounts/login/&amp;quot; session = requests.session() result = session.get(login_url) print(result) print(type(result.cookies)) for cookie in result.cookies: print(type(cookie)) print(cookie) 得到的结果是
+ &amp;lt;Response [200]&amp;gt; 状态码200，表示请求成功 &amp;lt;class &#39;requests.cookies.RequestsCookieJar&#39;&amp;gt; cookies的类型是CookieJar &amp;lt;class &#39;http.cookiejar.Cookie&#39;&amp;gt; 第一条cookie的类型是Cookie &amp;lt;Cookie__cfduid=d3e02d4309b848f9369e21671fabbce571548041181 for .leetcode.com/&amp;gt; 第一条cookie的信息 &amp;lt;class &#39;http.cookiejar.Cookie&#39;&amp;gt; 第二条cookie的类型是Cookie &amp;lt;Cookie csrftoken=13mQWE9tYN6g2IrlKY8oMLRc4VhVNoet4j328YdDapW2WC2nf93y5iCuzorovTDl for leetcode.com/&amp;gt; 第二条cookie的信息，也就是我们所需要的csrftoken  这样一来我们便获取到了在提交表单信息时所需要的csrfmiddlewaretoken，之后我们便可以开始着手写登录的相关代码了。顺便一提，在使用Django进行后端开发的时候自动生成的csrf token的键也叫csrfmiddlewaretoken，不知道LeetCode是不是用Django作为后端开发框架的。
+实现 首先我们需要在爬虫开始运行之前获取登录信息，将Session作为类的成员变量保存下来，方便在获取submissions时使用。同时我们需要在与爬虫文件相同的目录下新建config.json，将自己的用户名和密码保存在该json文件里，这样就能顺利登陆了。
+ def start_requests(self): self.Login() # 登录 questionset_url = &amp;quot;https://leetcode.com/api/problems/all/&amp;quot; yield scrapy.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 智能指针（1.5）：move 语义</title>
+      <link>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
+      <pubDate>Wed, 02 Jan 2019 09:55:05 +1100</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
+      <description>C++智能指针（1.5）：move语义 move语义 定义 右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（Perfect Forwarding），其主要目的有
+ 消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 能够更简洁明确地定义泛型函数。  实现 move 语义的实现非常简单，它将传入的参数 _Tp&amp;amp;&amp;amp; __t 使用静态类型转换 static_cast&amp;lt;_Up&amp;amp;&amp;amp;&amp;gt;(__t) 转变成了成了对应类型的右值，也就是说使用 move 语义之后，编译器窃取（一般会在移动构造函数和移动赋值操作符里将原有对象指向 nullptr）了原有对象的右值，并延长了这个右值的生命周期并将其用来赋值给其他的对象，而没有对右值做任何拷贝操作。
+template &amp;lt;class _Tp&amp;gt; typename remove_reference&amp;lt;_Tp&amp;gt;::type&amp;amp;&amp;amp; move(_Tp&amp;amp;&amp;amp; __t) _NOEXCEPT { typedef typename remove_reference&amp;lt;_Tp&amp;gt;::type _Up; return static_cast&amp;lt;_Up&amp;amp;&amp;amp;&amp;gt;(__t); } 测试 定义一个 Object 类和一个 MoveObject 函数使用 move 语义返回一个 Object 的类对象，可以看到在 MoveObject 函数返回右值后，obj 对象调用了移动构造函数。
+class Object { public: Object() { std::cout &amp;lt;&amp;lt; &amp;#34;Construct&amp;#34; &amp;lt;&amp;lt; std::endl; } Object(const Object &amp;amp;other) { std::cout &amp;lt;&amp;lt; &amp;#34;Copy&amp;#34; &amp;lt;&amp;lt; std::endl; } Object(Object &amp;amp;&amp;amp;other) noexcept { std::cout &amp;lt;&amp;lt; &amp;#34;Move&amp;#34; &amp;lt;&amp;lt; std::endl; } ~Object() { std::cout &amp;lt;&amp;lt; &amp;#34;Destruct&amp;#34; &amp;lt;&amp;lt; std::endl; } void Print() { std::cout &amp;lt;&amp;lt; &amp;#34;Print&amp;#34; &amp;lt;&amp;lt; std::endl; } }; Object MoveObject() { Object obj; return move(obj); } int main() { Object obj = MoveObject(); return 0; } /* output: Construct Move Destruct Destruct */ 返回值优化（RVO，Return value optimisation） 返回值优化是一种编译器优化技术，允许编译器在调用点（call site）直接构造函数的返回值。</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 智能指针（1）：auto_ptr</title>
+      <link>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1/</link>
+      <pubDate>Thu, 27 Dec 2018 15:21:35 +1100</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
+      <description>C++智能指针（1）：auto_ptr 分析 C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 类
+class Object { public: Object() { std::cout &amp;lt;&amp;lt; &amp;#34;Construct&amp;#34; &amp;lt;&amp;lt; std::endl; } Object(const Object &amp;amp;other) { std::cout &amp;lt;&amp;lt; &amp;#34;Copy&amp;#34; &amp;lt;&amp;lt; std::endl; } Object(Object &amp;amp;&amp;amp;other) noexcept { std::cout &amp;lt;&amp;lt; &amp;#34;Move&amp;#34; &amp;lt;&amp;lt; std::endl; } ~Object() { std::cout &amp;lt;&amp;lt; &amp;#34;Destruct&amp;#34; &amp;lt;&amp;lt; std::endl; } void Print() { std::cout &amp;lt;&amp;lt; &amp;#34;Print&amp;#34; &amp;lt;&amp;lt; std::endl; } }; 创建一个指向 Object 类型的指针
+int main() { Object *o = new Object(); o-&amp;gt;Print(); return 0; } /* output: Construct Print */ 我们没有进行delete o的操作，导致o没有被正确地析构，造成了内存泄漏。作为对比，创建一个Obj类型的对象</description>
+    </item>
+    
+    <item>
+      <title>LeetCode Archiver(2)：获取题目信息</title>
+      <link>http://example.org/posts/leetcode-archiver/leetcode-archiver2/</link>
+      <pubDate>Fri, 21 Dec 2018 15:06:01 +1100</pubDate>
+      
+      <guid>http://example.org/posts/leetcode-archiver/leetcode-archiver2/</guid>
+      <description>创建爬虫 在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用genspider命令新建一个爬虫：
+cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。
+新建好爬虫之后可以看到在项目的spiders文件夹下新增了一个名为 QuestionSetSpider.py的文件，这就是我们刚才新建的爬虫文件。这个爬虫文件会自动生成以下代码
+# -*- coding: utf-8 -*- import scrapy class QuestionSetSpider(scrapy.Spider): name = &#39;QuestionSetSpider&#39; allowed_domains = [&#39;leetcode.com&#39;] start_urls = [&#39;http://leetcode.com/&#39;] def parse(self, response): pass  QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类； self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫； self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误； self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数  获取题目详细信息 分析 LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。
+为了爬取题目的详细信息，我们首先要从题目列表进入每个题目对应的链接。
+首先打开leetcode的problem列表，按F12打开Chrome的开发者工具，进入Network标签栏，勾选上Preserve log，刷新该页面。
+可以看到，网页向 https://leetcode.com/api/problems/all/ 发送了一个名为&amp;quot;all/&amp;ldquo;的GET类型的Request，这就是获取所有题目链接和相关信息的请求。如果此时已经安装了Toggle JavaScript插件，我们可以直接右键点击“Open in new tab”，查看该请求返回的Response。
+更方便的方法是使用postman向服务器发送一个相同的Request，并将其保存下来，这样如果我们下次需要查看相应的Response的时候就不需要再使用开发者工具了。
+返回的Response是一个json对象，其中的&amp;quot;stat_status_pairs&amp;quot;键所对应的值是所有包含题目信息的list，而列表中的[&amp;ldquo;stat&amp;rdquo;][&amp;ldquo;question__title_slug&amp;rdquo;]就是题目所在的页面。以Largest Perimeter Triangle为例，将其title_slug拼接到https://leetcode.com/problems/ 后，进入页面https://leetcode.com/problems/largest-perimeter-triangle/ 。同样地，打开开发者工具，刷新页面，可以看到服务器返回了很多项graphql的查询数据，通过查看Request Payload可以找到其中operationName为&amp;quot;questionData&amp;quot;的一项，这就是当前题目的详细信息。
+将Payload复制粘贴到postman的Body中，在Headers中设置Content-Type为application/json，发送请求，可以看到返回的是一个json对象，包含了该题目所对应的所有信息。
+接下来我们就可以对该题目的信息进行处理了。
+实现 为了获取题目列表的json对象，我们需要先重写start_requests函数。
+def start_requests(self): self.Login() # 用户登录，后续会用到 questionset_url = &amp;quot;https://leetcode.</description>
+    </item>
+    
+    <item>
+      <title>在Google Cloud Platform上运行Jupyter Notebook</title>
+      <link>http://example.org/posts/cloud/run-jupyter-notebook-on-gcp/</link>
+      <pubDate>Fri, 14 Dec 2018 17:03:12 +1100</pubDate>
+      
+      <guid>http://example.org/posts/cloud/run-jupyter-notebook-on-gcp/</guid>
+      <description>在Google Cloud Platform上运行Jupyter Notebook 简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。
+服务器搭建 创建账号 首先在Google Cloud Platform上创建一个账号。
+创建新项目 点击左上角&amp;quot;Google Cloud Platform&amp;quot;右边的三个点，点击&amp;quot;NEW PROJECT&amp;quot;创建新项目。
+创建虚拟机 进入刚才创建的项目，从左侧边栏点击 Compute Engine -&amp;gt; VM instances 进入虚拟机页面。点击Create创建一个新的虚拟机实例（VM instance）
+)
+根据需求填写和选择 Name, Region, Zone, Machine Type和Boot Disk。在 Firewall 选项中选中 Allow HTTP traffic 和 Allow HTTPS traffic, 在下方的 Disks 选项卡中取消勾选 Delete boot disk when instance is deleted。最后点击 Create，虚拟机实例就创建好了。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode Archiver(1)：Scrapy框架和Requests库</title>
+      <link>http://example.org/posts/leetcode-archiver/leetcode-archiver1/</link>
+      <pubDate>Tue, 04 Dec 2018 11:25:15 +1100</pubDate>
+      
+      <guid>http://example.org/posts/leetcode-archiver/leetcode-archiver1/</guid>
+      <description>简介 Scrapy官方文档对Scrapy的介绍如下：
+Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。其最初是为了页面抓取（更确切来说, 网络抓取）所设计的，也可以应用在获取API所返回的数据（例如 Amazon Associates Web Services ）或者通用的网络爬虫。
+简而言之，Scrapy是基于Twisted库开发的，封装了http请求、代理信息、数据存储等功能的Python爬虫框架。
+组件和数据流 下图是Scrapy官方文档中的架构概览图：
+图中绿色箭头表示数据流，其他均为组件。
+Scrapy Engine（引擎） 引擎负责控制数据流在系统的组件中流动，并在相应动作发生时触发事件。
+Scheduler（调度器） 调度器从引擎接收request并将其保存，以便在引擎请求时提供给引擎。
+Downloader（下载器） 下载器负责下载页面数据，并将其提供给引擎，而后再由引擎提供给爬虫。
+Spiders（爬虫） Spider是由用户编写的用于分析response并提取item或额外跟进url的类。一个Scrapy项目中可以有很多Spider，他们分别被用于爬取不同的页面和网站。
+Item Pipeline（管道） Item Pipeline负责处理被爬虫提取出来的item。可以对其进行数据清洗，验证和持久化（例如存储到数据库中）。
+Downloader middlewares（下载器中间件） 下载器中间件是在引擎及下载器之间的组件，用于处理下载器传递给引擎的response。更多内容请参考下载器中间件。
+Spider middlewares（爬虫中间件） Spider中间件是在引擎及Spider之间的组件，用于处理爬虫的输入（response）和输出（items和requests）。更多内容请参考爬虫中间件。
+Data flow（数据流） Scrapy中的数据流由引擎控制，其过程如下:1.引擎打开一个网站，找到处理该网站的爬虫并向该爬虫请求要爬取的url。2.引擎从爬虫中获取到要爬取的url并将其作为request发送给调度器。3.引擎向调度器请求下一个要爬取的url。4.调度器返回下一个要爬取的url给引擎，引擎将url通过下载器中间件发送给下载器。5.下载器下载页面成功后，生成一个该页面的response对象，并将其通过下载器中间件发送给引擎。6.引擎接收从下载器中间件发送过来的response，并将其通过爬虫中间件发送给爬虫处理。7.爬虫处理response，并将爬取到的item及跟进的新的request发送给引擎。8.引擎将爬虫返回的item发送给管道，将爬虫返回的新的request发送给调度器。9.管道对item进行相应的处理。10.重复第二步，直到调度器中没有更多的request，此时引擎关闭该网站。安装 1.下载安装最新版的Python3
+2.使用pip指令安装Scrapy
+pip3 install scrapy 创建项目 首先进入你的代码存储目录，在命令行中输入以下命令：
+scrapy startproject LeetCode_Crawler 注意项目名称是不能包含连字符 &amp;lsquo;-&amp;rsquo; 的
+新建成功后，可以看到在当前目录下新建了一个名为LeetCode_Crawler的Scrapy项目，进入该目录，其项目结构如下：
+scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.py #中间件文件 pipelines.py #管道文件 settings.py #设置文件 __pycache__ spiders #爬虫文件夹，所有爬虫文件都应在该文件夹下 __init__.py __pycache__ 至此Scrapy项目的创建就完成了。
+参考资料 Scrapy官方文档</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 基础知识整理</title>
+      <link>http://example.org/posts/c&#43;&#43;/basics/basics/</link>
+      <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
+      
+      <guid>http://example.org/posts/c&#43;&#43;/basics/basics/</guid>
+      <description>C++ 基础知识 const 相关   #define，typedef，const
+ # 是宏，宏不做类型检查，只进行简单替换；在编译前被处理，编译阶段的程序是宏处理后的结果 typedef 用于声明自定义数据类型，简化代码 const 用于定义常量，有数据类型，编译器会对进行类型检查    const 和指针
+ const char *p: p is a pointer to const char char const *p: p is a pointer to char const（同上） char *const p: p is a const pointer to char  int main() { const char *p1 = new char(&amp;#39;a&amp;#39;); char const *p2 = new char(&amp;#39;b&amp;#39;); char *const p3 = new char(&amp;#39;c&amp;#39;); *p1 = &amp;#39;d&amp;#39;; // error: read-only variable is notassignable *p2 = &amp;#39;e&amp;#39;; // error: read-only variable is notassignable p3 = new char(&amp;#39;f&amp;#39;); // error: cannot assign tovariable &amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; p3 = nullptr; // error: cannot assign to variable&amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; }   const 和类</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/posts/cloud-computing/docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/cloud-computing/docker/</guid>
+      <description>查看 container 的 log file 所在的目录：docker inspect &amp;lt;containername&amp;gt; | grep log</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/posts/computer-science/temp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/computer-science/temp/</guid>
+      <description>Linux:
+我平时的学习基本上都在Linux下完成的，我现在有两台电脑，一台iMac，一台笔记本，笔记本上就装的Linux，然后每天都会用很多指令， 比如说用pipeline管道输出后用grep做正则搜索，用ifconfig和netstat查看网络状态，用top看进程资源，用iostat看cpu和硬盘状态 还有就是最基础的cd ls cp rm mkdir find whereis，还有远程的scp 还有一个查看程序运行时的系统调用，在Linux下是strace，Mac下是dtruss，有些命令在两个平台不一样 Linux下对文件操作有两种方式：系统调用（底层调用，面向硬件），和库函数调用（应用）。系统调用：open, close, read, write, ioctl等，用于底层文件访问
+调试： 用vim编辑（会一些vim的快捷键，比如dd删除一行，gg定位到头部，6$定位到某一行），用gdb调试，打log出来看，用过有个叫log4cplus的框架，有内存错误或者内存泄漏的问题就用valgrind调试。还有用GNU profiler来查看一些函数的调用次数，调用点相关的信息（编译器的话在Linux上GCC，在MAC上用自带的clang，单元测试用gtest。）
+C++ 内存分配
+ 栈区：参数，局部变量 2.堆区：new，向高地址扩展，不连续 3.自由存储区，malloc 4.全局/静态存储区，存储全局变量和静态变量 5.常量存储区，存储常量 new 分配失败： 1. int* p = new (std::nothrow) int(1); 返回空指针 2. 用 try {} catch (const bad_alloc &amp;amp;b) {} 捕捉异常  auto_ptr：有拷贝构造和赋值操作，所有权转移 unique_ptr：独占式拥有，保证同一时间内只有一个智能指针可以指向特定指针，同时销毁，可以移交拥有权 shared_ptr：多个智能指针指向相同指针对象，在最后一个shared_ptr被销毁时对象被释放；搭配 weak_ptr、bad_weak_ptr等辅助类来实现，可以定制型删除器，因为默认只会把指针删掉，如果是个数组不会删后面的 循环引用就是说有两个类对象的智能指针，他们分别有一个成员变量是对方的类型，并且指向了对方的智能指针，形成了一个环状，那么他们就无法被正确的释放掉 weak_ptr：只引用，不计数，如果一个指针被一些shared_ptr和weak_ptr同时引用，当这些shared_ptr都释放掉，不管还有没有weak_ptr引用该内存，内存都会被释放，解决了循环引用
+线程通信：锁（互斥锁，读写所，自旋锁，条件变量，原子变量，临界区），信号量，信号，屏障</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/posts/proxy/ax1800/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/proxy/ax1800/</guid>
+      <description>小米 AX1800 使用 ShellClash 科学上网 [TOC]
+本文介绍如何在小米 AX1800 上使用 ShellClash 科学上网。
+1 固件降级 小米 AX1800 1.0.336 版本固件
+在 MiWiFi 后台的常用设置 -&amp;gt; 系统状态中点击手动升级，使用 1.0.336 版本的固件对路由器进行降级，整个过程不需要任何额外的操作。
+完成后第一次进入后台配置时选择不自动更新，或在小米 Wi-Fi 手机 App 中关闭自动更新功能。
+更新完成后路由器会重置为路由器底部贴条的设置。
+2 解锁 SSH 首先登陆小米路由器后台 192.168.31.1，将浏览器地址栏中 stok= 后面的一部分的即为拷贝下来。
+获取 SSH 权限 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {&amp;quot;code&amp;quot;:0} 即代表成功，这样就解锁了 SSH 到路由器上的权限。
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20&#39;s%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg&#39;%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B修改 root 密码 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {&amp;quot;code&amp;quot;:0} 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20echo%20-e%20&#39;admin%5Cnadmin&#39;%20%7C%20passwd%20root%3B连接 SSH 打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。</description>
+    </item>
+    
+    
+  </channel>
+</rss>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LeetCode on 尾張</title>
+    <link>http://example.org/categories/leetcode/</link>
+    <description>Recent content in LeetCode on 尾張</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 24 Aug 2019 19:12:25 +1000</lastBuildDate><atom:link href="http://example.org/categories/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LeetCode 树（3）</title>
+      <link>http://example.org/posts/leetcode/tree-3/</link>
+      <pubDate>Sat, 24 Aug 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/tree-3/</guid>
+      <description>LeetCode 树（3） 题目 4. 递归求解 617 合并二叉树 合并两个二叉树。
+判断各个节点是否存在，全部合并到一棵树上即可。
+class Solution { public: TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2) { if (!t1 &amp;amp;&amp;amp; !t2) return nullptr; else if (!t1) return t2; else if (!t2) return t1; t1-&amp;gt;val += t2-&amp;gt;val; t1-&amp;gt;left = mergeTrees(t1-&amp;gt;left, t2-&amp;gt;left); t1-&amp;gt;right = mergeTrees(t1-&amp;gt;right, t2-&amp;gt;right); return t1; } }; 226 翻转二叉树 翻转一个二叉树。
+先将左右子树分别翻转，再交换两者的位置。
+class Solution { public: TreeNode *invertTree(TreeNode *root) { if (!root) return nullptr; TreeNode *left = invertTree(root-&amp;gt;left), *right = invertTree(root-&amp;gt;right); root-&amp;gt;right = left; root-&amp;gt;left = right; return root; } }; 104 二叉树的最大深度 找出一个二叉树的最大深度。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 排序</title>
+      <link>http://example.org/posts/leetcode/sort/</link>
+      <pubDate>Sat, 17 Aug 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/sort/</guid>
+      <description>LeetCode 排序 题目 56 合并区间 按照间隔的起始进行排序，判断下一个间隔的起始是否大于前一个间隔的末尾，如果大于的话就把之前的间隔加入结果数组，否则继续扩展当前的间隔。
+class Solution { public: vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; merge(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; &amp;amp;intervals) { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; res; int n = intervals.size(); if (n == 0) return res; sort(intervals.begin(), intervals.end(), [](vector&amp;lt;int&amp;gt; const &amp;amp;v1, vector&amp;lt;int&amp;gt; const &amp;amp;v2) { return v1[0] &amp;lt; v2[0]; }); int start = intervals[0][0], end = intervals[0][1]; for (int i = 1; i &amp;lt; n; ++i) { if (intervals[i][0] &amp;gt; end) { res.push_back(vector&amp;lt;int&amp;gt;{start, end}); start = intervals[i][0]; } end = max(end, intervals[i][1]); } res.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 堆</title>
+      <link>http://example.org/posts/leetcode/heap/</link>
+      <pubDate>Mon, 05 Aug 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/heap/</guid>
+      <description>LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。
+class Solution { public: int findKthLargest(vector&amp;lt;int&amp;gt; &amp;amp;nums, int k) { priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;&amp;gt;&amp;gt; heap; for (auto &amp;amp;m:nums) { if (heap.size() &amp;lt; k || m &amp;gt; heap.top()) heap.push(m); if (heap.size() &amp;gt; k) heap.pop(); } return heap.top(); } }; 347 前 K 个高频元素 先遍历一次统计出数组中各个元素出现的次数，再用一个大根堆将前 k 个高频元素保存下来，最后再将这些元素依次 pop 出来存入结果数组。时间复杂度是 O(n)，空间复杂度是 O(n)。
+class Solution { public: vector&amp;lt;int&amp;gt; topKFrequent(vector&amp;lt;int&amp;gt; &amp;amp;nums, int k) { priority_queue&amp;lt;pair&amp;lt;int, int&amp;gt;, vector&amp;lt;pair&amp;lt;int, int&amp;gt;&amp;gt;, greater&amp;lt;&amp;gt;&amp;gt; freq; unordered_map&amp;lt;int, int&amp;gt; count; vector&amp;lt;int&amp;gt; res(k, 0); for (auto &amp;amp;m:nums) ++count[m]; for (auto &amp;amp;c:count) { freq.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 双指针</title>
+      <link>http://example.org/posts/leetcode/twopointers/</link>
+      <pubDate>Wed, 31 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/twopointers/</guid>
+      <description>LeetCode DFS 题目 26 删除排序数组中的重复项 用两个指针 len 和 i 分别表示没有重复的项的下标与遍历数组的下标，将没有重复的项拷贝到 nums[len] 下然后 ++len 即可。
+class Solution { public: int removeDuplicates(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int count = 0, len = 1, n = nums.size(); if (n == 0) return 0; for (int i = 1; i &amp;lt; n; ++i) { if (nums[i] == nums[i - 1]) continue; nums[len] = nums[i]; ++len; } return len; } }; 80 删除排序数组中的重复项 II 用两个指针 len 和 i 分别表示没有最多重复 2 次的项的下标与遍历数组的下标，将重复数小于等于 1 的项拷贝到 nums[len] 下然后 ++len 即可。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 深度优先搜索</title>
+      <link>http://example.org/posts/leetcode/dfs/</link>
+      <pubDate>Sat, 27 Jul 2019 12:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/dfs/</guid>
+      <description>LeetCode DFS 题目 78 子集 典型的回溯，找出所有可能情况。
+class Solution { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; res; public: vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; subsets(vector&amp;lt;int&amp;gt; &amp;amp;nums) { res = vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;(1, vector&amp;lt;int&amp;gt;()); vector&amp;lt;int&amp;gt; curr; DFS(nums, 0, curr); return res; } void DFS(vector&amp;lt;int&amp;gt; &amp;amp;nums, int idx, vector&amp;lt;int&amp;gt; &amp;amp;curr) { for (int i = idx; i &amp;lt; nums.size(); ++i) { curr.push_back(nums[i]); res.push_back(curr); DFS(nums, i + 1, curr); curr.pop_back(); } } }; 733 图像渲染 从给定的 image[sr][sc] 开始 DFS 或 BFS，将相邻的值相同的点的值全部修改为 newColor，注意要判断给定的 image[sr][sc] 是否等于 newColor，否则如果不使用额外空间的 visited 数组记录已经访问过的点的话会造成死循环栈溢出。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 并发</title>
+      <link>http://example.org/posts/leetcode/concurrency/</link>
+      <pubDate>Mon, 22 Jul 2019 10:10:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/concurrency/</guid>
+      <description>LeetCode 并发 题目 1114 按序打印 C++ mutex class Foo { mutex lock1, lock2; public: Foo() { lock1.lock(); lock2.lock(); } void first(function&amp;lt;void()&amp;gt; printFirst) { printFirst(); lock1.unlock(); } void second(function&amp;lt;void()&amp;gt; printSecond) { lock1.lock(); printSecond(); lock1.unlock(); lock2.unlock(); } void third(function&amp;lt;void()&amp;gt; printThird) { lock2.lock(); printThird(); lock2.unlock(); } }; C++ condition_variable class Foo { int i; mutex mut; condition_variable con_var1, con_var2; public: Foo() : i(1) { } void first(function&amp;lt;void()&amp;gt; printFirst) { unique_lock&amp;lt;mutex&amp;gt; lock(mut); printFirst(); ++i; con_var1.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 树（2）</title>
+      <link>http://example.org/posts/leetcode/tree-2/</link>
+      <pubDate>Thu, 18 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/tree-2/</guid>
+      <description>LeetCode 树（2） 题目 3. 二叉搜索树 95 不同的二叉搜索树 II 生成由 1 &amp;hellip; n 为节点所组成的二叉搜索树。
+为了构造以 i 为根节点的二叉搜索树，我们需要先构造以 1 &amp;hellip; i - 1 为左子树的所有二叉搜索树与以 i + 1 &amp;hellip; n 为右子树的所有二叉搜索树，再将这些子树排列组合得到以 i 为根节点的所有二叉搜索树。
+class Solution { public: vector&amp;lt;TreeNode *&amp;gt; generateTrees(int n) { if (n == 0) return {}; return Generate(1, n); } vector&amp;lt;TreeNode *&amp;gt; Generate(int m, int n) { vector&amp;lt;TreeNode *&amp;gt; nodes; if (m == n) nodes.push_back(new TreeNode(n)); if (m &amp;gt; n) nodes.push_back(nullptr); if (m &amp;gt;= n) return nodes; for (int i = m; i &amp;lt;= n; ++i) { vector&amp;lt;TreeNode *&amp;gt; left = Generate(m, i - 1); vector&amp;lt;TreeNode *&amp;gt; right = Generate(i + 1, n); for (auto &amp;amp;l:left) for (auto &amp;amp;r:right) { TreeNode *node = new TreeNode(i); node-&amp;gt;left = l, node-&amp;gt;right = r; nodes.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 树（1）</title>
+      <link>http://example.org/posts/leetcode/tree-1/</link>
+      <pubDate>Sat, 13 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/tree-1/</guid>
+      <description>LeetCode 树（1） 题目 1. 树的遍历 144 二叉树的前序遍历 前序遍历一个二叉树。
+前序遍历是按照根节点，左子节点，右子节点的顺序来遍历一个二叉树，有递归和迭代两种方法。对于迭代方法，先将节点加入结果数组，然后用一个栈保存右，左子节点，依次访问，重复此过程。
+class Solution { vector&amp;lt;int&amp;gt; res; public: vector&amp;lt;int&amp;gt; preorderTraversal(TreeNode *root) { res = vector&amp;lt;int&amp;gt;(); Preorder(root); return res; } void Preorder(TreeNode *root) { if (!root) return; res.push_back(root-&amp;gt;val); Preorder(root-&amp;gt;left); Preorder(root-&amp;gt;right); } }; class Solution { public: vector&amp;lt;int&amp;gt; preorderTraversal(TreeNode *root) { vector&amp;lt;int&amp;gt; res; if (!root) return res; stack&amp;lt;TreeNode *&amp;gt; pre; pre.push(root); while (!pre.empty()) { TreeNode *node = pre.top(); pre.pop(); res.push_back(node-&amp;gt;val); if (node-&amp;gt;right) pre.push(node-&amp;gt;right); if (node-&amp;gt;left) pre.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 链表（2）</title>
+      <link>http://example.org/posts/leetcode/linkedlist-2/</link>
+      <pubDate>Tue, 09 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/linkedlist-2/</guid>
+      <description>LeetCode 链表（2） 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。
+在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，tail 先往前走 n 步，然后两个指针一起往前走直到 tail 没有后继指针，此时 prev 的后继指针就是倒数第 n 个位置，删除其即可。注意如果要删除的指针是头指针的话要单独处理。
+class Solution { public: ListNode* removeNthFromEnd(ListNode* head, int n) { ListNode *prev = head, *tail = head; for (int i = 0; i &amp;lt; n; ++i) tail = tail-&amp;gt;next; if (!tail) { head = head-&amp;gt;next; delete prev; return head; } while (tail-&amp;gt;next) tail = tail-&amp;gt;next, prev = prev-&amp;gt;next; ListNode *next = prev-&amp;gt;next; prev-&amp;gt;next = next-&amp;gt;next; delete next; return head; } }; 61 旋转链表 给一个链表，将其每个节点向右移动 k 个位置。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 链表（1）</title>
+      <link>http://example.org/posts/leetcode/linkedlist-1/</link>
+      <pubDate>Thu, 04 Jul 2019 19:12:25 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/linkedlist-1/</guid>
+      <description>LeetCode 链表（1） 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。
+依次按位进行相加。
+class Solution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head = l1, tail = l1; while (l1 &amp;amp;&amp;amp; l2) { val = l1-&amp;gt;val + l2-&amp;gt;val + acc; acc = val / 10; l1-&amp;gt;val = val % 10; if (!l1-&amp;gt;next) l1-&amp;gt;next = l2-&amp;gt;next, l2-&amp;gt;next = nullptr; tail = l1; l1 = l1-&amp;gt;next, l2 = l2-&amp;gt;next; } while (l1) { val = l1-&amp;gt;val + acc; acc = val / 10; l1-&amp;gt;val = val % 10; tail = l1; l1 = l1-&amp;gt;next; } if (acc) tail-&amp;gt;next = new ListNode(1); return head; } }; 21 合并两个有序链表 合并两个有序链表。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 动态规划（3）</title>
+      <link>http://example.org/posts/leetcode/dynamicprogramming-3/</link>
+      <pubDate>Mon, 01 Jul 2019 18:22:45 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/dynamicprogramming-3/</guid>
+      <description>LeetCode 动态规划 题目 6. 字符串相关 712 两个字符串的最小ASCII删除和 给定两个字符串，计算使两个字符串相同所需要删除的字符的ASCII值的和的最小值。
+对于两个字符串中的字符 s1[i] 和 s2[j]，如果s1[i] == s2[j]，那么这两个字符都不需要被删除，所以 dp[i][j] = dp[i - 1][j - 1]，否则至少有一个应该被删除，取两个中的最小值，状态转移方程是dp[i][j] = min(dp[i - 1][j] + s1[i], dp[i][j - 1] + s2[j])。时间复杂度是 O(m * n)，空间复杂度是 O(m * n)。
+class Solution { public: int minimumDeleteSum(string s1, string s2) { int n1 = s1.size(), n2 = s2.size(); vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; dp(n1 + 1, vector&amp;lt;int&amp;gt;(n2 + 1, 0)); for (int i = 1; i &amp;lt;= n1; ++i) dp[i][0] = dp[i - 1][0] + s1[i - 1]; for (int j = 1; j &amp;lt;= n2; ++j) dp[0][j] = dp[0][j - 1] + s2[j - 1]; for (int i = 0; i &amp;lt; n1; ++i) for (int j = 0; j &amp;lt; n2; ++j) if (s1[i] == s2[j]) dp[i + 1][j + 1] = dp[i][j]; else dp[i + 1][j + 1] = min(dp[i][j] + s1[i] + s2[j], min(dp[i][j + 1] + s1[i], dp[i + 1][j] + s2[j])); return dp[n1][n2]; } }; 5 最长回文子串 找到一个字符串中的最长回文子串。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 动态规划（2）</title>
+      <link>http://example.org/posts/leetcode/dynamicprogramming-2/</link>
+      <pubDate>Fri, 28 Jun 2019 10:09:13 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/dynamicprogramming-2/</guid>
+      <description>LeetCode 动态规划 题目 3. 数组相关 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。
+用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之前的每个数字 j，如果 nums[i] &amp;gt; nums[j]，那么 j 和 i 可以形成一个上升子序列，让 dp[i] = max(dp[i], dp[j] + 1) 就能得到最长的上升子序列了。
+class Solution { public: int lengthOfLIS(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(), res = 2; if (n &amp;lt;= 1) return n; vector&amp;lt;int&amp;gt; dp(n, 1); for (int i = 1; i &amp;lt; n; ++i) for (int j = 0; j &amp;lt; i; ++j) if (nums[i] &amp;gt; nums[j]) { dp[i] = max(dp[i], dp[j] + 1); res = max(res, dp[i]); } return res; } }; 53 最大子序和 找一个数组中具有最大和的连续子数组的和。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 动态规划（1）</title>
+      <link>http://example.org/posts/leetcode/dynamicprogramming-1/</link>
+      <pubDate>Wed, 26 Jun 2019 18:08:10 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/dynamicprogramming-1/</guid>
+      <description>LeetCode 动态规划 题目 1. 数字相关 263 丑数 判断一个数 num 是否是丑数。
+通用的方法是自底向上求出大于等于 num 的第一个数来判断 num 是否是丑数。但这道题已经给出了数 num，直接通过模运算就能得到结果了。
+class Solution { public: bool isUgly(int num) { if (num &amp;lt; 1) return false; while (num % 2 == 0) num /= 2; while (num % 3 == 0) num /= 3; while (num % 5 == 0) num /= 5; return num == 1; } }; 264 丑数 II 求第 n 个丑数。
+用一个数组 ugly 来保存前 m 个丑数，用三个质因数 2，3，5 乘以其当前系数对应的丑数，得到新的丑数，最小的一个就是第 m + 1 个丑数。时间复杂度是 O(m * n)，其中 m 是质因数的个数，n 是要找的第 n 个丑数。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 二分查找</title>
+      <link>http://example.org/posts/leetcode/binarysearch/</link>
+      <pubDate>Sun, 23 Jun 2019 19:26:39 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/binarysearch/</guid>
+      <description>LeetCode 二分查找 二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。
+易错点   计算中间值的方法
+ k = i + (j - i) / 2 k = (i + j) / 2  第二种方法一般都会造成整型数据溢出，所以只用第一种方法。
+  循环条件
+  如果要找唯一的值，且下限i和上限j都会在更新时在中间值k的基础上+1或-1，那么循环条件是 i &amp;lt;= j，j能被取到，j = nums.size() - 1，计算中间值用 k = i + (j - i + 1) / 2
+  如果要找大于等于或小于等于某条件的值，且下限i和上限j其中之一不会在k的基础上+1或-1，那么循环条件是 i &amp;lt; j，j不能被取到，j = nums.size()，计算中间值用 k = i + (j - i) / 2
+  两种方法有各自的应用场景，没用对的话会出现边界值的问题，或是死循环导致TLE。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 位运算</title>
+      <link>http://example.org/posts/leetcode/bitmanipulation/</link>
+      <pubDate>Wed, 19 Jun 2019 19:26:39 +1000</pubDate>
+      
+      <guid>http://example.org/posts/leetcode/bitmanipulation/</guid>
+      <description>LeetCode 位运算 位运算包括：
+ 与 &amp;amp; 或 | 异或 ^ 取反 ~ 左移 &amp;laquo; 右移 &amp;raquo;  技巧   移位运算
+ x &amp;laquo; 1：算数左移  数字的二进制表示的所有位向左移动一位，相当于乘以 2 在右边补 0   x &amp;raquo; 1：算数右移  数字的二进制表示的所有位向右移动一位，相当于除以 2 在左边补符号位，即正数补 0，负数（在补码的基础上）补 1   负数移位  负数是以补码的形式存储的，负数进行右移运算时需要将其取反转换成反码，加一转换成补码，再将其向右移动一位得到新的补码，再将其减一得到新的反码，再取反转换成原码才能得到结果。例如 -7 的二进制表示是 10000111（因为 32 位太长所以这里用 8 位 int 型表示），其反码是 11111000，补码是11111001，向右移动一位是 11111100，减一得到新的反码 11111011，原码是10000100，也就是 -4；补码向左移一位是 11110010，减一得到新的反码 11110001，原码是 10001110，也就是 -14 比较简单的理解方式是左移乘以 2，右移除以 2。例如 -7 &amp;raquo; 1 = -7 / 2 = -4，-7 &amp;laquo; 1 = -14      题目 1.</description>
+    </item>
+    
+  </channel>
+</rss>
