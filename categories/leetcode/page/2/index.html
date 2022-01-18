@@ -5,8 +5,8 @@
 <meta name=robots content="index, follow">
 <title>LeetCode | 尾張</title>
 <meta name=keywords content>
-<meta name=description content="Providence's Blog">
-<meta name=author content="Providence">
+<meta name=description content="Zhengyu's Blog">
+<meta name=author content="Zhengyu">
 <link rel=canonical href=http://zintrulcre.github.io/categories/leetcode/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -19,19 +19,19 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.91.2">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/categories/leetcode/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-132809676-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="LeetCode">
-<meta property="og:description" content="Providence's Blog">
+<meta property="og:description" content="Zhengyu's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="http://zintrulcre.github.io/categories/leetcode/"><meta property="og:site_name" content="尾張">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="LeetCode">
-<meta name=twitter:description content="Providence's Blog">
+<meta name=twitter:description content="Zhengyu's Blog">
 </head>
 <body class=list id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
@@ -46,8 +46,8 @@
 </div>
 <ul id=menu>
 <li>
-<a href=http://zintrulcre.github.io/archives/ title=Archive>
-<span>Archive</span>
+<a href=http://zintrulcre.github.io/archives/ title=Posts>
+<span>Posts</span>
 </a>
 </li>
 <li>
@@ -70,7 +70,7 @@
 <section class=entry-content>
 <p>LeetCode 并发 题目 1114 按序打印 C++ mutex class Foo { mutex lock1, lock2; public: Foo() { lock1.lock(); lock2.lock(); } void first(function&lt;void()> printFirst) { printFirst(); lock1.unlock(); } void second(function&lt;void()> printSecond) { lock1.lock(); printSecond(); lock1.unlock(); lock2.unlock(); } void third(function&lt;void()> printThird) { lock2.lock(); printThird(); lock2.unlock(); } }; C++ condition_variable class Foo { int i; mutex mut; condition_variable con_var1, con_var2; public: Foo() : i(1) { } void first(function&lt;void()> printFirst) { unique_lock&lt;mutex> lock(mut); printFirst(); ++i; con_var1....</p>
 </section>
-<footer class=entry-footer><span title="2019-07-22 10:10:25 +1000 +1000">July 22, 2019</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-07-22 10:10:25 +1000 +1000">July 22, 2019</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to LeetCode 并发" href=http://zintrulcre.github.io/posts/leetcode/concurrency/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -83,7 +83,7 @@
 为了构造以 i 为根节点的二叉搜索树，我们需要先构造以 1 … i - 1 为左子树的所有二叉搜索树与以 i + 1 … n 为右子树的所有二叉搜索树，再将这些子树排列组合得到以 i 为根节点的所有二叉搜索树。
 class Solution { public: vector&lt;TreeNode *> generateTrees(int n) { if (n == 0) return {}; return Generate(1, n); } vector&lt;TreeNode *> Generate(int m, int n) { vector&lt;TreeNode *> nodes; if (m == n) nodes.push_back(new TreeNode(n)); if (m > n) nodes.push_back(nullptr); if (m >= n) return nodes; for (int i = m; i &lt;= n; ++i) { vector&lt;TreeNode *> left = Generate(m, i - 1); vector&lt;TreeNode *> right = Generate(i + 1, n); for (auto &l:left) for (auto &r:right) { TreeNode *node = new TreeNode(i); node->left = l, node->right = r; nodes....</p>
 </section>
-<footer class=entry-footer><span title="2019-07-18 19:12:25 +1000 +1000">July 18, 2019</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-07-18 19:12:25 +1000 +1000">July 18, 2019</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to LeetCode 树（2）" href=http://zintrulcre.github.io/posts/leetcode/tree-2/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -96,7 +96,7 @@ class Solution { public: vector&lt;TreeNode *> generateTrees(int n) { if (n == 0
 前序遍历是按照根节点，左子节点，右子节点的顺序来遍历一个二叉树，有递归和迭代两种方法。对于迭代方法，先将节点加入结果数组，然后用一个栈保存右，左子节点，依次访问，重复此过程。
 class Solution { vector&lt;int> res; public: vector&lt;int> preorderTraversal(TreeNode *root) { res = vector&lt;int>(); Preorder(root); return res; } void Preorder(TreeNode *root) { if (!root) return; res.push_back(root->val); Preorder(root->left); Preorder(root->right); } }; class Solution { public: vector&lt;int> preorderTraversal(TreeNode *root) { vector&lt;int> res; if (!root) return res; stack&lt;TreeNode *> pre; pre.push(root); while (!pre.empty()) { TreeNode *node = pre.top(); pre.pop(); res.push_back(node->val); if (node->right) pre.push(node->right); if (node->left) pre....</p>
 </section>
-<footer class=entry-footer><span title="2019-07-13 19:12:25 +1000 +1000">July 13, 2019</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-07-13 19:12:25 +1000 +1000">July 13, 2019</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to LeetCode 树（1）" href=http://zintrulcre.github.io/posts/leetcode/tree-1/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -109,7 +109,7 @@ class Solution { vector&lt;int> res; public: vector&lt;int> preorderTraversal(Tr
 在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，tail 先往前走 n 步，然后两个指针一起往前走直到 tail 没有后继指针，此时 prev 的后继指针就是倒数第 n 个位置，删除其即可。注意如果要删除的指针是头指针的话要单独处理。
 class Solution { public: ListNode* removeNthFromEnd(ListNode* head, int n) { ListNode *prev = head, *tail = head; for (int i = 0; i &lt; n; ++i) tail = tail->next; if (!tail) { head = head->next; delete prev; return head; } while (tail->next) tail = tail->next, prev = prev->next; ListNode *next = prev->next; prev->next = next->next; delete next; return head; } }; 61 旋转链表 给一个链表，将其每个节点向右移动 k 个位置。...</p>
 </section>
-<footer class=entry-footer><span title="2019-07-09 19:12:25 +1000 +1000">July 9, 2019</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-07-09 19:12:25 +1000 +1000">July 9, 2019</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to LeetCode 链表（2）" href=http://zintrulcre.github.io/posts/leetcode/linkedlist-2/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -122,7 +122,7 @@ class Solution { public: ListNode* removeNthFromEnd(ListNode* head, int n) { Lis
 依次按位进行相加。
 class Solution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head = l1, tail = l1; while (l1 && l2) { val = l1->val + l2->val + acc; acc = val / 10; l1->val = val % 10; if (!l1->next) l1->next = l2->next, l2->next = nullptr; tail = l1; l1 = l1->next, l2 = l2->next; } while (l1) { val = l1->val + acc; acc = val / 10; l1->val = val % 10; tail = l1; l1 = l1->next; } if (acc) tail->next = new ListNode(1); return head; } }; 21 合并两个有序链表 合并两个有序链表。...</p>
 </section>
-<footer class=entry-footer><span title="2019-07-04 19:12:25 +1000 +1000">July 4, 2019</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-07-04 19:12:25 +1000 +1000">July 4, 2019</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to LeetCode 链表（1）" href=http://zintrulcre.github.io/posts/leetcode/linkedlist-1/></a>
 </article>
 <footer class=page-footer>
@@ -133,11 +133,8 @@ class Solution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { i
 </footer>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href=http://zintrulcre.github.io/>尾張</a></span>
 <span>
-Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+Zhengyu &copy; 2022
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

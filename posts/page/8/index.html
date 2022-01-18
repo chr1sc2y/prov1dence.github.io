@@ -6,7 +6,7 @@
 <title>Posts | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Posts - 尾張">
-<meta name=author content="Providence">
+<meta name=author content="Zhengyu">
 <link rel=canonical href=http://zintrulcre.github.io/posts/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -19,19 +19,19 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.91.2">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-132809676-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="Posts">
-<meta property="og:description" content="Providence's Blog">
+<meta property="og:description" content="Zhengyu's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="http://zintrulcre.github.io/posts/"><meta property="og:site_name" content="尾張">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Posts">
-<meta name=twitter:description content="Providence's Blog">
+<meta name=twitter:description content="Zhengyu's Blog">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://zintrulcre.github.io/posts/"}]}</script>
 </head>
 <body class=list id=top>
@@ -47,8 +47,8 @@
 </div>
 <ul id=menu>
 <li>
-<a href=http://zintrulcre.github.io/archives/ title=Archive>
-<span>Archive</span>
+<a href=http://zintrulcre.github.io/archives/ title=Posts>
+<span>Posts</span>
 </a>
 </li>
 <li>
@@ -73,7 +73,7 @@
 与 & 或 | 异或 ^ 取反 ~ 左移 « 右移 » 技巧 移位运算
 x « 1：算数左移 数字的二进制表示的所有位向左移动一位，相当于乘以 2 在右边补 0 x » 1：算数右移 数字的二进制表示的所有位向右移动一位，相当于除以 2 在左边补符号位，即正数补 0，负数（在补码的基础上）补 1 负数移位 负数是以补码的形式存储的，负数进行右移运算时需要将其取反转换成反码，加一转换成补码，再将其向右移动一位得到新的补码，再将其减一得到新的反码，再取反转换成原码才能得到结果。例如 -7 的二进制表示是 10000111（因为 32 位太长所以这里用 8 位 int 型表示），其反码是 11111000，补码是11111001，向右移动一位是 11111100，减一得到新的反码 11111011，原码是10000100，也就是 -4；补码向左移一位是 11110010，减一得到新的反码 11110001，原码是 10001110，也就是 -14 比较简单的理解方式是左移乘以 2，右移除以 2。例如 -7 » 1 = -7 / 2 = -4，-7 « 1 = -14 题目 1....</p>
 </section>
-<footer class=entry-footer><span title="2019-06-19 19:26:39 +1000 +1000">June 19, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-06-19 19:26:39 +1000 +1000">June 19, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to LeetCode 位运算" href=http://zintrulcre.github.io/posts/leetcode/bitmanipulation/></a>
 </article>
 <article class=post-entry>
@@ -86,7 +86,7 @@ x « 1：算数左移 数字的二进制表示的所有位向左移动一位，�
 Solution: Simulation 用一个visited数组记录已经走过的格子，遇到走过的格子则直接跳过往后遍历。讲道理这个方法时间复杂度是过不了Hidden Test Set的，但是我也不知道为什么就过了。
 时间复杂度：O(n^2) 空间复杂度：O(n^2) // C++ #include &lt;iostream>#include &lt;cmath>#include &lt;cstdio>#include &lt;math.h>#include &lt;limits>#include &lt;algorithm>#include &lt;vector>#include &lt;stack>#include &lt;queue>#include &lt;string>#include &lt;map>#include &lt;set>#include &lt;unordered_map>#include &lt;unordered_set> using namespace std; vector&lt;vector&lt;bool>> visited(50001, vector&lt;bool>(50001, false)); void Forward(char &p, int &r, int &c) { if (p == 'E') { while (visited[r][c + 1]) ++c; visited[r][++c] = true; } else if (p == 'W') { while (visited[r][c - 1]) --c; visited[r][--c] = true; } else if (p == 'N') { while (visited[r - 1][c]) --r; visited[--r][c] = true; } else if (p == 'S') { while (visited[r + 1][c]) ++r; visited[++r][c] = true; } } void solve(const int &t) { int n, R, C, r, c; string str; scanf("%d %d %d %d %d", &n, &R, &C, &r, &c); cin >> str; visited = vector&lt;vector&lt;bool>>(50001, vector&lt;bool>(50001, false)); visited[r][c] = true; for (int i = 0; i &lt; n; ++i) Forward(str[i], r, c); printf("Case #%d: %d %d\n", t, r, c); } int main() { int T; scanf("%d", &T); for (int t = 1; t &lt;= T; ++t) solve(t); return 0; } Circuit Board (14pts, 20pts) 在矩阵里找到每一行最大值与最小值不超过K的最大子矩阵。...</p>
 </section>
-<footer class=entry-footer><span title="2019-05-26 23:29:45 +1000 +1000">May 26, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-05-26 23:29:45 +1000 +1000">May 26, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to Kick Start 2019 Round C" href=http://zintrulcre.github.io/posts/kick-start/2019-round-c/></a>
 </article>
 <article class=post-entry>
@@ -97,7 +97,7 @@ Solution: Simulation 用一个visited数组记录已经走过的格子，遇到�
 <section class=entry-content>
 <p>Object Detection Object detection deals with detecting instances of objects of a certain class, such as humans, animals, etc, in digital images and videos. Object detection has applications in many areas of computer vision, including image retrieval, face detection, video surveillance, and self-driving, etc. Current detection systems repurpose classifiers to perform detection. To detect an object, these systems take a classifier for that object and evaluate it at various locations and scales in a test image....</p>
 </section>
-<footer class=entry-footer><span title="2019-05-19 19:40:23 +1000 +1000">May 19, 2019</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-05-19 19:40:23 +1000 +1000">May 19, 2019</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to Object Detection" href=http://zintrulcre.github.io/posts/deep-learning/object-detection-yolo/></a>
 </article>
 <article class=post-entry>
@@ -111,7 +111,7 @@ Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同
 对于已经打败过的对手没有必要再考虑其之后的出招，所以用一个defeated数组保存已经打败过的对手以便直接跳过。因为当前轮次有可能超过对手的出招顺序长度，所以要用i % size获取对手当前的出招。
 时间复杂度：O(A ^ 2) 空间复杂度：O(A) #include &lt;iostream>#include &lt;cmath>#include &lt;cstdio>#include &lt;math.h>#include &lt;limits>#include &lt;algorithm>#include &lt;vector>#include &lt;stack>#include &lt;queue>#include &lt;string>#include &lt;map>#include &lt;set>#include &lt;unordered_map>#include &lt;unordered_set> using namespace std; char Decide(const char &R, const char &P, const char &S) { if (R && P && S) return 'X'; if (R && P) return 'P'; if (R && S) return 'R'; if (P && S) return 'S'; if (R) return 'P'; if (P) return 'S'; return 'R'; } bool Defeate(const char &current, const char &opponent) { return (current == 'R' && opponent == 'S') || (current == 'S' && opponent == 'P') || (current == 'P' && opponent == 'R'); } void solve(const int &t) { int A; scanf("%d", &A); int i = 0; vector&lt;string> opponent(A); vector&lt;bool> defeated(A, false); bool R, P, S; string res; for (int a = 0; a &lt; A; ++a) cin >> opponent[a]; while (true) { int current_opponent = 0; R = false, P = false, S = false; for (int a = 0; a &lt; A; ++a) { if (!...</p>
 </section>
-<footer class=entry-footer><span title="2019-05-07 22:02:15 +1000 +1000">May 7, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-05-07 22:02:15 +1000 +1000">May 7, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to Code Jam 2019 Round 1C" href=http://zintrulcre.github.io/posts/code-jam/2019-round-1c/></a>
 </article>
 <article class=post-entry>
@@ -124,7 +124,7 @@ Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同
 Solution: Prefix Sum 判断字符串是否是回文串只需要判断字符串里个数为奇数的字符的数量是否小于等于1，但如果每次都遍历一遍给定的区间肯定会超时，所以我们需要对给定的原始字符串进行预处理，计算出每一个位置的前缀和（从下标为0到下标为i - 1的位置的字符的总数）。这样在查询的时候就只有O(1)的时间复杂度了。
 时间复杂度：O(N) 空间复杂度：O(N) // C++ #include &lt;iostream>#include &lt;cmath>#include &lt;cstdio>#include &lt;math.h>#include &lt;limits>#include &lt;algorithm>#include &lt;vector>#include &lt;stack>#include &lt;queue>#include &lt;string>#include &lt;map>#include &lt;set>#include &lt;unordered_map>#include &lt;unordered_set> using namespace std; int main() { int total_test_case_number; cin >> total_test_case_number; for (int case_number = 1; case_number &lt;= total_test_case_number; ++case_number) { int N, Q, m, n, total = 0; cin >> N >> Q; string words; cin >> words; vector&lt;vector&lt;int>> odds(N + 1, vector&lt;int>(26)); for (int i = 1; i &lt;= N; ++i) { for (int j = 0; j &lt; 26; ++j) odds[i][j] = odds[i - 1][j]; ++odds[i][words[i - 1] - 'A']; } for (int q = 0; q &lt; Q; ++q) { cin >> m >> n; int odd = 0; for (int j = 0; j &lt; 26; ++j) odd += ((odds[n][j] - odds[m - 1][j]) % 2 !...</p>
 </section>
-<footer class=entry-footer><span title="2019-04-21 14:41:22 +1000 +1000">April 21, 2019</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-04-21 14:41:22 +1000 +1000">April 21, 2019</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to Kick Start 2019 Round B" href=http://zintrulcre.github.io/posts/kick-start/2019-round-b/></a>
 </article>
 <footer class=page-footer>
@@ -135,11 +135,8 @@ Solution: Prefix Sum 判断字符串是否是回文串只需要判断字符串�
 </footer>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href=http://zintrulcre.github.io/>尾張</a></span>
 <span>
-Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+Zhengyu &copy; 2022
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

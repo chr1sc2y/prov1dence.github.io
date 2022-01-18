@@ -6,7 +6,7 @@
 <title>Posts | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Posts - 尾張">
-<meta name=author content="Providence">
+<meta name=author content="Zhengyu">
 <link rel=canonical href=http://zintrulcre.github.io/posts/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -19,19 +19,19 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.91.2">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-132809676-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="Posts">
-<meta property="og:description" content="Providence's Blog">
+<meta property="og:description" content="Zhengyu's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="http://zintrulcre.github.io/posts/"><meta property="og:site_name" content="尾張">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Posts">
-<meta name=twitter:description content="Providence's Blog">
+<meta name=twitter:description content="Zhengyu's Blog">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://zintrulcre.github.io/posts/"}]}</script>
 </head>
 <body class=list id=top>
@@ -47,8 +47,8 @@
 </div>
 <ul id=menu>
 <li>
-<a href=http://zintrulcre.github.io/archives/ title=Archive>
-<span>Archive</span>
+<a href=http://zintrulcre.github.io/archives/ title=Posts>
+<span>Posts</span>
 </a>
 </li>
 <li>
@@ -69,8 +69,7 @@
 </h2>
 </header>
 <section class=entry-content>
-<p>Kafka 入门 [TOC]
-概述 Kafka 最初是为了解决 LinkedIn 数据管道问题应运而生的。它的设计目的是提供一个高性能的消息系统，可以处理多种数据类型，并能够实时提供纯净且结构化的用户活动数据和系统度量指标。
+<p>Kafka 入门 概述 Kafka 最初是为了解决 LinkedIn 数据管道问题应运而生的。它的设计目的是提供一个高性能的消息系统，可以处理多种数据类型，并能够实时提供纯净且结构化的用户活动数据和系统度量指标。
 它不只是一个数据存储系统（类似于传统的关系型数据库、键值存储引擎、搜索引擎或缓存系统），还是一个持续变化和不断增长的流处理系统。现在 Kafka 已经被广泛地应用在社交网络的实时数据流处理当中，成为了下一代数据架构的基础。Kafka 经常会被拿来与现有的企业级消息系统、大数据系统（如 Hadoop）和数据集成 ETL 工具等技术作比较。
 从发布和订阅消息流的角度来看，Kafka 类似于 ActiveMQ、RabbitMQ 或 IBM 的 MQSeries 等产品，其特点在于它以集群的方式运行，可以自由伸缩，处理大量的应用程序；其次，Kafka 可以按照要求持久化数据，即提供了数据传递的保证——可复制、持久化，保留多长时间完全可以由开发者决定。此外，消息系统只会传递消息，而 Kafka 的流式处理能力让我们只用很少的代码就能够动态地处理派生流和数据集。
 1 基础概念 消息代理 在一个基于发布与订阅的消息系统中，数据消息的发送者不直接把消息发送给接收者，而是通过一个消息代理 message broker 传递消息，接收者订阅消息代理，并以特定的方式接收消息。Kafka 就是一个消息代理。
@@ -86,7 +85,7 @@
 使用消息代理后，生产者和消费者即可解耦，不再需要有任何联系，也不需要受对方的影响，只要保持使用一致的消息格式即可。
 消息和批次 Kafka 的数据单元被称为消息，消息类似于关系型数据库里的一个数据行或一条记录；消息由字节数组组成，当消息以一种可控的方式写入不同的分区时，会用到 key，Kafka 会为 key 生成一个一致性散列值，然后使用散列值对主题分区数进行取模，为消息选取分区。这样可以保证具有相同 key 的消息总是被写到相同的分区上。...</p>
 </section>
-<footer class=entry-footer><span title="2021-11-29 23:41:52 +0800 CST">November 29, 2021</span>&nbsp;·&nbsp;14 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2021-11-29 23:41:52 +0800 CST">November 29, 2021</span>&nbsp;·&nbsp;14 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to Kafka 入门" href=http://zintrulcre.github.io/posts/message-broker/kafka/></a>
 </article>
 <article class=post-entry>
@@ -95,8 +94,7 @@
 </h2>
 </header>
 <section class=entry-content>
-<p>Prometheus 入门 [toc]
-Prometheus 是一个开源的监控解决方案，也是云原生基金会 CNCF 的毕业项目，它能够提供指标数据的采集、存储、查询、告警等功能。本文主要介绍 Prometheus 的基础概念和应用中需要注意的一些问题。
+<p>Prometheus 入门 Prometheus 是一个开源的监控解决方案，也是云原生基金会 CNCF 的毕业项目，它能够提供指标数据的采集、存储、查询、告警等功能。本文主要介绍 Prometheus 的基础概念和应用中需要注意的一些问题。
 1 监控系统 1.1 监控模式 监控系统执行监控检查的模式有两种，分别是 pull 和 push。Prometheus 采用了 pull 模式进行数据收集，同时也支持使用 Pushgateway 的 push 模式进行数据中转。
 pull 方式的特点是有拉取间隔，不能及时获取数值的变化，因此需要进一步的数据处理；它的优点是在告警时可以按照策略分片，仅拉取需要的数据，并且支持聚合场景；缺点是监控的数据量庞大，对存储有较高的要求，切需要考虑数据的冷热分离。
 push 方式的特点是由服务主动将数据推向监控系统，实时性更高；它的缺点是推送数据的不可预知性，因为当大量数据被推送到监控系统时，数据的缓存和解析会消耗大量资源，此时如果因为网络原因数据的收发没有得到确认，很容易产生数据的重发和重复，因此需要进行去重等操作。
@@ -108,7 +106,7 @@ Prometheus Server
 Prometheus 服务器主要包含了使用 pull 模式抓取监控数据，通过本地存储（本地磁盘）和远程存储（OpenTSDB, InfluxDB, ElasticSearch 等）保存数据，使用 PromQL 查询数据三大功能。
 PromQL (Prometheus Query Language) 是 Prometheus 内置的数据查询语言，提供了对时间序列数据的查询，聚合和逻辑运算等操作的支持，被广泛地应用在数据的查询，可视化和告警中。关于 PromQL 的相关操作可以参考 探索PromQL。...</p>
 </section>
-<footer class=entry-footer><span title="2021-10-21 18:01:12 +0800 CST">October 21, 2021</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2021-10-21 18:01:12 +0800 CST">October 21, 2021</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to Prometheus 入门" href=http://zintrulcre.github.io/posts/cloud/intro-to-prometheus/></a>
 </article>
 <article class=post-entry>
@@ -117,12 +115,12 @@ PromQL (Prometheus Query Language) 是 Prometheus 内置的数据查询语言，
 </h2>
 </header>
 <section class=entry-content>
-<p>Python 源码学习（5）：协程 [TOC]
-协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的生成器 generator 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。
+<p>Python 源码学习（5）：协程 协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的生成器 generator 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。
 1 生成器 如果 Python 中的函数含有 yield 关键字，那么在调用这个函数时，它不会如同普通的函数一样运行到 return 语句并返回一个变量，而是会立即返回一个生成器对象；以一个斐波那契数列生成函数为例：
-def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, a + b if __name__ == "__main__": fsg = FibonacciSequenceGenerator() print(fsg) print(type(fsg)) $ python3 main.py &lt;generator object FibonacciSequenceGenerator at 0x7fb4720b1ac0> &lt;class 'generator'> 可以看到函数 FibonacciSequenceGenerator 返回了一个类型为 generator 的生成器对象 f；对于生成器对象，我们不能像操作普通函数一样直接进行函数调用，而是要使用 next() 或 fsg.send() 来进行函数切换，使得生成器函数开始或继续执行，直到 yield 所在行或是函数末尾再将执行权交还给调用方：...</p>
+def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, a + b if __name__ == "__main__": fsg = FibonacciSequenceGenerator() print(fsg) print(type(fsg)) $ python3 main.py &lt;generator object FibonacciSequenceGenerator at 0x7fb4720b1ac0> &lt;class 'generator'> 可以看到函数 FibonacciSequenceGenerator 返回了一个类型为 generator 的生成器对象 f；对于生成器对象，我们不能像操作普通函数一样直接进行函数调用，而是要使用 next() 或 fsg.send() 来进行函数切换，使得生成器函数开始或继续执行，直到 yield 所在行或是函数末尾再将执行权交还给调用方：
+for i in range(100): print(next(fsg)) $ python3 main....</p>
 </section>
-<footer class=entry-footer><span title="2021-08-04 17:38:52 +0800 CST">August 4, 2021</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2021-08-04 17:38:52 +0800 CST">August 4, 2021</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to Python 源码学习（5）：协程" href=http://zintrulcre.github.io/posts/python/python-source-code-coroutine/></a>
 </article>
 <article class=post-entry>
@@ -131,13 +129,12 @@ def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, 
 </h2>
 </header>
 <section class=entry-content>
-<p>Python 源码学习（4）：编译器和虚拟机 [TOC]
-Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 CPython。
+<p>Python 源码学习（4）：编译器和虚拟机 Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 CPython。
 Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler）和 Python 虚拟机（Python Virutal Machine）两部分组成。当我们通过 Python 命令执行 Python 代码时，Python 编译器会将 Python 代码编译为 Python 字节码（bytecode）；随后 Python 虚拟机会读取并逐步执行这些字节码。
 1 Python 编译器 1.1 代码对象 Python 提供了内置函数 compile，可以编译 Python 代码并生成一个包含字节码信息的对象，举例如下：
 # test.py def Square(a): return a * a print(f"result:\t\t{Square(5)}") # main.py f = "test.py" code_obj = compile(open(f).read(), f, 'exec') exec(code_obj) print(f"code_obj:\t{code_obj}") print(f"type:\t\t{type(code_obj)}") $ python3 main.py result: 25 code_obj: &lt;code object &lt;module> at 0x7f052c156b30, file "test....</p>
 </section>
-<footer class=entry-footer><span title="2021-05-26 10:18:52 +0800 CST">May 26, 2021</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2021-05-26 10:18:52 +0800 CST">May 26, 2021</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to Python 源码学习（4）：编译器和虚拟机" href=http://zintrulcre.github.io/posts/python/python-source-code-interpreter/></a>
 </article>
 <article class=post-entry>
@@ -146,11 +143,10 @@ Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler�
 </h2>
 </header>
 <section class=entry-content>
-<p>Python 源码学习（3）：list 类型 [TOC]
-Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中：
-// Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for 'allocated' elements. The number * currently in use is ob_size. * Invariants: * 0 &lt;= ob_size &lt;= allocated * len(list) == ob_size * ob_item == NULL implies ob_size == allocated == 0 * list....</p>
+<p>Python 源码学习（3）：list 类型 Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中：
+// Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for 'allocated' elements. The number * currently in use is ob_size. * Invariants: * 0 &lt;= ob_size &lt;= allocated * len(list) == ob_size * ob_item == NULL implies ob_size == allocated == 0 * list.sort() temporarily sets allocated to -1 to detect mutations....</p>
 </section>
-<footer class=entry-footer><span title="2021-05-06 20:07:52 +0800 CST">May 6, 2021</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2021-05-06 20:07:52 +0800 CST">May 6, 2021</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to Python 源码学习（3）：list 类型" href=http://zintrulcre.github.io/posts/python/source-code-3-list-and-dict/></a>
 </article>
 <footer class=page-footer>
@@ -160,11 +156,8 @@ Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体�
 </footer>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href=http://zintrulcre.github.io/>尾張</a></span>
 <span>
-Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+Zhengyu &copy; 2022
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

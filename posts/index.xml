@@ -13,8 +13,7 @@
       <pubDate>Mon, 29 Nov 2021 23:41:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/message-broker/kafka/</guid>
-      <description>Kafka 入门 [TOC]
-概述 Kafka 最初是为了解决 LinkedIn 数据管道问题应运而生的。它的设计目的是提供一个高性能的消息系统，可以处理多种数据类型，并能够实时提供纯净且结构化的用户活动数据和系统度量指标。
+      <description>Kafka 入门 概述 Kafka 最初是为了解决 LinkedIn 数据管道问题应运而生的。它的设计目的是提供一个高性能的消息系统，可以处理多种数据类型，并能够实时提供纯净且结构化的用户活动数据和系统度量指标。
 它不只是一个数据存储系统（类似于传统的关系型数据库、键值存储引擎、搜索引擎或缓存系统），还是一个持续变化和不断增长的流处理系统。现在 Kafka 已经被广泛地应用在社交网络的实时数据流处理当中，成为了下一代数据架构的基础。Kafka 经常会被拿来与现有的企业级消息系统、大数据系统（如 Hadoop）和数据集成 ETL 工具等技术作比较。
 从发布和订阅消息流的角度来看，Kafka 类似于 ActiveMQ、RabbitMQ 或 IBM 的 MQSeries 等产品，其特点在于它以集群的方式运行，可以自由伸缩，处理大量的应用程序；其次，Kafka 可以按照要求持久化数据，即提供了数据传递的保证——可复制、持久化，保留多长时间完全可以由开发者决定。此外，消息系统只会传递消息，而 Kafka 的流式处理能力让我们只用很少的代码就能够动态地处理派生流和数据集。
 1 基础概念 消息代理 在一个基于发布与订阅的消息系统中，数据消息的发送者不直接把消息发送给接收者，而是通过一个消息代理 message broker 传递消息，接收者订阅消息代理，并以特定的方式接收消息。Kafka 就是一个消息代理。
@@ -37,8 +36,7 @@
       <pubDate>Thu, 21 Oct 2021 18:01:12 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/cloud/intro-to-prometheus/</guid>
-      <description>Prometheus 入门 [toc]
-Prometheus 是一个开源的监控解决方案，也是云原生基金会 CNCF 的毕业项目，它能够提供指标数据的采集、存储、查询、告警等功能。本文主要介绍 Prometheus 的基础概念和应用中需要注意的一些问题。
+      <description>Prometheus 入门 Prometheus 是一个开源的监控解决方案，也是云原生基金会 CNCF 的毕业项目，它能够提供指标数据的采集、存储、查询、告警等功能。本文主要介绍 Prometheus 的基础概念和应用中需要注意的一些问题。
 1 监控系统 1.1 监控模式 监控系统执行监控检查的模式有两种，分别是 pull 和 push。Prometheus 采用了 pull 模式进行数据收集，同时也支持使用 Pushgateway 的 push 模式进行数据中转。
 pull 方式的特点是有拉取间隔，不能及时获取数值的变化，因此需要进一步的数据处理；它的优点是在告警时可以按照策略分片，仅拉取需要的数据，并且支持聚合场景；缺点是监控的数据量庞大，对存储有较高的要求，切需要考虑数据的冷热分离。
 push 方式的特点是由服务主动将数据推向监控系统，实时性更高；它的缺点是推送数据的不可预知性，因为当大量数据被推送到监控系统时，数据的缓存和解析会消耗大量资源，此时如果因为网络原因数据的收发没有得到确认，很容易产生数据的重发和重复，因此需要进行去重等操作。
@@ -57,10 +55,10 @@ PromQL (Prometheus Query Language) 是 Prometheus 内置的数据查询语言，
       <pubDate>Wed, 04 Aug 2021 17:38:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/python/python-source-code-coroutine/</guid>
-      <description>Python 源码学习（5）：协程 [TOC]
-协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的生成器 generator 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。
+      <description>Python 源码学习（5）：协程 协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的生成器 generator 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。
 1 生成器 如果 Python 中的函数含有 yield 关键字，那么在调用这个函数时，它不会如同普通的函数一样运行到 return 语句并返回一个变量，而是会立即返回一个生成器对象；以一个斐波那契数列生成函数为例：
-def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, a + b if __name__ == &amp;#34;__main__&amp;#34;: fsg = FibonacciSequenceGenerator() print(fsg) print(type(fsg)) $ python3 main.py &amp;lt;generator object FibonacciSequenceGenerator at 0x7fb4720b1ac0&amp;gt; &amp;lt;class &amp;#39;generator&amp;#39;&amp;gt; 可以看到函数 FibonacciSequenceGenerator 返回了一个类型为 generator 的生成器对象 f；对于生成器对象，我们不能像操作普通函数一样直接进行函数调用，而是要使用 next() 或 fsg.send() 来进行函数切换，使得生成器函数开始或继续执行，直到 yield 所在行或是函数末尾再将执行权交还给调用方：</description>
+def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, a + b if __name__ == &amp;#34;__main__&amp;#34;: fsg = FibonacciSequenceGenerator() print(fsg) print(type(fsg)) $ python3 main.py &amp;lt;generator object FibonacciSequenceGenerator at 0x7fb4720b1ac0&amp;gt; &amp;lt;class &amp;#39;generator&amp;#39;&amp;gt; 可以看到函数 FibonacciSequenceGenerator 返回了一个类型为 generator 的生成器对象 f；对于生成器对象，我们不能像操作普通函数一样直接进行函数调用，而是要使用 next() 或 fsg.send() 来进行函数切换，使得生成器函数开始或继续执行，直到 yield 所在行或是函数末尾再将执行权交还给调用方：
+for i in range(100): print(next(fsg)) $ python3 main.</description>
     </item>
     
     <item>
@@ -69,8 +67,7 @@ def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, 
       <pubDate>Wed, 26 May 2021 10:18:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/python/python-source-code-interpreter/</guid>
-      <description>Python 源码学习（4）：编译器和虚拟机 [TOC]
-Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 CPython。
+      <description>Python 源码学习（4）：编译器和虚拟机 Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 CPython。
 Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler）和 Python 虚拟机（Python Virutal Machine）两部分组成。当我们通过 Python 命令执行 Python 代码时，Python 编译器会将 Python 代码编译为 Python 字节码（bytecode）；随后 Python 虚拟机会读取并逐步执行这些字节码。
 1 Python 编译器 1.1 代码对象 Python 提供了内置函数 compile，可以编译 Python 代码并生成一个包含字节码信息的对象，举例如下：
 # test.py def Square(a): return a * a print(f&amp;#34;result:\t\t{Square(5)}&amp;#34;) # main.py f = &amp;#34;test.py&amp;#34; code_obj = compile(open(f).read(), f, &amp;#39;exec&amp;#39;) exec(code_obj) print(f&amp;#34;code_obj:\t{code_obj}&amp;#34;) print(f&amp;#34;type:\t\t{type(code_obj)}&amp;#34;) $ python3 main.py result: 25 code_obj: &amp;lt;code object &amp;lt;module&amp;gt; at 0x7f052c156b30, file &amp;#34;test.</description>
@@ -82,9 +79,8 @@ Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler�
       <pubDate>Thu, 06 May 2021 20:07:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/python/source-code-3-list-and-dict/</guid>
-      <description>Python 源码学习（3）：list 类型 [TOC]
-Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中：
-// Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for &amp;#39;allocated&amp;#39; elements. The number * currently in use is ob_size. * Invariants: * 0 &amp;lt;= ob_size &amp;lt;= allocated * len(list) == ob_size * ob_item == NULL implies ob_size == allocated == 0 * list.</description>
+      <description>Python 源码学习（3）：list 类型 Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中：
+// Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for &amp;#39;allocated&amp;#39; elements. The number * currently in use is ob_size. * Invariants: * 0 &amp;lt;= ob_size &amp;lt;= allocated * len(list) == ob_size * ob_item == NULL implies ob_size == allocated == 0 * list.sort() temporarily sets allocated to -1 to detect mutations.</description>
     </item>
     
     <item>
@@ -93,8 +89,7 @@ Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体�
       <pubDate>Mon, 26 Apr 2021 21:44:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/serialization/protocol-buffer/</guid>
-      <description>ProtoBuf 语法和编码原理入门 [toc]
-序列化是指将结构化数据转换成易于存储或发送的数据格式的过程，Protocol Buffer 简称 ProtoBuf，是一种语言无关，平台无关的序列化工具，由谷歌在 2008 年开源。相较于常见的序列化工具 XML, JSON, YAML, CSV 等，ProtoBuf 的优势主要包括序列化后数据量小，序列化和反序列化过程速度快，使用时只需定义 proto 文件使得其维护成本低，可向后兼容等；但因为其数据以二进制数据流的形式存在，也有人类不可读的劣势。
+      <description>ProtoBuf 语法和编码原理入门 序列化是指将结构化数据转换成易于存储或发送的数据格式的过程，Protocol Buffer 简称 ProtoBuf，是一种语言无关，平台无关的序列化工具，由谷歌在 2008 年开源。相较于常见的序列化工具 XML, JSON, YAML, CSV 等，ProtoBuf 的优势主要包括序列化后数据量小，序列化和反序列化过程速度快，使用时只需定义 proto 文件使得其维护成本低，可向后兼容等；但因为其数据以二进制数据流的形式存在，也有人类不可读的劣势。
 本文主要介绍 ProtoBuf 的使用方法，包括 .proto 文件的语法，以及如何使用 protoc 工具来生成不通语言的代码；以及其编码原理。
 1 语法 首先从 https://github.com/protocolbuffers/protobuf 找到最新版本的 ProtoBuf，下载预编译好的二进制文件 protoc 解压到环境变量目录，本文使用的是 3.15.7 版本：
 $ protoc --version libprotoc 3.15.7 以一个简单的 proto 文件为例，它的语法和 C++ 类似：
@@ -107,8 +102,7 @@ $ protoc --version libprotoc 3.15.7 以一个简单的 proto 文件为例，它�
       <pubDate>Wed, 31 Mar 2021 15:37:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/python/source-code-2/</guid>
-      <description>Python 源码学习（2）：int 类型 [TOC]
-Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 PyBaseObject_Type 类型的 PyType_Type 类型的实例对象，本文则主要探究 Python 中 int 类型的实现。
+      <description>Python 源码学习（2）：int 类型 Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 PyBaseObject_Type 类型的 PyType_Type 类型的实例对象，本文则主要探究 Python 中 int 类型的实现。
 不同于 C 和 C++ 中的 int 类型，Python 中的 int 类型最大的特点是它一般是不会溢出的，对比用 C 和 Python 分别输出两个一百万相乘的结果：
 &amp;gt;&amp;gt;&amp;gt; x = 10000000000 &amp;gt;&amp;gt;&amp;gt; print(x) 10000000000 在 C 语言中会发生溢出：
 printf(&amp;#34;%d\n&amp;#34;, 1000000 * 1000000); printf(&amp;#34;%u\n&amp;#34;, 1000000 * 1000000); -727379968 3567587328 1 int 类型在内存中的存储方式 1.1 内存结构 Python 中的 int 整数类型实际上是一个名为 PyLongObject 的结构体，定义在 longintrepr.h 文件中：
@@ -121,8 +115,7 @@ printf(&amp;#34;%d\n&amp;#34;, 1000000 * 1000000); printf(&amp;#34;%u\n&amp;#34;
       <pubDate>Sun, 14 Mar 2021 16:05:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/python/source-code-1/</guid>
-      <description>Python 源码学习（1）：类型和对象 [TOC]
-Python 是一门解释型，动态类型，多范式的编程语言，当我们从 python.org 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 CPython，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：
+      <description>Python 源码学习（1）：类型和对象 Python 是一门解释型，动态类型，多范式的编程语言，当我们从 python.org 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 CPython，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：
 $ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |-- Doc	# 文档 |-- Grammar |-- Include # C 头文件 |-- Lib	# 用 Python 写的库文件 |-- Mac	# 用于在 macOS 上构建的文件 |-- Misc	# 杂项 |-- Modules	# 用 C 写的库文件 |-- Objects # 核心类型，以及对象模型的定义 |-- PC	# 用于在 Windows 上构建的文件 |-- PCbuild # 用于在老版本的 Windows 上构建的文件 |-- Parser	# Python 解析器源码 |-- Programs	# Python 可执行文件和其他 |-- Python	# CPython 编译器源码 |-- Tools	# 构建时的工具 `-- m4 16 directories 本系列主要以阅读和分析 CPython 源码的方式学习 Python。</description>
     </item>
     
@@ -132,8 +125,7 @@ $ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |--
       <pubDate>Sun, 21 Feb 2021 21:20:18 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/smart-pointer/</guid>
-      <description>C++ 智能指针的简单实现 [TOC]
-1 std::auto_ptr C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类：
+      <description>C++ 智能指针的简单实现 1 std::auto_ptr C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类：
 template&amp;lt;typename T&amp;gt; class Object { public: // constructor  Object() : t_() { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } Object(T t) : t_(t) { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // copy-ctor  Object(const Object &amp;amp;other) { cout &amp;lt;&amp;lt; &amp;#34;Object::Copy-ctor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // destructor  ~Object() { cout &amp;lt;&amp;lt; &amp;#34;Object::Destructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } void Set(T t) { t_ = t; } void Print() { cout &amp;lt;&amp;lt; t_ &amp;lt;&amp;lt; endl; } private: T t_; }; 如果在堆上为类对象分配了内存，在离开其作用域的时候又没将其释放，则会造成内存泄漏：</description>
     </item>
     
@@ -144,7 +136,6 @@ template&amp;lt;typename T&amp;gt; class Object { public: // constructor  Object
       
       <guid>http://zintrulcre.github.io/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</guid>
       <description>启发式搜索和强化学习 The Pac-Man Projects 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。
-[TOC]
 1 盲目搜索 盲目搜索（Blind Search）指不利用任何额外信息（输入数据，或辅助函数），只依赖于算法本身的搜索，例如 BFS，DFS，Dijkstra 等；
 DFS The Pac-Man Projects  已经实现了吃豆人游戏的后台逻辑和图形渲染框架，我们只需要在 search.py 文件中实现具体的搜索算法，并根据搜索算法生成寻路路径，即可让吃豆人移动，先来实现一个简单的 DFS：
 def DepthFirstSearch(problem): from util import Stack open_list = Stack() visited = [] open_list.push((problem.getStartState(), [])) while not open_list.isEmpty(): current_node, path = open_list.pop() if problem.isGoalState(current_node): return path if current_node in visited: continue visited.append(current_node) for next_node, action, cost in problem.getSuccessors(current_node): if next_node not in visited: open_list.push((next_node, path + [action])) dfs = DepthFirstSearch 在吃豆人游戏的框架下，为寻路函数传入的 problem 参数可以理解为一个 class SearchProblem 类型的抽象基类，实际的问题有 PositionSearchProblem（找到单个终点），FoodSearchProblem（找到所有食物），CapsuleSearchProblem（找到增益药丸和所有食物）等，这些子类都需要实现以下函数：</description>
@@ -156,8 +147,7 @@ def DepthFirstSearch(problem): from util import Stack open_list = Stack() visite
       <pubDate>Sat, 14 Nov 2020 21:20:18 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/closure-and-anonymous-function/</guid>
-      <description>C++ 闭包和匿名函数 [TOC]
-本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。
+      <description>C++ 闭包和匿名函数 本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。
 1 闭包和仿函数 闭包（Closure）可以被理解为一个附带数据的操作，WikiPedia 对闭包的定义是 &amp;ldquo;In programming languages, a closure, also lexical closure or function closure, is a technique for implementing lexically scoped name binding in a language with first-class functions.&amp;quot;，其中有两层含义：
  词法作用域（lexically scoped）的名字绑定（name binding）：在词法作用域（C++ 的词法作用域是静态绑定的，包括块、函数、类、命名空间、全局作用域等）中，变量名与其词法上下文的标识符相关联，而独立于运行时的调用栈； 函数被当作头等公民（first-class citizen）：在运行时可以构造一个函数对象并将其作为参数传递给其他函数；  显然 C++ 98 并不符合这两点定义，因此 C++ 98 中并没有严格意义上的闭包，但我们可以用仿函数（Functor）来模拟闭包的行为；仿函数即一个重载了小括号操作符的类，这个类拥有与函数相近的行为方式，它拥有自己的私有成员变量，例如：
 class Adder { public: int operator()(int num) { sum += num; return sum; } Adder() : sum(0) {} Adder(int num) : sum(num) {} private: int sum; }; int main() { Adder adder(0); cout &amp;lt;&amp;lt; adder(1) &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; adder(2) &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; adder(3) &amp;lt;&amp;lt; endl; } $ g++ -std=c++98 -o adder adder.</description>
@@ -169,8 +159,7 @@ class Adder { public: int operator()(int num) { sum += num; return sum; } Adder(
       <pubDate>Sun, 25 Oct 2020 23:06:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/service-governance/load-balancing/</guid>
-      <description>负载均衡和一致性哈希 [TOC]
-反向代理 reverse proxy 是指以代理服务器来接收由客户端发送来的请求，并通过一定的策略将其转变发给实际处理请求的后端服务器；主要应用于负载均衡、动态缓存、安全认证、内网穿透、SSL 加密等；而负载均衡 load balancing 是指在多个 slot（槽，一般是某种计算资源）中分配负载，以优化资源利用率和避免单点故障问题的方法，是高可用性分布式系统的必备中间件；常用的开源 load balancer 有 nginx，LVS，Haproxy 等；负载均衡可以视为反向代理的一种应用，负载均衡的方法大致可以分为传统负载均衡算法和哈希算法两种，本文简单地总结了这些算法的原理。
+      <description>负载均衡和一致性哈希 反向代理 reverse proxy 是指以代理服务器来接收由客户端发送来的请求，并通过一定的策略将其转变发给实际处理请求的后端服务器；主要应用于负载均衡、动态缓存、安全认证、内网穿透、SSL 加密等；而负载均衡 load balancing 是指在多个 slot（槽，一般是某种计算资源）中分配负载，以优化资源利用率和避免单点故障问题的方法，是高可用性分布式系统的必备中间件；常用的开源 load balancer 有 nginx，LVS，Haproxy 等；负载均衡可以视为反向代理的一种应用，负载均衡的方法大致可以分为传统负载均衡算法和哈希算法两种，本文简单地总结了这些算法的原理。
 1 传统负载均衡算法  随机 random：将 key 随机分配到某一个 slot 上，根据概率论可知，吞吐量越大，随机算法的效果越好； 加权随机 weighted random：为每一个 slot 分配一个权重，在随机的时候考虑权重的影响；可以通过在所有 slot 的权重总和中随机出一个数字 k，找到 k 所在的 slot 位置来实现； 轮询 round robin：按顺序依次将 key 分配给每一个 slot； 加权轮询 weighted round robin：为每一个 slot 分配一个权重，在按序分配时为权重更高的 slot 分配更多的 key； 平滑加权轮询 smooth weighted round robin：一种能够均匀地分散调度序列的加权轮询方法，分为以下几个步骤：  选出当前权重最高的 slot，将 key 分配给它； 将选出的 slot 的权重数值减去其初始权重； 将所有 slot 的权重数值都加上它们的原始权重； 重复以上步骤；   最少连接数 least connections：将 key 分配给当前具有最少连接数量的 slot；  2 Mod-N 哈希 在有些场景下，传统负载均衡算法无法满足我们的需求，例如：</description>
     </item>
     
@@ -180,8 +169,7 @@ class Adder { public: int operator()(int num) { sum += num; return sum; } Adder(
       <pubDate>Wed, 30 Sep 2020 16:20:25 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</guid>
-      <description>C++ 并发入门：以 LeetCode 1114 为例 [toc]
-题目 直接做题：1114 按序打印
+      <description>C++ 并发入门：以 LeetCode 1114 为例 题目 直接做题：1114 按序打印
 解法 1. std::mutex 如果你对 c++ 11 略为熟悉的话，应该能够想到用 std::mutex 来解这道题，在函数构造时（主线程）对 std::mutex 进行 lock，然后在各个线程调用的函数中依次对 std::mutex 对象进行 unlock：
 class Foo { mutex mtx1, mtx2; public: Foo() { mtx1.lock(), mtx2.lock(); } void first(function&amp;lt;void()&amp;gt; printFirst) { printFirst(); mtx1.unlock(); } void second(function&amp;lt;void()&amp;gt; printSecond) { mtx1.lock(); printSecond(); mtx1.unlock(); mtx2.unlock(); } void third(function&amp;lt;void()&amp;gt; printThird) { mtx2.lock(); printThird(); mtx2.unlock(); } }; Mutex 即 mutual exclusion，是用来防止多个线程同时访问共享资源对象的机制，在同一时间只有一个线程可以拥有一个 mutex 对象，其他线程调用 std::mutex::lock 函数时会阻塞直到其获取锁资源。
 这段代码能够 ac，但实际上这种使用 mutex 的方法是错误的，因为根据 c++ 标准，在一个线程尝试对一个 mutex 对象进行 unlock 操作时，mutex 对象的所有权必须在这个线程上；也就是说，应该由同一个线程来对一个 mutex 对象进行 lock 和 unlock 操作，否则会产生未定义行为。题目中提到了 first, second, third 三个函数分别是由三个不同的线程来调用的，但我们是在 Foo 对象构造时（可以是在 create 这几个线程的主线程中，也可以是在三个线程中的任意一个）对两个 mutex 对象进行 lock 操作的，因此，调用 first 和 second 函数的两个线程中至少有一个在尝试获取其他线程所拥有的 mutex 对象的所有权。</description>
@@ -193,8 +181,7 @@ class Foo { mutex mtx1, mtx2; public: Foo() { mtx1.lock(), mtx2.lock(); } void f
       <pubDate>Thu, 24 Sep 2020 16:43:27 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/effective-cpp/</guid>
-      <description>Effective C++ 笔记 [TOC]
-0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如
+      <description>Effective C++ 笔记 0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如
 class Bar { public: // explicit Bar(); // 是 default 构造函数  // explicit Bar(int x = 0) // 不是 default 构造函数  explicit Bar(int x = 0, bool b = true); // 是 default 构造函数 private: int x; bool b; }; explicit 关键字：阻止执行隐式类型转换，其优点是禁止了编译器执行非预期的类型转换，例如
 void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象  Bar obj_1; // 构造一个 Bar 类型的对象 Foo (obj_1); // 没问题，传递一个 Bar 类型的对象给 Foo 函数 Foo (Bar()); // 没问题，构造一个 Bar 类型的对象，并传递给 Foo 函数 Foo (2); // 如果 Bar 的构造函数没有被声明为 explicit，那么会调用 Bar 的构造函数构造一个成员变量 x = 2 的对象，也就是说发生了隐式类型转换；如果其构造函数被声明为 explicit，那么就不会构造出 Bar 类型的对象 copy 构造函数：用同类型的对象初始化新的对象，它定义了一个对象如何 pass by reference。</description>
     </item>
@@ -216,8 +203,7 @@ Meyer’s Singleton Scott Meyers 在 Effective C++ 的 Item 4: Make sure that ob
       <pubDate>Wed, 12 Aug 2020 18:32:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/parallel-computing/parallel-computing/</guid>
-      <description>并行计算入门 [TOC]
-1 概述 1.1 并行计算 高性能计算（High Performance Computing）是计算机科学中的一个领域，其目的可以概括为优化性能，它包括了缓存技术、数据结构和算法、IO 优化、指令重组（instruction reorganization）、编译器优化等；
+      <description>并行计算入门 1 概述 1.1 并行计算 高性能计算（High Performance Computing）是计算机科学中的一个领域，其目的可以概括为优化性能，它包括了缓存技术、数据结构和算法、IO 优化、指令重组（instruction reorganization）、编译器优化等；
 并行计算（Parallel Computing）是高性能计算下的一个细分领域，其主要思想是将复杂问题分解成若干个部分，将每一个部分交给独立的处理器（计算资源）进行计算，以提高效率；针对不同的问题，并行计算需要专用的并行架构，架构既可以是专门设计的，含有多个处理器的单一硬件或超级计算机，也可以是以某种方式互连的若干台的独立计算机构成的集群；并没有一个统一的并行计算架构适用于每一个问题，如果使用了错误的架构，并行计算甚至会导致性能下降。
 1.2 硬件架构 中央处理器（Central Processing Unit）的主要功能是解释计算机指令，它由控制单元（Control Unit）、算术逻辑单元（Arithmetic Logic Unit）、乱序控制单元（Out-of-Order Control Unit）、分支预测器（Branch Predictor）、数据缓存（Data Cache）等部件组成；CPU 被设计为可以快速地处理各种通用计算任务并最小化延迟，但在并发性（时钟频率）方面受到限制；
 图形处理器（Graphics Processing Unit, GPU）是英伟达（NVIDIA）在 1999 年 8 月发布 NVIDIA GeForce 256 时提出的概念；现代 GPU 的模型设计可以概括为几个关键点：
@@ -717,16 +703,16 @@ C++ 内存分配
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/proxy/ax1800/</guid>
-      <description>小米 AX1800 使用 ShellClash 科学上网 [TOC]
-本文介绍如何在小米 AX1800 上使用 ShellClash 科学上网。
+      <description>小米 AX1800 使用 ShellClash 科学上网 本文介绍如何在小米 AX1800 上使用 ShellClash 科学上网。
 1 固件降级 小米 AX1800 1.0.336 版本固件
 在 MiWiFi 后台的常用设置 -&amp;gt; 系统状态中点击手动升级，使用 1.0.336 版本的固件对路由器进行降级，整个过程不需要任何额外的操作。
 完成后第一次进入后台配置时选择不自动更新，或在小米 Wi-Fi 手机 App 中关闭自动更新功能。
 更新完成后路由器会重置为路由器底部贴条的设置。
 2 解锁 SSH 首先登陆小米路由器后台 192.168.31.1，将浏览器地址栏中 stok= 后面的一部分的即为拷贝下来。
 获取 SSH 权限 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {&amp;quot;code&amp;quot;:0} 即代表成功，这样就解锁了 SSH 到路由器上的权限。
-http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20&#39;s%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg&#39;%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B修改 root 密码 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {&amp;quot;code&amp;quot;:0} 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。
-http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20echo%20-e%20&#39;admin%5Cnadmin&#39;%20%7C%20passwd%20root%3B连接 SSH 打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。</description>
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20&#39;s%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg&#39;%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B 修改 root 密码 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {&amp;quot;code&amp;quot;:0} 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20echo%20-e%20&#39;admin%5Cnadmin&#39;%20%7C%20passwd%20root%3B 连接 SSH 打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。
+ssh root@192.</description>
     </item>
     
   </channel>

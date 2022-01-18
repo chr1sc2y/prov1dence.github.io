@@ -13,10 +13,10 @@
       <pubDate>Wed, 04 Aug 2021 17:38:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/python/python-source-code-coroutine/</guid>
-      <description>Python 源码学习（5）：协程 [TOC]
-协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的生成器 generator 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。
+      <description>Python 源码学习（5）：协程 协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的生成器 generator 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。
 1 生成器 如果 Python 中的函数含有 yield 关键字，那么在调用这个函数时，它不会如同普通的函数一样运行到 return 语句并返回一个变量，而是会立即返回一个生成器对象；以一个斐波那契数列生成函数为例：
-def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, a + b if __name__ == &amp;#34;__main__&amp;#34;: fsg = FibonacciSequenceGenerator() print(fsg) print(type(fsg)) $ python3 main.py &amp;lt;generator object FibonacciSequenceGenerator at 0x7fb4720b1ac0&amp;gt; &amp;lt;class &amp;#39;generator&amp;#39;&amp;gt; 可以看到函数 FibonacciSequenceGenerator 返回了一个类型为 generator 的生成器对象 f；对于生成器对象，我们不能像操作普通函数一样直接进行函数调用，而是要使用 next() 或 fsg.send() 来进行函数切换，使得生成器函数开始或继续执行，直到 yield 所在行或是函数末尾再将执行权交还给调用方：</description>
+def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, a + b if __name__ == &amp;#34;__main__&amp;#34;: fsg = FibonacciSequenceGenerator() print(fsg) print(type(fsg)) $ python3 main.py &amp;lt;generator object FibonacciSequenceGenerator at 0x7fb4720b1ac0&amp;gt; &amp;lt;class &amp;#39;generator&amp;#39;&amp;gt; 可以看到函数 FibonacciSequenceGenerator 返回了一个类型为 generator 的生成器对象 f；对于生成器对象，我们不能像操作普通函数一样直接进行函数调用，而是要使用 next() 或 fsg.send() 来进行函数切换，使得生成器函数开始或继续执行，直到 yield 所在行或是函数末尾再将执行权交还给调用方：
+for i in range(100): print(next(fsg)) $ python3 main.</description>
     </item>
     
     <item>
@@ -25,8 +25,7 @@ def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, 
       <pubDate>Wed, 26 May 2021 10:18:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/python/python-source-code-interpreter/</guid>
-      <description>Python 源码学习（4）：编译器和虚拟机 [TOC]
-Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 CPython。
+      <description>Python 源码学习（4）：编译器和虚拟机 Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 CPython。
 Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler）和 Python 虚拟机（Python Virutal Machine）两部分组成。当我们通过 Python 命令执行 Python 代码时，Python 编译器会将 Python 代码编译为 Python 字节码（bytecode）；随后 Python 虚拟机会读取并逐步执行这些字节码。
 1 Python 编译器 1.1 代码对象 Python 提供了内置函数 compile，可以编译 Python 代码并生成一个包含字节码信息的对象，举例如下：
 # test.py def Square(a): return a * a print(f&amp;#34;result:\t\t{Square(5)}&amp;#34;) # main.py f = &amp;#34;test.py&amp;#34; code_obj = compile(open(f).read(), f, &amp;#39;exec&amp;#39;) exec(code_obj) print(f&amp;#34;code_obj:\t{code_obj}&amp;#34;) print(f&amp;#34;type:\t\t{type(code_obj)}&amp;#34;) $ python3 main.py result: 25 code_obj: &amp;lt;code object &amp;lt;module&amp;gt; at 0x7f052c156b30, file &amp;#34;test.</description>
@@ -38,9 +37,8 @@ Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler�
       <pubDate>Thu, 06 May 2021 20:07:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/python/source-code-3-list-and-dict/</guid>
-      <description>Python 源码学习（3）：list 类型 [TOC]
-Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中：
-// Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for &amp;#39;allocated&amp;#39; elements. The number * currently in use is ob_size. * Invariants: * 0 &amp;lt;= ob_size &amp;lt;= allocated * len(list) == ob_size * ob_item == NULL implies ob_size == allocated == 0 * list.</description>
+      <description>Python 源码学习（3）：list 类型 Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中：
+// Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for &amp;#39;allocated&amp;#39; elements. The number * currently in use is ob_size. * Invariants: * 0 &amp;lt;= ob_size &amp;lt;= allocated * len(list) == ob_size * ob_item == NULL implies ob_size == allocated == 0 * list.sort() temporarily sets allocated to -1 to detect mutations.</description>
     </item>
     
     <item>
@@ -49,8 +47,7 @@ Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体�
       <pubDate>Wed, 31 Mar 2021 15:37:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/python/source-code-2/</guid>
-      <description>Python 源码学习（2）：int 类型 [TOC]
-Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 PyBaseObject_Type 类型的 PyType_Type 类型的实例对象，本文则主要探究 Python 中 int 类型的实现。
+      <description>Python 源码学习（2）：int 类型 Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 PyBaseObject_Type 类型的 PyType_Type 类型的实例对象，本文则主要探究 Python 中 int 类型的实现。
 不同于 C 和 C++ 中的 int 类型，Python 中的 int 类型最大的特点是它一般是不会溢出的，对比用 C 和 Python 分别输出两个一百万相乘的结果：
 &amp;gt;&amp;gt;&amp;gt; x = 10000000000 &amp;gt;&amp;gt;&amp;gt; print(x) 10000000000 在 C 语言中会发生溢出：
 printf(&amp;#34;%d\n&amp;#34;, 1000000 * 1000000); printf(&amp;#34;%u\n&amp;#34;, 1000000 * 1000000); -727379968 3567587328 1 int 类型在内存中的存储方式 1.1 内存结构 Python 中的 int 整数类型实际上是一个名为 PyLongObject 的结构体，定义在 longintrepr.h 文件中：
@@ -63,8 +60,7 @@ printf(&amp;#34;%d\n&amp;#34;, 1000000 * 1000000); printf(&amp;#34;%u\n&amp;#34;
       <pubDate>Sun, 14 Mar 2021 16:05:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/python/source-code-1/</guid>
-      <description>Python 源码学习（1）：类型和对象 [TOC]
-Python 是一门解释型，动态类型，多范式的编程语言，当我们从 python.org 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 CPython，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：
+      <description>Python 源码学习（1）：类型和对象 Python 是一门解释型，动态类型，多范式的编程语言，当我们从 python.org 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 CPython，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：
 $ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |-- Doc	# 文档 |-- Grammar |-- Include # C 头文件 |-- Lib	# 用 Python 写的库文件 |-- Mac	# 用于在 macOS 上构建的文件 |-- Misc	# 杂项 |-- Modules	# 用 C 写的库文件 |-- Objects # 核心类型，以及对象模型的定义 |-- PC	# 用于在 Windows 上构建的文件 |-- PCbuild # 用于在老版本的 Windows 上构建的文件 |-- Parser	# Python 解析器源码 |-- Programs	# Python 可执行文件和其他 |-- Python	# CPython 编译器源码 |-- Tools	# 构建时的工具 `-- m4 16 directories 本系列主要以阅读和分析 CPython 源码的方式学习 Python。</description>
     </item>
     

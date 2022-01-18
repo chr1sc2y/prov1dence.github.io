@@ -6,7 +6,7 @@
 <title>Posts | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Posts - 尾張">
-<meta name=author content="Providence">
+<meta name=author content="Zhengyu">
 <link rel=canonical href=http://zintrulcre.github.io/posts/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -19,19 +19,19 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.91.2">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-132809676-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="Posts">
-<meta property="og:description" content="Providence's Blog">
+<meta property="og:description" content="Zhengyu's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="http://zintrulcre.github.io/posts/"><meta property="og:site_name" content="尾張">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Posts">
-<meta name=twitter:description content="Providence's Blog">
+<meta name=twitter:description content="Zhengyu's Blog">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://zintrulcre.github.io/posts/"}]}</script>
 </head>
 <body class=list id=top>
@@ -47,8 +47,8 @@
 </div>
 <ul id=menu>
 <li>
-<a href=http://zintrulcre.github.io/archives/ title=Archive>
-<span>Archive</span>
+<a href=http://zintrulcre.github.io/archives/ title=Posts>
+<span>Posts</span>
 </a>
 </li>
 <li>
@@ -69,8 +69,7 @@
 </h2>
 </header>
 <section class=entry-content>
-<p>并行计算入门 [TOC]
-1 概述 1.1 并行计算 高性能计算（High Performance Computing）是计算机科学中的一个领域，其目的可以概括为优化性能，它包括了缓存技术、数据结构和算法、IO 优化、指令重组（instruction reorganization）、编译器优化等；
+<p>并行计算入门 1 概述 1.1 并行计算 高性能计算（High Performance Computing）是计算机科学中的一个领域，其目的可以概括为优化性能，它包括了缓存技术、数据结构和算法、IO 优化、指令重组（instruction reorganization）、编译器优化等；
 并行计算（Parallel Computing）是高性能计算下的一个细分领域，其主要思想是将复杂问题分解成若干个部分，将每一个部分交给独立的处理器（计算资源）进行计算，以提高效率；针对不同的问题，并行计算需要专用的并行架构，架构既可以是专门设计的，含有多个处理器的单一硬件或超级计算机，也可以是以某种方式互连的若干台的独立计算机构成的集群；并没有一个统一的并行计算架构适用于每一个问题，如果使用了错误的架构，并行计算甚至会导致性能下降。
 1.2 硬件架构 中央处理器（Central Processing Unit）的主要功能是解释计算机指令，它由控制单元（Control Unit）、算术逻辑单元（Arithmetic Logic Unit）、乱序控制单元（Out-of-Order Control Unit）、分支预测器（Branch Predictor）、数据缓存（Data Cache）等部件组成；CPU 被设计为可以快速地处理各种通用计算任务并最小化延迟，但在并发性（时钟频率）方面受到限制；
 图形处理器（Graphics Processing Unit, GPU）是英伟达（NVIDIA）在 1999 年 8 月发布 NVIDIA GeForce 256 时提出的概念；现代 GPU 的模型设计可以概括为几个关键点：
@@ -81,7 +80,7 @@ GPU 拥有的内核数量相较于 CPU 多得多，可以有数千个同时运�
 在制造工艺的限制下，芯片的密度和最大面积都是有限的（摩尔定律），因此芯片设计实际上是功能和元件数量的权衡；出于对通用性的要求，CPU 的芯片设计必须使用较多种类的原件以增加其功能，同时放弃部分具有复杂功能的元件数量，而 GPU 的芯片设计则是通过移除部分具有复杂功能的元件来换取更多的空间，并集成更多的基本功能元件；
 GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集群（Processor Cluster）组成。每个流多处理器都关联一个控制单元 和 L1 Cache，这样的设计使得一个芯片可以同时支持上百个指令流的并行执行；通常一个流多处理器在与全局 GDDR-5 内存交换数据之前都会利用与之关联 L1 Cache 和 L2 Cache 来减少数据传输的延迟；而又因为 GPU 通常拥有足够大的计算量，使得其不需要与 CPU 一样非常频繁地从内存中获取数据，因此 GPU 的缓存层一般是小于 CPU 的。...</p>
 </section>
-<footer class=entry-footer><span title="2020-08-12 18:32:52 +0800 CST">August 12, 2020</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2020-08-12 18:32:52 +0800 CST">August 12, 2020</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to 并行计算入门" href=http://zintrulcre.github.io/posts/parallel-computing/parallel-computing/></a>
 </article>
 <article class=post-entry>
@@ -95,7 +94,7 @@ GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集�
 我们可以写一个简单的 demo 用于获取对象类型相关的信息，需要包含 tepyinfo 头文件：
 #include &lt;iostream>#include &lt;typeinfo> using namespace std; class Foo {}; int main() { cout &lt;&lt; "1: " &lt;&lt; typeid(1).name() &lt;&lt; endl; cout &lt;&lt; "int: " &lt;&lt; typeid(int).name() &lt;&lt; endl; // 和 sizeof 操作符类似，typeid 也可以直接对数据类型（比如 int）进行操作 cout &lt;&lt; "typeid: " &lt;&lt; typeid(typeid(int)).name() &lt;&lt; endl; cout &lt;&lt; "typeid: " &lt;&lt; typeid(const type_info &)....</p>
 </section>
-<footer class=entry-footer><span title="2020-07-31 20:31:06 +0800 CST">July 31, 2020</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2020-07-31 20:31:06 +0800 CST">July 31, 2020</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to boost::typeIndex 的相关探究" href=http://zintrulcre.github.io/posts/c++/boost/boost-typeindex/></a>
 </article>
 <article class=post-entry>
@@ -108,7 +107,7 @@ GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集�
 1. 构建单个文件 1.1 使用 GCC 编译 假设现在我们希望编写一个函数来实现安全的 int 类型加法防止数据溢出，这个源文件没有任何依赖的源码或静态库：
 // safe_add.cpp #include &lt;iostream>#include &lt;memory>#define INT_MAX 2147483647 #define ERROR_DATA_OVERFLOW 2 int SafeIntAdd(std::unique_ptr&lt;int> &sum, int a, int b) { if (a > INT_MAX - b) { *sum = INT_MAX; return ERROR_DATA_OVERFLOW; } *sum = a + b; return EXIT_SUCCESS; } int main() { int a, b; std::cin >> a >> b; std::unique_ptr&lt;int> sum(new int(1)); int res = SafeIntAdd(sum, a, b); std::cout &lt;&lt; *sum &lt;&lt; std::endl; return res; } 我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：...</p>
 </section>
-<footer class=entry-footer><span title="2020-06-21 15:46:06 +0800 CST">June 21, 2020</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2020-06-21 15:46:06 +0800 CST">June 21, 2020</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to CMake 入门" href=http://zintrulcre.github.io/posts/c++/compilation/cmake/></a>
 </article>
 <article class=post-entry>
@@ -122,7 +121,7 @@ GDB 是 GNU Debugger 的简写，是 GNU 软件系统中的标准调试器。GDB
 1. 环境搭建 1.1 编写程序 为了进行调试，我们需要准备一个简单的 C++ 程序：
 $ cat test.cpp #include &lt;iostream> void Func(const char *s) { int *p = nullptr; int &r = static_cast&lt;int&>(*p); int num = std::atoi(s); r = num; printf("%d\n", r); } int main (int argc, char *argv[]) { if (argc !...</p>
 </section>
-<footer class=entry-footer><span title="2020-04-22 17:46:06 +0800 CST">April 22, 2020</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2020-04-22 17:46:06 +0800 CST">April 22, 2020</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to GDB 调试入门" href=http://zintrulcre.github.io/posts/c++/compilation/gdb/></a>
 </article>
 <article class=post-entry>
@@ -135,7 +134,7 @@ $ cat test.cpp #include &lt;iostream> void Func(const char *s) { int *p = nullpt
 Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope 大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
 而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：...</p>
 </section>
-<footer class=entry-footer><span title="2020-03-15 17:24:27 +0800 CST">March 15, 2020</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2020-03-15 17:24:27 +0800 CST">March 15, 2020</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to coverity 的 WRAPPER_ESCAPE 告警" href=http://zintrulcre.github.io/posts/c++/basics/wrapper_escape-in-coverity/></a>
 </article>
 <footer class=page-footer>
@@ -146,11 +145,8 @@ Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal represent
 </footer>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href=http://zintrulcre.github.io/>尾張</a></span>
 <span>
-Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+Zhengyu &copy; 2022
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

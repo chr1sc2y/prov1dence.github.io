@@ -6,7 +6,7 @@
 <title>Posts | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Posts - 尾張">
-<meta name=author content="Providence">
+<meta name=author content="Zhengyu">
 <link rel=canonical href=http://zintrulcre.github.io/posts/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -19,19 +19,19 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.91.2">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-132809676-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="Posts">
-<meta property="og:description" content="Providence's Blog">
+<meta property="og:description" content="Zhengyu's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="http://zintrulcre.github.io/posts/"><meta property="og:site_name" content="尾張">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Posts">
-<meta name=twitter:description content="Providence's Blog">
+<meta name=twitter:description content="Zhengyu's Blog">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://zintrulcre.github.io/posts/"}]}</script>
 </head>
 <body class=list id=top>
@@ -47,8 +47,8 @@
 </div>
 <ul id=menu>
 <li>
-<a href=http://zintrulcre.github.io/archives/ title=Archive>
-<span>Archive</span>
+<a href=http://zintrulcre.github.io/archives/ title=Posts>
+<span>Posts</span>
 </a>
 </li>
 <li>
@@ -69,20 +69,18 @@
 </h2>
 </header>
 <section class=entry-content>
-<p>小米 AX1800 使用 ShellClash 科学上网 [TOC]
-本文介绍如何在小米 AX1800 上使用 ShellClash 科学上网。
+<p>小米 AX1800 使用 ShellClash 科学上网 本文介绍如何在小米 AX1800 上使用 ShellClash 科学上网。
 1 固件降级 小米 AX1800 1.0.336 版本固件
 在 MiWiFi 后台的常用设置 -> 系统状态中点击手动升级，使用 1.0.336 版本的固件对路由器进行降级，整个过程不需要任何额外的操作。
 完成后第一次进入后台配置时选择不自动更新，或在小米 Wi-Fi 手机 App 中关闭自动更新功能。
 更新完成后路由器会重置为路由器底部贴条的设置。
 2 解锁 SSH 首先登陆小米路由器后台 192.168.31.1，将浏览器地址栏中 stok= 后面的一部分的即为拷贝下来。
 获取 SSH 权限 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {"code":0} 即代表成功，这样就解锁了 SSH 到路由器上的权限。
-http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20's%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg'%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B
-修改 root 密码 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {"code":0} 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。
-http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20echo%20-e%20'admin%5Cnadmin'%20%7C%20passwd%20root%3B
-连接 SSH 打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。...</p>
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20's%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg'%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B 修改 root 密码 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {"code":0} 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20echo%20-e%20'admin%5Cnadmin'%20%7C%20passwd%20root%3B 连接 SSH 打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。
+ssh root@192....</p>
 </section>
-<footer class=entry-footer>1 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer>1 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to " href=http://zintrulcre.github.io/posts/proxy/ax1800/></a>
 </article>
 <footer class=page-footer>
@@ -92,11 +90,8 @@ http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bss
 </footer>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href=http://zintrulcre.github.io/>尾張</a></span>
 <span>
-Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+Zhengyu &copy; 2022
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

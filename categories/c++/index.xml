@@ -13,8 +13,7 @@
       <pubDate>Thu, 24 Sep 2020 16:43:27 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/effective-cpp/</guid>
-      <description>Effective C++ 笔记 [TOC]
-0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如
+      <description>Effective C++ 笔记 0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如
 class Bar { public: // explicit Bar(); // 是 default 构造函数  // explicit Bar(int x = 0) // 不是 default 构造函数  explicit Bar(int x = 0, bool b = true); // 是 default 构造函数 private: int x; bool b; }; explicit 关键字：阻止执行隐式类型转换，其优点是禁止了编译器执行非预期的类型转换，例如
 void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象  Bar obj_1; // 构造一个 Bar 类型的对象 Foo (obj_1); // 没问题，传递一个 Bar 类型的对象给 Foo 函数 Foo (Bar()); // 没问题，构造一个 Bar 类型的对象，并传递给 Foo 函数 Foo (2); // 如果 Bar 的构造函数没有被声明为 explicit，那么会调用 Bar 的构造函数构造一个成员变量 x = 2 的对象，也就是说发生了隐式类型转换；如果其构造函数被声明为 explicit，那么就不会构造出 Bar 类型的对象 copy 构造函数：用同类型的对象初始化新的对象，它定义了一个对象如何 pass by reference。</description>
     </item>

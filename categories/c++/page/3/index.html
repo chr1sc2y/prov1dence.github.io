@@ -5,8 +5,8 @@
 <meta name=robots content="index, follow">
 <title>C++ | 尾張</title>
 <meta name=keywords content>
-<meta name=description content="Providence's Blog">
-<meta name=author content="Providence">
+<meta name=description content="Zhengyu's Blog">
+<meta name=author content="Zhengyu">
 <link rel=canonical href=http://zintrulcre.github.io/categories/c++/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -19,19 +19,19 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.91.2">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/categories/c++/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-132809676-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="C++">
-<meta property="og:description" content="Providence's Blog">
+<meta property="og:description" content="Zhengyu's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="http://zintrulcre.github.io/categories/c++/"><meta property="og:site_name" content="尾張">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="C++">
-<meta name=twitter:description content="Providence's Blog">
+<meta name=twitter:description content="Zhengyu's Blog">
 </head>
 <body class=list id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
@@ -46,8 +46,8 @@
 </div>
 <ul id=menu>
 <li>
-<a href=http://zintrulcre.github.io/archives/ title=Archive>
-<span>Archive</span>
+<a href=http://zintrulcre.github.io/archives/ title=Posts>
+<span>Posts</span>
 </a>
 </li>
 <li>
@@ -72,7 +72,7 @@
 # 是宏，宏不做类型检查，只进行简单替换；在编译前被处理，编译阶段的程序是宏处理后的结果 typedef 用于声明自定义数据类型，简化代码 const 用于定义常量，有数据类型，编译器会对进行类型检查 const 和指针
 const char *p: p is a pointer to const char char const *p: p is a pointer to char const（同上） char *const p: p is a const pointer to char int main() { const char *p1 = new char('a'); char const *p2 = new char('b'); char *const p3 = new char('c'); *p1 = 'd'; // error: read-only variable is notassignable *p2 = 'e'; // error: read-only variable is notassignable p3 = new char('f'); // error: cannot assign tovariable 'p3' with const-qualified type 'char *const' p3 = nullptr; // error: cannot assign to variable'p3' with const-qualified type 'char *const' } const 和类...</p>
 </section>
-<footer class=entry-footer><span title="2015-07-05 08:57:52 +1000 +1000">July 5, 2015</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2015-07-05 08:57:52 +1000 +1000">July 5, 2015</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to C++ 基础知识整理" href=http://zintrulcre.github.io/posts/c++/basics/basics/></a>
 </article>
 <footer class=page-footer>
@@ -82,11 +82,8 @@ const char *p: p is a pointer to const char char const *p: p is a pointer to cha
 </footer>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href=http://zintrulcre.github.io/>尾張</a></span>
 <span>
-Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+Zhengyu &copy; 2022
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

@@ -5,8 +5,8 @@
 <meta name=robots content="index, follow">
 <title>C++ | 尾張</title>
 <meta name=keywords content>
-<meta name=description content="Providence's Blog">
-<meta name=author content="Providence">
+<meta name=description content="Zhengyu's Blog">
+<meta name=author content="Zhengyu">
 <link rel=canonical href=http://zintrulcre.github.io/categories/c++/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -19,19 +19,19 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.91.2">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/categories/c++/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-132809676-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="C++">
-<meta property="og:description" content="Providence's Blog">
+<meta property="og:description" content="Zhengyu's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="http://zintrulcre.github.io/categories/c++/"><meta property="og:site_name" content="尾張">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="C++">
-<meta name=twitter:description content="Providence's Blog">
+<meta name=twitter:description content="Zhengyu's Blog">
 </head>
 <body class=list id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
@@ -46,8 +46,8 @@
 </div>
 <ul id=menu>
 <li>
-<a href=http://zintrulcre.github.io/archives/ title=Archive>
-<span>Archive</span>
+<a href=http://zintrulcre.github.io/archives/ title=Posts>
+<span>Posts</span>
 </a>
 </li>
 <li>
@@ -68,12 +68,11 @@
 </h2>
 </header>
 <section class=entry-content>
-<p>Effective C++ 笔记 [TOC]
-0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如
+<p>Effective C++ 笔记 0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如
 class Bar { public: // explicit Bar(); // 是 default 构造函数 // explicit Bar(int x = 0) // 不是 default 构造函数 explicit Bar(int x = 0, bool b = true); // 是 default 构造函数 private: int x; bool b; }; explicit 关键字：阻止执行隐式类型转换，其优点是禁止了编译器执行非预期的类型转换，例如
 void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象 Bar obj_1; // 构造一个 Bar 类型的对象 Foo (obj_1); // 没问题，传递一个 Bar 类型的对象给 Foo 函数 Foo (Bar()); // 没问题，构造一个 Bar 类型的对象，并传递给 Foo 函数 Foo (2); // 如果 Bar 的构造函数没有被声明为 explicit，那么会调用 Bar 的构造函数构造一个成员变量 x = 2 的对象，也就是说发生了隐式类型转换；如果其构造函数被声明为 explicit，那么就不会构造出 Bar 类型的对象 copy 构造函数：用同类型的对象初始化新的对象，它定义了一个对象如何 pass by reference。...</p>
 </section>
-<footer class=entry-footer><span title="2020-09-24 16:43:27 +0800 CST">September 24, 2020</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2020-09-24 16:43:27 +0800 CST">September 24, 2020</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to Effective C++ notes" href=http://zintrulcre.github.io/posts/c++/basics/effective-cpp/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -87,7 +86,7 @@ void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象 Bar ob
 我们可以写一个简单的 demo 用于获取对象类型相关的信息，需要包含 tepyinfo 头文件：
 #include &lt;iostream>#include &lt;typeinfo> using namespace std; class Foo {}; int main() { cout &lt;&lt; "1: " &lt;&lt; typeid(1).name() &lt;&lt; endl; cout &lt;&lt; "int: " &lt;&lt; typeid(int).name() &lt;&lt; endl; // 和 sizeof 操作符类似，typeid 也可以直接对数据类型（比如 int）进行操作 cout &lt;&lt; "typeid: " &lt;&lt; typeid(typeid(int)).name() &lt;&lt; endl; cout &lt;&lt; "typeid: " &lt;&lt; typeid(const type_info &)....</p>
 </section>
-<footer class=entry-footer><span title="2020-07-31 20:31:06 +0800 CST">July 31, 2020</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2020-07-31 20:31:06 +0800 CST">July 31, 2020</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to boost::typeIndex 的相关探究" href=http://zintrulcre.github.io/posts/c++/boost/boost-typeindex/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -100,7 +99,7 @@ void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象 Bar ob
 1. 构建单个文件 1.1 使用 GCC 编译 假设现在我们希望编写一个函数来实现安全的 int 类型加法防止数据溢出，这个源文件没有任何依赖的源码或静态库：
 // safe_add.cpp #include &lt;iostream>#include &lt;memory>#define INT_MAX 2147483647 #define ERROR_DATA_OVERFLOW 2 int SafeIntAdd(std::unique_ptr&lt;int> &sum, int a, int b) { if (a > INT_MAX - b) { *sum = INT_MAX; return ERROR_DATA_OVERFLOW; } *sum = a + b; return EXIT_SUCCESS; } int main() { int a, b; std::cin >> a >> b; std::unique_ptr&lt;int> sum(new int(1)); int res = SafeIntAdd(sum, a, b); std::cout &lt;&lt; *sum &lt;&lt; std::endl; return res; } 我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：...</p>
 </section>
-<footer class=entry-footer><span title="2020-06-21 15:46:06 +0800 CST">June 21, 2020</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2020-06-21 15:46:06 +0800 CST">June 21, 2020</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to CMake 入门" href=http://zintrulcre.github.io/posts/c++/compilation/cmake/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -114,7 +113,7 @@ GDB 是 GNU Debugger 的简写，是 GNU 软件系统中的标准调试器。GDB
 1. 环境搭建 1.1 编写程序 为了进行调试，我们需要准备一个简单的 C++ 程序：
 $ cat test.cpp #include &lt;iostream> void Func(const char *s) { int *p = nullptr; int &r = static_cast&lt;int&>(*p); int num = std::atoi(s); r = num; printf("%d\n", r); } int main (int argc, char *argv[]) { if (argc !...</p>
 </section>
-<footer class=entry-footer><span title="2020-04-22 17:46:06 +0800 CST">April 22, 2020</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2020-04-22 17:46:06 +0800 CST">April 22, 2020</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to GDB 调试入门" href=http://zintrulcre.github.io/posts/c++/compilation/gdb/></a>
 </article>
 <article class="post-entry tag-entry">
@@ -127,7 +126,7 @@ $ cat test.cpp #include &lt;iostream> void Func(const char *s) { int *p = nullpt
 Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope 大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
 而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：...</p>
 </section>
-<footer class=entry-footer><span title="2020-03-15 17:24:27 +0800 CST">March 15, 2020</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2020-03-15 17:24:27 +0800 CST">March 15, 2020</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to coverity 的 WRAPPER_ESCAPE 告警" href=http://zintrulcre.github.io/posts/c++/basics/wrapper_escape-in-coverity/></a>
 </article>
 <footer class=page-footer>
@@ -137,11 +136,8 @@ Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal represent
 </footer>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href=http://zintrulcre.github.io/>尾張</a></span>
 <span>
-Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+Zhengyu &copy; 2022
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

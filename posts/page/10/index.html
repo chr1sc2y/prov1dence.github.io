@@ -6,7 +6,7 @@
 <title>Posts | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Posts - 尾張">
-<meta name=author content="Providence">
+<meta name=author content="Zhengyu">
 <link rel=canonical href=http://zintrulcre.github.io/posts/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
@@ -19,19 +19,19 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.91.2">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-132809676-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="Posts">
-<meta property="og:description" content="Providence's Blog">
+<meta property="og:description" content="Zhengyu's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="http://zintrulcre.github.io/posts/"><meta property="og:site_name" content="尾張">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Posts">
-<meta name=twitter:description content="Providence's Blog">
+<meta name=twitter:description content="Zhengyu's Blog">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://zintrulcre.github.io/posts/"}]}</script>
 </head>
 <body class=list id=top>
@@ -47,8 +47,8 @@
 </div>
 <ul id=menu>
 <li>
-<a href=http://zintrulcre.github.io/archives/ title=Archive>
-<span>Archive</span>
+<a href=http://zintrulcre.github.io/archives/ title=Posts>
+<span>Posts</span>
 </a>
 </li>
 <li>
@@ -76,7 +76,7 @@ UniquePointer(UniquePointer&lt;T> &&other) noexcept; UniquePointer &operator=(Un
 class Deleter { template&lt;typename T> void operator()(T *p) { if (p) delete p; } }; template&lt;typename T, typename D> class UniquePointer { ... private: T *pointer; Deleter deleter; }; 实现 根据unique_ptr的源码，能够大致实现UniquePointer类
 template&lt;typename T, typename D> class UniquePointer { public: explicit UniquePointer(T *t, const D &d); ~UniquePointer(); T &operator*(); T *operator->(); T *release(); void reset(T *p); UniquePointer(UniquePointer &&other) noexcept; UniquePointer &operator=(UniquePointer &&other) noexcept; UniquePointer(const UniquePointer &other) = delete; UniquePointer &operator=(const UniquePointer &other) = delete; private: T *pointer; D deleter; }; template&lt;typename T, typename D> UniquePointer&lt;T, D>::UniquePointer(T *t, const D &d) { std::cout &lt;&lt; "UniquePointer " &lt;&lt; this &lt;&lt; " constructor called....</p>
 </section>
-<footer class=entry-footer><span title="2019-01-19 01:02:02 +1100 +1100">January 19, 2019</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-01-19 01:02:02 +1100 +1100">January 19, 2019</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to C++ 智能指针（2）：unique_ptr" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-2/></a>
 </article>
 <article class=post-entry>
@@ -98,7 +98,7 @@ login_url = "https://leetcode.com/accounts/login/" session = requests.session() 
 实现 首先我们需要在爬虫开始运行之前获取登录信息，将Session作为类的成员变量保存下来，方便在获取submissions时使用。同时我们需要在与爬虫文件相同的目录下新建config.json，将自己的用户名和密码保存在该json文件里，这样就能顺利登陆了。
 def start_requests(self): self.Login() # 登录 questionset_url = "https://leetcode.com/api/problems/all/" yield scrapy....</p>
 </section>
-<footer class=entry-footer><span title="2019-01-11 13:15:17 +1100 +1100">January 11, 2019</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-01-11 13:15:17 +1100 +1100">January 11, 2019</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to LeetCode Archiver(3)： 登录" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver3/></a>
 </article>
 <article class=post-entry>
@@ -112,7 +112,7 @@ def start_requests(self): self.Login() # 登录 questionset_url = "https://leetc
 template &lt;class _Tp> typename remove_reference&lt;_Tp>::type&& move(_Tp&& __t) _NOEXCEPT { typedef typename remove_reference&lt;_Tp>::type _Up; return static_cast&lt;_Up&&>(__t); } 测试 定义一个 Object 类和一个 MoveObject 函数使用 move 语义返回一个 Object 的类对象，可以看到在 MoveObject 函数返回右值后，obj 对象调用了移动构造函数。
 class Object { public: Object() { std::cout &lt;&lt; "Construct" &lt;&lt; std::endl; } Object(const Object &other) { std::cout &lt;&lt; "Copy" &lt;&lt; std::endl; } Object(Object &&other) noexcept { std::cout &lt;&lt; "Move" &lt;&lt; std::endl; } ~Object() { std::cout &lt;&lt; "Destruct" &lt;&lt; std::endl; } void Print() { std::cout &lt;&lt; "Print" &lt;&lt; std::endl; } }; Object MoveObject() { Object obj; return move(obj); } int main() { Object obj = MoveObject(); return 0; } /* output: Construct Move Destruct Destruct */ 返回值优化（RVO，Return value optimisation） 返回值优化是一种编译器优化技术，允许编译器在调用点（call site）直接构造函数的返回值。...</p>
 </section>
-<footer class=entry-footer><span title="2019-01-02 09:55:05 +1100 +1100">January 2, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2019-01-02 09:55:05 +1100 +1100">January 2, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to C++ 智能指针（1.5）：move 语义" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-1.5/></a>
 </article>
 <article class=post-entry>
@@ -125,7 +125,7 @@ class Object { public: Object() { std::cout &lt;&lt; "Construct" &lt;&lt; std::e
 class Object { public: Object() { std::cout &lt;&lt; "Construct" &lt;&lt; std::endl; } Object(const Object &other) { std::cout &lt;&lt; "Copy" &lt;&lt; std::endl; } Object(Object &&other) noexcept { std::cout &lt;&lt; "Move" &lt;&lt; std::endl; } ~Object() { std::cout &lt;&lt; "Destruct" &lt;&lt; std::endl; } void Print() { std::cout &lt;&lt; "Print" &lt;&lt; std::endl; } }; 创建一个指向 Object 类型的指针
 int main() { Object *o = new Object(); o->Print(); return 0; } /* output: Construct Print */ 我们没有进行delete o的操作，导致o没有被正确地析构，造成了内存泄漏。作为对比，创建一个Obj类型的对象...</p>
 </section>
-<footer class=entry-footer><span title="2018-12-27 15:21:35 +1100 +1100">December 27, 2018</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2018-12-27 15:21:35 +1100 +1100">December 27, 2018</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to C++ 智能指针（1）：auto_ptr" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-1/></a>
 </article>
 <article class=post-entry>
@@ -148,7 +148,7 @@ cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中Question
 实现 为了获取题目列表的json对象，我们需要先重写start_requests函数。
 def start_requests(self): self.Login() # 用户登录，后续会用到 questionset_url = "https://leetcode....</p>
 </section>
-<footer class=entry-footer><span title="2018-12-21 15:06:01 +1100 +1100">December 21, 2018</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Providence</footer>
+<footer class=entry-footer><span title="2018-12-21 15:06:01 +1100 +1100">December 21, 2018</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zhengyu</footer>
 <a class=entry-link aria-label="post link to LeetCode Archiver(2)：获取题目信息" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver2/></a>
 </article>
 <footer class=page-footer>
@@ -159,11 +159,8 @@ def start_requests(self): self.Login() # 用户登录，后续会用到 questio
 </footer>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href=http://zintrulcre.github.io/>尾張</a></span>
 <span>
-Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+Zhengyu &copy; 2022
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
