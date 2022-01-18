@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Python on 尾張</title>
-    <link>http://example.org/categories/python/</link>
+    <link>http://zintrulcre.github.io/categories/python/</link>
     <description>Recent content in Python on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Aug 2021 17:38:52 +0800</lastBuildDate><atom:link href="http://example.org/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Aug 2021 17:38:52 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python 源码学习（5）：协程</title>
-      <link>http://example.org/posts/python/python-source-code-coroutine/</link>
+      <link>http://zintrulcre.github.io/posts/python/python-source-code-coroutine/</link>
       <pubDate>Wed, 04 Aug 2021 17:38:52 +0800</pubDate>
       
-      <guid>http://example.org/posts/python/python-source-code-coroutine/</guid>
+      <guid>http://zintrulcre.github.io/posts/python/python-source-code-coroutine/</guid>
       <description>Python 源码学习（5）：协程 [TOC]
 协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的生成器 generator 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。
 1 生成器 如果 Python 中的函数含有 yield 关键字，那么在调用这个函数时，它不会如同普通的函数一样运行到 return 语句并返回一个变量，而是会立即返回一个生成器对象；以一个斐波那契数列生成函数为例：
@@ -21,10 +21,10 @@ def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, 
     
     <item>
       <title>Python 源码学习（4）：编译器和虚拟机</title>
-      <link>http://example.org/posts/python/python-source-code-interpreter/</link>
+      <link>http://zintrulcre.github.io/posts/python/python-source-code-interpreter/</link>
       <pubDate>Wed, 26 May 2021 10:18:52 +0800</pubDate>
       
-      <guid>http://example.org/posts/python/python-source-code-interpreter/</guid>
+      <guid>http://zintrulcre.github.io/posts/python/python-source-code-interpreter/</guid>
       <description>Python 源码学习（4）：编译器和虚拟机 [TOC]
 Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 CPython。
 Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler）和 Python 虚拟机（Python Virutal Machine）两部分组成。当我们通过 Python 命令执行 Python 代码时，Python 编译器会将 Python 代码编译为 Python 字节码（bytecode）；随后 Python 虚拟机会读取并逐步执行这些字节码。
@@ -34,10 +34,10 @@ Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler�
     
     <item>
       <title>Python 源码学习（3）：list 类型</title>
-      <link>http://example.org/posts/python/source-code-3-list-and-dict/</link>
+      <link>http://zintrulcre.github.io/posts/python/source-code-3-list-and-dict/</link>
       <pubDate>Thu, 06 May 2021 20:07:52 +0800</pubDate>
       
-      <guid>http://example.org/posts/python/source-code-3-list-and-dict/</guid>
+      <guid>http://zintrulcre.github.io/posts/python/source-code-3-list-and-dict/</guid>
       <description>Python 源码学习（3）：list 类型 [TOC]
 Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中：
 // Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for &amp;#39;allocated&amp;#39; elements. The number * currently in use is ob_size. * Invariants: * 0 &amp;lt;= ob_size &amp;lt;= allocated * len(list) == ob_size * ob_item == NULL implies ob_size == allocated == 0 * list.</description>
@@ -45,10 +45,10 @@ Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体�
     
     <item>
       <title>Python 源码学习（2）：int 类型</title>
-      <link>http://example.org/posts/python/source-code-2/</link>
+      <link>http://zintrulcre.github.io/posts/python/source-code-2/</link>
       <pubDate>Wed, 31 Mar 2021 15:37:52 +0800</pubDate>
       
-      <guid>http://example.org/posts/python/source-code-2/</guid>
+      <guid>http://zintrulcre.github.io/posts/python/source-code-2/</guid>
       <description>Python 源码学习（2）：int 类型 [TOC]
 Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 PyBaseObject_Type 类型的 PyType_Type 类型的实例对象，本文则主要探究 Python 中 int 类型的实现。
 不同于 C 和 C++ 中的 int 类型，Python 中的 int 类型最大的特点是它一般是不会溢出的，对比用 C 和 Python 分别输出两个一百万相乘的结果：
@@ -59,10 +59,10 @@ printf(&amp;#34;%d\n&amp;#34;, 1000000 * 1000000); printf(&amp;#34;%u\n&amp;#34;
     
     <item>
       <title>Python 源码学习（1）：类型和对象</title>
-      <link>http://example.org/posts/python/source-code-1/</link>
+      <link>http://zintrulcre.github.io/posts/python/source-code-1/</link>
       <pubDate>Sun, 14 Mar 2021 16:05:52 +0800</pubDate>
       
-      <guid>http://example.org/posts/python/source-code-1/</guid>
+      <guid>http://zintrulcre.github.io/posts/python/source-code-1/</guid>
       <description>Python 源码学习（1）：类型和对象 [TOC]
 Python 是一门解释型，动态类型，多范式的编程语言，当我们从 python.org 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 CPython，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：
 $ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |-- Doc	# 文档 |-- Grammar |-- Include # C 头文件 |-- Lib	# 用 Python 写的库文件 |-- Mac	# 用于在 macOS 上构建的文件 |-- Misc	# 杂项 |-- Modules	# 用 C 写的库文件 |-- Objects # 核心类型，以及对象模型的定义 |-- PC	# 用于在 Windows 上构建的文件 |-- PCbuild # 用于在老版本的 Windows 上构建的文件 |-- Parser	# Python 解析器源码 |-- Programs	# Python 可执行文件和其他 |-- Python	# CPython 编译器源码 |-- Tools	# 构建时的工具 `-- m4 16 directories 本系列主要以阅读和分析 CPython 源码的方式学习 Python。</description>
@@ -70,10 +70,10 @@ $ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |--
     
     <item>
       <title>LeetCode Archiver(3)： 登录</title>
-      <link>http://example.org/posts/leetcode-archiver/leetcode-archiver3/</link>
+      <link>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver3/</link>
       <pubDate>Fri, 11 Jan 2019 13:15:17 +1100</pubDate>
       
-      <guid>http://example.org/posts/leetcode-archiver/leetcode-archiver3/</guid>
+      <guid>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver3/</guid>
       <description>Cookie和Session 为了获取我们自己的提交记录，我们首先要进行登录的操作。但我们都知道HTTP是一种无状态的协议，它的每个请求都是独立的。无论是GET还是POST请求，都包含了处理当前这一条请求的所有信息，但它并不会涉及到状态的变化。因此，为了在无状态的HTTP协议上维护一个持久的状态，引入了Cookie和Session的概念，两者都是为了辨识用户相关信息而储存在内存或硬盘上的加密数据。
 Cookie是由客户端浏览器维护的。客户端浏览器会在需要时把Cookie保存在内存中，当其再次向该域名相关的网站发出request时，浏览器会把url和Cookie一起作为request的一部分发送给服务器。服务器通过解析该Cookie来确认用户的状态，并对Cookie的内容作出相应的修改。一般来说，如果不设置过期时间，非持久Cookie会保存在内存中，浏览器关闭后就被删除了。
 Session是由服务器维护的。当客户端第一次向服务器发出request后，服务器会为该客户端创建一个Session。当该客户端再次访问服务器时，服务器会根据该Session来获取相关信息。一般来说，服务器会为Seesion设置一个失效时间，当距离接收到客户端上一次发送request的时间超过这个失效时间后，服务器会主动删除Session。
@@ -90,10 +90,10 @@ login_url = &amp;quot;https://leetcode.com/accounts/login/&amp;quot; session = r
     
     <item>
       <title>LeetCode Archiver(2)：获取题目信息</title>
-      <link>http://example.org/posts/leetcode-archiver/leetcode-archiver2/</link>
+      <link>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver2/</link>
       <pubDate>Fri, 21 Dec 2018 15:06:01 +1100</pubDate>
       
-      <guid>http://example.org/posts/leetcode-archiver/leetcode-archiver2/</guid>
+      <guid>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver2/</guid>
       <description>创建爬虫 在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用genspider命令新建一个爬虫：
 cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。
 新建好爬虫之后可以看到在项目的spiders文件夹下新增了一个名为 QuestionSetSpider.py的文件，这就是我们刚才新建的爬虫文件。这个爬虫文件会自动生成以下代码
@@ -111,10 +111,10 @@ def start_requests(self): self.Login() # 用户登录，后续会用到 questio
     
     <item>
       <title>LeetCode Archiver(1)：Scrapy框架和Requests库</title>
-      <link>http://example.org/posts/leetcode-archiver/leetcode-archiver1/</link>
+      <link>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver1/</link>
       <pubDate>Tue, 04 Dec 2018 11:25:15 +1100</pubDate>
       
-      <guid>http://example.org/posts/leetcode-archiver/leetcode-archiver1/</guid>
+      <guid>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver1/</guid>
       <description>简介 Scrapy官方文档对Scrapy的介绍如下：
 Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。其最初是为了页面抓取（更确切来说, 网络抓取）所设计的，也可以应用在获取API所返回的数据（例如 Amazon Associates Web Services ）或者通用的网络爬虫。
 简而言之，Scrapy是基于Twisted库开发的，封装了http请求、代理信息、数据存储等功能的Python爬虫框架。

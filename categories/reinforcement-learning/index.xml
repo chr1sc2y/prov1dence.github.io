@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>reinforcement learning on 尾張</title>
-    <link>http://example.org/categories/reinforcement-learning/</link>
+    <link>http://zintrulcre.github.io/categories/reinforcement-learning/</link>
     <description>Recent content in reinforcement learning on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Dec 2020 20:07:52 +0800</lastBuildDate><atom:link href="http://example.org/categories/reinforcement-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Dec 2020 20:07:52 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/reinforcement-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>启发式搜索和强化学习</title>
-      <link>http://example.org/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</link>
+      <link>http://zintrulcre.github.io/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</link>
       <pubDate>Thu, 10 Dec 2020 20:07:52 +0800</pubDate>
       
-      <guid>http://example.org/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</guid>
+      <guid>http://zintrulcre.github.io/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</guid>
       <description>启发式搜索和强化学习 The Pac-Man Projects 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。
 [TOC]
 1 盲目搜索 盲目搜索（Blind Search）指不利用任何额外信息（输入数据，或辅助函数），只依赖于算法本身的搜索，例如 BFS，DFS，Dijkstra 等；

@@ -2,143 +2,143 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on 尾張</title>
-    <link>http://example.org/categories/</link>
+    <link>http://zintrulcre.github.io/categories/</link>
     <description>Recent content in Categories on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Nov 2021 23:41:52 +0800</lastBuildDate><atom:link href="http://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Nov 2021 23:41:52 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Message Broker</title>
-      <link>http://example.org/categories/message-broker/</link>
+      <link>http://zintrulcre.github.io/categories/message-broker/</link>
       <pubDate>Mon, 29 Nov 2021 23:41:52 +0800</pubDate>
       
-      <guid>http://example.org/categories/message-broker/</guid>
+      <guid>http://zintrulcre.github.io/categories/message-broker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cloud</title>
-      <link>http://example.org/categories/cloud/</link>
+      <link>http://zintrulcre.github.io/categories/cloud/</link>
       <pubDate>Thu, 21 Oct 2021 18:01:12 +0800</pubDate>
       
-      <guid>http://example.org/categories/cloud/</guid>
+      <guid>http://zintrulcre.github.io/categories/cloud/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>http://example.org/categories/python/</link>
+      <link>http://zintrulcre.github.io/categories/python/</link>
       <pubDate>Wed, 04 Aug 2021 17:38:52 +0800</pubDate>
       
-      <guid>http://example.org/categories/python/</guid>
+      <guid>http://zintrulcre.github.io/categories/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>serialization</title>
-      <link>http://example.org/categories/serialization/</link>
+      <link>http://zintrulcre.github.io/categories/serialization/</link>
       <pubDate>Mon, 26 Apr 2021 21:44:52 +0800</pubDate>
       
-      <guid>http://example.org/categories/serialization/</guid>
+      <guid>http://zintrulcre.github.io/categories/serialization/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C&#43;&#43; Pointer</title>
-      <link>http://example.org/categories/c&#43;&#43;-pointer/</link>
+      <link>http://zintrulcre.github.io/categories/c&#43;&#43;-pointer/</link>
       <pubDate>Sun, 21 Feb 2021 21:20:18 +0800</pubDate>
       
-      <guid>http://example.org/categories/c&#43;&#43;-pointer/</guid>
+      <guid>http://zintrulcre.github.io/categories/c&#43;&#43;-pointer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>reinforcement learning</title>
-      <link>http://example.org/categories/reinforcement-learning/</link>
+      <link>http://zintrulcre.github.io/categories/reinforcement-learning/</link>
       <pubDate>Thu, 10 Dec 2020 20:07:52 +0800</pubDate>
       
-      <guid>http://example.org/categories/reinforcement-learning/</guid>
+      <guid>http://zintrulcre.github.io/categories/reinforcement-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>consistent hashing</title>
-      <link>http://example.org/categories/consistent-hashing/</link>
+      <link>http://zintrulcre.github.io/categories/consistent-hashing/</link>
       <pubDate>Sun, 25 Oct 2020 23:06:52 +0800</pubDate>
       
-      <guid>http://example.org/categories/consistent-hashing/</guid>
+      <guid>http://zintrulcre.github.io/categories/consistent-hashing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>concurrency</title>
-      <link>http://example.org/categories/concurrency/</link>
+      <link>http://zintrulcre.github.io/categories/concurrency/</link>
       <pubDate>Wed, 30 Sep 2020 16:20:25 +0800</pubDate>
       
-      <guid>http://example.org/categories/concurrency/</guid>
+      <guid>http://zintrulcre.github.io/categories/concurrency/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C&#43;&#43;</title>
-      <link>http://example.org/categories/c&#43;&#43;/</link>
+      <link>http://zintrulcre.github.io/categories/c&#43;&#43;/</link>
       <pubDate>Thu, 24 Sep 2020 16:43:27 +0800</pubDate>
       
-      <guid>http://example.org/categories/c&#43;&#43;/</guid>
+      <guid>http://zintrulcre.github.io/categories/c&#43;&#43;/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Design Pattern</title>
-      <link>http://example.org/categories/design-pattern/</link>
+      <link>http://zintrulcre.github.io/categories/design-pattern/</link>
       <pubDate>Thu, 10 Sep 2020 21:25:43 +0800</pubDate>
       
-      <guid>http://example.org/categories/design-pattern/</guid>
+      <guid>http://zintrulcre.github.io/categories/design-pattern/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Parallel Computing</title>
-      <link>http://example.org/categories/parallel-computing/</link>
+      <link>http://zintrulcre.github.io/categories/parallel-computing/</link>
       <pubDate>Wed, 12 Aug 2020 18:32:52 +0800</pubDate>
       
-      <guid>http://example.org/categories/parallel-computing/</guid>
+      <guid>http://zintrulcre.github.io/categories/parallel-computing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>LeetCode</title>
-      <link>http://example.org/categories/leetcode/</link>
+      <link>http://zintrulcre.github.io/categories/leetcode/</link>
       <pubDate>Sat, 24 Aug 2019 19:12:25 +1000</pubDate>
       
-      <guid>http://example.org/categories/leetcode/</guid>
+      <guid>http://zintrulcre.github.io/categories/leetcode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kick Start</title>
-      <link>http://example.org/categories/kick-start/</link>
+      <link>http://zintrulcre.github.io/categories/kick-start/</link>
       <pubDate>Sun, 26 May 2019 23:29:45 +1000</pubDate>
       
-      <guid>http://example.org/categories/kick-start/</guid>
+      <guid>http://zintrulcre.github.io/categories/kick-start/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Deep Learning</title>
-      <link>http://example.org/categories/deep-learning/</link>
+      <link>http://zintrulcre.github.io/categories/deep-learning/</link>
       <pubDate>Sun, 19 May 2019 19:40:23 +1000</pubDate>
       
-      <guid>http://example.org/categories/deep-learning/</guid>
+      <guid>http://zintrulcre.github.io/categories/deep-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Code Jam</title>
-      <link>http://example.org/categories/code-jam/</link>
+      <link>http://zintrulcre.github.io/categories/code-jam/</link>
       <pubDate>Tue, 07 May 2019 22:02:15 +1000</pubDate>
       
-      <guid>http://example.org/categories/code-jam/</guid>
+      <guid>http://zintrulcre.github.io/categories/code-jam/</guid>
       <description></description>
     </item>
     

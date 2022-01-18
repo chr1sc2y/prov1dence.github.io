@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>C&#43;&#43; Pointer on 尾張</title>
-    <link>http://example.org/categories/c&#43;&#43;-pointer/</link>
+    <link>http://zintrulcre.github.io/categories/c&#43;&#43;-pointer/</link>
     <description>Recent content in C&#43;&#43; Pointer on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Feb 2021 21:20:18 +0800</lastBuildDate><atom:link href="http://example.org/categories/c++-pointer/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Feb 2021 21:20:18 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/c++-pointer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43; 智能指针的简单实现</title>
-      <link>http://example.org/posts/c&#43;&#43;/smart-pointer/smart-pointer/</link>
+      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/smart-pointer/</link>
       <pubDate>Sun, 21 Feb 2021 21:20:18 +0800</pubDate>
       
-      <guid>http://example.org/posts/c&#43;&#43;/smart-pointer/smart-pointer/</guid>
+      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/smart-pointer/</guid>
       <description>C++ 智能指针的简单实现 [TOC]
 1 std::auto_ptr C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类：
 template&amp;lt;typename T&amp;gt; class Object { public: // constructor  Object() : t_() { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } Object(T t) : t_(t) { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // copy-ctor  Object(const Object &amp;amp;other) { cout &amp;lt;&amp;lt; &amp;#34;Object::Copy-ctor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // destructor  ~Object() { cout &amp;lt;&amp;lt; &amp;#34;Object::Destructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } void Set(T t) { t_ = t; } void Print() { cout &amp;lt;&amp;lt; t_ &amp;lt;&amp;lt; endl; } private: T t_; }; 如果在堆上为类对象分配了内存，在离开其作用域的时候又没将其释放，则会造成内存泄漏：</description>
@@ -20,10 +20,10 @@ template&amp;lt;typename T&amp;gt; class Object { public: // constructor  Object
     
     <item>
       <title>C&#43;&#43; 闭包和匿名函数</title>
-      <link>http://example.org/posts/c&#43;&#43;/closure-and-anonymous-function/</link>
+      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/closure-and-anonymous-function/</link>
       <pubDate>Sat, 14 Nov 2020 21:20:18 +0800</pubDate>
       
-      <guid>http://example.org/posts/c&#43;&#43;/closure-and-anonymous-function/</guid>
+      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/closure-and-anonymous-function/</guid>
       <description>C++ 闭包和匿名函数 [TOC]
 本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。
 1 闭包和仿函数 闭包（Closure）可以被理解为一个附带数据的操作，WikiPedia 对闭包的定义是 &amp;ldquo;In programming languages, a closure, also lexical closure or function closure, is a technique for implementing lexically scoped name binding in a language with first-class functions.&amp;quot;，其中有两层含义：

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Parallel Computing on 尾張</title>
-    <link>http://example.org/categories/parallel-computing/</link>
+    <link>http://zintrulcre.github.io/categories/parallel-computing/</link>
     <description>Recent content in Parallel Computing on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Aug 2020 18:32:52 +0800</lastBuildDate><atom:link href="http://example.org/categories/parallel-computing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Aug 2020 18:32:52 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/parallel-computing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>并行计算入门</title>
-      <link>http://example.org/posts/parallel-computing/parallel-computing/</link>
+      <link>http://zintrulcre.github.io/posts/parallel-computing/parallel-computing/</link>
       <pubDate>Wed, 12 Aug 2020 18:32:52 +0800</pubDate>
       
-      <guid>http://example.org/posts/parallel-computing/parallel-computing/</guid>
+      <guid>http://zintrulcre.github.io/posts/parallel-computing/parallel-computing/</guid>
       <description>并行计算入门 [TOC]
 1 概述 1.1 并行计算 高性能计算（High Performance Computing）是计算机科学中的一个领域，其目的可以概括为优化性能，它包括了缓存技术、数据结构和算法、IO 优化、指令重组（instruction reorganization）、编译器优化等；
 并行计算（Parallel Computing）是高性能计算下的一个细分领域，其主要思想是将复杂问题分解成若干个部分，将每一个部分交给独立的处理器（计算资源）进行计算，以提高效率；针对不同的问题，并行计算需要专用的并行架构，架构既可以是专门设计的，含有多个处理器的单一硬件或超级计算机，也可以是以某种方式互连的若干台的独立计算机构成的集群；并没有一个统一的并行计算架构适用于每一个问题，如果使用了错误的架构，并行计算甚至会导致性能下降。

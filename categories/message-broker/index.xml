@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Message Broker on 尾張</title>
-    <link>http://example.org/categories/message-broker/</link>
+    <link>http://zintrulcre.github.io/categories/message-broker/</link>
     <description>Recent content in Message Broker on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Nov 2021 23:41:52 +0800</lastBuildDate><atom:link href="http://example.org/categories/message-broker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Nov 2021 23:41:52 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/message-broker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kafka 入门</title>
-      <link>http://example.org/posts/message-broker/kafka/</link>
+      <link>http://zintrulcre.github.io/posts/message-broker/kafka/</link>
       <pubDate>Mon, 29 Nov 2021 23:41:52 +0800</pubDate>
       
-      <guid>http://example.org/posts/message-broker/kafka/</guid>
+      <guid>http://zintrulcre.github.io/posts/message-broker/kafka/</guid>
       <description>Kafka 入门 [TOC]
 概述 Kafka 最初是为了解决 LinkedIn 数据管道问题应运而生的。它的设计目的是提供一个高性能的消息系统，可以处理多种数据类型，并能够实时提供纯净且结构化的用户活动数据和系统度量指标。
 它不只是一个数据存储系统（类似于传统的关系型数据库、键值存储引擎、搜索引擎或缓存系统），还是一个持续变化和不断增长的流处理系统。现在 Kafka 已经被广泛地应用在社交网络的实时数据流处理当中，成为了下一代数据架构的基础。Kafka 经常会被拿来与现有的企业级消息系统、大数据系统（如 Hadoop）和数据集成 ETL 工具等技术作比较。

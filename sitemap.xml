@@ -2,240 +2,240 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>http://zintrulcre.github.io/categories/</loc>
     <lastmod>2021-11-29T23:41:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/message-broker/kafka/</loc>
+    <loc>http://zintrulcre.github.io/posts/message-broker/kafka/</loc>
     <lastmod>2021-11-29T23:41:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/message-broker/</loc>
+    <loc>http://zintrulcre.github.io/categories/message-broker/</loc>
     <lastmod>2021-11-29T23:41:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/</loc>
+    <loc>http://zintrulcre.github.io/posts/</loc>
     <lastmod>2021-11-29T23:41:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/</loc>
+    <loc>http://zintrulcre.github.io/</loc>
     <lastmod>2021-11-29T23:41:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/cloud/</loc>
+    <loc>http://zintrulcre.github.io/categories/cloud/</loc>
     <lastmod>2021-10-21T18:01:12+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/cloud/intro-to-prometheus/</loc>
+    <loc>http://zintrulcre.github.io/posts/cloud/intro-to-prometheus/</loc>
     <lastmod>2021-10-21T18:01:12+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/python/</loc>
+    <loc>http://zintrulcre.github.io/categories/python/</loc>
     <lastmod>2021-08-04T17:38:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/python/python-source-code-coroutine/</loc>
+    <loc>http://zintrulcre.github.io/posts/python/python-source-code-coroutine/</loc>
     <lastmod>2021-08-04T17:38:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/python/python-source-code-interpreter/</loc>
+    <loc>http://zintrulcre.github.io/posts/python/python-source-code-interpreter/</loc>
     <lastmod>2021-05-26T10:18:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/python/source-code-3-list-and-dict/</loc>
+    <loc>http://zintrulcre.github.io/posts/python/source-code-3-list-and-dict/</loc>
     <lastmod>2021-05-06T20:07:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/serialization/protocol-buffer/</loc>
+    <loc>http://zintrulcre.github.io/posts/serialization/protocol-buffer/</loc>
     <lastmod>2021-04-26T21:44:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/serialization/</loc>
+    <loc>http://zintrulcre.github.io/categories/serialization/</loc>
     <lastmod>2021-04-26T21:44:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/python/source-code-2/</loc>
+    <loc>http://zintrulcre.github.io/posts/python/source-code-2/</loc>
     <lastmod>2021-03-31T15:37:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/python/source-code-1/</loc>
+    <loc>http://zintrulcre.github.io/posts/python/source-code-1/</loc>
     <lastmod>2021-03-14T16:05:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/c&#43;&#43;/</loc>
+    <loc>http://zintrulcre.github.io/tags/c&#43;&#43;/</loc>
     <lastmod>2021-02-21T21:20:18+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/c&#43;&#43;-pointer/</loc>
+    <loc>http://zintrulcre.github.io/categories/c&#43;&#43;-pointer/</loc>
     <lastmod>2021-02-21T21:20:18+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/smart-pointer/smart-pointer/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/smart-pointer/</loc>
     <lastmod>2021-02-21T21:20:18+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/c&#43;&#43;11/</loc>
+    <loc>http://zintrulcre.github.io/tags/c&#43;&#43;11/</loc>
     <lastmod>2021-02-21T21:20:18+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/pointer/</loc>
+    <loc>http://zintrulcre.github.io/tags/pointer/</loc>
     <lastmod>2021-02-21T21:20:18+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>http://zintrulcre.github.io/tags/</loc>
     <lastmod>2021-02-21T21:20:18+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/reinforcement-learning/</loc>
+    <loc>http://zintrulcre.github.io/categories/reinforcement-learning/</loc>
     <lastmod>2020-12-10T20:07:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</loc>
+    <loc>http://zintrulcre.github.io/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</loc>
     <lastmod>2020-12-10T20:07:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/closure-and-anonymous-function/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/closure-and-anonymous-function/</loc>
     <lastmod>2020-11-14T21:20:18+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/consistent-hashing/</loc>
+    <loc>http://zintrulcre.github.io/categories/consistent-hashing/</loc>
     <lastmod>2020-10-25T23:06:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/service-governance/load-balancing/</loc>
+    <loc>http://zintrulcre.github.io/posts/service-governance/load-balancing/</loc>
     <lastmod>2020-10-25T23:06:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</loc>
     <lastmod>2020-09-30T16:20:25+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/concurrency/</loc>
+    <loc>http://zintrulcre.github.io/categories/concurrency/</loc>
     <lastmod>2020-09-30T16:20:25+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/c&#43;&#43;/</loc>
+    <loc>http://zintrulcre.github.io/categories/c&#43;&#43;/</loc>
     <lastmod>2020-09-24T16:43:27+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/basics/effective-cpp/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/effective-cpp/</loc>
     <lastmod>2020-09-24T16:43:27+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/design-pattern/c&#43;&#43;-template-singleton/</loc>
+    <loc>http://zintrulcre.github.io/posts/design-pattern/c&#43;&#43;-template-singleton/</loc>
     <lastmod>2020-09-10T21:25:43+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/design-pattern/</loc>
+    <loc>http://zintrulcre.github.io/categories/design-pattern/</loc>
     <lastmod>2020-09-10T21:25:43+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/parallel-computing/</loc>
+    <loc>http://zintrulcre.github.io/categories/parallel-computing/</loc>
     <lastmod>2020-08-12T18:32:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/parallel-computing/parallel-computing/</loc>
+    <loc>http://zintrulcre.github.io/posts/parallel-computing/parallel-computing/</loc>
     <lastmod>2020-08-12T18:32:52+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/boost/boost-typeindex/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/boost/boost-typeindex/</loc>
     <lastmod>2020-07-31T20:31:06+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/compilation/cmake/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/compilation/cmake/</loc>
     <lastmod>2020-06-21T15:46:06+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/compilation/gdb/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/compilation/gdb/</loc>
     <lastmod>2020-04-22T17:46:06+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/basics/wrapper_escape-in-coverity/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/wrapper_escape-in-coverity/</loc>
     <lastmod>2020-03-15T17:24:27+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</loc>
     <lastmod>2020-01-20T20:15:05+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/leetcode/</loc>
+    <loc>http://zintrulcre.github.io/categories/leetcode/</loc>
     <lastmod>2019-08-24T19:12:25+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/tree-3/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/tree-3/</loc>
     <lastmod>2019-08-24T19:12:25+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/sort/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/sort/</loc>
     <lastmod>2019-08-17T19:12:25+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/heap/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/heap/</loc>
     <lastmod>2019-08-05T19:12:25+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/twopointers/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/twopointers/</loc>
     <lastmod>2019-07-31T19:12:25+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/dfs/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/dfs/</loc>
     <lastmod>2019-07-27T12:12:25+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/concurrency/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/concurrency/</loc>
     <lastmod>2019-07-22T10:10:25+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/tree-2/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/tree-2/</loc>
     <lastmod>2019-07-18T19:12:25+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/tree-1/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/tree-1/</loc>
     <lastmod>2019-07-13T19:12:25+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/linkedlist-2/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/linkedlist-2/</loc>
     <lastmod>2019-07-09T19:12:25+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/linkedlist-1/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/linkedlist-1/</loc>
     <lastmod>2019-07-04T19:12:25+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/dynamicprogramming-3/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-3/</loc>
     <lastmod>2019-07-01T18:22:45+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/dynamicprogramming-2/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-2/</loc>
     <lastmod>2019-06-28T10:09:13+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/dynamicprogramming-1/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-1/</loc>
     <lastmod>2019-06-26T18:08:10+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/binarysearch/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/binarysearch/</loc>
     <lastmod>2019-06-23T19:26:39+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode/bitmanipulation/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode/bitmanipulation/</loc>
     <lastmod>2019-06-19T19:26:39+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/kick-start/</loc>
+    <loc>http://zintrulcre.github.io/categories/kick-start/</loc>
     <lastmod>2019-05-26T23:29:45+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/kick-start/2019-round-c/</loc>
+    <loc>http://zintrulcre.github.io/posts/kick-start/2019-round-c/</loc>
     <lastmod>2019-05-26T23:29:45+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/deep-learning/</loc>
+    <loc>http://zintrulcre.github.io/categories/deep-learning/</loc>
     <lastmod>2019-05-19T19:40:23+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/deep-learning/object-detection-yolo/</loc>
+    <loc>http://zintrulcre.github.io/posts/deep-learning/object-detection-yolo/</loc>
     <lastmod>2019-05-19T19:40:23+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/code-jam/</loc>
+    <loc>http://zintrulcre.github.io/categories/code-jam/</loc>
     <lastmod>2019-05-07T22:02:15+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/code-jam/2019-round-1c/</loc>
+    <loc>http://zintrulcre.github.io/posts/code-jam/2019-round-1c/</loc>
     <lastmod>2019-05-07T22:02:15+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/kick-start/2019-round-b/</loc>
+    <loc>http://zintrulcre.github.io/posts/kick-start/2019-round-b/</loc>
     <lastmod>2019-04-21T14:41:22+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/code-jam/2019-round-1a/</loc>
+    <loc>http://zintrulcre.github.io/posts/code-jam/2019-round-1a/</loc>
     <lastmod>2019-04-13T15:28:11+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/code-jam/2019-qualification-round/</loc>
+    <loc>http://zintrulcre.github.io/posts/code-jam/2019-qualification-round/</loc>
     <lastmod>2019-04-06T13:40:27+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/kick-start/2019-round-a/</loc>
+    <loc>http://zintrulcre.github.io/posts/kick-start/2019-round-a/</loc>
     <lastmod>2019-03-26T14:25:36+11:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</loc>
+    <loc>http://zintrulcre.github.io/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</loc>
     <lastmod>2019-03-20T09:55:04+11:00</lastmod>
   </url><url>
-    <loc>http://example.org/about/</loc>
+    <loc>http://zintrulcre.github.io/about/</loc>
     <lastmod>2019-01-26T12:21:35+11:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-3/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-3/</loc>
     <lastmod>2019-01-25T17:47:38+11:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-2/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-2/</loc>
     <lastmod>2019-01-19T01:02:02+11:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode-archiver/leetcode-archiver3/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver3/</loc>
     <lastmod>2019-01-11T13:15:17+11:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</loc>
     <lastmod>2019-01-02T09:55:05+11:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1/</loc>
     <lastmod>2018-12-27T15:21:35+11:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode-archiver/leetcode-archiver2/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver2/</loc>
     <lastmod>2018-12-21T15:06:01+11:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/cloud/run-jupyter-notebook-on-gcp/</loc>
+    <loc>http://zintrulcre.github.io/posts/cloud/run-jupyter-notebook-on-gcp/</loc>
     <lastmod>2018-12-14T17:03:12+11:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/leetcode-archiver/leetcode-archiver1/</loc>
+    <loc>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver1/</loc>
     <lastmod>2018-12-04T11:25:15+11:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/c&#43;&#43;/basics/basics/</loc>
+    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/basics/</loc>
     <lastmod>2015-07-05T08:57:52+10:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/cloud-computing/docker/</loc>
+    <loc>http://zintrulcre.github.io/posts/cloud-computing/docker/</loc>
   </url><url>
-    <loc>http://example.org/posts/computer-science/temp/</loc>
+    <loc>http://zintrulcre.github.io/posts/computer-science/temp/</loc>
   </url><url>
-    <loc>http://example.org/posts/proxy/ax1800/</loc>
+    <loc>http://zintrulcre.github.io/posts/proxy/ax1800/</loc>
   </url><url>
-    <loc>http://example.org/archives/</loc>
+    <loc>http://zintrulcre.github.io/archives/</loc>
   </url>
 </urlset>
