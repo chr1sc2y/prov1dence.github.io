@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -65,12 +65,28 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>GDB 调试入门
+</h2>
+</header>
+<section class=entry-content>
+<p>GDB 调试入门 0. 序 调试程序是开发过程中必不可少的一环，在 Windows 或 MacOS 上开发时，可以使用 VS 和 CLion 等 IDE 上自带的调试功能来打断点或查看变量和堆栈，但 Linux 并没有图形化的操作界面，而如果只通过打 log 的方式来查找问题的话效率将会非常低下，此时我们可以利用 GDB 来提升我们的开发效率。
+GDB 是 GNU Debugger 的简写，是 GNU 软件系统中的标准调试器。GDB 具备各种调试功能，包括但不限于打断点、单步执行、打印变量、查看寄存器、查看函数调用堆栈等，能够有效地针对函数的运行进行追踪和警告；使用 GDB 调试时，可以监督和修改程序的变量，并且这些修改是独立于主程序之外的。GDB 主要用于调试编译型语言，对 C，C++，Go，Fortran 等语言有内置的支持，但它不支持解释型语言。
+1. 环境搭建 1.1 编写程序 为了进行调试，我们需要准备一个简单的 C++ 程序：
+$ cat test.cpp #include &lt;iostream> void Func(const char *s) { int *p = nullptr; int &r = static_cast&lt;int&>(*p); int num = std::atoi(s); r = num; printf("%d\n", r); } int main (int argc, char *argv[]) { if (argc !...</p>
+</section>
+<footer class=entry-footer><span title="2020-04-22 17:46:06 +0800 CST">April 22, 2020</span>&nbsp;·&nbsp;5 min</footer>
+<a class=entry-link aria-label="post link to GDB 调试入门" href=http://zintrulcre.github.io/posts/c++/compilation/gdb/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>coverity 的 WRAPPER_ESCAPE 告警
 </h2>
 </header>
 <section class=entry-content>
 <p>coverity 的 WRAPPER_ESCAPE 告警 const char* Foo() { std::string str_msg("test"); return str_msg.c_str(); } int main() { const char *p_msg = Foo(); printf("%s\n", p_msg); return 0; } // output:（为空，或乱码） D? 上面代码中的 Foo 函数会被 coverity 报告 WRAPPER_ESCAPE，详细说明是：
-Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope 大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
+Wrapper object use after free (WRAPPER_ESCAPE)
+1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope
+大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
 而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：...</p>
 </section>
 <footer class=entry-footer><span title="2020-03-15 17:24:27 +0800 CST">March 15, 2020</span>&nbsp;·&nbsp;1 min</footer>
@@ -119,19 +135,6 @@ class Solution { public: vector&lt;vector&lt;int>> merge(vector&lt;vector&lt;int
 </section>
 <footer class=entry-footer><span title="2019-08-17 19:12:25 +1000 +1000">August 17, 2019</span>&nbsp;·&nbsp;3 min</footer>
 <a class=entry-link aria-label="post link to LeetCode 排序" href=http://zintrulcre.github.io/posts/leetcode/sort/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 堆
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。
-class Solution { public: int findKthLargest(vector&lt;int> &nums, int k) { priority_queue&lt;int, vector&lt;int>, greater&lt;>> heap; for (auto &m:nums) { if (heap.size() &lt; k || m > heap.top()) heap.push(m); if (heap.size() > k) heap.pop(); } return heap.top(); } }; 347 前 K 个高频元素 先遍历一次统计出数组中各个元素出现的次数，再用一个大根堆将前 k 个高频元素保存下来，最后再将这些元素依次 pop 出来存入结果数组。时间复杂度是 O(n)，空间复杂度是 O(n)。
-class Solution { public: vector&lt;int> topKFrequent(vector&lt;int> &nums, int k) { priority_queue&lt;pair&lt;int, int>, vector&lt;pair&lt;int, int>>, greater&lt;>> freq; unordered_map&lt;int, int> count; vector&lt;int> res(k, 0); for (auto &m:nums) ++count[m]; for (auto &c:count) { freq....</p>
-</section>
-<footer class=entry-footer><span title="2019-08-05 19:12:25 +1000 +1000">August 5, 2019</span>&nbsp;·&nbsp;4 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 堆" href=http://zintrulcre.github.io/posts/leetcode/heap/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

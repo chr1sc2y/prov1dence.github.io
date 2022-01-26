@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,19 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>LeetCode 堆
+</h2>
+</header>
+<section class=entry-content>
+<p>LeetCode 堆 题目 215 数组中的第 K 个最大元素 最简单的堆的应用。
+class Solution { public: int findKthLargest(vector&lt;int> &nums, int k) { priority_queue&lt;int, vector&lt;int>, greater&lt;>> heap; for (auto &m:nums) { if (heap.size() &lt; k || m > heap.top()) heap.push(m); if (heap.size() > k) heap.pop(); } return heap.top(); } }; 347 前 K 个高频元素 先遍历一次统计出数组中各个元素出现的次数，再用一个大根堆将前 k 个高频元素保存下来，最后再将这些元素依次 pop 出来存入结果数组。时间复杂度是 O(n)，空间复杂度是 O(n)。
+class Solution { public: vector&lt;int> topKFrequent(vector&lt;int> &nums, int k) { priority_queue&lt;pair&lt;int, int>, vector&lt;pair&lt;int, int>>, greater&lt;>> freq; unordered_map&lt;int, int> count; vector&lt;int> res(k, 0); for (auto &m:nums) ++count[m]; for (auto &c:count) { freq....</p>
+</section>
+<footer class=entry-footer><span title="2019-08-05 19:12:25 +1000 +1000">August 5, 2019</span>&nbsp;·&nbsp;4 min</footer>
+<a class=entry-link aria-label="post link to LeetCode 堆" href=http://zintrulcre.github.io/posts/leetcode/heap/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>LeetCode 双指针
@@ -110,19 +123,6 @@ class Solution { public: vector&lt;TreeNode *> generateTrees(int n) { if (n == 0
 </section>
 <footer class=entry-footer><span title="2019-07-18 19:12:25 +1000 +1000">July 18, 2019</span>&nbsp;·&nbsp;5 min</footer>
 <a class=entry-link aria-label="post link to LeetCode 树（2）" href=http://zintrulcre.github.io/posts/leetcode/tree-2/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 树（1）
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 树（1） 题目 1. 树的遍历 144 二叉树的前序遍历 前序遍历一个二叉树。
-前序遍历是按照根节点，左子节点，右子节点的顺序来遍历一个二叉树，有递归和迭代两种方法。对于迭代方法，先将节点加入结果数组，然后用一个栈保存右，左子节点，依次访问，重复此过程。
-class Solution { vector&lt;int> res; public: vector&lt;int> preorderTraversal(TreeNode *root) { res = vector&lt;int>(); Preorder(root); return res; } void Preorder(TreeNode *root) { if (!root) return; res.push_back(root->val); Preorder(root->left); Preorder(root->right); } }; class Solution { public: vector&lt;int> preorderTraversal(TreeNode *root) { vector&lt;int> res; if (!root) return res; stack&lt;TreeNode *> pre; pre.push(root); while (!pre.empty()) { TreeNode *node = pre.top(); pre.pop(); res.push_back(node->val); if (node->right) pre.push(node->right); if (node->left) pre....</p>
-</section>
-<footer class=entry-footer><span title="2019-07-13 19:12:25 +1000 +1000">July 13, 2019</span>&nbsp;·&nbsp;7 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 树（1）" href=http://zintrulcre.github.io/posts/leetcode/tree-1/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

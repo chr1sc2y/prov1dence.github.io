@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,20 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>Code Jam 2019 Round 1C
+</h2>
+</header>
+<section class=entry-content>
+<p>Code Jam 2019 Round 1C Robot Programming Strategy (10pts, 18pts) 已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。
+Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同时有三种情况（R, P, S）则没有必胜策略，直接输出IMPOSSIBLE；否则返回胜利或打平的策略。
+对于已经打败过的对手没有必要再考虑其之后的出招，所以用一个defeated数组保存已经打败过的对手以便直接跳过。因为当前轮次有可能超过对手的出招顺序长度，所以要用i % size获取对手当前的出招。
+时间复杂度：O(A ^ 2) 空间复杂度：O(A) #include &lt;iostream>#include &lt;cmath>#include &lt;cstdio>#include &lt;math.h>#include &lt;limits>#include &lt;algorithm>#include &lt;vector>#include &lt;stack>#include &lt;queue>#include &lt;string>#include &lt;map>#include &lt;set>#include &lt;unordered_map>#include &lt;unordered_set> using namespace std; char Decide(const char &R, const char &P, const char &S) { if (R && P && S) return 'X'; if (R && P) return 'P'; if (R && S) return 'R'; if (P && S) return 'S'; if (R) return 'P'; if (P) return 'S'; return 'R'; } bool Defeate(const char &current, const char &opponent) { return (current == 'R' && opponent == 'S') || (current == 'S' && opponent == 'P') || (current == 'P' && opponent == 'R'); } void solve(const int &t) { int A; scanf("%d", &A); int i = 0; vector&lt;string> opponent(A); vector&lt;bool> defeated(A, false); bool R, P, S; string res; for (int a = 0; a &lt; A; ++a) cin >> opponent[a]; while (true) { int current_opponent = 0; R = false, P = false, S = false; for (int a = 0; a &lt; A; ++a) { if (!...</p>
+</section>
+<footer class=entry-footer><span title="2019-05-07 22:02:15 +1000 +1000">May 7, 2019</span>&nbsp;·&nbsp;2 min</footer>
+<a class=entry-link aria-label="post link to Code Jam 2019 Round 1C" href=http://zintrulcre.github.io/posts/code-jam/2019-round-1c/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>Kick Start 2019 Round B
@@ -118,18 +132,6 @@ $$ \sum_{i}^{j - 1} rating[j] - rating[i] = rating[j] * (j - 1 - i) - \sum_{i}^{
 </section>
 <footer class=entry-footer><span title="2019-03-26 14:25:36 +1100 +1100">March 26, 2019</span>&nbsp;·&nbsp;7 min</footer>
 <a class=entry-link aria-label="post link to Kick Start 2019 Round A" href=http://zintrulcre.github.io/posts/kick-start/2019-round-a/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Methods to Prevent Overfitting in Deep Learning
-</h2>
-</header>
-<section class=entry-content>
-<p>Methods to Prevent Overfitting in Deep Learning Overfitting Overfitting refers to that when a model fits the training data well but cannot predict the test data correctly, we may say that the model lacks the ability of generalization. It is important to figure out how it happens, and how we can prevent overfitting from the very beginning.
-Detect Overfitting The simplest way to detect overfitting is to split the dataset into two parts: the training set for training the model, and the test set for testing the accuracy of the model on a dataset that it has never seen before....</p>
-</section>
-<footer class=entry-footer><span title="2019-03-20 09:55:04 +1100 +1100">March 20, 2019</span>&nbsp;·&nbsp;5 min</footer>
-<a class=entry-link aria-label="post link to Methods to Prevent Overfitting in Deep Learning" href=http://zintrulcre.github.io/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

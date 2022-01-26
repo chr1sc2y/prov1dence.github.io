@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,19 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>LeetCode 树（1）
+</h2>
+</header>
+<section class=entry-content>
+<p>LeetCode 树（1） 题目 1. 树的遍历 144 二叉树的前序遍历 前序遍历一个二叉树。
+前序遍历是按照根节点，左子节点，右子节点的顺序来遍历一个二叉树，有递归和迭代两种方法。对于迭代方法，先将节点加入结果数组，然后用一个栈保存右，左子节点，依次访问，重复此过程。
+class Solution { vector&lt;int> res; public: vector&lt;int> preorderTraversal(TreeNode *root) { res = vector&lt;int>(); Preorder(root); return res; } void Preorder(TreeNode *root) { if (!root) return; res.push_back(root->val); Preorder(root->left); Preorder(root->right); } }; class Solution { public: vector&lt;int> preorderTraversal(TreeNode *root) { vector&lt;int> res; if (!root) return res; stack&lt;TreeNode *> pre; pre.push(root); while (!pre.empty()) { TreeNode *node = pre.top(); pre.pop(); res.push_back(node->val); if (node->right) pre.push(node->right); if (node->left) pre....</p>
+</section>
+<footer class=entry-footer><span title="2019-07-13 19:12:25 +1000 +1000">July 13, 2019</span>&nbsp;·&nbsp;7 min</footer>
+<a class=entry-link aria-label="post link to LeetCode 树（1）" href=http://zintrulcre.github.io/posts/leetcode/tree-1/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>LeetCode 链表（2）
@@ -114,20 +127,6 @@ class Solution { public: int lengthOfLIS(vector&lt;int>& nums) { int n = nums.si
 </section>
 <footer class=entry-footer><span title="2019-06-28 10:09:13 +1000 +1000">June 28, 2019</span>&nbsp;·&nbsp;8 min</footer>
 <a class=entry-link aria-label="post link to LeetCode 动态规划（2）" href=http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-2/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 动态规划（1）
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 动态规划 题目 1. 数字相关 263 丑数 判断一个数 num 是否是丑数。
-通用的方法是自底向上求出大于等于 num 的第一个数来判断 num 是否是丑数。但这道题已经给出了数 num，直接通过模运算就能得到结果了。
-class Solution { public: bool isUgly(int num) { if (num &lt; 1) return false; while (num % 2 == 0) num /= 2; while (num % 3 == 0) num /= 3; while (num % 5 == 0) num /= 5; return num == 1; } }; 264 丑数 II 求第 n 个丑数。
-用一个数组 ugly 来保存前 m 个丑数，用三个质因数 2，3，5 乘以其当前系数对应的丑数，得到新的丑数，最小的一个就是第 m + 1 个丑数。时间复杂度是 O(m * n)，其中 m 是质因数的个数，n 是要找的第 n 个丑数。...</p>
-</section>
-<footer class=entry-footer><span title="2019-06-26 18:08:10 +1000 +1000">June 26, 2019</span>&nbsp;·&nbsp;6 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 动态规划（1）" href=http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-1/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

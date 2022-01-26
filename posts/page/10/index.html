@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -65,13 +65,44 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Methods to Prevent Overfitting in Deep Learning
+</h2>
+</header>
+<section class=entry-content>
+<p>Methods to Prevent Overfitting in Deep Learning Overfitting Overfitting refers to that when a model fits the training data well but cannot predict the test data correctly, we may say that the model lacks the ability of generalization. It is important to figure out how it happens, and how we can prevent overfitting from the very beginning.
+Detect Overfitting The simplest way to detect overfitting is to split the dataset into two parts: the training set for training the model, and the test set for testing the accuracy of the model on a dataset that it has never seen before....</p>
+</section>
+<footer class=entry-footer><span title="2019-03-20 09:55:04 +1100 +1100">March 20, 2019</span>&nbsp;·&nbsp;5 min</footer>
+<a class=entry-link aria-label="post link to Methods to Prevent Overfitting in Deep Learning" href=http://zintrulcre.github.io/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>C++ 智能指针（3）：shared_ptr
 </h2>
 </header>
 <section class=entry-content>
 <p>C++智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器
-private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
-template&lt;typename T, typename D> void SharedPointer&lt;T, D>::release() { if (pointer) { std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " counter remains " &lt;&lt; *counter &lt;&lt; std::endl; if (--(*counter) == 0) { std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " destructor called." &lt;&lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针...</p>
+private:
+int *counter;
+T *pointer;
+D *deleter;
+计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
+template&lt;typename T, typename D>
+void SharedPointer&lt;T, D>::release() {
+if (pointer) {
+std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " counter remains " &lt;&lt; *counter &lt;&lt; std::endl;
+if (--(*counter) == 0) {
+std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " destructor called." &lt;&lt; std::endl;
+(*deleter)(pointer);
+(*deleter)(counter);
+(*deleter)(deleter);
+pointer = nullptr;
+counter = nullptr;
+deleter = nullptr;
+}
+}
+}
+reset函数将指针设为other的指针...</p>
 </section>
 <footer class=entry-footer><span title="2019-01-25 17:47:38 +1100 +1100">January 25, 2019</span>&nbsp;·&nbsp;7 min</footer>
 <a class=entry-link aria-label="post link to C++ 智能指针（3）：shared_ptr" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-3/></a>
@@ -106,10 +137,21 @@ Session是由服务器维护的。当客户端第一次向服务器发出request
 通过分析"login/“这条request，我们可以知道我们所需要的一些关键信息，例如headers中的user-agent和referer，表单数据（form data）中的csrfmiddlewaretoken，login和password。显然，user-agent和referer我们可以直接复制下来，login和password是我们填写的用户名和密码。还有一个很陌生的csrfmiddlewaretoken。这是CSRF的中间件token，CSRF是Cross-Site Request Forgery，相关知识可以查询跨站请求伪造的维基百科。那么现在我们就要分析这个token是从何而来。
 获取csrfmiddlewaretoken 我们将刚才获取到的csrfmiddlewaretoken复制下来，在开发者工具中使用搜索功能，可以发现这个csrfmiddlewaretoken出现在了登录之前的一些request对应的response中。例如在刚才打开登录页面，发送GET请求时，response的headers的set-cookie中出现了"csrftoken=…“，而这里csrftoken的值与我们需要在登录表单中提交的值完全相同。因此，我们可以通过获取刚才的response中的Cookies来获取csrfmiddlewaretoken的值。
 首先我们通过发送GET请求来分析一下Cookies的构成
-login_url = "https://leetcode.com/accounts/login/" session = requests.session() result = session.get(login_url) print(result) print(type(result.cookies)) for cookie in result.cookies: print(type(cookie)) print(cookie) 得到的结果是
+login_url = "https://leetcode.com/accounts/login/"
+session = requests.session()
+result = session.get(login_url)
+print(result)
+print(type(result.cookies))
+for cookie in result.cookies:
+print(type(cookie))
+print(cookie)
+得到的结果是
 &lt;Response [200]> 状态码200，表示请求成功 &lt;class 'requests.cookies.RequestsCookieJar'> cookies的类型是CookieJar &lt;class 'http.cookiejar.Cookie'> 第一条cookie的类型是Cookie &lt;Cookie__cfduid=d3e02d4309b848f9369e21671fabbce571548041181 for .leetcode.com/> 第一条cookie的信息 &lt;class 'http.cookiejar.Cookie'> 第二条cookie的类型是Cookie &lt;Cookie csrftoken=13mQWE9tYN6g2IrlKY8oMLRc4VhVNoet4j328YdDapW2WC2nf93y5iCuzorovTDl for leetcode.com/> 第二条cookie的信息，也就是我们所需要的csrftoken 这样一来我们便获取到了在提交表单信息时所需要的csrfmiddlewaretoken，之后我们便可以开始着手写登录的相关代码了。顺便一提，在使用Django进行后端开发的时候自动生成的csrf token的键也叫csrfmiddlewaretoken，不知道LeetCode是不是用Django作为后端开发框架的。
 实现 首先我们需要在爬虫开始运行之前获取登录信息，将Session作为类的成员变量保存下来，方便在获取submissions时使用。同时我们需要在与爬虫文件相同的目录下新建config.json，将自己的用户名和密码保存在该json文件里，这样就能顺利登陆了。
-def start_requests(self): self.Login() # 登录 questionset_url = "https://leetcode.com/api/problems/all/" yield scrapy....</p>
+def start_requests(self):
+self.Login() # 登录
+questionset_url = "https://leetcode.com/api/problems/all/"
+yield scrapy....</p>
 </section>
 <footer class=entry-footer><span title="2019-01-11 13:15:17 +1100 +1100">January 11, 2019</span>&nbsp;·&nbsp;1 min</footer>
 <a class=entry-link aria-label="post link to LeetCode Archiver(3)： 登录" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver3/></a>
@@ -127,19 +169,6 @@ class Object { public: Object() { std::cout &lt;&lt; "Construct" &lt;&lt; std::e
 </section>
 <footer class=entry-footer><span title="2019-01-02 09:55:05 +1100 +1100">January 2, 2019</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to C++ 智能指针（1.5）：move 语义" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-1.5/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>C++ 智能指针（1）：auto_ptr
-</h2>
-</header>
-<section class=entry-content>
-<p>C++智能指针（1）：auto_ptr 分析 C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 类
-class Object { public: Object() { std::cout &lt;&lt; "Construct" &lt;&lt; std::endl; } Object(const Object &other) { std::cout &lt;&lt; "Copy" &lt;&lt; std::endl; } Object(Object &&other) noexcept { std::cout &lt;&lt; "Move" &lt;&lt; std::endl; } ~Object() { std::cout &lt;&lt; "Destruct" &lt;&lt; std::endl; } void Print() { std::cout &lt;&lt; "Print" &lt;&lt; std::endl; } }; 创建一个指向 Object 类型的指针
-int main() { Object *o = new Object(); o->Print(); return 0; } /* output: Construct Print */ 我们没有进行delete o的操作，导致o没有被正确地析构，造成了内存泄漏。作为对比，创建一个Obj类型的对象...</p>
-</section>
-<footer class=entry-footer><span title="2018-12-27 15:21:35 +1100 +1100">December 27, 2018</span>&nbsp;·&nbsp;4 min</footer>
-<a class=entry-link aria-label="post link to C++ 智能指针（1）：auto_ptr" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-1/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

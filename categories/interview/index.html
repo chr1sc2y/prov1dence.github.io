@@ -3,11 +3,11 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>serialization | 尾張</title>
+<title>interview | 尾張</title>
 <meta name=keywords content>
 <meta name=description content="Zhengyu's Blog">
 <meta name=author content>
-<link rel=canonical href=http://zintrulcre.github.io/categories/serialization/>
+<link rel=canonical href=http://zintrulcre.github.io/categories/interview/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
 <meta name=msvalidate.01 content="XYZabc">
@@ -20,17 +20,17 @@
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
 <meta name=generator content="Hugo 0.92.0">
-<link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/categories/serialization/index.xml>
+<link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/categories/interview/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-132809676-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="serialization">
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-132809676-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="interview">
 <meta property="og:description" content="Zhengyu's Blog">
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://zintrulcre.github.io/categories/serialization/"><meta property="og:site_name" content="尾張">
+<meta property="og:url" content="http://zintrulcre.github.io/categories/interview/"><meta property="og:site_name" content="尾張">
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="serialization">
+<meta name=twitter:title content="interview">
 <meta name=twitter:description content="Zhengyu's Blog">
 </head>
 <body class=list id=top>
@@ -60,22 +60,20 @@
 </header>
 <main class=main>
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a>&nbsp;»&nbsp;<a href=http://zintrulcre.github.io/categories/>Categories</a></div>
-<h1>serialization</h1>
+<h1>interview</h1>
 </header>
 <article class="post-entry tag-entry">
 <header class=entry-header>
-<h2>ProtoBuf 语法和编码原理入门
+<h2>2022 年初 | 后端开发两年经验社招面经
 </h2>
 </header>
 <section class=entry-content>
-<p>ProtoBuf 语法和编码原理入门 序列化是指将结构化数据转换成易于存储或发送的数据格式的过程，Protocol Buffer 简称 ProtoBuf，是一种语言无关，平台无关的序列化工具，由谷歌在 2008 年开源。相较于常见的序列化工具 XML, JSON, YAML, CSV 等，ProtoBuf 的优势主要包括序列化后数据量小，序列化和反序列化过程速度快，使用时只需定义 proto 文件使得其维护成本低，可向后兼容等；但因为其数据以二进制数据流的形式存在，也有人类不可读的劣势。
-本文主要介绍 ProtoBuf 的使用方法，包括 .proto 文件的语法，以及如何使用 protoc 工具来生成不通语言的代码；以及其编码原理。
-1 语法 首先从 https://github.com/protocolbuffers/protobuf 找到最新版本的 ProtoBuf，下载预编译好的二进制文件 protoc 解压到环境变量目录，本文使用的是 3.15.7 版本：
-$ protoc --version libprotoc 3.15.7 以一个简单的 proto 文件为例，它的语法和 C++ 类似：
-// msg.proto syntax = "proto3";package Message;message SearchRequest { reserved 6, 9 to 12; reserved "foo", "bar"; string query = 1; int32 page_number = 2; int32 result_per_page = 3;}message ResultType { message Result { string url = 1; string title = 2; repeated string snippets = 3; }}message SearchResponse { repeated ResultType....</p>
+<p>2022 年初 | 后端开发两年经验社招面经 字节 一面 coding: 对于一个数组，仅用一次遍历，等概率地随机出一个元素（对于每一个元素，从全局看，他们被选择的概率都应该是 1/n）
+对于第 i 个元素，它在第 i 轮被选中的概率是 1/i 往后，只要选择了新的元素，它就会被淘汰；以第 i+1 轮为例，它被淘汰的概率是 1/(i+1)，那么反过来它被留下的概率就是 1 - 1/(i+1) 最终每一个元素被选择的概率如下，第一个 1/i 代表它在第 i 次被选中，其他数代表它在后续的每一轮被留下 followup：等概率地随机出 k 个元素
+对于第 i 个元素，它在第 i 轮被选中的概率是 k/i 往后，它唯一会被淘汰的场景是：选择了新的元素，同时从已有的选择中，等概率地选择到了它；以第 i+1 轮为例，它被淘汰的概率是 k/(i+1) * 1/k = 1/(i+1)，那么反过来它被留下的概率就是 1 - k/(i+1) * 1/k = 1 - 1/(i+1) 最终每一个元素被选择的概率如下，第一个 k/i 代表它在第 i 次被选中，其他数代表它在后续的每一轮被留下 coding: 实现 Fisher–Yates Suffle...</p>
 </section>
-<footer class=entry-footer><span title="2021-04-26 21:44:52 +0800 CST">April 26, 2021</span>&nbsp;·&nbsp;6 min</footer>
-<a class=entry-link aria-label="post link to ProtoBuf 语法和编码原理入门" href=http://zintrulcre.github.io/posts/serialization/protocol-buffer/></a>
+<footer class=entry-footer><span title="2022-01-26 15:37:36 +0800 CST">January 26, 2022</span>&nbsp;·&nbsp;2 min</footer>
+<a class=entry-link aria-label="post link to 2022 年初 | 后端开发两年经验社招面经" href=http://zintrulcre.github.io/posts/interview/interview/></a>
 </article>
 </main>
 <footer class=footer>

@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,19 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>2022 年初 | 后端开发两年经验社招面经
+</h2>
+</header>
+<section class=entry-content>
+<p>2022 年初 | 后端开发两年经验社招面经 字节 一面 coding: 对于一个数组，仅用一次遍历，等概率地随机出一个元素（对于每一个元素，从全局看，他们被选择的概率都应该是 1/n）
+对于第 i 个元素，它在第 i 轮被选中的概率是 1/i 往后，只要选择了新的元素，它就会被淘汰；以第 i+1 轮为例，它被淘汰的概率是 1/(i+1)，那么反过来它被留下的概率就是 1 - 1/(i+1) 最终每一个元素被选择的概率如下，第一个 1/i 代表它在第 i 次被选中，其他数代表它在后续的每一轮被留下 followup：等概率地随机出 k 个元素
+对于第 i 个元素，它在第 i 轮被选中的概率是 k/i 往后，它唯一会被淘汰的场景是：选择了新的元素，同时从已有的选择中，等概率地选择到了它；以第 i+1 轮为例，它被淘汰的概率是 k/(i+1) * 1/k = 1/(i+1)，那么反过来它被留下的概率就是 1 - k/(i+1) * 1/k = 1 - 1/(i+1) 最终每一个元素被选择的概率如下，第一个 k/i 代表它在第 i 次被选中，其他数代表它在后续的每一轮被留下 coding: 实现 Fisher–Yates Suffle...</p>
+</section>
+<footer class=entry-footer><span title="2022-01-26 15:37:36 +0800 CST">January 26, 2022</span>&nbsp;·&nbsp;2 min</footer>
+<a class=entry-link aria-label="post link to 2022 年初 | 后端开发两年经验社招面经" href=http://zintrulcre.github.io/posts/interview/interview/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>小米 AX1800 使用 ShellClash 科学上网
@@ -144,20 +157,6 @@ for i in range(100): print(next(fsg)) $ python3 main....</p>
 </section>
 <footer class=entry-footer><span title="2021-08-04 17:38:52 +0800 CST">August 4, 2021</span>&nbsp;·&nbsp;5 min</footer>
 <a class=entry-link aria-label="post link to Python 源码学习（5）：协程" href=http://zintrulcre.github.io/posts/python/python-source-code-coroutine/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Python 源码学习（4）：编译器和虚拟机
-</h2>
-</header>
-<section class=entry-content>
-<p>Python 源码学习（4）：编译器和虚拟机 Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 CPython。
-Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler）和 Python 虚拟机（Python Virutal Machine）两部分组成。当我们通过 Python 命令执行 Python 代码时，Python 编译器会将 Python 代码编译为 Python 字节码（bytecode）；随后 Python 虚拟机会读取并逐步执行这些字节码。
-1 Python 编译器 1.1 代码对象 Python 提供了内置函数 compile，可以编译 Python 代码并生成一个包含字节码信息的对象，举例如下：
-# test.py def Square(a): return a * a print(f"result:\t\t{Square(5)}") # main.py f = "test.py" code_obj = compile(open(f).read(), f, 'exec') exec(code_obj) print(f"code_obj:\t{code_obj}") print(f"type:\t\t{type(code_obj)}") $ python3 main.py result: 25 code_obj: &lt;code object &lt;module> at 0x7f052c156b30, file "test....</p>
-</section>
-<footer class=entry-footer><span title="2021-05-26 10:18:52 +0800 CST">May 26, 2021</span>&nbsp;·&nbsp;13 min</footer>
-<a class=entry-link aria-label="post link to Python 源码学习（4）：编译器和虚拟机" href=http://zintrulcre.github.io/posts/python/python-source-code-interpreter/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

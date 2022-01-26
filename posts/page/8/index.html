@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,20 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>LeetCode 动态规划（1）
+</h2>
+</header>
+<section class=entry-content>
+<p>LeetCode 动态规划 题目 1. 数字相关 263 丑数 判断一个数 num 是否是丑数。
+通用的方法是自底向上求出大于等于 num 的第一个数来判断 num 是否是丑数。但这道题已经给出了数 num，直接通过模运算就能得到结果了。
+class Solution { public: bool isUgly(int num) { if (num &lt; 1) return false; while (num % 2 == 0) num /= 2; while (num % 3 == 0) num /= 3; while (num % 5 == 0) num /= 5; return num == 1; } }; 264 丑数 II 求第 n 个丑数。
+用一个数组 ugly 来保存前 m 个丑数，用三个质因数 2，3，5 乘以其当前系数对应的丑数，得到新的丑数，最小的一个就是第 m + 1 个丑数。时间复杂度是 O(m * n)，其中 m 是质因数的个数，n 是要找的第 n 个丑数。...</p>
+</section>
+<footer class=entry-footer><span title="2019-06-26 18:08:10 +1000 +1000">June 26, 2019</span>&nbsp;·&nbsp;6 min</footer>
+<a class=entry-link aria-label="post link to LeetCode 动态规划（1）" href=http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-1/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>LeetCode 二分查找
@@ -116,20 +130,6 @@ Solution: Simulation 用一个visited数组记录已经走过的格子，遇到�
 </section>
 <footer class=entry-footer><span title="2019-05-19 19:40:23 +1000 +1000">May 19, 2019</span>&nbsp;·&nbsp;5 min</footer>
 <a class=entry-link aria-label="post link to Object Detection" href=http://zintrulcre.github.io/posts/deep-learning/object-detection-yolo/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Code Jam 2019 Round 1C
-</h2>
-</header>
-<section class=entry-content>
-<p>Code Jam 2019 Round 1C Robot Programming Strategy (10pts, 18pts) 已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。
-Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同时有三种情况（R, P, S）则没有必胜策略，直接输出IMPOSSIBLE；否则返回胜利或打平的策略。
-对于已经打败过的对手没有必要再考虑其之后的出招，所以用一个defeated数组保存已经打败过的对手以便直接跳过。因为当前轮次有可能超过对手的出招顺序长度，所以要用i % size获取对手当前的出招。
-时间复杂度：O(A ^ 2) 空间复杂度：O(A) #include &lt;iostream>#include &lt;cmath>#include &lt;cstdio>#include &lt;math.h>#include &lt;limits>#include &lt;algorithm>#include &lt;vector>#include &lt;stack>#include &lt;queue>#include &lt;string>#include &lt;map>#include &lt;set>#include &lt;unordered_map>#include &lt;unordered_set> using namespace std; char Decide(const char &R, const char &P, const char &S) { if (R && P && S) return 'X'; if (R && P) return 'P'; if (R && S) return 'R'; if (P && S) return 'S'; if (R) return 'P'; if (P) return 'S'; return 'R'; } bool Defeate(const char &current, const char &opponent) { return (current == 'R' && opponent == 'S') || (current == 'S' && opponent == 'P') || (current == 'P' && opponent == 'R'); } void solve(const int &t) { int A; scanf("%d", &A); int i = 0; vector&lt;string> opponent(A); vector&lt;bool> defeated(A, false); bool R, P, S; string res; for (int a = 0; a &lt; A; ++a) cin >> opponent[a]; while (true) { int current_opponent = 0; R = false, P = false, S = false; for (int a = 0; a &lt; A; ++a) { if (!...</p>
-</section>
-<footer class=entry-footer><span title="2019-05-07 22:02:15 +1000 +1000">May 7, 2019</span>&nbsp;·&nbsp;2 min</footer>
-<a class=entry-link aria-label="post link to Code Jam 2019 Round 1C" href=http://zintrulcre.github.io/posts/code-jam/2019-round-1c/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
