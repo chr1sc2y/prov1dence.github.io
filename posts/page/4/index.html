@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.92.1">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,20 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>C++ 并发入门：以 LeetCode 1114 为例
+</h2>
+</header>
+<section class=entry-content>
+<p>C++ 并发入门：以 LeetCode 1114 为例 题目 直接做题：1114 按序打印
+解法 1. std::mutex 如果你对 c++ 11 略为熟悉的话，应该能够想到用 std::mutex 来解这道题，在函数构造时（主线程）对 std::mutex 进行 lock，然后在各个线程调用的函数中依次对 std::mutex 对象进行 unlock：
+class Foo { mutex mtx1, mtx2; public: Foo() { mtx1.lock(), mtx2.lock(); } void first(function&lt;void()> printFirst) { printFirst(); mtx1.unlock(); } void second(function&lt;void()> printSecond) { mtx1.lock(); printSecond(); mtx1.unlock(); mtx2.unlock(); } void third(function&lt;void()> printThird) { mtx2.lock(); printThird(); mtx2.unlock(); } }; Mutex 即 mutual exclusion，是用来防止多个线程同时访问共享资源对象的机制，在同一时间只有一个线程可以拥有一个 mutex 对象，其他线程调用 std::mutex::lock 函数时会阻塞直到其获取锁资源。
+这段代码能够 ac，但实际上这种使用 mutex 的方法是错误的，因为根据 c++ 标准，在一个线程尝试对一个 mutex 对象进行 unlock 操作时，mutex 对象的所有权必须在这个线程上；也就是说，应该由同一个线程来对一个 mutex 对象进行 lock 和 unlock 操作，否则会产生未定义行为。题目中提到了 first, second, third 三个函数分别是由三个不同的线程来调用的，但我们是在 Foo 对象构造时（可以是在 create 这几个线程的主线程中，也可以是在三个线程中的任意一个）对两个 mutex 对象进行 lock 操作的，因此，调用 first 和 second 函数的两个线程中至少有一个在尝试获取其他线程所拥有的 mutex 对象的所有权。...</p>
+</section>
+<footer class=entry-footer><span title="2020-09-30 16:20:25 +0800 CST">September 30, 2020</span>&nbsp;·&nbsp;3 min</footer>
+<a class=entry-link aria-label="post link to C++ 并发入门：以 LeetCode 1114 为例" href=http://zintrulcre.github.io/posts/c++/concurrency/introduction-to-concurrency/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>Effective C++ notes
@@ -122,19 +136,6 @@ GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集�
 </section>
 <footer class=entry-footer><span title="2020-07-31 20:31:06 +0800 CST">July 31, 2020</span>&nbsp;·&nbsp;6 min</footer>
 <a class=entry-link aria-label="post link to boost::typeIndex 的相关探究" href=http://zintrulcre.github.io/posts/c++/boost/boost-typeindex/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>CMake 入门
-</h2>
-</header>
-<section class=entry-content>
-<p>CMake 入门 0. 序 CMake 是一个跨平台的开源构建工具，使用 CMake 能够方便地管理依赖多个库的目录层次结构并生成 makefile 和使用 GNU make 来编译和连接程序。
-1. 构建单个文件 1.1 使用 GCC 编译 假设现在我们希望编写一个函数来实现安全的 int 类型加法防止数据溢出，这个源文件没有任何依赖的源码或静态库：
-// safe_add.cpp #include &lt;iostream>#include &lt;memory>#define INT_MAX 2147483647 #define ERROR_DATA_OVERFLOW 2 int SafeIntAdd(std::unique_ptr&lt;int> &sum, int a, int b) { if (a > INT_MAX - b) { *sum = INT_MAX; return ERROR_DATA_OVERFLOW; } *sum = a + b; return EXIT_SUCCESS; } int main() { int a, b; std::cin >> a >> b; std::unique_ptr&lt;int> sum(new int(1)); int res = SafeIntAdd(sum, a, b); std::cout &lt;&lt; *sum &lt;&lt; std::endl; return res; } 我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：...</p>
-</section>
-<footer class=entry-footer><span title="2020-06-21 15:46:06 +0800 CST">June 21, 2020</span>&nbsp;·&nbsp;11 min</footer>
-<a class=entry-link aria-label="post link to CMake 入门" href=http://zintrulcre.github.io/posts/c++/compilation/cmake/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

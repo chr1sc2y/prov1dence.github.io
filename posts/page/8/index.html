@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.92.1">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,19 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>LeetCode 动态规划（2）
+</h2>
+</header>
+<section class=entry-content>
+<p>LeetCode 动态规划 题目 3. 数组相关 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。
+用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之前的每个数字 j，如果 nums[i] > nums[j]，那么 j 和 i 可以形成一个上升子序列，让 dp[i] = max(dp[i], dp[j] + 1) 就能得到最长的上升子序列了。
+class Solution { public: int lengthOfLIS(vector&lt;int>& nums) { int n = nums.size(), res = 2; if (n &lt;= 1) return n; vector&lt;int> dp(n, 1); for (int i = 1; i &lt; n; ++i) for (int j = 0; j &lt; i; ++j) if (nums[i] > nums[j]) { dp[i] = max(dp[i], dp[j] + 1); res = max(res, dp[i]); } return res; } }; 53 最大子序和 找一个数组中具有最大和的连续子数组的和。...</p>
+</section>
+<footer class=entry-footer><span title="2019-06-28 10:09:13 +1000 +1000">June 28, 2019</span>&nbsp;·&nbsp;8 min</footer>
+<a class=entry-link aria-label="post link to LeetCode 动态规划（2）" href=http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-2/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>LeetCode 动态规划（1）
@@ -119,17 +132,6 @@ Solution: Simulation 用一个visited数组记录已经走过的格子，遇到�
 </section>
 <footer class=entry-footer><span title="2019-05-26 23:29:45 +1000 +1000">May 26, 2019</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to Kick Start 2019 Round C" href=http://zintrulcre.github.io/posts/kick-start/2019-round-c/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Object Detection
-</h2>
-</header>
-<section class=entry-content>
-<p>Object Detection Object detection deals with detecting instances of objects of a certain class, such as humans, animals, etc, in digital images and videos. Object detection has applications in many areas of computer vision, including image retrieval, face detection, video surveillance, and self-driving, etc. Current detection systems repurpose classifiers to perform detection. To detect an object, these systems take a classifier for that object and evaluate it at various locations and scales in a test image....</p>
-</section>
-<footer class=entry-footer><span title="2019-05-19 19:40:23 +1000 +1000">May 19, 2019</span>&nbsp;·&nbsp;5 min</footer>
-<a class=entry-link aria-label="post link to Object Detection" href=http://zintrulcre.github.io/posts/deep-learning/object-detection-yolo/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

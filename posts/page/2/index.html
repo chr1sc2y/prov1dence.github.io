@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.92.1">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,20 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>Python 源码学习（5）：协程
+</h2>
+</header>
+<section class=entry-content>
+<p>Python 源码学习（5）：协程 协程 coroutine 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的生成器 generator 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。
+1 生成器 如果 Python 中的函数含有 yield 关键字，那么在调用这个函数时，它不会如同普通的函数一样运行到 return 语句并返回一个变量，而是会立即返回一个生成器对象；以一个斐波那契数列生成函数为例：
+def FibonacciSequenceGenerator(): a, b = 0, 1 while True: yield a + b a, b = b, a + b if __name__ == "__main__": fsg = FibonacciSequenceGenerator() print(fsg) print(type(fsg)) $ python3 main.py &lt;generator object FibonacciSequenceGenerator at 0x7fb4720b1ac0> &lt;class 'generator'> 可以看到函数 FibonacciSequenceGenerator 返回了一个类型为 generator 的生成器对象 f；对于生成器对象，我们不能像操作普通函数一样直接进行函数调用，而是要使用 next() 或 fsg.send() 来进行函数切换，使得生成器函数开始或继续执行，直到 yield 所在行或是函数末尾再将执行权交还给调用方：
+for i in range(100): print(next(fsg)) $ python3 main....</p>
+</section>
+<footer class=entry-footer><span title="2021-08-04 17:38:52 +0800 CST">August 4, 2021</span>&nbsp;·&nbsp;5 min</footer>
+<a class=entry-link aria-label="post link to Python 源码学习（5）：协程" href=http://zintrulcre.github.io/posts/python/python-source-code-coroutine/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>Python 源码学习（4）：编译器和虚拟机
@@ -118,18 +132,6 @@ printf("%d\n", 1000000 * 1000000); printf("%u\n", 1000000 * 1000000); -727379968
 </section>
 <footer class=entry-footer><span title="2021-03-31 15:37:52 +0800 CST">March 31, 2021</span>&nbsp;·&nbsp;8 min</footer>
 <a class=entry-link aria-label="post link to Python 源码学习（2）：int 类型" href=http://zintrulcre.github.io/posts/python/source-code-2/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Python 源码学习（1）：类型和对象
-</h2>
-</header>
-<section class=entry-content>
-<p>Python 源码学习（1）：类型和对象 Python 是一门解释型，动态类型，多范式的编程语言，当我们从 python.org 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 CPython，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：
-$ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |-- Doc # 文档 |-- Grammar |-- Include # C 头文件 |-- Lib # 用 Python 写的库文件 |-- Mac # 用于在 macOS 上构建的文件 |-- Misc # 杂项 |-- Modules # 用 C 写的库文件 |-- Objects # 核心类型，以及对象模型的定义 |-- PC # 用于在 Windows 上构建的文件 |-- PCbuild # 用于在老版本的 Windows 上构建的文件 |-- Parser # Python 解析器源码 |-- Programs # Python 可执行文件和其他 |-- Python # CPython 编译器源码 |-- Tools # 构建时的工具 `-- m4 16 directories 本系列主要以阅读和分析 CPython 源码的方式学习 Python。...</p>
-</section>
-<footer class=entry-footer><span title="2021-03-14 16:05:52 +0800 CST">March 14, 2021</span>&nbsp;·&nbsp;6 min</footer>
-<a class=entry-link aria-label="post link to Python 源码学习（1）：类型和对象" href=http://zintrulcre.github.io/posts/python/source-code-1/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

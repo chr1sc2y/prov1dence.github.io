@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.92.1">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,19 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>LeetCode 树（2）
+</h2>
+</header>
+<section class=entry-content>
+<p>LeetCode 树（2） 题目 3. 二叉搜索树 95 不同的二叉搜索树 II 生成由 1 … n 为节点所组成的二叉搜索树。
+为了构造以 i 为根节点的二叉搜索树，我们需要先构造以 1 … i - 1 为左子树的所有二叉搜索树与以 i + 1 … n 为右子树的所有二叉搜索树，再将这些子树排列组合得到以 i 为根节点的所有二叉搜索树。
+class Solution { public: vector&lt;TreeNode *> generateTrees(int n) { if (n == 0) return {}; return Generate(1, n); } vector&lt;TreeNode *> Generate(int m, int n) { vector&lt;TreeNode *> nodes; if (m == n) nodes.push_back(new TreeNode(n)); if (m > n) nodes.push_back(nullptr); if (m >= n) return nodes; for (int i = m; i &lt;= n; ++i) { vector&lt;TreeNode *> left = Generate(m, i - 1); vector&lt;TreeNode *> right = Generate(i + 1, n); for (auto &l:left) for (auto &r:right) { TreeNode *node = new TreeNode(i); node->left = l, node->right = r; nodes....</p>
+</section>
+<footer class=entry-footer><span title="2019-07-18 19:12:25 +1000 +1000">July 18, 2019</span>&nbsp;·&nbsp;5 min</footer>
+<a class=entry-link aria-label="post link to LeetCode 树（2）" href=http://zintrulcre.github.io/posts/leetcode/tree-2/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>LeetCode 树（1）
@@ -114,19 +127,6 @@ class Solution { public: int minimumDeleteSum(string s1, string s2) { int n1 = s
 </section>
 <footer class=entry-footer><span title="2019-07-01 18:22:45 +1000 +1000">July 1, 2019</span>&nbsp;·&nbsp;6 min</footer>
 <a class=entry-link aria-label="post link to LeetCode 动态规划（3）" href=http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-3/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 动态规划（2）
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 动态规划 题目 3. 数组相关 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。
-用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之前的每个数字 j，如果 nums[i] > nums[j]，那么 j 和 i 可以形成一个上升子序列，让 dp[i] = max(dp[i], dp[j] + 1) 就能得到最长的上升子序列了。
-class Solution { public: int lengthOfLIS(vector&lt;int>& nums) { int n = nums.size(), res = 2; if (n &lt;= 1) return n; vector&lt;int> dp(n, 1); for (int i = 1; i &lt; n; ++i) for (int j = 0; j &lt; i; ++j) if (nums[i] > nums[j]) { dp[i] = max(dp[i], dp[j] + 1); res = max(res, dp[i]); } return res; } }; 53 最大子序和 找一个数组中具有最大和的连续子数组的和。...</p>
-</section>
-<footer class=entry-footer><span title="2019-06-28 10:09:13 +1000 +1000">June 28, 2019</span>&nbsp;·&nbsp;8 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 动态规划（2）" href=http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-2/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

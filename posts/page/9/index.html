@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.92.1">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,17 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>Object Detection
+</h2>
+</header>
+<section class=entry-content>
+<p>Object Detection Object detection deals with detecting instances of objects of a certain class, such as humans, animals, etc, in digital images and videos. Object detection has applications in many areas of computer vision, including image retrieval, face detection, video surveillance, and self-driving, etc. Current detection systems repurpose classifiers to perform detection. To detect an object, these systems take a classifier for that object and evaluate it at various locations and scales in a test image....</p>
+</section>
+<footer class=entry-footer><span title="2019-05-19 19:40:23 +1000 +1000">May 19, 2019</span>&nbsp;·&nbsp;5 min</footer>
+<a class=entry-link aria-label="post link to Object Detection" href=http://zintrulcre.github.io/posts/deep-learning/object-detection-yolo/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>Code Jam 2019 Round 1C
@@ -115,23 +126,6 @@ Solution: Construction 输入的数一定带有数字4，对于每一位上的�
 </section>
 <footer class=entry-footer><span title="2019-04-06 13:40:27 +1000 +1000">April 6, 2019</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to Code Jam 2019 Qualification Round" href=http://zintrulcre.github.io/posts/code-jam/2019-qualification-round/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Kick Start 2019 Round A
-</h2>
-</header>
-<section class=entry-content>
-<p>Kick Start 2019 Round A Training (7pts, 13pts) 一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。
-$$ \sum_{i}^{j} max(rating) - rating[i] $$
-Solution: Sort + Prefix Sum 先对数组排序，然后在长度为N的有序数组中遍历长为P的所有连续子数组，计算子数组中的最大值与其他值的差值之和。
-$$ \sum_{i}^{j - 1} rating[j] - rating[i] $$
-如果直接遍历长为P的子数组会浪费很多时间，可以将上面的公式简化为如下。
-$$ \sum_{i}^{j - 1} rating[j] - rating[i] = rating[j] * (j - 1 - i) - \sum_{i}^{j - 1} rating[i] $$
-为了避免重复计算 $$ \sum_{i}^{j - 1} rating[i] $$，可以用一个长为N+1的数组将原始数组的前缀和保存下来，这样每次直接计算 prefix[j] - prefix[i] 就能得到 $$ \sum_{i}^{j - 1} rating[i] $$ 了，时间复杂度是O(N)。...</p>
-</section>
-<footer class=entry-footer><span title="2019-03-26 14:25:36 +1100 +1100">March 26, 2019</span>&nbsp;·&nbsp;7 min</footer>
-<a class=entry-link aria-label="post link to Kick Start 2019 Round A" href=http://zintrulcre.github.io/posts/kick-start/2019-round-a/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

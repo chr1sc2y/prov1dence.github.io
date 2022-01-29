@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://zintrulcre.github.io/categories/</loc>
+    <lastmod>2022-01-29T17:45:52+08:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/categories/network/</loc>
+    <lastmod>2022-01-29T17:45:52+08:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/posts/</loc>
+    <lastmod>2022-01-29T17:45:52+08:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/posts/network/rpc/</loc>
+    <lastmod>2022-01-29T17:45:52+08:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/</loc>
+    <lastmod>2022-01-29T17:45:52+08:00</lastmod>
+  </url><url>
     <loc>http://zintrulcre.github.io/posts/interview/interview/</loc>
     <lastmod>2022-01-26T15:37:36+08:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/categories/</loc>
-    <lastmod>2022-01-26T15:37:36+08:00</lastmod>
-  </url><url>
     <loc>http://zintrulcre.github.io/categories/interview/</loc>
-    <lastmod>2022-01-26T15:37:36+08:00</lastmod>
-  </url><url>
-    <loc>http://zintrulcre.github.io/posts/</loc>
-    <lastmod>2022-01-26T15:37:36+08:00</lastmod>
-  </url><url>
-    <loc>http://zintrulcre.github.io/</loc>
     <lastmod>2022-01-26T15:37:36+08:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/categories/proxy/</loc>

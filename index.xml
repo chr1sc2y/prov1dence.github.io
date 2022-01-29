@@ -6,7 +6,24 @@
     <description>Recent content on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Jan 2022 15:37:36 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 29 Jan 2022 17:45:52 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>《深入理解 RPC 框架原理与实现》读书笔记</title>
+      <link>http://zintrulcre.github.io/posts/network/rpc/</link>
+      <pubDate>Sat, 29 Jan 2022 17:45:52 +0800</pubDate>
+      
+      <guid>http://zintrulcre.github.io/posts/network/rpc/</guid>
+      <description>《深入理解 RPC 框架原理与实现》读书笔记 概念 RPC (Remote Procedure Call) 叫作远程过程调用，它是利用网络从远程计算机上请求服务：可以理解为把程序的一部分放到其他远程计算机上执行。通过网络通信将调用请求发送至远程计算机后，利用远程计算机的系统资源执行这部分程序，最终返回远程计算机上的执行结果。
+将“远程过程调用”概念分解为“远程过程”和“过程调用”来理解更加直观：
+远程过程：远程过程是相对于本地过程而言的，本地过程也可以认为是本地函数调用，发起调用的方法和被调用的方法都在同一个地址空间或者内存空间内。而远程过程是指把进程内的部分程序逻辑放到其他机器上，也就是现在常说的业务拆解，让每个服务仅对单个业务负责，让每个服务具备独立的可扩展性、可升级性，易维护。在每个机器上提供的服务被称为远程过程，这个概念使正确地构建分布式计算更加容易，为后续的服务化架构风格奠定了基础
+过程调用：这个概念非常通俗易懂，它包含我们平时见到的方法调用、函数调用，并且用于程序的控制和数据的传输。而当“过程调用”遇到 “远程过程”时，意味着过程调用可以跨越机器、网络进行程序的控制和数据的传输
+选型 RPC 选型的衡量角度
+使用 RPC 框架无非三个选择
+ 自研RPC框架，可以从投开始设计一款符合业务特征和场景的 RPC 框架，但是自研框架需要有足够的资金和人力支持 基于开源的 RPC框架进行改造，让改造后的 RPC 框架更加适合业务场景。这种做法相较于第一种做法，人力成本没有那么高。但是这种做法需要经常与开源社区保持同步更新，一旦不再和社区版本同步，也许到某一个版本后，公司内部改造的 RPC 框架再也不能合并社区最新版本的特性，这种现象最终会导致慢慢向第一种选择选择靠近 完全使用开源的 RPC框架，并且定期与社区版本进行同步。这种选择的好处在于要投人的人力威本最低，一些问题可以借助社区的力量进行解决。但是由于业务场景的不同直接将开源的 RPC 框架拿过来用，这种选择往往存在很多局限性。框架各部分的设计都是为了更加优雅地解决业务场景的问题，而不是反过来让业务场景去适应 RPC 框架。而且 RPC 框架有自己的定位及未来的规划，所以很多规模不是太小的公司都选择在 RPC 框架上做些许改造来适应自己的业务场景  Java 对 I/O 模型的封装 NIO Java NIO 中最核心的就是 selector， 每当连接事件、接收连接事件、读事件和写事件中的一种事件就绪时，相关的事件处理器就会执行对应的逻辑，这种基于事件驱动的模式叫作 Reactor 模式。Reactor模式的核心思想就是减少线程的等待。当遇到需要等待的 IO 操作时，先释放资源，而在 IO 操作完成时，再通过事件驱动的方式，继续接下来的处理，这样从整体上减少了资源的消耗。
+以下是 Reactor模式的五种重要角色：
+ Handle（在 Linux 下称为描述符）：它是资源在操作系统层面上的一种抽象，表示一种由操作系统提供的资源，比如前面提到的网络编程中的 socket 描达符或者文件描达符。该资源与事件绑定在一起，也可用于表示一个个事件，比如前面提到的客户端的连接事件、服务端的接收连接事件、写数据事件等 Synchronous Event Demultiplexer（同步事件分离器）：Handle 代表的事件会被班注册到同步事件分离器上，当事件就绪时，同步事件分离器会分发和处理这些事件。它的本质是一个系统调用，用于等待事件的发生。调用方在调用它的时候会被阻塞，一直到同步事件分离器上有时间就绪为止。在 Linux 中，同步事件分离器就是常用的 I/O 多路复用，比如 select, poll, epoll 等系统调用，用来等待一个或多个事件发生。在 Java NIO 领域中，同步事件分离器对应的组件就是 Selector，对应的阻塞方法就是 select 方法 Event Handler（事件处理器）：它由多个回调方法构成，这些回调方法就是对某个事件的逻辑反馈，事件处理器一般都是抽象接口。比如当 Channel 被注册到 Selector 时的回调方法、连接事件发生时的回调方法、写事件发生时的回调方法等都是事件处理器，我们可以实现这些回调方法来达到对某一个事件进行特定反馈的目的。在 Java NIO 中，并没有提供事件处理器的抽象供我们使用 Concrete Event Handler（具体的事件处理器)：它是事件处理器的实现。它本身实现了事件处理器所提供的各种回调方法，从而实现了特定的业务逻辑。比如针对连接事件需要打印一条日志，就可以在连接事件的回调方法里实现打印日志的逻辑 Initiation Dispatcher（初始分发器）：可以把它看作 Reactor， 它规定了事件的调度策略，并且用于管理事件处理器，提供了事件处理器的注册、删除等方法，事件处理器需要注册到 Initiation Dispatcher 上才能生效。它是整个事件处理器的核心，Initiation Dispatcher 会通过 Synchronous Event Demultiplexer来等待事件的发生。一旦事件发生，Initiation Dispatcher 首先会分离出每一个事件，然后找到相应的事件处理器，最后调用相关的回调方法处理这些事件  Reactor 的三种模型 单 Reactor 单线程模型 单 Reactor 单线程模型就是在设计中只会有一个 Reactor，并且无论与 IO 相关的读/写，还 是与 IO 无关的编/解码或计算，都在一个 Handler 线程上完成。</description>
+    </item>
+    
     <item>
       <title>2022 年初 | 后端开发两年经验社招面经</title>
       <link>http://zintrulcre.github.io/posts/interview/interview/</link>
@@ -299,7 +316,7 @@ $ cat test.cpp #include &amp;lt;iostream&amp;gt; void Func(const char *s) { int 
       
       <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/wrapper_escape-in-coverity/</guid>
       <description>coverity 的 WRAPPER_ESCAPE 告警 const char* Foo() { std::string str_msg(&amp;#34;test&amp;#34;); return str_msg.c_str(); } int main() { const char *p_msg = Foo(); printf(&amp;#34;%s\n&amp;#34;, p_msg); return 0; } // output:（为空，或乱码） D? 上面代码中的 Foo 函数会被 coverity 报告 WRAPPER_ESCAPE，详细说明是：
-Wrapper object use after free (WRAPPER_ESCAPE)1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
+Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope 大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
 而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：</description>
     </item>
     
@@ -582,8 +599,8 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
       
       <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
       <description>C++智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器
-private:int *counter;T *pointer;D *deleter;计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
-template&amp;lt;typename T, typename D&amp;gt;void SharedPointer&amp;lt;T, D&amp;gt;::release() {if (pointer) {std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; counter remains &amp;quot; &amp;lt;&amp;lt; *counter &amp;lt;&amp;lt; std::endl;if (--(*counter) == 0) {std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; destructor called.&amp;quot; &amp;lt;&amp;lt; std::endl;(*deleter)(pointer);(*deleter)(counter);(*deleter)(deleter);pointer = nullptr;counter = nullptr;deleter = nullptr;}}}reset函数将指针设为other的指针</description>
+private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
+template&amp;lt;typename T, typename D&amp;gt; void SharedPointer&amp;lt;T, D&amp;gt;::release() { if (pointer) { std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; counter remains &amp;quot; &amp;lt;&amp;lt; *counter &amp;lt;&amp;lt; std::endl; if (--(*counter) == 0) { std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; destructor called.&amp;quot; &amp;lt;&amp;lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针</description>
     </item>
     
     <item>
@@ -614,10 +631,10 @@ Session是由服务器维护的。当客户端第一次向服务器发出request
 通过分析&amp;quot;login/&amp;ldquo;这条request，我们可以知道我们所需要的一些关键信息，例如headers中的user-agent和referer，表单数据（form data）中的csrfmiddlewaretoken，login和password。显然，user-agent和referer我们可以直接复制下来，login和password是我们填写的用户名和密码。还有一个很陌生的csrfmiddlewaretoken。这是CSRF的中间件token，CSRF是Cross-Site Request Forgery，相关知识可以查询跨站请求伪造的维基百科。那么现在我们就要分析这个token是从何而来。
 获取csrfmiddlewaretoken 我们将刚才获取到的csrfmiddlewaretoken复制下来，在开发者工具中使用搜索功能，可以发现这个csrfmiddlewaretoken出现在了登录之前的一些request对应的response中。例如在刚才打开登录页面，发送GET请求时，response的headers的set-cookie中出现了&amp;quot;csrftoken=&amp;hellip;&amp;ldquo;，而这里csrftoken的值与我们需要在登录表单中提交的值完全相同。因此，我们可以通过获取刚才的response中的Cookies来获取csrfmiddlewaretoken的值。
 首先我们通过发送GET请求来分析一下Cookies的构成
-login_url = &amp;quot;https://leetcode.com/accounts/login/&amp;quot;session = requests.session()result = session.get(login_url)print(result)print(type(result.cookies))for cookie in result.cookies:print(type(cookie))print(cookie)得到的结果是
+login_url = &amp;quot;https://leetcode.com/accounts/login/&amp;quot; session = requests.session() result = session.get(login_url) print(result) print(type(result.cookies)) for cookie in result.cookies: print(type(cookie)) print(cookie) 得到的结果是
  &amp;lt;Response [200]&amp;gt; 状态码200，表示请求成功 &amp;lt;class &#39;requests.cookies.RequestsCookieJar&#39;&amp;gt; cookies的类型是CookieJar &amp;lt;class &#39;http.cookiejar.Cookie&#39;&amp;gt; 第一条cookie的类型是Cookie &amp;lt;Cookie__cfduid=d3e02d4309b848f9369e21671fabbce571548041181 for .leetcode.com/&amp;gt; 第一条cookie的信息 &amp;lt;class &#39;http.cookiejar.Cookie&#39;&amp;gt; 第二条cookie的类型是Cookie &amp;lt;Cookie csrftoken=13mQWE9tYN6g2IrlKY8oMLRc4VhVNoet4j328YdDapW2WC2nf93y5iCuzorovTDl for leetcode.com/&amp;gt; 第二条cookie的信息，也就是我们所需要的csrftoken  这样一来我们便获取到了在提交表单信息时所需要的csrfmiddlewaretoken，之后我们便可以开始着手写登录的相关代码了。顺便一提，在使用Django进行后端开发的时候自动生成的csrf token的键也叫csrfmiddlewaretoken，不知道LeetCode是不是用Django作为后端开发框架的。
 实现 首先我们需要在爬虫开始运行之前获取登录信息，将Session作为类的成员变量保存下来，方便在获取submissions时使用。同时我们需要在与爬虫文件相同的目录下新建config.json，将自己的用户名和密码保存在该json文件里，这样就能顺利登陆了。
- def start_requests(self):self.Login() # 登录questionset_url = &amp;quot;https://leetcode.com/api/problems/all/&amp;quot;yield scrapy.</description>
+ def start_requests(self): self.Login() # 登录 questionset_url = &amp;quot;https://leetcode.com/api/problems/all/&amp;quot; yield scrapy.</description>
     </item>
     
     <item>
@@ -650,9 +667,9 @@ int main() { Object *o = new Object(); o-&amp;gt;Print(); return 0; } /* output:
       
       <guid>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver2/</guid>
       <description>创建爬虫 在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用genspider命令新建一个爬虫：
-cd scrapy_projectscrapy genspider QuestionSetSpider leetcode.com其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。
+cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。
 新建好爬虫之后可以看到在项目的spiders文件夹下新增了一个名为 QuestionSetSpider.py的文件，这就是我们刚才新建的爬虫文件。这个爬虫文件会自动生成以下代码
-# -*- coding: utf-8 -*-import scrapyclass QuestionSetSpider(scrapy.Spider):name = &#39;QuestionSetSpider&#39;allowed_domains = [&#39;leetcode.com&#39;]start_urls = [&#39;http://leetcode.com/&#39;]def parse(self, response):pass QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类； self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫； self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误； self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数  获取题目详细信息 分析 LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。
+# -*- coding: utf-8 -*- import scrapy class QuestionSetSpider(scrapy.Spider): name = &#39;QuestionSetSpider&#39; allowed_domains = [&#39;leetcode.com&#39;] start_urls = [&#39;http://leetcode.com/&#39;] def parse(self, response): pass  QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类； self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫； self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误； self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数  获取题目详细信息 分析 LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。
 为了爬取题目的详细信息，我们首先要从题目列表进入每个题目对应的链接。
 首先打开leetcode的problem列表，按F12打开Chrome的开发者工具，进入Network标签栏，勾选上Preserve log，刷新该页面。
 可以看到，网页向 https://leetcode.com/api/problems/all/ 发送了一个名为&amp;quot;all/&amp;ldquo;的GET类型的Request，这就是获取所有题目链接和相关信息的请求。如果此时已经安装了Toggle JavaScript插件，我们可以直接右键点击“Open in new tab”，查看该请求返回的Response。
@@ -661,7 +678,7 @@ cd scrapy_projectscrapy genspider QuestionSetSpider leetcode.com其中Question
 将Payload复制粘贴到postman的Body中，在Headers中设置Content-Type为application/json，发送请求，可以看到返回的是一个json对象，包含了该题目所对应的所有信息。
 接下来我们就可以对该题目的信息进行处理了。
 实现 为了获取题目列表的json对象，我们需要先重写start_requests函数。
-def start_requests(self):self.Login() # 用户登录，后续会用到questionset_url = &amp;quot;https://leetcode.</description>
+def start_requests(self): self.Login() # 用户登录，后续会用到 questionset_url = &amp;quot;https://leetcode.</description>
     </item>
     
     <item>
@@ -698,10 +715,10 @@ Downloader middlewares（下载器中间件） 下载器中间件是在引擎及
 Spider middlewares（爬虫中间件） Spider中间件是在引擎及Spider之间的组件，用于处理爬虫的输入（response）和输出（items和requests）。更多内容请参考爬虫中间件。
 Data flow（数据流） Scrapy中的数据流由引擎控制，其过程如下:1.引擎打开一个网站，找到处理该网站的爬虫并向该爬虫请求要爬取的url。2.引擎从爬虫中获取到要爬取的url并将其作为request发送给调度器。3.引擎向调度器请求下一个要爬取的url。4.调度器返回下一个要爬取的url给引擎，引擎将url通过下载器中间件发送给下载器。5.下载器下载页面成功后，生成一个该页面的response对象，并将其通过下载器中间件发送给引擎。6.引擎接收从下载器中间件发送过来的response，并将其通过爬虫中间件发送给爬虫处理。7.爬虫处理response，并将爬取到的item及跟进的新的request发送给引擎。8.引擎将爬虫返回的item发送给管道，将爬虫返回的新的request发送给调度器。9.管道对item进行相应的处理。10.重复第二步，直到调度器中没有更多的request，此时引擎关闭该网站。安装 1.下载安装最新版的Python3
 2.使用pip指令安装Scrapy
-pip3 install scrapy创建项目 首先进入你的代码存储目录，在命令行中输入以下命令：
-scrapy startproject LeetCode_Crawler注意项目名称是不能包含连字符 &amp;lsquo;-&amp;rsquo; 的
+pip3 install scrapy 创建项目 首先进入你的代码存储目录，在命令行中输入以下命令：
+scrapy startproject LeetCode_Crawler 注意项目名称是不能包含连字符 &amp;lsquo;-&amp;rsquo; 的
 新建成功后，可以看到在当前目录下新建了一个名为LeetCode_Crawler的Scrapy项目，进入该目录，其项目结构如下：
-scrapy.cfg #该项目的配置文件scrapy_project #该项目的Python模块__init__.pyitems.py #可自定义的item类文件middlewares.py #中间件文件pipelines.py #管道文件settings.py #设置文件__pycache__spiders #爬虫文件夹，所有爬虫文件都应在该文件夹下__init__.py__pycache__至此Scrapy项目的创建就完成了。
+scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.py #中间件文件 pipelines.py #管道文件 settings.py #设置文件 __pycache__ spiders #爬虫文件夹，所有爬虫文件都应在该文件夹下 __init__.py __pycache__ 至此Scrapy项目的创建就完成了。
 参考资料 Scrapy官方文档</description>
     </item>
     

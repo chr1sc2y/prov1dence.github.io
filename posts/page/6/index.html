@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.92.1">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,18 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>LeetCode 排序
+</h2>
+</header>
+<section class=entry-content>
+<p>LeetCode 排序 题目 56 合并区间 按照间隔的起始进行排序，判断下一个间隔的起始是否大于前一个间隔的末尾，如果大于的话就把之前的间隔加入结果数组，否则继续扩展当前的间隔。
+class Solution { public: vector&lt;vector&lt;int>> merge(vector&lt;vector&lt;int>> &intervals) { vector&lt;vector&lt;int>> res; int n = intervals.size(); if (n == 0) return res; sort(intervals.begin(), intervals.end(), [](vector&lt;int> const &v1, vector&lt;int> const &v2) { return v1[0] &lt; v2[0]; }); int start = intervals[0][0], end = intervals[0][1]; for (int i = 1; i &lt; n; ++i) { if (intervals[i][0] > end) { res.push_back(vector&lt;int>{start, end}); start = intervals[i][0]; } end = max(end, intervals[i][1]); } res....</p>
+</section>
+<footer class=entry-footer><span title="2019-08-17 19:12:25 +1000 +1000">August 17, 2019</span>&nbsp;·&nbsp;3 min</footer>
+<a class=entry-link aria-label="post link to LeetCode 排序" href=http://zintrulcre.github.io/posts/leetcode/sort/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>LeetCode 堆
@@ -110,19 +122,6 @@ class Solution { vector&lt;vector&lt;int>> res; public: vector&lt;vector&lt;int>
 </section>
 <footer class=entry-footer><span title="2019-07-22 10:10:25 +1000 +1000">July 22, 2019</span>&nbsp;·&nbsp;3 min</footer>
 <a class=entry-link aria-label="post link to LeetCode 并发" href=http://zintrulcre.github.io/posts/leetcode/concurrency/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 树（2）
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 树（2） 题目 3. 二叉搜索树 95 不同的二叉搜索树 II 生成由 1 … n 为节点所组成的二叉搜索树。
-为了构造以 i 为根节点的二叉搜索树，我们需要先构造以 1 … i - 1 为左子树的所有二叉搜索树与以 i + 1 … n 为右子树的所有二叉搜索树，再将这些子树排列组合得到以 i 为根节点的所有二叉搜索树。
-class Solution { public: vector&lt;TreeNode *> generateTrees(int n) { if (n == 0) return {}; return Generate(1, n); } vector&lt;TreeNode *> Generate(int m, int n) { vector&lt;TreeNode *> nodes; if (m == n) nodes.push_back(new TreeNode(n)); if (m > n) nodes.push_back(nullptr); if (m >= n) return nodes; for (int i = m; i &lt;= n; ++i) { vector&lt;TreeNode *> left = Generate(m, i - 1); vector&lt;TreeNode *> right = Generate(i + 1, n); for (auto &l:left) for (auto &r:right) { TreeNode *node = new TreeNode(i); node->left = l, node->right = r; nodes....</p>
-</section>
-<footer class=entry-footer><span title="2019-07-18 19:12:25 +1000 +1000">July 18, 2019</span>&nbsp;·&nbsp;5 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 树（2）" href=http://zintrulcre.github.io/posts/leetcode/tree-2/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

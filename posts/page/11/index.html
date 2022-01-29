@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.92.1">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -65,6 +65,20 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>C++ 智能指针（1.5）：move 语义
+</h2>
+</header>
+<section class=entry-content>
+<p>C++智能指针（1.5）：move语义 move语义 定义 右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（Perfect Forwarding），其主要目的有
+消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 能够更简洁明确地定义泛型函数。 实现 move 语义的实现非常简单，它将传入的参数 _Tp&& __t 使用静态类型转换 static_cast&lt;_Up&&>(__t) 转变成了成了对应类型的右值，也就是说使用 move 语义之后，编译器窃取（一般会在移动构造函数和移动赋值操作符里将原有对象指向 nullptr）了原有对象的右值，并延长了这个右值的生命周期并将其用来赋值给其他的对象，而没有对右值做任何拷贝操作。
+template &lt;class _Tp> typename remove_reference&lt;_Tp>::type&& move(_Tp&& __t) _NOEXCEPT { typedef typename remove_reference&lt;_Tp>::type _Up; return static_cast&lt;_Up&&>(__t); } 测试 定义一个 Object 类和一个 MoveObject 函数使用 move 语义返回一个 Object 的类对象，可以看到在 MoveObject 函数返回右值后，obj 对象调用了移动构造函数。
+class Object { public: Object() { std::cout &lt;&lt; "Construct" &lt;&lt; std::endl; } Object(const Object &other) { std::cout &lt;&lt; "Copy" &lt;&lt; std::endl; } Object(Object &&other) noexcept { std::cout &lt;&lt; "Move" &lt;&lt; std::endl; } ~Object() { std::cout &lt;&lt; "Destruct" &lt;&lt; std::endl; } void Print() { std::cout &lt;&lt; "Print" &lt;&lt; std::endl; } }; Object MoveObject() { Object obj; return move(obj); } int main() { Object obj = MoveObject(); return 0; } /* output: Construct Move Destruct Destruct */ 返回值优化（RVO，Return value optimisation） 返回值优化是一种编译器优化技术，允许编译器在调用点（call site）直接构造函数的返回值。...</p>
+</section>
+<footer class=entry-footer><span title="2019-01-02 09:55:05 +1100 +1100">January 2, 2019</span>&nbsp;·&nbsp;2 min</footer>
+<a class=entry-link aria-label="post link to C++ 智能指针（1.5）：move 语义" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-1.5/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>C++ 智能指针（1）：auto_ptr
 </h2>
 </header>
@@ -83,19 +97,9 @@ int main() { Object *o = new Object(); o->Print(); return 0; } /* output: Constr
 </header>
 <section class=entry-content>
 <p>创建爬虫 在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用genspider命令新建一个爬虫：
-cd scrapy_project
-scrapy genspider QuestionSetSpider leetcode.com
-其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。
+cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。
 新建好爬虫之后可以看到在项目的spiders文件夹下新增了一个名为 QuestionSetSpider.py的文件，这就是我们刚才新建的爬虫文件。这个爬虫文件会自动生成以下代码
-# -*- coding: utf-8 -*-
-import scrapy
-class QuestionSetSpider(scrapy.Spider):
-name = 'QuestionSetSpider'
-allowed_domains = ['leetcode.com']
-start_urls = ['http://leetcode.com/']
-def parse(self, response):
-pass
-QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类； self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫； self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误； self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数 获取题目详细信息 分析 LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。
+# -*- coding: utf-8 -*- import scrapy class QuestionSetSpider(scrapy.Spider): name = 'QuestionSetSpider' allowed_domains = ['leetcode.com'] start_urls = ['http://leetcode.com/'] def parse(self, response): pass QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类； self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫； self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误； self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数 获取题目详细信息 分析 LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。
 为了爬取题目的详细信息，我们首先要从题目列表进入每个题目对应的链接。
 首先打开leetcode的problem列表，按F12打开Chrome的开发者工具，进入Network标签栏，勾选上Preserve log，刷新该页面。
 可以看到，网页向 https://leetcode.com/api/problems/all/ 发送了一个名为"all/“的GET类型的Request，这就是获取所有题目链接和相关信息的请求。如果此时已经安装了Toggle JavaScript插件，我们可以直接右键点击“Open in new tab”，查看该请求返回的Response。
@@ -104,9 +108,7 @@ QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬�
 将Payload复制粘贴到postman的Body中，在Headers中设置Content-Type为application/json，发送请求，可以看到返回的是一个json对象，包含了该题目所对应的所有信息。
 接下来我们就可以对该题目的信息进行处理了。
 实现 为了获取题目列表的json对象，我们需要先重写start_requests函数。
-def start_requests(self):
-self.Login() # 用户登录，后续会用到
-questionset_url = "https://leetcode....</p>
+def start_requests(self): self.Login() # 用户登录，后续会用到 questionset_url = "https://leetcode....</p>
 </section>
 <footer class=entry-footer><span title="2018-12-21 15:06:01 +1100 +1100">December 21, 2018</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to LeetCode Archiver(2)：获取题目信息" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver2/></a>
@@ -147,40 +149,14 @@ Downloader middlewares（下载器中间件） 下载器中间件是在引擎及
 Spider middlewares（爬虫中间件） Spider中间件是在引擎及Spider之间的组件，用于处理爬虫的输入（response）和输出（items和requests）。更多内容请参考爬虫中间件。
 Data flow（数据流） Scrapy中的数据流由引擎控制，其过程如下:1.引擎打开一个网站，找到处理该网站的爬虫并向该爬虫请求要爬取的url。2.引擎从爬虫中获取到要爬取的url并将其作为request发送给调度器。3.引擎向调度器请求下一个要爬取的url。4.调度器返回下一个要爬取的url给引擎，引擎将url通过下载器中间件发送给下载器。5.下载器下载页面成功后，生成一个该页面的response对象，并将其通过下载器中间件发送给引擎。6.引擎接收从下载器中间件发送过来的response，并将其通过爬虫中间件发送给爬虫处理。7.爬虫处理response，并将爬取到的item及跟进的新的request发送给引擎。8.引擎将爬虫返回的item发送给管道，将爬虫返回的新的request发送给调度器。9.管道对item进行相应的处理。10.重复第二步，直到调度器中没有更多的request，此时引擎关闭该网站。安装 1.下载安装最新版的Python3
 2.使用pip指令安装Scrapy
-pip3 install scrapy
-创建项目 首先进入你的代码存储目录，在命令行中输入以下命令：
-scrapy startproject LeetCode_Crawler
-注意项目名称是不能包含连字符 ‘-’ 的
+pip3 install scrapy 创建项目 首先进入你的代码存储目录，在命令行中输入以下命令：
+scrapy startproject LeetCode_Crawler 注意项目名称是不能包含连字符 ‘-’ 的
 新建成功后，可以看到在当前目录下新建了一个名为LeetCode_Crawler的Scrapy项目，进入该目录，其项目结构如下：
-scrapy.cfg #该项目的配置文件
-scrapy_project #该项目的Python模块
-__init__.py
-items.py #可自定义的item类文件
-middlewares.py #中间件文件
-pipelines.py #管道文件
-settings.py #设置文件
-__pycache__
-spiders #爬虫文件夹，所有爬虫文件都应在该文件夹下
-__init__.py
-__pycache__
-至此Scrapy项目的创建就完成了。
+scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.py #中间件文件 pipelines.py #管道文件 settings.py #设置文件 __pycache__ spiders #爬虫文件夹，所有爬虫文件都应在该文件夹下 __init__.py __pycache__ 至此Scrapy项目的创建就完成了。
 参考资料 Scrapy官方文档</p>
 </section>
 <footer class=entry-footer><span title="2018-12-04 11:25:15 +1100 +1100">December 4, 2018</span>&nbsp;·&nbsp;1 min</footer>
 <a class=entry-link aria-label="post link to LeetCode Archiver(1)：Scrapy框架和Requests库" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver1/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>C++ 基础知识整理
-</h2>
-</header>
-<section class=entry-content>
-<p>C++ 基础知识 const 相关 #define，typedef，const
-# 是宏，宏不做类型检查，只进行简单替换；在编译前被处理，编译阶段的程序是宏处理后的结果 typedef 用于声明自定义数据类型，简化代码 const 用于定义常量，有数据类型，编译器会对进行类型检查 const 和指针
-const char *p: p is a pointer to const char char const *p: p is a pointer to char const（同上） char *const p: p is a const pointer to char int main() { const char *p1 = new char('a'); char const *p2 = new char('b'); char *const p3 = new char('c'); *p1 = 'd'; // error: read-only variable is notassignable *p2 = 'e'; // error: read-only variable is notassignable p3 = new char('f'); // error: cannot assign tovariable 'p3' with const-qualified type 'char *const' p3 = nullptr; // error: cannot assign to variable'p3' with const-qualified type 'char *const' } const 和类...</p>
-</section>
-<footer class=entry-footer><span title="2015-07-05 08:57:52 +1000 +1000">July 5, 2015</span>&nbsp;·&nbsp;5 min</footer>
-<a class=entry-link aria-label="post link to C++ 基础知识整理" href=http://zintrulcre.github.io/posts/c++/basics/basics/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
