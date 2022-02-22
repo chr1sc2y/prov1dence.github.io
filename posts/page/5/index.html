@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.1">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,20 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>boost::typeIndex 的相关探究
+</h2>
+</header>
+<section class=entry-content>
+<p>boost::typeIndex 的相关探究 Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 Boost::typeindex 的使用，但并没有讲到其实现原理。
+1. typeid 操作符 typeid 是 C++ 中的一个操作符，可以用于获取类型的信息，常常用在必须知道多态对象的动态类型，或是识别静态类型的地方。
+我们可以写一个简单的 demo 用于获取对象类型相关的信息，需要包含 tepyinfo 头文件：
+#include &lt;iostream>#include &lt;typeinfo> using namespace std; class Foo {}; int main() { cout &lt;&lt; "1: " &lt;&lt; typeid(1).name() &lt;&lt; endl; cout &lt;&lt; "int: " &lt;&lt; typeid(int).name() &lt;&lt; endl; // 和 sizeof 操作符类似，typeid 也可以直接对数据类型（比如 int）进行操作 cout &lt;&lt; "typeid: " &lt;&lt; typeid(typeid(int)).name() &lt;&lt; endl; cout &lt;&lt; "typeid: " &lt;&lt; typeid(const type_info &)....</p>
+</section>
+<footer class=entry-footer><span title="2020-07-31 20:31:06 +0800 CST">July 31, 2020</span>&nbsp;·&nbsp;6 min</footer>
+<a class=entry-link aria-label="post link to boost::typeIndex 的相关探究" href=http://zintrulcre.github.io/posts/c++/boost/boost-typeindex/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>CMake 入门
@@ -119,21 +133,6 @@ suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，
 </section>
 <footer class=entry-footer><span title="2020-01-20 20:15:05 +0800 CST">January 20, 2020</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to C++ 协程（1）：函数和协程" href=http://zintrulcre.github.io/posts/c++/coroutine/c++-coroutine-function-and-coroutine/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 树（3）
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 树（3） 题目 4. 递归求解 617 合并二叉树 合并两个二叉树。
-判断各个节点是否存在，全部合并到一棵树上即可。
-class Solution { public: TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2) { if (!t1 && !t2) return nullptr; else if (!t1) return t2; else if (!t2) return t1; t1->val += t2->val; t1->left = mergeTrees(t1->left, t2->left); t1->right = mergeTrees(t1->right, t2->right); return t1; } }; 226 翻转二叉树 翻转一个二叉树。
-先将左右子树分别翻转，再交换两者的位置。
-class Solution { public: TreeNode *invertTree(TreeNode *root) { if (!root) return nullptr; TreeNode *left = invertTree(root->left), *right = invertTree(root->right); root->right = left; root->left = right; return root; } }; 104 二叉树的最大深度 找出一个二叉树的最大深度。...</p>
-</section>
-<footer class=entry-footer><span title="2019-08-24 19:12:25 +1000 +1000">August 24, 2019</span>&nbsp;·&nbsp;3 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 树（3）" href=http://zintrulcre.github.io/posts/leetcode/tree-3/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

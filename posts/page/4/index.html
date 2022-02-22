@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.1">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,18 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>负载均衡和一致性哈希
+</h2>
+</header>
+<section class=entry-content>
+<p>负载均衡和一致性哈希 反向代理 reverse proxy 是指以代理服务器来接收由客户端发送来的请求，并通过一定的策略将其转变发给实际处理请求的后端服务器；主要应用于负载均衡、动态缓存、安全认证、内网穿透、SSL 加密等；而负载均衡 load balancing 是指在多个 slot（槽，一般是某种计算资源）中分配负载，以优化资源利用率和避免单点故障问题的方法，是高可用性分布式系统的必备中间件；常用的开源 load balancer 有 nginx，LVS，Haproxy 等；负载均衡可以视为反向代理的一种应用，负载均衡的方法大致可以分为传统负载均衡算法和哈希算法两种，本文简单地总结了这些算法的原理。
+1 传统负载均衡算法 随机 random：将 key 随机分配到某一个 slot 上，根据概率论可知，吞吐量越大，随机算法的效果越好； 加权随机 weighted random：为每一个 slot 分配一个权重，在随机的时候考虑权重的影响；可以通过在所有 slot 的权重总和中随机出一个数字 k，找到 k 所在的 slot 位置来实现； 轮询 round robin：按顺序依次将 key 分配给每一个 slot； 加权轮询 weighted round robin：为每一个 slot 分配一个权重，在按序分配时为权重更高的 slot 分配更多的 key； 平滑加权轮询 smooth weighted round robin：一种能够均匀地分散调度序列的加权轮询方法，分为以下几个步骤： 选出当前权重最高的 slot，将 key 分配给它； 将选出的 slot 的权重数值减去其初始权重； 将所有 slot 的权重数值都加上它们的原始权重； 重复以上步骤； 最少连接数 least connections：将 key 分配给当前具有最少连接数量的 slot； 2 Mod-N 哈希 在有些场景下，传统负载均衡算法无法满足我们的需求，例如：...</p>
+</section>
+<footer class=entry-footer><span title="2020-10-25 23:06:52 +0800 CST">October 25, 2020</span>&nbsp;·&nbsp;4 min</footer>
+<a class=entry-link aria-label="post link to 负载均衡和一致性哈希" href=http://zintrulcre.github.io/posts/service-governance/load-balancing/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>C++ 并发入门：以 LeetCode 1114 为例
@@ -122,20 +134,6 @@ GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集�
 </section>
 <footer class=entry-footer><span title="2020-08-12 18:32:52 +0800 CST">August 12, 2020</span>&nbsp;·&nbsp;12 min</footer>
 <a class=entry-link aria-label="post link to 并行计算入门" href=http://zintrulcre.github.io/posts/parallel-computing/parallel-computing/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>boost::typeIndex 的相关探究
-</h2>
-</header>
-<section class=entry-content>
-<p>boost::typeIndex 的相关探究 Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 Boost::typeindex 的使用，但并没有讲到其实现原理。
-1. typeid 操作符 typeid 是 C++ 中的一个操作符，可以用于获取类型的信息，常常用在必须知道多态对象的动态类型，或是识别静态类型的地方。
-我们可以写一个简单的 demo 用于获取对象类型相关的信息，需要包含 tepyinfo 头文件：
-#include &lt;iostream>#include &lt;typeinfo> using namespace std; class Foo {}; int main() { cout &lt;&lt; "1: " &lt;&lt; typeid(1).name() &lt;&lt; endl; cout &lt;&lt; "int: " &lt;&lt; typeid(int).name() &lt;&lt; endl; // 和 sizeof 操作符类似，typeid 也可以直接对数据类型（比如 int）进行操作 cout &lt;&lt; "typeid: " &lt;&lt; typeid(typeid(int)).name() &lt;&lt; endl; cout &lt;&lt; "typeid: " &lt;&lt; typeid(const type_info &)....</p>
-</section>
-<footer class=entry-footer><span title="2020-07-31 20:31:06 +0800 CST">July 31, 2020</span>&nbsp;·&nbsp;6 min</footer>
-<a class=entry-link aria-label="post link to boost::typeIndex 的相关探究" href=http://zintrulcre.github.io/posts/c++/boost/boost-typeindex/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

@@ -19,7 +19,7 @@
 <link rel=mask-icon href=http://zintrulcre.github.io/%3Clink%20/%20abs%20url%3E>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.1">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=alternate type=application/rss+xml href=http://zintrulcre.github.io/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -63,6 +63,28 @@
 <header class=page-header><div class=breadcrumbs><a href=http://zintrulcre.github.io/>Home</a></div>
 <h1>Posts</h1>
 </header>
+<article class=post-entry>
+<header class=entry-header>
+<h2>LeetCode Archiver(3)： 登录
+</h2>
+</header>
+<section class=entry-content>
+<p>Cookie和Session 为了获取我们自己的提交记录，我们首先要进行登录的操作。但我们都知道HTTP是一种无状态的协议，它的每个请求都是独立的。无论是GET还是POST请求，都包含了处理当前这一条请求的所有信息，但它并不会涉及到状态的变化。因此，为了在无状态的HTTP协议上维护一个持久的状态，引入了Cookie和Session的概念，两者都是为了辨识用户相关信息而储存在内存或硬盘上的加密数据。
+Cookie是由客户端浏览器维护的。客户端浏览器会在需要时把Cookie保存在内存中，当其再次向该域名相关的网站发出request时，浏览器会把url和Cookie一起作为request的一部分发送给服务器。服务器通过解析该Cookie来确认用户的状态，并对Cookie的内容作出相应的修改。一般来说，如果不设置过期时间，非持久Cookie会保存在内存中，浏览器关闭后就被删除了。
+Session是由服务器维护的。当客户端第一次向服务器发出request后，服务器会为该客户端创建一个Session。当该客户端再次访问服务器时，服务器会根据该Session来获取相关信息。一般来说，服务器会为Seesion设置一个失效时间，当距离接收到客户端上一次发送request的时间超过这个失效时间后，服务器会主动删除Session。
+两种方法都可以用来维护登录的状态。为了简便起见，本项目目前使用Session作为维护登录状态的方法。
+获取数据 分析 首先我们进入登录页面，打开开发者工具，勾选Preserve log。为了知道在登录时浏览器向服务器提交了哪些数据，我们可以先输入一个错误的用户名和密码，便于抓包。
+通过分析"login/“这条request，我们可以知道我们所需要的一些关键信息，例如headers中的user-agent和referer，表单数据（form data）中的csrfmiddlewaretoken，login和password。显然，user-agent和referer我们可以直接复制下来，login和password是我们填写的用户名和密码。还有一个很陌生的csrfmiddlewaretoken。这是CSRF的中间件token，CSRF是Cross-Site Request Forgery，相关知识可以查询跨站请求伪造的维基百科。那么现在我们就要分析这个token是从何而来。
+获取csrfmiddlewaretoken 我们将刚才获取到的csrfmiddlewaretoken复制下来，在开发者工具中使用搜索功能，可以发现这个csrfmiddlewaretoken出现在了登录之前的一些request对应的response中。例如在刚才打开登录页面，发送GET请求时，response的headers的set-cookie中出现了"csrftoken=…“，而这里csrftoken的值与我们需要在登录表单中提交的值完全相同。因此，我们可以通过获取刚才的response中的Cookies来获取csrfmiddlewaretoken的值。
+首先我们通过发送GET请求来分析一下Cookies的构成
+login_url = "https://leetcode.com/accounts/login/" session = requests.session() result = session.get(login_url) print(result) print(type(result.cookies)) for cookie in result.cookies: print(type(cookie)) print(cookie) 得到的结果是
+&lt;Response [200]> 状态码200，表示请求成功 &lt;class 'requests.cookies.RequestsCookieJar'> cookies的类型是CookieJar &lt;class 'http.cookiejar.Cookie'> 第一条cookie的类型是Cookie &lt;Cookie__cfduid=d3e02d4309b848f9369e21671fabbce571548041181 for .leetcode.com/> 第一条cookie的信息 &lt;class 'http.cookiejar.Cookie'> 第二条cookie的类型是Cookie &lt;Cookie csrftoken=13mQWE9tYN6g2IrlKY8oMLRc4VhVNoet4j328YdDapW2WC2nf93y5iCuzorovTDl for leetcode.com/> 第二条cookie的信息，也就是我们所需要的csrftoken 这样一来我们便获取到了在提交表单信息时所需要的csrfmiddlewaretoken，之后我们便可以开始着手写登录的相关代码了。顺便一提，在使用Django进行后端开发的时候自动生成的csrf token的键也叫csrfmiddlewaretoken，不知道LeetCode是不是用Django作为后端开发框架的。
+实现 首先我们需要在爬虫开始运行之前获取登录信息，将Session作为类的成员变量保存下来，方便在获取submissions时使用。同时我们需要在与爬虫文件相同的目录下新建config.json，将自己的用户名和密码保存在该json文件里，这样就能顺利登陆了。
+def start_requests(self): self.Login() # 登录 questionset_url = "https://leetcode.com/api/problems/all/" yield scrapy....</p>
+</section>
+<footer class=entry-footer><span title="2019-01-11 13:15:17 +1100 +1100">January 11, 2019</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to LeetCode Archiver(3)： 登录" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver3/></a>
+</article>
 <article class=post-entry>
 <header class=entry-header>
 <h2>C++ 智能指针（1.5）：move 语义
@@ -128,35 +150,6 @@ def start_requests(self): self.Login() # 用户登录，后续会用到 questio
 </section>
 <footer class=entry-footer><span title="2018-12-14 17:03:12 +1100 +1100">December 14, 2018</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to 在Google Cloud Platform上运行Jupyter Notebook" href=http://zintrulcre.github.io/posts/cloud/run-jupyter-notebook-on-gcp/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode Archiver(1)：Scrapy框架和Requests库
-</h2>
-</header>
-<section class=entry-content>
-<p>简介 Scrapy官方文档对Scrapy的介绍如下：
-Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。其最初是为了页面抓取（更确切来说, 网络抓取）所设计的，也可以应用在获取API所返回的数据（例如 Amazon Associates Web Services ）或者通用的网络爬虫。
-简而言之，Scrapy是基于Twisted库开发的，封装了http请求、代理信息、数据存储等功能的Python爬虫框架。
-组件和数据流 下图是Scrapy官方文档中的架构概览图：
-图中绿色箭头表示数据流，其他均为组件。
-Scrapy Engine（引擎） 引擎负责控制数据流在系统的组件中流动，并在相应动作发生时触发事件。
-Scheduler（调度器） 调度器从引擎接收request并将其保存，以便在引擎请求时提供给引擎。
-Downloader（下载器） 下载器负责下载页面数据，并将其提供给引擎，而后再由引擎提供给爬虫。
-Spiders（爬虫） Spider是由用户编写的用于分析response并提取item或额外跟进url的类。一个Scrapy项目中可以有很多Spider，他们分别被用于爬取不同的页面和网站。
-Item Pipeline（管道） Item Pipeline负责处理被爬虫提取出来的item。可以对其进行数据清洗，验证和持久化（例如存储到数据库中）。
-Downloader middlewares（下载器中间件） 下载器中间件是在引擎及下载器之间的组件，用于处理下载器传递给引擎的response。更多内容请参考下载器中间件。
-Spider middlewares（爬虫中间件） Spider中间件是在引擎及Spider之间的组件，用于处理爬虫的输入（response）和输出（items和requests）。更多内容请参考爬虫中间件。
-Data flow（数据流） Scrapy中的数据流由引擎控制，其过程如下:1.引擎打开一个网站，找到处理该网站的爬虫并向该爬虫请求要爬取的url。2.引擎从爬虫中获取到要爬取的url并将其作为request发送给调度器。3.引擎向调度器请求下一个要爬取的url。4.调度器返回下一个要爬取的url给引擎，引擎将url通过下载器中间件发送给下载器。5.下载器下载页面成功后，生成一个该页面的response对象，并将其通过下载器中间件发送给引擎。6.引擎接收从下载器中间件发送过来的response，并将其通过爬虫中间件发送给爬虫处理。7.爬虫处理response，并将爬取到的item及跟进的新的request发送给引擎。8.引擎将爬虫返回的item发送给管道，将爬虫返回的新的request发送给调度器。9.管道对item进行相应的处理。10.重复第二步，直到调度器中没有更多的request，此时引擎关闭该网站。安装 1.下载安装最新版的Python3
-2.使用pip指令安装Scrapy
-pip3 install scrapy 创建项目 首先进入你的代码存储目录，在命令行中输入以下命令：
-scrapy startproject LeetCode_Crawler 注意项目名称是不能包含连字符 ‘-’ 的
-新建成功后，可以看到在当前目录下新建了一个名为LeetCode_Crawler的Scrapy项目，进入该目录，其项目结构如下：
-scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.py #中间件文件 pipelines.py #管道文件 settings.py #设置文件 __pycache__ spiders #爬虫文件夹，所有爬虫文件都应在该文件夹下 __init__.py __pycache__ 至此Scrapy项目的创建就完成了。
-参考资料 Scrapy官方文档</p>
-</section>
-<footer class=entry-footer><span title="2018-12-04 11:25:15 +1100 +1100">December 4, 2018</span>&nbsp;·&nbsp;1 min</footer>
-<a class=entry-link aria-label="post link to LeetCode Archiver(1)：Scrapy框架和Requests库" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver1/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
