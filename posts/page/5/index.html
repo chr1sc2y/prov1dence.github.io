@@ -65,6 +65,26 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>并行计算入门
+</h2>
+</header>
+<section class=entry-content>
+<p>并行计算入门 1 概述 1.1 并行计算 高性能计算（High Performance Computing）是计算机科学中的一个领域，其目的可以概括为优化性能，它包括了缓存技术、数据结构和算法、IO 优化、指令重组（instruction reorganization）、编译器优化等；
+并行计算（Parallel Computing）是高性能计算下的一个细分领域，其主要思想是将复杂问题分解成若干个部分，将每一个部分交给独立的处理器（计算资源）进行计算，以提高效率；针对不同的问题，并行计算需要专用的并行架构，架构既可以是专门设计的，含有多个处理器的单一硬件或超级计算机，也可以是以某种方式互连的若干台的独立计算机构成的集群；并没有一个统一的并行计算架构适用于每一个问题，如果使用了错误的架构，并行计算甚至会导致性能下降。
+1.2 硬件架构 中央处理器（Central Processing Unit）的主要功能是解释计算机指令，它由控制单元（Control Unit）、算术逻辑单元（Arithmetic Logic Unit）、乱序控制单元（Out-of-Order Control Unit）、分支预测器（Branch Predictor）、数据缓存（Data Cache）等部件组成；CPU 被设计为可以快速地处理各种通用计算任务并最小化延迟，但在并发性（时钟频率）方面受到限制；
+图形处理器（Graphics Processing Unit, GPU）是英伟达（NVIDIA）在 1999 年 8 月发布 NVIDIA GeForce 256 时提出的概念；现代 GPU 的模型设计可以概括为几个关键点：
+GPU 的设计目的是最大化吞吐量（Throughput）
+能够将程序中数据可并行的部分从 CPU 转移到 GPU
+能够使用尽可能多的线程进行并行计算
+GPU 拥有的内核数量相较于 CPU 多得多，可以有数千个同时运行的内核执行大规模并行计算，因此在早期专门应用于图形数据的处理，但随着近十几年的发展，其强大的并行处理能力也使其可以处理非图形数据，尤其在深度学习领域非常受欢迎；
+在制造工艺的限制下，芯片的密度和最大面积都是有限的（摩尔定律），因此芯片设计实际上是功能和元件数量的权衡；出于对通用性的要求，CPU 的芯片设计必须使用较多种类的原件以增加其功能，同时放弃部分具有复杂功能的元件数量，而 GPU 的芯片设计则是通过移除部分具有复杂功能的元件来换取更多的空间，并集成更多的基本功能元件；
+GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集群（Processor Cluster）组成。每个流多处理器都关联一个控制单元 和 L1 Cache，这样的设计使得一个芯片可以同时支持上百个指令流的并行执行；通常一个流多处理器在与全局 GDDR-5 内存交换数据之前都会利用与之关联 L1 Cache 和 L2 Cache 来减少数据传输的延迟；而又因为 GPU 通常拥有足够大的计算量，使得其不需要与 CPU 一样非常频繁地从内存中获取数据，因此 GPU 的缓存层一般是小于 CPU 的。...</p>
+</section>
+<footer class=entry-footer><span title="2020-08-12 18:32:52 +0800 CST">August 12, 2020</span>&nbsp;·&nbsp;12 min</footer>
+<a class=entry-link aria-label="post link to 并行计算入门" href=http://zintrulcre.github.io/posts/parallel-computing/parallel-computing/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>boost::typeIndex 的相关探究
 </h2>
 </header>
@@ -116,23 +136,6 @@ Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal represent
 </section>
 <footer class=entry-footer><span title="2020-03-15 17:24:27 +0800 CST">March 15, 2020</span>&nbsp;·&nbsp;1 min</footer>
 <a class=entry-link aria-label="post link to coverity 的 WRAPPER_ESCAPE 告警" href=http://zintrulcre.github.io/posts/c++/basics/wrapper_escape-in-coverity/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>C++ 协程（1）：函数和协程
-</h2>
-</header>
-<section class=entry-content>
-<p>C++ 协程（1）：函数和协程 这篇文章的目的是探究 C++ 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。
-1. 栈帧和函数 栈帧是一个函数执行的环境，包括函数参数、函数返回地址、局部变量等信息。操作系统每次调用一个函数，都会为其分配一个新的栈帧，相关的概念有：
-ESP：栈指针寄存器（Extended Stack Pointer），其内存中存放一个始终指向系统栈最顶部栈帧栈顶的指针 EBP：基址指针寄存器（Extended Base Pointer），其内存中存放一个始终指向系统最顶部栈帧栈底的指针 函数栈帧：ESP和EBP之间的内存空间为当前栈帧，EBP标识了当前栈帧的底部，ESP标识了当前栈帧的顶部 对于普通的函数来说，一般我们可以对其进行两种操作：call（调用）和 return（返回）。为了方便对比，此处不讨论 throw exception 的情况。在运行一个 C++ 程序时，编译器会先执行 C++ runtime，然后会调用 main 函数，再由 main 函数调用其他的函数。
-call 操作一般包含以下几个步骤：
-参数入栈：参数从右向左依次入栈 返回地址入栈：将当前代码区的下一条待执行的指令入栈，以便在函数 return 之后执行 代码区跳转：处理器跳转到被调函数的入口 栈帧调整，包括： 保存当前栈帧状态值，EBP 入栈 从当前栈帧切换到新的栈帧，更新 EBP，将 EBP 的值设置为 ESP 的值 给新的栈帧分配内存空间，更新 ESP，将 ESP 的值减去所需空间的大小 当一个函数通过 return 语句返回时，执行的步骤与调用时相反：
-2. 协程 协程由程序所控制，即在用户态执行，而不是像线程一样由操作系统内核管理，使用协程时，不需要如线程一般频繁地进行上下文切换，性能能够得到很大的提升，因此协程的开销远远小于线程的开销。一般来说协程有三种特性：
-suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，但是保留当前栈帧。和函数的 return 类似，协程的 suspend 只能由协程自身发起 resume 恢复：继续执行已经 suspend 的协程，重新激活协程的栈帧 destroy 销毁：销毁协程的栈帧和其对应的内存 可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是执行栈帧，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是数据栈帧，这部分即使在协程 suspend 的时候依然存在。...</p>
-</section>
-<footer class=entry-footer><span title="2020-01-20 20:15:05 +0800 CST">January 20, 2020</span>&nbsp;·&nbsp;2 min</footer>
-<a class=entry-link aria-label="post link to C++ 协程（1）：函数和协程" href=http://zintrulcre.github.io/posts/c++/coroutine/c++-coroutine-function-and-coroutine/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

@@ -65,6 +65,21 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>ProtoBuf 语法和编码原理入门
+</h2>
+</header>
+<section class=entry-content>
+<p>ProtoBuf 语法和编码原理入门 序列化是指将结构化数据转换成易于存储或发送的数据格式的过程，Protocol Buffer 简称 ProtoBuf，是一种语言无关，平台无关的序列化工具，由谷歌在 2008 年开源。相较于常见的序列化工具 XML, JSON, YAML, CSV 等，ProtoBuf 的优势主要包括序列化后数据量小，序列化和反序列化过程速度快，使用时只需定义 proto 文件使得其维护成本低，可向后兼容等；但因为其数据以二进制数据流的形式存在，也有人类不可读的劣势。
+本文主要介绍 ProtoBuf 的使用方法，包括 .proto 文件的语法，以及如何使用 protoc 工具来生成不通语言的代码；以及其编码原理。
+1 语法 首先从 https://github.com/protocolbuffers/protobuf 找到最新版本的 ProtoBuf，下载预编译好的二进制文件 protoc 解压到环境变量目录，本文使用的是 3.15.7 版本：
+$ protoc --version libprotoc 3.15.7 以一个简单的 proto 文件为例，它的语法和 C++ 类似：
+// msg.proto syntax = "proto3";package Message;message SearchRequest { reserved 6, 9 to 12; reserved "foo", "bar"; string query = 1; int32 page_number = 2; int32 result_per_page = 3;}message ResultType { message Result { string url = 1; string title = 2; repeated string snippets = 3; }}message SearchResponse { repeated ResultType....</p>
+</section>
+<footer class=entry-footer><span title="2021-04-26 21:44:52 +0800 CST">April 26, 2021</span>&nbsp;·&nbsp;6 min</footer>
+<a class=entry-link aria-label="post link to ProtoBuf 语法和编码原理入门" href=http://zintrulcre.github.io/posts/serialization/protocol-buffer/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>Python 源码学习（2）：int 类型
 </h2>
 </header>
@@ -115,20 +130,6 @@ def DepthFirstSearch(problem): from util import Stack open_list = Stack() visite
 </section>
 <footer class=entry-footer><span title="2020-12-10 20:07:52 +0800 CST">December 10, 2020</span>&nbsp;·&nbsp;9 min</footer>
 <a class=entry-link aria-label="post link to 启发式搜索和强化学习" href=http://zintrulcre.github.io/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>C++ 闭包和匿名函数
-</h2>
-</header>
-<section class=entry-content>
-<p>C++ 闭包和匿名函数 本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。
-1 闭包和仿函数 闭包（Closure）可以被理解为一个附带数据的操作，WikiPedia 对闭包的定义是 “In programming languages, a closure, also lexical closure or function closure, is a technique for implementing lexically scoped name binding in a language with first-class functions."，其中有两层含义：
-词法作用域（lexically scoped）的名字绑定（name binding）：在词法作用域（C++ 的词法作用域是静态绑定的，包括块、函数、类、命名空间、全局作用域等）中，变量名与其词法上下文的标识符相关联，而独立于运行时的调用栈； 函数被当作头等公民（first-class citizen）：在运行时可以构造一个函数对象并将其作为参数传递给其他函数； 显然 C++ 98 并不符合这两点定义，因此 C++ 98 中并没有严格意义上的闭包，但我们可以用仿函数（Functor）来模拟闭包的行为；仿函数即一个重载了小括号操作符的类，这个类拥有与函数相近的行为方式，它拥有自己的私有成员变量，例如：
-class Adder { public: int operator()(int num) { sum += num; return sum; } Adder() : sum(0) {} Adder(int num) : sum(num) {} private: int sum; }; int main() { Adder adder(0); cout &lt;&lt; adder(1) &lt;&lt; endl; cout &lt;&lt; adder(2) &lt;&lt; endl; cout &lt;&lt; adder(3) &lt;&lt; endl; } $ g++ -std=c++98 -o adder adder....</p>
-</section>
-<footer class=entry-footer><span title="2020-11-14 21:20:18 +0800 CST">November 14, 2020</span>&nbsp;·&nbsp;5 min</footer>
-<a class=entry-link aria-label="post link to C++ 闭包和匿名函数" href=http://zintrulcre.github.io/posts/c++/closure-and-anonymous-function/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

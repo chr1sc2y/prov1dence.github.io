@@ -65,6 +65,19 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>LeetCode 位运算
+</h2>
+</header>
+<section class=entry-content>
+<p>LeetCode 位运算 位运算包括：
+与 & 或 | 异或 ^ 取反 ~ 左移 « 右移 » 技巧 移位运算
+x « 1：算数左移 数字的二进制表示的所有位向左移动一位，相当于乘以 2 在右边补 0 x » 1：算数右移 数字的二进制表示的所有位向右移动一位，相当于除以 2 在左边补符号位，即正数补 0，负数（在补码的基础上）补 1 负数移位 负数是以补码的形式存储的，负数进行右移运算时需要将其取反转换成反码，加一转换成补码，再将其向右移动一位得到新的补码，再将其减一得到新的反码，再取反转换成原码才能得到结果。例如 -7 的二进制表示是 10000111（因为 32 位太长所以这里用 8 位 int 型表示），其反码是 11111000，补码是11111001，向右移动一位是 11111100，减一得到新的反码 11111011，原码是10000100，也就是 -4；补码向左移一位是 11110010，减一得到新的反码 11110001，原码是 10001110，也就是 -14 比较简单的理解方式是左移乘以 2，右移除以 2。例如 -7 » 1 = -7 / 2 = -4，-7 « 1 = -14 题目 1....</p>
+</section>
+<footer class=entry-footer><span title="2019-06-19 19:26:39 +1000 +1000">June 19, 2019</span>&nbsp;·&nbsp;2 min</footer>
+<a class=entry-link aria-label="post link to LeetCode 位运算" href=http://zintrulcre.github.io/posts/leetcode/bitmanipulation/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>Kick Start 2019 Round C
 </h2>
 </header>
@@ -113,19 +126,6 @@ Solution: Prefix Sum 判断字符串是否是回文串只需要判断字符串�
 </section>
 <footer class=entry-footer><span title="2019-04-21 14:41:22 +1000 +1000">April 21, 2019</span>&nbsp;·&nbsp;4 min</footer>
 <a class=entry-link aria-label="post link to Kick Start 2019 Round B" href=http://zintrulcre.github.io/posts/kick-start/2019-round-b/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Code Jam 2019 Round 1A
-</h2>
-</header>
-<section class=entry-content>
-<p>Code Jam 2019 Round 1A Pylons (8pts, 23pts) 在m*n的网格里移动，每次移动后的位置不能与之前的位置在同一行/列/对角线上。
-Solution: BackTracking 类似于八皇后问题，不过每次的限制条件只和上一个位置有关，可以用回溯解决。
-时间复杂度：O(m^2 * n^2) 空间复杂度：O(m * n) // C++ #include &lt;iostream>#include &lt;cmath>#include &lt;cstdio>#include &lt;math.h>#include &lt;limits>#include &lt;algorithm>#include &lt;vector>#include &lt;stack>#include &lt;queue>#include &lt;string>#include &lt;map>#include &lt;set>#include &lt;unordered_map>#include &lt;unordered_set> using namespace std; int m, n; bool BackTracking(int t, int i, int j, vector&lt;vector&lt;bool>> &visited, vector&lt;vector&lt;int>> &res) { visited[i][j] = true; res[t] = {i, j}; if (t + 1 == m * n) return true; for (int x = 0; x &lt; m; ++x) { for (int y = 0; y &lt; n; ++y) { int r = (x + i) % m, c = (y + j) % n; if (!...</p>
-</section>
-<footer class=entry-footer><span title="2019-04-13 15:28:11 +1000 +1000">April 13, 2019</span>&nbsp;·&nbsp;2 min</footer>
-<a class=entry-link aria-label="post link to Code Jam 2019 Round 1A" href=http://zintrulcre.github.io/posts/code-jam/2019-round-1a/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

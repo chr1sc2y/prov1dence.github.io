@@ -65,6 +65,22 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>C++ 智能指针（2）：unique_ptr
+</h2>
+</header>
+<section class=entry-content>
+<p>C++智能指针（2）：unique_ptr 分析 在使用 AutoPointer 的时候会发生所有权转移和内存泄漏的问题，所以我们可以对 AutoPointer 类稍加修改，修复这两个问题。
+所有权转移 为了规避可能发生所有权转移的情况，我们可以直接禁止它使用拷贝构造函数和赋值操作符。
+UniquePointer(UniquePointer&lt;T> &other) = delete; UniquePointer&lt;T> &operator=(const UniquePointer&lt;T> &other) = delete; 但很多时候我们都需要使用到传递指针的操作，如果只是使用 deleted 函数禁止拷贝构造函数和赋值操作符，那么这个智能指针存在的意义就不大了，我们可以通过 move 语义来实现移动构造函数和移动赋值操作符，从而在使用 UniquePointer 的时候可以在特定情况下进行所有权转移。
+UniquePointer(UniquePointer&lt;T> &&other) noexcept; UniquePointer &operator=(UniquePointer &&other) noexcept; 内存泄漏 为了防止发生内存泄漏，我们可以在UniquePointer的私有成员中增加一个删除器，并根据当前指针对象的类型指定删除器，从而防止发生内存泄漏。
+class Deleter { template&lt;typename T> void operator()(T *p) { if (p) delete p; } }; template&lt;typename T, typename D> class UniquePointer { ... private: T *pointer; Deleter deleter; }; 实现 根据unique_ptr的源码，能够大致实现UniquePointer类
+template&lt;typename T, typename D> class UniquePointer { public: explicit UniquePointer(T *t, const D &d); ~UniquePointer(); T &operator*(); T *operator->(); T *release(); void reset(T *p); UniquePointer(UniquePointer &&other) noexcept; UniquePointer &operator=(UniquePointer &&other) noexcept; UniquePointer(const UniquePointer &other) = delete; UniquePointer &operator=(const UniquePointer &other) = delete; private: T *pointer; D deleter; }; template&lt;typename T, typename D> UniquePointer&lt;T, D>::UniquePointer(T *t, const D &d) { std::cout &lt;&lt; "UniquePointer " &lt;&lt; this &lt;&lt; " constructor called....</p>
+</section>
+<footer class=entry-footer><span title="2019-01-19 01:02:02 +1100 +1100">January 19, 2019</span>&nbsp;·&nbsp;6 min</footer>
+<a class=entry-link aria-label="post link to C++ 智能指针（2）：unique_ptr" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-2/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>LeetCode Archiver(3)： 登录
 </h2>
 </header>
@@ -134,22 +150,6 @@ def start_requests(self): self.Login() # 用户登录，后续会用到 questio
 </section>
 <footer class=entry-footer><span title="2018-12-21 15:06:01 +1100 +1100">December 21, 2018</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to LeetCode Archiver(2)：获取题目信息" href=http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver2/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>在Google Cloud Platform上运行Jupyter Notebook
-</h2>
-</header>
-<section class=entry-content>
-<p>在Google Cloud Platform上运行Jupyter Notebook 简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。
-服务器搭建 创建账号 首先在Google Cloud Platform上创建一个账号。
-创建新项目 点击左上角"Google Cloud Platform"右边的三个点，点击"NEW PROJECT"创建新项目。
-创建虚拟机 进入刚才创建的项目，从左侧边栏点击 Compute Engine -> VM instances 进入虚拟机页面。点击Create创建一个新的虚拟机实例（VM instance）
-)
-根据需求填写和选择 Name, Region, Zone, Machine Type和Boot Disk。在 Firewall 选项中选中 Allow HTTP traffic 和 Allow HTTPS traffic, 在下方的 Disks 选项卡中取消勾选 Delete boot disk when instance is deleted。最后点击 Create，虚拟机实例就创建好了。...</p>
-</section>
-<footer class=entry-footer><span title="2018-12-14 17:03:12 +1100 +1100">December 14, 2018</span>&nbsp;·&nbsp;2 min</footer>
-<a class=entry-link aria-label="post link to 在Google Cloud Platform上运行Jupyter Notebook" href=http://zintrulcre.github.io/posts/cloud/run-jupyter-notebook-on-gcp/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

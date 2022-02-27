@@ -65,6 +65,19 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>LeetCode 链表（1）
+</h2>
+</header>
+<section class=entry-content>
+<p>LeetCode 链表（1） 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。
+依次按位进行相加。
+class Solution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head = l1, tail = l1; while (l1 && l2) { val = l1->val + l2->val + acc; acc = val / 10; l1->val = val % 10; if (!l1->next) l1->next = l2->next, l2->next = nullptr; tail = l1; l1 = l1->next, l2 = l2->next; } while (l1) { val = l1->val + acc; acc = val / 10; l1->val = val % 10; tail = l1; l1 = l1->next; } if (acc) tail->next = new ListNode(1); return head; } }; 21 合并两个有序链表 合并两个有序链表。...</p>
+</section>
+<footer class=entry-footer><span title="2019-07-04 19:12:25 +1000 +1000">July 4, 2019</span>&nbsp;·&nbsp;7 min</footer>
+<a class=entry-link aria-label="post link to LeetCode 链表（1）" href=http://zintrulcre.github.io/posts/leetcode/linkedlist-1/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>LeetCode 动态规划（3）
 </h2>
 </header>
@@ -119,19 +132,6 @@ k = i + (j - i) / 2 k = (i + j) / 2 第二种方法一般都会造成整型数�
 </section>
 <footer class=entry-footer><span title="2019-06-23 19:26:39 +1000 +1000">June 23, 2019</span>&nbsp;·&nbsp;8 min</footer>
 <a class=entry-link aria-label="post link to LeetCode 二分查找" href=http://zintrulcre.github.io/posts/leetcode/binarysearch/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 位运算
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 位运算 位运算包括：
-与 & 或 | 异或 ^ 取反 ~ 左移 « 右移 » 技巧 移位运算
-x « 1：算数左移 数字的二进制表示的所有位向左移动一位，相当于乘以 2 在右边补 0 x » 1：算数右移 数字的二进制表示的所有位向右移动一位，相当于除以 2 在左边补符号位，即正数补 0，负数（在补码的基础上）补 1 负数移位 负数是以补码的形式存储的，负数进行右移运算时需要将其取反转换成反码，加一转换成补码，再将其向右移动一位得到新的补码，再将其减一得到新的反码，再取反转换成原码才能得到结果。例如 -7 的二进制表示是 10000111（因为 32 位太长所以这里用 8 位 int 型表示），其反码是 11111000，补码是11111001，向右移动一位是 11111100，减一得到新的反码 11111011，原码是10000100，也就是 -4；补码向左移一位是 11110010，减一得到新的反码 11110001，原码是 10001110，也就是 -14 比较简单的理解方式是左移乘以 2，右移除以 2。例如 -7 » 1 = -7 / 2 = -4，-7 « 1 = -14 题目 1....</p>
-</section>
-<footer class=entry-footer><span title="2019-06-19 19:26:39 +1000 +1000">June 19, 2019</span>&nbsp;·&nbsp;2 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 位运算" href=http://zintrulcre.github.io/posts/leetcode/bitmanipulation/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

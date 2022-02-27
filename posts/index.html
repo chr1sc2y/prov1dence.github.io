@@ -65,6 +65,24 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>使用 Mac Mini M1 作为软路由让全家设备科学上网
+</h2>
+</header>
+<section class=entry-content>
+<p>使用 Mac Mini M1 作为软路由让全家设备出国 [TOC]
+本文介绍如何将功耗超低的 Mac Mini M1 改造为软路由，让局域网内连上 Wi-Fi 的所有家庭设备都可以免设置直接出国。
+代理客户端 首先需要下载一个可以运行在 M1 上的代理客户端，推荐使用 Surge 或者 ClashX Pro，前者买断价格较贵（每个 Mac 设备 $49.99），后者免费，本文以后者为例。
+配置 一般机场会提供 Clash 的订阅链接，如果没有可以自行搜索 ssr/v2ray 转 clash 的第三方订阅转换服务，生成 Clash 订阅链接。
+有了订阅链接之后，点击顶部菜单栏的 Clash 图标 -> Config -> Remote config -> Manage 管理订阅。
+点击 Add，在 Url 中输入订阅链接，Config Name 可以任意填。
+除此之外还要勾选 Clash 图标里的 Set as system proxy 和 Enhanced Mode 两个选项，这样才能保证 Mac Mini M1 能够成为网关。
+设置网关 到此 Mac Mini M1 已经可以成功地出国了，现在将 Mac Mini M1 作为网管，对路由器上的所有流量进行代理。...</p>
+</section>
+<footer class=entry-footer><span title="2022-02-27 14:08:30 +0800 CST">February 27, 2022</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to 使用 Mac Mini M1 作为软路由让全家设备科学上网" href=http://zintrulcre.github.io/posts/proxy/soft-router/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>工作两年总结
 </h2>
 </header>
@@ -142,31 +160,6 @@ ssh root@192....</p>
 </section>
 <footer class=entry-footer><span title="2022-01-18 22:29:36 +0800 CST">January 18, 2022</span>&nbsp;·&nbsp;1 min</footer>
 <a class=entry-link aria-label="post link to 小米 AX1800 使用 ShellClash 科学上网" href=http://zintrulcre.github.io/posts/proxy/ax1800/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Kafka 入门
-</h2>
-</header>
-<section class=entry-content>
-<p>Kafka 入门 概述 Kafka 最初是为了解决 LinkedIn 数据管道问题应运而生的。它的设计目的是提供一个高性能的消息系统，可以处理多种数据类型，并能够实时提供纯净且结构化的用户活动数据和系统度量指标。
-它不只是一个数据存储系统（类似于传统的关系型数据库、键值存储引擎、搜索引擎或缓存系统），还是一个持续变化和不断增长的流处理系统。现在 Kafka 已经被广泛地应用在社交网络的实时数据流处理当中，成为了下一代数据架构的基础。Kafka 经常会被拿来与现有的企业级消息系统、大数据系统（如 Hadoop）和数据集成 ETL 工具等技术作比较。
-从发布和订阅消息流的角度来看，Kafka 类似于 ActiveMQ、RabbitMQ 或 IBM 的 MQSeries 等产品，其特点在于它以集群的方式运行，可以自由伸缩，处理大量的应用程序；其次，Kafka 可以按照要求持久化数据，即提供了数据传递的保证——可复制、持久化，保留多长时间完全可以由开发者决定。此外，消息系统只会传递消息，而 Kafka 的流式处理能力让我们只用很少的代码就能够动态地处理派生流和数据集。
-1 基础概念 消息代理 在一个基于发布与订阅的消息系统中，数据消息的发送者不直接把消息发送给接收者，而是通过一个消息代理 message broker 传递消息，接收者订阅消息代理，并以特定的方式接收消息。Kafka 就是一个消息代理。
-消息代理 message broker 是一种针对处理消息流而优化的数据库，它作为独立的中间服务运行，生产者和消费者作为客户端连接到消息代理服务，在使用消息代理的架构中主要有 3 种角色：
-生产者将消息写入消息代理；生产者一般是异步架构的，当生产者发送消息时，它只会等待消息代理确认消息已经被缓存，而不等待消息被消费者处理 消息代理负责消息的存储，发送、重传等，一般会包含多个消息队列 message queue 消费者从消息代理接收消息并进行处理；消费者只依赖于消息代理，与生产者完全隔离 消息代理的优势主要有以下几点：
-实现异步处理，提升性能
-把消息处理流程使用消息代理异步化，不会阻塞生产者服务，生产者服务可以在得到处理结果之前继续执行，并提高其并发处理的能力。
-提高系统的可伸缩性
-生产者将大量消息推送到消息代理中，消息代理可以将这些消息分发给不同的消费者，使得多个消费者并行地处理消息，当消费者负载变化时，可以很容易地对消费者服务进行水平伸缩
-削峰填谷
-当生产者推送消息的速度比消费者处理消息的速度更快时，可以使用消息队列作为消息的缓冲，来削弱峰值流量，防止系统被短时间内的流量冲垮
-应用解耦
-使用消息代理后，生产者和消费者即可解耦，不再需要有任何联系，也不需要受对方的影响，只要保持使用一致的消息格式即可。
-消息和批次 Kafka 的数据单元被称为消息，消息类似于关系型数据库里的一个数据行或一条记录；消息由字节数组组成，当消息以一种可控的方式写入不同的分区时，会用到 key，Kafka 会为 key 生成一个一致性散列值，然后使用散列值对主题分区数进行取模，为消息选取分区。这样可以保证具有相同 key 的消息总是被写到相同的分区上。...</p>
-</section>
-<footer class=entry-footer><span title="2021-11-29 23:41:52 +0800 CST">November 29, 2021</span>&nbsp;·&nbsp;14 min</footer>
-<a class=entry-link aria-label="post link to Kafka 入门" href=http://zintrulcre.github.io/posts/message-broker/kafka/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
