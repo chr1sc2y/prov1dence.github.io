@@ -83,7 +83,7 @@
     <loc>http://zintrulcre.github.io/categories/c&#43;&#43;-pointer/</loc>
     <lastmod>2021-02-21T21:20:18+08:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/smart-pointer/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/smart-pointer/smart-pointer/</loc>
     <lastmod>2021-02-21T21:20:18+08:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/tags/c&#43;&#43;11/</loc>
@@ -101,7 +101,7 @@
     <loc>http://zintrulcre.github.io/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</loc>
     <lastmod>2020-12-10T20:07:52+08:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/closure-and-anonymous-function/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/closure-and-anonymous-function/</loc>
     <lastmod>2020-11-14T21:20:18+08:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/categories/consistent-hashing/</loc>
@@ -110,7 +110,7 @@
     <loc>http://zintrulcre.github.io/posts/service-governance/load-balancing/</loc>
     <lastmod>2020-10-25T23:06:52+08:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/concurrency/introduction-to-concurrency/</loc>
     <lastmod>2020-09-30T16:20:25+08:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/categories/concurrency/</loc>
@@ -119,7 +119,7 @@
     <loc>http://zintrulcre.github.io/categories/c&#43;&#43;/</loc>
     <lastmod>2020-09-24T16:43:27+08:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/effective-cpp/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/basics/effective-cpp/</loc>
     <lastmod>2020-09-24T16:43:27+08:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/posts/design-pattern/c&#43;&#43;-template-singleton/</loc>
@@ -134,19 +134,19 @@
     <loc>http://zintrulcre.github.io/posts/parallel-computing/parallel-computing/</loc>
     <lastmod>2020-08-12T18:32:52+08:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/boost/boost-typeindex/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/boost/boost-typeindex/</loc>
     <lastmod>2020-07-31T20:31:06+08:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/compilation/cmake/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/compilation/cmake/</loc>
     <lastmod>2020-06-21T15:46:06+08:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/compilation/gdb/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/compilation/gdb/</loc>
     <lastmod>2020-04-22T17:46:06+08:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/wrapper_escape-in-coverity/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/basics/wrapper_escape-in-coverity/</loc>
     <lastmod>2020-03-15T17:24:27+08:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</loc>
     <lastmod>2020-01-20T20:15:05+08:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/categories/leetcode/</loc>
@@ -230,19 +230,19 @@
     <loc>http://zintrulcre.github.io/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</loc>
     <lastmod>2019-03-20T09:55:04+11:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-3/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</loc>
     <lastmod>2019-01-25T17:47:38+11:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-2/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</loc>
     <lastmod>2019-01-19T01:02:02+11:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver3/</loc>
     <lastmod>2019-01-11T13:15:17+11:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</loc>
     <lastmod>2019-01-02T09:55:05+11:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</loc>
     <lastmod>2018-12-27T15:21:35+11:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver2/</loc>
@@ -254,7 +254,7 @@
     <loc>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver1/</loc>
     <lastmod>2018-12-04T11:25:15+11:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/basics/</loc>
+    <loc>http://zintrulcre.github.io/posts/cpp/basics/basics/</loc>
     <lastmod>2015-07-05T08:57:52+10:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/posts/cloud-computing/docker/</loc>

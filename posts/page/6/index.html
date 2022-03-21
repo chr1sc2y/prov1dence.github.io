@@ -78,7 +78,7 @@ call 操作一般包含以下几个步骤：
 suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，但是保留当前栈帧。和函数的 return 类似，协程的 suspend 只能由协程自身发起 resume 恢复：继续执行已经 suspend 的协程，重新激活协程的栈帧 destroy 销毁：销毁协程的栈帧和其对应的内存 可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是执行栈帧，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是数据栈帧，这部分即使在协程 suspend 的时候依然存在。...</p>
 </section>
 <footer class=entry-footer><span title="2020-01-20 20:15:05 +0800 CST">January 20, 2020</span>&nbsp;·&nbsp;2 min</footer>
-<a class=entry-link aria-label="post link to C++ 协程（1）：函数和协程" href=http://zintrulcre.github.io/posts/c++/coroutine/c++-coroutine-function-and-coroutine/></a>
+<a class=entry-link aria-label="post link to C++ 协程（1）：函数和协程" href=http://zintrulcre.github.io/posts/cpp/coroutine/c++-coroutine-function-and-coroutine/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>

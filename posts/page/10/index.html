@@ -129,7 +129,7 @@ private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识
 template&lt;typename T, typename D> void SharedPointer&lt;T, D>::release() { if (pointer) { std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " counter remains " &lt;&lt; *counter &lt;&lt; std::endl; if (--(*counter) == 0) { std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " destructor called." &lt;&lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针...</p>
 </section>
 <footer class=entry-footer><span title="2019-01-25 17:47:38 +1100 +1100">January 25, 2019</span>&nbsp;·&nbsp;7 min</footer>
-<a class=entry-link aria-label="post link to C++ 智能指针（3）：shared_ptr" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-3/></a>
+<a class=entry-link aria-label="post link to C++ 智能指针（3）：shared_ptr" href=http://zintrulcre.github.io/posts/cpp/smart-pointer/c++-smart-pointer-3/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

@@ -115,7 +115,7 @@ $ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |--
 template&lt;typename T> class Object { public: // constructor Object() : t_() { cout &lt;&lt; "Object::Constructor " &lt;&lt; this &lt;&lt; endl; } Object(T t) : t_(t) { cout &lt;&lt; "Object::Constructor " &lt;&lt; this &lt;&lt; endl; } // copy-ctor Object(const Object &other) { cout &lt;&lt; "Object::Copy-ctor " &lt;&lt; this &lt;&lt; endl; } // destructor ~Object() { cout &lt;&lt; "Object::Destructor " &lt;&lt; this &lt;&lt; endl; } void Set(T t) { t_ = t; } void Print() { cout &lt;&lt; t_ &lt;&lt; endl; } private: T t_; }; 如果在堆上为类对象分配了内存，在离开其作用域的时候又没将其释放，则会造成内存泄漏：...</p>
 </section>
 <footer class=entry-footer><span title="2021-02-21 21:20:18 +0800 CST">February 21, 2021</span>&nbsp;·&nbsp;9 min</footer>
-<a class=entry-link aria-label="post link to C++ 智能指针的简单实现" href=http://zintrulcre.github.io/posts/c++/smart-pointer/smart-pointer/></a>
+<a class=entry-link aria-label="post link to C++ 智能指针的简单实现" href=http://zintrulcre.github.io/posts/cpp/smart-pointer/smart-pointer/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>

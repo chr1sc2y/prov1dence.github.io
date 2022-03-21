@@ -220,10 +220,10 @@ $ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |--
     
     <item>
       <title>C&#43;&#43; 智能指针的简单实现</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/smart-pointer/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/smart-pointer/smart-pointer/</link>
       <pubDate>Sun, 21 Feb 2021 21:20:18 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/smart-pointer/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/smart-pointer/smart-pointer/</guid>
       <description>C++ 智能指针的简单实现 1 std::auto_ptr C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类：
 template&amp;lt;typename T&amp;gt; class Object { public: // constructor  Object() : t_() { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } Object(T t) : t_(t) { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // copy-ctor  Object(const Object &amp;amp;other) { cout &amp;lt;&amp;lt; &amp;#34;Object::Copy-ctor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // destructor  ~Object() { cout &amp;lt;&amp;lt; &amp;#34;Object::Destructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } void Set(T t) { t_ = t; } void Print() { cout &amp;lt;&amp;lt; t_ &amp;lt;&amp;lt; endl; } private: T t_; }; 如果在堆上为类对象分配了内存，在离开其作用域的时候又没将其释放，则会造成内存泄漏：</description>
     </item>
@@ -242,10 +242,10 @@ def DepthFirstSearch(problem): from util import Stack open_list = Stack() visite
     
     <item>
       <title>C&#43;&#43; 闭包和匿名函数</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/closure-and-anonymous-function/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/closure-and-anonymous-function/</link>
       <pubDate>Sat, 14 Nov 2020 21:20:18 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/closure-and-anonymous-function/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/closure-and-anonymous-function/</guid>
       <description>C++ 闭包和匿名函数 本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。
 1 闭包和仿函数 闭包（Closure）可以被理解为一个附带数据的操作，WikiPedia 对闭包的定义是 &amp;ldquo;In programming languages, a closure, also lexical closure or function closure, is a technique for implementing lexically scoped name binding in a language with first-class functions.&amp;quot;，其中有两层含义：
  词法作用域（lexically scoped）的名字绑定（name binding）：在词法作用域（C++ 的词法作用域是静态绑定的，包括块、函数、类、命名空间、全局作用域等）中，变量名与其词法上下文的标识符相关联，而独立于运行时的调用栈； 函数被当作头等公民（first-class citizen）：在运行时可以构造一个函数对象并将其作为参数传递给其他函数；  显然 C++ 98 并不符合这两点定义，因此 C++ 98 中并没有严格意义上的闭包，但我们可以用仿函数（Functor）来模拟闭包的行为；仿函数即一个重载了小括号操作符的类，这个类拥有与函数相近的行为方式，它拥有自己的私有成员变量，例如：
@@ -264,10 +264,10 @@ class Adder { public: int operator()(int num) { sum += num; return sum; } Adder(
     
     <item>
       <title>C&#43;&#43; 并发入门：以 LeetCode 1114 为例</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/concurrency/introduction-to-concurrency/</link>
       <pubDate>Wed, 30 Sep 2020 16:20:25 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/concurrency/introduction-to-concurrency/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/concurrency/introduction-to-concurrency/</guid>
       <description>C++ 并发入门：以 LeetCode 1114 为例 题目 直接做题：1114 按序打印
 解法 1. std::mutex 如果你对 c++ 11 略为熟悉的话，应该能够想到用 std::mutex 来解这道题，在函数构造时（主线程）对 std::mutex 进行 lock，然后在各个线程调用的函数中依次对 std::mutex 对象进行 unlock：
 class Foo { mutex mtx1, mtx2; public: Foo() { mtx1.lock(), mtx2.lock(); } void first(function&amp;lt;void()&amp;gt; printFirst) { printFirst(); mtx1.unlock(); } void second(function&amp;lt;void()&amp;gt; printSecond) { mtx1.lock(); printSecond(); mtx1.unlock(); mtx2.unlock(); } void third(function&amp;lt;void()&amp;gt; printThird) { mtx2.lock(); printThird(); mtx2.unlock(); } }; Mutex 即 mutual exclusion，是用来防止多个线程同时访问共享资源对象的机制，在同一时间只有一个线程可以拥有一个 mutex 对象，其他线程调用 std::mutex::lock 函数时会阻塞直到其获取锁资源。
@@ -276,10 +276,10 @@ class Foo { mutex mtx1, mtx2; public: Foo() { mtx1.lock(), mtx2.lock(); } void f
     
     <item>
       <title>Effective C&#43;&#43; notes</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/effective-cpp/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/basics/effective-cpp/</link>
       <pubDate>Thu, 24 Sep 2020 16:43:27 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/effective-cpp/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/basics/effective-cpp/</guid>
       <description>Effective C++ 笔记 0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如
 class Bar { public: // explicit Bar(); // 是 default 构造函数  // explicit Bar(int x = 0) // 不是 default 构造函数  explicit Bar(int x = 0, bool b = true); // 是 default 构造函数 private: int x; bool b; }; explicit 关键字：阻止执行隐式类型转换，其优点是禁止了编译器执行非预期的类型转换，例如
 void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象  Bar obj_1; // 构造一个 Bar 类型的对象 Foo (obj_1); // 没问题，传递一个 Bar 类型的对象给 Foo 函数 Foo (Bar()); // 没问题，构造一个 Bar 类型的对象，并传递给 Foo 函数 Foo (2); // 如果 Bar 的构造函数没有被声明为 explicit，那么会调用 Bar 的构造函数构造一个成员变量 x = 2 的对象，也就是说发生了隐式类型转换；如果其构造函数被声明为 explicit，那么就不会构造出 Bar 类型的对象 copy 构造函数：用同类型的对象初始化新的对象，它定义了一个对象如何 pass by reference。</description>
@@ -316,10 +316,10 @@ GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集�
     
     <item>
       <title>boost::typeIndex 的相关探究</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/boost/boost-typeindex/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/boost/boost-typeindex/</link>
       <pubDate>Fri, 31 Jul 2020 20:31:06 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/boost/boost-typeindex/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/boost/boost-typeindex/</guid>
       <description>boost::typeIndex 的相关探究 Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 Boost::typeindex 的使用，但并没有讲到其实现原理。
 1. typeid 操作符 typeid 是 C++ 中的一个操作符，可以用于获取类型的信息，常常用在必须知道多态对象的动态类型，或是识别静态类型的地方。
 我们可以写一个简单的 demo 用于获取对象类型相关的信息，需要包含 tepyinfo 头文件：
@@ -328,10 +328,10 @@ GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集�
     
     <item>
       <title>CMake 入门</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/compilation/cmake/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/compilation/cmake/</link>
       <pubDate>Sun, 21 Jun 2020 15:46:06 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/compilation/cmake/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/compilation/cmake/</guid>
       <description>CMake 入门 0. 序 CMake 是一个跨平台的开源构建工具，使用 CMake 能够方便地管理依赖多个库的目录层次结构并生成 makefile 和使用 GNU make 来编译和连接程序。
 1. 构建单个文件 1.1 使用 GCC 编译 假设现在我们希望编写一个函数来实现安全的 int 类型加法防止数据溢出，这个源文件没有任何依赖的源码或静态库：
 // safe_add.cpp #include &amp;lt;iostream&amp;gt;#include &amp;lt;memory&amp;gt;#define INT_MAX 2147483647 #define ERROR_DATA_OVERFLOW 2  int SafeIntAdd(std::unique_ptr&amp;lt;int&amp;gt; &amp;amp;sum, int a, int b) { if (a &amp;gt; INT_MAX - b) { *sum = INT_MAX; return ERROR_DATA_OVERFLOW; } *sum = a + b; return EXIT_SUCCESS; } int main() { int a, b; std::cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b; std::unique_ptr&amp;lt;int&amp;gt; sum(new int(1)); int res = SafeIntAdd(sum, a, b); std::cout &amp;lt;&amp;lt; *sum &amp;lt;&amp;lt; std::endl; return res; } 我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：</description>
@@ -339,10 +339,10 @@ GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集�
     
     <item>
       <title>GDB 调试入门</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/compilation/gdb/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/compilation/gdb/</link>
       <pubDate>Wed, 22 Apr 2020 17:46:06 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/compilation/gdb/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/compilation/gdb/</guid>
       <description>GDB 调试入门 0. 序 调试程序是开发过程中必不可少的一环，在 Windows 或 MacOS 上开发时，可以使用 VS 和 CLion 等 IDE 上自带的调试功能来打断点或查看变量和堆栈，但 Linux 并没有图形化的操作界面，而如果只通过打 log 的方式来查找问题的话效率将会非常低下，此时我们可以利用 GDB 来提升我们的开发效率。
 GDB 是 GNU Debugger 的简写，是 GNU 软件系统中的标准调试器。GDB 具备各种调试功能，包括但不限于打断点、单步执行、打印变量、查看寄存器、查看函数调用堆栈等，能够有效地针对函数的运行进行追踪和警告；使用 GDB 调试时，可以监督和修改程序的变量，并且这些修改是独立于主程序之外的。GDB 主要用于调试编译型语言，对 C，C++，Go，Fortran 等语言有内置的支持，但它不支持解释型语言。
 1. 环境搭建 1.1 编写程序 为了进行调试，我们需要准备一个简单的 C++ 程序：
@@ -351,10 +351,10 @@ $ cat test.cpp #include &amp;lt;iostream&amp;gt; void Func(const char *s) { int 
     
     <item>
       <title>coverity 的 WRAPPER_ESCAPE 告警</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/wrapper_escape-in-coverity/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/basics/wrapper_escape-in-coverity/</link>
       <pubDate>Sun, 15 Mar 2020 17:24:27 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/wrapper_escape-in-coverity/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/basics/wrapper_escape-in-coverity/</guid>
       <description>coverity 的 WRAPPER_ESCAPE 告警 const char* Foo() { std::string str_msg(&amp;#34;test&amp;#34;); return str_msg.c_str(); } int main() { const char *p_msg = Foo(); printf(&amp;#34;%s\n&amp;#34;, p_msg); return 0; } // output:（为空，或乱码） D? 上面代码中的 Foo 函数会被 coverity 报告 WRAPPER_ESCAPE，详细说明是：
 Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope 大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
 而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：</description>
@@ -362,10 +362,10 @@ Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal represent
     
     <item>
       <title>C&#43;&#43; 协程（1）：函数和协程</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</link>
       <pubDate>Mon, 20 Jan 2020 20:15:05 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</guid>
       <description>C++ 协程（1）：函数和协程 这篇文章的目的是探究 C++ 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。
 1. 栈帧和函数 栈帧是一个函数执行的环境，包括函数参数、函数返回地址、局部变量等信息。操作系统每次调用一个函数，都会为其分配一个新的栈帧，相关的概念有：
  ESP：栈指针寄存器（Extended Stack Pointer），其内存中存放一个始终指向系统栈最顶部栈帧栈顶的指针 EBP：基址指针寄存器（Extended Base Pointer），其内存中存放一个始终指向系统最顶部栈帧栈底的指针 函数栈帧：ESP和EBP之间的内存空间为当前栈帧，EBP标识了当前栈帧的底部，ESP标识了当前栈帧的顶部  对于普通的函数来说，一般我们可以对其进行两种操作：call（调用）和 return（返回）。为了方便对比，此处不讨论 throw exception 的情况。在运行一个 C++ 程序时，编译器会先执行 C++ runtime，然后会调用 main 函数，再由 main 函数调用其他的函数。
@@ -634,10 +634,10 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
     
     <item>
       <title>C&#43;&#43; 智能指针（3）：shared_ptr</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-3/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</link>
       <pubDate>Fri, 25 Jan 2019 17:47:38 +1100</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
       <description>C++智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器
 private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
 template&amp;lt;typename T, typename D&amp;gt; void SharedPointer&amp;lt;T, D&amp;gt;::release() { if (pointer) { std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; counter remains &amp;quot; &amp;lt;&amp;lt; *counter &amp;lt;&amp;lt; std::endl; if (--(*counter) == 0) { std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; destructor called.&amp;quot; &amp;lt;&amp;lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针</description>
@@ -645,10 +645,10 @@ template&amp;lt;typename T, typename D&amp;gt; void SharedPointer&amp;lt;T, D&am
     
     <item>
       <title>C&#43;&#43; 智能指针（2）：unique_ptr</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-2/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</link>
       <pubDate>Sat, 19 Jan 2019 01:02:02 +1100</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-2/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</guid>
       <description>C++智能指针（2）：unique_ptr 分析 在使用 AutoPointer 的时候会发生所有权转移和内存泄漏的问题，所以我们可以对 AutoPointer 类稍加修改，修复这两个问题。
 所有权转移 为了规避可能发生所有权转移的情况，我们可以直接禁止它使用拷贝构造函数和赋值操作符。
 UniquePointer(UniquePointer&amp;lt;T&amp;gt; &amp;amp;other) = delete; UniquePointer&amp;lt;T&amp;gt; &amp;amp;operator=(const UniquePointer&amp;lt;T&amp;gt; &amp;amp;other) = delete; 但很多时候我们都需要使用到传递指针的操作，如果只是使用 deleted 函数禁止拷贝构造函数和赋值操作符，那么这个智能指针存在的意义就不大了，我们可以通过 move 语义来实现移动构造函数和移动赋值操作符，从而在使用 UniquePointer 的时候可以在特定情况下进行所有权转移。
@@ -679,10 +679,10 @@ login_url = &amp;quot;https://leetcode.com/accounts/login/&amp;quot; session = r
     
     <item>
       <title>C&#43;&#43; 智能指针（1.5）：move 语义</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
       <pubDate>Wed, 02 Jan 2019 09:55:05 +1100</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
       <description>C++智能指针（1.5）：move语义 move语义 定义 右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（Perfect Forwarding），其主要目的有
  消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 能够更简洁明确地定义泛型函数。  实现 move 语义的实现非常简单，它将传入的参数 _Tp&amp;amp;&amp;amp; __t 使用静态类型转换 static_cast&amp;lt;_Up&amp;amp;&amp;amp;&amp;gt;(__t) 转变成了成了对应类型的右值，也就是说使用 move 语义之后，编译器窃取（一般会在移动构造函数和移动赋值操作符里将原有对象指向 nullptr）了原有对象的右值，并延长了这个右值的生命周期并将其用来赋值给其他的对象，而没有对右值做任何拷贝操作。
 template &amp;lt;class _Tp&amp;gt; typename remove_reference&amp;lt;_Tp&amp;gt;::type&amp;amp;&amp;amp; move(_Tp&amp;amp;&amp;amp; __t) _NOEXCEPT { typedef typename remove_reference&amp;lt;_Tp&amp;gt;::type _Up; return static_cast&amp;lt;_Up&amp;amp;&amp;amp;&amp;gt;(__t); } 测试 定义一个 Object 类和一个 MoveObject 函数使用 move 语义返回一个 Object 的类对象，可以看到在 MoveObject 函数返回右值后，obj 对象调用了移动构造函数。
@@ -691,10 +691,10 @@ class Object { public: Object() { std::cout &amp;lt;&amp;lt; &amp;#34;Construct&
     
     <item>
       <title>C&#43;&#43; 智能指针（1）：auto_ptr</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</link>
       <pubDate>Thu, 27 Dec 2018 15:21:35 +1100</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
       <description>C++智能指针（1）：auto_ptr 分析 C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 类
 class Object { public: Object() { std::cout &amp;lt;&amp;lt; &amp;#34;Construct&amp;#34; &amp;lt;&amp;lt; std::endl; } Object(const Object &amp;amp;other) { std::cout &amp;lt;&amp;lt; &amp;#34;Copy&amp;#34; &amp;lt;&amp;lt; std::endl; } Object(Object &amp;amp;&amp;amp;other) noexcept { std::cout &amp;lt;&amp;lt; &amp;#34;Move&amp;#34; &amp;lt;&amp;lt; std::endl; } ~Object() { std::cout &amp;lt;&amp;lt; &amp;#34;Destruct&amp;#34; &amp;lt;&amp;lt; std::endl; } void Print() { std::cout &amp;lt;&amp;lt; &amp;#34;Print&amp;#34; &amp;lt;&amp;lt; std::endl; } }; 创建一个指向 Object 类型的指针
 int main() { Object *o = new Object(); o-&amp;gt;Print(); return 0; } /* output: Construct Print */ 我们没有进行delete o的操作，导致o没有被正确地析构，造成了内存泄漏。作为对比，创建一个Obj类型的对象</description>
@@ -764,10 +764,10 @@ scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 _
     
     <item>
       <title>C&#43;&#43; 基础知识整理</title>
-      <link>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/basics/</link>
+      <link>http://zintrulcre.github.io/posts/cpp/basics/basics/</link>
       <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/c&#43;&#43;/basics/basics/</guid>
+      <guid>http://zintrulcre.github.io/posts/cpp/basics/basics/</guid>
       <description>C++ 基础知识 const 相关   #define，typedef，const
  # 是宏，宏不做类型检查，只进行简单替换；在编译前被处理，编译阶段的程序是宏处理后的结果 typedef 用于声明自定义数据类型，简化代码 const 用于定义常量，有数据类型，编译器会对进行类型检查    const 和指针
  const char *p: p is a pointer to const char char const *p: p is a pointer to char const（同上） char *const p: p is a const pointer to char  int main() { const char *p1 = new char(&amp;#39;a&amp;#39;); char const *p2 = new char(&amp;#39;b&amp;#39;); char *const p3 = new char(&amp;#39;c&amp;#39;); *p1 = &amp;#39;d&amp;#39;; // error: read-only variable is notassignable *p2 = &amp;#39;e&amp;#39;; // error: read-only variable is notassignable p3 = new char(&amp;#39;f&amp;#39;); // error: cannot assign tovariable &amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; p3 = nullptr; // error: cannot assign to variable&amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; }   const 和类</description>

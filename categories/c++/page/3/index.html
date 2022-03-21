@@ -73,7 +73,7 @@
 const char *p: p is a pointer to const char char const *p: p is a pointer to char const（同上） char *const p: p is a const pointer to char int main() { const char *p1 = new char('a'); char const *p2 = new char('b'); char *const p3 = new char('c'); *p1 = 'd'; // error: read-only variable is notassignable *p2 = 'e'; // error: read-only variable is notassignable p3 = new char('f'); // error: cannot assign tovariable 'p3' with const-qualified type 'char *const' p3 = nullptr; // error: cannot assign to variable'p3' with const-qualified type 'char *const' } const 和类...</p>
 </section>
 <footer class=entry-footer><span title="2015-07-05 08:57:52 +1000 +1000">July 5, 2015</span>&nbsp;·&nbsp;5 min</footer>
-<a class=entry-link aria-label="post link to C++ 基础知识整理" href=http://zintrulcre.github.io/posts/c++/basics/basics/></a>
+<a class=entry-link aria-label="post link to C++ 基础知识整理" href=http://zintrulcre.github.io/posts/cpp/basics/basics/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

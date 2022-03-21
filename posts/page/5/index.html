@@ -95,7 +95,7 @@ GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集�
 #include &lt;iostream>#include &lt;typeinfo> using namespace std; class Foo {}; int main() { cout &lt;&lt; "1: " &lt;&lt; typeid(1).name() &lt;&lt; endl; cout &lt;&lt; "int: " &lt;&lt; typeid(int).name() &lt;&lt; endl; // 和 sizeof 操作符类似，typeid 也可以直接对数据类型（比如 int）进行操作 cout &lt;&lt; "typeid: " &lt;&lt; typeid(typeid(int)).name() &lt;&lt; endl; cout &lt;&lt; "typeid: " &lt;&lt; typeid(const type_info &)....</p>
 </section>
 <footer class=entry-footer><span title="2020-07-31 20:31:06 +0800 CST">July 31, 2020</span>&nbsp;·&nbsp;6 min</footer>
-<a class=entry-link aria-label="post link to boost::typeIndex 的相关探究" href=http://zintrulcre.github.io/posts/c++/boost/boost-typeindex/></a>
+<a class=entry-link aria-label="post link to boost::typeIndex 的相关探究" href=http://zintrulcre.github.io/posts/cpp/boost/boost-typeindex/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
@@ -108,7 +108,7 @@ GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集�
 // safe_add.cpp #include &lt;iostream>#include &lt;memory>#define INT_MAX 2147483647 #define ERROR_DATA_OVERFLOW 2 int SafeIntAdd(std::unique_ptr&lt;int> &sum, int a, int b) { if (a > INT_MAX - b) { *sum = INT_MAX; return ERROR_DATA_OVERFLOW; } *sum = a + b; return EXIT_SUCCESS; } int main() { int a, b; std::cin >> a >> b; std::unique_ptr&lt;int> sum(new int(1)); int res = SafeIntAdd(sum, a, b); std::cout &lt;&lt; *sum &lt;&lt; std::endl; return res; } 我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：...</p>
 </section>
 <footer class=entry-footer><span title="2020-06-21 15:46:06 +0800 CST">June 21, 2020</span>&nbsp;·&nbsp;11 min</footer>
-<a class=entry-link aria-label="post link to CMake 入门" href=http://zintrulcre.github.io/posts/c++/compilation/cmake/></a>
+<a class=entry-link aria-label="post link to CMake 入门" href=http://zintrulcre.github.io/posts/cpp/compilation/cmake/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
@@ -122,7 +122,7 @@ GDB 是 GNU Debugger 的简写，是 GNU 软件系统中的标准调试器。GDB
 $ cat test.cpp #include &lt;iostream> void Func(const char *s) { int *p = nullptr; int &r = static_cast&lt;int&>(*p); int num = std::atoi(s); r = num; printf("%d\n", r); } int main (int argc, char *argv[]) { if (argc !...</p>
 </section>
 <footer class=entry-footer><span title="2020-04-22 17:46:06 +0800 CST">April 22, 2020</span>&nbsp;·&nbsp;5 min</footer>
-<a class=entry-link aria-label="post link to GDB 调试入门" href=http://zintrulcre.github.io/posts/c++/compilation/gdb/></a>
+<a class=entry-link aria-label="post link to GDB 调试入门" href=http://zintrulcre.github.io/posts/cpp/compilation/gdb/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
@@ -135,7 +135,7 @@ Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal represent
 而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：...</p>
 </section>
 <footer class=entry-footer><span title="2020-03-15 17:24:27 +0800 CST">March 15, 2020</span>&nbsp;·&nbsp;1 min</footer>
-<a class=entry-link aria-label="post link to coverity 的 WRAPPER_ESCAPE 告警" href=http://zintrulcre.github.io/posts/c++/basics/wrapper_escape-in-coverity/></a>
+<a class=entry-link aria-label="post link to coverity 的 WRAPPER_ESCAPE 告警" href=http://zintrulcre.github.io/posts/cpp/basics/wrapper_escape-in-coverity/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

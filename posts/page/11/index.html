@@ -77,7 +77,7 @@ class Deleter { template&lt;typename T> void operator()(T *p) { if (p) delete p;
 template&lt;typename T, typename D> class UniquePointer { public: explicit UniquePointer(T *t, const D &d); ~UniquePointer(); T &operator*(); T *operator->(); T *release(); void reset(T *p); UniquePointer(UniquePointer &&other) noexcept; UniquePointer &operator=(UniquePointer &&other) noexcept; UniquePointer(const UniquePointer &other) = delete; UniquePointer &operator=(const UniquePointer &other) = delete; private: T *pointer; D deleter; }; template&lt;typename T, typename D> UniquePointer&lt;T, D>::UniquePointer(T *t, const D &d) { std::cout &lt;&lt; "UniquePointer " &lt;&lt; this &lt;&lt; " constructor called....</p>
 </section>
 <footer class=entry-footer><span title="2019-01-19 01:02:02 +1100 +1100">January 19, 2019</span>&nbsp;·&nbsp;6 min</footer>
-<a class=entry-link aria-label="post link to C++ 智能指针（2）：unique_ptr" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-2/></a>
+<a class=entry-link aria-label="post link to C++ 智能指针（2）：unique_ptr" href=http://zintrulcre.github.io/posts/cpp/smart-pointer/c++-smart-pointer-2/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
@@ -113,7 +113,7 @@ template &lt;class _Tp> typename remove_reference&lt;_Tp>::type&& move(_Tp&& __t
 class Object { public: Object() { std::cout &lt;&lt; "Construct" &lt;&lt; std::endl; } Object(const Object &other) { std::cout &lt;&lt; "Copy" &lt;&lt; std::endl; } Object(Object &&other) noexcept { std::cout &lt;&lt; "Move" &lt;&lt; std::endl; } ~Object() { std::cout &lt;&lt; "Destruct" &lt;&lt; std::endl; } void Print() { std::cout &lt;&lt; "Print" &lt;&lt; std::endl; } }; Object MoveObject() { Object obj; return move(obj); } int main() { Object obj = MoveObject(); return 0; } /* output: Construct Move Destruct Destruct */ 返回值优化（RVO，Return value optimisation） 返回值优化是一种编译器优化技术，允许编译器在调用点（call site）直接构造函数的返回值。...</p>
 </section>
 <footer class=entry-footer><span title="2019-01-02 09:55:05 +1100 +1100">January 2, 2019</span>&nbsp;·&nbsp;2 min</footer>
-<a class=entry-link aria-label="post link to C++ 智能指针（1.5）：move 语义" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-1.5/></a>
+<a class=entry-link aria-label="post link to C++ 智能指针（1.5）：move 语义" href=http://zintrulcre.github.io/posts/cpp/smart-pointer/c++-smart-pointer-1.5/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
@@ -126,7 +126,7 @@ class Object { public: Object() { std::cout &lt;&lt; "Construct" &lt;&lt; std::e
 int main() { Object *o = new Object(); o->Print(); return 0; } /* output: Construct Print */ 我们没有进行delete o的操作，导致o没有被正确地析构，造成了内存泄漏。作为对比，创建一个Obj类型的对象...</p>
 </section>
 <footer class=entry-footer><span title="2018-12-27 15:21:35 +1100 +1100">December 27, 2018</span>&nbsp;·&nbsp;4 min</footer>
-<a class=entry-link aria-label="post link to C++ 智能指针（1）：auto_ptr" href=http://zintrulcre.github.io/posts/c++/smart-pointer/c++-smart-pointer-1/></a>
+<a class=entry-link aria-label="post link to C++ 智能指针（1）：auto_ptr" href=http://zintrulcre.github.io/posts/cpp/smart-pointer/c++-smart-pointer-1/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>

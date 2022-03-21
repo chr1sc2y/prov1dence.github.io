@@ -72,7 +72,7 @@
 template&lt;typename T> class Object { public: // constructor Object() : t_() { cout &lt;&lt; "Object::Constructor " &lt;&lt; this &lt;&lt; endl; } Object(T t) : t_(t) { cout &lt;&lt; "Object::Constructor " &lt;&lt; this &lt;&lt; endl; } // copy-ctor Object(const Object &other) { cout &lt;&lt; "Object::Copy-ctor " &lt;&lt; this &lt;&lt; endl; } // destructor ~Object() { cout &lt;&lt; "Object::Destructor " &lt;&lt; this &lt;&lt; endl; } void Set(T t) { t_ = t; } void Print() { cout &lt;&lt; t_ &lt;&lt; endl; } private: T t_; }; 如果在堆上为类对象分配了内存，在离开其作用域的时候又没将其释放，则会造成内存泄漏：...</p>
 </section>
 <footer class=entry-footer><span title="2021-02-21 21:20:18 +0800 CST">February 21, 2021</span>&nbsp;·&nbsp;9 min</footer>
-<a class=entry-link aria-label="post link to C++ 智能指针的简单实现" href=http://zintrulcre.github.io/posts/c++/smart-pointer/smart-pointer/></a>
+<a class=entry-link aria-label="post link to C++ 智能指针的简单实现" href=http://zintrulcre.github.io/posts/cpp/smart-pointer/smart-pointer/></a>
 </article>
 <article class="post-entry tag-entry">
 <header class=entry-header>
@@ -86,7 +86,7 @@ template&lt;typename T> class Object { public: // constructor Object() : t_() { 
 class Adder { public: int operator()(int num) { sum += num; return sum; } Adder() : sum(0) {} Adder(int num) : sum(num) {} private: int sum; }; int main() { Adder adder(0); cout &lt;&lt; adder(1) &lt;&lt; endl; cout &lt;&lt; adder(2) &lt;&lt; endl; cout &lt;&lt; adder(3) &lt;&lt; endl; } $ g++ -std=c++98 -o adder adder....</p>
 </section>
 <footer class=entry-footer><span title="2020-11-14 21:20:18 +0800 CST">November 14, 2020</span>&nbsp;·&nbsp;5 min</footer>
-<a class=entry-link aria-label="post link to C++ 闭包和匿名函数" href=http://zintrulcre.github.io/posts/c++/closure-and-anonymous-function/></a>
+<a class=entry-link aria-label="post link to C++ 闭包和匿名函数" href=http://zintrulcre.github.io/posts/cpp/closure-and-anonymous-function/></a>
 </article>
 </main>
 <footer class=footer>
