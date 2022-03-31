@@ -65,74 +65,23 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
-<h2>LeetCode 链表（2）
+<h2>
 </h2>
 </header>
 <section class=entry-content>
-<p>LeetCode 链表（2） 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。
-在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，tail 先往前走 n 步，然后两个指针一起往前走直到 tail 没有后继指针，此时 prev 的后继指针就是倒数第 n 个位置，删除其即可。注意如果要删除的指针是头指针的话要单独处理。
-class Solution { public: ListNode* removeNthFromEnd(ListNode* head, int n) { ListNode *prev = head, *tail = head; for (int i = 0; i &lt; n; ++i) tail = tail->next; if (!tail) { head = head->next; delete prev; return head; } while (tail->next) tail = tail->next, prev = prev->next; ListNode *next = prev->next; prev->next = next->next; delete next; return head; } }; 61 旋转链表 给一个链表，将其每个节点向右移动 k 个位置。...</p>
+<p>Linux:
+我平时的学习基本上都在Linux下完成的，我现在有两台电脑，一台iMac，一台笔记本，笔记本上就装的Linux，然后每天都会用很多指令， 比如说用pipeline管道输出后用grep做正则搜索，用ifconfig和netstat查看网络状态，用top看进程资源，用iostat看cpu和硬盘状态 还有就是最基础的cd ls cp rm mkdir find whereis，还有远程的scp 还有一个查看程序运行时的系统调用，在Linux下是strace，Mac下是dtruss，有些命令在两个平台不一样 Linux下对文件操作有两种方式：系统调用（底层调用，面向硬件），和库函数调用（应用）。系统调用：open, close, read, write, ioctl等，用于底层文件访问
+调试： 用vim编辑（会一些vim的快捷键，比如dd删除一行，gg定位到头部，6$定位到某一行），用gdb调试，打log出来看，用过有个叫log4cplus的框架，有内存错误或者内存泄漏的问题就用valgrind调试。还有用GNU profiler来查看一些函数的调用次数，调用点相关的信息（编译器的话在Linux上GCC，在MAC上用自带的clang，单元测试用gtest。）
+C++ 内存分配
+栈区：参数，局部变量 2.堆区：new，向高地址扩展，不连续 3.自由存储区，malloc 4.全局/静态存储区，存储全局变量和静态变量 5.常量存储区，存储常量 new 分配失败： 1. int* p = new (std::nothrow) int(1); 返回空指针 2. 用 try {} catch (const bad_alloc &b) {} 捕捉异常 auto_ptr：有拷贝构造和赋值操作，所有权转移 unique_ptr：独占式拥有，保证同一时间内只有一个智能指针可以指向特定指针，同时销毁，可以移交拥有权 shared_ptr：多个智能指针指向相同指针对象，在最后一个shared_ptr被销毁时对象被释放；搭配 weak_ptr、bad_weak_ptr等辅助类来实现，可以定制型删除器，因为默认只会把指针删掉，如果是个数组不会删后面的 循环引用就是说有两个类对象的智能指针，他们分别有一个成员变量是对方的类型，并且指向了对方的智能指针，形成了一个环状，那么他们就无法被正确的释放掉 weak_ptr：只引用，不计数，如果一个指针被一些shared_ptr和weak_ptr同时引用，当这些shared_ptr都释放掉，不管还有没有weak_ptr引用该内存，内存都会被释放，解决了循环引用
+线程通信：锁（互斥锁，读写所，自旋锁，条件变量，原子变量，临界区），信号量，信号，屏障</p>
 </section>
-<footer class=entry-footer><span title="2019-07-09 19:12:25 +1000 +1000">July 9, 2019</span>&nbsp;·&nbsp;6 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 链表（2）" href=http://zintrulcre.github.io/posts/leetcode/linkedlist-2/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 链表（1）
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 链表（1） 题目 1. 常规题 2 两数相加 给两个链表分别代表两个正数的逆序表示，计算两个链表之和。
-依次按位进行相加。
-class Solution { public: ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) { int acc = 0, val = 0; auto head = l1, tail = l1; while (l1 && l2) { val = l1->val + l2->val + acc; acc = val / 10; l1->val = val % 10; if (!l1->next) l1->next = l2->next, l2->next = nullptr; tail = l1; l1 = l1->next, l2 = l2->next; } while (l1) { val = l1->val + acc; acc = val / 10; l1->val = val % 10; tail = l1; l1 = l1->next; } if (acc) tail->next = new ListNode(1); return head; } }; 21 合并两个有序链表 合并两个有序链表。...</p>
-</section>
-<footer class=entry-footer><span title="2019-07-04 19:12:25 +1000 +1000">July 4, 2019</span>&nbsp;·&nbsp;7 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 链表（1）" href=http://zintrulcre.github.io/posts/leetcode/linkedlist-1/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 动态规划（3）
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 动态规划 题目 6. 字符串相关 712 两个字符串的最小ASCII删除和 给定两个字符串，计算使两个字符串相同所需要删除的字符的ASCII值的和的最小值。
-对于两个字符串中的字符 s1[i] 和 s2[j]，如果s1[i] == s2[j]，那么这两个字符都不需要被删除，所以 dp[i][j] = dp[i - 1][j - 1]，否则至少有一个应该被删除，取两个中的最小值，状态转移方程是dp[i][j] = min(dp[i - 1][j] + s1[i], dp[i][j - 1] + s2[j])。时间复杂度是 O(m * n)，空间复杂度是 O(m * n)。
-class Solution { public: int minimumDeleteSum(string s1, string s2) { int n1 = s1.size(), n2 = s2.size(); vector&lt;vector&lt;int>> dp(n1 + 1, vector&lt;int>(n2 + 1, 0)); for (int i = 1; i &lt;= n1; ++i) dp[i][0] = dp[i - 1][0] + s1[i - 1]; for (int j = 1; j &lt;= n2; ++j) dp[0][j] = dp[0][j - 1] + s2[j - 1]; for (int i = 0; i &lt; n1; ++i) for (int j = 0; j &lt; n2; ++j) if (s1[i] == s2[j]) dp[i + 1][j + 1] = dp[i][j]; else dp[i + 1][j + 1] = min(dp[i][j] + s1[i] + s2[j], min(dp[i][j + 1] + s1[i], dp[i + 1][j] + s2[j])); return dp[n1][n2]; } }; 5 最长回文子串 找到一个字符串中的最长回文子串。...</p>
-</section>
-<footer class=entry-footer><span title="2019-07-01 18:22:45 +1000 +1000">July 1, 2019</span>&nbsp;·&nbsp;6 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 动态规划（3）" href=http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-3/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 动态规划（2）
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 动态规划 题目 3. 数组相关 300 最长上升子序列 在无序数组中找到最长上升子序列的长度。
-用一个数组 dp[i] 表示到第 i 个数字为止的最长上升子序列，每次遍历 i 之前的每个数字 j，如果 nums[i] > nums[j]，那么 j 和 i 可以形成一个上升子序列，让 dp[i] = max(dp[i], dp[j] + 1) 就能得到最长的上升子序列了。
-class Solution { public: int lengthOfLIS(vector&lt;int>& nums) { int n = nums.size(), res = 2; if (n &lt;= 1) return n; vector&lt;int> dp(n, 1); for (int i = 1; i &lt; n; ++i) for (int j = 0; j &lt; i; ++j) if (nums[i] > nums[j]) { dp[i] = max(dp[i], dp[j] + 1); res = max(res, dp[i]); } return res; } }; 53 最大子序和 找一个数组中具有最大和的连续子数组的和。...</p>
-</section>
-<footer class=entry-footer><span title="2019-06-28 10:09:13 +1000 +1000">June 28, 2019</span>&nbsp;·&nbsp;8 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 动态规划（2）" href=http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-2/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 动态规划（1）
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 动态规划 题目 1. 数字相关 263 丑数 判断一个数 num 是否是丑数。
-通用的方法是自底向上求出大于等于 num 的第一个数来判断 num 是否是丑数。但这道题已经给出了数 num，直接通过模运算就能得到结果了。
-class Solution { public: bool isUgly(int num) { if (num &lt; 1) return false; while (num % 2 == 0) num /= 2; while (num % 3 == 0) num /= 3; while (num % 5 == 0) num /= 5; return num == 1; } }; 264 丑数 II 求第 n 个丑数。
-用一个数组 ugly 来保存前 m 个丑数，用三个质因数 2，3，5 乘以其当前系数对应的丑数，得到新的丑数，最小的一个就是第 m + 1 个丑数。时间复杂度是 O(m * n)，其中 m 是质因数的个数，n 是要找的第 n 个丑数。...</p>
-</section>
-<footer class=entry-footer><span title="2019-06-26 18:08:10 +1000 +1000">June 26, 2019</span>&nbsp;·&nbsp;6 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 动态规划（1）" href=http://zintrulcre.github.io/posts/leetcode/dynamicprogramming-1/></a>
+<footer class=entry-footer>1 min</footer>
+<a class=entry-link aria-label="post link to " href=http://zintrulcre.github.io/posts/computer-science/temp/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
-<a class=prev href=http://zintrulcre.github.io/posts/page/7/>« Prev Page</a>
-<a class=next href=http://zintrulcre.github.io/posts/page/9/>Next Page »</a>
+<a class=prev href=http://zintrulcre.github.io/posts/page/12/>« Prev Page</a>
 </nav>
 </footer>
 </main>

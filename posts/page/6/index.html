@@ -65,6 +65,19 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>coverity 的 WRAPPER_ESCAPE 告警
+</h2>
+</header>
+<section class=entry-content>
+<p>coverity 的 WRAPPER_ESCAPE 告警 const char* Foo() { std::string str_msg("test"); return str_msg.c_str(); } int main() { const char *p_msg = Foo(); printf("%s\n", p_msg); return 0; } // output:（为空，或乱码） D? 上面代码中的 Foo 函数会被 coverity 报告 WRAPPER_ESCAPE，详细说明是：
+Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope 大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
+而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：...</p>
+</section>
+<footer class=entry-footer><span title="2020-03-15 17:24:27 +0800 CST">March 15, 2020</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to coverity 的 WRAPPER_ESCAPE 告警" href=http://zintrulcre.github.io/posts/cpp/basics/wrapper_escape-in-coverity/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>C++ 协程（1）：函数和协程
 </h2>
 </header>
@@ -119,18 +132,6 @@ class Solution { public: vector&lt;int> topKFrequent(vector&lt;int> &nums, int k
 </section>
 <footer class=entry-footer><span title="2019-08-05 19:12:25 +1000 +1000">August 5, 2019</span>&nbsp;·&nbsp;4 min</footer>
 <a class=entry-link aria-label="post link to LeetCode 堆" href=http://zintrulcre.github.io/posts/leetcode/heap/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 双指针
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode DFS 题目 26 删除排序数组中的重复项 用两个指针 len 和 i 分别表示没有重复的项的下标与遍历数组的下标，将没有重复的项拷贝到 nums[len] 下然后 ++len 即可。
-class Solution { public: int removeDuplicates(vector&lt;int>& nums) { int count = 0, len = 1, n = nums.size(); if (n == 0) return 0; for (int i = 1; i &lt; n; ++i) { if (nums[i] == nums[i - 1]) continue; nums[len] = nums[i]; ++len; } return len; } }; 80 删除排序数组中的重复项 II 用两个指针 len 和 i 分别表示没有最多重复 2 次的项的下标与遍历数组的下标，将重复数小于等于 1 的项拷贝到 nums[len] 下然后 ++len 即可。...</p>
-</section>
-<footer class=entry-footer><span title="2019-07-31 19:12:25 +1000 +1000">July 31, 2019</span>&nbsp;·&nbsp;7 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 双指针" href=http://zintrulcre.github.io/posts/leetcode/twopointers/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

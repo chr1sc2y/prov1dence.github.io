@@ -65,6 +65,23 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>LeetCode 二分查找
+</h2>
+</header>
+<section class=entry-content>
+<p>LeetCode 二分查找 二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。
+易错点 计算中间值的方法
+k = i + (j - i) / 2 k = (i + j) / 2 第二种方法一般都会造成整型数据溢出，所以只用第一种方法。
+循环条件
+如果要找唯一的值，且下限i和上限j都会在更新时在中间值k的基础上+1或-1，那么循环条件是 i &lt;= j，j能被取到，j = nums.size() - 1，计算中间值用 k = i + (j - i + 1) / 2
+如果要找大于等于或小于等于某条件的值，且下限i和上限j其中之一不会在k的基础上+1或-1，那么循环条件是 i &lt; j，j不能被取到，j = nums.size()，计算中间值用 k = i + (j - i) / 2
+两种方法有各自的应用场景，没用对的话会出现边界值的问题，或是死循环导致TLE。...</p>
+</section>
+<footer class=entry-footer><span title="2019-06-23 19:26:39 +1000 +1000">June 23, 2019</span>&nbsp;·&nbsp;8 min</footer>
+<a class=entry-link aria-label="post link to LeetCode 二分查找" href=http://zintrulcre.github.io/posts/leetcode/binarysearch/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>LeetCode 位运算
 </h2>
 </header>
@@ -113,19 +130,6 @@ Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同
 </section>
 <footer class=entry-footer><span title="2019-05-07 22:02:15 +1000 +1000">May 7, 2019</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to Code Jam 2019 Round 1C" href=http://zintrulcre.github.io/posts/code-jam/2019-round-1c/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Kick Start 2019 Round B
-</h2>
-</header>
-<section class=entry-content>
-<p>Kick Start 2019 Round B Building Palindromes (5pts, 12pts) 判断给定区间内的子字符串是否是回文串。
-Solution: Prefix Sum 判断字符串是否是回文串只需要判断字符串里个数为奇数的字符的数量是否小于等于1，但如果每次都遍历一遍给定的区间肯定会超时，所以我们需要对给定的原始字符串进行预处理，计算出每一个位置的前缀和（从下标为0到下标为i - 1的位置的字符的总数）。这样在查询的时候就只有O(1)的时间复杂度了。
-时间复杂度：O(N) 空间复杂度：O(N) // C++ #include &lt;iostream>#include &lt;cmath>#include &lt;cstdio>#include &lt;math.h>#include &lt;limits>#include &lt;algorithm>#include &lt;vector>#include &lt;stack>#include &lt;queue>#include &lt;string>#include &lt;map>#include &lt;set>#include &lt;unordered_map>#include &lt;unordered_set> using namespace std; int main() { int total_test_case_number; cin >> total_test_case_number; for (int case_number = 1; case_number &lt;= total_test_case_number; ++case_number) { int N, Q, m, n, total = 0; cin >> N >> Q; string words; cin >> words; vector&lt;vector&lt;int>> odds(N + 1, vector&lt;int>(26)); for (int i = 1; i &lt;= N; ++i) { for (int j = 0; j &lt; 26; ++j) odds[i][j] = odds[i - 1][j]; ++odds[i][words[i - 1] - 'A']; } for (int q = 0; q &lt; Q; ++q) { cin >> m >> n; int odd = 0; for (int j = 0; j &lt; 26; ++j) odd += ((odds[n][j] - odds[m - 1][j]) % 2 !...</p>
-</section>
-<footer class=entry-footer><span title="2019-04-21 14:41:22 +1000 +1000">April 21, 2019</span>&nbsp;·&nbsp;4 min</footer>
-<a class=entry-link aria-label="post link to Kick Start 2019 Round B" href=http://zintrulcre.github.io/posts/kick-start/2019-round-b/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

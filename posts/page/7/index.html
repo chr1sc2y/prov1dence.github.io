@@ -65,6 +65,18 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>LeetCode 双指针
+</h2>
+</header>
+<section class=entry-content>
+<p>LeetCode DFS 题目 26 删除排序数组中的重复项 用两个指针 len 和 i 分别表示没有重复的项的下标与遍历数组的下标，将没有重复的项拷贝到 nums[len] 下然后 ++len 即可。
+class Solution { public: int removeDuplicates(vector&lt;int>& nums) { int count = 0, len = 1, n = nums.size(); if (n == 0) return 0; for (int i = 1; i &lt; n; ++i) { if (nums[i] == nums[i - 1]) continue; nums[len] = nums[i]; ++len; } return len; } }; 80 删除排序数组中的重复项 II 用两个指针 len 和 i 分别表示没有最多重复 2 次的项的下标与遍历数组的下标，将重复数小于等于 1 的项拷贝到 nums[len] 下然后 ++len 即可。...</p>
+</section>
+<footer class=entry-footer><span title="2019-07-31 19:12:25 +1000 +1000">July 31, 2019</span>&nbsp;·&nbsp;7 min</footer>
+<a class=entry-link aria-label="post link to LeetCode 双指针" href=http://zintrulcre.github.io/posts/leetcode/twopointers/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>LeetCode 深度优先搜索
 </h2>
 </header>
@@ -111,19 +123,6 @@ class Solution { vector&lt;int> res; public: vector&lt;int> preorderTraversal(Tr
 </section>
 <footer class=entry-footer><span title="2019-07-13 19:12:25 +1000 +1000">July 13, 2019</span>&nbsp;·&nbsp;7 min</footer>
 <a class=entry-link aria-label="post link to LeetCode 树（1）" href=http://zintrulcre.github.io/posts/leetcode/tree-1/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>LeetCode 链表（2）
-</h2>
-</header>
-<section class=entry-content>
-<p>LeetCode 链表（2） 题目 4. 双指针 19 删除链表的倒数第N个节点 删除链表的倒数第 n 个节点。
-在链表中不易直接取到倒数第 n 个位置，所以用两个指针 prev 和 tail，tail 先往前走 n 步，然后两个指针一起往前走直到 tail 没有后继指针，此时 prev 的后继指针就是倒数第 n 个位置，删除其即可。注意如果要删除的指针是头指针的话要单独处理。
-class Solution { public: ListNode* removeNthFromEnd(ListNode* head, int n) { ListNode *prev = head, *tail = head; for (int i = 0; i &lt; n; ++i) tail = tail->next; if (!tail) { head = head->next; delete prev; return head; } while (tail->next) tail = tail->next, prev = prev->next; ListNode *next = prev->next; prev->next = next->next; delete next; return head; } }; 61 旋转链表 给一个链表，将其每个节点向右移动 k 个位置。...</p>
-</section>
-<footer class=entry-footer><span title="2019-07-09 19:12:25 +1000 +1000">July 9, 2019</span>&nbsp;·&nbsp;6 min</footer>
-<a class=entry-link aria-label="post link to LeetCode 链表（2）" href=http://zintrulcre.github.io/posts/leetcode/linkedlist-2/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

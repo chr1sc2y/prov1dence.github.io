@@ -65,6 +65,18 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Python 源码学习（3）：list 类型
+</h2>
+</header>
+<section class=entry-content>
+<p>Python 源码学习（3）：list 类型 Python 中的 list 类型在源码中是一个名为 PyListObject 的结构体，定义在 listobject.h 文件中：
+// Include/cpython/listobject.h typedef struct { PyObject_VAR_HEAD /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */ PyObject **ob_item; /* ob_item contains space for 'allocated' elements. The number * currently in use is ob_size. * Invariants: * 0 &lt;= ob_size &lt;= allocated * len(list) == ob_size * ob_item == NULL implies ob_size == allocated == 0 * list.sort() temporarily sets allocated to -1 to detect mutations....</p>
+</section>
+<footer class=entry-footer><span title="2021-05-06 20:07:52 +0800 CST">May 6, 2021</span>&nbsp;·&nbsp;7 min</footer>
+<a class=entry-link aria-label="post link to Python 源码学习（3）：list 类型" href=http://zintrulcre.github.io/posts/python/source-code-3-list-and-dict/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>ProtoBuf 语法和编码原理入门
 </h2>
 </header>
@@ -116,20 +128,6 @@ template&lt;typename T> class Object { public: // constructor Object() : t_() { 
 </section>
 <footer class=entry-footer><span title="2021-02-21 21:20:18 +0800 CST">February 21, 2021</span>&nbsp;·&nbsp;9 min</footer>
 <a class=entry-link aria-label="post link to C++ 智能指针的简单实现" href=http://zintrulcre.github.io/posts/cpp/smart-pointer/smart-pointer/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>启发式搜索和强化学习
-</h2>
-</header>
-<section class=entry-content>
-<p>启发式搜索和强化学习 The Pac-Man Projects 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。
-1 盲目搜索 盲目搜索（Blind Search）指不利用任何额外信息（输入数据，或辅助函数），只依赖于算法本身的搜索，例如 BFS，DFS，Dijkstra 等；
-DFS The Pac-Man Projects 已经实现了吃豆人游戏的后台逻辑和图形渲染框架，我们只需要在 search.py 文件中实现具体的搜索算法，并根据搜索算法生成寻路路径，即可让吃豆人移动，先来实现一个简单的 DFS：
-def DepthFirstSearch(problem): from util import Stack open_list = Stack() visited = [] open_list.push((problem.getStartState(), [])) while not open_list.isEmpty(): current_node, path = open_list.pop() if problem.isGoalState(current_node): return path if current_node in visited: continue visited.append(current_node) for next_node, action, cost in problem.getSuccessors(current_node): if next_node not in visited: open_list.push((next_node, path + [action])) dfs = DepthFirstSearch 在吃豆人游戏的框架下，为寻路函数传入的 problem 参数可以理解为一个 class SearchProblem 类型的抽象基类，实际的问题有 PositionSearchProblem（找到单个终点），FoodSearchProblem（找到所有食物），CapsuleSearchProblem（找到增益药丸和所有食物）等，这些子类都需要实现以下函数：...</p>
-</section>
-<footer class=entry-footer><span title="2020-12-10 20:07:52 +0800 CST">December 10, 2020</span>&nbsp;·&nbsp;9 min</footer>
-<a class=entry-link aria-label="post link to 启发式搜索和强化学习" href=http://zintrulcre.github.io/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

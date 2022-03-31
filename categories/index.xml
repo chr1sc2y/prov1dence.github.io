@@ -6,7 +6,16 @@
     <description>Recent content in Categories on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Feb 2022 14:08:30 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 31 Mar 2022 19:29:39 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>version control</title>
+      <link>http://zintrulcre.github.io/categories/version-control/</link>
+      <pubDate>Thu, 31 Mar 2022 19:29:39 +0800</pubDate>
+      
+      <guid>http://zintrulcre.github.io/categories/version-control/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>proxy</title>
       <link>http://zintrulcre.github.io/categories/proxy/</link>

@@ -6,7 +6,22 @@
     <description>Recent content on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Feb 2022 14:08:30 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 31 Mar 2022 19:29:39 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git Reference</title>
+      <link>http://zintrulcre.github.io/posts/version-control/git/</link>
+      <pubDate>Thu, 31 Mar 2022 19:29:39 +0800</pubDate>
+      
+      <guid>http://zintrulcre.github.io/posts/version-control/git/</guid>
+      <description>Git Reference HEAD 用法 HEAD 最后一次 commit
+HEAD^ 倒数第二次 commit
+HEAD^^ 倒数第三次 commit，以此类推
+HEAD~0 最后一次 commit
+HEAD~1 倒数第二次 commit
+HEAD^2 倒数第三次 commit，以此类推
+回到以前的某次 commit git reflog # Reference logs 记录了本地仓库每一次更新分支的操作 git reset HEAD@{index} # 回到某一次提交，把文件修改留在工作区 git reset hash --hard # 加上 --hard 可以忽略掉所有文件修改 在最后一次 commit 的基础上添加部分改动 git add . # 把改动添加到暂存区 git commit --amend # git commit --amend --no-edit # 加上 --no-edit 如果最后一次 commit 已经 push 到 remote，那么在再次 push 的时候需要加上 -f</description>
+    </item>
+    
     <item>
       <title>使用 Mac Mini M1 作为软路由让全家设备科学上网</title>
       <link>http://zintrulcre.github.io/posts/proxy/soft-router/</link>

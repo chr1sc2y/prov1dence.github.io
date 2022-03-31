@@ -65,6 +65,23 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Git Reference
+</h2>
+</header>
+<section class=entry-content>
+<p>Git Reference HEAD 用法 HEAD 最后一次 commit
+HEAD^ 倒数第二次 commit
+HEAD^^ 倒数第三次 commit，以此类推
+HEAD~0 最后一次 commit
+HEAD~1 倒数第二次 commit
+HEAD^2 倒数第三次 commit，以此类推
+回到以前的某次 commit git reflog # Reference logs 记录了本地仓库每一次更新分支的操作 git reset HEAD@{index} # 回到某一次提交，把文件修改留在工作区 git reset hash --hard # 加上 --hard 可以忽略掉所有文件修改 在最后一次 commit 的基础上添加部分改动 git add . # 把改动添加到暂存区 git commit --amend # git commit --amend --no-edit # 加上 --no-edit 如果最后一次 commit 已经 push 到 remote，那么在再次 push 的时候需要加上 -f...</p>
+</section>
+<footer class=entry-footer><span title="2022-03-31 19:29:39 +0800 CST">March 31, 2022</span>&nbsp;·&nbsp;2 min</footer>
+<a class=entry-link aria-label="post link to Git Reference" href=http://zintrulcre.github.io/posts/version-control/git/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>使用 Mac Mini M1 作为软路由让全家设备科学上网
 </h2>
 </header>
@@ -138,28 +155,6 @@ Handle（在 Linux 下称为描述符）：它是资源在操作系统层面上�
 </section>
 <footer class=entry-footer><span title="2022-01-26 15:37:36 +0800 CST">January 26, 2022</span>&nbsp;·&nbsp;2 min</footer>
 <a class=entry-link aria-label="post link to 2022 年初 | 后端开发两年经验社招面经" href=http://zintrulcre.github.io/posts/interview/interview/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>小米 AX1800 使用 ShellClash 科学上网
-</h2>
-</header>
-<section class=entry-content>
-<p>小米 AX1800 使用 ShellClash 科学上网 本文介绍如何在小米 AX1800 上使用 ShellClash 科学上网。
-1 固件降级 小米 AX1800 1.0.336 版本固件
-在 MiWiFi 后台的常用设置 -> 系统状态中点击手动升级，使用 1.0.336 版本的固件对路由器进行降级，整个过程不需要任何额外的操作。
-完成后第一次进入后台配置时选择不自动更新，或在小米 Wi-Fi 手机 App 中关闭自动更新功能。
-更新完成后路由器会重置为路由器底部贴条的设置。
-2 解锁 SSH 首先登陆小米路由器后台 192.168.31.1，将浏览器地址栏中 stok= 后面的一部分的即为拷贝下来。
-获取 SSH 权限 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {"code":0} 即代表成功，这样就解锁了 SSH 到路由器上的权限。
-http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20's%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg'%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B
-修改 root 密码 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {"code":0} 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。
-http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20echo%20-e%20'admin%5Cnadmin'%20%7C%20passwd%20root%3B
-连接 SSH 打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。
-ssh root@192....</p>
-</section>
-<footer class=entry-footer><span title="2022-01-18 22:29:36 +0800 CST">January 18, 2022</span>&nbsp;·&nbsp;1 min</footer>
-<a class=entry-link aria-label="post link to 小米 AX1800 使用 ShellClash 科学上网" href=http://zintrulcre.github.io/posts/proxy/ax1800/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

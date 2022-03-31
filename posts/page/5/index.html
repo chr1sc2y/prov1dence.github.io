@@ -65,6 +65,19 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>C++ 单例模式的模板实现
+</h2>
+</header>
+<section class=entry-content>
+<p>C++ 单例模式的模板实现 单例模式是一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例（single instance），这个类称为单例类，它会提供一个全局的访问入口（global access point），关于单例模式的讨论可以参考Singleton revisited；基于这两个特点，单例模式可以有以下几种实现：
+Meyer’s Singleton Scott Meyers 在 Effective C++ 的 Item 4: Make sure that objects are initialized before they’re used 里面提出了一种利用 C++ 的 static 关键字来实现的单例模式，这种实现非常简洁高效，它的特点是：
+仅当程序第一次执行到 GetInstance 函数时，执行 instance 对象的初始化； 在 C++ 11 之后，被 static 修饰的变量可以保证是线程安全的； template&lt;typename T> class Singleton { public: static T& GetInstance() { static T instance; return instance; } Singleton(T&&) = delete; Singleton(const T&) = delete; void operator= (const T&) = delete; protected: Singleton() = default; virtual ~Singleton() = default; }; 通过禁用单例类的 copy constructor，move constructor 和 operator= 可以防止类的唯一实例被拷贝或移动；不暴露单例类的 constructor 和 destructor 可以保证单例类不会通过其他途径被实例化，同时将两者定义为 protected 可以让其被子类继承并使用。...</p>
+</section>
+<footer class=entry-footer><span title="2020-09-10 21:25:43 +0800 CST">September 10, 2020</span>&nbsp;·&nbsp;2 min</footer>
+<a class=entry-link aria-label="post link to C++ 单例模式的模板实现" href=http://zintrulcre.github.io/posts/design-pattern/c++-template-singleton/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>并行计算入门
 </h2>
 </header>
@@ -123,19 +136,6 @@ $ cat test.cpp #include &lt;iostream> void Func(const char *s) { int *p = nullpt
 </section>
 <footer class=entry-footer><span title="2020-04-22 17:46:06 +0800 CST">April 22, 2020</span>&nbsp;·&nbsp;5 min</footer>
 <a class=entry-link aria-label="post link to GDB 调试入门" href=http://zintrulcre.github.io/posts/cpp/compilation/gdb/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>coverity 的 WRAPPER_ESCAPE 告警
-</h2>
-</header>
-<section class=entry-content>
-<p>coverity 的 WRAPPER_ESCAPE 告警 const char* Foo() { std::string str_msg("test"); return str_msg.c_str(); } int main() { const char *p_msg = Foo(); printf("%s\n", p_msg); return 0; } // output:（为空，或乱码） D? 上面代码中的 Foo 函数会被 coverity 报告 WRAPPER_ESCAPE，详细说明是：
-Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope 大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
-而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：...</p>
-</section>
-<footer class=entry-footer><span title="2020-03-15 17:24:27 +0800 CST">March 15, 2020</span>&nbsp;·&nbsp;1 min</footer>
-<a class=entry-link aria-label="post link to coverity 的 WRAPPER_ESCAPE 告警" href=http://zintrulcre.github.io/posts/cpp/basics/wrapper_escape-in-coverity/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
