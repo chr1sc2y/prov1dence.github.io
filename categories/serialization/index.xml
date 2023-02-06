@@ -17,7 +17,7 @@
 本文主要介绍 ProtoBuf 的使用方法，包括 .proto 文件的语法，以及如何使用 protoc 工具来生成不通语言的代码；以及其编码原理。
 1 语法 首先从 https://github.com/protocolbuffers/protobuf 找到最新版本的 ProtoBuf，下载预编译好的二进制文件 protoc 解压到环境变量目录，本文使用的是 3.15.7 版本：
 $ protoc --version libprotoc 3.15.7 以一个简单的 proto 文件为例，它的语法和 C++ 类似：
-// msg.proto syntax = &amp;#34;proto3&amp;#34;;package Message;message SearchRequest { reserved 6, 9 to 12; reserved &amp;#34;foo&amp;#34;, &amp;#34;bar&amp;#34;; string query = 1; int32 page_number = 2; int32 result_per_page = 3;}message ResultType { message Result { string url = 1; string title = 2; repeated string snippets = 3; }}message SearchResponse {  repeated ResultType.</description>
+// msg.proto syntax = &amp;#34;proto3&amp;#34;; package Message; message SearchRequest { reserved 6, 9 to 12; reserved &amp;#34;foo&amp;#34;, &amp;#34;bar&amp;#34;; string query = 1; int32 page_number = 2; int32 result_per_page = 3; } message ResultType { message Result { string url = 1; string title = 2; repeated string snippets = 3; } } message SearchResponse { repeated ResultType.</description>
     </item>
     
   </channel>

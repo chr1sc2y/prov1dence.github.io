@@ -14,8 +14,8 @@
       
       <guid>http://zintrulcre.github.io/posts/cpp/basics/effective-cpp/</guid>
       <description>Effective C++ 笔记 0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如
-class Bar { public: // explicit Bar(); // 是 default 构造函数  // explicit Bar(int x = 0) // 不是 default 构造函数  explicit Bar(int x = 0, bool b = true); // 是 default 构造函数 private: int x; bool b; }; explicit 关键字：阻止执行隐式类型转换，其优点是禁止了编译器执行非预期的类型转换，例如
-void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象  Bar obj_1; // 构造一个 Bar 类型的对象 Foo (obj_1); // 没问题，传递一个 Bar 类型的对象给 Foo 函数 Foo (Bar()); // 没问题，构造一个 Bar 类型的对象，并传递给 Foo 函数 Foo (2); // 如果 Bar 的构造函数没有被声明为 explicit，那么会调用 Bar 的构造函数构造一个成员变量 x = 2 的对象，也就是说发生了隐式类型转换；如果其构造函数被声明为 explicit，那么就不会构造出 Bar 类型的对象 copy 构造函数：用同类型的对象初始化新的对象，它定义了一个对象如何 pass by reference。</description>
+class Bar { public: // explicit Bar(); // 是 default 构造函数 // explicit Bar(int x = 0) // 不是 default 构造函数 explicit Bar(int x = 0, bool b = true); // 是 default 构造函数 private: int x; bool b; }; explicit 关键字：阻止执行隐式类型转换，其优点是禁止了编译器执行非预期的类型转换，例如
+void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象 Bar obj_1; // 构造一个 Bar 类型的对象 Foo (obj_1); // 没问题，传递一个 Bar 类型的对象给 Foo 函数 Foo (Bar()); // 没问题，构造一个 Bar 类型的对象，并传递给 Foo 函数 Foo (2); // 如果 Bar 的构造函数没有被声明为 explicit，那么会调用 Bar 的构造函数构造一个成员变量 x = 2 的对象，也就是说发生了隐式类型转换；如果其构造函数被声明为 explicit，那么就不会构造出 Bar 类型的对象 copy 构造函数：用同类型的对象初始化新的对象，它定义了一个对象如何 pass by reference。</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@ void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象  Bar o
       <description>boost::typeIndex 的相关探究 Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 Boost::typeindex 的使用，但并没有讲到其实现原理。
 1. typeid 操作符 typeid 是 C++ 中的一个操作符，可以用于获取类型的信息，常常用在必须知道多态对象的动态类型，或是识别静态类型的地方。
 我们可以写一个简单的 demo 用于获取对象类型相关的信息，需要包含 tepyinfo 头文件：
-#include &amp;lt;iostream&amp;gt;#include &amp;lt;typeinfo&amp;gt; using namespace std; class Foo {}; int main() { cout &amp;lt;&amp;lt; &amp;#34;1: &amp;#34; &amp;lt;&amp;lt; typeid(1).name() &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;int: &amp;#34; &amp;lt;&amp;lt; typeid(int).name() &amp;lt;&amp;lt; endl; // 和 sizeof 操作符类似，typeid 也可以直接对数据类型（比如 int）进行操作  cout &amp;lt;&amp;lt; &amp;#34;typeid: &amp;#34; &amp;lt;&amp;lt; typeid(typeid(int)).name() &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;typeid: &amp;#34; &amp;lt;&amp;lt; typeid(const type_info &amp;amp;).</description>
+#include &amp;lt;iostream&amp;gt; #include &amp;lt;typeinfo&amp;gt; using namespace std; class Foo {}; int main() { cout &amp;lt;&amp;lt; &amp;#34;1: &amp;#34; &amp;lt;&amp;lt; typeid(1).name() &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;int: &amp;#34; &amp;lt;&amp;lt; typeid(int).name() &amp;lt;&amp;lt; endl; // 和 sizeof 操作符类似，typeid 也可以直接对数据类型（比如 int）进行操作 cout &amp;lt;&amp;lt; &amp;#34;typeid: &amp;#34; &amp;lt;&amp;lt; typeid(typeid(int)).name() &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;typeid: &amp;#34; &amp;lt;&amp;lt; typeid(const type_info &amp;amp;).</description>
     </item>
     
     <item>
@@ -38,7 +38,7 @@ void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象  Bar o
       <guid>http://zintrulcre.github.io/posts/cpp/compilation/cmake/</guid>
       <description>CMake 入门 0. 序 CMake 是一个跨平台的开源构建工具，使用 CMake 能够方便地管理依赖多个库的目录层次结构并生成 makefile 和使用 GNU make 来编译和连接程序。
 1. 构建单个文件 1.1 使用 GCC 编译 假设现在我们希望编写一个函数来实现安全的 int 类型加法防止数据溢出，这个源文件没有任何依赖的源码或静态库：
-// safe_add.cpp #include &amp;lt;iostream&amp;gt;#include &amp;lt;memory&amp;gt;#define INT_MAX 2147483647 #define ERROR_DATA_OVERFLOW 2  int SafeIntAdd(std::unique_ptr&amp;lt;int&amp;gt; &amp;amp;sum, int a, int b) { if (a &amp;gt; INT_MAX - b) { *sum = INT_MAX; return ERROR_DATA_OVERFLOW; } *sum = a + b; return EXIT_SUCCESS; } int main() { int a, b; std::cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b; std::unique_ptr&amp;lt;int&amp;gt; sum(new int(1)); int res = SafeIntAdd(sum, a, b); std::cout &amp;lt;&amp;lt; *sum &amp;lt;&amp;lt; std::endl; return res; } 我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：</description>
+// safe_add.cpp #include &amp;lt;iostream&amp;gt; #include &amp;lt;memory&amp;gt; #define INT_MAX 2147483647 #define ERROR_DATA_OVERFLOW 2 int SafeIntAdd(std::unique_ptr&amp;lt;int&amp;gt; &amp;amp;sum, int a, int b) { if (a &amp;gt; INT_MAX - b) { *sum = INT_MAX; return ERROR_DATA_OVERFLOW; } *sum = a + b; return EXIT_SUCCESS; } int main() { int a, b; std::cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b; std::unique_ptr&amp;lt;int&amp;gt; sum(new int(1)); int res = SafeIntAdd(sum, a, b); std::cout &amp;lt;&amp;lt; *sum &amp;lt;&amp;lt; std::endl; return res; } 我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：</description>
     </item>
     
     <item>
@@ -72,11 +72,11 @@ Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal represent
       <guid>http://zintrulcre.github.io/posts/cpp/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</guid>
       <description>C++ 协程（1）：函数和协程 这篇文章的目的是探究 C++ 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。
 1. 栈帧和函数 栈帧是一个函数执行的环境，包括函数参数、函数返回地址、局部变量等信息。操作系统每次调用一个函数，都会为其分配一个新的栈帧，相关的概念有：
- ESP：栈指针寄存器（Extended Stack Pointer），其内存中存放一个始终指向系统栈最顶部栈帧栈顶的指针 EBP：基址指针寄存器（Extended Base Pointer），其内存中存放一个始终指向系统最顶部栈帧栈底的指针 函数栈帧：ESP和EBP之间的内存空间为当前栈帧，EBP标识了当前栈帧的底部，ESP标识了当前栈帧的顶部  对于普通的函数来说，一般我们可以对其进行两种操作：call（调用）和 return（返回）。为了方便对比，此处不讨论 throw exception 的情况。在运行一个 C++ 程序时，编译器会先执行 C++ runtime，然后会调用 main 函数，再由 main 函数调用其他的函数。
+ESP：栈指针寄存器（Extended Stack Pointer），其内存中存放一个始终指向系统栈最顶部栈帧栈顶的指针 EBP：基址指针寄存器（Extended Base Pointer），其内存中存放一个始终指向系统最顶部栈帧栈底的指针 函数栈帧：ESP和EBP之间的内存空间为当前栈帧，EBP标识了当前栈帧的底部，ESP标识了当前栈帧的顶部 对于普通的函数来说，一般我们可以对其进行两种操作：call（调用）和 return（返回）。为了方便对比，此处不讨论 throw exception 的情况。在运行一个 C++ 程序时，编译器会先执行 C++ runtime，然后会调用 main 函数，再由 main 函数调用其他的函数。
 call 操作一般包含以下几个步骤：
- 参数入栈：参数从右向左依次入栈 返回地址入栈：将当前代码区的下一条待执行的指令入栈，以便在函数 return 之后执行 代码区跳转：处理器跳转到被调函数的入口 栈帧调整，包括：  保存当前栈帧状态值，EBP 入栈 从当前栈帧切换到新的栈帧，更新 EBP，将 EBP 的值设置为 ESP 的值 给新的栈帧分配内存空间，更新 ESP，将 ESP 的值减去所需空间的大小    当一个函数通过 return 语句返回时，执行的步骤与调用时相反：
+参数入栈：参数从右向左依次入栈 返回地址入栈：将当前代码区的下一条待执行的指令入栈，以便在函数 return 之后执行 代码区跳转：处理器跳转到被调函数的入口 栈帧调整，包括： 保存当前栈帧状态值，EBP 入栈 从当前栈帧切换到新的栈帧，更新 EBP，将 EBP 的值设置为 ESP 的值 给新的栈帧分配内存空间，更新 ESP，将 ESP 的值减去所需空间的大小 当一个函数通过 return 语句返回时，执行的步骤与调用时相反：
 2. 协程 协程由程序所控制，即在用户态执行，而不是像线程一样由操作系统内核管理，使用协程时，不需要如线程一般频繁地进行上下文切换，性能能够得到很大的提升，因此协程的开销远远小于线程的开销。一般来说协程有三种特性：
- suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，但是保留当前栈帧。和函数的 return 类似，协程的 suspend 只能由协程自身发起 resume 恢复：继续执行已经 suspend 的协程，重新激活协程的栈帧 destroy 销毁：销毁协程的栈帧和其对应的内存  可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是执行栈帧，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是数据栈帧，这部分即使在协程 suspend 的时候依然存在。</description>
+suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，但是保留当前栈帧。和函数的 return 类似，协程的 suspend 只能由协程自身发起 resume 恢复：继续执行已经 suspend 的协程，重新激活协程的栈帧 destroy 销毁：销毁协程的栈帧和其对应的内存 可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是执行栈帧，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是数据栈帧，这部分即使在协程 suspend 的时候依然存在。</description>
     </item>
     
     <item>
@@ -87,7 +87,7 @@ call 操作一般包含以下几个步骤：
       <guid>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
       <description>C++智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器
 private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
-template&amp;lt;typename T, typename D&amp;gt; void SharedPointer&amp;lt;T, D&amp;gt;::release() { if (pointer) { std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; counter remains &amp;quot; &amp;lt;&amp;lt; *counter &amp;lt;&amp;lt; std::endl; if (--(*counter) == 0) { std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; destructor called.&amp;quot; &amp;lt;&amp;lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针</description>
+template&amp;lt;typename T, typename D&amp;gt; void SharedPointer&amp;lt;T, D&amp;gt;::release() { if (pointer) { std::cout &amp;lt;&amp;lt; &amp;#34;SharedPointer &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; counter remains &amp;#34; &amp;lt;&amp;lt; *counter &amp;lt;&amp;lt; std::endl; if (--(*counter) == 0) { std::cout &amp;lt;&amp;lt; &amp;#34;SharedPointer &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; destructor called.&amp;#34; &amp;lt;&amp;lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针</description>
     </item>
     
     <item>
@@ -111,7 +111,7 @@ template&amp;lt;typename T, typename D&amp;gt; class UniquePointer { public: exp
       
       <guid>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
       <description>C++智能指针（1.5）：move语义 move语义 定义 右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（Perfect Forwarding），其主要目的有
- 消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 能够更简洁明确地定义泛型函数。  实现 move 语义的实现非常简单，它将传入的参数 _Tp&amp;amp;&amp;amp; __t 使用静态类型转换 static_cast&amp;lt;_Up&amp;amp;&amp;amp;&amp;gt;(__t) 转变成了成了对应类型的右值，也就是说使用 move 语义之后，编译器窃取（一般会在移动构造函数和移动赋值操作符里将原有对象指向 nullptr）了原有对象的右值，并延长了这个右值的生命周期并将其用来赋值给其他的对象，而没有对右值做任何拷贝操作。
+消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 能够更简洁明确地定义泛型函数。 实现 move 语义的实现非常简单，它将传入的参数 _Tp&amp;amp;&amp;amp; __t 使用静态类型转换 static_cast&amp;lt;_Up&amp;amp;&amp;amp;&amp;gt;(__t) 转变成了成了对应类型的右值，也就是说使用 move 语义之后，编译器窃取（一般会在移动构造函数和移动赋值操作符里将原有对象指向 nullptr）了原有对象的右值，并延长了这个右值的生命周期并将其用来赋值给其他的对象，而没有对右值做任何拷贝操作。
 template &amp;lt;class _Tp&amp;gt; typename remove_reference&amp;lt;_Tp&amp;gt;::type&amp;amp;&amp;amp; move(_Tp&amp;amp;&amp;amp; __t) _NOEXCEPT { typedef typename remove_reference&amp;lt;_Tp&amp;gt;::type _Up; return static_cast&amp;lt;_Up&amp;amp;&amp;amp;&amp;gt;(__t); } 测试 定义一个 Object 类和一个 MoveObject 函数使用 move 语义返回一个 Object 的类对象，可以看到在 MoveObject 函数返回右值后，obj 对象调用了移动构造函数。
 class Object { public: Object() { std::cout &amp;lt;&amp;lt; &amp;#34;Construct&amp;#34; &amp;lt;&amp;lt; std::endl; } Object(const Object &amp;amp;other) { std::cout &amp;lt;&amp;lt; &amp;#34;Copy&amp;#34; &amp;lt;&amp;lt; std::endl; } Object(Object &amp;amp;&amp;amp;other) noexcept { std::cout &amp;lt;&amp;lt; &amp;#34;Move&amp;#34; &amp;lt;&amp;lt; std::endl; } ~Object() { std::cout &amp;lt;&amp;lt; &amp;#34;Destruct&amp;#34; &amp;lt;&amp;lt; std::endl; } void Print() { std::cout &amp;lt;&amp;lt; &amp;#34;Print&amp;#34; &amp;lt;&amp;lt; std::endl; } }; Object MoveObject() { Object obj; return move(obj); } int main() { Object obj = MoveObject(); return 0; } /* output: Construct Move Destruct Destruct */ 返回值优化（RVO，Return value optimisation） 返回值优化是一种编译器优化技术，允许编译器在调用点（call site）直接构造函数的返回值。</description>
     </item>
@@ -133,9 +133,9 @@ int main() { Object *o = new Object(); o-&amp;gt;Print(); return 0; } /* output:
       <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/cpp/basics/basics/</guid>
-      <description>C++ 基础知识 const 相关   #define，typedef，const
- # 是宏，宏不做类型检查，只进行简单替换；在编译前被处理，编译阶段的程序是宏处理后的结果 typedef 用于声明自定义数据类型，简化代码 const 用于定义常量，有数据类型，编译器会对进行类型检查    const 和指针
- const char *p: p is a pointer to const char char const *p: p is a pointer to char const（同上） char *const p: p is a const pointer to char  int main() { const char *p1 = new char(&amp;#39;a&amp;#39;); char const *p2 = new char(&amp;#39;b&amp;#39;); char *const p3 = new char(&amp;#39;c&amp;#39;); *p1 = &amp;#39;d&amp;#39;; // error: read-only variable is notassignable *p2 = &amp;#39;e&amp;#39;; // error: read-only variable is notassignable p3 = new char(&amp;#39;f&amp;#39;); // error: cannot assign tovariable &amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; p3 = nullptr; // error: cannot assign to variable&amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; }   const 和类</description>
+      <description>C++ 基础知识 const 相关 #define，typedef，const
+# 是宏，宏不做类型检查，只进行简单替换；在编译前被处理，编译阶段的程序是宏处理后的结果 typedef 用于声明自定义数据类型，简化代码 const 用于定义常量，有数据类型，编译器会对进行类型检查 const 和指针
+const char *p: p is a pointer to const char char const *p: p is a pointer to char const（同上） char *const p: p is a const pointer to char int main() { const char *p1 = new char(&amp;#39;a&amp;#39;); char const *p2 = new char(&amp;#39;b&amp;#39;); char *const p3 = new char(&amp;#39;c&amp;#39;); *p1 = &amp;#39;d&amp;#39;; // error: read-only variable is notassignable *p2 = &amp;#39;e&amp;#39;; // error: read-only variable is notassignable p3 = new char(&amp;#39;f&amp;#39;); // error: cannot assign tovariable &amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; p3 = nullptr; // error: cannot assign to variable&amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; } const 和类</description>
     </item>
     
   </channel>

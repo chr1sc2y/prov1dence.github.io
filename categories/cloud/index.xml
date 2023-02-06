@@ -20,8 +20,8 @@ push 方式的特点是由服务主动将数据推向监控系统，实时性更
 pull 模式在云原生环境中更有优势，因为我们可以通过服务发现对所有需要进行监控的节点进行统一的数据拉取，如果使用 push 模式则需要在每个被监控的服务中部署上报数据的客户端，并配置监控服务器的信息，这会加大部署的难度。
 1.2 Prometheus Prometheus 是一套开源的数据采集与监控框架，可以做后台服务器的监控告警，此处用来采集被测服务的性能指标数据，包括CPU占用比率、内存消耗、网络IO等。
 特点 Prometheus 最主要的特点有 4 个：
- 通过 PromQL 实现多维度数据模型的灵活查询；这使得监控指标可以关联到多个标签，并对时间序列进行切片和切块，以支持各种查询和告警场景 定义了开放指标数据的标准，可以方便地自定义探针（exporter） 利用 Pushgateway 组件可以以 push 的方式接收监控数据 提供了容器化版本  架构 Prometheus 的架构主要由以下部分组成：
-  Prometheus Server
+通过 PromQL 实现多维度数据模型的灵活查询；这使得监控指标可以关联到多个标签，并对时间序列进行切片和切块，以支持各种查询和告警场景 定义了开放指标数据的标准，可以方便地自定义探针（exporter） 利用 Pushgateway 组件可以以 push 的方式接收监控数据 提供了容器化版本 架构 Prometheus 的架构主要由以下部分组成：
+Prometheus Server
 Prometheus 服务器主要包含了使用 pull 模式抓取监控数据，通过本地存储（本地磁盘）和远程存储（OpenTSDB, InfluxDB, ElasticSearch 等）保存数据，使用 PromQL 查询数据三大功能。
 PromQL (Prometheus Query Language) 是 Prometheus 内置的数据查询语言，提供了对时间序列数据的查询，聚合和逻辑运算等操作的支持，被广泛地应用在数据的查询，可视化和告警中。关于 PromQL 的相关操作可以参考 探索PromQL。</description>
     </item>

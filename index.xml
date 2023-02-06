@@ -74,9 +74,9 @@ impact 刚上班的时候，认为工作无非就是做好老板安排的事情�
 过程调用：这个概念非常通俗易懂，它包含我们平时见到的方法调用、函数调用，并且用于程序的控制和数据的传输。而当“过程调用”遇到 “远程过程”时，意味着过程调用可以跨越机器、网络进行程序的控制和数据的传输
 选型 RPC 选型的衡量角度
 使用 RPC 框架无非三个选择
- 自研RPC框架，可以从投开始设计一款符合业务特征和场景的 RPC 框架，但是自研框架需要有足够的资金和人力支持 基于开源的 RPC框架进行改造，让改造后的 RPC 框架更加适合业务场景。这种做法相较于第一种做法，人力成本没有那么高。但是这种做法需要经常与开源社区保持同步更新，一旦不再和社区版本同步，也许到某一个版本后，公司内部改造的 RPC 框架再也不能合并社区最新版本的特性，这种现象最终会导致慢慢向第一种选择选择靠近 完全使用开源的 RPC框架，并且定期与社区版本进行同步。这种选择的好处在于要投人的人力威本最低，一些问题可以借助社区的力量进行解决。但是由于业务场景的不同直接将开源的 RPC 框架拿过来用，这种选择往往存在很多局限性。框架各部分的设计都是为了更加优雅地解决业务场景的问题，而不是反过来让业务场景去适应 RPC 框架。而且 RPC 框架有自己的定位及未来的规划，所以很多规模不是太小的公司都选择在 RPC 框架上做些许改造来适应自己的业务场景  Java 对 I/O 模型的封装 NIO Java NIO 中最核心的就是 selector， 每当连接事件、接收连接事件、读事件和写事件中的一种事件就绪时，相关的事件处理器就会执行对应的逻辑，这种基于事件驱动的模式叫作 Reactor 模式。Reactor模式的核心思想就是减少线程的等待。当遇到需要等待的 IO 操作时，先释放资源，而在 IO 操作完成时，再通过事件驱动的方式，继续接下来的处理，这样从整体上减少了资源的消耗。
+自研RPC框架，可以从投开始设计一款符合业务特征和场景的 RPC 框架，但是自研框架需要有足够的资金和人力支持 基于开源的 RPC框架进行改造，让改造后的 RPC 框架更加适合业务场景。这种做法相较于第一种做法，人力成本没有那么高。但是这种做法需要经常与开源社区保持同步更新，一旦不再和社区版本同步，也许到某一个版本后，公司内部改造的 RPC 框架再也不能合并社区最新版本的特性，这种现象最终会导致慢慢向第一种选择选择靠近 完全使用开源的 RPC框架，并且定期与社区版本进行同步。这种选择的好处在于要投人的人力威本最低，一些问题可以借助社区的力量进行解决。但是由于业务场景的不同直接将开源的 RPC 框架拿过来用，这种选择往往存在很多局限性。框架各部分的设计都是为了更加优雅地解决业务场景的问题，而不是反过来让业务场景去适应 RPC 框架。而且 RPC 框架有自己的定位及未来的规划，所以很多规模不是太小的公司都选择在 RPC 框架上做些许改造来适应自己的业务场景 Java 对 I/O 模型的封装 NIO Java NIO 中最核心的就是 selector， 每当连接事件、接收连接事件、读事件和写事件中的一种事件就绪时，相关的事件处理器就会执行对应的逻辑，这种基于事件驱动的模式叫作 Reactor 模式。Reactor模式的核心思想就是减少线程的等待。当遇到需要等待的 IO 操作时，先释放资源，而在 IO 操作完成时，再通过事件驱动的方式，继续接下来的处理，这样从整体上减少了资源的消耗。
 以下是 Reactor模式的五种重要角色：
- Handle（在 Linux 下称为描述符）：它是资源在操作系统层面上的一种抽象，表示一种由操作系统提供的资源，比如前面提到的网络编程中的 socket 描达符或者文件描达符。该资源与事件绑定在一起，也可用于表示一个个事件，比如前面提到的客户端的连接事件、服务端的接收连接事件、写数据事件等 Synchronous Event Demultiplexer（同步事件分离器）：Handle 代表的事件会被班注册到同步事件分离器上，当事件就绪时，同步事件分离器会分发和处理这些事件。它的本质是一个系统调用，用于等待事件的发生。调用方在调用它的时候会被阻塞，一直到同步事件分离器上有时间就绪为止。在 Linux 中，同步事件分离器就是常用的 I/O 多路复用，比如 select, poll, epoll 等系统调用，用来等待一个或多个事件发生。在 Java NIO 领域中，同步事件分离器对应的组件就是 Selector，对应的阻塞方法就是 select 方法 Event Handler（事件处理器）：它由多个回调方法构成，这些回调方法就是对某个事件的逻辑反馈，事件处理器一般都是抽象接口。比如当 Channel 被注册到 Selector 时的回调方法、连接事件发生时的回调方法、写事件发生时的回调方法等都是事件处理器，我们可以实现这些回调方法来达到对某一个事件进行特定反馈的目的。在 Java NIO 中，并没有提供事件处理器的抽象供我们使用 Concrete Event Handler（具体的事件处理器)：它是事件处理器的实现。它本身实现了事件处理器所提供的各种回调方法，从而实现了特定的业务逻辑。比如针对连接事件需要打印一条日志，就可以在连接事件的回调方法里实现打印日志的逻辑 Initiation Dispatcher（初始分发器）：可以把它看作 Reactor， 它规定了事件的调度策略，并且用于管理事件处理器，提供了事件处理器的注册、删除等方法，事件处理器需要注册到 Initiation Dispatcher 上才能生效。它是整个事件处理器的核心，Initiation Dispatcher 会通过 Synchronous Event Demultiplexer来等待事件的发生。一旦事件发生，Initiation Dispatcher 首先会分离出每一个事件，然后找到相应的事件处理器，最后调用相关的回调方法处理这些事件  Reactor 的三种模型 单 Reactor 单线程模型 单 Reactor 单线程模型就是在设计中只会有一个 Reactor，并且无论与 IO 相关的读/写，还 是与 IO 无关的编/解码或计算，都在一个 Handler 线程上完成。</description>
+Handle（在 Linux 下称为描述符）：它是资源在操作系统层面上的一种抽象，表示一种由操作系统提供的资源，比如前面提到的网络编程中的 socket 描达符或者文件描达符。该资源与事件绑定在一起，也可用于表示一个个事件，比如前面提到的客户端的连接事件、服务端的接收连接事件、写数据事件等 Synchronous Event Demultiplexer（同步事件分离器）：Handle 代表的事件会被班注册到同步事件分离器上，当事件就绪时，同步事件分离器会分发和处理这些事件。它的本质是一个系统调用，用于等待事件的发生。调用方在调用它的时候会被阻塞，一直到同步事件分离器上有时间就绪为止。在 Linux 中，同步事件分离器就是常用的 I/O 多路复用，比如 select, poll, epoll 等系统调用，用来等待一个或多个事件发生。在 Java NIO 领域中，同步事件分离器对应的组件就是 Selector，对应的阻塞方法就是 select 方法 Event Handler（事件处理器）：它由多个回调方法构成，这些回调方法就是对某个事件的逻辑反馈，事件处理器一般都是抽象接口。比如当 Channel 被注册到 Selector 时的回调方法、连接事件发生时的回调方法、写事件发生时的回调方法等都是事件处理器，我们可以实现这些回调方法来达到对某一个事件进行特定反馈的目的。在 Java NIO 中，并没有提供事件处理器的抽象供我们使用 Concrete Event Handler（具体的事件处理器)：它是事件处理器的实现。它本身实现了事件处理器所提供的各种回调方法，从而实现了特定的业务逻辑。比如针对连接事件需要打印一条日志，就可以在连接事件的回调方法里实现打印日志的逻辑 Initiation Dispatcher（初始分发器）：可以把它看作 Reactor， 它规定了事件的调度策略，并且用于管理事件处理器，提供了事件处理器的注册、删除等方法，事件处理器需要注册到 Initiation Dispatcher 上才能生效。它是整个事件处理器的核心，Initiation Dispatcher 会通过 Synchronous Event Demultiplexer来等待事件的发生。一旦事件发生，Initiation Dispatcher 首先会分离出每一个事件，然后找到相应的事件处理器，最后调用相关的回调方法处理这些事件 Reactor 的三种模型 单 Reactor 单线程模型 单 Reactor 单线程模型就是在设计中只会有一个 Reactor，并且无论与 IO 相关的读/写，还 是与 IO 无关的编/解码或计算，都在一个 Handler 线程上完成。</description>
     </item>
     
     <item>
@@ -85,9 +85,10 @@ impact 刚上班的时候，认为工作无非就是做好老板安排的事情�
       <pubDate>Wed, 26 Jan 2022 15:37:36 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/interview/interview/</guid>
-      <description>2022 年初 | 后端开发两年经验社招面经 字节 一面   coding: 对于一个数组，仅用一次遍历，等概率地随机出一个元素（对于每一个元素，从全局看，他们被选择的概率都应该是 1/n）
- 对于第 i 个元素，它在第 i 轮被选中的概率是 1/i 往后，只要选择了新的元素，它就会被淘汰；以第 i+1 轮为例，它被淘汰的概率是 1/(i+1)，那么反过来它被留下的概率就是 1 - 1/(i+1) 最终每一个元素被选择的概率如下，第一个 1/i 代表它在第 i 次被选中，其他数代表它在后续的每一轮被留下     followup：等概率地随机出 k 个元素
- 对于第 i 个元素，它在第 i 轮被选中的概率是 k/i 往后，它唯一会被淘汰的场景是：选择了新的元素，同时从已有的选择中，等概率地选择到了它；以第 i+1 轮为例，它被淘汰的概率是 k/(i+1) * 1/k = 1/(i+1)，那么反过来它被留下的概率就是 1 - k/(i+1) * 1/k = 1 - 1/(i+1) 最终每一个元素被选择的概率如下，第一个 k/i 代表它在第 i 次被选中，其他数代表它在后续的每一轮被留下     coding: 实现 Fisher–Yates Suffle</description>
+      <description>2022 年初 | 后端开发两年经验社招面经 字节 一面 coding: 对于一个数组，仅用一次遍历，等概率地随机出一个元素（对于每一个元素，从全局看，他们被选择的概率都应该是 1/n）
+对于第 i 个元素，它在第 i 轮被选中的概率是 1/i 往后，只要选择了新的元素，它就会被淘汰；以第 i+1 轮为例，它被淘汰的概率是 1/(i+1)，那么反过来它被留下的概率就是 1 - 1/(i+1) 最终每一个元素被选择的概率如下，第一个 1/i 代表它在第 i 次被选中，其他数代表它在后续的每一轮被留下 followup：等概率地随机出 k 个元素
+对于第 i 个元素，它在第 i 轮被选中的概率是 k/i 往后，它唯一会被淘汰的场景是：选择了新的元素，同时从已有的选择中，等概率地选择到了它；以第 i+1 轮为例，它被淘汰的概率是 k/(i+1) * 1/k = 1/(i+1)，那么反过来它被留下的概率就是 1 - k/(i+1) * 1/k = 1 - 1/(i+1) 最终每一个元素被选择的概率如下，第一个 k/i 代表它在第 i 次被选中，其他数代表它在后续的每一轮被留下 coding: 实现 Fisher–Yates Suffle
+void shuffle(vector&amp;lt;int&amp;gt; v) { int n = v.size(); for (int i = n - 1; i &amp;gt;= 1; --i) { int j = rand() % (i + 1); swap(v[i], v[j]); } } 二面 system design：主播开播，如何把这个消息推送给他的千万级 follower 设计数据仓库（数据库也可以） 消息队列 followup：推送之后，主播已经下播，怎么处理 followup：怎么保证消息推送或被消费 followup：如何保证消息不重复 三面 DB 迁移流程</description>
     </item>
     
     <item>
@@ -103,8 +104,8 @@ impact 刚上班的时候，认为工作无非就是做好老板安排的事情�
 更新完成后路由器会重置为路由器底部贴条的设置。
 2 解锁 SSH 首先登陆小米路由器后台 192.168.31.1，将浏览器地址栏中 stok= 后面的一部分的即为拷贝下来。
 获取 SSH 权限 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {&amp;quot;code&amp;quot;:0} 即代表成功，这样就解锁了 SSH 到路由器上的权限。
-http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20&#39;s%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg&#39;%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B修改 root 密码 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {&amp;quot;code&amp;quot;:0} 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。
-http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20echo%20-e%20&#39;admin%5Cnadmin&#39;%20%7C%20passwd%20root%3B连接 SSH 打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20&amp;#39;s%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg&amp;#39;%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B 修改 root 密码 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {&amp;quot;code&amp;quot;:0} 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20echo%20-e%20&amp;#39;admin%5Cnadmin&amp;#39;%20%7C%20passwd%20root%3B 连接 SSH 打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。
 ssh root@192.</description>
     </item>
     
@@ -114,11 +115,8 @@ ssh root@192.</description>
       <pubDate>Tue, 18 Jan 2022 21:48:35 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/about/</guid>
-      <description>Hi, I&amp;rsquo;m Zhengyu 👋   👤 Software Development Engineer at Amazon, previously at Timi Studios Tencent.
-  📷 Enthusiastic in fitness, photography, travelling, reading &amp;amp; video games.
-  📄 Checkout my resume: English / 简体中文
-  ✉️ Contact me at zintrulcre@gmail.com
-  </description>
+      <description>Hi, I&amp;rsquo;m Zhengyu 👋 This is Zhengyu, Software Development Engineer at Amazon, previously at Timi Studios Tencent.
+Checkout my resume: English / 简体中文</description>
     </item>
     
     <item>
@@ -132,16 +130,18 @@ ssh root@192.</description>
 从发布和订阅消息流的角度来看，Kafka 类似于 ActiveMQ、RabbitMQ 或 IBM 的 MQSeries 等产品，其特点在于它以集群的方式运行，可以自由伸缩，处理大量的应用程序；其次，Kafka 可以按照要求持久化数据，即提供了数据传递的保证——可复制、持久化，保留多长时间完全可以由开发者决定。此外，消息系统只会传递消息，而 Kafka 的流式处理能力让我们只用很少的代码就能够动态地处理派生流和数据集。
 1 基础概念 消息代理 在一个基于发布与订阅的消息系统中，数据消息的发送者不直接把消息发送给接收者，而是通过一个消息代理 message broker 传递消息，接收者订阅消息代理，并以特定的方式接收消息。Kafka 就是一个消息代理。
 消息代理 message broker 是一种针对处理消息流而优化的数据库，它作为独立的中间服务运行，生产者和消费者作为客户端连接到消息代理服务，在使用消息代理的架构中主要有 3 种角色：
- 生产者将消息写入消息代理；生产者一般是异步架构的，当生产者发送消息时，它只会等待消息代理确认消息已经被缓存，而不等待消息被消费者处理 消息代理负责消息的存储，发送、重传等，一般会包含多个消息队列 message queue 消费者从消息代理接收消息并进行处理；消费者只依赖于消息代理，与生产者完全隔离  消息代理的优势主要有以下几点：
-  实现异步处理，提升性能
+生产者将消息写入消息代理；生产者一般是异步架构的，当生产者发送消息时，它只会等待消息代理确认消息已经被缓存，而不等待消息被消费者处理 消息代理负责消息的存储，发送、重传等，一般会包含多个消息队列 message queue 消费者从消息代理接收消息并进行处理；消费者只依赖于消息代理，与生产者完全隔离 消息代理的优势主要有以下几点：
+实现异步处理，提升性能
 把消息处理流程使用消息代理异步化，不会阻塞生产者服务，生产者服务可以在得到处理结果之前继续执行，并提高其并发处理的能力。
-  提高系统的可伸缩性
+提高系统的可伸缩性
 生产者将大量消息推送到消息代理中，消息代理可以将这些消息分发给不同的消费者，使得多个消费者并行地处理消息，当消费者负载变化时，可以很容易地对消费者服务进行水平伸缩
-  削峰填谷
+削峰填谷
 当生产者推送消息的速度比消费者处理消息的速度更快时，可以使用消息队列作为消息的缓冲，来削弱峰值流量，防止系统被短时间内的流量冲垮
-  应用解耦
+应用解耦
 使用消息代理后，生产者和消费者即可解耦，不再需要有任何联系，也不需要受对方的影响，只要保持使用一致的消息格式即可。
-  消息和批次 Kafka 的数据单元被称为消息，消息类似于关系型数据库里的一个数据行或一条记录；消息由字节数组组成，当消息以一种可控的方式写入不同的分区时，会用到 key，Kafka 会为 key 生成一个一致性散列值，然后使用散列值对主题分区数进行取模，为消息选取分区。这样可以保证具有相同 key 的消息总是被写到相同的分区上。</description>
+消息和批次 Kafka 的数据单元被称为消息，消息类似于关系型数据库里的一个数据行或一条记录；消息由字节数组组成，当消息以一种可控的方式写入不同的分区时，会用到 key，Kafka 会为 key 生成一个一致性散列值，然后使用散列值对主题分区数进行取模，为消息选取分区。这样可以保证具有相同 key 的消息总是被写到相同的分区上。
+如果每一个消息都单独发送，会导致大量的网络开销。为了提高效率，消息会被分批次写入Kafka；批次 batch 是一组消息，这些消息属于同一个主题和分区；批次数据在传输时会被压缩，这样可以提升数据的传输和存储能力；单个 batch 的消息数量越大，单位时间内处理的消息就越多，但单个 batch 的传输时间就越长，因此需要在时延和吞吐量之间作出权衡。
+主题和分区 Kafka 的消息通过主题 topic 进行分类，主题就好比关系型数据库的表，或者文件系统里的目录；同一个主题可以被分为若干个分区 partition，一个 partition 即一个提交日志，消息以追加的方式写入 partition，然后以先入先出的顺序读取。一个 topic 一般包含多个 partition，因此无法在整个 topic 的维度保证消息的顺序，只能保证消息在单个 partition 内的顺序。</description>
     </item>
     
     <item>
@@ -157,8 +157,8 @@ push 方式的特点是由服务主动将数据推向监控系统，实时性更
 pull 模式在云原生环境中更有优势，因为我们可以通过服务发现对所有需要进行监控的节点进行统一的数据拉取，如果使用 push 模式则需要在每个被监控的服务中部署上报数据的客户端，并配置监控服务器的信息，这会加大部署的难度。
 1.2 Prometheus Prometheus 是一套开源的数据采集与监控框架，可以做后台服务器的监控告警，此处用来采集被测服务的性能指标数据，包括CPU占用比率、内存消耗、网络IO等。
 特点 Prometheus 最主要的特点有 4 个：
- 通过 PromQL 实现多维度数据模型的灵活查询；这使得监控指标可以关联到多个标签，并对时间序列进行切片和切块，以支持各种查询和告警场景 定义了开放指标数据的标准，可以方便地自定义探针（exporter） 利用 Pushgateway 组件可以以 push 的方式接收监控数据 提供了容器化版本  架构 Prometheus 的架构主要由以下部分组成：
-  Prometheus Server
+通过 PromQL 实现多维度数据模型的灵活查询；这使得监控指标可以关联到多个标签，并对时间序列进行切片和切块，以支持各种查询和告警场景 定义了开放指标数据的标准，可以方便地自定义探针（exporter） 利用 Pushgateway 组件可以以 push 的方式接收监控数据 提供了容器化版本 架构 Prometheus 的架构主要由以下部分组成：
+Prometheus Server
 Prometheus 服务器主要包含了使用 pull 模式抓取监控数据，通过本地存储（本地磁盘）和远程存储（OpenTSDB, InfluxDB, ElasticSearch 等）保存数据，使用 PromQL 查询数据三大功能。
 PromQL (Prometheus Query Language) 是 Prometheus 内置的数据查询语言，提供了对时间序列数据的查询，聚合和逻辑运算等操作的支持，被广泛地应用在数据的查询，可视化和告警中。关于 PromQL 的相关操作可以参考 探索PromQL。</description>
     </item>
@@ -207,7 +207,7 @@ Python 解释器（Python Interpreter）由 Python 编译器（Python Compiler�
 本文主要介绍 ProtoBuf 的使用方法，包括 .proto 文件的语法，以及如何使用 protoc 工具来生成不通语言的代码；以及其编码原理。
 1 语法 首先从 https://github.com/protocolbuffers/protobuf 找到最新版本的 ProtoBuf，下载预编译好的二进制文件 protoc 解压到环境变量目录，本文使用的是 3.15.7 版本：
 $ protoc --version libprotoc 3.15.7 以一个简单的 proto 文件为例，它的语法和 C++ 类似：
-// msg.proto syntax = &amp;#34;proto3&amp;#34;;package Message;message SearchRequest { reserved 6, 9 to 12; reserved &amp;#34;foo&amp;#34;, &amp;#34;bar&amp;#34;; string query = 1; int32 page_number = 2; int32 result_per_page = 3;}message ResultType { message Result { string url = 1; string title = 2; repeated string snippets = 3; }}message SearchResponse {  repeated ResultType.</description>
+// msg.proto syntax = &amp;#34;proto3&amp;#34;; package Message; message SearchRequest { reserved 6, 9 to 12; reserved &amp;#34;foo&amp;#34;, &amp;#34;bar&amp;#34;; string query = 1; int32 page_number = 2; int32 result_per_page = 3; } message ResultType { message Result { string url = 1; string title = 2; repeated string snippets = 3; } } message SearchResponse { repeated ResultType.</description>
     </item>
     
     <item>
@@ -220,7 +220,7 @@ $ protoc --version libprotoc 3.15.7 以一个简单的 proto 文件为例，它�
 不同于 C 和 C++ 中的 int 类型，Python 中的 int 类型最大的特点是它一般是不会溢出的，对比用 C 和 Python 分别输出两个一百万相乘的结果：
 &amp;gt;&amp;gt;&amp;gt; x = 10000000000 &amp;gt;&amp;gt;&amp;gt; print(x) 10000000000 在 C 语言中会发生溢出：
 printf(&amp;#34;%d\n&amp;#34;, 1000000 * 1000000); printf(&amp;#34;%u\n&amp;#34;, 1000000 * 1000000); -727379968 3567587328 1 int 类型在内存中的存储方式 1.1 内存结构 Python 中的 int 整数类型实际上是一个名为 PyLongObject 的结构体，定义在 longintrepr.h 文件中：
-// Include/object.h #define PyObject_VAR_HEAD PyVarObject ob_base;  // Objects/longobject.</description>
+// Include/object.h #define PyObject_VAR_HEAD PyVarObject ob_base; // Objects/longobject.</description>
     </item>
     
     <item>
@@ -240,7 +240,7 @@ $ git clone https://github.com/python/cpython $ tree -d -L 2 . . `-- cpython |--
       
       <guid>http://zintrulcre.github.io/posts/cpp/smart-pointer/smart-pointer/</guid>
       <description>C++ 智能指针的简单实现 1 std::auto_ptr C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类：
-template&amp;lt;typename T&amp;gt; class Object { public: // constructor  Object() : t_() { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } Object(T t) : t_(t) { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // copy-ctor  Object(const Object &amp;amp;other) { cout &amp;lt;&amp;lt; &amp;#34;Object::Copy-ctor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // destructor  ~Object() { cout &amp;lt;&amp;lt; &amp;#34;Object::Destructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } void Set(T t) { t_ = t; } void Print() { cout &amp;lt;&amp;lt; t_ &amp;lt;&amp;lt; endl; } private: T t_; }; 如果在堆上为类对象分配了内存，在离开其作用域的时候又没将其释放，则会造成内存泄漏：</description>
+template&amp;lt;typename T&amp;gt; class Object { public: // constructor Object() : t_() { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } Object(T t) : t_(t) { cout &amp;lt;&amp;lt; &amp;#34;Object::Constructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // copy-ctor Object(const Object &amp;amp;other) { cout &amp;lt;&amp;lt; &amp;#34;Object::Copy-ctor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } // destructor ~Object() { cout &amp;lt;&amp;lt; &amp;#34;Object::Destructor &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; endl; } void Set(T t) { t_ = t; } void Print() { cout &amp;lt;&amp;lt; t_ &amp;lt;&amp;lt; endl; } private: T t_; }; 如果在堆上为类对象分配了内存，在离开其作用域的时候又没将其释放，则会造成内存泄漏：</description>
     </item>
     
     <item>
@@ -251,7 +251,7 @@ template&amp;lt;typename T&amp;gt; class Object { public: // constructor  Object
       <guid>http://zintrulcre.github.io/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</guid>
       <description>启发式搜索和强化学习 The Pac-Man Projects 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。
 1 盲目搜索 盲目搜索（Blind Search）指不利用任何额外信息（输入数据，或辅助函数），只依赖于算法本身的搜索，例如 BFS，DFS，Dijkstra 等；
-DFS The Pac-Man Projects  已经实现了吃豆人游戏的后台逻辑和图形渲染框架，我们只需要在 search.py 文件中实现具体的搜索算法，并根据搜索算法生成寻路路径，即可让吃豆人移动，先来实现一个简单的 DFS：
+DFS The Pac-Man Projects 已经实现了吃豆人游戏的后台逻辑和图形渲染框架，我们只需要在 search.py 文件中实现具体的搜索算法，并根据搜索算法生成寻路路径，即可让吃豆人移动，先来实现一个简单的 DFS：
 def DepthFirstSearch(problem): from util import Stack open_list = Stack() visited = [] open_list.push((problem.getStartState(), [])) while not open_list.isEmpty(): current_node, path = open_list.pop() if problem.isGoalState(current_node): return path if current_node in visited: continue visited.append(current_node) for next_node, action, cost in problem.getSuccessors(current_node): if next_node not in visited: open_list.push((next_node, path + [action])) dfs = DepthFirstSearch 在吃豆人游戏的框架下，为寻路函数传入的 problem 参数可以理解为一个 class SearchProblem 类型的抽象基类，实际的问题有 PositionSearchProblem（找到单个终点），FoodSearchProblem（找到所有食物），CapsuleSearchProblem（找到增益药丸和所有食物）等，这些子类都需要实现以下函数：</description>
     </item>
     
@@ -263,7 +263,7 @@ def DepthFirstSearch(problem): from util import Stack open_list = Stack() visite
       <guid>http://zintrulcre.github.io/posts/cpp/closure-and-anonymous-function/</guid>
       <description>C++ 闭包和匿名函数 本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。
 1 闭包和仿函数 闭包（Closure）可以被理解为一个附带数据的操作，WikiPedia 对闭包的定义是 &amp;ldquo;In programming languages, a closure, also lexical closure or function closure, is a technique for implementing lexically scoped name binding in a language with first-class functions.&amp;quot;，其中有两层含义：
- 词法作用域（lexically scoped）的名字绑定（name binding）：在词法作用域（C++ 的词法作用域是静态绑定的，包括块、函数、类、命名空间、全局作用域等）中，变量名与其词法上下文的标识符相关联，而独立于运行时的调用栈； 函数被当作头等公民（first-class citizen）：在运行时可以构造一个函数对象并将其作为参数传递给其他函数；  显然 C++ 98 并不符合这两点定义，因此 C++ 98 中并没有严格意义上的闭包，但我们可以用仿函数（Functor）来模拟闭包的行为；仿函数即一个重载了小括号操作符的类，这个类拥有与函数相近的行为方式，它拥有自己的私有成员变量，例如：
+词法作用域（lexically scoped）的名字绑定（name binding）：在词法作用域（C++ 的词法作用域是静态绑定的，包括块、函数、类、命名空间、全局作用域等）中，变量名与其词法上下文的标识符相关联，而独立于运行时的调用栈； 函数被当作头等公民（first-class citizen）：在运行时可以构造一个函数对象并将其作为参数传递给其他函数； 显然 C++ 98 并不符合这两点定义，因此 C++ 98 中并没有严格意义上的闭包，但我们可以用仿函数（Functor）来模拟闭包的行为；仿函数即一个重载了小括号操作符的类，这个类拥有与函数相近的行为方式，它拥有自己的私有成员变量，例如：
 class Adder { public: int operator()(int num) { sum += num; return sum; } Adder() : sum(0) {} Adder(int num) : sum(num) {} private: int sum; }; int main() { Adder adder(0); cout &amp;lt;&amp;lt; adder(1) &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; adder(2) &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; adder(3) &amp;lt;&amp;lt; endl; } $ g++ -std=c++98 -o adder adder.</description>
     </item>
     
@@ -274,7 +274,7 @@ class Adder { public: int operator()(int num) { sum += num; return sum; } Adder(
       
       <guid>http://zintrulcre.github.io/posts/service-governance/load-balancing/</guid>
       <description>负载均衡和一致性哈希 反向代理 reverse proxy 是指以代理服务器来接收由客户端发送来的请求，并通过一定的策略将其转变发给实际处理请求的后端服务器；主要应用于负载均衡、动态缓存、安全认证、内网穿透、SSL 加密等；而负载均衡 load balancing 是指在多个 slot（槽，一般是某种计算资源）中分配负载，以优化资源利用率和避免单点故障问题的方法，是高可用性分布式系统的必备中间件；常用的开源 load balancer 有 nginx，LVS，Haproxy 等；负载均衡可以视为反向代理的一种应用，负载均衡的方法大致可以分为传统负载均衡算法和哈希算法两种，本文简单地总结了这些算法的原理。
-1 传统负载均衡算法  随机 random：将 key 随机分配到某一个 slot 上，根据概率论可知，吞吐量越大，随机算法的效果越好； 加权随机 weighted random：为每一个 slot 分配一个权重，在随机的时候考虑权重的影响；可以通过在所有 slot 的权重总和中随机出一个数字 k，找到 k 所在的 slot 位置来实现； 轮询 round robin：按顺序依次将 key 分配给每一个 slot； 加权轮询 weighted round robin：为每一个 slot 分配一个权重，在按序分配时为权重更高的 slot 分配更多的 key； 平滑加权轮询 smooth weighted round robin：一种能够均匀地分散调度序列的加权轮询方法，分为以下几个步骤：  选出当前权重最高的 slot，将 key 分配给它； 将选出的 slot 的权重数值减去其初始权重； 将所有 slot 的权重数值都加上它们的原始权重； 重复以上步骤；   最少连接数 least connections：将 key 分配给当前具有最少连接数量的 slot；  2 Mod-N 哈希 在有些场景下，传统负载均衡算法无法满足我们的需求，例如：</description>
+1 传统负载均衡算法 随机 random：将 key 随机分配到某一个 slot 上，根据概率论可知，吞吐量越大，随机算法的效果越好； 加权随机 weighted random：为每一个 slot 分配一个权重，在随机的时候考虑权重的影响；可以通过在所有 slot 的权重总和中随机出一个数字 k，找到 k 所在的 slot 位置来实现； 轮询 round robin：按顺序依次将 key 分配给每一个 slot； 加权轮询 weighted round robin：为每一个 slot 分配一个权重，在按序分配时为权重更高的 slot 分配更多的 key； 平滑加权轮询 smooth weighted round robin：一种能够均匀地分散调度序列的加权轮询方法，分为以下几个步骤： 选出当前权重最高的 slot，将 key 分配给它； 将选出的 slot 的权重数值减去其初始权重； 将所有 slot 的权重数值都加上它们的原始权重； 重复以上步骤； 最少连接数 least connections：将 key 分配给当前具有最少连接数量的 slot； 2 Mod-N 哈希 在有些场景下，传统负载均衡算法无法满足我们的需求，例如：</description>
     </item>
     
     <item>
@@ -296,8 +296,8 @@ class Foo { mutex mtx1, mtx2; public: Foo() { mtx1.lock(), mtx2.lock(); } void f
       
       <guid>http://zintrulcre.github.io/posts/cpp/basics/effective-cpp/</guid>
       <description>Effective C++ 笔记 0 导言 1 构造函数 default 构造函数：可被调用而不带任何实参的构造函数，这样的构造函数要么没有参数，要么每个参数都带有默认值，例如
-class Bar { public: // explicit Bar(); // 是 default 构造函数  // explicit Bar(int x = 0) // 不是 default 构造函数  explicit Bar(int x = 0, bool b = true); // 是 default 构造函数 private: int x; bool b; }; explicit 关键字：阻止执行隐式类型转换，其优点是禁止了编译器执行非预期的类型转换，例如
-void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象  Bar obj_1; // 构造一个 Bar 类型的对象 Foo (obj_1); // 没问题，传递一个 Bar 类型的对象给 Foo 函数 Foo (Bar()); // 没问题，构造一个 Bar 类型的对象，并传递给 Foo 函数 Foo (2); // 如果 Bar 的构造函数没有被声明为 explicit，那么会调用 Bar 的构造函数构造一个成员变量 x = 2 的对象，也就是说发生了隐式类型转换；如果其构造函数被声明为 explicit，那么就不会构造出 Bar 类型的对象 copy 构造函数：用同类型的对象初始化新的对象，它定义了一个对象如何 pass by reference。</description>
+class Bar { public: // explicit Bar(); // 是 default 构造函数 // explicit Bar(int x = 0) // 不是 default 构造函数 explicit Bar(int x = 0, bool b = true); // 是 default 构造函数 private: int x; bool b; }; explicit 关键字：阻止执行隐式类型转换，其优点是禁止了编译器执行非预期的类型转换，例如
+void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象 Bar obj_1; // 构造一个 Bar 类型的对象 Foo (obj_1); // 没问题，传递一个 Bar 类型的对象给 Foo 函数 Foo (Bar()); // 没问题，构造一个 Bar 类型的对象，并传递给 Foo 函数 Foo (2); // 如果 Bar 的构造函数没有被声明为 explicit，那么会调用 Bar 的构造函数构造一个成员变量 x = 2 的对象，也就是说发生了隐式类型转换；如果其构造函数被声明为 explicit，那么就不会构造出 Bar 类型的对象 copy 构造函数：用同类型的对象初始化新的对象，它定义了一个对象如何 pass by reference。</description>
     </item>
     
     <item>
@@ -308,7 +308,7 @@ void Foo(Bar obj); // Foo 函数的参数是一个类型为 Bar 的对象  Bar o
       <guid>http://zintrulcre.github.io/posts/design-pattern/c&#43;&#43;-template-singleton/</guid>
       <description>C++ 单例模式的模板实现 单例模式是一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例（single instance），这个类称为单例类，它会提供一个全局的访问入口（global access point），关于单例模式的讨论可以参考Singleton revisited；基于这两个特点，单例模式可以有以下几种实现：
 Meyer’s Singleton Scott Meyers 在 Effective C++ 的 Item 4: Make sure that objects are initialized before they&amp;rsquo;re used 里面提出了一种利用 C++ 的 static 关键字来实现的单例模式，这种实现非常简洁高效，它的特点是：
- 仅当程序第一次执行到 GetInstance 函数时，执行 instance 对象的初始化； 在 C++ 11 之后，被 static 修饰的变量可以保证是线程安全的；  template&amp;lt;typename T&amp;gt; class Singleton { public: static T&amp;amp; GetInstance() { static T instance; return instance; } Singleton(T&amp;amp;&amp;amp;) = delete; Singleton(const T&amp;amp;) = delete; void operator= (const T&amp;amp;) = delete; protected: Singleton() = default; virtual ~Singleton() = default; }; 通过禁用单例类的 copy constructor，move constructor 和 operator= 可以防止类的唯一实例被拷贝或移动；不暴露单例类的 constructor 和 destructor 可以保证单例类不会通过其他途径被实例化，同时将两者定义为 protected 可以让其被子类继承并使用。</description>
+仅当程序第一次执行到 GetInstance 函数时，执行 instance 对象的初始化； 在 C++ 11 之后，被 static 修饰的变量可以保证是线程安全的； template&amp;lt;typename T&amp;gt; class Singleton { public: static T&amp;amp; GetInstance() { static T instance; return instance; } Singleton(T&amp;amp;&amp;amp;) = delete; Singleton(const T&amp;amp;) = delete; void operator= (const T&amp;amp;) = delete; protected: Singleton() = default; virtual ~Singleton() = default; }; 通过禁用单例类的 copy constructor，move constructor 和 operator= 可以防止类的唯一实例被拷贝或移动；不暴露单例类的 constructor 和 destructor 可以保证单例类不会通过其他途径被实例化，同时将两者定义为 protected 可以让其被子类继承并使用。</description>
     </item>
     
     <item>
@@ -321,10 +321,10 @@ Meyer’s Singleton Scott Meyers 在 Effective C++ 的 Item 4: Make sure that ob
 并行计算（Parallel Computing）是高性能计算下的一个细分领域，其主要思想是将复杂问题分解成若干个部分，将每一个部分交给独立的处理器（计算资源）进行计算，以提高效率；针对不同的问题，并行计算需要专用的并行架构，架构既可以是专门设计的，含有多个处理器的单一硬件或超级计算机，也可以是以某种方式互连的若干台的独立计算机构成的集群；并没有一个统一的并行计算架构适用于每一个问题，如果使用了错误的架构，并行计算甚至会导致性能下降。
 1.2 硬件架构 中央处理器（Central Processing Unit）的主要功能是解释计算机指令，它由控制单元（Control Unit）、算术逻辑单元（Arithmetic Logic Unit）、乱序控制单元（Out-of-Order Control Unit）、分支预测器（Branch Predictor）、数据缓存（Data Cache）等部件组成；CPU 被设计为可以快速地处理各种通用计算任务并最小化延迟，但在并发性（时钟频率）方面受到限制；
 图形处理器（Graphics Processing Unit, GPU）是英伟达（NVIDIA）在 1999 年 8 月发布 NVIDIA GeForce 256 时提出的概念；现代 GPU 的模型设计可以概括为几个关键点：
-  GPU 的设计目的是最大化吞吐量（Throughput）
-  能够将程序中数据可并行的部分从 CPU 转移到 GPU
-  能够使用尽可能多的线程进行并行计算
-  GPU 拥有的内核数量相较于 CPU 多得多，可以有数千个同时运行的内核执行大规模并行计算，因此在早期专门应用于图形数据的处理，但随着近十几年的发展，其强大的并行处理能力也使其可以处理非图形数据，尤其在深度学习领域非常受欢迎；
+GPU 的设计目的是最大化吞吐量（Throughput）
+能够将程序中数据可并行的部分从 CPU 转移到 GPU
+能够使用尽可能多的线程进行并行计算
+GPU 拥有的内核数量相较于 CPU 多得多，可以有数千个同时运行的内核执行大规模并行计算，因此在早期专门应用于图形数据的处理，但随着近十几年的发展，其强大的并行处理能力也使其可以处理非图形数据，尤其在深度学习领域非常受欢迎；
 在制造工艺的限制下，芯片的密度和最大面积都是有限的（摩尔定律），因此芯片设计实际上是功能和元件数量的权衡；出于对通用性的要求，CPU 的芯片设计必须使用较多种类的原件以增加其功能，同时放弃部分具有复杂功能的元件数量，而 GPU 的芯片设计则是通过移除部分具有复杂功能的元件来换取更多的空间，并集成更多的基本功能元件；
 GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集群（Processor Cluster）组成。每个流多处理器都关联一个控制单元 和 L1 Cache，这样的设计使得一个芯片可以同时支持上百个指令流的并行执行；通常一个流多处理器在与全局 GDDR-5 内存交换数据之前都会利用与之关联 L1 Cache 和 L2 Cache 来减少数据传输的延迟；而又因为 GPU 通常拥有足够大的计算量，使得其不需要与 CPU 一样非常频繁地从内存中获取数据，因此 GPU 的缓存层一般是小于 CPU 的。</description>
     </item>
@@ -338,7 +338,7 @@ GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集�
       <description>boost::typeIndex 的相关探究 Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 Boost::typeindex 的使用，但并没有讲到其实现原理。
 1. typeid 操作符 typeid 是 C++ 中的一个操作符，可以用于获取类型的信息，常常用在必须知道多态对象的动态类型，或是识别静态类型的地方。
 我们可以写一个简单的 demo 用于获取对象类型相关的信息，需要包含 tepyinfo 头文件：
-#include &amp;lt;iostream&amp;gt;#include &amp;lt;typeinfo&amp;gt; using namespace std; class Foo {}; int main() { cout &amp;lt;&amp;lt; &amp;#34;1: &amp;#34; &amp;lt;&amp;lt; typeid(1).name() &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;int: &amp;#34; &amp;lt;&amp;lt; typeid(int).name() &amp;lt;&amp;lt; endl; // 和 sizeof 操作符类似，typeid 也可以直接对数据类型（比如 int）进行操作  cout &amp;lt;&amp;lt; &amp;#34;typeid: &amp;#34; &amp;lt;&amp;lt; typeid(typeid(int)).name() &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;typeid: &amp;#34; &amp;lt;&amp;lt; typeid(const type_info &amp;amp;).</description>
+#include &amp;lt;iostream&amp;gt; #include &amp;lt;typeinfo&amp;gt; using namespace std; class Foo {}; int main() { cout &amp;lt;&amp;lt; &amp;#34;1: &amp;#34; &amp;lt;&amp;lt; typeid(1).name() &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;int: &amp;#34; &amp;lt;&amp;lt; typeid(int).name() &amp;lt;&amp;lt; endl; // 和 sizeof 操作符类似，typeid 也可以直接对数据类型（比如 int）进行操作 cout &amp;lt;&amp;lt; &amp;#34;typeid: &amp;#34; &amp;lt;&amp;lt; typeid(typeid(int)).name() &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;typeid: &amp;#34; &amp;lt;&amp;lt; typeid(const type_info &amp;amp;).</description>
     </item>
     
     <item>
@@ -349,7 +349,7 @@ GPU 设备由多个流多处理器（Streaming Multiprocessor）的处理器集�
       <guid>http://zintrulcre.github.io/posts/cpp/compilation/cmake/</guid>
       <description>CMake 入门 0. 序 CMake 是一个跨平台的开源构建工具，使用 CMake 能够方便地管理依赖多个库的目录层次结构并生成 makefile 和使用 GNU make 来编译和连接程序。
 1. 构建单个文件 1.1 使用 GCC 编译 假设现在我们希望编写一个函数来实现安全的 int 类型加法防止数据溢出，这个源文件没有任何依赖的源码或静态库：
-// safe_add.cpp #include &amp;lt;iostream&amp;gt;#include &amp;lt;memory&amp;gt;#define INT_MAX 2147483647 #define ERROR_DATA_OVERFLOW 2  int SafeIntAdd(std::unique_ptr&amp;lt;int&amp;gt; &amp;amp;sum, int a, int b) { if (a &amp;gt; INT_MAX - b) { *sum = INT_MAX; return ERROR_DATA_OVERFLOW; } *sum = a + b; return EXIT_SUCCESS; } int main() { int a, b; std::cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b; std::unique_ptr&amp;lt;int&amp;gt; sum(new int(1)); int res = SafeIntAdd(sum, a, b); std::cout &amp;lt;&amp;lt; *sum &amp;lt;&amp;lt; std::endl; return res; } 我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：</description>
+// safe_add.cpp #include &amp;lt;iostream&amp;gt; #include &amp;lt;memory&amp;gt; #define INT_MAX 2147483647 #define ERROR_DATA_OVERFLOW 2 int SafeIntAdd(std::unique_ptr&amp;lt;int&amp;gt; &amp;amp;sum, int a, int b) { if (a &amp;gt; INT_MAX - b) { *sum = INT_MAX; return ERROR_DATA_OVERFLOW; } *sum = a + b; return EXIT_SUCCESS; } int main() { int a, b; std::cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b; std::unique_ptr&amp;lt;int&amp;gt; sum(new int(1)); int res = SafeIntAdd(sum, a, b); std::cout &amp;lt;&amp;lt; *sum &amp;lt;&amp;lt; std::endl; return res; } 我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：</description>
     </item>
     
     <item>
@@ -383,11 +383,11 @@ Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal represent
       <guid>http://zintrulcre.github.io/posts/cpp/coroutine/c&#43;&#43;-coroutine-function-and-coroutine/</guid>
       <description>C++ 协程（1）：函数和协程 这篇文章的目的是探究 C++ 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。
 1. 栈帧和函数 栈帧是一个函数执行的环境，包括函数参数、函数返回地址、局部变量等信息。操作系统每次调用一个函数，都会为其分配一个新的栈帧，相关的概念有：
- ESP：栈指针寄存器（Extended Stack Pointer），其内存中存放一个始终指向系统栈最顶部栈帧栈顶的指针 EBP：基址指针寄存器（Extended Base Pointer），其内存中存放一个始终指向系统最顶部栈帧栈底的指针 函数栈帧：ESP和EBP之间的内存空间为当前栈帧，EBP标识了当前栈帧的底部，ESP标识了当前栈帧的顶部  对于普通的函数来说，一般我们可以对其进行两种操作：call（调用）和 return（返回）。为了方便对比，此处不讨论 throw exception 的情况。在运行一个 C++ 程序时，编译器会先执行 C++ runtime，然后会调用 main 函数，再由 main 函数调用其他的函数。
+ESP：栈指针寄存器（Extended Stack Pointer），其内存中存放一个始终指向系统栈最顶部栈帧栈顶的指针 EBP：基址指针寄存器（Extended Base Pointer），其内存中存放一个始终指向系统最顶部栈帧栈底的指针 函数栈帧：ESP和EBP之间的内存空间为当前栈帧，EBP标识了当前栈帧的底部，ESP标识了当前栈帧的顶部 对于普通的函数来说，一般我们可以对其进行两种操作：call（调用）和 return（返回）。为了方便对比，此处不讨论 throw exception 的情况。在运行一个 C++ 程序时，编译器会先执行 C++ runtime，然后会调用 main 函数，再由 main 函数调用其他的函数。
 call 操作一般包含以下几个步骤：
- 参数入栈：参数从右向左依次入栈 返回地址入栈：将当前代码区的下一条待执行的指令入栈，以便在函数 return 之后执行 代码区跳转：处理器跳转到被调函数的入口 栈帧调整，包括：  保存当前栈帧状态值，EBP 入栈 从当前栈帧切换到新的栈帧，更新 EBP，将 EBP 的值设置为 ESP 的值 给新的栈帧分配内存空间，更新 ESP，将 ESP 的值减去所需空间的大小    当一个函数通过 return 语句返回时，执行的步骤与调用时相反：
+参数入栈：参数从右向左依次入栈 返回地址入栈：将当前代码区的下一条待执行的指令入栈，以便在函数 return 之后执行 代码区跳转：处理器跳转到被调函数的入口 栈帧调整，包括： 保存当前栈帧状态值，EBP 入栈 从当前栈帧切换到新的栈帧，更新 EBP，将 EBP 的值设置为 ESP 的值 给新的栈帧分配内存空间，更新 ESP，将 ESP 的值减去所需空间的大小 当一个函数通过 return 语句返回时，执行的步骤与调用时相反：
 2. 协程 协程由程序所控制，即在用户态执行，而不是像线程一样由操作系统内核管理，使用协程时，不需要如线程一般频繁地进行上下文切换，性能能够得到很大的提升，因此协程的开销远远小于线程的开销。一般来说协程有三种特性：
- suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，但是保留当前栈帧。和函数的 return 类似，协程的 suspend 只能由协程自身发起 resume 恢复：继续执行已经 suspend 的协程，重新激活协程的栈帧 destroy 销毁：销毁协程的栈帧和其对应的内存  可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是执行栈帧，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是数据栈帧，这部分即使在协程 suspend 的时候依然存在。</description>
+suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，但是保留当前栈帧。和函数的 return 类似，协程的 suspend 只能由协程自身发起 resume 恢复：继续执行已经 suspend 的协程，重新激活协程的栈帧 destroy 销毁：销毁协程的栈帧和其对应的内存 可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是执行栈帧，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是数据栈帧，这部分即使在协程 suspend 的时候依然存在。</description>
     </item>
     
     <item>
@@ -538,12 +538,14 @@ class Solution { public: bool isUgly(int num) { if (num &amp;lt; 1) return false
       
       <guid>http://zintrulcre.github.io/posts/leetcode/binarysearch/</guid>
       <description>LeetCode 二分查找 二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。
-易错点   计算中间值的方法
- k = i + (j - i) / 2 k = (i + j) / 2  第二种方法一般都会造成整型数据溢出，所以只用第一种方法。
-  循环条件
-  如果要找唯一的值，且下限i和上限j都会在更新时在中间值k的基础上+1或-1，那么循环条件是 i &amp;lt;= j，j能被取到，j = nums.size() - 1，计算中间值用 k = i + (j - i + 1) / 2
-  如果要找大于等于或小于等于某条件的值，且下限i和上限j其中之一不会在k的基础上+1或-1，那么循环条件是 i &amp;lt; j，j不能被取到，j = nums.size()，计算中间值用 k = i + (j - i) / 2
-  两种方法有各自的应用场景，没用对的话会出现边界值的问题，或是死循环导致TLE。</description>
+易错点 计算中间值的方法
+k = i + (j - i) / 2 k = (i + j) / 2 第二种方法一般都会造成整型数据溢出，所以只用第一种方法。
+循环条件
+如果要找唯一的值，且下限i和上限j都会在更新时在中间值k的基础上+1或-1，那么循环条件是 i &amp;lt;= j，j能被取到，j = nums.size() - 1，计算中间值用 k = i + (j - i + 1) / 2
+如果要找大于等于或小于等于某条件的值，且下限i和上限j其中之一不会在k的基础上+1或-1，那么循环条件是 i &amp;lt; j，j不能被取到，j = nums.size()，计算中间值用 k = i + (j - i) / 2
+两种方法有各自的应用场景，没用对的话会出现边界值的问题，或是死循环导致TLE。
+题目 1. 查找数 704 二分查找 在有序数组中搜索目标值，如果存在则返回下标，否则返回 -1。
+最标准的二分查找。因为下限i和上限j都会在更新时+1和-1，所以让j = nums.size() - 1，循环条件是 i &amp;lt;= j。</description>
     </item>
     
     <item>
@@ -553,8 +555,8 @@ class Solution { public: bool isUgly(int num) { if (num &amp;lt; 1) return false
       
       <guid>http://zintrulcre.github.io/posts/leetcode/bitmanipulation/</guid>
       <description>LeetCode 位运算 位运算包括：
- 与 &amp;amp; 或 | 异或 ^ 取反 ~ 左移 &amp;laquo; 右移 &amp;raquo;  技巧   移位运算
- x &amp;laquo; 1：算数左移  数字的二进制表示的所有位向左移动一位，相当于乘以 2 在右边补 0   x &amp;raquo; 1：算数右移  数字的二进制表示的所有位向右移动一位，相当于除以 2 在左边补符号位，即正数补 0，负数（在补码的基础上）补 1   负数移位  负数是以补码的形式存储的，负数进行右移运算时需要将其取反转换成反码，加一转换成补码，再将其向右移动一位得到新的补码，再将其减一得到新的反码，再取反转换成原码才能得到结果。例如 -7 的二进制表示是 10000111（因为 32 位太长所以这里用 8 位 int 型表示），其反码是 11111000，补码是11111001，向右移动一位是 11111100，减一得到新的反码 11111011，原码是10000100，也就是 -4；补码向左移一位是 11110010，减一得到新的反码 11110001，原码是 10001110，也就是 -14 比较简单的理解方式是左移乘以 2，右移除以 2。例如 -7 &amp;raquo; 1 = -7 / 2 = -4，-7 &amp;laquo; 1 = -14      题目 1.</description>
+与 &amp;amp; 或 | 异或 ^ 取反 ~ 左移 &amp;laquo; 右移 &amp;raquo; 技巧 移位运算
+x &amp;laquo; 1：算数左移 数字的二进制表示的所有位向左移动一位，相当于乘以 2 在右边补 0 x &amp;raquo; 1：算数右移 数字的二进制表示的所有位向右移动一位，相当于除以 2 在左边补符号位，即正数补 0，负数（在补码的基础上）补 1 负数移位 负数是以补码的形式存储的，负数进行右移运算时需要将其取反转换成反码，加一转换成补码，再将其向右移动一位得到新的补码，再将其减一得到新的反码，再取反转换成原码才能得到结果。例如 -7 的二进制表示是 10000111（因为 32 位太长所以这里用 8 位 int 型表示），其反码是 11111000，补码是11111001，向右移动一位是 11111100，减一得到新的反码 11111011，原码是10000100，也就是 -4；补码向左移一位是 11110010，减一得到新的反码 11110001，原码是 10001110，也就是 -14 比较简单的理解方式是左移乘以 2，右移除以 2。例如 -7 &amp;raquo; 1 = -7 / 2 = -4，-7 &amp;laquo; 1 = -14 题目 1. 单个数字 693 交替位二进制数 检查一个二进制数相邻的两个位数是否均不相等。</description>
     </item>
     
     <item>
@@ -565,7 +567,7 @@ class Solution { public: bool isUgly(int num) { if (num &amp;lt; 1) return false
       <guid>http://zintrulcre.github.io/posts/kick-start/2019-round-c/</guid>
       <description>Kick Start 2019 Round C Wiggle Walk (6pts, 12pts) 在一个R * C的矩阵里面移动，遇到已经走过的格子直接跳过。数据保证移动时不会超出给定的矩阵。
 Solution: Simulation 用一个visited数组记录已经走过的格子，遇到走过的格子则直接跳过往后遍历。讲道理这个方法时间复杂度是过不了Hidden Test Set的，但是我也不知道为什么就过了。
- 时间复杂度：O(n^2) 空间复杂度：O(n^2)  // C++ #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt; visited(50001, vector&amp;lt;bool&amp;gt;(50001, false)); void Forward(char &amp;amp;p, int &amp;amp;r, int &amp;amp;c) { if (p == &amp;#39;E&amp;#39;) { while (visited[r][c + 1]) ++c; visited[r][++c] = true; } else if (p == &amp;#39;W&amp;#39;) { while (visited[r][c - 1]) --c; visited[r][--c] = true; } else if (p == &amp;#39;N&amp;#39;) { while (visited[r - 1][c]) --r; visited[--r][c] = true; } else if (p == &amp;#39;S&amp;#39;) { while (visited[r + 1][c]) ++r; visited[++r][c] = true; } } void solve(const int &amp;amp;t) { int n, R, C, r, c; string str; scanf(&amp;#34;%d %d %d %d %d&amp;#34;, &amp;amp;n, &amp;amp;R, &amp;amp;C, &amp;amp;r, &amp;amp;c); cin &amp;gt;&amp;gt; str; visited = vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt;(50001, vector&amp;lt;bool&amp;gt;(50001, false)); visited[r][c] = true; for (int i = 0; i &amp;lt; n; ++i) Forward(str[i], r, c); printf(&amp;#34;Case #%d: %d %d\n&amp;#34;, t, r, c); } int main() { int T; scanf(&amp;#34;%d&amp;#34;, &amp;amp;T); for (int t = 1; t &amp;lt;= T; ++t) solve(t); return 0; } Circuit Board (14pts, 20pts) 在矩阵里找到每一行最大值与最小值不超过K的最大子矩阵。</description>
+时间复杂度：O(n^2) 空间复杂度：O(n^2) // C++ #include &amp;lt;iostream&amp;gt; #include &amp;lt;cmath&amp;gt; #include &amp;lt;cstdio&amp;gt; #include &amp;lt;math.h&amp;gt; #include &amp;lt;limits&amp;gt; #include &amp;lt;algorithm&amp;gt; #include &amp;lt;vector&amp;gt; #include &amp;lt;stack&amp;gt; #include &amp;lt;queue&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;map&amp;gt; #include &amp;lt;set&amp;gt; #include &amp;lt;unordered_map&amp;gt; #include &amp;lt;unordered_set&amp;gt; using namespace std; vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt; visited(50001, vector&amp;lt;bool&amp;gt;(50001, false)); void Forward(char &amp;amp;p, int &amp;amp;r, int &amp;amp;c) { if (p == &amp;#39;E&amp;#39;) { while (visited[r][c + 1]) ++c; visited[r][++c] = true; } else if (p == &amp;#39;W&amp;#39;) { while (visited[r][c - 1]) --c; visited[r][--c] = true; } else if (p == &amp;#39;N&amp;#39;) { while (visited[r - 1][c]) --r; visited[--r][c] = true; } else if (p == &amp;#39;S&amp;#39;) { while (visited[r + 1][c]) ++r; visited[++r][c] = true; } } void solve(const int &amp;amp;t) { int n, R, C, r, c; string str; scanf(&amp;#34;%d %d %d %d %d&amp;#34;, &amp;amp;n, &amp;amp;R, &amp;amp;C, &amp;amp;r, &amp;amp;c); cin &amp;gt;&amp;gt; str; visited = vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt;(50001, vector&amp;lt;bool&amp;gt;(50001, false)); visited[r][c] = true; for (int i = 0; i &amp;lt; n; ++i) Forward(str[i], r, c); printf(&amp;#34;Case #%d: %d %d\n&amp;#34;, t, r, c); } int main() { int T; scanf(&amp;#34;%d&amp;#34;, &amp;amp;T); for (int t = 1; t &amp;lt;= T; ++t) solve(t); return 0; } Circuit Board (14pts, 20pts) 在矩阵里找到每一行最大值与最小值不超过K的最大子矩阵。</description>
     </item>
     
     <item>
@@ -586,7 +588,7 @@ Solution: Simulation 用一个visited数组记录已经走过的格子，遇到�
       <description>Code Jam 2019 Round 1C Robot Programming Strategy (10pts, 18pts) 已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。
 Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同时有三种情况（R, P, S）则没有必胜策略，直接输出IMPOSSIBLE；否则返回胜利或打平的策略。
 对于已经打败过的对手没有必要再考虑其之后的出招，所以用一个defeated数组保存已经打败过的对手以便直接跳过。因为当前轮次有可能超过对手的出招顺序长度，所以要用i % size获取对手当前的出招。
- 时间复杂度：O(A ^ 2) 空间复杂度：O(A)  #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; char Decide(const char &amp;amp;R, const char &amp;amp;P, const char &amp;amp;S) { if (R &amp;amp;&amp;amp; P &amp;amp;&amp;amp; S) return &amp;#39;X&amp;#39;; if (R &amp;amp;&amp;amp; P) return &amp;#39;P&amp;#39;; if (R &amp;amp;&amp;amp; S) return &amp;#39;R&amp;#39;; if (P &amp;amp;&amp;amp; S) return &amp;#39;S&amp;#39;; if (R) return &amp;#39;P&amp;#39;; if (P) return &amp;#39;S&amp;#39;; return &amp;#39;R&amp;#39;; } bool Defeate(const char &amp;amp;current, const char &amp;amp;opponent) { return (current == &amp;#39;R&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;S&amp;#39;) || (current == &amp;#39;S&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;P&amp;#39;) || (current == &amp;#39;P&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;R&amp;#39;); } void solve(const int &amp;amp;t) { int A; scanf(&amp;#34;%d&amp;#34;, &amp;amp;A); int i = 0; vector&amp;lt;string&amp;gt; opponent(A); vector&amp;lt;bool&amp;gt; defeated(A, false); bool R, P, S; string res; for (int a = 0; a &amp;lt; A; ++a) cin &amp;gt;&amp;gt; opponent[a]; while (true) { int current_opponent = 0; R = false, P = false, S = false; for (int a = 0; a &amp;lt; A; ++a) { if (!</description>
+时间复杂度：O(A ^ 2) 空间复杂度：O(A) #include &amp;lt;iostream&amp;gt; #include &amp;lt;cmath&amp;gt; #include &amp;lt;cstdio&amp;gt; #include &amp;lt;math.h&amp;gt; #include &amp;lt;limits&amp;gt; #include &amp;lt;algorithm&amp;gt; #include &amp;lt;vector&amp;gt; #include &amp;lt;stack&amp;gt; #include &amp;lt;queue&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;map&amp;gt; #include &amp;lt;set&amp;gt; #include &amp;lt;unordered_map&amp;gt; #include &amp;lt;unordered_set&amp;gt; using namespace std; char Decide(const char &amp;amp;R, const char &amp;amp;P, const char &amp;amp;S) { if (R &amp;amp;&amp;amp; P &amp;amp;&amp;amp; S) return &amp;#39;X&amp;#39;; if (R &amp;amp;&amp;amp; P) return &amp;#39;P&amp;#39;; if (R &amp;amp;&amp;amp; S) return &amp;#39;R&amp;#39;; if (P &amp;amp;&amp;amp; S) return &amp;#39;S&amp;#39;; if (R) return &amp;#39;P&amp;#39;; if (P) return &amp;#39;S&amp;#39;; return &amp;#39;R&amp;#39;; } bool Defeate(const char &amp;amp;current, const char &amp;amp;opponent) { return (current == &amp;#39;R&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;S&amp;#39;) || (current == &amp;#39;S&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;P&amp;#39;) || (current == &amp;#39;P&amp;#39; &amp;amp;&amp;amp; opponent == &amp;#39;R&amp;#39;); } void solve(const int &amp;amp;t) { int A; scanf(&amp;#34;%d&amp;#34;, &amp;amp;A); int i = 0; vector&amp;lt;string&amp;gt; opponent(A); vector&amp;lt;bool&amp;gt; defeated(A, false); bool R, P, S; string res; for (int a = 0; a &amp;lt; A; ++a) cin &amp;gt;&amp;gt; opponent[a]; while (true) { int current_opponent = 0; R = false, P = false, S = false; for (int a = 0; a &amp;lt; A; ++a) { if (!</description>
     </item>
     
     <item>
@@ -597,7 +599,7 @@ Solution: Eliminiating 每一轮遍历当前轮次所有人的出招，如果同
       <guid>http://zintrulcre.github.io/posts/kick-start/2019-round-b/</guid>
       <description>Kick Start 2019 Round B Building Palindromes (5pts, 12pts) 判断给定区间内的子字符串是否是回文串。
 Solution: Prefix Sum 判断字符串是否是回文串只需要判断字符串里个数为奇数的字符的数量是否小于等于1，但如果每次都遍历一遍给定的区间肯定会超时，所以我们需要对给定的原始字符串进行预处理，计算出每一个位置的前缀和（从下标为0到下标为i - 1的位置的字符的总数）。这样在查询的时候就只有O(1)的时间复杂度了。
- 时间复杂度：O(N) 空间复杂度：O(N)  // C++ #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; int main() { int total_test_case_number; cin &amp;gt;&amp;gt; total_test_case_number; for (int case_number = 1; case_number &amp;lt;= total_test_case_number; ++case_number) { int N, Q, m, n, total = 0; cin &amp;gt;&amp;gt; N &amp;gt;&amp;gt; Q; string words; cin &amp;gt;&amp;gt; words; vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; odds(N + 1, vector&amp;lt;int&amp;gt;(26)); for (int i = 1; i &amp;lt;= N; ++i) { for (int j = 0; j &amp;lt; 26; ++j) odds[i][j] = odds[i - 1][j]; ++odds[i][words[i - 1] - &amp;#39;A&amp;#39;]; } for (int q = 0; q &amp;lt; Q; ++q) { cin &amp;gt;&amp;gt; m &amp;gt;&amp;gt; n; int odd = 0; for (int j = 0; j &amp;lt; 26; ++j) odd += ((odds[n][j] - odds[m - 1][j]) % 2 !</description>
+时间复杂度：O(N) 空间复杂度：O(N) // C++ #include &amp;lt;iostream&amp;gt; #include &amp;lt;cmath&amp;gt; #include &amp;lt;cstdio&amp;gt; #include &amp;lt;math.h&amp;gt; #include &amp;lt;limits&amp;gt; #include &amp;lt;algorithm&amp;gt; #include &amp;lt;vector&amp;gt; #include &amp;lt;stack&amp;gt; #include &amp;lt;queue&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;map&amp;gt; #include &amp;lt;set&amp;gt; #include &amp;lt;unordered_map&amp;gt; #include &amp;lt;unordered_set&amp;gt; using namespace std; int main() { int total_test_case_number; cin &amp;gt;&amp;gt; total_test_case_number; for (int case_number = 1; case_number &amp;lt;= total_test_case_number; ++case_number) { int N, Q, m, n, total = 0; cin &amp;gt;&amp;gt; N &amp;gt;&amp;gt; Q; string words; cin &amp;gt;&amp;gt; words; vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; odds(N + 1, vector&amp;lt;int&amp;gt;(26)); for (int i = 1; i &amp;lt;= N; ++i) { for (int j = 0; j &amp;lt; 26; ++j) odds[i][j] = odds[i - 1][j]; ++odds[i][words[i - 1] - &amp;#39;A&amp;#39;]; } for (int q = 0; q &amp;lt; Q; ++q) { cin &amp;gt;&amp;gt; m &amp;gt;&amp;gt; n; int odd = 0; for (int j = 0; j &amp;lt; 26; ++j) odd += ((odds[n][j] - odds[m - 1][j]) % 2 !</description>
     </item>
     
     <item>
@@ -608,7 +610,7 @@ Solution: Prefix Sum 判断字符串是否是回文串只需要判断字符串�
       <guid>http://zintrulcre.github.io/posts/code-jam/2019-round-1a/</guid>
       <description>Code Jam 2019 Round 1A Pylons (8pts, 23pts) 在m*n的网格里移动，每次移动后的位置不能与之前的位置在同一行/列/对角线上。
 Solution: BackTracking 类似于八皇后问题，不过每次的限制条件只和上一个位置有关，可以用回溯解决。
- 时间复杂度：O(m^2 * n^2) 空间复杂度：O(m * n)  // C++ #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; int m, n; bool BackTracking(int t, int i, int j, vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt; &amp;amp;visited, vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; &amp;amp;res) { visited[i][j] = true; res[t] = {i, j}; if (t + 1 == m * n) return true; for (int x = 0; x &amp;lt; m; ++x) { for (int y = 0; y &amp;lt; n; ++y) { int r = (x + i) % m, c = (y + j) % n; if (!</description>
+时间复杂度：O(m^2 * n^2) 空间复杂度：O(m * n) // C++ #include &amp;lt;iostream&amp;gt; #include &amp;lt;cmath&amp;gt; #include &amp;lt;cstdio&amp;gt; #include &amp;lt;math.h&amp;gt; #include &amp;lt;limits&amp;gt; #include &amp;lt;algorithm&amp;gt; #include &amp;lt;vector&amp;gt; #include &amp;lt;stack&amp;gt; #include &amp;lt;queue&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;map&amp;gt; #include &amp;lt;set&amp;gt; #include &amp;lt;unordered_map&amp;gt; #include &amp;lt;unordered_set&amp;gt; using namespace std; int m, n; bool BackTracking(int t, int i, int j, vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt; &amp;amp;visited, vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; &amp;amp;res) { visited[i][j] = true; res[t] = {i, j}; if (t + 1 == m * n) return true; for (int x = 0; x &amp;lt; m; ++x) { for (int y = 0; y &amp;lt; n; ++y) { int r = (x + i) % m, c = (y + j) % n; if (!</description>
     </item>
     
     <item>
@@ -619,7 +621,7 @@ Solution: BackTracking 类似于八皇后问题，不过每次的限制条件只
       <guid>http://zintrulcre.github.io/posts/code-jam/2019-qualification-round/</guid>
       <description>Code Jam 2019 Qualification Round Foregone Solution (6pts, 10pts, 1pts) 将一个带有数字4的数拆分为两个不带数字4的数。
 Solution: Construction 输入的数一定带有数字4，对于每一位上的数字4，我们可以将其拆分为2+2（或1+3）的两个数。输入数据最大是10的100次方，所以我们可以将其作为字符串处理。
- 时间复杂度：O(n) 空间复杂度：O(1)  // C++ #include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;math.h&amp;gt;#include &amp;lt;limits&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;set&amp;gt;#include &amp;lt;unordered_map&amp;gt;#include &amp;lt;unordered_set&amp;gt; using namespace std; int main() { int T; cin &amp;gt;&amp;gt; T; for (int t = 1; t &amp;lt;= T; ++t) { string N; cin &amp;gt;&amp;gt; N; string a, b; for (auto c:N) { a += c == &amp;#39;4&amp;#39; ?</description>
+时间复杂度：O(n) 空间复杂度：O(1) // C++ #include &amp;lt;iostream&amp;gt; #include &amp;lt;cmath&amp;gt; #include &amp;lt;math.h&amp;gt; #include &amp;lt;limits&amp;gt; #include &amp;lt;algorithm&amp;gt; #include &amp;lt;vector&amp;gt; #include &amp;lt;stack&amp;gt; #include &amp;lt;queue&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;map&amp;gt; #include &amp;lt;set&amp;gt; #include &amp;lt;unordered_map&amp;gt; #include &amp;lt;unordered_set&amp;gt; using namespace std; int main() { int T; cin &amp;gt;&amp;gt; T; for (int t = 1; t &amp;lt;= T; ++t) { string N; cin &amp;gt;&amp;gt; N; string a, b; for (auto c:N) { a += c == &amp;#39;4&amp;#39; ?</description>
     </item>
     
     <item>
@@ -655,7 +657,7 @@ Detect Overfitting The simplest way to detect overfitting is to split the datase
       <guid>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
       <description>C++智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器
 private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
-template&amp;lt;typename T, typename D&amp;gt; void SharedPointer&amp;lt;T, D&amp;gt;::release() { if (pointer) { std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; counter remains &amp;quot; &amp;lt;&amp;lt; *counter &amp;lt;&amp;lt; std::endl; if (--(*counter) == 0) { std::cout &amp;lt;&amp;lt; &amp;quot;SharedPointer &amp;quot; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;quot; destructor called.&amp;quot; &amp;lt;&amp;lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针</description>
+template&amp;lt;typename T, typename D&amp;gt; void SharedPointer&amp;lt;T, D&amp;gt;::release() { if (pointer) { std::cout &amp;lt;&amp;lt; &amp;#34;SharedPointer &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; counter remains &amp;#34; &amp;lt;&amp;lt; *counter &amp;lt;&amp;lt; std::endl; if (--(*counter) == 0) { std::cout &amp;lt;&amp;lt; &amp;#34;SharedPointer &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; destructor called.&amp;#34; &amp;lt;&amp;lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针</description>
     </item>
     
     <item>
@@ -686,10 +688,10 @@ Session是由服务器维护的。当客户端第一次向服务器发出request
 通过分析&amp;quot;login/&amp;ldquo;这条request，我们可以知道我们所需要的一些关键信息，例如headers中的user-agent和referer，表单数据（form data）中的csrfmiddlewaretoken，login和password。显然，user-agent和referer我们可以直接复制下来，login和password是我们填写的用户名和密码。还有一个很陌生的csrfmiddlewaretoken。这是CSRF的中间件token，CSRF是Cross-Site Request Forgery，相关知识可以查询跨站请求伪造的维基百科。那么现在我们就要分析这个token是从何而来。
 获取csrfmiddlewaretoken 我们将刚才获取到的csrfmiddlewaretoken复制下来，在开发者工具中使用搜索功能，可以发现这个csrfmiddlewaretoken出现在了登录之前的一些request对应的response中。例如在刚才打开登录页面，发送GET请求时，response的headers的set-cookie中出现了&amp;quot;csrftoken=&amp;hellip;&amp;ldquo;，而这里csrftoken的值与我们需要在登录表单中提交的值完全相同。因此，我们可以通过获取刚才的response中的Cookies来获取csrfmiddlewaretoken的值。
 首先我们通过发送GET请求来分析一下Cookies的构成
-login_url = &amp;quot;https://leetcode.com/accounts/login/&amp;quot; session = requests.session() result = session.get(login_url) print(result) print(type(result.cookies)) for cookie in result.cookies: print(type(cookie)) print(cookie) 得到的结果是
- &amp;lt;Response [200]&amp;gt; 状态码200，表示请求成功 &amp;lt;class &#39;requests.cookies.RequestsCookieJar&#39;&amp;gt; cookies的类型是CookieJar &amp;lt;class &#39;http.cookiejar.Cookie&#39;&amp;gt; 第一条cookie的类型是Cookie &amp;lt;Cookie__cfduid=d3e02d4309b848f9369e21671fabbce571548041181 for .leetcode.com/&amp;gt; 第一条cookie的信息 &amp;lt;class &#39;http.cookiejar.Cookie&#39;&amp;gt; 第二条cookie的类型是Cookie &amp;lt;Cookie csrftoken=13mQWE9tYN6g2IrlKY8oMLRc4VhVNoet4j328YdDapW2WC2nf93y5iCuzorovTDl for leetcode.com/&amp;gt; 第二条cookie的信息，也就是我们所需要的csrftoken  这样一来我们便获取到了在提交表单信息时所需要的csrfmiddlewaretoken，之后我们便可以开始着手写登录的相关代码了。顺便一提，在使用Django进行后端开发的时候自动生成的csrf token的键也叫csrfmiddlewaretoken，不知道LeetCode是不是用Django作为后端开发框架的。
+login_url = &amp;#34;https://leetcode.com/accounts/login/&amp;#34; session = requests.session() result = session.get(login_url) print(result) print(type(result.cookies)) for cookie in result.cookies: print(type(cookie)) print(cookie) 得到的结果是
+&amp;lt;Response [200]&amp;gt; 状态码200，表示请求成功 &amp;lt;class &#39;requests.cookies.RequestsCookieJar&#39;&amp;gt; cookies的类型是CookieJar &amp;lt;class &#39;http.cookiejar.Cookie&#39;&amp;gt; 第一条cookie的类型是Cookie &amp;lt;Cookie__cfduid=d3e02d4309b848f9369e21671fabbce571548041181 for .leetcode.com/&amp;gt; 第一条cookie的信息 &amp;lt;class &#39;http.cookiejar.Cookie&#39;&amp;gt; 第二条cookie的类型是Cookie &amp;lt;Cookie csrftoken=13mQWE9tYN6g2IrlKY8oMLRc4VhVNoet4j328YdDapW2WC2nf93y5iCuzorovTDl for leetcode.com/&amp;gt; 第二条cookie的信息，也就是我们所需要的csrftoken 这样一来我们便获取到了在提交表单信息时所需要的csrfmiddlewaretoken，之后我们便可以开始着手写登录的相关代码了。顺便一提，在使用Django进行后端开发的时候自动生成的csrf token的键也叫csrfmiddlewaretoken，不知道LeetCode是不是用Django作为后端开发框架的。
 实现 首先我们需要在爬虫开始运行之前获取登录信息，将Session作为类的成员变量保存下来，方便在获取submissions时使用。同时我们需要在与爬虫文件相同的目录下新建config.json，将自己的用户名和密码保存在该json文件里，这样就能顺利登陆了。
- def start_requests(self): self.Login() # 登录 questionset_url = &amp;quot;https://leetcode.com/api/problems/all/&amp;quot; yield scrapy.</description>
+def start_requests(self): self.Login() # 登录 questionset_url = &amp;#34;https://leetcode.com/api/problems/all/&amp;#34; yield scrapy.Request(url=questionset_url, callback=self.ParseQuestionSet) def Login(self): login_url = &amp;#34;https://leetcode.</description>
     </item>
     
     <item>
@@ -699,7 +701,7 @@ login_url = &amp;quot;https://leetcode.com/accounts/login/&amp;quot; session = r
       
       <guid>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
       <description>C++智能指针（1.5）：move语义 move语义 定义 右值引用（Rvalue Referene）是 C++ 11中引入的新特性，它实现了转移语义（Move Sementics）和精确传递（Perfect Forwarding），其主要目的有
- 消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 能够更简洁明确地定义泛型函数。  实现 move 语义的实现非常简单，它将传入的参数 _Tp&amp;amp;&amp;amp; __t 使用静态类型转换 static_cast&amp;lt;_Up&amp;amp;&amp;amp;&amp;gt;(__t) 转变成了成了对应类型的右值，也就是说使用 move 语义之后，编译器窃取（一般会在移动构造函数和移动赋值操作符里将原有对象指向 nullptr）了原有对象的右值，并延长了这个右值的生命周期并将其用来赋值给其他的对象，而没有对右值做任何拷贝操作。
+消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 能够更简洁明确地定义泛型函数。 实现 move 语义的实现非常简单，它将传入的参数 _Tp&amp;amp;&amp;amp; __t 使用静态类型转换 static_cast&amp;lt;_Up&amp;amp;&amp;amp;&amp;gt;(__t) 转变成了成了对应类型的右值，也就是说使用 move 语义之后，编译器窃取（一般会在移动构造函数和移动赋值操作符里将原有对象指向 nullptr）了原有对象的右值，并延长了这个右值的生命周期并将其用来赋值给其他的对象，而没有对右值做任何拷贝操作。
 template &amp;lt;class _Tp&amp;gt; typename remove_reference&amp;lt;_Tp&amp;gt;::type&amp;amp;&amp;amp; move(_Tp&amp;amp;&amp;amp; __t) _NOEXCEPT { typedef typename remove_reference&amp;lt;_Tp&amp;gt;::type _Up; return static_cast&amp;lt;_Up&amp;amp;&amp;amp;&amp;gt;(__t); } 测试 定义一个 Object 类和一个 MoveObject 函数使用 move 语义返回一个 Object 的类对象，可以看到在 MoveObject 函数返回右值后，obj 对象调用了移动构造函数。
 class Object { public: Object() { std::cout &amp;lt;&amp;lt; &amp;#34;Construct&amp;#34; &amp;lt;&amp;lt; std::endl; } Object(const Object &amp;amp;other) { std::cout &amp;lt;&amp;lt; &amp;#34;Copy&amp;#34; &amp;lt;&amp;lt; std::endl; } Object(Object &amp;amp;&amp;amp;other) noexcept { std::cout &amp;lt;&amp;lt; &amp;#34;Move&amp;#34; &amp;lt;&amp;lt; std::endl; } ~Object() { std::cout &amp;lt;&amp;lt; &amp;#34;Destruct&amp;#34; &amp;lt;&amp;lt; std::endl; } void Print() { std::cout &amp;lt;&amp;lt; &amp;#34;Print&amp;#34; &amp;lt;&amp;lt; std::endl; } }; Object MoveObject() { Object obj; return move(obj); } int main() { Object obj = MoveObject(); return 0; } /* output: Construct Move Destruct Destruct */ 返回值优化（RVO，Return value optimisation） 返回值优化是一种编译器优化技术，允许编译器在调用点（call site）直接构造函数的返回值。</description>
     </item>
@@ -724,7 +726,7 @@ int main() { Object *o = new Object(); o-&amp;gt;Print(); return 0; } /* output:
       <description>创建爬虫 在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用genspider命令新建一个爬虫：
 cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。
 新建好爬虫之后可以看到在项目的spiders文件夹下新增了一个名为 QuestionSetSpider.py的文件，这就是我们刚才新建的爬虫文件。这个爬虫文件会自动生成以下代码
-# -*- coding: utf-8 -*- import scrapy class QuestionSetSpider(scrapy.Spider): name = &#39;QuestionSetSpider&#39; allowed_domains = [&#39;leetcode.com&#39;] start_urls = [&#39;http://leetcode.com/&#39;] def parse(self, response): pass  QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类； self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫； self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误； self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数  获取题目详细信息 分析 LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。
+# -*- coding: utf-8 -*- import scrapy class QuestionSetSpider(scrapy.Spider): name = &amp;#39;QuestionSetSpider&amp;#39; allowed_domains = [&amp;#39;leetcode.com&amp;#39;] start_urls = [&amp;#39;http://leetcode.com/&amp;#39;] def parse(self, response): pass QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类； self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫； self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误； self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数 获取题目详细信息 分析 LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。
 为了爬取题目的详细信息，我们首先要从题目列表进入每个题目对应的链接。
 首先打开leetcode的problem列表，按F12打开Chrome的开发者工具，进入Network标签栏，勾选上Preserve log，刷新该页面。
 可以看到，网页向 https://leetcode.com/api/problems/all/ 发送了一个名为&amp;quot;all/&amp;ldquo;的GET类型的Request，这就是获取所有题目链接和相关信息的请求。如果此时已经安装了Toggle JavaScript插件，我们可以直接右键点击“Open in new tab”，查看该请求返回的Response。
@@ -733,7 +735,7 @@ cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中Question
 将Payload复制粘贴到postman的Body中，在Headers中设置Content-Type为application/json，发送请求，可以看到返回的是一个json对象，包含了该题目所对应的所有信息。
 接下来我们就可以对该题目的信息进行处理了。
 实现 为了获取题目列表的json对象，我们需要先重写start_requests函数。
-def start_requests(self): self.Login() # 用户登录，后续会用到 questionset_url = &amp;quot;https://leetcode.</description>
+def start_requests(self): self.Login() # 用户登录，后续会用到 questionset_url = &amp;#34;https://leetcode.com/api/problems/all/&amp;#34; yield scrapy.</description>
     </item>
     
     <item>
@@ -768,13 +770,13 @@ Spiders（爬虫） Spider是由用户编写的用于分析response并提取item
 Item Pipeline（管道） Item Pipeline负责处理被爬虫提取出来的item。可以对其进行数据清洗，验证和持久化（例如存储到数据库中）。
 Downloader middlewares（下载器中间件） 下载器中间件是在引擎及下载器之间的组件，用于处理下载器传递给引擎的response。更多内容请参考下载器中间件。
 Spider middlewares（爬虫中间件） Spider中间件是在引擎及Spider之间的组件，用于处理爬虫的输入（response）和输出（items和requests）。更多内容请参考爬虫中间件。
-Data flow（数据流） Scrapy中的数据流由引擎控制，其过程如下:1.引擎打开一个网站，找到处理该网站的爬虫并向该爬虫请求要爬取的url。2.引擎从爬虫中获取到要爬取的url并将其作为request发送给调度器。3.引擎向调度器请求下一个要爬取的url。4.调度器返回下一个要爬取的url给引擎，引擎将url通过下载器中间件发送给下载器。5.下载器下载页面成功后，生成一个该页面的response对象，并将其通过下载器中间件发送给引擎。6.引擎接收从下载器中间件发送过来的response，并将其通过爬虫中间件发送给爬虫处理。7.爬虫处理response，并将爬取到的item及跟进的新的request发送给引擎。8.引擎将爬虫返回的item发送给管道，将爬虫返回的新的request发送给调度器。9.管道对item进行相应的处理。10.重复第二步，直到调度器中没有更多的request，此时引擎关闭该网站。安装 1.下载安装最新版的Python3
+Data flow（数据流） Scrapy中的数据流由引擎控制，其过程如下: 1.引擎打开一个网站，找到处理该网站的爬虫并向该爬虫请求要爬取的url。 2.引擎从爬虫中获取到要爬取的url并将其作为request发送给调度器。 3.引擎向调度器请求下一个要爬取的url。 4.调度器返回下一个要爬取的url给引擎，引擎将url通过下载器中间件发送给下载器。 5.下载器下载页面成功后，生成一个该页面的response对象，并将其通过下载器中间件发送给引擎。 6.引擎接收从下载器中间件发送过来的response，并将其通过爬虫中间件发送给爬虫处理。 7.爬虫处理response，并将爬取到的item及跟进的新的request发送给引擎。 8.引擎将爬虫返回的item发送给管道，将爬虫返回的新的request发送给调度器。 9.管道对item进行相应的处理。 10.重复第二步，直到调度器中没有更多的request，此时引擎关闭该网站。
+安装 1.下载安装最新版的Python3
 2.使用pip指令安装Scrapy
 pip3 install scrapy 创建项目 首先进入你的代码存储目录，在命令行中输入以下命令：
 scrapy startproject LeetCode_Crawler 注意项目名称是不能包含连字符 &amp;lsquo;-&amp;rsquo; 的
 新建成功后，可以看到在当前目录下新建了一个名为LeetCode_Crawler的Scrapy项目，进入该目录，其项目结构如下：
-scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.py #中间件文件 pipelines.py #管道文件 settings.py #设置文件 __pycache__ spiders #爬虫文件夹，所有爬虫文件都应在该文件夹下 __init__.py __pycache__ 至此Scrapy项目的创建就完成了。
-参考资料 Scrapy官方文档</description>
+scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.py #中间件文件 pipelines.py #管道文件 settings.</description>
     </item>
     
     <item>
@@ -783,9 +785,9 @@ scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 _
       <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
       
       <guid>http://zintrulcre.github.io/posts/cpp/basics/basics/</guid>
-      <description>C++ 基础知识 const 相关   #define，typedef，const
- # 是宏，宏不做类型检查，只进行简单替换；在编译前被处理，编译阶段的程序是宏处理后的结果 typedef 用于声明自定义数据类型，简化代码 const 用于定义常量，有数据类型，编译器会对进行类型检查    const 和指针
- const char *p: p is a pointer to const char char const *p: p is a pointer to char const（同上） char *const p: p is a const pointer to char  int main() { const char *p1 = new char(&amp;#39;a&amp;#39;); char const *p2 = new char(&amp;#39;b&amp;#39;); char *const p3 = new char(&amp;#39;c&amp;#39;); *p1 = &amp;#39;d&amp;#39;; // error: read-only variable is notassignable *p2 = &amp;#39;e&amp;#39;; // error: read-only variable is notassignable p3 = new char(&amp;#39;f&amp;#39;); // error: cannot assign tovariable &amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; p3 = nullptr; // error: cannot assign to variable&amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; }   const 和类</description>
+      <description>C++ 基础知识 const 相关 #define，typedef，const
+# 是宏，宏不做类型检查，只进行简单替换；在编译前被处理，编译阶段的程序是宏处理后的结果 typedef 用于声明自定义数据类型，简化代码 const 用于定义常量，有数据类型，编译器会对进行类型检查 const 和指针
+const char *p: p is a pointer to const char char const *p: p is a pointer to char const（同上） char *const p: p is a const pointer to char int main() { const char *p1 = new char(&amp;#39;a&amp;#39;); char const *p2 = new char(&amp;#39;b&amp;#39;); char *const p3 = new char(&amp;#39;c&amp;#39;); *p1 = &amp;#39;d&amp;#39;; // error: read-only variable is notassignable *p2 = &amp;#39;e&amp;#39;; // error: read-only variable is notassignable p3 = new char(&amp;#39;f&amp;#39;); // error: cannot assign tovariable &amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; p3 = nullptr; // error: cannot assign to variable&amp;#39;p3&amp;#39; with const-qualified type &amp;#39;char *const&amp;#39; } const 和类</description>
     </item>
     
     <item>
@@ -807,7 +809,7 @@ scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 _
 我平时的学习基本上都在Linux下完成的，我现在有两台电脑，一台iMac，一台笔记本，笔记本上就装的Linux，然后每天都会用很多指令， 比如说用pipeline管道输出后用grep做正则搜索，用ifconfig和netstat查看网络状态，用top看进程资源，用iostat看cpu和硬盘状态 还有就是最基础的cd ls cp rm mkdir find whereis，还有远程的scp 还有一个查看程序运行时的系统调用，在Linux下是strace，Mac下是dtruss，有些命令在两个平台不一样 Linux下对文件操作有两种方式：系统调用（底层调用，面向硬件），和库函数调用（应用）。系统调用：open, close, read, write, ioctl等，用于底层文件访问
 调试： 用vim编辑（会一些vim的快捷键，比如dd删除一行，gg定位到头部，6$定位到某一行），用gdb调试，打log出来看，用过有个叫log4cplus的框架，有内存错误或者内存泄漏的问题就用valgrind调试。还有用GNU profiler来查看一些函数的调用次数，调用点相关的信息（编译器的话在Linux上GCC，在MAC上用自带的clang，单元测试用gtest。）
 C++ 内存分配
- 栈区：参数，局部变量 2.堆区：new，向高地址扩展，不连续 3.自由存储区，malloc 4.全局/静态存储区，存储全局变量和静态变量 5.常量存储区，存储常量 new 分配失败： 1. int* p = new (std::nothrow) int(1); 返回空指针 2. 用 try {} catch (const bad_alloc &amp;amp;b) {} 捕捉异常  auto_ptr：有拷贝构造和赋值操作，所有权转移 unique_ptr：独占式拥有，保证同一时间内只有一个智能指针可以指向特定指针，同时销毁，可以移交拥有权 shared_ptr：多个智能指针指向相同指针对象，在最后一个shared_ptr被销毁时对象被释放；搭配 weak_ptr、bad_weak_ptr等辅助类来实现，可以定制型删除器，因为默认只会把指针删掉，如果是个数组不会删后面的 循环引用就是说有两个类对象的智能指针，他们分别有一个成员变量是对方的类型，并且指向了对方的智能指针，形成了一个环状，那么他们就无法被正确的释放掉 weak_ptr：只引用，不计数，如果一个指针被一些shared_ptr和weak_ptr同时引用，当这些shared_ptr都释放掉，不管还有没有weak_ptr引用该内存，内存都会被释放，解决了循环引用
+栈区：参数，局部变量 2.堆区：new，向高地址扩展，不连续 3.自由存储区，malloc 4.全局/静态存储区，存储全局变量和静态变量 5.常量存储区，存储常量 new 分配失败： 1. int* p = new (std::nothrow) int(1); 返回空指针 2. 用 try {} catch (const bad_alloc &amp;amp;b) {} 捕捉异常 auto_ptr：有拷贝构造和赋值操作，所有权转移 unique_ptr：独占式拥有，保证同一时间内只有一个智能指针可以指向特定指针，同时销毁，可以移交拥有权 shared_ptr：多个智能指针指向相同指针对象，在最后一个shared_ptr被销毁时对象被释放；搭配 weak_ptr、bad_weak_ptr等辅助类来实现，可以定制型删除器，因为默认只会把指针删掉，如果是个数组不会删后面的 循环引用就是说有两个类对象的智能指针，他们分别有一个成员变量是对方的类型，并且指向了对方的智能指针，形成了一个环状，那么他们就无法被正确的释放掉 weak_ptr：只引用，不计数，如果一个指针被一些shared_ptr和weak_ptr同时引用，当这些shared_ptr都释放掉，不管还有没有weak_ptr引用该内存，内存都会被释放，解决了循环引用
 线程通信：锁（互斥锁，读写所，自旋锁，条件变量，原子变量，临界区），信号量，信号，屏障</description>
     </item>
     

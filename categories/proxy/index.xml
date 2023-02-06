@@ -36,8 +36,8 @@
 更新完成后路由器会重置为路由器底部贴条的设置。
 2 解锁 SSH 首先登陆小米路由器后台 192.168.31.1，将浏览器地址栏中 stok= 后面的一部分的即为拷贝下来。
 获取 SSH 权限 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {&amp;quot;code&amp;quot;:0} 即代表成功，这样就解锁了 SSH 到路由器上的权限。
-http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20&#39;s%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg&#39;%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B修改 root 密码 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {&amp;quot;code&amp;quot;:0} 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。
-http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20echo%20-e%20&#39;admin%5Cnadmin&#39;%20%7C%20passwd%20root%3B连接 SSH 打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20&amp;#39;s%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg&amp;#39;%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B 修改 root 密码 在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 stok=...... 中后半部分的六个点换成刚才拷贝的内容，页面上显示 {&amp;quot;code&amp;quot;:0} 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。
+http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20echo%20-e%20&amp;#39;admin%5Cnadmin&amp;#39;%20%7C%20passwd%20root%3B 连接 SSH 打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。
 ssh root@192.</description>
     </item>
     
