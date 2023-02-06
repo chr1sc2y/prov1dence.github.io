@@ -3,18 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://zintrulcre.github.io/categories/</loc>
-    <lastmod>2022-03-31T19:29:39+08:00</lastmod>
+    <lastmod>2023-02-01T18:02:04+11:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/posts/</loc>
+    <lastmod>2023-02-01T18:02:04+11:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/categories/redis/</loc>
+    <lastmod>2023-02-01T18:02:04+11:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/posts/data/redis-%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6-rdb-%E5%92%8C-aof-72a88c70207a4518824d1fe4be7ebb9e/</loc>
+    <lastmod>2023-02-01T18:02:04+11:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/</loc>
+    <lastmod>2023-02-01T18:02:04+11:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/categories/aws/</loc>
+    <lastmod>2023-01-11T09:55:04+11:00</lastmod>
+  </url><url>
+    <loc>http://zintrulcre.github.io/posts/disaster-recovery-architecture-on-aws/disaster-recovery-architecture-on-aws-9b3dc135d29c47acbfe19084c57035d5/</loc>
+    <lastmod>2023-01-11T09:55:04+11:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/posts/version-control/git/</loc>
     <lastmod>2022-03-31T19:29:39+08:00</lastmod>
   </url><url>
-    <loc>http://zintrulcre.github.io/posts/</loc>
-    <lastmod>2022-03-31T19:29:39+08:00</lastmod>
-  </url><url>
     <loc>http://zintrulcre.github.io/categories/version-control/</loc>
-    <lastmod>2022-03-31T19:29:39+08:00</lastmod>
-  </url><url>
-    <loc>http://zintrulcre.github.io/</loc>
     <lastmod>2022-03-31T19:29:39+08:00</lastmod>
   </url><url>
     <loc>http://zintrulcre.github.io/categories/proxy/</loc>
