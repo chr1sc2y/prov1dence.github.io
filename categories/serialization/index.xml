@@ -6,7 +6,18 @@
     <description>Recent content in serialization on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 26 Apr 2021 21:44:52 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/serialization/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Apr 2023 21:22:52 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/serialization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Protocol Buffer Syntax and Encoding</title>
+      <link>http://zintrulcre.github.io/posts/serialization/protocol-buffer-en/</link>
+      <pubDate>Wed, 05 Apr 2023 21:22:52 +0800</pubDate>
+      
+      <guid>http://zintrulcre.github.io/posts/serialization/protocol-buffer-en/</guid>
+      <description>Protocol Buffer Syntax and Encoding Principles [toc]
+Serialization refers to the process of converting structured data into a format that is easy to store or transmit.
+Protocol Buffer, abbreviated as ProtoBuf, is a language- and platform-independent serialization tool developed by Google and open-sourced in 2008. Compared to commonly used serialization tools such as XML, JSON, YAML, and CSV, ProtoBuf has advantages including smaller serialized data size, faster serialization and deserialization, lower maintenance cost through the use of proto files, and backward compatibility.</description>
+    </item>
+    
     <item>
       <title>ProtoBuf 语法和编码原理入门</title>
       <link>http://zintrulcre.github.io/posts/serialization/protocol-buffer/</link>

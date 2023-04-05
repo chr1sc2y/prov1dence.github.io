@@ -6,7 +6,16 @@
     <description>Recent content in Categories on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Feb 2023 18:02:04 +1100</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Apr 2023 21:22:52 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>serialization</title>
+      <link>http://zintrulcre.github.io/categories/serialization/</link>
+      <pubDate>Wed, 05 Apr 2023 21:22:52 +0800</pubDate>
+      
+      <guid>http://zintrulcre.github.io/categories/serialization/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Redis</title>
       <link>http://zintrulcre.github.io/categories/redis/</link>
@@ -94,15 +103,6 @@
       <pubDate>Wed, 04 Aug 2021 17:38:52 +0800</pubDate>
       
       <guid>http://zintrulcre.github.io/categories/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>serialization</title>
-      <link>http://zintrulcre.github.io/categories/serialization/</link>
-      <pubDate>Mon, 26 Apr 2021 21:44:52 +0800</pubDate>
-      
-      <guid>http://zintrulcre.github.io/categories/serialization/</guid>
       <description></description>
     </item>
     

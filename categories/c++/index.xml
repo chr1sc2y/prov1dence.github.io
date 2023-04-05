@@ -60,7 +60,7 @@ $ cat test.cpp #include &amp;lt;iostream&amp;gt; void Func(const char *s) { int 
       
       <guid>http://zintrulcre.github.io/posts/cpp/basics/wrapper_escape-in-coverity/</guid>
       <description>coverity 的 WRAPPER_ESCAPE 告警 const char* Foo() { std::string str_msg(&amp;#34;test&amp;#34;); return str_msg.c_str(); } int main() { const char *p_msg = Foo(); printf(&amp;#34;%s\n&amp;#34;, p_msg); return 0; } // output:（为空，或乱码） D? 上面代码中的 Foo 函数会被 coverity 报告 WRAPPER_ESCAPE，详细说明是：
-Wrapper object use after free (WRAPPER_ESCAPE) 1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope 大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
+Wrapper object use after free (WRAPPER_ESCAPE)1. escape: The internal representation of local strMsg escapes, but is destroyed when it exits scope 大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。
 而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：</description>
     </item>
     
@@ -86,8 +86,8 @@ suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，
       
       <guid>http://zintrulcre.github.io/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
       <description>C++智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器
-private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
-template&amp;lt;typename T, typename D&amp;gt; void SharedPointer&amp;lt;T, D&amp;gt;::release() { if (pointer) { std::cout &amp;lt;&amp;lt; &amp;#34;SharedPointer &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; counter remains &amp;#34; &amp;lt;&amp;lt; *counter &amp;lt;&amp;lt; std::endl; if (--(*counter) == 0) { std::cout &amp;lt;&amp;lt; &amp;#34;SharedPointer &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; destructor called.&amp;#34; &amp;lt;&amp;lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针</description>
+private:int *counter;T *pointer;D *deleter; 计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
+template&amp;lt;typename T, typename D&amp;gt;void SharedPointer&amp;lt;T, D&amp;gt;::release() {if (pointer) {std::cout &amp;lt;&amp;lt; &amp;#34;SharedPointer &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; counter remains &amp;#34; &amp;lt;&amp;lt; *counter &amp;lt;&amp;lt; std::endl;if (--(*counter) == 0) {std::cout &amp;lt;&amp;lt; &amp;#34;SharedPointer &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; destructor called.&amp;#34; &amp;lt;&amp;lt; std::endl;(*deleter)(pointer);(*deleter)(counter);(*deleter)(deleter);pointer = nullptr;counter = nullptr;deleter = nullptr;}}} reset函数将指针设为other的指针</description>
     </item>
     
     <item>
