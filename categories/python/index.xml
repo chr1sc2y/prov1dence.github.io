@@ -78,10 +78,10 @@ Session是由服务器维护的。当客户端第一次向服务器发出request
 通过分析&amp;quot;login/&amp;ldquo;这条request，我们可以知道我们所需要的一些关键信息，例如headers中的user-agent和referer，表单数据（form data）中的csrfmiddlewaretoken，login和password。显然，user-agent和referer我们可以直接复制下来，login和password是我们填写的用户名和密码。还有一个很陌生的csrfmiddlewaretoken。这是CSRF的中间件token，CSRF是Cross-Site Request Forgery，相关知识可以查询跨站请求伪造的维基百科。那么现在我们就要分析这个token是从何而来。
 获取csrfmiddlewaretoken 我们将刚才获取到的csrfmiddlewaretoken复制下来，在开发者工具中使用搜索功能，可以发现这个csrfmiddlewaretoken出现在了登录之前的一些request对应的response中。例如在刚才打开登录页面，发送GET请求时，response的headers的set-cookie中出现了&amp;quot;csrftoken=&amp;hellip;&amp;ldquo;，而这里csrftoken的值与我们需要在登录表单中提交的值完全相同。因此，我们可以通过获取刚才的response中的Cookies来获取csrfmiddlewaretoken的值。
 首先我们通过发送GET请求来分析一下Cookies的构成
-login_url = &amp;#34;https://leetcode.com/accounts/login/&amp;#34;session = requests.session()result = session.get(login_url)print(result)print(type(result.cookies))for cookie in result.cookies:print(type(cookie))print(cookie) 得到的结果是
+login_url = &amp;#34;https://leetcode.com/accounts/login/&amp;#34; session = requests.session() result = session.get(login_url) print(result) print(type(result.cookies)) for cookie in result.cookies: print(type(cookie)) print(cookie) 得到的结果是
 &amp;lt;Response [200]&amp;gt; 状态码200，表示请求成功 &amp;lt;class &#39;requests.cookies.RequestsCookieJar&#39;&amp;gt; cookies的类型是CookieJar &amp;lt;class &#39;http.cookiejar.Cookie&#39;&amp;gt; 第一条cookie的类型是Cookie &amp;lt;Cookie__cfduid=d3e02d4309b848f9369e21671fabbce571548041181 for .leetcode.com/&amp;gt; 第一条cookie的信息 &amp;lt;class &#39;http.cookiejar.Cookie&#39;&amp;gt; 第二条cookie的类型是Cookie &amp;lt;Cookie csrftoken=13mQWE9tYN6g2IrlKY8oMLRc4VhVNoet4j328YdDapW2WC2nf93y5iCuzorovTDl for leetcode.com/&amp;gt; 第二条cookie的信息，也就是我们所需要的csrftoken 这样一来我们便获取到了在提交表单信息时所需要的csrfmiddlewaretoken，之后我们便可以开始着手写登录的相关代码了。顺便一提，在使用Django进行后端开发的时候自动生成的csrf token的键也叫csrfmiddlewaretoken，不知道LeetCode是不是用Django作为后端开发框架的。
 实现 首先我们需要在爬虫开始运行之前获取登录信息，将Session作为类的成员变量保存下来，方便在获取submissions时使用。同时我们需要在与爬虫文件相同的目录下新建config.json，将自己的用户名和密码保存在该json文件里，这样就能顺利登陆了。
-def start_requests(self):self.Login() # 登录questionset_url = &amp;#34;https://leetcode.com/api/problems/all/&amp;#34;yield scrapy.Request(url=questionset_url, callback=self.ParseQuestionSet)def Login(self):login_url = &amp;#34;https://leetcode.</description>
+def start_requests(self): self.Login() # 登录 questionset_url = &amp;#34;https://leetcode.com/api/problems/all/&amp;#34; yield scrapy.Request(url=questionset_url, callback=self.ParseQuestionSet) def Login(self): login_url = &amp;#34;https://leetcode.</description>
     </item>
     
     <item>
@@ -91,9 +91,9 @@ def start_requests(self):self.Login() # 登录questionset_url = &amp;#34;https
       
       <guid>http://zintrulcre.github.io/posts/leetcode-archiver/leetcode-archiver2/</guid>
       <description>创建爬虫 在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用genspider命令新建一个爬虫：
-cd scrapy_projectscrapy genspider QuestionSetSpider leetcode.com 其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。
+cd scrapy_project scrapy genspider QuestionSetSpider leetcode.com 其中QuestionSetSpider是爬虫的名字，leetcode.com是我们打算爬取的网站的域名。
 新建好爬虫之后可以看到在项目的spiders文件夹下新增了一个名为 QuestionSetSpider.py的文件，这就是我们刚才新建的爬虫文件。这个爬虫文件会自动生成以下代码
-# -*- coding: utf-8 -*-import scrapyclass QuestionSetSpider(scrapy.Spider):name = &amp;#39;QuestionSetSpider&amp;#39;allowed_domains = [&amp;#39;leetcode.com&amp;#39;]start_urls = [&amp;#39;http://leetcode.com/&amp;#39;]def parse(self, response):pass QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类； self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫； self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误； self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数 获取题目详细信息 分析 LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。
+# -*- coding: utf-8 -*- import scrapy class QuestionSetSpider(scrapy.Spider): name = &amp;#39;QuestionSetSpider&amp;#39; allowed_domains = [&amp;#39;leetcode.com&amp;#39;] start_urls = [&amp;#39;http://leetcode.com/&amp;#39;] def parse(self, response): pass QuestionSetSpider类继承自scrapy.Spider，也就是scrapy框架中所有爬虫的基类； self.name属性是该爬虫的名字，在该爬虫文件的外部可以通过这个属性获取当前爬虫； self.allowed_domains是当前爬虫文件可以访问的域名列表，如果在爬取页面时进入了一个该域名以外的url会抛出错误； self.start_urls是一个url列表，基类中定义了start_requests函数，它会遍历self.start_urls，并对每一个url调用scrapy.Request(url, dont_filter=True)，为了实现爬取题目的需求，我们需要重写self.start_urls函数 获取题目详细信息 分析 LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。
 为了爬取题目的详细信息，我们首先要从题目列表进入每个题目对应的链接。
 首先打开leetcode的problem列表，按F12打开Chrome的开发者工具，进入Network标签栏，勾选上Preserve log，刷新该页面。
 可以看到，网页向 https://leetcode.com/api/problems/all/ 发送了一个名为&amp;quot;all/&amp;ldquo;的GET类型的Request，这就是获取所有题目链接和相关信息的请求。如果此时已经安装了Toggle JavaScript插件，我们可以直接右键点击“Open in new tab”，查看该请求返回的Response。
@@ -102,7 +102,7 @@ cd scrapy_projectscrapy genspider QuestionSetSpider leetcode.com 其中Question
 将Payload复制粘贴到postman的Body中，在Headers中设置Content-Type为application/json，发送请求，可以看到返回的是一个json对象，包含了该题目所对应的所有信息。
 接下来我们就可以对该题目的信息进行处理了。
 实现 为了获取题目列表的json对象，我们需要先重写start_requests函数。
-def start_requests(self):self.Login() # 用户登录，后续会用到questionset_url = &amp;#34;https://leetcode.com/api/problems/all/&amp;#34;yield scrapy.</description>
+def start_requests(self): self.Login() # 用户登录，后续会用到 questionset_url = &amp;#34;https://leetcode.com/api/problems/all/&amp;#34; yield scrapy.</description>
     </item>
     
     <item>
@@ -129,7 +129,7 @@ Data flow（数据流） Scrapy中的数据流由引擎控制，其过程如下:
 pip3 install scrapy 创建项目 首先进入你的代码存储目录，在命令行中输入以下命令：
 scrapy startproject LeetCode_Crawler 注意项目名称是不能包含连字符 &amp;lsquo;-&amp;rsquo; 的
 新建成功后，可以看到在当前目录下新建了一个名为LeetCode_Crawler的Scrapy项目，进入该目录，其项目结构如下：
-scrapy.cfg #该项目的配置文件scrapy_project #该项目的Python模块__init__.pyitems.py #可自定义的item类文件middlewares.py #中间件文件pipelines.py #管道文件settings.</description>
+scrapy.cfg #该项目的配置文件 scrapy_project #该项目的Python模块 __init__.py items.py #可自定义的item类文件 middlewares.py #中间件文件 pipelines.py #管道文件 settings.</description>
     </item>
     
   </channel>

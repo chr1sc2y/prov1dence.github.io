@@ -6,25 +6,8 @@ call 操作一般包含以下几个步骤：
 参数入栈：参数从右向左依次入栈 返回地址入栈：将当前代码区的下一条待执行的指令入栈，以便在函数 return 之后执行 代码区跳转：处理器跳转到被调函数的入口 栈帧调整，包括： 保存当前栈帧状态值，EBP 入栈 从当前栈帧切换到新的栈帧，更新 EBP，将 EBP 的值设置为 ESP 的值 给新的栈帧分配内存空间，更新 ESP，将 ESP 的值减去所需空间的大小 当一个函数通过 return 语句返回时，执行的步骤与调用时相反：
 2. 协程 协程由程序所控制，即在用户态执行，而不是像线程一样由操作系统内核管理，使用协程时，不需要如线程一般频繁地进行上下文切换，性能能够得到很大的提升，因此协程的开销远远小于线程的开销。一般来说协程有三种特性：
 suspend 悬停：暂停当前协程的执行，将执行权交还给调用者，但是保留当前栈帧。和函数的 return 类似，协程的 suspend 只能由协程自身发起 resume 恢复：继续执行已经 suspend 的协程，重新激活协程的栈帧 destroy 销毁：销毁协程的栈帧和其对应的内存 可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是执行栈帧，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是数据栈帧，这部分即使在协程 suspend 的时候依然存在。...</p></section><footer class=entry-footer><span title='2020-01-20 20:15:05 +0800 CST'>January 20, 2020</span>&nbsp;·&nbsp;2 min</footer><a class=entry-link aria-label="post link to C++ 协程（1）：函数和协程" href=http://zintrulcre.github.io/posts/cpp/coroutine/c++-coroutine-function-and-coroutine/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2>C++ 智能指针（3）：shared_ptr</h2></header><section class=entry-content><p>C++智能指针（3）：shared_ptr 分析 UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器
-private:
-int *counter;
-T *pointer;
-D *deleter; 计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
-template&lt;typename T, typename D>
-void SharedPointer&lt;T, D>::release() {
-if (pointer) {
-std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " counter remains " &lt;&lt; *counter &lt;&lt; std::endl;
-if (--(*counter) == 0) {
-std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " destructor called." &lt;&lt; std::endl;
-(*deleter)(pointer);
-(*deleter)(counter);
-(*deleter)(deleter);
-pointer = nullptr;
-counter = nullptr;
-deleter = nullptr;
-}
-}
-} reset函数将指针设为other的指针...</p></section><footer class=entry-footer><span title='2019-01-25 17:47:38 +1100 +1100'>January 25, 2019</span>&nbsp;·&nbsp;7 min</footer><a class=entry-link aria-label="post link to C++ 智能指针（3）：shared_ptr" href=http://zintrulcre.github.io/posts/cpp/smart-pointer/c++-smart-pointer-3/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2>C++ 智能指针（2）：unique_ptr</h2></header><section class=entry-content><p>C++智能指针（2）：unique_ptr 分析 在使用 AutoPointer 的时候会发生所有权转移和内存泄漏的问题，所以我们可以对 AutoPointer 类稍加修改，修复这两个问题。
+private: int *counter; T *pointer; D *deleter; 计数器的主要作用是标识当前指针被几个智能指针对象所引用，在析构当前对象时，使其计数器自减1。如果计数器等于0，则表示已经没有其他的对象在使用当前指针，此时则可以销毁指针，计数器和删除器。
+template&lt;typename T, typename D> void SharedPointer&lt;T, D>::release() { if (pointer) { std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " counter remains " &lt;&lt; *counter &lt;&lt; std::endl; if (--(*counter) == 0) { std::cout &lt;&lt; "SharedPointer " &lt;&lt; this &lt;&lt; " destructor called." &lt;&lt; std::endl; (*deleter)(pointer); (*deleter)(counter); (*deleter)(deleter); pointer = nullptr; counter = nullptr; deleter = nullptr; } } } reset函数将指针设为other的指针...</p></section><footer class=entry-footer><span title='2019-01-25 17:47:38 +1100 +1100'>January 25, 2019</span>&nbsp;·&nbsp;7 min</footer><a class=entry-link aria-label="post link to C++ 智能指针（3）：shared_ptr" href=http://zintrulcre.github.io/posts/cpp/smart-pointer/c++-smart-pointer-3/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2>C++ 智能指针（2）：unique_ptr</h2></header><section class=entry-content><p>C++智能指针（2）：unique_ptr 分析 在使用 AutoPointer 的时候会发生所有权转移和内存泄漏的问题，所以我们可以对 AutoPointer 类稍加修改，修复这两个问题。
 所有权转移 为了规避可能发生所有权转移的情况，我们可以直接禁止它使用拷贝构造函数和赋值操作符。
 UniquePointer(UniquePointer&lt;T> &amp;other) = delete; UniquePointer&lt;T> &amp;operator=(const UniquePointer&lt;T> &amp;other) = delete; 但很多时候我们都需要使用到传递指针的操作，如果只是使用 deleted 函数禁止拷贝构造函数和赋值操作符，那么这个智能指针存在的意义就不大了，我们可以通过 move 语义来实现移动构造函数和移动赋值操作符，从而在使用 UniquePointer 的时候可以在特定情况下进行所有权转移。
 UniquePointer(UniquePointer&lt;T> &&amp;other) noexcept; UniquePointer &amp;operator=(UniquePointer &&amp;other) noexcept; 内存泄漏 为了防止发生内存泄漏，我们可以在UniquePointer的私有成员中增加一个删除器，并根据当前指针对象的类型指定删除器，从而防止发生内存泄漏。
