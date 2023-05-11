@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Kick Start on 尾張</title>
-    <link>http://zintrulcre.github.io/categories/kick-start/</link>
+    <link>https://zintrulcre.vip/categories/kick-start/</link>
     <description>Recent content in Kick Start on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 May 2019 23:29:45 +1000</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/kick-start/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 May 2019 23:29:45 +1000</lastBuildDate><atom:link href="https://zintrulcre.vip/categories/kick-start/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kick Start 2019 Round C</title>
-      <link>http://zintrulcre.github.io/posts/kick-start/2019-round-c/</link>
+      <link>https://zintrulcre.vip/posts/kick-start/2019-round-c/</link>
       <pubDate>Sun, 26 May 2019 23:29:45 +1000</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/kick-start/2019-round-c/</guid>
+      <guid>https://zintrulcre.vip/posts/kick-start/2019-round-c/</guid>
       <description>Kick Start 2019 Round C Wiggle Walk (6pts, 12pts) 在一个R * C的矩阵里面移动，遇到已经走过的格子直接跳过。数据保证移动时不会超出给定的矩阵。
 Solution: Simulation 用一个visited数组记录已经走过的格子，遇到走过的格子则直接跳过往后遍历。讲道理这个方法时间复杂度是过不了Hidden Test Set的，但是我也不知道为什么就过了。
 时间复杂度：O(n^2) 空间复杂度：O(n^2) // C++ #include &amp;lt;iostream&amp;gt; #include &amp;lt;cmath&amp;gt; #include &amp;lt;cstdio&amp;gt; #include &amp;lt;math.h&amp;gt; #include &amp;lt;limits&amp;gt; #include &amp;lt;algorithm&amp;gt; #include &amp;lt;vector&amp;gt; #include &amp;lt;stack&amp;gt; #include &amp;lt;queue&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;map&amp;gt; #include &amp;lt;set&amp;gt; #include &amp;lt;unordered_map&amp;gt; #include &amp;lt;unordered_set&amp;gt; using namespace std; vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt; visited(50001, vector&amp;lt;bool&amp;gt;(50001, false)); void Forward(char &amp;amp;p, int &amp;amp;r, int &amp;amp;c) { if (p == &amp;#39;E&amp;#39;) { while (visited[r][c + 1]) ++c; visited[r][++c] = true; } else if (p == &amp;#39;W&amp;#39;) { while (visited[r][c - 1]) --c; visited[r][--c] = true; } else if (p == &amp;#39;N&amp;#39;) { while (visited[r - 1][c]) --r; visited[--r][c] = true; } else if (p == &amp;#39;S&amp;#39;) { while (visited[r + 1][c]) ++r; visited[++r][c] = true; } } void solve(const int &amp;amp;t) { int n, R, C, r, c; string str; scanf(&amp;#34;%d %d %d %d %d&amp;#34;, &amp;amp;n, &amp;amp;R, &amp;amp;C, &amp;amp;r, &amp;amp;c); cin &amp;gt;&amp;gt; str; visited = vector&amp;lt;vector&amp;lt;bool&amp;gt;&amp;gt;(50001, vector&amp;lt;bool&amp;gt;(50001, false)); visited[r][c] = true; for (int i = 0; i &amp;lt; n; ++i) Forward(str[i], r, c); printf(&amp;#34;Case #%d: %d %d\n&amp;#34;, t, r, c); } int main() { int T; scanf(&amp;#34;%d&amp;#34;, &amp;amp;T); for (int t = 1; t &amp;lt;= T; ++t) solve(t); return 0; } Circuit Board (14pts, 20pts) 在矩阵里找到每一行最大值与最小值不超过K的最大子矩阵。</description>
@@ -20,10 +20,10 @@ Solution: Simulation 用一个visited数组记录已经走过的格子，遇到�
     
     <item>
       <title>Kick Start 2019 Round B</title>
-      <link>http://zintrulcre.github.io/posts/kick-start/2019-round-b/</link>
+      <link>https://zintrulcre.vip/posts/kick-start/2019-round-b/</link>
       <pubDate>Sun, 21 Apr 2019 14:41:22 +1000</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/kick-start/2019-round-b/</guid>
+      <guid>https://zintrulcre.vip/posts/kick-start/2019-round-b/</guid>
       <description>Kick Start 2019 Round B Building Palindromes (5pts, 12pts) 判断给定区间内的子字符串是否是回文串。
 Solution: Prefix Sum 判断字符串是否是回文串只需要判断字符串里个数为奇数的字符的数量是否小于等于1，但如果每次都遍历一遍给定的区间肯定会超时，所以我们需要对给定的原始字符串进行预处理，计算出每一个位置的前缀和（从下标为0到下标为i - 1的位置的字符的总数）。这样在查询的时候就只有O(1)的时间复杂度了。
 时间复杂度：O(N) 空间复杂度：O(N) // C++ #include &amp;lt;iostream&amp;gt; #include &amp;lt;cmath&amp;gt; #include &amp;lt;cstdio&amp;gt; #include &amp;lt;math.h&amp;gt; #include &amp;lt;limits&amp;gt; #include &amp;lt;algorithm&amp;gt; #include &amp;lt;vector&amp;gt; #include &amp;lt;stack&amp;gt; #include &amp;lt;queue&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;map&amp;gt; #include &amp;lt;set&amp;gt; #include &amp;lt;unordered_map&amp;gt; #include &amp;lt;unordered_set&amp;gt; using namespace std; int main() { int total_test_case_number; cin &amp;gt;&amp;gt; total_test_case_number; for (int case_number = 1; case_number &amp;lt;= total_test_case_number; ++case_number) { int N, Q, m, n, total = 0; cin &amp;gt;&amp;gt; N &amp;gt;&amp;gt; Q; string words; cin &amp;gt;&amp;gt; words; vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; odds(N + 1, vector&amp;lt;int&amp;gt;(26)); for (int i = 1; i &amp;lt;= N; ++i) { for (int j = 0; j &amp;lt; 26; ++j) odds[i][j] = odds[i - 1][j]; ++odds[i][words[i - 1] - &amp;#39;A&amp;#39;]; } for (int q = 0; q &amp;lt; Q; ++q) { cin &amp;gt;&amp;gt; m &amp;gt;&amp;gt; n; int odd = 0; for (int j = 0; j &amp;lt; 26; ++j) odd += ((odds[n][j] - odds[m - 1][j]) % 2 !</description>
@@ -31,10 +31,10 @@ Solution: Prefix Sum 判断字符串是否是回文串只需要判断字符串�
     
     <item>
       <title>Kick Start 2019 Round A</title>
-      <link>http://zintrulcre.github.io/posts/kick-start/2019-round-a/</link>
+      <link>https://zintrulcre.vip/posts/kick-start/2019-round-a/</link>
       <pubDate>Tue, 26 Mar 2019 14:25:36 +1100</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/kick-start/2019-round-a/</guid>
+      <guid>https://zintrulcre.vip/posts/kick-start/2019-round-a/</guid>
       <description>Kick Start 2019 Round A Training (7pts, 13pts) 一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。
 $$ \sum_{i}^{j} max(rating) - rating[i] $$
 Solution: Sort + Prefix Sum 先对数组排序，然后在长度为N的有序数组中遍历长为P的所有连续子数组，计算子数组中的最大值与其他值的差值之和。

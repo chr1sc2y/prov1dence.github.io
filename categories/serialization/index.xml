@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>serialization on 尾張</title>
-    <link>http://zintrulcre.github.io/categories/serialization/</link>
+    <link>https://zintrulcre.vip/categories/serialization/</link>
     <description>Recent content in serialization on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Apr 2023 21:22:52 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/serialization/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Apr 2023 21:22:52 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/categories/serialization/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Protocol Buffer Syntax and Encoding</title>
-      <link>http://zintrulcre.github.io/posts/serialization/protocol-buffer-en/</link>
+      <link>https://zintrulcre.vip/posts/serialization/protocol-buffer-en/</link>
       <pubDate>Wed, 05 Apr 2023 21:22:52 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/serialization/protocol-buffer-en/</guid>
+      <guid>https://zintrulcre.vip/posts/serialization/protocol-buffer-en/</guid>
       <description>Protocol Buffer Syntax and Encoding Principles [toc]
 Serialization refers to the process of converting structured data into a format that is easy to store or transmit.
 Protocol Buffer, abbreviated as ProtoBuf, is a language- and platform-independent serialization tool developed by Google and open-sourced in 2008. Compared to commonly used serialization tools such as XML, JSON, YAML, and CSV, ProtoBuf has advantages including smaller serialized data size, faster serialization and deserialization, lower maintenance cost through the use of proto files, and backward compatibility.</description>
@@ -20,10 +20,10 @@ Protocol Buffer, abbreviated as ProtoBuf, is a language- and platform-independen
     
     <item>
       <title>ProtoBuf 语法和编码原理入门</title>
-      <link>http://zintrulcre.github.io/posts/serialization/protocol-buffer/</link>
+      <link>https://zintrulcre.vip/posts/serialization/protocol-buffer/</link>
       <pubDate>Mon, 26 Apr 2021 21:44:52 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/serialization/protocol-buffer/</guid>
+      <guid>https://zintrulcre.vip/posts/serialization/protocol-buffer/</guid>
       <description>ProtoBuf 语法和编码原理入门 序列化是指将结构化数据转换成易于存储或发送的数据格式的过程，Protocol Buffer 简称 ProtoBuf，是一种语言无关，平台无关的序列化工具，由谷歌在 2008 年开源。相较于常见的序列化工具 XML, JSON, YAML, CSV 等，ProtoBuf 的优势主要包括序列化后数据量小，序列化和反序列化过程速度快，使用时只需定义 proto 文件使得其维护成本低，可向后兼容等；但因为其数据以二进制数据流的形式存在，也有人类不可读的劣势。
 本文主要介绍 ProtoBuf 的使用方法，包括 .proto 文件的语法，以及如何使用 protoc 工具来生成不通语言的代码；以及其编码原理。
 1 语法 首先从 https://github.com/protocolbuffers/protobuf 找到最新版本的 ProtoBuf，下载预编译好的二进制文件 protoc 解压到环境变量目录，本文使用的是 3.15.7 版本：

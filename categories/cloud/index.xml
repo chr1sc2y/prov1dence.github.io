@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Cloud on 尾張</title>
-    <link>http://zintrulcre.github.io/categories/cloud/</link>
+    <link>https://zintrulcre.vip/categories/cloud/</link>
     <description>Recent content in Cloud on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Oct 2021 18:01:12 +0800</lastBuildDate><atom:link href="http://zintrulcre.github.io/categories/cloud/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Oct 2021 18:01:12 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/categories/cloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prometheus 入门</title>
-      <link>http://zintrulcre.github.io/posts/cloud/intro-to-prometheus/</link>
+      <link>https://zintrulcre.vip/posts/cloud/intro-to-prometheus/</link>
       <pubDate>Thu, 21 Oct 2021 18:01:12 +0800</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/cloud/intro-to-prometheus/</guid>
+      <guid>https://zintrulcre.vip/posts/cloud/intro-to-prometheus/</guid>
       <description>Prometheus 入门 Prometheus 是一个开源的监控解决方案，也是云原生基金会 CNCF 的毕业项目，它能够提供指标数据的采集、存储、查询、告警等功能。本文主要介绍 Prometheus 的基础概念和应用中需要注意的一些问题。
 1 监控系统 1.1 监控模式 监控系统执行监控检查的模式有两种，分别是 pull 和 push。Prometheus 采用了 pull 模式进行数据收集，同时也支持使用 Pushgateway 的 push 模式进行数据中转。
 pull 方式的特点是有拉取间隔，不能及时获取数值的变化，因此需要进一步的数据处理；它的优点是在告警时可以按照策略分片，仅拉取需要的数据，并且支持聚合场景；缺点是监控的数据量庞大，对存储有较高的要求，切需要考虑数据的冷热分离。
@@ -28,10 +28,10 @@ PromQL (Prometheus Query Language) 是 Prometheus 内置的数据查询语言，
     
     <item>
       <title>在Google Cloud Platform上运行Jupyter Notebook</title>
-      <link>http://zintrulcre.github.io/posts/cloud/run-jupyter-notebook-on-gcp/</link>
+      <link>https://zintrulcre.vip/posts/cloud/run-jupyter-notebook-on-gcp/</link>
       <pubDate>Fri, 14 Dec 2018 17:03:12 +1100</pubDate>
       
-      <guid>http://zintrulcre.github.io/posts/cloud/run-jupyter-notebook-on-gcp/</guid>
+      <guid>https://zintrulcre.vip/posts/cloud/run-jupyter-notebook-on-gcp/</guid>
       <description>在Google Cloud Platform上运行Jupyter Notebook 简介 本文取材自 Amulya Aankul 发布在 Medium 的 Running Jupyter Notebook on Google Cloud Platform in 15 min，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。
 服务器搭建 创建账号 首先在Google Cloud Platform上创建一个账号。
 创建新项目 点击左上角&amp;quot;Google Cloud Platform&amp;quot;右边的三个点，点击&amp;quot;NEW PROJECT&amp;quot;创建新项目。
