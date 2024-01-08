@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-Sitemap: https://zintrulcre.vip/sitemap.xml
+Sitemap: https://prov1dence.top/sitemap.xml

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Design Pattern on 尾張</title>
-    <link>https://zintrulcre.vip/categories/design-pattern/</link>
+    <link>https://prov1dence.top/categories/design-pattern/</link>
     <description>Recent content in Design Pattern on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Sep 2020 21:25:43 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/categories/design-pattern/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Sep 2020 21:25:43 +0800</lastBuildDate><atom:link href="https://prov1dence.top/categories/design-pattern/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43; 单例模式的模板实现</title>
-      <link>https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-template-singleton/</link>
+      <link>https://prov1dence.top/posts/design-pattern/c&#43;&#43;-template-singleton/</link>
       <pubDate>Thu, 10 Sep 2020 21:25:43 +0800</pubDate>
       
-      <guid>https://zintrulcre.vip/posts/design-pattern/c&#43;&#43;-template-singleton/</guid>
+      <guid>https://prov1dence.top/posts/design-pattern/c&#43;&#43;-template-singleton/</guid>
       <description>C++ 单例模式的模板实现 单例模式是一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例（single instance），这个类称为单例类，它会提供一个全局的访问入口（global access point），关于单例模式的讨论可以参考Singleton revisited；基于这两个特点，单例模式可以有以下几种实现：
 Meyer’s Singleton Scott Meyers 在 Effective C++ 的 Item 4: Make sure that objects are initialized before they&amp;rsquo;re used 里面提出了一种利用 C++ 的 static 关键字来实现的单例模式，这种实现非常简洁高效，它的特点是：
 仅当程序第一次执行到 GetInstance 函数时，执行 instance 对象的初始化； 在 C++ 11 之后，被 static 修饰的变量可以保证是线程安全的； template&amp;lt;typename T&amp;gt; class Singleton { public: static T&amp;amp; GetInstance() { static T instance; return instance; } Singleton(T&amp;amp;&amp;amp;) = delete; Singleton(const T&amp;amp;) = delete; void operator= (const T&amp;amp;) = delete; protected: Singleton() = default; virtual ~Singleton() = default; }; 通过禁用单例类的 copy constructor，move constructor 和 operator= 可以防止类的唯一实例被拷贝或移动；不暴露单例类的 constructor 和 destructor 可以保证单例类不会通过其他途径被实例化，同时将两者定义为 protected 可以让其被子类继承并使用。</description>

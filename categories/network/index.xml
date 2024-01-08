@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Network on 尾張</title>
-    <link>https://zintrulcre.vip/categories/network/</link>
+    <link>https://prov1dence.top/categories/network/</link>
     <description>Recent content in Network on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Jan 2022 17:45:52 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/categories/network/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 29 Jan 2022 17:45:52 +0800</lastBuildDate><atom:link href="https://prov1dence.top/categories/network/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>《深入理解 RPC 框架原理与实现》读书笔记</title>
-      <link>https://zintrulcre.vip/posts/network/rpc/</link>
+      <link>https://prov1dence.top/posts/network/rpc/</link>
       <pubDate>Sat, 29 Jan 2022 17:45:52 +0800</pubDate>
       
-      <guid>https://zintrulcre.vip/posts/network/rpc/</guid>
+      <guid>https://prov1dence.top/posts/network/rpc/</guid>
       <description>《深入理解 RPC 框架原理与实现》读书笔记 概念 RPC (Remote Procedure Call) 叫作远程过程调用，它是利用网络从远程计算机上请求服务：可以理解为把程序的一部分放到其他远程计算机上执行。通过网络通信将调用请求发送至远程计算机后，利用远程计算机的系统资源执行这部分程序，最终返回远程计算机上的执行结果。
 将“远程过程调用”概念分解为“远程过程”和“过程调用”来理解更加直观：
 远程过程：远程过程是相对于本地过程而言的，本地过程也可以认为是本地函数调用，发起调用的方法和被调用的方法都在同一个地址空间或者内存空间内。而远程过程是指把进程内的部分程序逻辑放到其他机器上，也就是现在常说的业务拆解，让每个服务仅对单个业务负责，让每个服务具备独立的可扩展性、可升级性，易维护。在每个机器上提供的服务被称为远程过程，这个概念使正确地构建分布式计算更加容易，为后续的服务化架构风格奠定了基础

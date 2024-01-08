@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>concurrency on 尾張</title>
-    <link>https://zintrulcre.vip/categories/concurrency/</link>
+    <link>https://prov1dence.top/categories/concurrency/</link>
     <description>Recent content in concurrency on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Sep 2020 16:20:25 +0800</lastBuildDate><atom:link href="https://zintrulcre.vip/categories/concurrency/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Sep 2020 16:20:25 +0800</lastBuildDate><atom:link href="https://prov1dence.top/categories/concurrency/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43; 并发入门：以 LeetCode 1114 为例</title>
-      <link>https://zintrulcre.vip/posts/cpp/concurrency/introduction-to-concurrency/</link>
+      <link>https://prov1dence.top/posts/cpp/concurrency/introduction-to-concurrency/</link>
       <pubDate>Wed, 30 Sep 2020 16:20:25 +0800</pubDate>
       
-      <guid>https://zintrulcre.vip/posts/cpp/concurrency/introduction-to-concurrency/</guid>
+      <guid>https://prov1dence.top/posts/cpp/concurrency/introduction-to-concurrency/</guid>
       <description>C++ 并发入门：以 LeetCode 1114 为例 题目 直接做题：1114 按序打印
 解法 1. std::mutex 如果你对 c++ 11 略为熟悉的话，应该能够想到用 std::mutex 来解这道题，在函数构造时（主线程）对 std::mutex 进行 lock，然后在各个线程调用的函数中依次对 std::mutex 对象进行 unlock：
 class Foo { mutex mtx1, mtx2; public: Foo() { mtx1.lock(), mtx2.lock(); } void first(function&amp;lt;void()&amp;gt; printFirst) { printFirst(); mtx1.unlock(); } void second(function&amp;lt;void()&amp;gt; printSecond) { mtx1.lock(); printSecond(); mtx1.unlock(); mtx2.unlock(); } void third(function&amp;lt;void()&amp;gt; printThird) { mtx2.lock(); printThird(); mtx2.unlock(); } }; Mutex 即 mutual exclusion，是用来防止多个线程同时访问共享资源对象的机制，在同一时间只有一个线程可以拥有一个 mutex 对象，其他线程调用 std::mutex::lock 函数时会阻塞直到其获取锁资源。
