@@ -6,16 +6,7 @@
     <description>Recent content in Categories on 尾張</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Apr 2023 21:22:52 +0800</lastBuildDate><atom:link href="https://prov1dence.top/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Serialization</title>
-      <link>https://prov1dence.top/categories/serialization/</link>
-      <pubDate>Wed, 05 Apr 2023 21:22:52 +0800</pubDate>
-      
-      <guid>https://prov1dence.top/categories/serialization/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Wed, 01 Feb 2023 18:02:04 +1100</lastBuildDate><atom:link href="https://prov1dence.top/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redis</title>
       <link>https://prov1dence.top/categories/redis/</link>
@@ -103,6 +94,15 @@
       <pubDate>Wed, 04 Aug 2021 17:38:52 +0800</pubDate>
       
       <guid>https://prov1dence.top/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Serialization</title>
+      <link>https://prov1dence.top/categories/serialization/</link>
+      <pubDate>Mon, 26 Apr 2021 21:44:52 +0800</pubDate>
+      
+      <guid>https://prov1dence.top/categories/serialization/</guid>
       <description></description>
     </item>
     
