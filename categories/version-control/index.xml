@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Version Control on 尾張</title>
+    <title>Version Control on 尾張 - @ChrisChen</title>
     <link>https://prov1dence.top/categories/version-control/</link>
-    <description>Recent content in Version Control on 尾張</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Version Control on 尾張 - @ChrisChen</description>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 31 Mar 2022 19:29:39 +0800</lastBuildDate><atom:link href="https://prov1dence.top/categories/version-control/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 31 Mar 2022 19:29:39 +0800</lastBuildDate>
+    <atom:link href="https://prov1dence.top/categories/version-control/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git Reference</title>
       <link>https://prov1dence.top/posts/version-control/git/</link>
       <pubDate>Thu, 31 Mar 2022 19:29:39 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/version-control/git/</guid>
       <description>&lt;h1 id=&#34;git-reference&#34;&gt;Git Reference&lt;/h1&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/version-control/git-basic.jpeg&#34; alt=&#34;git-basic&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;git-basic&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/version-control/git-basic.jpeg&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;head-用法&#34;&gt;HEAD 用法&lt;/h2&gt;
 &lt;p&gt;HEAD 最后一次 commit&lt;/p&gt;
 &lt;p&gt;HEAD^ 倒数第二次 commit&lt;/p&gt;
@@ -65,6 +64,5 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clean -d --force &lt;span style=&#34;color:#75715e&#34;&gt;# 删除工作区所有 untracked 的文件和目录&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

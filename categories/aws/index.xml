@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>AWS on 尾張</title>
+    <title>AWS on 尾張 - @ChrisChen</title>
     <link>https://prov1dence.top/categories/aws/</link>
-    <description>Recent content in AWS on 尾張</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in AWS on 尾張 - @ChrisChen</description>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Jan 2023 09:55:04 +1100</lastBuildDate><atom:link href="https://prov1dence.top/categories/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 Jan 2023 09:55:04 +1100</lastBuildDate>
+    <atom:link href="https://prov1dence.top/categories/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Disaster Recovery Architecture on AWS</title>
       <link>https://prov1dence.top/posts/disaster-recovery-architecture-on-aws/disaster-recovery-architecture-on-aws-9b3dc135d29c47acbfe19084c57035d5/</link>
       <pubDate>Wed, 11 Jan 2023 09:55:04 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/disaster-recovery-architecture-on-aws/disaster-recovery-architecture-on-aws-9b3dc135d29c47acbfe19084c57035d5/</guid>
       <description>&lt;h1 id=&#34;disaster-recovery-architecture-on-aws&#34;&gt;Disaster Recovery Architecture on AWS&lt;/h1&gt;
 &lt;p&gt;[TOC]&lt;/p&gt;
@@ -22,6 +22,5 @@
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Recovery time objective (RTO)&lt;/strong&gt;: The maximum time range between service &lt;strong&gt;collapse&lt;/strong&gt; and service &lt;strong&gt;restoration&lt;/strong&gt;. It represents &lt;strong&gt;how quickly the service could be restarted&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

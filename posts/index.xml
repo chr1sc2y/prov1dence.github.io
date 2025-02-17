@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on 尾張</title>
+    <title>Posts on 尾張 - @ChrisChen</title>
     <link>https://prov1dence.top/posts/</link>
-    <description>Recent content in Posts on 尾張</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Posts on 尾張 - @ChrisChen</description>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Apr 2023 21:22:52 +0800</lastBuildDate><atom:link href="https://prov1dence.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Feb 2023 18:02:04 +1100</lastBuildDate>
+    <atom:link href="https://prov1dence.top/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redis 持久化机制: RDB 和 AOF</title>
       <link>https://prov1dence.top/posts/data/redis-%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6-rdb-%E5%92%8C-aof-72a88c70207a4518824d1fe4be7ebb9e/</link>
       <pubDate>Wed, 01 Feb 2023 18:02:04 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/data/redis-%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6-rdb-%E5%92%8C-aof-72a88c70207a4518824d1fe4be7ebb9e/</guid>
       <description>&lt;h1 id=&#34;redis-持久化机制-rdb-和-aof&#34;&gt;Redis 持久化机制: RDB 和 AOF&lt;/h1&gt;
 &lt;h1 id=&#34;redis-持久化&#34;&gt;Redis 持久化&lt;/h1&gt;
@@ -29,12 +29,10 @@
 &lt;h2 id=&#34;工作原理&#34;&gt;工作原理&lt;/h2&gt;
 &lt;p&gt;RDB 利用操作系统提供的&lt;a href=&#34;https://en.wikipedia.org/wiki/Copy-on-write&#34;&gt;写时复制&lt;/a&gt; (Copy-on-Write) 机制来进行持久化, 即当主进程 P fork 出子进程时 Q 时, Q 和 P 共享同一块内存空间, 当 P 准备对某块内存进行写操作时, P 会将这块内存页进行复制, 并在新的副本上对数据进行修改, 而 Q 仍然读取原先的内存页. 这样既能够保证 Redis 实例继续服务外部流量, 又能够以最小的成本完成数据的持久化. 但正因如此, 持久化过程中的写操作是不会被记录的.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Disaster Recovery Architecture on AWS</title>
       <link>https://prov1dence.top/posts/disaster-recovery-architecture-on-aws/disaster-recovery-architecture-on-aws-9b3dc135d29c47acbfe19084c57035d5/</link>
       <pubDate>Wed, 11 Jan 2023 09:55:04 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/disaster-recovery-architecture-on-aws/disaster-recovery-architecture-on-aws-9b3dc135d29c47acbfe19084c57035d5/</guid>
       <description>&lt;h1 id=&#34;disaster-recovery-architecture-on-aws&#34;&gt;Disaster Recovery Architecture on AWS&lt;/h1&gt;
 &lt;p&gt;[TOC]&lt;/p&gt;
@@ -45,16 +43,13 @@
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Recovery time objective (RTO)&lt;/strong&gt;: The maximum time range between service &lt;strong&gt;collapse&lt;/strong&gt; and service &lt;strong&gt;restoration&lt;/strong&gt;. It represents &lt;strong&gt;how quickly the service could be restarted&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Git Reference</title>
       <link>https://prov1dence.top/posts/version-control/git/</link>
       <pubDate>Thu, 31 Mar 2022 19:29:39 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/version-control/git/</guid>
       <description>&lt;h1 id=&#34;git-reference&#34;&gt;Git Reference&lt;/h1&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/version-control/git-basic.jpeg&#34; alt=&#34;git-basic&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;git-basic&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/version-control/git-basic.jpeg&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;head-用法&#34;&gt;HEAD 用法&lt;/h2&gt;
 &lt;p&gt;HEAD 最后一次 commit&lt;/p&gt;
 &lt;p&gt;HEAD^ 倒数第二次 commit&lt;/p&gt;
@@ -104,12 +99,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clean -d --force &lt;span style=&#34;color:#75715e&#34;&gt;# 删除工作区所有 untracked 的文件和目录&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>使用 Mac Mini M1 作为软路由让全家设备科学上网</title>
       <link>https://prov1dence.top/posts/proxy/soft-router/</link>
       <pubDate>Sun, 27 Feb 2022 14:08:30 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/proxy/soft-router/</guid>
       <description>&lt;h1 id=&#34;使用-mac-mini-m1-作为软路由让全家设备出国&#34;&gt;使用 Mac Mini M1 作为软路由让全家设备出国&lt;/h1&gt;
 &lt;p&gt;[TOC]&lt;/p&gt;
@@ -119,19 +112,15 @@
 &lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
 &lt;p&gt;一般机场会提供 Clash 的订阅链接，如果没有可以自行搜索 ssr/v2ray 转 clash 的第三方订阅转换服务，生成 Clash 订阅链接。&lt;/p&gt;
 &lt;p&gt;有了订阅链接之后，点击顶部菜单栏的 Clash 图标 -&amp;gt; Config -&amp;gt; Remote config -&amp;gt; Manage 管理订阅。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/ClashX-Pro-config-manage.png&#34; alt=&#34;ClashX Pro config manage&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;ClashX Pro config manage&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/ClashX-Pro-config-manage.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;点击 Add，在 Url 中输入订阅链接，Config Name 可以任意填。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/Add-a-remote-config.png&#34; alt=&#34;Add a remote config&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Add a remote config&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/Add-a-remote-config.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;除此之外还要勾选 Clash 图标里的 Set as system proxy 和 Enhanced Mode 两个选项，这样才能保证 Mac Mini M1 能够成为网关。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>工作两年总结</title>
       <link>https://prov1dence.top/posts/experience/2022/</link>
       <pubDate>Tue, 22 Feb 2022 18:53:36 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/experience/2022/</guid>
       <description>&lt;h1 id=&#34;工作两年总结&#34;&gt;工作两年总结&lt;/h1&gt;
 &lt;p&gt;2019 年参加腾讯的暑期实习面试认识了现在的总监，那段时间退租了原有的公寓寄宿在同学家里，面试当天又刚参加完 GoogleCloudOnBoard 在回去的路上，整个面试的过程非常仓促，气喘吁吁地拿着手机跟面试官打了两小时微信语音，虽然后来计划有变并没有在假期回国实习，但也因此获得了之后校招被总监直接内推到现在项目组的机会。于是后来在经历了四轮技术面试之后，某天在图书馆突然接到总监的微信语音，接着又是 HR 的沟通电话，才在回国的几个月前确定了要来深圳的天美。&lt;/p&gt;
@@ -158,12 +147,10 @@
 &lt;p&gt;员工与公司之间的劳资关系也会影响工作效率。在互联网企业里劳资关系无非是简单的雇佣或合作关系，但腾讯的很多部门，尤其是在司庆到春节的一段时间里，喜欢以“家人们”来互相称呼，听到的时候会让人非常反感，这并不是健康的劳资关系。&lt;/p&gt;
 &lt;p&gt;刚入职的时候毛星云大神坐在离我不到 10 米的地方，经常和客户端开发的同事们有说有笑，或是讨论技术。他出事之后办公室里的几百号人却像无事发生过一样，大都自顾自地重复着前一天的动作，不免让人感到残酷和凄凉。大二的时候要不是偶然间搜到浅墨在 CSDN 上的 DX 教程，可能我的计算机图形学也就挂了。引用 Youtuber &lt;a href=&#34;https://www.youtube.com/c/Vincentc&#34;&gt;Vincent Chan&lt;/a&gt; 的一段想法：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>《深入理解 RPC 框架原理与实现》读书笔记</title>
       <link>https://prov1dence.top/posts/network/rpc/</link>
       <pubDate>Sat, 29 Jan 2022 17:45:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/network/rpc/</guid>
       <description>&lt;h1 id=&#34;深入理解-rpc-框架原理与实现读书笔记&#34;&gt;《深入理解 RPC 框架原理与实现》读书笔记&lt;/h1&gt;
 &lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
@@ -195,12 +182,10 @@
 &lt;p&gt;单 Reactor 单线程模型就是在设计中只会有一个 Reactor，并且无论与 IO 相关的读/写，还
 是与 IO 无关的编/解码或计算，都在一个 Handler 线程上完成。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>2022 年初 | 后端开发两年经验社招面经</title>
       <link>https://prov1dence.top/posts/interview/interview/</link>
       <pubDate>Wed, 26 Jan 2022 15:37:36 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/interview/interview/</guid>
       <description>&lt;h1 id=&#34;2022-年初--后端开发两年经验社招面经&#34;&gt;2022 年初 | 后端开发两年经验社招面经&lt;/h1&gt;
 &lt;h2 id=&#34;字节&#34;&gt;字节&lt;/h2&gt;
@@ -212,8 +197,7 @@
 &lt;li&gt;对于第 i 个元素，它在第 i 轮被选中的概率是 1/i&lt;/li&gt;
 &lt;li&gt;往后，只要选择了新的元素，它就会被淘汰；以第 i+1 轮为例，它被淘汰的概率是 1/(i+1)，那么反过来它被留下的概率就是 1 - 1/(i+1)&lt;/li&gt;
 &lt;li&gt;最终每一个元素被选择的概率如下，第一个 1/i 代表它在第 i 次被选中，其他数代表它在后续的每一轮被留下&lt;/li&gt;
-&lt;li&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/interview/1.png&#34; alt=&#34;1&#34;  /&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;img alt=&#34;1&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/interview/1.png&#34;&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -222,8 +206,7 @@
 &lt;li&gt;对于第 i 个元素，它在第 i 轮被选中的概率是 k/i&lt;/li&gt;
 &lt;li&gt;往后，它唯一会被淘汰的场景是：选择了新的元素，同时从已有的选择中，等概率地选择到了它；以第 i+1 轮为例，它被淘汰的概率是 k/(i+1) * 1/k = 1/(i+1)，那么反过来它被留下的概率就是 1 - k/(i+1) * 1/k = 1 - 1/(i+1)&lt;/li&gt;
 &lt;li&gt;最终每一个元素被选择的概率如下，第一个 k/i 代表它在第 i 次被选中，其他数代表它在后续的每一轮被留下&lt;/li&gt;
-&lt;li&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/interview/2.png&#34; alt=&#34;2&#34;  /&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;img alt=&#34;2&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/interview/2.png&#34;&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -256,45 +239,37 @@
 &lt;li&gt;
 &lt;p&gt;DB 迁移流程&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>小米 AX1800 使用 ShellClash 科学上网</title>
       <link>https://prov1dence.top/posts/proxy/ax1800/</link>
       <pubDate>Tue, 18 Jan 2022 22:29:36 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/proxy/ax1800/</guid>
       <description>&lt;h1 id=&#34;小米-ax1800-使用-shellclash-科学上网&#34;&gt;小米 AX1800 使用 ShellClash 科学上网&lt;/h1&gt;
 &lt;p&gt;本文介绍如何在小米 AX1800 上使用 ShellClash 科学上网。&lt;/p&gt;
 &lt;h2 id=&#34;1-固件降级&#34;&gt;1 固件降级&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/chr1sc2y/warehouse-deprecated/raw/refs/heads/main/resources/proxy/miwifi_rm1800_firmware_fafda_1.0.336.bin&#34;&gt;小米 AX1800 1.0.336 版本固件&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;在 MiWiFi 后台的常用设置 -&amp;gt; 系统状态中点击&lt;strong&gt;手动升级&lt;/strong&gt;，使用 1.0.336 版本的固件对路由器进行降级，整个过程不需要任何额外的操作。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/firmware.png&#34; alt=&#34;firmware&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;firmware&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/firmware.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;完成后第一次进入后台配置时选择不自动更新，或在小米 Wi-Fi 手机 App 中关闭自动更新功能。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/firmware-update.png&#34; alt=&#34;firmware-update&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;firmware-update&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/firmware-update.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;更新完成后路由器会重置为路由器底部贴条的设置。&lt;/p&gt;
 &lt;h2 id=&#34;2-解锁-ssh&#34;&gt;2 解锁 SSH&lt;/h2&gt;
 &lt;p&gt;首先登陆小米路由器后台 192.168.31.1，将浏览器地址栏中 &lt;code&gt;stok=&lt;/code&gt; 后面的一部分的即为拷贝下来。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/stok.png&#34; alt=&#34;firmware-update&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;firmware-update&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/stok.png&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;获取-ssh-权限&#34;&gt;获取 SSH 权限&lt;/h3&gt;
 &lt;p&gt;在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 &lt;code&gt;stok=......&lt;/code&gt; 中后半部分的六个点换成刚才拷贝的内容，页面上显示 &lt;code&gt;{&amp;quot;code&amp;quot;:0}&lt;/code&gt; 即代表成功，这样就解锁了 SSH 到路由器上的权限。&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20&amp;#39;s%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg&amp;#39;%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/response.png&#34; alt=&#34;response&#34;  /&gt;
-&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;response&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/proxy/response.png&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;修改-root-密码&#34;&gt;修改 root 密码&lt;/h3&gt;
 &lt;p&gt;在浏览器中打开一个新页签，在地址栏中输入下面的链接，将其中 &lt;code&gt;stok=......&lt;/code&gt; 中后半部分的六个点换成刚才拷贝的内容，页面上显示 &lt;code&gt;{&amp;quot;code&amp;quot;:0}&lt;/code&gt; 即代表成功，这样就将路由器上 root 账户的密码改为了 admin。&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;http://192.168.31.1/cgi-bin/luci/;stok=....../api/misystem/set_config_iotdev?bssid=Xiaomi&amp;amp;user_id=longdike&amp;amp;ssid=-h%3B%20echo%20-e%20&amp;#39;admin%5Cnadmin&amp;#39;%20%7C%20passwd%20root%3B
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;连接-ssh&#34;&gt;连接 SSH&lt;/h3&gt;
 &lt;p&gt;打开 terminal 或者 powershell，ssh 到路由器的 root 账户上，密码是 admin。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Kafka 入门</title>
       <link>https://prov1dence.top/posts/message-broker/kafka/</link>
       <pubDate>Mon, 29 Nov 2021 23:41:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/message-broker/kafka/</guid>
       <description>&lt;h1 id=&#34;kafka-入门&#34;&gt;Kafka 入门&lt;/h1&gt;
 &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
@@ -335,12 +310,10 @@
 &lt;h4 id=&#34;主题和分区&#34;&gt;主题和分区&lt;/h4&gt;
 &lt;p&gt;Kafka 的消息通过&lt;strong&gt;主题 topic&lt;/strong&gt; 进行分类，主题就好比关系型数据库的表，或者文件系统里的目录；同一个主题可以被分为若干个&lt;strong&gt;分区 partition&lt;/strong&gt;，一个 partition 即一个提交日志，消息以追加的方式写入 partition，然后以先入先出的顺序读取。一个 topic 一般包含多个 partition，因此无法在整个 topic 的维度保证消息的顺序，只能保证消息在单个 partition 内的顺序。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Prometheus 入门</title>
       <link>https://prov1dence.top/posts/cloud/intro-to-prometheus/</link>
       <pubDate>Thu, 21 Oct 2021 18:01:12 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cloud/intro-to-prometheus/</guid>
       <description>&lt;h1 id=&#34;prometheus-入门&#34;&gt;Prometheus 入门&lt;/h1&gt;
 &lt;p&gt;Prometheus 是一个开源的监控解决方案，也是云原生基金会 CNCF 的毕业项目，它能够提供指标数据的采集、存储、查询、告警等功能。本文主要介绍 Prometheus 的基础概念和应用中需要注意的一些问题。&lt;/p&gt;
@@ -361,8 +334,7 @@
 &lt;li&gt;提供了容器化版本&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4 id=&#34;架构&#34;&gt;架构&lt;/h4&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/data/prometheus-architecture.png&#34; alt=&#34;prometheus-architecture&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;prometheus-architecture&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/data/prometheus-architecture.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Prometheus 的架构主要由以下部分组成：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -370,12 +342,10 @@
 &lt;p&gt;Prometheus 服务器主要包含了使用 pull 模式抓取监控数据，通过本地存储（本地磁盘）和远程存储（OpenTSDB, InfluxDB, ElasticSearch 等）保存数据，使用 PromQL 查询数据三大功能。&lt;/p&gt;
 &lt;p&gt;PromQL (Prometheus Query Language) 是 Prometheus 内置的数据查询语言，提供了对时间序列数据的查询，聚合和逻辑运算等操作的支持，被广泛地应用在数据的查询，可视化和告警中。关于 PromQL 的相关操作可以参考 &lt;a href=&#34;https://yunlzheng.gitbook.io/prometheus-book/parti-prometheus-ji-chu/promql/prometheus-query-language&#34;&gt;探索PromQL&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Python 源码学习（5）：协程</title>
       <link>https://prov1dence.top/posts/python/python-source-code-coroutine/</link>
       <pubDate>Wed, 04 Aug 2021 17:38:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/python/python-source-code-coroutine/</guid>
       <description>&lt;h1 id=&#34;python-源码学习5协程&#34;&gt;Python 源码学习（5）：协程&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;协程&lt;/strong&gt; &lt;em&gt;coroutine&lt;/em&gt; 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的&lt;strong&gt;生成器&lt;/strong&gt; &lt;em&gt;generator&lt;/em&gt; 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。&lt;/p&gt;
@@ -408,12 +378,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;573147844013817084101&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;生成器的这种行为与线程切换非常类似，它包含了执行，保存，恢复上下文的步骤，用生成器来模拟线程的行为可以避免从用户态到内核态的切换，从而提升效率。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Python 源码学习（4）：编译器和虚拟机</title>
       <link>https://prov1dence.top/posts/python/python-source-code-interpreter/</link>
       <pubDate>Wed, 26 May 2021 10:18:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/python/python-source-code-interpreter/</guid>
       <description>&lt;h1 id=&#34;python-源码学习4编译器和虚拟机&#34;&gt;Python 源码学习（4）：编译器和虚拟机&lt;/h1&gt;
 &lt;p&gt;Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 &lt;a href=&#34;https://github.com/python/cpython&#34;&gt;CPython&lt;/a&gt;。&lt;/p&gt;
@@ -439,12 +407,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;type:           &amp;lt;class &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;code&amp;#39;&lt;/span&gt;&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看到生成的 &lt;code&gt;code_obj&lt;/code&gt; 对象的类型是 &lt;code&gt;class &#39;code&#39;&lt;/code&gt;，它在源码中对应的结构体是&lt;strong&gt;代码对象&lt;/strong&gt; &lt;em&gt;PyCodeObject&lt;/em&gt;；代码对象是后续步骤中 Python 虚拟机操作的核心，它将字节码相关的参数个数、局部变量、变量名称、指令序列等信息包装成了一个结构体：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Python 源码学习（3）：list 类型</title>
       <link>https://prov1dence.top/posts/python/source-code-3-list-and-dict/</link>
       <pubDate>Thu, 06 May 2021 20:07:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/python/source-code-3-list-and-dict/</guid>
       <description>&lt;h1 id=&#34;python-源码学习3list-类型&#34;&gt;Python 源码学习（3）：list 类型&lt;/h1&gt;
 &lt;p&gt;Python 中的 list 类型在源码中是一个名为 &lt;code&gt;PyListObject&lt;/code&gt; 的结构体，定义在 &lt;code&gt;listobject.h&lt;/code&gt; 文件中：&lt;/p&gt;
@@ -469,12 +435,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} PyListObject;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;它的实现和 C++ 中的 &lt;code&gt;std::vector&lt;/code&gt; 类似，都是通过维护一个动态数组，在增加数据的时候动态扩大数组的容量来实现的；&lt;code&gt;PyListObject&lt;/code&gt; 结构中包含了一个变长对象头部 &lt;code&gt;PyObject_VAR_HEAD&lt;/code&gt;，&lt;code&gt;ob_size&lt;/code&gt; 表示当前动态数组的长度，&lt;code&gt;**ob_item&lt;/code&gt; 是指向动态数组的指针，&lt;code&gt;allocated&lt;/code&gt; 是动态数组的容量；我们可以从它的类型指针 &lt;code&gt;PyTypeObject PyList_Type&lt;/code&gt; 中找到用来操作 list 对象的相关方法：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ProtoBuf 语法和编码原理入门</title>
       <link>https://prov1dence.top/posts/serialization/protocol-buffer/</link>
       <pubDate>Mon, 26 Apr 2021 21:44:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/serialization/protocol-buffer/</guid>
       <description>&lt;h1 id=&#34;protobuf-语法和编码原理入门&#34;&gt;ProtoBuf 语法和编码原理入门&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Serialization&#34;&gt;序列化&lt;/a&gt;是指将结构化数据转换成易于存储或发送的数据格式的过程，Protocol Buffer 简称 ProtoBuf，是一种语言无关，平台无关的序列化工具，由谷歌在 2008 年开源。相较于常见的序列化工具 &lt;a href=&#34;https://en.wikipedia.org/wiki/XML&#34;&gt;XML&lt;/a&gt;, JSON, YAML, CSV 等，ProtoBuf 的优势主要包括序列化后&lt;strong&gt;数据量小&lt;/strong&gt;，序列化和反序列化过程&lt;strong&gt;速度快&lt;/strong&gt;，使用时只需定义 proto 文件使得其&lt;strong&gt;维护成本低&lt;/strong&gt;，可&lt;strong&gt;向后兼容&lt;/strong&gt;等；但因为其数据以二进制数据流的形式存在，也有&lt;strong&gt;人类不可读&lt;/strong&gt;的劣势。&lt;/p&gt;
@@ -510,12 +474,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用 protoc 工具生成指定语言的代码：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Python 源码学习（2）：int 类型</title>
       <link>https://prov1dence.top/posts/python/source-code-2/</link>
       <pubDate>Wed, 31 Mar 2021 15:37:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/python/source-code-2/</guid>
       <description>&lt;h1 id=&#34;python-源码学习2int-类型&#34;&gt;Python 源码学习（2）：int 类型&lt;/h1&gt;
 &lt;p&gt;Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 &lt;code&gt;PyBaseObject_Type&lt;/code&gt; 类型的 &lt;code&gt;PyType_Type&lt;/code&gt; 类型的实例对象，本文则主要探究 Python 中 int 类型的实现。&lt;/p&gt;
@@ -551,12 +513,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;它由两部分组成，分别是：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Python 源码学习（1）：类型和对象</title>
       <link>https://prov1dence.top/posts/python/source-code-1/</link>
       <pubDate>Sun, 14 Mar 2021 16:05:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/python/source-code-1/</guid>
       <description>&lt;h1 id=&#34;python-源码学习1类型和对象&#34;&gt;Python 源码学习（1）：类型和对象&lt;/h1&gt;
 &lt;p&gt;Python 是一门解释型，动态类型，多范式的编程语言，当我们从 &lt;a href=&#34;https://www.python.org/&#34;&gt;python.org&lt;/a&gt; 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 &lt;a href=&#34;https://github.com/python/cpython&#34;&gt;CPython&lt;/a&gt;，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：&lt;/p&gt;
@@ -583,12 +543,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt; directories
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;本系列主要以阅读和分析 CPython 源码的方式学习 Python。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 智能指针的简单实现</title>
       <link>https://prov1dence.top/posts/cpp/smart-pointer/smart-pointer/</link>
       <pubDate>Sun, 21 Feb 2021 21:20:18 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/smart-pointer/smart-pointer/</guid>
       <description>&lt;h1 id=&#34;c-智能指针的简单实现&#34;&gt;C++ 智能指针的简单实现&lt;/h1&gt;
 &lt;h2 id=&#34;1-stdauto_ptr&#34;&gt;1 std::auto_ptr&lt;/h2&gt;
@@ -616,12 +574,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果在堆上为类对象分配了内存，在离开其作用域的时候又没将其释放，则会造成内存泄漏：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>启发式搜索和强化学习</title>
       <link>https://prov1dence.top/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</link>
       <pubDate>Thu, 10 Dec 2020 20:07:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</guid>
       <description>&lt;h1 id=&#34;启发式搜索和强化学习&#34;&gt;启发式搜索和强化学习&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://inst.eecs.berkeley.edu/~cs188/fa18/projects.html&#34;&gt;The Pac-Man Projects&lt;/a&gt; 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。&lt;/p&gt;
@@ -647,12 +603,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;dfs &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; DepthFirstSearch
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在吃豆人游戏的框架下，为寻路函数传入的 &lt;code&gt;problem&lt;/code&gt; 参数可以理解为一个 &lt;code&gt;class SearchProblem&lt;/code&gt; 类型的抽象基类，实际的问题有 &lt;code&gt;PositionSearchProblem&lt;/code&gt;（找到单个终点），&lt;code&gt;FoodSearchProblem&lt;/code&gt;（找到所有食物），&lt;code&gt;CapsuleSearchProblem&lt;/code&gt;（找到增益药丸和所有食物）等，这些子类都需要实现以下函数：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 闭包和匿名函数</title>
       <link>https://prov1dence.top/posts/cpp/closure-and-anonymous-function/</link>
       <pubDate>Sat, 14 Nov 2020 21:20:18 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/closure-and-anonymous-function/</guid>
       <description>&lt;h1 id=&#34;c-闭包和匿名函数&#34;&gt;C++ 闭包和匿名函数&lt;/h1&gt;
 &lt;p&gt;本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。&lt;/p&gt;
@@ -692,17 +646,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;相比之下 golang 中真正的闭包显得简洁很多：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>负载均衡和一致性哈希</title>
       <link>https://prov1dence.top/posts/service-governance/load-balancing/</link>
       <pubDate>Sun, 25 Oct 2020 23:06:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/service-governance/load-balancing/</guid>
       <description>&lt;h1 id=&#34;负载均衡和一致性哈希&#34;&gt;负载均衡和一致性哈希&lt;/h1&gt;
 &lt;p&gt;反向代理 reverse proxy 是指以代理服务器来接收由客户端发送来的请求，并通过一定的策略将其转变发给实际处理请求的后端服务器；主要应用于负载均衡、动态缓存、安全认证、内网穿透、SSL 加密等；而负载均衡 load balancing 是指在多个 slot（槽，一般是某种计算资源）中分配负载，以优化资源利用率和避免单点故障问题的方法，是高可用性分布式系统的必备中间件；常用的开源 load balancer 有 nginx，LVS，Haproxy 等；负载均衡可以视为反向代理的一种应用，负载均衡的方法大致可以分为传统负载均衡算法和哈希算法两种，本文简单地总结了这些算法的原理。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/reverse-proxy/reverse-proxy.png&#34; alt=&#34;reveser-proxy&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;reveser-proxy&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/reverse-proxy/reverse-proxy.png&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;1-传统负载均衡算法&#34;&gt;1 传统负载均衡算法&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;随机 random：将 key 随机分配到某一个 slot 上，根据概率论可知，吞吐量越大，随机算法的效果越好；&lt;/li&gt;
@@ -722,12 +673,10 @@
 &lt;h2 id=&#34;2-mod-n-哈希&#34;&gt;2 Mod-N 哈希&lt;/h2&gt;
 &lt;p&gt;在有些场景下，传统负载均衡算法无法满足我们的需求，例如：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 并发入门：以 LeetCode 1114 为例</title>
       <link>https://prov1dence.top/posts/cpp/concurrency/introduction-to-concurrency/</link>
       <pubDate>Wed, 30 Sep 2020 16:20:25 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/concurrency/introduction-to-concurrency/</guid>
       <description>&lt;h1 id=&#34;c-并发入门以-leetcode-1114-为例&#34;&gt;C++ 并发入门：以 LeetCode 1114 为例&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -762,12 +711,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Mutex 即 &lt;strong&gt;mutual exclusion&lt;/strong&gt;，是用来防止多个线程同时访问共享资源对象的机制，在同一时间只有一个线程可以拥有一个 &lt;code&gt;mutex&lt;/code&gt; 对象，其他线程调用 &lt;code&gt;std::mutex::lock&lt;/code&gt; 函数时会阻塞直到其获取锁资源。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Effective C&#43;&#43; notes</title>
       <link>https://prov1dence.top/posts/cpp/basics/effective-cpp/</link>
       <pubDate>Thu, 24 Sep 2020 16:43:27 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/basics/effective-cpp/</guid>
       <description>&lt;h1 id=&#34;effective-c-笔记&#34;&gt;Effective C++ 笔记&lt;/h1&gt;
 &lt;h2 id=&#34;0-导言&#34;&gt;0 导言&lt;/h2&gt;
@@ -791,12 +738,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;Foo (&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// 如果 Bar 的构造函数没有被声明为 explicit，那么会调用 Bar 的构造函数构造一个成员变量 x = 2 的对象，也就是说发生了隐式类型转换；如果其构造函数被声明为 explicit，那么就不会构造出 Bar 类型的对象
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;copy 构造函数：用同类型的对象初始化新的对象，它定义了一个对象如何 pass by reference。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 单例模式的模板实现</title>
       <link>https://prov1dence.top/posts/design-pattern/c&#43;&#43;-template-singleton/</link>
       <pubDate>Thu, 10 Sep 2020 21:25:43 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/design-pattern/c&#43;&#43;-template-singleton/</guid>
       <description>&lt;h1 id=&#34;c-单例模式的模板实现&#34;&gt;C++ 单例模式的模板实现&lt;/h1&gt;
 &lt;p&gt;单例模式是一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例（single instance），这个类称为单例类，它会提供一个全局的访问入口（global access point），关于单例模式的讨论可以参考&lt;a href=&#34;http://www.italiancpp.org/2017/03/19/singleton-revisited-eng/&#34;&gt;Singleton revisited&lt;/a&gt;；基于这两个特点，单例模式可以有以下几种实现：&lt;/p&gt;
@@ -826,12 +771,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过禁用单例类的 copy constructor，move constructor 和 operator= 可以防止类的唯一实例被拷贝或移动；不暴露单例类的 constructor 和 destructor 可以保证单例类不会通过其他途径被实例化，同时将两者定义为 protected 可以让其被子类继承并使用。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>并行计算入门</title>
       <link>https://prov1dence.top/posts/parallel-computing/parallel-computing/</link>
       <pubDate>Wed, 12 Aug 2020 18:32:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/parallel-computing/parallel-computing/</guid>
       <description>&lt;h1 id=&#34;并行计算入门&#34;&gt;并行计算入门&lt;/h1&gt;
 &lt;h2 id=&#34;1-概述&#34;&gt;1 概述&lt;/h2&gt;
@@ -840,8 +783,7 @@
 &lt;p&gt;&lt;strong&gt;并行计算&lt;/strong&gt;（Parallel Computing）是&lt;strong&gt;高性能计算&lt;/strong&gt;下的一个细分领域，其主要思想是将复杂问题分解成若干个部分，将每一个部分交给独立的处理器（计算资源）进行计算，以提高效率；针对不同的问题，并行计算需要专用的并行架构，架构既可以是专门设计的，含有多个处理器的单一硬件或超级计算机，也可以是以某种方式互连的若干台的独立计算机构成的集群；并没有一个统一的并行计算架构适用于每一个问题，如果使用了错误的架构，并行计算甚至会导致性能下降。&lt;/p&gt;
 &lt;h3 id=&#34;12-硬件架构&#34;&gt;1.2 硬件架构&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;中央处理器&lt;/strong&gt;（Central Processing Unit）的主要功能是解释计算机指令，它由&lt;strong&gt;控制单元&lt;/strong&gt;（Control Unit）、&lt;strong&gt;算术逻辑单元&lt;/strong&gt;（Arithmetic Logic Unit）、&lt;strong&gt;乱序控制单元&lt;/strong&gt;（Out-of-Order Control Unit）、&lt;strong&gt;分支预测器&lt;/strong&gt;（Branch Predictor）、&lt;strong&gt;数据缓存&lt;/strong&gt;（Data Cache）等部件组成；&lt;strong&gt;CPU&lt;/strong&gt; 被设计为可以快速地处理各种通用计算任务并最小化延迟，但在并发性（时钟频率）方面受到限制；&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/parallel-computing/cpu.png&#34; alt=&#34;cpu&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;cpu&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/parallel-computing/cpu.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;图形处理器&lt;/strong&gt;（Graphics Processing Unit, GPU）是英伟达（NVIDIA）在 1999 年 8 月发布 &lt;a href=&#34;https://zh.wikipedia.org/wiki/NVIDIA_GeForce_256&#34;&gt;NVIDIA GeForce 256&lt;/a&gt; 时提出的概念；现代 GPU 的模型设计可以概括为几个关键点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -855,19 +797,15 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;GPU&lt;/strong&gt; 拥有的&lt;strong&gt;内核&lt;/strong&gt;数量相较于 CPU 多得多，可以有数千个同时运行的内核执行大规模并行计算，因此在早期专门应用于图形数据的处理，但随着近十几年的发展，其强大的并行处理能力也使其可以处理非图形数据，尤其在&lt;strong&gt;深度学习&lt;/strong&gt;领域非常受欢迎；&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/parallel-computing/gpu.png&#34; alt=&#34;gpu&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;gpu&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/parallel-computing/gpu.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;在制造工艺的限制下，芯片的密度和最大面积都是有限的（&lt;a href=&#34;%5Bhttps://zh.wikipedia.org/wiki/%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B%5D(https://zh.wikipedia.org/wiki/%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B)&#34;&gt;摩尔定律&lt;/a&gt;），因此芯片设计实际上是功能和元件数量的权衡；出于对通用性的要求，&lt;strong&gt;CPU&lt;/strong&gt; 的芯片设计必须使用较多种类的原件以增加其功能，同时放弃部分具有复杂功能的元件数量，而 &lt;strong&gt;GPU&lt;/strong&gt; 的芯片设计则是通过移除部分具有复杂功能的元件来换取更多的空间，并集成更多的基本功能元件；&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/parallel-computing/process.png&#34; alt=&#34;process&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;process&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/parallel-computing/process.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;GPU&lt;/strong&gt; 设备由多个&lt;strong&gt;流多处理器&lt;/strong&gt;（Streaming Multiprocessor）的&lt;strong&gt;处理器集群&lt;/strong&gt;（Processor Cluster）组成。每个&lt;strong&gt;流多处理器&lt;/strong&gt;都关联一个&lt;strong&gt;控制单元&lt;/strong&gt; 和 L1 Cache，这样的设计使得一个芯片可以同时支持上百个指令流的并行执行；通常一个&lt;strong&gt;流多处理器&lt;/strong&gt;在与全局 GDDR-5 内存交换数据之前都会利用与之关联 L1 Cache 和 L2 Cache 来减少数据传输的延迟；而又因为 &lt;strong&gt;GPU&lt;/strong&gt; 通常拥有足够大的计算量，使得其不需要与 &lt;strong&gt;CPU&lt;/strong&gt; 一样非常频繁地从内存中获取数据，因此 &lt;strong&gt;GPU&lt;/strong&gt; 的缓存层一般是小于 &lt;strong&gt;CPU&lt;/strong&gt; 的。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>boost::typeIndex 的相关探究</title>
       <link>https://prov1dence.top/posts/cpp/boost/boost-typeindex/</link>
       <pubDate>Fri, 31 Jul 2020 20:31:06 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/boost/boost-typeindex/</guid>
       <description>&lt;h2 id=&#34;boosttypeindex-的相关探究&#34;&gt;boost::typeIndex 的相关探究&lt;/h2&gt;
 &lt;p&gt;Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 &lt;code&gt;Boost::typeindex&lt;/code&gt; 的使用，但并没有讲到其实现原理。&lt;/p&gt;
@@ -905,12 +843,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Foo: 3Foo
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;std::type_info::name()&lt;/code&gt; 函数返回的字符串中，在 GCC 和 Clang 的实现里一般 i 代表 int，P 代表 pointer，K 代表 const，数字用于标识其后跟随了几个字符；我们可以将这段代码使用微软的 MSVC 编译运行，得到更加直观的输出：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>CMake 入门</title>
       <link>https://prov1dence.top/posts/cpp/compilation/cmake/</link>
       <pubDate>Sun, 21 Jun 2020 15:46:06 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/compilation/cmake/</guid>
       <description>&lt;h1 id=&#34;cmake-入门&#34;&gt;CMake 入门&lt;/h1&gt;
 &lt;h2 id=&#34;0-序&#34;&gt;0. 序&lt;/h2&gt;
@@ -946,12 +882,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>GDB 调试入门</title>
       <link>https://prov1dence.top/posts/cpp/compilation/gdb/</link>
       <pubDate>Wed, 22 Apr 2020 17:46:06 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/compilation/gdb/</guid>
       <description>&lt;h1 id=&#34;gdb-调试入门&#34;&gt;GDB 调试入门&lt;/h1&gt;
 &lt;h2 id=&#34;0-序&#34;&gt;0. 序&lt;/h2&gt;
@@ -983,12 +917,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;12-编译&#34;&gt;1.2 编译&lt;/h3&gt;
 &lt;p&gt;对于 C/C++ 程序，在使用 gcc/clang 编译的时候需要加上参数 -g，才能生成完整的调试信息并在 GDB 中调试：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>coverity 的 WRAPPER_ESCAPE 告警</title>
       <link>https://prov1dence.top/posts/cpp/basics/wrapper_escape-in-coverity/</link>
       <pubDate>Sun, 15 Mar 2020 17:24:27 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/basics/wrapper_escape-in-coverity/</guid>
       <description>&lt;h1 id=&#34;coverity-的-wrapper_escape-告警&#34;&gt;coverity 的 WRAPPER_ESCAPE 告警&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Foo&lt;/span&gt;()
@@ -1011,12 +943,10 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。&lt;/p&gt;
 &lt;p&gt;而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 协程（1）：函数和协程</title>
       <link>https://prov1dence.top/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</link>
       <pubDate>Mon, 20 Jan 2020 20:15:05 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</guid>
       <description>&lt;h1 id=&#34;c-协程1函数和协程&#34;&gt;C++ 协程（1）：函数和协程&lt;/h1&gt;
 &lt;p&gt;这篇文章的目的是探究 C++ 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。&lt;/p&gt;
@@ -1051,12 +981,10 @@
 &lt;/ol&gt;
 &lt;p&gt;可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是&lt;strong&gt;执行栈帧&lt;/strong&gt;，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是&lt;strong&gt;数据栈帧&lt;/strong&gt;，这部分即使在协程 suspend 的时候依然存在。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 树（3）</title>
       <link>https://prov1dence.top/posts/leetcode/tree-3/</link>
       <pubDate>Sat, 24 Aug 2019 19:12:25 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/tree-3/</guid>
       <description>&lt;h1 id=&#34;leetcode-树3httpsleetcode-cncomtagtree&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/tree/&#34;&gt;LeetCode 树（3）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1096,12 +1024,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;104-二叉树的最大深度httpsleetcode-cncomproblemsmaximum-depth-of-binary-tree&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/&#34;&gt;104 二叉树的最大深度&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;找出一个二叉树的最大深度。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 排序</title>
       <link>https://prov1dence.top/posts/leetcode/sort/</link>
       <pubDate>Sat, 17 Aug 2019 19:12:25 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/sort/</guid>
       <description>&lt;h1 id=&#34;leetcode-排序httpsleetcode-cncomtagsort&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/sort/&#34;&gt;LeetCode 排序&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1132,12 +1058,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;179-最大数httpsleetcode-cncomproblemslargest-number&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/largest-number/&#34;&gt;179 最大数&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;先把数字转换为字符串，然后自定义类似于字典序的排序规则 s1 + s2 &amp;gt; s2 + s1 进行排序。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 堆</title>
       <link>https://prov1dence.top/posts/leetcode/heap/</link>
       <pubDate>Mon, 05 Aug 2019 19:12:25 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/heap/</guid>
       <description>&lt;h1 id=&#34;leetcode-堆httpsleetcode-cncomtagheap&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/heap/&#34;&gt;LeetCode 堆&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1182,12 +1106,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;451-根据字符出现频率排序httpsleetcode-cncomproblemssort-characters-by-frequency&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/sort-characters-by-frequency/&#34;&gt;451 根据字符出现频率排序&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;用一个大根堆保存每个字符出现的频率，然后依次将原字符串覆盖即可。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 双指针</title>
       <link>https://prov1dence.top/posts/leetcode/twopointers/</link>
       <pubDate>Wed, 31 Jul 2019 19:12:25 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/twopointers/</guid>
       <description>&lt;h1 id=&#34;leetcode-dfshttpsleetcode-cncomtagtwo-pointers&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/two-pointers/&#34;&gt;LeetCode DFS&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1233,12 +1155,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;922-按奇偶排序数组-iihttpsleetcode-cncomproblemssort-array-by-parity-ii&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/sort-array-by-parity-ii/&#34;&gt;922 按奇偶排序数组 II&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;用两个下标 i 和 j 分别表示偶数位和奇数位的下标，如果偶数位下标对应的数不是偶数那么将其与奇数位下标对应的数不是奇数的数进行交换。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 深度优先搜索</title>
       <link>https://prov1dence.top/posts/leetcode/dfs/</link>
       <pubDate>Sat, 27 Jul 2019 12:12:25 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/dfs/</guid>
       <description>&lt;h1 id=&#34;leetcode-dfshttpsleetcode-cncomtagdepth-first-search&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/depth-first-search/&#34;&gt;LeetCode DFS&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1266,12 +1186,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;733-图像渲染httpsleetcode-cncomproblemsflood-fill&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/flood-fill/&#34;&gt;733 图像渲染&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;从给定的 image[sr][sc] 开始 DFS 或 BFS，将相邻的值相同的点的值全部修改为 newColor，注意要判断给定的 image[sr][sc] 是否等于 newColor，否则如果不使用额外空间的 visited 数组记录已经访问过的点的话会造成死循环栈溢出。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 并发</title>
       <link>https://prov1dence.top/posts/leetcode/concurrency/</link>
       <pubDate>Mon, 22 Jul 2019 10:10:25 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/concurrency/</guid>
       <description>&lt;h1 id=&#34;leetcode-并发httpsleetcode-cncomproblemsetconcurrency&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/concurrency/&#34;&gt;LeetCode 并发&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1568,12 +1486,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 树（2）</title>
       <link>https://prov1dence.top/posts/leetcode/tree-2/</link>
       <pubDate>Thu, 18 Jul 2019 19:12:25 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/tree-2/</guid>
       <description>&lt;h1 id=&#34;leetcode-树2httpsleetcode-cncomtagtree&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/tree/&#34;&gt;LeetCode 树（2）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1613,12 +1529,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;98-验证二叉搜索树httpsleetcode-cncomproblemsvalidate-binary-search-tree&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/validate-binary-search-tree/&#34;&gt;98 验证二叉搜索树&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;因为二叉搜索树的中序遍历结果是一个有序数组，所以一种方法是将中序遍历的结果保存下来进行判断，也可以根据二叉搜索树的定义判断子节点和根节点的大小关系。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 树（1）</title>
       <link>https://prov1dence.top/posts/leetcode/tree-1/</link>
       <pubDate>Sat, 13 Jul 2019 19:12:25 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/tree-1/</guid>
       <description>&lt;h1 id=&#34;leetcode-树1httpsleetcode-cncomtagtree&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/tree/&#34;&gt;LeetCode 树（1）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1666,12 +1580,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;589-n叉树的前序遍历httpsleetcode-cncomproblemsn-ary-tree-preorder-traversal&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/&#34;&gt;589 N叉树的前序遍历&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;前序遍历一个 N 叉树。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 链表（2）</title>
       <link>https://prov1dence.top/posts/leetcode/linkedlist-2/</link>
       <pubDate>Tue, 09 Jul 2019 19:12:25 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/linkedlist-2/</guid>
       <description>&lt;h1 id=&#34;leetcode-链表2httpsleetcode-cncomtaglinked-list&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/linked-list/&#34;&gt;LeetCode 链表（2）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1701,12 +1613,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;61-旋转链表httpsleetcode-cncomproblemsrotate-listsubmissions&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/rotate-list/submissions/&#34;&gt;61 旋转链表&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;给一个链表，将其每个节点向右移动 k 个位置。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 链表（1）</title>
       <link>https://prov1dence.top/posts/leetcode/linkedlist-1/</link>
       <pubDate>Thu, 04 Jul 2019 19:12:25 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/linkedlist-1/</guid>
       <description>&lt;h1 id=&#34;leetcode-链表1httpsleetcode-cncomtaglinked-list&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/linked-list/&#34;&gt;LeetCode 链表（1）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1743,12 +1653,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;21-合并两个有序链表httpsleetcode-cncomproblemsmerge-two-sorted-listssubmissions&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/merge-two-sorted-lists/submissions/&#34;&gt;21 合并两个有序链表&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;合并两个有序链表。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 动态规划（3）</title>
       <link>https://prov1dence.top/posts/leetcode/dynamicprogramming-3/</link>
       <pubDate>Mon, 01 Jul 2019 18:22:45 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/dynamicprogramming-3/</guid>
       <description>&lt;h1 id=&#34;leetcode-动态规划httpsleetcode-cncomproblemsetallsearche4b891e695b0&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0&#34;&gt;LeetCode 动态规划&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1777,12 +1685,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;5-最长回文子串httpsleetcode-cncomproblemslongest-palindromic-substring&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/longest-palindromic-substring/&#34;&gt;5 最长回文子串&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;找到一个字符串中的最长回文子串。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 动态规划（2）</title>
       <link>https://prov1dence.top/posts/leetcode/dynamicprogramming-2/</link>
       <pubDate>Fri, 28 Jun 2019 10:09:13 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/dynamicprogramming-2/</guid>
       <description>&lt;h1 id=&#34;leetcode-动态规划httpsleetcode-cncomproblemsetallsearche4b891e695b0&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0&#34;&gt;LeetCode 动态规划&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1809,12 +1715,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;53-最大子序和httpsleetcode-cncomproblemsmaximum-subarray&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/maximum-subarray/&#34;&gt;53 最大子序和&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;找一个数组中具有最大和的连续子数组的和。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 动态规划（1）</title>
       <link>https://prov1dence.top/posts/leetcode/dynamicprogramming-1/</link>
       <pubDate>Wed, 26 Jun 2019 18:08:10 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/dynamicprogramming-1/</guid>
       <description>&lt;h1 id=&#34;leetcode-动态规划httpsleetcode-cncomproblemsetallsearche4b891e695b0&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0&#34;&gt;LeetCode 动态规划&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -1861,12 +1765,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;313-超级丑数httpsleetcode-cncomproblemssuper-ugly-number&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/super-ugly-number/&#34;&gt;313 超级丑数&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;给定质因数数组 primes，求第 n 个丑数。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 二分查找</title>
       <link>https://prov1dence.top/posts/leetcode/binarysearch/</link>
       <pubDate>Sun, 23 Jun 2019 19:26:39 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/binarysearch/</guid>
       <description>&lt;h1 id=&#34;leetcode-二分查找httpsleetcode-cncomtagbinary-search&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/binary-search/&#34;&gt;LeetCode 二分查找&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。&lt;/p&gt;
@@ -1899,12 +1801,10 @@
 &lt;p&gt;在有序数组中搜索目标值，如果存在则返回下标，否则返回 -1。&lt;/p&gt;
 &lt;p&gt;最标准的二分查找。因为下限i和上限j都会在更新时+1和-1，所以让j = nums.size() - 1，循环条件是 i &amp;lt;= j。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode 位运算</title>
       <link>https://prov1dence.top/posts/leetcode/bitmanipulation/</link>
       <pubDate>Wed, 19 Jun 2019 19:26:39 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode/bitmanipulation/</guid>
       <description>&lt;h1 id=&#34;leetcode-位运算httpsleetcode-cncomtagbit-manipulation&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/bit-manipulation/&#34;&gt;LeetCode 位运算&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;位运算包括：&lt;/p&gt;
@@ -1947,12 +1847,10 @@
 &lt;h4 id=&#34;693-交替位二进制数httpsleetcode-cncomproblemsbinary-number-with-alternating-bits&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/binary-number-with-alternating-bits/&#34;&gt;693 交替位二进制数&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;检查一个二进制数相邻的两个位数是否均不相等。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Kick Start 2019 Round C</title>
       <link>https://prov1dence.top/posts/kick-start/2019-round-c/</link>
       <pubDate>Sun, 26 May 2019 23:29:45 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/kick-start/2019-round-c/</guid>
       <description>&lt;h1 id=&#34;kick-start-2019-round-chttpscodingcompetitionswithgooglecomkickstartround0000000000050ff2&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050ff2&#34;&gt;Kick Start 2019 Round C&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;wiggle-walk-6pts-12ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050ff20000000000150aac&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050ff2/0000000000150aac&#34;&gt;Wiggle Walk (6pts, 12pts)&lt;/a&gt;&lt;/h2&gt;
@@ -2025,22 +1923,18 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;circuit-board-14pts-20ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050ff20000000000150aae&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050ff2/0000000000150aae&#34;&gt;Circuit Board (14pts, 20pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;在矩阵里找到每一行最大值与最小值不超过K的最大子矩阵。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Object Detection</title>
       <link>https://prov1dence.top/posts/deep-learning/object-detection-yolo/</link>
       <pubDate>Sun, 19 May 2019 19:40:23 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/deep-learning/object-detection-yolo/</guid>
       <description>&lt;h1 id=&#34;object-detection&#34;&gt;Object Detection&lt;/h1&gt;
 &lt;p&gt;Object detection deals with detecting instances of objects of a certain class, such as humans, animals, etc, in digital images and videos. Object detection has applications in many areas of computer vision, including image retrieval, face detection, video surveillance, and self-driving, etc. Current detection systems repurpose classifiers to perform detection. To detect an object, these systems take a classifier for that object and evaluate it at various locations and scales in a test image.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Code Jam 2019 Round 1C</title>
       <link>https://prov1dence.top/posts/code-jam/2019-round-1c/</link>
       <pubDate>Tue, 07 May 2019 22:02:15 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/code-jam/2019-round-1c/</guid>
       <description>&lt;h1 id=&#34;code-jam-2019-round-1chttpscodingcompetitionswithgooglecomcodejamround00000000000516b9&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9&#34;&gt;Code Jam 2019 Round 1C&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;robot-programming-strategy-10pts-18ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516b90000000000134c90&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134c90&#34;&gt;Robot Programming Strategy (10pts, 18pts)&lt;/a&gt;&lt;/h2&gt;
@@ -2141,12 +2035,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;power-arrangers-11pts-21ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516b90000000000134e91&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134e91&#34;&gt;Power Arrangers (11pts, 21pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;// TODO&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Kick Start 2019 Round B</title>
       <link>https://prov1dence.top/posts/kick-start/2019-round-b/</link>
       <pubDate>Sun, 21 Apr 2019 14:41:22 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/kick-start/2019-round-b/</guid>
       <description>&lt;h1 id=&#34;kick-start-2019-round-bhttpscodingcompetitionswithgooglecomkickstartround0000000000050eda&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050eda&#34;&gt;Kick Start 2019 Round B&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;building-palindromes-5pts-12ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050eda0000000000119866&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050eda/0000000000119866&#34;&gt;Building Palindromes (5pts, 12pts)&lt;/a&gt;&lt;/h2&gt;
@@ -2205,12 +2097,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;energy-stones-17pts-24ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050eda00000000001198c3&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050eda/00000000001198c3&#34;&gt;Energy Stones (17pts, 24pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;在所有物品消耗完之前吃掉，使得能够获得的energy最多，类似于&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98&#34;&gt;背包问题&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Code Jam 2019 Round 1A</title>
       <link>https://prov1dence.top/posts/code-jam/2019-round-1a/</link>
       <pubDate>Sat, 13 Apr 2019 15:28:11 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/code-jam/2019-round-1a/</guid>
       <description>&lt;h1 id=&#34;code-jam-2019-round-1ahttpscodingcompetitionswithgooglecomcodejamround0000000000051635&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635&#34;&gt;Code Jam 2019 Round 1A&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;pylons-8pts-23ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516350000000000104e03&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104e03&#34;&gt;Pylons (8pts, 23pts)&lt;/a&gt;&lt;/h2&gt;
@@ -2287,12 +2177,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;alien-rhyme-10pts-27ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516350000000000104e05&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104e05&#34;&gt;Alien Rhyme (10pts, 27pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;找到后缀相同的一对单词，后缀的长度可以自己定义，其他单词的后缀不能与这一对相同，使得这样的单词对最多。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Code Jam 2019 Qualification Round</title>
       <link>https://prov1dence.top/posts/code-jam/2019-qualification-round/</link>
       <pubDate>Sat, 06 Apr 2019 13:40:27 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/code-jam/2019-qualification-round/</guid>
       <description>&lt;h1 id=&#34;code-jam-2019-qualification-roundhttpscodingcompetitionswithgooglecomcodejamround0000000000051705&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705&#34;&gt;Code Jam 2019 Qualification Round&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;foregone-solution-6pts-10pts-1ptshttpscodingcompetitionswithgooglecomcodejamround00000000000517050000000000088231&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/0000000000088231&#34;&gt;Foregone Solution (6pts, 10pts, 1pts)&lt;/a&gt;&lt;/h2&gt;
@@ -2341,12 +2229,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;you-can-go-your-own-way-5pts-9pts-10ptshttpscodingcompetitionswithgooglecomcodejamround000000000005170500000000000881da&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/00000000000881da&#34;&gt;You Can Go Your Own Way (5pts, 9pts, 10pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;在n*n的矩阵里从(0,0)走到(n-1,n-1)，只能向右或向下走。矩阵里有一条已有的路径，不能与该路径有重合。最常规的做法是DFS/BFS，时间复杂度为O(n^2)。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Kick Start 2019 Round A</title>
       <link>https://prov1dence.top/posts/kick-start/2019-round-a/</link>
       <pubDate>Tue, 26 Mar 2019 14:25:36 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/kick-start/2019-round-a/</guid>
       <description>&lt;h1 id=&#34;kick-start-2019-round-ahttpscodingcompetitionswithgooglecomkickstartround0000000000050e01&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01&#34;&gt;Kick Start 2019 Round A&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;training-7pts-13ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050e0100000000000698d6&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01/00000000000698d6&#34;&gt;Training (7pts, 13pts)&lt;/a&gt;&lt;/h2&gt;
@@ -2359,12 +2245,10 @@
 &lt;p&gt;$$ \sum_{i}^{j - 1} rating[j] - rating[i] = rating[j] * (j - 1 - i) - \sum_{i}^{j - 1} rating[i] $$&lt;/p&gt;
 &lt;p&gt;为了避免重复计算 $$ \sum_{i}^{j - 1} rating[i] $$，可以用一个长为N+1的数组将原始数组的前缀和保存下来，这样每次直接计算 prefix[j] - prefix[i] 就能得到 $$ \sum_{i}^{j - 1} rating[i] $$ 了，时间复杂度是O(N)。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Methods to Prevent Overfitting in Deep Learning</title>
       <link>https://prov1dence.top/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</link>
       <pubDate>Wed, 20 Mar 2019 09:55:04 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</guid>
       <description>&lt;h1 id=&#34;methods-to-prevent-overfitting-in-deep-learning&#34;&gt;Methods to Prevent Overfitting in Deep Learning&lt;/h1&gt;
 &lt;h2 id=&#34;overfitting&#34;&gt;Overfitting&lt;/h2&gt;
@@ -2372,12 +2256,10 @@
 &lt;h2 id=&#34;detect-overfitting&#34;&gt;Detect Overfitting&lt;/h2&gt;
 &lt;p&gt;The simplest way to detect overfitting is to split the dataset into two parts: the training set for training the model, and the test set for testing the accuracy of the model on a dataset that it has never seen before. Of course, we will also partition part of the training set to be the validation set for fine-tuning hyper-parameters. Note that it is necessary to shuffle all the data before splitting.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 智能指针（3）：shared_ptr</title>
       <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</link>
       <pubDate>Fri, 25 Jan 2019 17:47:38 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
       <description>&lt;h1 id=&#34;c智能指针3shared_ptr&#34;&gt;C++智能指针（3）：shared_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
@@ -2413,12 +2295,10 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;析构函数可以直接调用release函数&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 智能指针（2）：unique_ptr</title>
       <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</link>
       <pubDate>Sat, 19 Jan 2019 01:02:02 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</guid>
       <description>&lt;h1 id=&#34;c智能指针2unique_ptr&#34;&gt;C++智能指针（2）：unique_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
@@ -2536,12 +2416,10 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;测试&#34;&gt;测试&lt;/h2&gt;
 &lt;p&gt;尝试使用移动构造函数&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode Archiver(3)： 登录</title>
       <link>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver3/</link>
       <pubDate>Fri, 11 Jan 2019 13:15:17 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver3/</guid>
       <description>&lt;h2 id=&#34;cookie和session&#34;&gt;Cookie和Session&lt;/h2&gt;
 &lt;p&gt;为了获取我们自己的提交记录，我们首先要进行登录的操作。但我们都知道HTTP是一种无状态的协议，它的每个请求都是独立的。无论是GET还是POST请求，都包含了处理当前这一条请求的所有信息，但它并不会涉及到状态的变化。因此，为了在无状态的HTTP协议上维护一个持久的状态，引入了Cookie和Session的概念，两者都是为了辨识用户相关信息而储存在内存或硬盘上的加密数据。&lt;/p&gt;
@@ -2551,13 +2429,11 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
 &lt;h2 id=&#34;获取数据&#34;&gt;获取数据&lt;/h2&gt;
 &lt;h3 id=&#34;分析&#34;&gt;分析&lt;/h3&gt;
 &lt;p&gt;首先我们进入&lt;a href=&#34;https://leetcode.com/accounts/login/&#34;&gt;登录页面&lt;/a&gt;，打开开发者工具，勾选Preserve log。为了知道在登录时浏览器向服务器提交了哪些数据，我们可以先输入一个错误的用户名和密码，便于抓包。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/7.png&#34; alt=&#34;7&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;7&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/7.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;通过分析&amp;quot;login/&amp;ldquo;这条request，我们可以知道我们所需要的一些关键信息，例如headers中的user-agent和referer，表单数据（form data）中的csrfmiddlewaretoken，login和password。显然，user-agent和referer我们可以直接复制下来，login和password是我们填写的用户名和密码。还有一个很陌生的csrfmiddlewaretoken。这是CSRF的中间件token，CSRF是Cross-Site Request Forgery，相关知识可以查询&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0&#34;&gt;跨站请求伪造的维基百科&lt;/a&gt;。那么现在我们就要分析这个token是从何而来。&lt;/p&gt;
 &lt;h4 id=&#34;获取csrfmiddlewaretoken&#34;&gt;获取csrfmiddlewaretoken&lt;/h4&gt;
 &lt;p&gt;我们将刚才获取到的csrfmiddlewaretoken复制下来，在开发者工具中使用搜索功能，可以发现这个csrfmiddlewaretoken出现在了登录之前的一些request对应的response中。例如在刚才打开登录页面，发送GET请求时，response的headers的set-cookie中出现了&amp;quot;csrftoken=&amp;hellip;&amp;ldquo;，而这里csrftoken的值与我们需要在登录表单中提交的值完全相同。因此，我们可以通过获取刚才的response中的Cookies来获取csrfmiddlewaretoken的值。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/8.png&#34; alt=&#34;8&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;8&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/8.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;首先我们通过发送GET请求来分析一下Cookies的构成&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;login_url = &amp;#34;https://leetcode.com/accounts/login/&amp;#34;
 session = requests.session()
@@ -2601,12 +2477,10 @@ for cookie in result.cookies:
     print(&amp;#34;login info: &amp;#34; + str(result))
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意如果在headers中填写了content-type的值，可能会产生一些奇怪的错误信息，并且后续不能正确地获取自己的submissions，只需要user_agent和refere的信息即可。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 智能指针（1.5）：move 语义</title>
       <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
       <pubDate>Wed, 02 Jan 2019 09:55:05 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
       <description>&lt;h1 id=&#34;c智能指针15move语义&#34;&gt;C++智能指针（1.5）：move语义&lt;/h1&gt;
 &lt;h2 id=&#34;move语义&#34;&gt;move语义&lt;/h2&gt;
@@ -2658,12 +2532,10 @@ for cookie in result.cookies:
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;返回值优化rvoreturn-value-optimisation&#34;&gt;返回值优化（RVO，Return value optimisation）&lt;/h3&gt;
 &lt;p&gt;返回值优化是一种编译器优化技术，允许编译器在调用点（&lt;a href=&#34;https://en.wikipedia.org/wiki/Call_site&#34;&gt;call site&lt;/a&gt;）直接构造函数的返回值。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 智能指针（1）：auto_ptr</title>
       <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</link>
       <pubDate>Thu, 27 Dec 2018 15:21:35 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
       <description>&lt;h1 id=&#34;c智能指针1auto_ptr&#34;&gt;C++智能指针（1）：auto_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
@@ -2709,12 +2581,10 @@ for cookie in result.cookies:
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;*/&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;产生这样的结果是因为对象创建在栈（&lt;a href=&#34;https://isocpp.org/blog/2015/09/stack-heap-pool-tony-bulldozer00-bd00-dasilva&#34;&gt;stack&lt;/a&gt;）上，编译器会自动进行对象的创建和销毁，而指针是创建在堆（heap）上，需要手动进行创建和销毁。为了规避这样的问题，我们可以封装一个智能指针类，用类来管理指针，防止造成内存泄漏，并且尽可能的模仿指针的用法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode Archiver(2)：获取题目信息</title>
       <link>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver2/</link>
       <pubDate>Fri, 21 Dec 2018 15:06:01 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver2/</guid>
       <description>&lt;h2 id=&#34;创建爬虫&#34;&gt;创建爬虫&lt;/h2&gt;
 &lt;p&gt;在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用&lt;code&gt;genspider&lt;/code&gt;命令新建一个爬虫：&lt;/p&gt;
@@ -2743,30 +2613,28 @@ class QuestionSetSpider(scrapy.Spider):
 &lt;p&gt;LeetCode使用了GraphQL进行数据的查询和传输，大部分页面都是通过JS渲染生成的动态页面，所以无法直接从页面上获取标签，即使使用提供JavaScript渲染服务的库（例如Splash）也无法获取全部的数据，所以只能通过发送请求来获取数据。&lt;/p&gt;
 &lt;p&gt;为了爬取题目的详细信息，我们首先要从题目列表进入每个题目对应的链接。&lt;/p&gt;
 &lt;p&gt;首先打开leetcode的&lt;a href=&#34;https://leetcode.com/problemset/all/&#34;&gt;problem&lt;/a&gt;列表，按F12打开Chrome的开发者工具，进入Network标签栏，勾选上Preserve log，刷新该页面。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/1.png&#34; alt=&#34;1&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;1&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/1.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;可以看到，网页向 &lt;a href=&#34;https://leetcode.com/api/problems/all/&#34;&gt;https://leetcode.com/api/problems/all/&lt;/a&gt; 发送了一个名为&amp;quot;all/&amp;ldquo;的GET类型的Request，这就是获取所有题目链接和相关信息的请求。如果此时已经安装了Toggle JavaScript插件，我们可以直接右键点击“Open in new tab”，查看该请求返回的Response。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/2.png&#34; alt=&#34;2&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;2&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/2.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;更方便的方法是使用postman向服务器发送一个相同的Request，并将其保存下来，这样如果我们下次需要查看相应的Response的时候就不需要再使用开发者工具了。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/3.png&#34; alt=&#34;3&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;3&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/3.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;返回的Response是一个json对象，其中的&amp;quot;stat_status_pairs&amp;quot;键所对应的值是所有包含题目信息的list，而列表中的[&amp;ldquo;stat&amp;rdquo;][&amp;ldquo;question__title_slug&amp;rdquo;]就是题目所在的页面。以Largest Perimeter Triangle为例，将其title_slug拼接到https://leetcode.com/problems/ 后，进入页面https://leetcode.com/problems/largest-perimeter-triangle/ 。同样地，打开开发者工具，刷新页面，可以看到服务器返回了很多项graphql的查询数据，通过查看Request Payload可以找到其中operationName为&amp;quot;questionData&amp;quot;的一项，这就是当前题目的详细信息。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/4.png&#34; alt=&#34;4&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;4&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/4.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;将Payload复制粘贴到postman的Body中，在Headers中设置Content-Type为application/json，发送请求，可以看到返回的是一个json对象，包含了该题目所对应的所有信息。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/5.png&#34; alt=&#34;5&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;5&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Use-Scrapy-to-Crawl-LeetCode/5.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;接下来我们就可以对该题目的信息进行处理了。&lt;/p&gt;
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
-&lt;p&gt;为了获取题目列表的json对象，我们需要先重写start_requests函数。&lt;/p&gt;</description>
+&lt;p&gt;为了获取题目列表的json对象，我们需要先重写start_requests函数。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;def start_requests(self):
+        self.Login() # 用户登录，后续会用到
+        questionset_url = &amp;#34;https://leetcode.com/api/problems/all/&amp;#34;
+        yield scrapy.Request(url=questionset_url, callback=self.ParseQuestionSet)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Request是scrapy的一个类对象，功能类似于requests库中的get函数，可以让scrapy框架中的Downloader向url发送一个get请求，并将获取的response交给指定的爬虫文件中的回调函数进行相应的处理，其构造函数如下&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>在Google Cloud Platform上运行Jupyter Notebook</title>
       <link>https://prov1dence.top/posts/cloud/run-jupyter-notebook-on-gcp/</link>
       <pubDate>Fri, 14 Dec 2018 17:03:12 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/cloud/run-jupyter-notebook-on-gcp/</guid>
       <description>&lt;h1 id=&#34;在google-cloud-platform上运行jupyter-notebook&#34;&gt;在Google Cloud Platform上运行Jupyter Notebook&lt;/h1&gt;
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -2776,22 +2644,17 @@ class QuestionSetSpider(scrapy.Spider):
 &lt;p&gt;首先在&lt;a href=&#34;https://cloud.google.com/&#34;&gt;Google Cloud Platform&lt;/a&gt;上创建一个账号。&lt;/p&gt;
 &lt;h3 id=&#34;创建新项目&#34;&gt;创建新项目&lt;/h3&gt;
 &lt;p&gt;点击左上角&amp;quot;Google Cloud Platform&amp;quot;右边的三个点，点击&amp;quot;NEW PROJECT&amp;quot;创建新项目。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Run-Jupyter-Notebook-on-GCP/1.png&#34; alt=&#34;1&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Run-Jupyter-Notebook-on-GCP/2.png&#34; alt=&#34;2&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;1&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Run-Jupyter-Notebook-on-GCP/1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;2&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Run-Jupyter-Notebook-on-GCP/2.png&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;创建虚拟机&#34;&gt;创建虚拟机&lt;/h3&gt;
 &lt;p&gt;进入刚才创建的项目，从左侧边栏点击 Compute Engine -&amp;gt; VM instances 进入虚拟机页面。点击Create创建一个新的虚拟机实例（VM instance）&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Run-Jupyter-Notebook-on-GCP/3.png&#34; alt=&#34;3&#34;  /&gt;
-)&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;3&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Run-Jupyter-Notebook-on-GCP/3.png&#34;&gt;)&lt;/p&gt;
 &lt;p&gt;根据需求填写和选择 Name, Region, Zone, Machine Type和Boot Disk。在 Firewall 选项中选中 Allow HTTP traffic 和 Allow HTTPS traffic, 在下方的 Disks 选项卡中取消勾选 Delete boot disk when instance is deleted。最后点击 Create，虚拟机实例就创建好了。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>LeetCode Archiver(1)：Scrapy框架和Requests库</title>
       <link>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver1/</link>
       <pubDate>Tue, 04 Dec 2018 11:25:15 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver1/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;Scrapy官方文档对Scrapy的介绍如下：&lt;/p&gt;
@@ -2799,8 +2662,7 @@ class QuestionSetSpider(scrapy.Spider):
 &lt;p&gt;简而言之，Scrapy是基于Twisted库开发的，封装了http请求、代理信息、数据存储等功能的Python爬虫框架。&lt;/p&gt;
 &lt;h2 id=&#34;组件和数据流&#34;&gt;组件和数据流&lt;/h2&gt;
 &lt;p&gt;下图是Scrapy官方文档中的架构概览图：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://scrapy-chs.readthedocs.io/zh_CN/0.24/_images/scrapy_architecture.png&#34; alt=&#34;Architecture&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Architecture&#34; loading=&#34;lazy&#34; src=&#34;https://scrapy-chs.readthedocs.io/zh_CN/0.24/_images/scrapy_architecture.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;图中绿色箭头表示&lt;a href=&#34;#head&#34;&gt;数据流&lt;/a&gt;，其他均为组件。&lt;/p&gt;
 &lt;h3 id=&#34;scrapy-engine引擎&#34;&gt;Scrapy Engine（引擎）&lt;/h3&gt;
 &lt;p&gt;引擎负责控制数据流在系统的组件中流动，并在相应动作发生时触发事件。&lt;/p&gt;
@@ -2850,12 +2712,10 @@ scrapy_project          #该项目的Python模块
         __pycache__
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;至此Scrapy项目的创建就完成了。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 基础知识整理</title>
       <link>https://prov1dence.top/posts/cpp/basics/basics/</link>
       <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/basics/basics/</guid>
       <description>&lt;h1 id=&#34;c-基础知识&#34;&gt;C++ 基础知识&lt;/h1&gt;
 &lt;h2 id=&#34;const-相关&#34;&gt;const 相关&lt;/h2&gt;
@@ -2888,21 +2748,17 @@ scrapy_project          #该项目的Python模块
 &lt;li&gt;
 &lt;p&gt;const 和类&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://prov1dence.top/posts/cloud-computing/docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://prov1dence.top/posts/cloud-computing/docker/</guid>
       <description>&lt;p&gt;查看 container 的 log file 所在的目录：&lt;code&gt;docker inspect &amp;lt;containername&amp;gt; | grep log&lt;/code&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://prov1dence.top/posts/computer-science/temp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://prov1dence.top/posts/computer-science/temp/</guid>
       <description>&lt;p&gt;Linux:&lt;/p&gt;
 &lt;p&gt;我平时的学习基本上都在Linux下完成的，我现在有两台电脑，一台iMac，一台笔记本，笔记本上就装的Linux，然后每天都会用很多指令，
@@ -2924,6 +2780,5 @@ shared_ptr：多个智能指针指向相同指针对象，在最后一个shared_
 weak_ptr：只引用，不计数，如果一个指针被一些shared_ptr和weak_ptr同时引用，当这些shared_ptr都释放掉，不管还有没有weak_ptr引用该内存，内存都会被释放，解决了循环引用&lt;/p&gt;
 &lt;p&gt;线程通信：锁（互斥锁，读写所，自旋锁，条件变量，原子变量，临界区），信号量，信号，屏障&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

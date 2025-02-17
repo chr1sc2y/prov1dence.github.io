@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>C&#43;&#43; on 尾張</title>
+    <title>C&#43;&#43; on 尾張 - @ChrisChen</title>
     <link>https://prov1dence.top/categories/c&#43;&#43;/</link>
-    <description>Recent content in C&#43;&#43; on 尾張</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in C&#43;&#43; on 尾張 - @ChrisChen</description>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Sep 2020 16:43:27 +0800</lastBuildDate><atom:link href="https://prov1dence.top/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Sep 2020 16:43:27 +0800</lastBuildDate>
+    <atom:link href="https://prov1dence.top/categories/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Effective C&#43;&#43; notes</title>
       <link>https://prov1dence.top/posts/cpp/basics/effective-cpp/</link>
       <pubDate>Thu, 24 Sep 2020 16:43:27 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/basics/effective-cpp/</guid>
       <description>&lt;h1 id=&#34;effective-c-笔记&#34;&gt;Effective C++ 笔记&lt;/h1&gt;
 &lt;h2 id=&#34;0-导言&#34;&gt;0 导言&lt;/h2&gt;
@@ -35,12 +35,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;Foo (&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// 如果 Bar 的构造函数没有被声明为 explicit，那么会调用 Bar 的构造函数构造一个成员变量 x = 2 的对象，也就是说发生了隐式类型转换；如果其构造函数被声明为 explicit，那么就不会构造出 Bar 类型的对象
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;copy 构造函数：用同类型的对象初始化新的对象，它定义了一个对象如何 pass by reference。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>boost::typeIndex 的相关探究</title>
       <link>https://prov1dence.top/posts/cpp/boost/boost-typeindex/</link>
       <pubDate>Fri, 31 Jul 2020 20:31:06 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/boost/boost-typeindex/</guid>
       <description>&lt;h2 id=&#34;boosttypeindex-的相关探究&#34;&gt;boost::typeIndex 的相关探究&lt;/h2&gt;
 &lt;p&gt;Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 &lt;code&gt;Boost::typeindex&lt;/code&gt; 的使用，但并没有讲到其实现原理。&lt;/p&gt;
@@ -78,12 +76,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Foo: 3Foo
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;std::type_info::name()&lt;/code&gt; 函数返回的字符串中，在 GCC 和 Clang 的实现里一般 i 代表 int，P 代表 pointer，K 代表 const，数字用于标识其后跟随了几个字符；我们可以将这段代码使用微软的 MSVC 编译运行，得到更加直观的输出：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>CMake 入门</title>
       <link>https://prov1dence.top/posts/cpp/compilation/cmake/</link>
       <pubDate>Sun, 21 Jun 2020 15:46:06 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/compilation/cmake/</guid>
       <description>&lt;h1 id=&#34;cmake-入门&#34;&gt;CMake 入门&lt;/h1&gt;
 &lt;h2 id=&#34;0-序&#34;&gt;0. 序&lt;/h2&gt;
@@ -119,12 +115,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我们可以直接使用一句简单的 gcc 命令来编译这个文件并执行：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>GDB 调试入门</title>
       <link>https://prov1dence.top/posts/cpp/compilation/gdb/</link>
       <pubDate>Wed, 22 Apr 2020 17:46:06 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/compilation/gdb/</guid>
       <description>&lt;h1 id=&#34;gdb-调试入门&#34;&gt;GDB 调试入门&lt;/h1&gt;
 &lt;h2 id=&#34;0-序&#34;&gt;0. 序&lt;/h2&gt;
@@ -156,12 +150,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;12-编译&#34;&gt;1.2 编译&lt;/h3&gt;
 &lt;p&gt;对于 C/C++ 程序，在使用 gcc/clang 编译的时候需要加上参数 -g，才能生成完整的调试信息并在 GDB 中调试：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>coverity 的 WRAPPER_ESCAPE 告警</title>
       <link>https://prov1dence.top/posts/cpp/basics/wrapper_escape-in-coverity/</link>
       <pubDate>Sun, 15 Mar 2020 17:24:27 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/basics/wrapper_escape-in-coverity/</guid>
       <description>&lt;h1 id=&#34;coverity-的-wrapper_escape-告警&#34;&gt;coverity 的 WRAPPER_ESCAPE 告警&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Foo&lt;/span&gt;()
@@ -184,12 +176,10 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;大意是局部变量 str_msg 在离开函数 Foo 的时候会被释放（因为 str_msg 是分配在栈上的变量），而通过函数 std::string::c_str() 获取的指向 str_msg 头部的指针会因此变为一个悬空指针，将这个悬空指针返回给函数调用者使用将会发生不可预知的行为。&lt;/p&gt;
 &lt;p&gt;而 c_str() 本身返回的是一个 const char *p，虽然我们无法直接修改指针 p 所指向的数据，但我们可以通过修改 str_msg 来达到修改 p 所指向内存的效果，例如如下的代码：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 协程（1）：函数和协程</title>
       <link>https://prov1dence.top/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</link>
       <pubDate>Mon, 20 Jan 2020 20:15:05 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</guid>
       <description>&lt;h1 id=&#34;c-协程1函数和协程&#34;&gt;C++ 协程（1）：函数和协程&lt;/h1&gt;
 &lt;p&gt;这篇文章的目的是探究 C++ 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。&lt;/p&gt;
@@ -224,12 +214,10 @@
 &lt;/ol&gt;
 &lt;p&gt;可以看到，协程可以在不清除栈帧的情况下被挂起而不被销毁，因此我们不能够使用调用栈这样的数据结构来严格保证活动栈帧的生命周期，我们可以把协程存储在堆中。我们可以把协程的栈帧分为两部分，一部分是&lt;strong&gt;执行栈帧&lt;/strong&gt;，这部分仅在当前协程执行期间存在，在执行结束，即协程 suspend 的时候被释放；另一部分是&lt;strong&gt;数据栈帧&lt;/strong&gt;，这部分即使在协程 suspend 的时候依然存在。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 智能指针（3）：shared_ptr</title>
       <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</link>
       <pubDate>Fri, 25 Jan 2019 17:47:38 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
       <description>&lt;h1 id=&#34;c智能指针3shared_ptr&#34;&gt;C++智能指针（3）：shared_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
@@ -265,12 +253,10 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;析构函数可以直接调用release函数&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 智能指针（2）：unique_ptr</title>
       <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</link>
       <pubDate>Sat, 19 Jan 2019 01:02:02 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</guid>
       <description>&lt;h1 id=&#34;c智能指针2unique_ptr&#34;&gt;C++智能指针（2）：unique_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
@@ -388,12 +374,10 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;测试&#34;&gt;测试&lt;/h2&gt;
 &lt;p&gt;尝试使用移动构造函数&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 智能指针（1.5）：move 语义</title>
       <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
       <pubDate>Wed, 02 Jan 2019 09:55:05 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
       <description>&lt;h1 id=&#34;c智能指针15move语义&#34;&gt;C++智能指针（1.5）：move语义&lt;/h1&gt;
 &lt;h2 id=&#34;move语义&#34;&gt;move语义&lt;/h2&gt;
@@ -445,12 +429,10 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;返回值优化rvoreturn-value-optimisation&#34;&gt;返回值优化（RVO，Return value optimisation）&lt;/h3&gt;
 &lt;p&gt;返回值优化是一种编译器优化技术，允许编译器在调用点（&lt;a href=&#34;https://en.wikipedia.org/wiki/Call_site&#34;&gt;call site&lt;/a&gt;）直接构造函数的返回值。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 智能指针（1）：auto_ptr</title>
       <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</link>
       <pubDate>Thu, 27 Dec 2018 15:21:35 +1100</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
       <description>&lt;h1 id=&#34;c智能指针1auto_ptr&#34;&gt;C++智能指针（1）：auto_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
@@ -496,12 +478,10 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;*/&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;产生这样的结果是因为对象创建在栈（&lt;a href=&#34;https://isocpp.org/blog/2015/09/stack-heap-pool-tony-bulldozer00-bd00-dasilva&#34;&gt;stack&lt;/a&gt;）上，编译器会自动进行对象的创建和销毁，而指针是创建在堆（heap）上，需要手动进行创建和销毁。为了规避这样的问题，我们可以封装一个智能指针类，用类来管理指针，防止造成内存泄漏，并且尽可能的模仿指针的用法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>C&#43;&#43; 基础知识整理</title>
       <link>https://prov1dence.top/posts/cpp/basics/basics/</link>
       <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/cpp/basics/basics/</guid>
       <description>&lt;h1 id=&#34;c-基础知识&#34;&gt;C++ 基础知识&lt;/h1&gt;
 &lt;h2 id=&#34;const-相关&#34;&gt;const 相关&lt;/h2&gt;
@@ -534,6 +514,5 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
 &lt;li&gt;
 &lt;p&gt;const 和类&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

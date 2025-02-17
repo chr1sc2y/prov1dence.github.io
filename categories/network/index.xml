@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Network on 尾張</title>
+    <title>Network on 尾張 - @ChrisChen</title>
     <link>https://prov1dence.top/categories/network/</link>
-    <description>Recent content in Network on 尾張</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Network on 尾張 - @ChrisChen</description>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Jan 2022 17:45:52 +0800</lastBuildDate><atom:link href="https://prov1dence.top/categories/network/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 29 Jan 2022 17:45:52 +0800</lastBuildDate>
+    <atom:link href="https://prov1dence.top/categories/network/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>《深入理解 RPC 框架原理与实现》读书笔记</title>
       <link>https://prov1dence.top/posts/network/rpc/</link>
       <pubDate>Sat, 29 Jan 2022 17:45:52 +0800</pubDate>
-      
       <guid>https://prov1dence.top/posts/network/rpc/</guid>
       <description>&lt;h1 id=&#34;深入理解-rpc-框架原理与实现读书笔记&#34;&gt;《深入理解 RPC 框架原理与实现》读书笔记&lt;/h1&gt;
 &lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
@@ -43,6 +43,5 @@
 &lt;p&gt;单 Reactor 单线程模型就是在设计中只会有一个 Reactor，并且无论与 IO 相关的读/写，还
 是与 IO 无关的编/解码或计算，都在一个 Handler 线程上完成。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

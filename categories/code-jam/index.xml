@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Code Jam on 尾張</title>
+    <title>Code Jam on 尾張 - @ChrisChen</title>
     <link>https://prov1dence.top/categories/code-jam/</link>
-    <description>Recent content in Code Jam on 尾張</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Code Jam on 尾張 - @ChrisChen</description>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 May 2019 22:02:15 +1000</lastBuildDate><atom:link href="https://prov1dence.top/categories/code-jam/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 May 2019 22:02:15 +1000</lastBuildDate>
+    <atom:link href="https://prov1dence.top/categories/code-jam/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Code Jam 2019 Round 1C</title>
       <link>https://prov1dence.top/posts/code-jam/2019-round-1c/</link>
       <pubDate>Tue, 07 May 2019 22:02:15 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/code-jam/2019-round-1c/</guid>
       <description>&lt;h1 id=&#34;code-jam-2019-round-1chttpscodingcompetitionswithgooglecomcodejamround00000000000516b9&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9&#34;&gt;Code Jam 2019 Round 1C&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;robot-programming-strategy-10pts-18ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516b90000000000134c90&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134c90&#34;&gt;Robot Programming Strategy (10pts, 18pts)&lt;/a&gt;&lt;/h2&gt;
@@ -112,12 +112,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;power-arrangers-11pts-21ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516b90000000000134e91&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134e91&#34;&gt;Power Arrangers (11pts, 21pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;// TODO&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Code Jam 2019 Round 1A</title>
       <link>https://prov1dence.top/posts/code-jam/2019-round-1a/</link>
       <pubDate>Sat, 13 Apr 2019 15:28:11 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/code-jam/2019-round-1a/</guid>
       <description>&lt;h1 id=&#34;code-jam-2019-round-1ahttpscodingcompetitionswithgooglecomcodejamround0000000000051635&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635&#34;&gt;Code Jam 2019 Round 1A&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;pylons-8pts-23ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516350000000000104e03&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104e03&#34;&gt;Pylons (8pts, 23pts)&lt;/a&gt;&lt;/h2&gt;
@@ -194,12 +192,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;alien-rhyme-10pts-27ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516350000000000104e05&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104e05&#34;&gt;Alien Rhyme (10pts, 27pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;找到后缀相同的一对单词，后缀的长度可以自己定义，其他单词的后缀不能与这一对相同，使得这样的单词对最多。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Code Jam 2019 Qualification Round</title>
       <link>https://prov1dence.top/posts/code-jam/2019-qualification-round/</link>
       <pubDate>Sat, 06 Apr 2019 13:40:27 +1000</pubDate>
-      
       <guid>https://prov1dence.top/posts/code-jam/2019-qualification-round/</guid>
       <description>&lt;h1 id=&#34;code-jam-2019-qualification-roundhttpscodingcompetitionswithgooglecomcodejamround0000000000051705&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705&#34;&gt;Code Jam 2019 Qualification Round&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;foregone-solution-6pts-10pts-1ptshttpscodingcompetitionswithgooglecomcodejamround00000000000517050000000000088231&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/0000000000088231&#34;&gt;Foregone Solution (6pts, 10pts, 1pts)&lt;/a&gt;&lt;/h2&gt;
@@ -248,6 +244,5 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;you-can-go-your-own-way-5pts-9pts-10ptshttpscodingcompetitionswithgooglecomcodejamround000000000005170500000000000881da&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/00000000000881da&#34;&gt;You Can Go Your Own Way (5pts, 9pts, 10pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;在n*n的矩阵里从(0,0)走到(n-1,n-1)，只能向右或向下走。矩阵里有一条已有的路径，不能与该路径有重合。最常规的做法是DFS/BFS，时间复杂度为O(n^2)。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
