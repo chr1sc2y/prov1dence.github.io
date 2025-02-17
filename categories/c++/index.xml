@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>C&#43;&#43; on @ChrisChen - 尾張</title>
-    <link>https://prov1dence.top/categories/c&#43;&#43;/</link>
-    <description>Recent content in C&#43;&#43; on @ChrisChen - 尾張</description>
+    <title>C&#43;&#43; on ChrisChen - 尾張</title>
+    <link>http://localhost:1313/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 24 Sep 2020 16:43:27 +0800</lastBuildDate>
-    <atom:link href="https://prov1dence.top/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Effective C&#43;&#43; notes</title>
-      <link>https://prov1dence.top/posts/cpp/basics/effective-cpp/</link>
+      <link>http://localhost:1313/posts/cpp/basics/effective-cpp/</link>
       <pubDate>Thu, 24 Sep 2020 16:43:27 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/basics/effective-cpp/</guid>
+      <guid>http://localhost:1313/posts/cpp/basics/effective-cpp/</guid>
       <description>&lt;h1 id=&#34;effective-c-笔记&#34;&gt;Effective C++ 笔记&lt;/h1&gt;
 &lt;h2 id=&#34;0-导言&#34;&gt;0 导言&lt;/h2&gt;
 &lt;h3 id=&#34;1-构造函数&#34;&gt;1 构造函数&lt;/h3&gt;
@@ -37,9 +37,9 @@
     </item>
     <item>
       <title>boost::typeIndex 的相关探究</title>
-      <link>https://prov1dence.top/posts/cpp/boost/boost-typeindex/</link>
+      <link>http://localhost:1313/posts/cpp/boost/boost-typeindex/</link>
       <pubDate>Fri, 31 Jul 2020 20:31:06 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/boost/boost-typeindex/</guid>
+      <guid>http://localhost:1313/posts/cpp/boost/boost-typeindex/</guid>
       <description>&lt;h2 id=&#34;boosttypeindex-的相关探究&#34;&gt;boost::typeIndex 的相关探究&lt;/h2&gt;
 &lt;p&gt;Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 &lt;code&gt;Boost::typeindex&lt;/code&gt; 的使用，但并没有讲到其实现原理。&lt;/p&gt;
 &lt;h2 id=&#34;1-typeidhttpsencppreferencecomwcpplanguagetypeid-操作符&#34;&gt;1. &lt;a href=&#34;https://en.cppreference.com/w/cpp/language/typeid&#34;&gt;typeid&lt;/a&gt; 操作符&lt;/h2&gt;
@@ -78,9 +78,9 @@
     </item>
     <item>
       <title>CMake 入门</title>
-      <link>https://prov1dence.top/posts/cpp/compilation/cmake/</link>
+      <link>http://localhost:1313/posts/cpp/compilation/cmake/</link>
       <pubDate>Sun, 21 Jun 2020 15:46:06 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/compilation/cmake/</guid>
+      <guid>http://localhost:1313/posts/cpp/compilation/cmake/</guid>
       <description>&lt;h1 id=&#34;cmake-入门&#34;&gt;CMake 入门&lt;/h1&gt;
 &lt;h2 id=&#34;0-序&#34;&gt;0. 序&lt;/h2&gt;
 &lt;p&gt;CMake 是一个跨平台的开源构建工具，使用 CMake 能够方便地管理依赖多个库的目录层次结构并生成 makefile 和使用 GNU make 来编译和连接程序。&lt;/p&gt;
@@ -117,9 +117,9 @@
     </item>
     <item>
       <title>GDB 调试入门</title>
-      <link>https://prov1dence.top/posts/cpp/compilation/gdb/</link>
+      <link>http://localhost:1313/posts/cpp/compilation/gdb/</link>
       <pubDate>Wed, 22 Apr 2020 17:46:06 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/compilation/gdb/</guid>
+      <guid>http://localhost:1313/posts/cpp/compilation/gdb/</guid>
       <description>&lt;h1 id=&#34;gdb-调试入门&#34;&gt;GDB 调试入门&lt;/h1&gt;
 &lt;h2 id=&#34;0-序&#34;&gt;0. 序&lt;/h2&gt;
 &lt;p&gt;调试程序是开发过程中必不可少的一环，在 Windows 或 MacOS 上开发时，可以使用 VS 和 CLion 等 IDE 上自带的调试功能来打断点或查看变量和堆栈，但 Linux 并没有图形化的操作界面，而如果只通过打 log 的方式来查找问题的话效率将会非常低下，此时我们可以利用 GDB 来提升我们的开发效率。&lt;/p&gt;
@@ -152,9 +152,9 @@
     </item>
     <item>
       <title>coverity 的 WRAPPER_ESCAPE 告警</title>
-      <link>https://prov1dence.top/posts/cpp/basics/wrapper_escape-in-coverity/</link>
+      <link>http://localhost:1313/posts/cpp/basics/wrapper_escape-in-coverity/</link>
       <pubDate>Sun, 15 Mar 2020 17:24:27 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/basics/wrapper_escape-in-coverity/</guid>
+      <guid>http://localhost:1313/posts/cpp/basics/wrapper_escape-in-coverity/</guid>
       <description>&lt;h1 id=&#34;coverity-的-wrapper_escape-告警&#34;&gt;coverity 的 WRAPPER_ESCAPE 告警&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Foo&lt;/span&gt;()
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
@@ -178,9 +178,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 协程（1）：函数和协程</title>
-      <link>https://prov1dence.top/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</link>
+      <link>http://localhost:1313/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</link>
       <pubDate>Mon, 20 Jan 2020 20:15:05 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</guid>
+      <guid>http://localhost:1313/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</guid>
       <description>&lt;h1 id=&#34;c-协程1函数和协程&#34;&gt;C++ 协程（1）：函数和协程&lt;/h1&gt;
 &lt;p&gt;这篇文章的目的是探究 C++ 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。&lt;/p&gt;
 &lt;h2 id=&#34;1-栈帧和函数&#34;&gt;1. 栈帧和函数&lt;/h2&gt;
@@ -216,9 +216,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 智能指针（3）：shared_ptr</title>
-      <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</link>
+      <link>http://localhost:1313/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</link>
       <pubDate>Fri, 25 Jan 2019 17:47:38 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
+      <guid>http://localhost:1313/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
       <description>&lt;h1 id=&#34;c智能指针3shared_ptr&#34;&gt;C++智能指针（3）：shared_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;p&gt;UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器&lt;/p&gt;
@@ -255,9 +255,9 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
     </item>
     <item>
       <title>C&#43;&#43; 智能指针（2）：unique_ptr</title>
-      <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</link>
+      <link>http://localhost:1313/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</link>
       <pubDate>Sat, 19 Jan 2019 01:02:02 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</guid>
+      <guid>http://localhost:1313/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</guid>
       <description>&lt;h1 id=&#34;c智能指针2unique_ptr&#34;&gt;C++智能指针（2）：unique_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;p&gt;在使用 AutoPointer 的时候会发生所有权转移和内存泄漏的问题，所以我们可以对 AutoPointer 类稍加修改，修复这两个问题。&lt;/p&gt;
@@ -376,9 +376,9 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
     </item>
     <item>
       <title>C&#43;&#43; 智能指针（1.5）：move 语义</title>
-      <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
+      <link>http://localhost:1313/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
       <pubDate>Wed, 02 Jan 2019 09:55:05 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
+      <guid>http://localhost:1313/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
       <description>&lt;h1 id=&#34;c智能指针15move语义&#34;&gt;C++智能指针（1.5）：move语义&lt;/h1&gt;
 &lt;h2 id=&#34;move语义&#34;&gt;move语义&lt;/h2&gt;
 &lt;h3 id=&#34;定义&#34;&gt;定义&lt;/h3&gt;
@@ -431,9 +431,9 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
     </item>
     <item>
       <title>C&#43;&#43; 智能指针（1）：auto_ptr</title>
-      <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</link>
+      <link>http://localhost:1313/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</link>
       <pubDate>Thu, 27 Dec 2018 15:21:35 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
+      <guid>http://localhost:1313/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
       <description>&lt;h1 id=&#34;c智能指针1auto_ptr&#34;&gt;C++智能指针（1）：auto_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;p&gt;C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 类&lt;/p&gt;
@@ -480,9 +480,9 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
     </item>
     <item>
       <title>C&#43;&#43; 基础知识整理</title>
-      <link>https://prov1dence.top/posts/cpp/basics/basics/</link>
+      <link>http://localhost:1313/posts/cpp/basics/basics/</link>
       <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/basics/basics/</guid>
+      <guid>http://localhost:1313/posts/cpp/basics/basics/</guid>
       <description>&lt;h1 id=&#34;c-基础知识&#34;&gt;C++ 基础知识&lt;/h1&gt;
 &lt;h2 id=&#34;const-相关&#34;&gt;const 相关&lt;/h2&gt;
 &lt;ol&gt;

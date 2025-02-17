@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Python on @ChrisChen - 尾張</title>
-    <link>https://prov1dence.top/categories/python/</link>
-    <description>Recent content in Python on @ChrisChen - 尾張</description>
+    <title>Python on ChrisChen - 尾張</title>
+    <link>http://localhost:1313/categories/python/</link>
+    <description>Recent content in Python on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 04 Aug 2021 17:38:52 +0800</lastBuildDate>
-    <atom:link href="https://prov1dence.top/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python 源码学习（5）：协程</title>
-      <link>https://prov1dence.top/posts/python/python-source-code-coroutine/</link>
+      <link>http://localhost:1313/posts/python/python-source-code-coroutine/</link>
       <pubDate>Wed, 04 Aug 2021 17:38:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/python/python-source-code-coroutine/</guid>
+      <guid>http://localhost:1313/posts/python/python-source-code-coroutine/</guid>
       <description>&lt;h1 id=&#34;python-源码学习5协程&#34;&gt;Python 源码学习（5）：协程&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;协程&lt;/strong&gt; &lt;em&gt;coroutine&lt;/em&gt; 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的&lt;strong&gt;生成器&lt;/strong&gt; &lt;em&gt;generator&lt;/em&gt; 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。&lt;/p&gt;
 &lt;h2 id=&#34;1-生成器&#34;&gt;1 生成器&lt;/h2&gt;
@@ -46,9 +46,9 @@
     </item>
     <item>
       <title>Python 源码学习（4）：编译器和虚拟机</title>
-      <link>https://prov1dence.top/posts/python/python-source-code-interpreter/</link>
+      <link>http://localhost:1313/posts/python/python-source-code-interpreter/</link>
       <pubDate>Wed, 26 May 2021 10:18:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/python/python-source-code-interpreter/</guid>
+      <guid>http://localhost:1313/posts/python/python-source-code-interpreter/</guid>
       <description>&lt;h1 id=&#34;python-源码学习4编译器和虚拟机&#34;&gt;Python 源码学习（4）：编译器和虚拟机&lt;/h1&gt;
 &lt;p&gt;Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 &lt;a href=&#34;https://github.com/python/cpython&#34;&gt;CPython&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Python 解释器&lt;/strong&gt;（&lt;em&gt;Python Interpreter&lt;/em&gt;）由 &lt;strong&gt;Python 编译器&lt;/strong&gt;（&lt;em&gt;Python Compiler&lt;/em&gt;）和 &lt;strong&gt;Python 虚拟机&lt;/strong&gt;（&lt;em&gt;Python Virutal Machine&lt;/em&gt;）两部分组成。当我们通过 Python 命令执行 Python 代码时，Python 编译器会将 Python 代码编译为 &lt;strong&gt;Python 字节码&lt;/strong&gt;（&lt;em&gt;&lt;a href=&#34;https://www.quora.com/What-is-the-difference-between-byte-code-and-machine-code-and-what-are-its-advantages&#34;&gt;bytecode&lt;/a&gt;&lt;/em&gt;）；随后 Python 虚拟机会读取并逐步执行这些字节码。&lt;/p&gt;
@@ -75,9 +75,9 @@
     </item>
     <item>
       <title>Python 源码学习（3）：list 类型</title>
-      <link>https://prov1dence.top/posts/python/source-code-3-list-and-dict/</link>
+      <link>http://localhost:1313/posts/python/source-code-3-list-and-dict/</link>
       <pubDate>Thu, 06 May 2021 20:07:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/python/source-code-3-list-and-dict/</guid>
+      <guid>http://localhost:1313/posts/python/source-code-3-list-and-dict/</guid>
       <description>&lt;h1 id=&#34;python-源码学习3list-类型&#34;&gt;Python 源码学习（3）：list 类型&lt;/h1&gt;
 &lt;p&gt;Python 中的 list 类型在源码中是一个名为 &lt;code&gt;PyListObject&lt;/code&gt; 的结构体，定义在 &lt;code&gt;listobject.h&lt;/code&gt; 文件中：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Include/cpython/listobject.h
@@ -103,9 +103,9 @@
     </item>
     <item>
       <title>Python 源码学习（2）：int 类型</title>
-      <link>https://prov1dence.top/posts/python/source-code-2/</link>
+      <link>http://localhost:1313/posts/python/source-code-2/</link>
       <pubDate>Wed, 31 Mar 2021 15:37:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/python/source-code-2/</guid>
+      <guid>http://localhost:1313/posts/python/source-code-2/</guid>
       <description>&lt;h1 id=&#34;python-源码学习2int-类型&#34;&gt;Python 源码学习（2）：int 类型&lt;/h1&gt;
 &lt;p&gt;Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 &lt;code&gt;PyBaseObject_Type&lt;/code&gt; 类型的 &lt;code&gt;PyType_Type&lt;/code&gt; 类型的实例对象，本文则主要探究 Python 中 int 类型的实现。&lt;/p&gt;
 &lt;p&gt;不同于 C 和 C++ 中的 &lt;code&gt;int&lt;/code&gt; 类型，Python 中的 &lt;code&gt;int&lt;/code&gt; 类型最大的特点是它一般是&lt;strong&gt;不会溢出&lt;/strong&gt;的，对比用 C 和 Python 分别输出两个一百万相乘的结果：&lt;/p&gt;
@@ -142,9 +142,9 @@
     </item>
     <item>
       <title>Python 源码学习（1）：类型和对象</title>
-      <link>https://prov1dence.top/posts/python/source-code-1/</link>
+      <link>http://localhost:1313/posts/python/source-code-1/</link>
       <pubDate>Sun, 14 Mar 2021 16:05:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/python/source-code-1/</guid>
+      <guid>http://localhost:1313/posts/python/source-code-1/</guid>
       <description>&lt;h1 id=&#34;python-源码学习1类型和对象&#34;&gt;Python 源码学习（1）：类型和对象&lt;/h1&gt;
 &lt;p&gt;Python 是一门解释型，动态类型，多范式的编程语言，当我们从 &lt;a href=&#34;https://www.python.org/&#34;&gt;python.org&lt;/a&gt; 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 &lt;a href=&#34;https://github.com/python/cpython&#34;&gt;CPython&lt;/a&gt;，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git clone https://github.com/python/cpython
@@ -172,9 +172,9 @@
     </item>
     <item>
       <title>LeetCode Archiver(3)： 登录</title>
-      <link>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver3/</link>
+      <link>http://localhost:1313/posts/leetcode-archiver/leetcode-archiver3/</link>
       <pubDate>Fri, 11 Jan 2019 13:15:17 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver3/</guid>
+      <guid>http://localhost:1313/posts/leetcode-archiver/leetcode-archiver3/</guid>
       <description>&lt;h2 id=&#34;cookie和session&#34;&gt;Cookie和Session&lt;/h2&gt;
 &lt;p&gt;为了获取我们自己的提交记录，我们首先要进行登录的操作。但我们都知道HTTP是一种无状态的协议，它的每个请求都是独立的。无论是GET还是POST请求，都包含了处理当前这一条请求的所有信息，但它并不会涉及到状态的变化。因此，为了在无状态的HTTP协议上维护一个持久的状态，引入了Cookie和Session的概念，两者都是为了辨识用户相关信息而储存在内存或硬盘上的加密数据。&lt;/p&gt;
 &lt;p&gt;Cookie是由客户端浏览器维护的。客户端浏览器会在需要时把Cookie保存在内存中，当其再次向该域名相关的网站发出request时，浏览器会把url和Cookie一起作为request的一部分发送给服务器。服务器通过解析该Cookie来确认用户的状态，并对Cookie的内容作出相应的修改。一般来说，如果不设置过期时间，非持久Cookie会保存在内存中，浏览器关闭后就被删除了。&lt;/p&gt;
@@ -233,9 +233,9 @@ for cookie in result.cookies:
     </item>
     <item>
       <title>LeetCode Archiver(2)：获取题目信息</title>
-      <link>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver2/</link>
+      <link>http://localhost:1313/posts/leetcode-archiver/leetcode-archiver2/</link>
       <pubDate>Fri, 21 Dec 2018 15:06:01 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver2/</guid>
+      <guid>http://localhost:1313/posts/leetcode-archiver/leetcode-archiver2/</guid>
       <description>&lt;h2 id=&#34;创建爬虫&#34;&gt;创建爬虫&lt;/h2&gt;
 &lt;p&gt;在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用&lt;code&gt;genspider&lt;/code&gt;命令新建一个爬虫：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd scrapy_project
@@ -283,9 +283,9 @@ class QuestionSetSpider(scrapy.Spider):
     </item>
     <item>
       <title>LeetCode Archiver(1)：Scrapy框架和Requests库</title>
-      <link>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver1/</link>
+      <link>http://localhost:1313/posts/leetcode-archiver/leetcode-archiver1/</link>
       <pubDate>Tue, 04 Dec 2018 11:25:15 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver1/</guid>
+      <guid>http://localhost:1313/posts/leetcode-archiver/leetcode-archiver1/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;Scrapy官方文档对Scrapy的介绍如下：&lt;/p&gt;
 &lt;p&gt;Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。&lt;br&gt;其最初是为了页面抓取（更确切来说, 网络抓取）所设计的，也可以应用在获取API所返回的数据（例如 Amazon Associates Web Services ）或者通用的网络爬虫。&lt;/p&gt;

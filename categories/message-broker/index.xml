@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Message Broker on @ChrisChen - 尾張</title>
-    <link>https://prov1dence.top/categories/message-broker/</link>
-    <description>Recent content in Message Broker on @ChrisChen - 尾張</description>
+    <title>Message Broker on ChrisChen - 尾張</title>
+    <link>http://localhost:1313/categories/message-broker/</link>
+    <description>Recent content in Message Broker on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 29 Nov 2021 23:41:52 +0800</lastBuildDate>
-    <atom:link href="https://prov1dence.top/categories/message-broker/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/message-broker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kafka 入门</title>
-      <link>https://prov1dence.top/posts/message-broker/kafka/</link>
+      <link>http://localhost:1313/posts/message-broker/kafka/</link>
       <pubDate>Mon, 29 Nov 2021 23:41:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/message-broker/kafka/</guid>
+      <guid>http://localhost:1313/posts/message-broker/kafka/</guid>
       <description>&lt;h1 id=&#34;kafka-入门&#34;&gt;Kafka 入门&lt;/h1&gt;
 &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
 &lt;p&gt;Kafka 最初是为了解决 LinkedIn 数据管道问题应运而生的。它的设计目的是提供一个高性能的消息系统，可以处理多种数据类型，并能够实时提供纯净且结构化的用户活动数据和系统度量指标。&lt;/p&gt;
