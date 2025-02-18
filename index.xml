@@ -271,14 +271,11 @@
       <link>https://prov1dence.top/about/</link>
       <pubDate>Tue, 18 Jan 2022 21:48:35 +0800</pubDate>
       <guid>https://prov1dence.top/about/</guid>
-      <description>&lt;h3 id=&#34;hi-there-&#34;&gt;Hi there 👋&lt;/h3&gt;
-&lt;p&gt;This is Chris, Software Engineer at a Start-up, previously at Amazon and Tencent.&lt;/p&gt;
-&lt;p&gt;Cheers 🍻&lt;/p&gt;
-&lt;p&gt;Checkout my resume:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://portfolio-website-resource.s3.ap-southeast-2.amazonaws.com/Resume_Zhengyu_Chen_EN.pdf&#34;&gt;English&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Simplified Chinese (Currently Not Available)&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>&lt;!-- ### Introduction --&gt;
+&lt;p&gt;Hi, I’m Chris.&lt;/p&gt;
+&lt;p&gt;Software Engineer at a fast-growing startup, formerly at Amazon and Tencent. I specialize in designing scalable cloud-native architectures and high-performance distributed systems, while leading teams to build modular and resilient applications.&lt;/p&gt;
+&lt;p&gt;Checkout my &lt;a href=&#34;https://portfolio-website-resource.s3.ap-southeast-2.amazonaws.com/Resume_Zhengyu_Chen_EN.pdf&#34;&gt;resume&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Cheers 🍻&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kafka 入门</title>
