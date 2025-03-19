@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Parallel Computing on ChrisChen - 尾張</title>
-    <link>https://prov1dence.top/categories/parallel-computing/</link>
+    <link>https://photography.prov1dence.top/categories/parallel-computing/</link>
     <description>Recent content in Parallel Computing on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 12 Aug 2020 18:32:52 +0800</lastBuildDate>
-    <atom:link href="https://prov1dence.top/categories/parallel-computing/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://photography.prov1dence.top/categories/parallel-computing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>并行计算入门</title>
-      <link>https://prov1dence.top/posts/parallel-computing/parallel-computing/</link>
+      <link>https://photography.prov1dence.top/posts/parallel-computing/parallel-computing/</link>
       <pubDate>Wed, 12 Aug 2020 18:32:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/parallel-computing/parallel-computing/</guid>
+      <guid>https://photography.prov1dence.top/posts/parallel-computing/parallel-computing/</guid>
       <description>&lt;h1 id=&#34;并行计算入门&#34;&gt;并行计算入门&lt;/h1&gt;
 &lt;h2 id=&#34;1-概述&#34;&gt;1 概述&lt;/h2&gt;
 &lt;h3 id=&#34;11-并行计算&#34;&gt;1.1 并行计算&lt;/h3&gt;

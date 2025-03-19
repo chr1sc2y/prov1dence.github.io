@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Cloud on ChrisChen - 尾張</title>
-    <link>https://prov1dence.top/categories/cloud/</link>
+    <link>https://photography.prov1dence.top/categories/cloud/</link>
     <description>Recent content in Cloud on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 21 Oct 2021 18:01:12 +0800</lastBuildDate>
-    <atom:link href="https://prov1dence.top/categories/cloud/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://photography.prov1dence.top/categories/cloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prometheus 入门</title>
-      <link>https://prov1dence.top/posts/cloud/intro-to-prometheus/</link>
+      <link>https://photography.prov1dence.top/posts/cloud/intro-to-prometheus/</link>
       <pubDate>Thu, 21 Oct 2021 18:01:12 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cloud/intro-to-prometheus/</guid>
+      <guid>https://photography.prov1dence.top/posts/cloud/intro-to-prometheus/</guid>
       <description>&lt;h1 id=&#34;prometheus-入门&#34;&gt;Prometheus 入门&lt;/h1&gt;
 &lt;p&gt;Prometheus 是一个开源的监控解决方案，也是云原生基金会 CNCF 的毕业项目，它能够提供指标数据的采集、存储、查询、告警等功能。本文主要介绍 Prometheus 的基础概念和应用中需要注意的一些问题。&lt;/p&gt;
 &lt;h2 id=&#34;1-监控系统&#34;&gt;1 监控系统&lt;/h2&gt;
@@ -42,9 +42,9 @@
     </item>
     <item>
       <title>在Google Cloud Platform上运行Jupyter Notebook</title>
-      <link>https://prov1dence.top/posts/cloud/run-jupyter-notebook-on-gcp/</link>
+      <link>https://photography.prov1dence.top/posts/cloud/run-jupyter-notebook-on-gcp/</link>
       <pubDate>Fri, 14 Dec 2018 17:03:12 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/cloud/run-jupyter-notebook-on-gcp/</guid>
+      <guid>https://photography.prov1dence.top/posts/cloud/run-jupyter-notebook-on-gcp/</guid>
       <description>&lt;h1 id=&#34;在google-cloud-platform上运行jupyter-notebook&#34;&gt;在Google Cloud Platform上运行Jupyter Notebook&lt;/h1&gt;
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;本文取材自 &lt;a href=&#34;https://towardsdatascience.com/@aankul.a&#34;&gt;Amulya Aankul&lt;/a&gt; 发布在 &lt;a href=&#34;https://medium.com/&#34;&gt;Medium&lt;/a&gt; 的 &lt;a href=&#34;https://towardsdatascience.com/running-jupyter-notebook-in-google-cloud-platform-in-15-min-61e16da34d52&#34;&gt;Running Jupyter Notebook on Google Cloud Platform in 15 min&lt;/a&gt;，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。&lt;/p&gt;

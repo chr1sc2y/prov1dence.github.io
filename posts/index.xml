@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on ChrisChen - 尾張</title>
-    <link>https://prov1dence.top/posts/</link>
+    <link>https://photography.prov1dence.top/posts/</link>
     <description>Recent content in Posts on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 01 Feb 2023 18:02:04 +1100</lastBuildDate>
-    <atom:link href="https://prov1dence.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://photography.prov1dence.top/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redis 持久化机制: RDB 和 AOF</title>
-      <link>https://prov1dence.top/posts/data/redis-%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6-rdb-%E5%92%8C-aof-72a88c70207a4518824d1fe4be7ebb9e/</link>
+      <link>https://photography.prov1dence.top/posts/data/redis-%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6-rdb-%E5%92%8C-aof-72a88c70207a4518824d1fe4be7ebb9e/</link>
       <pubDate>Wed, 01 Feb 2023 18:02:04 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/data/redis-%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6-rdb-%E5%92%8C-aof-72a88c70207a4518824d1fe4be7ebb9e/</guid>
+      <guid>https://photography.prov1dence.top/posts/data/redis-%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6-rdb-%E5%92%8C-aof-72a88c70207a4518824d1fe4be7ebb9e/</guid>
       <description>&lt;h1 id=&#34;redis-持久化机制-rdb-和-aof&#34;&gt;Redis 持久化机制: RDB 和 AOF&lt;/h1&gt;
 &lt;h1 id=&#34;redis-持久化&#34;&gt;Redis 持久化&lt;/h1&gt;
 &lt;h3 id=&#34;为什么需要持久化&#34;&gt;为什么需要持久化?&lt;/h3&gt;
@@ -31,9 +31,9 @@
     </item>
     <item>
       <title>Disaster Recovery Architecture on AWS</title>
-      <link>https://prov1dence.top/posts/disaster-recovery-architecture-on-aws/disaster-recovery-architecture-on-aws-9b3dc135d29c47acbfe19084c57035d5/</link>
+      <link>https://photography.prov1dence.top/posts/disaster-recovery-architecture-on-aws/disaster-recovery-architecture-on-aws-9b3dc135d29c47acbfe19084c57035d5/</link>
       <pubDate>Wed, 11 Jan 2023 09:55:04 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/disaster-recovery-architecture-on-aws/disaster-recovery-architecture-on-aws-9b3dc135d29c47acbfe19084c57035d5/</guid>
+      <guid>https://photography.prov1dence.top/posts/disaster-recovery-architecture-on-aws/disaster-recovery-architecture-on-aws-9b3dc135d29c47acbfe19084c57035d5/</guid>
       <description>&lt;h1 id=&#34;disaster-recovery-architecture-on-aws&#34;&gt;Disaster Recovery Architecture on AWS&lt;/h1&gt;
 &lt;p&gt;[TOC]&lt;/p&gt;
 &lt;p&gt;The downtime of software systems could have a significant impact on business, customer satisfaction, reputation, or income of the company. Thus maintaining the availability and durability must be the most crucial part of a software system. Disaster recovery (DR) helps engineers prepare for disaster events. This post summaries the architecture for DR on AWS.&lt;/p&gt;
@@ -45,9 +45,9 @@
     </item>
     <item>
       <title>Git Reference</title>
-      <link>https://prov1dence.top/posts/version-control/git/</link>
+      <link>https://photography.prov1dence.top/posts/version-control/git/</link>
       <pubDate>Thu, 31 Mar 2022 19:29:39 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/version-control/git/</guid>
+      <guid>https://photography.prov1dence.top/posts/version-control/git/</guid>
       <description>&lt;h1 id=&#34;git-reference&#34;&gt;Git Reference&lt;/h1&gt;
 &lt;p&gt;&lt;img alt=&#34;git-basic&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/version-control/git-basic.jpeg&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;head-用法&#34;&gt;HEAD 用法&lt;/h2&gt;
@@ -101,9 +101,9 @@
     </item>
     <item>
       <title>使用 Mac Mini M1 作为软路由让全家设备科学上网</title>
-      <link>https://prov1dence.top/posts/proxy/soft-router/</link>
+      <link>https://photography.prov1dence.top/posts/proxy/soft-router/</link>
       <pubDate>Sun, 27 Feb 2022 14:08:30 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/proxy/soft-router/</guid>
+      <guid>https://photography.prov1dence.top/posts/proxy/soft-router/</guid>
       <description>&lt;h1 id=&#34;使用-mac-mini-m1-作为软路由让全家设备出国&#34;&gt;使用 Mac Mini M1 作为软路由让全家设备出国&lt;/h1&gt;
 &lt;p&gt;[TOC]&lt;/p&gt;
 &lt;p&gt;本文介绍如何将功耗超低的 Mac Mini M1 改造为软路由，让局域网内连上 Wi-Fi 的所有家庭设备都可以免设置直接出国。&lt;/p&gt;
@@ -119,9 +119,9 @@
     </item>
     <item>
       <title>工作两年总结</title>
-      <link>https://prov1dence.top/posts/experience/2022/</link>
+      <link>https://photography.prov1dence.top/posts/experience/2022/</link>
       <pubDate>Tue, 22 Feb 2022 18:53:36 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/experience/2022/</guid>
+      <guid>https://photography.prov1dence.top/posts/experience/2022/</guid>
       <description>&lt;h1 id=&#34;工作两年总结&#34;&gt;工作两年总结&lt;/h1&gt;
 &lt;p&gt;2019 年参加腾讯的暑期实习面试认识了现在的总监，那段时间退租了原有的公寓寄宿在同学家里，面试当天又刚参加完 GoogleCloudOnBoard 在回去的路上，整个面试的过程非常仓促，气喘吁吁地拿着手机跟面试官打了两小时微信语音，虽然后来计划有变并没有在假期回国实习，但也因此获得了之后校招被总监直接内推到现在项目组的机会。于是后来在经历了四轮技术面试之后，某天在图书馆突然接到总监的微信语音，接着又是 HR 的沟通电话，才在回国的几个月前确定了要来深圳的天美。&lt;/p&gt;
 &lt;p&gt;两年的时间里经历了很多工作和生活上的试错和反馈，在此尝试总结和反思。&lt;/p&gt;
@@ -149,9 +149,9 @@
     </item>
     <item>
       <title>《深入理解 RPC 框架原理与实现》读书笔记</title>
-      <link>https://prov1dence.top/posts/network/rpc/</link>
+      <link>https://photography.prov1dence.top/posts/network/rpc/</link>
       <pubDate>Sat, 29 Jan 2022 17:45:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/network/rpc/</guid>
+      <guid>https://photography.prov1dence.top/posts/network/rpc/</guid>
       <description>&lt;h1 id=&#34;深入理解-rpc-框架原理与实现读书笔记&#34;&gt;《深入理解 RPC 框架原理与实现》读书笔记&lt;/h1&gt;
 &lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
 &lt;p&gt;RPC (Remote Procedure Call) 叫作远程过程调用，它是利用网络从远程计算机上请求服务：可以理解为把程序的一部分放到其他远程计算机上执行。通过网络通信将调用请求发送至远程计算机后，利用远程计算机的系统资源执行这部分程序，最终返回远程计算机上的执行结果。&lt;/p&gt;
@@ -184,9 +184,9 @@
     </item>
     <item>
       <title>2022 年初 | 后端开发两年经验社招面经</title>
-      <link>https://prov1dence.top/posts/interview/interview/</link>
+      <link>https://photography.prov1dence.top/posts/interview/interview/</link>
       <pubDate>Wed, 26 Jan 2022 15:37:36 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/interview/interview/</guid>
+      <guid>https://photography.prov1dence.top/posts/interview/interview/</guid>
       <description>&lt;h1 id=&#34;2022-年初--后端开发两年经验社招面经&#34;&gt;2022 年初 | 后端开发两年经验社招面经&lt;/h1&gt;
 &lt;h2 id=&#34;字节&#34;&gt;字节&lt;/h2&gt;
 &lt;h3 id=&#34;一面&#34;&gt;一面&lt;/h3&gt;
@@ -241,9 +241,9 @@
     </item>
     <item>
       <title>小米 AX1800 使用 ShellClash 科学上网</title>
-      <link>https://prov1dence.top/posts/proxy/ax1800/</link>
+      <link>https://photography.prov1dence.top/posts/proxy/ax1800/</link>
       <pubDate>Tue, 18 Jan 2022 22:29:36 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/proxy/ax1800/</guid>
+      <guid>https://photography.prov1dence.top/posts/proxy/ax1800/</guid>
       <description>&lt;h1 id=&#34;小米-ax1800-使用-shellclash-科学上网&#34;&gt;小米 AX1800 使用 ShellClash 科学上网&lt;/h1&gt;
 &lt;p&gt;本文介绍如何在小米 AX1800 上使用 ShellClash 科学上网。&lt;/p&gt;
 &lt;h2 id=&#34;1-固件降级&#34;&gt;1 固件降级&lt;/h2&gt;
@@ -268,9 +268,9 @@
     </item>
     <item>
       <title>Kafka 入门</title>
-      <link>https://prov1dence.top/posts/message-broker/kafka/</link>
+      <link>https://photography.prov1dence.top/posts/message-broker/kafka/</link>
       <pubDate>Mon, 29 Nov 2021 23:41:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/message-broker/kafka/</guid>
+      <guid>https://photography.prov1dence.top/posts/message-broker/kafka/</guid>
       <description>&lt;h1 id=&#34;kafka-入门&#34;&gt;Kafka 入门&lt;/h1&gt;
 &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
 &lt;p&gt;Kafka 最初是为了解决 LinkedIn 数据管道问题应运而生的。它的设计目的是提供一个高性能的消息系统，可以处理多种数据类型，并能够实时提供纯净且结构化的用户活动数据和系统度量指标。&lt;/p&gt;
@@ -312,9 +312,9 @@
     </item>
     <item>
       <title>Prometheus 入门</title>
-      <link>https://prov1dence.top/posts/cloud/intro-to-prometheus/</link>
+      <link>https://photography.prov1dence.top/posts/cloud/intro-to-prometheus/</link>
       <pubDate>Thu, 21 Oct 2021 18:01:12 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cloud/intro-to-prometheus/</guid>
+      <guid>https://photography.prov1dence.top/posts/cloud/intro-to-prometheus/</guid>
       <description>&lt;h1 id=&#34;prometheus-入门&#34;&gt;Prometheus 入门&lt;/h1&gt;
 &lt;p&gt;Prometheus 是一个开源的监控解决方案，也是云原生基金会 CNCF 的毕业项目，它能够提供指标数据的采集、存储、查询、告警等功能。本文主要介绍 Prometheus 的基础概念和应用中需要注意的一些问题。&lt;/p&gt;
 &lt;h2 id=&#34;1-监控系统&#34;&gt;1 监控系统&lt;/h2&gt;
@@ -344,9 +344,9 @@
     </item>
     <item>
       <title>Python 源码学习（5）：协程</title>
-      <link>https://prov1dence.top/posts/python/python-source-code-coroutine/</link>
+      <link>https://photography.prov1dence.top/posts/python/python-source-code-coroutine/</link>
       <pubDate>Wed, 04 Aug 2021 17:38:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/python/python-source-code-coroutine/</guid>
+      <guid>https://photography.prov1dence.top/posts/python/python-source-code-coroutine/</guid>
       <description>&lt;h1 id=&#34;python-源码学习5协程&#34;&gt;Python 源码学习（5）：协程&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;协程&lt;/strong&gt; &lt;em&gt;coroutine&lt;/em&gt; 是一种用户态的轻量级线程，它可以在函数的特定位置暂停或恢复，同时调用者可以从协程中获取状态或将状态传递给协程；Python中的&lt;strong&gt;生成器&lt;/strong&gt; &lt;em&gt;generator&lt;/em&gt; 就是一个典型的协程应用，本文简单地对 Python 中生成器的实现进行分析。&lt;/p&gt;
 &lt;h2 id=&#34;1-生成器&#34;&gt;1 生成器&lt;/h2&gt;
@@ -380,9 +380,9 @@
     </item>
     <item>
       <title>Python 源码学习（4）：编译器和虚拟机</title>
-      <link>https://prov1dence.top/posts/python/python-source-code-interpreter/</link>
+      <link>https://photography.prov1dence.top/posts/python/python-source-code-interpreter/</link>
       <pubDate>Wed, 26 May 2021 10:18:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/python/python-source-code-interpreter/</guid>
+      <guid>https://photography.prov1dence.top/posts/python/python-source-code-interpreter/</guid>
       <description>&lt;h1 id=&#34;python-源码学习4编译器和虚拟机&#34;&gt;Python 源码学习（4）：编译器和虚拟机&lt;/h1&gt;
 &lt;p&gt;Python 是一种解释型语言，一般在使用前我们会从 Python 官方网站上下载使用 C 语言开发编译的 CPython 解释器，本文用到的源码均来自 &lt;a href=&#34;https://github.com/python/cpython&#34;&gt;CPython&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Python 解释器&lt;/strong&gt;（&lt;em&gt;Python Interpreter&lt;/em&gt;）由 &lt;strong&gt;Python 编译器&lt;/strong&gt;（&lt;em&gt;Python Compiler&lt;/em&gt;）和 &lt;strong&gt;Python 虚拟机&lt;/strong&gt;（&lt;em&gt;Python Virutal Machine&lt;/em&gt;）两部分组成。当我们通过 Python 命令执行 Python 代码时，Python 编译器会将 Python 代码编译为 &lt;strong&gt;Python 字节码&lt;/strong&gt;（&lt;em&gt;&lt;a href=&#34;https://www.quora.com/What-is-the-difference-between-byte-code-and-machine-code-and-what-are-its-advantages&#34;&gt;bytecode&lt;/a&gt;&lt;/em&gt;）；随后 Python 虚拟机会读取并逐步执行这些字节码。&lt;/p&gt;
@@ -409,9 +409,9 @@
     </item>
     <item>
       <title>Python 源码学习（3）：list 类型</title>
-      <link>https://prov1dence.top/posts/python/source-code-3-list-and-dict/</link>
+      <link>https://photography.prov1dence.top/posts/python/source-code-3-list-and-dict/</link>
       <pubDate>Thu, 06 May 2021 20:07:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/python/source-code-3-list-and-dict/</guid>
+      <guid>https://photography.prov1dence.top/posts/python/source-code-3-list-and-dict/</guid>
       <description>&lt;h1 id=&#34;python-源码学习3list-类型&#34;&gt;Python 源码学习（3）：list 类型&lt;/h1&gt;
 &lt;p&gt;Python 中的 list 类型在源码中是一个名为 &lt;code&gt;PyListObject&lt;/code&gt; 的结构体，定义在 &lt;code&gt;listobject.h&lt;/code&gt; 文件中：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Include/cpython/listobject.h
@@ -437,9 +437,9 @@
     </item>
     <item>
       <title>ProtoBuf 语法和编码原理入门</title>
-      <link>https://prov1dence.top/posts/serialization/protocol-buffer/</link>
+      <link>https://photography.prov1dence.top/posts/serialization/protocol-buffer/</link>
       <pubDate>Mon, 26 Apr 2021 21:44:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/serialization/protocol-buffer/</guid>
+      <guid>https://photography.prov1dence.top/posts/serialization/protocol-buffer/</guid>
       <description>&lt;h1 id=&#34;protobuf-语法和编码原理入门&#34;&gt;ProtoBuf 语法和编码原理入门&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Serialization&#34;&gt;序列化&lt;/a&gt;是指将结构化数据转换成易于存储或发送的数据格式的过程，Protocol Buffer 简称 ProtoBuf，是一种语言无关，平台无关的序列化工具，由谷歌在 2008 年开源。相较于常见的序列化工具 &lt;a href=&#34;https://en.wikipedia.org/wiki/XML&#34;&gt;XML&lt;/a&gt;, JSON, YAML, CSV 等，ProtoBuf 的优势主要包括序列化后&lt;strong&gt;数据量小&lt;/strong&gt;，序列化和反序列化过程&lt;strong&gt;速度快&lt;/strong&gt;，使用时只需定义 proto 文件使得其&lt;strong&gt;维护成本低&lt;/strong&gt;，可&lt;strong&gt;向后兼容&lt;/strong&gt;等；但因为其数据以二进制数据流的形式存在，也有&lt;strong&gt;人类不可读&lt;/strong&gt;的劣势。&lt;/p&gt;
 &lt;p&gt;本文主要介绍 ProtoBuf 的使用方法，包括 .proto 文件的语法，以及如何使用 protoc 工具来生成不通语言的代码；以及其编码原理。&lt;/p&gt;
@@ -476,9 +476,9 @@
     </item>
     <item>
       <title>Python 源码学习（2）：int 类型</title>
-      <link>https://prov1dence.top/posts/python/source-code-2/</link>
+      <link>https://photography.prov1dence.top/posts/python/source-code-2/</link>
       <pubDate>Wed, 31 Mar 2021 15:37:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/python/source-code-2/</guid>
+      <guid>https://photography.prov1dence.top/posts/python/source-code-2/</guid>
       <description>&lt;h1 id=&#34;python-源码学习2int-类型&#34;&gt;Python 源码学习（2）：int 类型&lt;/h1&gt;
 &lt;p&gt;Python 中的标准数据类型有六种，分别是 number, string, list, tuple, set, dictionary，前文已经阐述过它们的对象类型都是继承了 &lt;code&gt;PyBaseObject_Type&lt;/code&gt; 类型的 &lt;code&gt;PyType_Type&lt;/code&gt; 类型的实例对象，本文则主要探究 Python 中 int 类型的实现。&lt;/p&gt;
 &lt;p&gt;不同于 C 和 C++ 中的 &lt;code&gt;int&lt;/code&gt; 类型，Python 中的 &lt;code&gt;int&lt;/code&gt; 类型最大的特点是它一般是&lt;strong&gt;不会溢出&lt;/strong&gt;的，对比用 C 和 Python 分别输出两个一百万相乘的结果：&lt;/p&gt;
@@ -515,9 +515,9 @@
     </item>
     <item>
       <title>Python 源码学习（1）：类型和对象</title>
-      <link>https://prov1dence.top/posts/python/source-code-1/</link>
+      <link>https://photography.prov1dence.top/posts/python/source-code-1/</link>
       <pubDate>Sun, 14 Mar 2021 16:05:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/python/source-code-1/</guid>
+      <guid>https://photography.prov1dence.top/posts/python/source-code-1/</guid>
       <description>&lt;h1 id=&#34;python-源码学习1类型和对象&#34;&gt;Python 源码学习（1）：类型和对象&lt;/h1&gt;
 &lt;p&gt;Python 是一门解释型，动态类型，多范式的编程语言，当我们从 &lt;a href=&#34;https://www.python.org/&#34;&gt;python.org&lt;/a&gt; 下载并安装运行 Python 的某个分发版本时，我们实际上是在运行由 C 语言编写的 &lt;a href=&#34;https://github.com/python/cpython&#34;&gt;CPython&lt;/a&gt;，除此之外 Python 的运行时还有 Jython, PyPy, Cython 等；CPython 的源码中有一系列的库，组件和工具：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git clone https://github.com/python/cpython
@@ -545,9 +545,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 智能指针的简单实现</title>
-      <link>https://prov1dence.top/posts/cpp/smart-pointer/smart-pointer/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/smart-pointer/smart-pointer/</link>
       <pubDate>Sun, 21 Feb 2021 21:20:18 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/smart-pointer/smart-pointer/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/smart-pointer/smart-pointer/</guid>
       <description>&lt;h1 id=&#34;c-智能指针的简单实现&#34;&gt;C++ 智能指针的简单实现&lt;/h1&gt;
 &lt;h2 id=&#34;1-stdauto_ptr&#34;&gt;1 std::auto_ptr&lt;/h2&gt;
 &lt;p&gt;C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类：&lt;/p&gt;
@@ -576,9 +576,9 @@
     </item>
     <item>
       <title>启发式搜索和强化学习</title>
-      <link>https://prov1dence.top/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</link>
+      <link>https://photography.prov1dence.top/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</link>
       <pubDate>Thu, 10 Dec 2020 20:07:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</guid>
+      <guid>https://photography.prov1dence.top/posts/reinforcement-learning/heuristic-search-and-reinforcement-learning/</guid>
       <description>&lt;h1 id=&#34;启发式搜索和强化学习&#34;&gt;启发式搜索和强化学习&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://inst.eecs.berkeley.edu/~cs188/fa18/projects.html&#34;&gt;The Pac-Man Projects&lt;/a&gt; 是 UC Berkeley CS 188 的课程项目，本文以该项目为例介绍启发式搜索和强化学习。&lt;/p&gt;
 &lt;h2 id=&#34;1-盲目搜索&#34;&gt;1 盲目搜索&lt;/h2&gt;
@@ -605,9 +605,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 闭包和匿名函数</title>
-      <link>https://prov1dence.top/posts/cpp/closure-and-anonymous-function/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/closure-and-anonymous-function/</link>
       <pubDate>Sat, 14 Nov 2020 21:20:18 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/closure-and-anonymous-function/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/closure-and-anonymous-function/</guid>
       <description>&lt;h1 id=&#34;c-闭包和匿名函数&#34;&gt;C++ 闭包和匿名函数&lt;/h1&gt;
 &lt;p&gt;本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。&lt;/p&gt;
 &lt;h2 id=&#34;1-闭包和仿函数&#34;&gt;1 闭包和仿函数&lt;/h2&gt;
@@ -648,9 +648,9 @@
     </item>
     <item>
       <title>负载均衡和一致性哈希</title>
-      <link>https://prov1dence.top/posts/service-governance/load-balancing/</link>
+      <link>https://photography.prov1dence.top/posts/service-governance/load-balancing/</link>
       <pubDate>Sun, 25 Oct 2020 23:06:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/service-governance/load-balancing/</guid>
+      <guid>https://photography.prov1dence.top/posts/service-governance/load-balancing/</guid>
       <description>&lt;h1 id=&#34;负载均衡和一致性哈希&#34;&gt;负载均衡和一致性哈希&lt;/h1&gt;
 &lt;p&gt;反向代理 reverse proxy 是指以代理服务器来接收由客户端发送来的请求，并通过一定的策略将其转变发给实际处理请求的后端服务器；主要应用于负载均衡、动态缓存、安全认证、内网穿透、SSL 加密等；而负载均衡 load balancing 是指在多个 slot（槽，一般是某种计算资源）中分配负载，以优化资源利用率和避免单点故障问题的方法，是高可用性分布式系统的必备中间件；常用的开源 load balancer 有 nginx，LVS，Haproxy 等；负载均衡可以视为反向代理的一种应用，负载均衡的方法大致可以分为传统负载均衡算法和哈希算法两种，本文简单地总结了这些算法的原理。&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;reveser-proxy&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/reverse-proxy/reverse-proxy.png&#34;&gt;&lt;/p&gt;
@@ -675,9 +675,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 并发入门：以 LeetCode 1114 为例</title>
-      <link>https://prov1dence.top/posts/cpp/concurrency/introduction-to-concurrency/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/concurrency/introduction-to-concurrency/</link>
       <pubDate>Wed, 30 Sep 2020 16:20:25 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/concurrency/introduction-to-concurrency/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/concurrency/introduction-to-concurrency/</guid>
       <description>&lt;h1 id=&#34;c-并发入门以-leetcode-1114-为例&#34;&gt;C++ 并发入门：以 LeetCode 1114 为例&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;直接做题：&lt;a href=&#34;https://leetcode.com/problems/print-in-order/&#34;&gt;1114 按序打印&lt;/a&gt;&lt;/p&gt;
@@ -713,9 +713,9 @@
     </item>
     <item>
       <title>Effective C&#43;&#43; notes</title>
-      <link>https://prov1dence.top/posts/cpp/basics/effective-cpp/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/basics/effective-cpp/</link>
       <pubDate>Thu, 24 Sep 2020 16:43:27 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/basics/effective-cpp/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/basics/effective-cpp/</guid>
       <description>&lt;h1 id=&#34;effective-c-笔记&#34;&gt;Effective C++ 笔记&lt;/h1&gt;
 &lt;h2 id=&#34;0-导言&#34;&gt;0 导言&lt;/h2&gt;
 &lt;h3 id=&#34;1-构造函数&#34;&gt;1 构造函数&lt;/h3&gt;
@@ -740,9 +740,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 单例模式的模板实现</title>
-      <link>https://prov1dence.top/posts/design-pattern/c&#43;&#43;-template-singleton/</link>
+      <link>https://photography.prov1dence.top/posts/design-pattern/c&#43;&#43;-template-singleton/</link>
       <pubDate>Thu, 10 Sep 2020 21:25:43 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/design-pattern/c&#43;&#43;-template-singleton/</guid>
+      <guid>https://photography.prov1dence.top/posts/design-pattern/c&#43;&#43;-template-singleton/</guid>
       <description>&lt;h1 id=&#34;c-单例模式的模板实现&#34;&gt;C++ 单例模式的模板实现&lt;/h1&gt;
 &lt;p&gt;单例模式是一种创建型的设计模式（creational design patterns），使用单例模式进行设计的类在程序中只拥有一个实例（single instance），这个类称为单例类，它会提供一个全局的访问入口（global access point），关于单例模式的讨论可以参考&lt;a href=&#34;http://www.italiancpp.org/2017/03/19/singleton-revisited-eng/&#34;&gt;Singleton revisited&lt;/a&gt;；基于这两个特点，单例模式可以有以下几种实现：&lt;/p&gt;
 &lt;h2 id=&#34;meyers-singleton&#34;&gt;Meyer’s Singleton&lt;/h2&gt;
@@ -773,9 +773,9 @@
     </item>
     <item>
       <title>并行计算入门</title>
-      <link>https://prov1dence.top/posts/parallel-computing/parallel-computing/</link>
+      <link>https://photography.prov1dence.top/posts/parallel-computing/parallel-computing/</link>
       <pubDate>Wed, 12 Aug 2020 18:32:52 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/parallel-computing/parallel-computing/</guid>
+      <guid>https://photography.prov1dence.top/posts/parallel-computing/parallel-computing/</guid>
       <description>&lt;h1 id=&#34;并行计算入门&#34;&gt;并行计算入门&lt;/h1&gt;
 &lt;h2 id=&#34;1-概述&#34;&gt;1 概述&lt;/h2&gt;
 &lt;h3 id=&#34;11-并行计算&#34;&gt;1.1 并行计算&lt;/h3&gt;
@@ -804,9 +804,9 @@
     </item>
     <item>
       <title>boost::typeIndex 的相关探究</title>
-      <link>https://prov1dence.top/posts/cpp/boost/boost-typeindex/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/boost/boost-typeindex/</link>
       <pubDate>Fri, 31 Jul 2020 20:31:06 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/boost/boost-typeindex/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/boost/boost-typeindex/</guid>
       <description>&lt;h2 id=&#34;boosttypeindex-的相关探究&#34;&gt;boost::typeIndex 的相关探究&lt;/h2&gt;
 &lt;p&gt;Effective Modern C++ 的 Item 4: Know how to view deduced types. 中提到了 &lt;code&gt;Boost::typeindex&lt;/code&gt; 的使用，但并没有讲到其实现原理。&lt;/p&gt;
 &lt;h2 id=&#34;1-typeidhttpsencppreferencecomwcpplanguagetypeid-操作符&#34;&gt;1. &lt;a href=&#34;https://en.cppreference.com/w/cpp/language/typeid&#34;&gt;typeid&lt;/a&gt; 操作符&lt;/h2&gt;
@@ -845,9 +845,9 @@
     </item>
     <item>
       <title>CMake 入门</title>
-      <link>https://prov1dence.top/posts/cpp/compilation/cmake/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/compilation/cmake/</link>
       <pubDate>Sun, 21 Jun 2020 15:46:06 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/compilation/cmake/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/compilation/cmake/</guid>
       <description>&lt;h1 id=&#34;cmake-入门&#34;&gt;CMake 入门&lt;/h1&gt;
 &lt;h2 id=&#34;0-序&#34;&gt;0. 序&lt;/h2&gt;
 &lt;p&gt;CMake 是一个跨平台的开源构建工具，使用 CMake 能够方便地管理依赖多个库的目录层次结构并生成 makefile 和使用 GNU make 来编译和连接程序。&lt;/p&gt;
@@ -884,9 +884,9 @@
     </item>
     <item>
       <title>GDB 调试入门</title>
-      <link>https://prov1dence.top/posts/cpp/compilation/gdb/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/compilation/gdb/</link>
       <pubDate>Wed, 22 Apr 2020 17:46:06 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/compilation/gdb/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/compilation/gdb/</guid>
       <description>&lt;h1 id=&#34;gdb-调试入门&#34;&gt;GDB 调试入门&lt;/h1&gt;
 &lt;h2 id=&#34;0-序&#34;&gt;0. 序&lt;/h2&gt;
 &lt;p&gt;调试程序是开发过程中必不可少的一环，在 Windows 或 MacOS 上开发时，可以使用 VS 和 CLion 等 IDE 上自带的调试功能来打断点或查看变量和堆栈，但 Linux 并没有图形化的操作界面，而如果只通过打 log 的方式来查找问题的话效率将会非常低下，此时我们可以利用 GDB 来提升我们的开发效率。&lt;/p&gt;
@@ -919,9 +919,9 @@
     </item>
     <item>
       <title>coverity 的 WRAPPER_ESCAPE 告警</title>
-      <link>https://prov1dence.top/posts/cpp/basics/wrapper_escape-in-coverity/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/basics/wrapper_escape-in-coverity/</link>
       <pubDate>Sun, 15 Mar 2020 17:24:27 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/basics/wrapper_escape-in-coverity/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/basics/wrapper_escape-in-coverity/</guid>
       <description>&lt;h1 id=&#34;coverity-的-wrapper_escape-告警&#34;&gt;coverity 的 WRAPPER_ESCAPE 告警&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Foo&lt;/span&gt;()
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
@@ -945,9 +945,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 协程（1）：函数和协程</title>
-      <link>https://prov1dence.top/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</link>
       <pubDate>Mon, 20 Jan 2020 20:15:05 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/coroutine/c&#43;&#43;-coroutine---function-and-coroutine/</guid>
       <description>&lt;h1 id=&#34;c-协程1函数和协程&#34;&gt;C++ 协程（1）：函数和协程&lt;/h1&gt;
 &lt;p&gt;这篇文章的目的是探究 C++ 中协程的机制和用法，以及怎样利用协程的特性来构建上层的库和应用。&lt;/p&gt;
 &lt;h2 id=&#34;1-栈帧和函数&#34;&gt;1. 栈帧和函数&lt;/h2&gt;
@@ -983,9 +983,9 @@
     </item>
     <item>
       <title>LeetCode 树（3）</title>
-      <link>https://prov1dence.top/posts/leetcode/tree-3/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/tree-3/</link>
       <pubDate>Sat, 24 Aug 2019 19:12:25 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/tree-3/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/tree-3/</guid>
       <description>&lt;h1 id=&#34;leetcode-树3httpsleetcode-cncomtagtree&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/tree/&#34;&gt;LeetCode 树（3）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;4-递归求解&#34;&gt;4. 递归求解&lt;/h3&gt;
@@ -1026,9 +1026,9 @@
     </item>
     <item>
       <title>LeetCode 排序</title>
-      <link>https://prov1dence.top/posts/leetcode/sort/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/sort/</link>
       <pubDate>Sat, 17 Aug 2019 19:12:25 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/sort/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/sort/</guid>
       <description>&lt;h1 id=&#34;leetcode-排序httpsleetcode-cncomtagsort&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/sort/&#34;&gt;LeetCode 排序&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h4 id=&#34;56-合并区间httpsleetcode-cncomproblemsmerge-intervals&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/merge-intervals/&#34;&gt;56 合并区间&lt;/a&gt;&lt;/h4&gt;
@@ -1060,9 +1060,9 @@
     </item>
     <item>
       <title>LeetCode 堆</title>
-      <link>https://prov1dence.top/posts/leetcode/heap/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/heap/</link>
       <pubDate>Mon, 05 Aug 2019 19:12:25 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/heap/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/heap/</guid>
       <description>&lt;h1 id=&#34;leetcode-堆httpsleetcode-cncomtagheap&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/heap/&#34;&gt;LeetCode 堆&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h4 id=&#34;215-数组中的第-k-个最大元素httpsleetcode-cncomproblemskth-largest-element-in-an-array&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/kth-largest-element-in-an-array/&#34;&gt;215 数组中的第 K 个最大元素&lt;/a&gt;&lt;/h4&gt;
@@ -1108,9 +1108,9 @@
     </item>
     <item>
       <title>LeetCode 双指针</title>
-      <link>https://prov1dence.top/posts/leetcode/twopointers/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/twopointers/</link>
       <pubDate>Wed, 31 Jul 2019 19:12:25 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/twopointers/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/twopointers/</guid>
       <description>&lt;h1 id=&#34;leetcode-dfshttpsleetcode-cncomtagtwo-pointers&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/two-pointers/&#34;&gt;LeetCode DFS&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h4 id=&#34;26-删除排序数组中的重复项httpsleetcode-cncomproblemsremove-duplicates-from-sorted-array&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/&#34;&gt;26 删除排序数组中的重复项&lt;/a&gt;&lt;/h4&gt;
@@ -1157,9 +1157,9 @@
     </item>
     <item>
       <title>LeetCode 深度优先搜索</title>
-      <link>https://prov1dence.top/posts/leetcode/dfs/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/dfs/</link>
       <pubDate>Sat, 27 Jul 2019 12:12:25 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/dfs/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/dfs/</guid>
       <description>&lt;h1 id=&#34;leetcode-dfshttpsleetcode-cncomtagdepth-first-search&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/depth-first-search/&#34;&gt;LeetCode DFS&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h4 id=&#34;78-子集httpsleetcode-cncomproblemssubsets&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/subsets/&#34;&gt;78 子集&lt;/a&gt;&lt;/h4&gt;
@@ -1188,9 +1188,9 @@
     </item>
     <item>
       <title>LeetCode 并发</title>
-      <link>https://prov1dence.top/posts/leetcode/concurrency/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/concurrency/</link>
       <pubDate>Mon, 22 Jul 2019 10:10:25 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/concurrency/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/concurrency/</guid>
       <description>&lt;h1 id=&#34;leetcode-并发httpsleetcode-cncomproblemsetconcurrency&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/concurrency/&#34;&gt;LeetCode 并发&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h4 id=&#34;1114-按序打印httpsleetcode-cncomproblemsprint-in-order&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/print-in-order/&#34;&gt;1114 按序打印&lt;/a&gt;&lt;/h4&gt;
@@ -1488,9 +1488,9 @@
     </item>
     <item>
       <title>LeetCode 树（2）</title>
-      <link>https://prov1dence.top/posts/leetcode/tree-2/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/tree-2/</link>
       <pubDate>Thu, 18 Jul 2019 19:12:25 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/tree-2/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/tree-2/</guid>
       <description>&lt;h1 id=&#34;leetcode-树2httpsleetcode-cncomtagtree&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/tree/&#34;&gt;LeetCode 树（2）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;3-二叉搜索树&#34;&gt;3. 二叉搜索树&lt;/h3&gt;
@@ -1531,9 +1531,9 @@
     </item>
     <item>
       <title>LeetCode 树（1）</title>
-      <link>https://prov1dence.top/posts/leetcode/tree-1/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/tree-1/</link>
       <pubDate>Sat, 13 Jul 2019 19:12:25 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/tree-1/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/tree-1/</guid>
       <description>&lt;h1 id=&#34;leetcode-树1httpsleetcode-cncomtagtree&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/tree/&#34;&gt;LeetCode 树（1）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;1-树的遍历&#34;&gt;1. 树的遍历&lt;/h3&gt;
@@ -1582,9 +1582,9 @@
     </item>
     <item>
       <title>LeetCode 链表（2）</title>
-      <link>https://prov1dence.top/posts/leetcode/linkedlist-2/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/linkedlist-2/</link>
       <pubDate>Tue, 09 Jul 2019 19:12:25 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/linkedlist-2/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/linkedlist-2/</guid>
       <description>&lt;h1 id=&#34;leetcode-链表2httpsleetcode-cncomtaglinked-list&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/linked-list/&#34;&gt;LeetCode 链表（2）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;4-双指针&#34;&gt;4. 双指针&lt;/h3&gt;
@@ -1615,9 +1615,9 @@
     </item>
     <item>
       <title>LeetCode 链表（1）</title>
-      <link>https://prov1dence.top/posts/leetcode/linkedlist-1/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/linkedlist-1/</link>
       <pubDate>Thu, 04 Jul 2019 19:12:25 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/linkedlist-1/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/linkedlist-1/</guid>
       <description>&lt;h1 id=&#34;leetcode-链表1httpsleetcode-cncomtaglinked-list&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/linked-list/&#34;&gt;LeetCode 链表（1）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;1-常规题&#34;&gt;1. 常规题&lt;/h3&gt;
@@ -1655,9 +1655,9 @@
     </item>
     <item>
       <title>LeetCode 动态规划（3）</title>
-      <link>https://prov1dence.top/posts/leetcode/dynamicprogramming-3/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-3/</link>
       <pubDate>Mon, 01 Jul 2019 18:22:45 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/dynamicprogramming-3/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-3/</guid>
       <description>&lt;h1 id=&#34;leetcode-动态规划httpsleetcode-cncomproblemsetallsearche4b891e695b0&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0&#34;&gt;LeetCode 动态规划&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;6-字符串相关&#34;&gt;6. 字符串相关&lt;/h3&gt;
@@ -1687,9 +1687,9 @@
     </item>
     <item>
       <title>LeetCode 动态规划（2）</title>
-      <link>https://prov1dence.top/posts/leetcode/dynamicprogramming-2/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-2/</link>
       <pubDate>Fri, 28 Jun 2019 10:09:13 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/dynamicprogramming-2/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-2/</guid>
       <description>&lt;h1 id=&#34;leetcode-动态规划httpsleetcode-cncomproblemsetallsearche4b891e695b0&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0&#34;&gt;LeetCode 动态规划&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;3-数组相关&#34;&gt;3. 数组相关&lt;/h3&gt;
@@ -1717,9 +1717,9 @@
     </item>
     <item>
       <title>LeetCode 动态规划（1）</title>
-      <link>https://prov1dence.top/posts/leetcode/dynamicprogramming-1/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-1/</link>
       <pubDate>Wed, 26 Jun 2019 18:08:10 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/dynamicprogramming-1/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-1/</guid>
       <description>&lt;h1 id=&#34;leetcode-动态规划httpsleetcode-cncomproblemsetallsearche4b891e695b0&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0&#34;&gt;LeetCode 动态规划&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;1-数字相关&#34;&gt;1. 数字相关&lt;/h3&gt;
@@ -1767,9 +1767,9 @@
     </item>
     <item>
       <title>LeetCode 二分查找</title>
-      <link>https://prov1dence.top/posts/leetcode/binarysearch/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/binarysearch/</link>
       <pubDate>Sun, 23 Jun 2019 19:26:39 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/binarysearch/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/binarysearch/</guid>
       <description>&lt;h1 id=&#34;leetcode-二分查找httpsleetcode-cncomtagbinary-search&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/binary-search/&#34;&gt;LeetCode 二分查找&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。&lt;/p&gt;
 &lt;h2 id=&#34;易错点&#34;&gt;易错点&lt;/h2&gt;
@@ -1803,9 +1803,9 @@
     </item>
     <item>
       <title>LeetCode 位运算</title>
-      <link>https://prov1dence.top/posts/leetcode/bitmanipulation/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode/bitmanipulation/</link>
       <pubDate>Wed, 19 Jun 2019 19:26:39 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode/bitmanipulation/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode/bitmanipulation/</guid>
       <description>&lt;h1 id=&#34;leetcode-位运算httpsleetcode-cncomtagbit-manipulation&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/bit-manipulation/&#34;&gt;LeetCode 位运算&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;位运算包括：&lt;/p&gt;
 &lt;ol&gt;
@@ -1849,9 +1849,9 @@
     </item>
     <item>
       <title>Kick Start 2019 Round C</title>
-      <link>https://prov1dence.top/posts/kick-start/2019-round-c/</link>
+      <link>https://photography.prov1dence.top/posts/kick-start/2019-round-c/</link>
       <pubDate>Sun, 26 May 2019 23:29:45 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/kick-start/2019-round-c/</guid>
+      <guid>https://photography.prov1dence.top/posts/kick-start/2019-round-c/</guid>
       <description>&lt;h1 id=&#34;kick-start-2019-round-chttpscodingcompetitionswithgooglecomkickstartround0000000000050ff2&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050ff2&#34;&gt;Kick Start 2019 Round C&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;wiggle-walk-6pts-12ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050ff20000000000150aac&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050ff2/0000000000150aac&#34;&gt;Wiggle Walk (6pts, 12pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;在一个R * C的矩阵里面移动，遇到已经走过的格子直接跳过。数据保证移动时不会超出给定的矩阵。&lt;/p&gt;
@@ -1925,17 +1925,17 @@
     </item>
     <item>
       <title>Object Detection</title>
-      <link>https://prov1dence.top/posts/deep-learning/object-detection-yolo/</link>
+      <link>https://photography.prov1dence.top/posts/deep-learning/object-detection-yolo/</link>
       <pubDate>Sun, 19 May 2019 19:40:23 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/deep-learning/object-detection-yolo/</guid>
+      <guid>https://photography.prov1dence.top/posts/deep-learning/object-detection-yolo/</guid>
       <description>&lt;h1 id=&#34;object-detection&#34;&gt;Object Detection&lt;/h1&gt;
 &lt;p&gt;Object detection deals with detecting instances of objects of a certain class, such as humans, animals, etc, in digital images and videos. Object detection has applications in many areas of computer vision, including image retrieval, face detection, video surveillance, and self-driving, etc. Current detection systems repurpose classifiers to perform detection. To detect an object, these systems take a classifier for that object and evaluate it at various locations and scales in a test image.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Code Jam 2019 Round 1C</title>
-      <link>https://prov1dence.top/posts/code-jam/2019-round-1c/</link>
+      <link>https://photography.prov1dence.top/posts/code-jam/2019-round-1c/</link>
       <pubDate>Tue, 07 May 2019 22:02:15 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/code-jam/2019-round-1c/</guid>
+      <guid>https://photography.prov1dence.top/posts/code-jam/2019-round-1c/</guid>
       <description>&lt;h1 id=&#34;code-jam-2019-round-1chttpscodingcompetitionswithgooglecomcodejamround00000000000516b9&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9&#34;&gt;Code Jam 2019 Round 1C&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;robot-programming-strategy-10pts-18ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516b90000000000134c90&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/00000000000516b9/0000000000134c90&#34;&gt;Robot Programming Strategy (10pts, 18pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;已知所有人石头剪刀布的出招顺序，每一轮同时和所有人比赛，找到必胜的策略。&lt;/p&gt;
@@ -2037,9 +2037,9 @@
     </item>
     <item>
       <title>Kick Start 2019 Round B</title>
-      <link>https://prov1dence.top/posts/kick-start/2019-round-b/</link>
+      <link>https://photography.prov1dence.top/posts/kick-start/2019-round-b/</link>
       <pubDate>Sun, 21 Apr 2019 14:41:22 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/kick-start/2019-round-b/</guid>
+      <guid>https://photography.prov1dence.top/posts/kick-start/2019-round-b/</guid>
       <description>&lt;h1 id=&#34;kick-start-2019-round-bhttpscodingcompetitionswithgooglecomkickstartround0000000000050eda&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050eda&#34;&gt;Kick Start 2019 Round B&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;building-palindromes-5pts-12ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050eda0000000000119866&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050eda/0000000000119866&#34;&gt;Building Palindromes (5pts, 12pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;判断给定区间内的子字符串是否是回文串。&lt;/p&gt;
@@ -2099,9 +2099,9 @@
     </item>
     <item>
       <title>Code Jam 2019 Round 1A</title>
-      <link>https://prov1dence.top/posts/code-jam/2019-round-1a/</link>
+      <link>https://photography.prov1dence.top/posts/code-jam/2019-round-1a/</link>
       <pubDate>Sat, 13 Apr 2019 15:28:11 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/code-jam/2019-round-1a/</guid>
+      <guid>https://photography.prov1dence.top/posts/code-jam/2019-round-1a/</guid>
       <description>&lt;h1 id=&#34;code-jam-2019-round-1ahttpscodingcompetitionswithgooglecomcodejamround0000000000051635&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635&#34;&gt;Code Jam 2019 Round 1A&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;pylons-8pts-23ptshttpscodingcompetitionswithgooglecomcodejamround00000000000516350000000000104e03&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104e03&#34;&gt;Pylons (8pts, 23pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;在m*n的网格里移动，每次移动后的位置不能与之前的位置在同一行/列/对角线上。&lt;/p&gt;
@@ -2179,9 +2179,9 @@
     </item>
     <item>
       <title>Code Jam 2019 Qualification Round</title>
-      <link>https://prov1dence.top/posts/code-jam/2019-qualification-round/</link>
+      <link>https://photography.prov1dence.top/posts/code-jam/2019-qualification-round/</link>
       <pubDate>Sat, 06 Apr 2019 13:40:27 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/code-jam/2019-qualification-round/</guid>
+      <guid>https://photography.prov1dence.top/posts/code-jam/2019-qualification-round/</guid>
       <description>&lt;h1 id=&#34;code-jam-2019-qualification-roundhttpscodingcompetitionswithgooglecomcodejamround0000000000051705&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705&#34;&gt;Code Jam 2019 Qualification Round&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;foregone-solution-6pts-10pts-1ptshttpscodingcompetitionswithgooglecomcodejamround00000000000517050000000000088231&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/0000000000088231&#34;&gt;Foregone Solution (6pts, 10pts, 1pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;将一个带有数字4的数拆分为两个不带数字4的数。&lt;/p&gt;
@@ -2231,9 +2231,9 @@
     </item>
     <item>
       <title>Kick Start 2019 Round A</title>
-      <link>https://prov1dence.top/posts/kick-start/2019-round-a/</link>
+      <link>https://photography.prov1dence.top/posts/kick-start/2019-round-a/</link>
       <pubDate>Tue, 26 Mar 2019 14:25:36 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/kick-start/2019-round-a/</guid>
+      <guid>https://photography.prov1dence.top/posts/kick-start/2019-round-a/</guid>
       <description>&lt;h1 id=&#34;kick-start-2019-round-ahttpscodingcompetitionswithgooglecomkickstartround0000000000050e01&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01&#34;&gt;Kick Start 2019 Round A&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;training-7pts-13ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050e0100000000000698d6&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01/00000000000698d6&#34;&gt;Training (7pts, 13pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。&lt;/p&gt;
@@ -2247,9 +2247,9 @@
     </item>
     <item>
       <title>Methods to Prevent Overfitting in Deep Learning</title>
-      <link>https://prov1dence.top/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</link>
+      <link>https://photography.prov1dence.top/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</link>
       <pubDate>Wed, 20 Mar 2019 09:55:04 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</guid>
+      <guid>https://photography.prov1dence.top/posts/deep-learning/methods-to-prevent-overfitting-in-deep-learning/</guid>
       <description>&lt;h1 id=&#34;methods-to-prevent-overfitting-in-deep-learning&#34;&gt;Methods to Prevent Overfitting in Deep Learning&lt;/h1&gt;
 &lt;h2 id=&#34;overfitting&#34;&gt;Overfitting&lt;/h2&gt;
 &lt;p&gt;Overfitting refers to that when a model fits the training data well but cannot predict the test data correctly, we may say that the model lacks the ability of generalization. It is important to figure out how it happens, and how we can prevent overfitting from the very beginning.&lt;/p&gt;
@@ -2258,9 +2258,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 智能指针（3）：shared_ptr</title>
-      <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</link>
       <pubDate>Fri, 25 Jan 2019 17:47:38 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-3/</guid>
       <description>&lt;h1 id=&#34;c智能指针3shared_ptr&#34;&gt;C++智能指针（3）：shared_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;p&gt;UniquePointer对象只能绑定单个指针，要实现指针的自动管理和销毁需要引入计数器&lt;/p&gt;
@@ -2297,9 +2297,9 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
     </item>
     <item>
       <title>C&#43;&#43; 智能指针（2）：unique_ptr</title>
-      <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</link>
       <pubDate>Sat, 19 Jan 2019 01:02:02 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-2/</guid>
       <description>&lt;h1 id=&#34;c智能指针2unique_ptr&#34;&gt;C++智能指针（2）：unique_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;p&gt;在使用 AutoPointer 的时候会发生所有权转移和内存泄漏的问题，所以我们可以对 AutoPointer 类稍加修改，修复这两个问题。&lt;/p&gt;
@@ -2418,9 +2418,9 @@ void SharedPointer&amp;lt;T, D&amp;gt;::reset(const SharedPointer&amp;lt;T, D&am
     </item>
     <item>
       <title>LeetCode Archiver(3)： 登录</title>
-      <link>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver3/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode-archiver/leetcode-archiver3/</link>
       <pubDate>Fri, 11 Jan 2019 13:15:17 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver3/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode-archiver/leetcode-archiver3/</guid>
       <description>&lt;h2 id=&#34;cookie和session&#34;&gt;Cookie和Session&lt;/h2&gt;
 &lt;p&gt;为了获取我们自己的提交记录，我们首先要进行登录的操作。但我们都知道HTTP是一种无状态的协议，它的每个请求都是独立的。无论是GET还是POST请求，都包含了处理当前这一条请求的所有信息，但它并不会涉及到状态的变化。因此，为了在无状态的HTTP协议上维护一个持久的状态，引入了Cookie和Session的概念，两者都是为了辨识用户相关信息而储存在内存或硬盘上的加密数据。&lt;/p&gt;
 &lt;p&gt;Cookie是由客户端浏览器维护的。客户端浏览器会在需要时把Cookie保存在内存中，当其再次向该域名相关的网站发出request时，浏览器会把url和Cookie一起作为request的一部分发送给服务器。服务器通过解析该Cookie来确认用户的状态，并对Cookie的内容作出相应的修改。一般来说，如果不设置过期时间，非持久Cookie会保存在内存中，浏览器关闭后就被删除了。&lt;/p&gt;
@@ -2479,9 +2479,9 @@ for cookie in result.cookies:
     </item>
     <item>
       <title>C&#43;&#43; 智能指针（1.5）：move 语义</title>
-      <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</link>
       <pubDate>Wed, 02 Jan 2019 09:55:05 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1.5/</guid>
       <description>&lt;h1 id=&#34;c智能指针15move语义&#34;&gt;C++智能指针（1.5）：move语义&lt;/h1&gt;
 &lt;h2 id=&#34;move语义&#34;&gt;move语义&lt;/h2&gt;
 &lt;h3 id=&#34;定义&#34;&gt;定义&lt;/h3&gt;
@@ -2534,9 +2534,9 @@ for cookie in result.cookies:
     </item>
     <item>
       <title>C&#43;&#43; 智能指针（1）：auto_ptr</title>
-      <link>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</link>
       <pubDate>Thu, 27 Dec 2018 15:21:35 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/smart-pointer/c&#43;&#43;-smart-pointer-1/</guid>
       <description>&lt;h1 id=&#34;c智能指针1auto_ptr&#34;&gt;C++智能指针（1）：auto_ptr&lt;/h1&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;p&gt;C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 类&lt;/p&gt;
@@ -2583,9 +2583,9 @@ for cookie in result.cookies:
     </item>
     <item>
       <title>LeetCode Archiver(2)：获取题目信息</title>
-      <link>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver2/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode-archiver/leetcode-archiver2/</link>
       <pubDate>Fri, 21 Dec 2018 15:06:01 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver2/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode-archiver/leetcode-archiver2/</guid>
       <description>&lt;h2 id=&#34;创建爬虫&#34;&gt;创建爬虫&lt;/h2&gt;
 &lt;p&gt;在新建好项目后，用PyCharm或其他IDE打开该项目。进入该项目文件夹，使用&lt;code&gt;genspider&lt;/code&gt;命令新建一个爬虫：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd scrapy_project
@@ -2633,9 +2633,9 @@ class QuestionSetSpider(scrapy.Spider):
     </item>
     <item>
       <title>在Google Cloud Platform上运行Jupyter Notebook</title>
-      <link>https://prov1dence.top/posts/cloud/run-jupyter-notebook-on-gcp/</link>
+      <link>https://photography.prov1dence.top/posts/cloud/run-jupyter-notebook-on-gcp/</link>
       <pubDate>Fri, 14 Dec 2018 17:03:12 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/cloud/run-jupyter-notebook-on-gcp/</guid>
+      <guid>https://photography.prov1dence.top/posts/cloud/run-jupyter-notebook-on-gcp/</guid>
       <description>&lt;h1 id=&#34;在google-cloud-platform上运行jupyter-notebook&#34;&gt;在Google Cloud Platform上运行Jupyter Notebook&lt;/h1&gt;
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;本文取材自 &lt;a href=&#34;https://towardsdatascience.com/@aankul.a&#34;&gt;Amulya Aankul&lt;/a&gt; 发布在 &lt;a href=&#34;https://medium.com/&#34;&gt;Medium&lt;/a&gt; 的 &lt;a href=&#34;https://towardsdatascience.com/running-jupyter-notebook-in-google-cloud-platform-in-15-min-61e16da34d52&#34;&gt;Running Jupyter Notebook on Google Cloud Platform in 15 min&lt;/a&gt;，主要介绍如何在Google Cloud Platform上搭建服务器，并在服务器上安装和运行Jupyter Notebook。&lt;/p&gt;
@@ -2653,9 +2653,9 @@ class QuestionSetSpider(scrapy.Spider):
     </item>
     <item>
       <title>LeetCode Archiver(1)：Scrapy框架和Requests库</title>
-      <link>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver1/</link>
+      <link>https://photography.prov1dence.top/posts/leetcode-archiver/leetcode-archiver1/</link>
       <pubDate>Tue, 04 Dec 2018 11:25:15 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/leetcode-archiver/leetcode-archiver1/</guid>
+      <guid>https://photography.prov1dence.top/posts/leetcode-archiver/leetcode-archiver1/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;Scrapy官方文档对Scrapy的介绍如下：&lt;/p&gt;
 &lt;p&gt;Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。&lt;br&gt;其最初是为了页面抓取（更确切来说, 网络抓取）所设计的，也可以应用在获取API所返回的数据（例如 Amazon Associates Web Services ）或者通用的网络爬虫。&lt;/p&gt;
@@ -2714,9 +2714,9 @@ scrapy_project          #该项目的Python模块
     </item>
     <item>
       <title>C&#43;&#43; 基础知识整理</title>
-      <link>https://prov1dence.top/posts/cpp/basics/basics/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/basics/basics/</link>
       <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/basics/basics/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/basics/basics/</guid>
       <description>&lt;h1 id=&#34;c-基础知识&#34;&gt;C++ 基础知识&lt;/h1&gt;
 &lt;h2 id=&#34;const-相关&#34;&gt;const 相关&lt;/h2&gt;
 &lt;ol&gt;
@@ -2750,16 +2750,16 @@ scrapy_project          #该项目的Python模块
     </item>
     <item>
       <title></title>
-      <link>https://prov1dence.top/posts/cloud-computing/docker/</link>
+      <link>https://photography.prov1dence.top/posts/cloud-computing/docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://prov1dence.top/posts/cloud-computing/docker/</guid>
+      <guid>https://photography.prov1dence.top/posts/cloud-computing/docker/</guid>
       <description>&lt;p&gt;查看 container 的 log file 所在的目录：&lt;code&gt;docker inspect &amp;lt;containername&amp;gt; | grep log&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>https://prov1dence.top/posts/computer-science/temp/</link>
+      <link>https://photography.prov1dence.top/posts/computer-science/temp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://prov1dence.top/posts/computer-science/temp/</guid>
+      <guid>https://photography.prov1dence.top/posts/computer-science/temp/</guid>
       <description>&lt;p&gt;Linux:&lt;/p&gt;
 &lt;p&gt;我平时的学习基本上都在Linux下完成的，我现在有两台电脑，一台iMac，一台笔记本，笔记本上就装的Linux，然后每天都会用很多指令，
 比如说用pipeline管道输出后用grep做正则搜索，用ifconfig和netstat查看网络状态，用top看进程资源，用iostat看cpu和硬盘状态

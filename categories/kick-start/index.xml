@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Kick Start on ChrisChen - 尾張</title>
-    <link>https://prov1dence.top/categories/kick-start/</link>
+    <link>https://photography.prov1dence.top/categories/kick-start/</link>
     <description>Recent content in Kick Start on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 26 May 2019 23:29:45 +1000</lastBuildDate>
-    <atom:link href="https://prov1dence.top/categories/kick-start/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://photography.prov1dence.top/categories/kick-start/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kick Start 2019 Round C</title>
-      <link>https://prov1dence.top/posts/kick-start/2019-round-c/</link>
+      <link>https://photography.prov1dence.top/posts/kick-start/2019-round-c/</link>
       <pubDate>Sun, 26 May 2019 23:29:45 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/kick-start/2019-round-c/</guid>
+      <guid>https://photography.prov1dence.top/posts/kick-start/2019-round-c/</guid>
       <description>&lt;h1 id=&#34;kick-start-2019-round-chttpscodingcompetitionswithgooglecomkickstartround0000000000050ff2&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050ff2&#34;&gt;Kick Start 2019 Round C&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;wiggle-walk-6pts-12ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050ff20000000000150aac&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050ff2/0000000000150aac&#34;&gt;Wiggle Walk (6pts, 12pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;在一个R * C的矩阵里面移动，遇到已经走过的格子直接跳过。数据保证移动时不会超出给定的矩阵。&lt;/p&gt;
@@ -86,9 +86,9 @@
     </item>
     <item>
       <title>Kick Start 2019 Round B</title>
-      <link>https://prov1dence.top/posts/kick-start/2019-round-b/</link>
+      <link>https://photography.prov1dence.top/posts/kick-start/2019-round-b/</link>
       <pubDate>Sun, 21 Apr 2019 14:41:22 +1000</pubDate>
-      <guid>https://prov1dence.top/posts/kick-start/2019-round-b/</guid>
+      <guid>https://photography.prov1dence.top/posts/kick-start/2019-round-b/</guid>
       <description>&lt;h1 id=&#34;kick-start-2019-round-bhttpscodingcompetitionswithgooglecomkickstartround0000000000050eda&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050eda&#34;&gt;Kick Start 2019 Round B&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;building-palindromes-5pts-12ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050eda0000000000119866&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050eda/0000000000119866&#34;&gt;Building Palindromes (5pts, 12pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;判断给定区间内的子字符串是否是回文串。&lt;/p&gt;
@@ -148,9 +148,9 @@
     </item>
     <item>
       <title>Kick Start 2019 Round A</title>
-      <link>https://prov1dence.top/posts/kick-start/2019-round-a/</link>
+      <link>https://photography.prov1dence.top/posts/kick-start/2019-round-a/</link>
       <pubDate>Tue, 26 Mar 2019 14:25:36 +1100</pubDate>
-      <guid>https://prov1dence.top/posts/kick-start/2019-round-a/</guid>
+      <guid>https://photography.prov1dence.top/posts/kick-start/2019-round-a/</guid>
       <description>&lt;h1 id=&#34;kick-start-2019-round-ahttpscodingcompetitionswithgooglecomkickstartround0000000000050e01&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01&#34;&gt;Kick Start 2019 Round A&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;training-7pts-13ptshttpscodingcompetitionswithgooglecomkickstartround0000000000050e0100000000000698d6&#34;&gt;&lt;a href=&#34;https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e01/00000000000698d6&#34;&gt;Training (7pts, 13pts)&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;一共有N个人，从中选P个人，计算这P个人中 skill rating 的最大值与其他人的 skill rating 的差值之和。&lt;/p&gt;

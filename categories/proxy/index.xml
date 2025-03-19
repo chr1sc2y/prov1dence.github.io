@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Proxy on ChrisChen - 尾張</title>
-    <link>https://prov1dence.top/categories/proxy/</link>
+    <link>https://photography.prov1dence.top/categories/proxy/</link>
     <description>Recent content in Proxy on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 27 Feb 2022 14:08:30 +0800</lastBuildDate>
-    <atom:link href="https://prov1dence.top/categories/proxy/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://photography.prov1dence.top/categories/proxy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 Mac Mini M1 作为软路由让全家设备科学上网</title>
-      <link>https://prov1dence.top/posts/proxy/soft-router/</link>
+      <link>https://photography.prov1dence.top/posts/proxy/soft-router/</link>
       <pubDate>Sun, 27 Feb 2022 14:08:30 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/proxy/soft-router/</guid>
+      <guid>https://photography.prov1dence.top/posts/proxy/soft-router/</guid>
       <description>&lt;h1 id=&#34;使用-mac-mini-m1-作为软路由让全家设备出国&#34;&gt;使用 Mac Mini M1 作为软路由让全家设备出国&lt;/h1&gt;
 &lt;p&gt;[TOC]&lt;/p&gt;
 &lt;p&gt;本文介绍如何将功耗超低的 Mac Mini M1 改造为软路由，让局域网内连上 Wi-Fi 的所有家庭设备都可以免设置直接出国。&lt;/p&gt;
@@ -28,9 +28,9 @@
     </item>
     <item>
       <title>小米 AX1800 使用 ShellClash 科学上网</title>
-      <link>https://prov1dence.top/posts/proxy/ax1800/</link>
+      <link>https://photography.prov1dence.top/posts/proxy/ax1800/</link>
       <pubDate>Tue, 18 Jan 2022 22:29:36 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/proxy/ax1800/</guid>
+      <guid>https://photography.prov1dence.top/posts/proxy/ax1800/</guid>
       <description>&lt;h1 id=&#34;小米-ax1800-使用-shellclash-科学上网&#34;&gt;小米 AX1800 使用 ShellClash 科学上网&lt;/h1&gt;
 &lt;p&gt;本文介绍如何在小米 AX1800 上使用 ShellClash 科学上网。&lt;/p&gt;
 &lt;h2 id=&#34;1-固件降级&#34;&gt;1 固件降级&lt;/h2&gt;

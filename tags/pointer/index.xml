@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Pointer on ChrisChen - 尾張</title>
-    <link>https://prov1dence.top/tags/pointer/</link>
+    <link>https://photography.prov1dence.top/tags/pointer/</link>
     <description>Recent content in Pointer on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 21 Feb 2021 21:20:18 +0800</lastBuildDate>
-    <atom:link href="https://prov1dence.top/tags/pointer/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://photography.prov1dence.top/tags/pointer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43; 智能指针的简单实现</title>
-      <link>https://prov1dence.top/posts/cpp/smart-pointer/smart-pointer/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/smart-pointer/smart-pointer/</link>
       <pubDate>Sun, 21 Feb 2021 21:20:18 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/smart-pointer/smart-pointer/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/smart-pointer/smart-pointer/</guid>
       <description>&lt;h1 id=&#34;c-智能指针的简单实现&#34;&gt;C++ 智能指针的简单实现&lt;/h1&gt;
 &lt;h2 id=&#34;1-stdauto_ptr&#34;&gt;1 std::auto_ptr&lt;/h2&gt;
 &lt;p&gt;C++ 中经常会出现因为没有 delete 指针而造成的内存泄漏，例如有一个 Object 模板类：&lt;/p&gt;
@@ -41,9 +41,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 闭包和匿名函数</title>
-      <link>https://prov1dence.top/posts/cpp/closure-and-anonymous-function/</link>
+      <link>https://photography.prov1dence.top/posts/cpp/closure-and-anonymous-function/</link>
       <pubDate>Sat, 14 Nov 2020 21:20:18 +0800</pubDate>
-      <guid>https://prov1dence.top/posts/cpp/closure-and-anonymous-function/</guid>
+      <guid>https://photography.prov1dence.top/posts/cpp/closure-and-anonymous-function/</guid>
       <description>&lt;h1 id=&#34;c-闭包和匿名函数&#34;&gt;C++ 闭包和匿名函数&lt;/h1&gt;
 &lt;p&gt;本文主要介绍了 C++ 中闭包和仿函数，以及匿名函数相关的概念。&lt;/p&gt;
 &lt;h2 id=&#34;1-闭包和仿函数&#34;&gt;1 闭包和仿函数&lt;/h2&gt;
