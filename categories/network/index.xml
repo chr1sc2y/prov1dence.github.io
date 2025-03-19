@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Network on ChrisChen - 尾張</title>
-    <link>https://photography.prov1dence.top/categories/network/</link>
+    <link>https://prov1dence.top/categories/network/</link>
     <description>Recent content in Network on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 29 Jan 2022 17:45:52 +0800</lastBuildDate>
-    <atom:link href="https://photography.prov1dence.top/categories/network/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://prov1dence.top/categories/network/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>《深入理解 RPC 框架原理与实现》读书笔记</title>
-      <link>https://photography.prov1dence.top/posts/network/rpc/</link>
+      <link>https://prov1dence.top/posts/network/rpc/</link>
       <pubDate>Sat, 29 Jan 2022 17:45:52 +0800</pubDate>
-      <guid>https://photography.prov1dence.top/posts/network/rpc/</guid>
+      <guid>https://prov1dence.top/posts/network/rpc/</guid>
       <description>&lt;h1 id=&#34;深入理解-rpc-框架原理与实现读书笔记&#34;&gt;《深入理解 RPC 框架原理与实现》读书笔记&lt;/h1&gt;
 &lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
 &lt;p&gt;RPC (Remote Procedure Call) 叫作远程过程调用，它是利用网络从远程计算机上请求服务：可以理解为把程序的一部分放到其他远程计算机上执行。通过网络通信将调用请求发送至远程计算机后，利用远程计算机的系统资源执行这部分程序，最终返回远程计算机上的执行结果。&lt;/p&gt;

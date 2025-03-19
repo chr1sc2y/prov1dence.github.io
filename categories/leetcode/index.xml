@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>LeetCode on ChrisChen - 尾張</title>
-    <link>https://photography.prov1dence.top/categories/leetcode/</link>
+    <link>https://prov1dence.top/categories/leetcode/</link>
     <description>Recent content in LeetCode on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 24 Aug 2019 19:12:25 +1000</lastBuildDate>
-    <atom:link href="https://photography.prov1dence.top/categories/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://prov1dence.top/categories/leetcode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LeetCode 树（3）</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/tree-3/</link>
+      <link>https://prov1dence.top/posts/leetcode/tree-3/</link>
       <pubDate>Sat, 24 Aug 2019 19:12:25 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/tree-3/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/tree-3/</guid>
       <description>&lt;h1 id=&#34;leetcode-树3httpsleetcode-cncomtagtree&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/tree/&#34;&gt;LeetCode 树（3）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;4-递归求解&#34;&gt;4. 递归求解&lt;/h3&gt;
@@ -53,9 +53,9 @@
     </item>
     <item>
       <title>LeetCode 排序</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/sort/</link>
+      <link>https://prov1dence.top/posts/leetcode/sort/</link>
       <pubDate>Sat, 17 Aug 2019 19:12:25 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/sort/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/sort/</guid>
       <description>&lt;h1 id=&#34;leetcode-排序httpsleetcode-cncomtagsort&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/sort/&#34;&gt;LeetCode 排序&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h4 id=&#34;56-合并区间httpsleetcode-cncomproblemsmerge-intervals&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/merge-intervals/&#34;&gt;56 合并区间&lt;/a&gt;&lt;/h4&gt;
@@ -87,9 +87,9 @@
     </item>
     <item>
       <title>LeetCode 堆</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/heap/</link>
+      <link>https://prov1dence.top/posts/leetcode/heap/</link>
       <pubDate>Mon, 05 Aug 2019 19:12:25 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/heap/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/heap/</guid>
       <description>&lt;h1 id=&#34;leetcode-堆httpsleetcode-cncomtagheap&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/heap/&#34;&gt;LeetCode 堆&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h4 id=&#34;215-数组中的第-k-个最大元素httpsleetcode-cncomproblemskth-largest-element-in-an-array&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/kth-largest-element-in-an-array/&#34;&gt;215 数组中的第 K 个最大元素&lt;/a&gt;&lt;/h4&gt;
@@ -135,9 +135,9 @@
     </item>
     <item>
       <title>LeetCode 双指针</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/twopointers/</link>
+      <link>https://prov1dence.top/posts/leetcode/twopointers/</link>
       <pubDate>Wed, 31 Jul 2019 19:12:25 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/twopointers/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/twopointers/</guid>
       <description>&lt;h1 id=&#34;leetcode-dfshttpsleetcode-cncomtagtwo-pointers&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/two-pointers/&#34;&gt;LeetCode DFS&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h4 id=&#34;26-删除排序数组中的重复项httpsleetcode-cncomproblemsremove-duplicates-from-sorted-array&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/&#34;&gt;26 删除排序数组中的重复项&lt;/a&gt;&lt;/h4&gt;
@@ -184,9 +184,9 @@
     </item>
     <item>
       <title>LeetCode 深度优先搜索</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/dfs/</link>
+      <link>https://prov1dence.top/posts/leetcode/dfs/</link>
       <pubDate>Sat, 27 Jul 2019 12:12:25 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/dfs/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/dfs/</guid>
       <description>&lt;h1 id=&#34;leetcode-dfshttpsleetcode-cncomtagdepth-first-search&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/depth-first-search/&#34;&gt;LeetCode DFS&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h4 id=&#34;78-子集httpsleetcode-cncomproblemssubsets&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/subsets/&#34;&gt;78 子集&lt;/a&gt;&lt;/h4&gt;
@@ -215,9 +215,9 @@
     </item>
     <item>
       <title>LeetCode 并发</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/concurrency/</link>
+      <link>https://prov1dence.top/posts/leetcode/concurrency/</link>
       <pubDate>Mon, 22 Jul 2019 10:10:25 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/concurrency/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/concurrency/</guid>
       <description>&lt;h1 id=&#34;leetcode-并发httpsleetcode-cncomproblemsetconcurrency&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/concurrency/&#34;&gt;LeetCode 并发&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h4 id=&#34;1114-按序打印httpsleetcode-cncomproblemsprint-in-order&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problems/print-in-order/&#34;&gt;1114 按序打印&lt;/a&gt;&lt;/h4&gt;
@@ -515,9 +515,9 @@
     </item>
     <item>
       <title>LeetCode 树（2）</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/tree-2/</link>
+      <link>https://prov1dence.top/posts/leetcode/tree-2/</link>
       <pubDate>Thu, 18 Jul 2019 19:12:25 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/tree-2/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/tree-2/</guid>
       <description>&lt;h1 id=&#34;leetcode-树2httpsleetcode-cncomtagtree&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/tree/&#34;&gt;LeetCode 树（2）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;3-二叉搜索树&#34;&gt;3. 二叉搜索树&lt;/h3&gt;
@@ -558,9 +558,9 @@
     </item>
     <item>
       <title>LeetCode 树（1）</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/tree-1/</link>
+      <link>https://prov1dence.top/posts/leetcode/tree-1/</link>
       <pubDate>Sat, 13 Jul 2019 19:12:25 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/tree-1/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/tree-1/</guid>
       <description>&lt;h1 id=&#34;leetcode-树1httpsleetcode-cncomtagtree&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/tree/&#34;&gt;LeetCode 树（1）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;1-树的遍历&#34;&gt;1. 树的遍历&lt;/h3&gt;
@@ -609,9 +609,9 @@
     </item>
     <item>
       <title>LeetCode 链表（2）</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/linkedlist-2/</link>
+      <link>https://prov1dence.top/posts/leetcode/linkedlist-2/</link>
       <pubDate>Tue, 09 Jul 2019 19:12:25 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/linkedlist-2/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/linkedlist-2/</guid>
       <description>&lt;h1 id=&#34;leetcode-链表2httpsleetcode-cncomtaglinked-list&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/linked-list/&#34;&gt;LeetCode 链表（2）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;4-双指针&#34;&gt;4. 双指针&lt;/h3&gt;
@@ -642,9 +642,9 @@
     </item>
     <item>
       <title>LeetCode 链表（1）</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/linkedlist-1/</link>
+      <link>https://prov1dence.top/posts/leetcode/linkedlist-1/</link>
       <pubDate>Thu, 04 Jul 2019 19:12:25 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/linkedlist-1/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/linkedlist-1/</guid>
       <description>&lt;h1 id=&#34;leetcode-链表1httpsleetcode-cncomtaglinked-list&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/linked-list/&#34;&gt;LeetCode 链表（1）&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;1-常规题&#34;&gt;1. 常规题&lt;/h3&gt;
@@ -682,9 +682,9 @@
     </item>
     <item>
       <title>LeetCode 动态规划（3）</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-3/</link>
+      <link>https://prov1dence.top/posts/leetcode/dynamicprogramming-3/</link>
       <pubDate>Mon, 01 Jul 2019 18:22:45 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-3/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/dynamicprogramming-3/</guid>
       <description>&lt;h1 id=&#34;leetcode-动态规划httpsleetcode-cncomproblemsetallsearche4b891e695b0&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0&#34;&gt;LeetCode 动态规划&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;6-字符串相关&#34;&gt;6. 字符串相关&lt;/h3&gt;
@@ -714,9 +714,9 @@
     </item>
     <item>
       <title>LeetCode 动态规划（2）</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-2/</link>
+      <link>https://prov1dence.top/posts/leetcode/dynamicprogramming-2/</link>
       <pubDate>Fri, 28 Jun 2019 10:09:13 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-2/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/dynamicprogramming-2/</guid>
       <description>&lt;h1 id=&#34;leetcode-动态规划httpsleetcode-cncomproblemsetallsearche4b891e695b0&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0&#34;&gt;LeetCode 动态规划&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;3-数组相关&#34;&gt;3. 数组相关&lt;/h3&gt;
@@ -744,9 +744,9 @@
     </item>
     <item>
       <title>LeetCode 动态规划（1）</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-1/</link>
+      <link>https://prov1dence.top/posts/leetcode/dynamicprogramming-1/</link>
       <pubDate>Wed, 26 Jun 2019 18:08:10 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/dynamicprogramming-1/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/dynamicprogramming-1/</guid>
       <description>&lt;h1 id=&#34;leetcode-动态规划httpsleetcode-cncomproblemsetallsearche4b891e695b0&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/problemset/all/?search=%E4%B8%91%E6%95%B0&#34;&gt;LeetCode 动态规划&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;h3 id=&#34;1-数字相关&#34;&gt;1. 数字相关&lt;/h3&gt;
@@ -794,9 +794,9 @@
     </item>
     <item>
       <title>LeetCode 二分查找</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/binarysearch/</link>
+      <link>https://prov1dence.top/posts/leetcode/binarysearch/</link>
       <pubDate>Sun, 23 Jun 2019 19:26:39 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/binarysearch/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/binarysearch/</guid>
       <description>&lt;h1 id=&#34;leetcode-二分查找httpsleetcode-cncomtagbinary-search&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/binary-search/&#34;&gt;LeetCode 二分查找&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;二分查找可以在有序数组中以较高的效率查找符合条件的值，时间复杂度是O(logN)，空间复杂度是O(1)。&lt;/p&gt;
 &lt;h2 id=&#34;易错点&#34;&gt;易错点&lt;/h2&gt;
@@ -830,9 +830,9 @@
     </item>
     <item>
       <title>LeetCode 位运算</title>
-      <link>https://photography.prov1dence.top/posts/leetcode/bitmanipulation/</link>
+      <link>https://prov1dence.top/posts/leetcode/bitmanipulation/</link>
       <pubDate>Wed, 19 Jun 2019 19:26:39 +1000</pubDate>
-      <guid>https://photography.prov1dence.top/posts/leetcode/bitmanipulation/</guid>
+      <guid>https://prov1dence.top/posts/leetcode/bitmanipulation/</guid>
       <description>&lt;h1 id=&#34;leetcode-位运算httpsleetcode-cncomtagbit-manipulation&#34;&gt;&lt;a href=&#34;https://leetcode-cn.com/tag/bit-manipulation/&#34;&gt;LeetCode 位运算&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;位运算包括：&lt;/p&gt;
 &lt;ol&gt;
