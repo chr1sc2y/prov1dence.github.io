@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AI Agent on ChrisChen - 尾張</title>
+    <link>https://prov1dence.top/categories/ai-agent/</link>
+    <description>Recent content in AI Agent on ChrisChen - 尾張</description>
+    <generator>Hugo -- 0.143.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Feb 2026 23:01:12 +0800</lastBuildDate>
+    <atom:link href="https://prov1dence.top/categories/ai-agent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Google ADK 架构解析：如何用软件工程思维构建 AI Agent 系统</title>
+      <link>https://prov1dence.top/posts/ai-agent/google-adk-architecture/</link>
+      <pubDate>Fri, 27 Feb 2026 23:01:12 +0800</pubDate>
+      <guid>https://prov1dence.top/posts/ai-agent/google-adk-architecture/</guid>
+      <description>&lt;h1 id=&#34;google-adk-架构解析如何用软件工程思维构建-ai-agent-系统&#34;&gt;Google ADK 架构解析：如何用软件工程思维构建 AI Agent 系统&lt;/h1&gt;
+&lt;p&gt;Agent Development Kit（ADK）是 Google 在 2025 年开源的一个 AI Agent 开发框架，目前在 GitHub 上有超过 18000 个 star，支持 Python、TypeScript、Go 和 Java 四种语言的实现。ADK 的设计目标很明确：让 Agent 开发回归软件工程的范式，而不是停留在 prompt engineering 的阶段。这意味着它需要提供清晰的抽象层级、可组合的模块、确定性的执行流程、以及工业级的状态管理能力。&lt;/p&gt;
+&lt;p&gt;当前 AI Agent 领域的框架呈现出一种两极分化的态势：一端是 LangChain 这样高度灵活但过于松散的链式调用框架，另一端是各家云厂商封闭的托管服务。ADK 试图在这两者之间找到一个平衡点——既保持代码优先（code-first）的灵活性，又提供足够的结构化约束来支撑复杂的多 Agent 系统。这个定位是否站得住脚，需要从架构层面逐一拆解。&lt;/p&gt;
+&lt;p&gt;在进入细节之前，先从宏观上理解 ADK 的整体分层结构：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;┌─────────────────────────────────────────────────────────────────┐
+│                      Application Layer                          │
+│              adk web / adk run / adk api_server                 │
+├─────────────────────────────────────────────────────────────────┤
+│                       Runner (Event Loop)                       │
+│         yield/pause/resume cycle ── Event processing            │
+├───────────────┬───────────────┬─────────────────────────────────┤
+│  Agent Layer  │   Tool Layer  │         Flow Layer              │
+│  BaseAgent    │   BaseTool    │     BaseLlmFlow                 │
+│  ├ LlmAgent   │  ├ FunctionTool│     ├ SingleFlow               │
+│  ├ Sequential │  ├ AgentTool  │     └ AutoFlow                  │
+│  ├ Parallel   │  ├ MCPTool    │       (LLM request/response     │
+│  ├ Loop       │  └ ...        │        + tool execution loop)   │
+│  └ Custom     │               │                                 │
+├───────────────┴───────────────┴─────────────────────────────────┤
+│                      Model Abstraction                          │
+│         BaseLlm ── LLMRegistry ── Gemini / OpenAI / ...        │
+├─────────────────────────────────────────────────────────────────┤
+│                      Services Layer                             │
+│    SessionService  │  ArtifactService  │  MemoryService         │
+│    (state + history)  (binary blobs)     (cross-session search) │
+├─────────────────────────────────────────────────────────────────┤
+│                      Infrastructure                             │
+│        InMemory / Database / GCS / Vertex AI Agent Engine       │
+└─────────────────────────────────────────────────────────────────┘
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;自底向上，Infrastructure 层提供可插拔的存储后端；Services 层管理状态、产物和记忆的持久化；Model 层抽象了不同 LLM 供应商的差异；Agent/Tool/Flow 三层构成了核心的执行逻辑；Runner 层驱动整个事件循环；Application 层则提供了面向开发者和终端用户的接口。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

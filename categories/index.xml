@@ -6,8 +6,15 @@
     <description>Recent content in Categories on ChrisChen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Feb 2023 18:02:04 +1100</lastBuildDate>
+    <lastBuildDate>Fri, 27 Feb 2026 23:01:12 +0800</lastBuildDate>
     <atom:link href="https://prov1dence.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Agent</title>
+      <link>https://prov1dence.top/categories/ai-agent/</link>
+      <pubDate>Fri, 27 Feb 2026 23:01:12 +0800</pubDate>
+      <guid>https://prov1dence.top/categories/ai-agent/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Redis</title>
       <link>https://prov1dence.top/categories/redis/</link>
