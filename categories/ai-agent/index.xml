@@ -6,8 +6,41 @@
     <description>Recent content in AI Agent on Zhengyu Chen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Feb 2026 23:01:12 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 Mar 2026 08:00:00 +0800</lastBuildDate>
     <atom:link href="https://prov1dence.top/categories/ai-agent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LangChain 与 LangGraph 架构解析：从链式调用到图驱动的 Agent 编排</title>
+      <link>https://prov1dence.top/posts/ai-agent/langchain-langgraph-architecture/</link>
+      <pubDate>Tue, 03 Mar 2026 08:00:00 +0800</pubDate>
+      <guid>https://prov1dence.top/posts/ai-agent/langchain-langgraph-architecture/</guid>
+      <description>&lt;h1 id=&#34;langchain-与-langgraph-架构解析从链式调用到图驱动的-agent-编排&#34;&gt;LangChain 与 LangGraph 架构解析：从链式调用到图驱动的 Agent 编排&lt;/h1&gt;
+&lt;p&gt;LangChain 是当前 LLM 应用开发领域中使用最广泛的开源框架之一，而 LangGraph 则是 LangChain 团队在 Agent 编排层面的第二次架构尝试——一个受 Google Pregel 和 Apache Beam 启发的、基于有向图的状态化工作流引擎。两者的关系并不是简单的替代，而是分层互补：LangChain 提供模型抽象、工具封装和高层 Agent 接口，LangGraph 则负责底层的执行编排、状态持久化和人在回路控制。理解这两个项目的架构设计，本质上是理解&amp;quot;如何用软件工程的方式构建可靠的 LLM 应用&amp;quot;这个问题在 2024-2026 年间的演进路径。&lt;/p&gt;
+&lt;p&gt;从宏观上看，LangChain 生态的整体分层结构如下：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;┌─────────────────────────────────────────────────────────────────┐
+│                      Application Layer                          │
+│         create_agent / Custom Graph / Deep Agents               │
+├─────────────────────────────────────────────────────────────────┤
+│                      LangChain (High-Level)                     │
+│    Agent Abstraction   │  Middleware  │  Structured Output      │
+│    (create_agent,      │  (wrap_model │  (with_structured       │
+│     tool loop)         │   _call)     │   _output)              │
+├────────────────────────┴─────────────┴──────────────────────────┤
+│                      LangGraph (Low-Level Orchestration)        │
+│    StateGraph  │  Functional API  │  Checkpointer  │  Command   │
+│    (nodes,     │  (entrypoint,    │  (persistence, │  (control  │
+│     edges,     │   task)          │   threads,     │   flow +   │
+│     state)     │                  │   time-travel) │   updates) │
+├─────────────────────────────────────────────────────────────────┤
+│                      LangChain Core                             │
+│    Runnable Protocol  │  Chat Models  │  Messages  │  Tools     │
+│    (invoke/stream/    │  (BaseChatModel│  (Human/AI/│  (BaseTool,│
+│     batch/transform)  │   + providers)│   Tool/Sys)│   @tool)   │
+├─────────────────────────────────────────────────────────────────┤
+│                      Integrations                               │
+│    OpenAI / Anthropic / Google / ... / MCP / Vector Stores      │
+└─────────────────────────────────────────────────────────────────┘
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;自底向上，Integrations 层对接各家模型供应商和外部工具；LangChain Core 定义了 Runnable 协议和核心数据类型；LangGraph 在 Core 之上构建了图执行引擎和持久化基础设施；LangChain 的高层 Agent 抽象则是面向开发者的最终接口。这种分层在项目结构上体现为独立的 Python 包——&lt;code&gt;langchain-core&lt;/code&gt;、&lt;code&gt;langgraph&lt;/code&gt;、&lt;code&gt;langchain&lt;/code&gt; 分别发布和版本管理，通过依赖关系松散耦合。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Google ADK 架构解析：如何用软件工程思维构建 AI Agent 系统</title>
       <link>https://prov1dence.top/posts/ai-agent/google-adk-architecture/</link>
