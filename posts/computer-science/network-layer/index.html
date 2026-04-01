@@ -1,0 +1,81 @@
+<!doctype html><html lang=en dir=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>计算机网络 网络层 | Zhengyu Chen - 尾張</title>
+<meta name=keywords content><meta name=description content="计算机网络
+网络层
+地址解析协议 ARP
+
+网络层实现主机之间的通信，链路层实现每段链路之间的通信；在通信过程中，IP 数据报的源地址和目的地址始终不变，而 MAC 地址随着链路的改变而改变
+ARP 协议从 IP 地址获取 MAC 地址
+每个主机有一个 ARP 高速缓存，里面有本局域网上的各主机和路由器的 IP 地址到 MAC 地址的映射表
+如果主机 A 知道主机 B 的 IP 地址，但是 ARP 高速缓存中没有该 IP 地址到 MAC 地址的映射，此时主机 A 通过广播的方式发送 ARP 请求分组，主机 B 收到该请求后会发送 ARP 响应分组给主机 A 告知其 MAC 地址，随后主机 A 向其高速缓存中写入主机 B 的 IP 地址到 MAC 地址的映射
+
+网际控制报文协议 ICMP
+
+ICMP 是为了更有效地转发 IP 数据报和提高交付成功的机会。它封装在 IP 数据报中，但是不属于高层协议
+ICMP 报文分为差错报告报文和询问报文
+
+应用
+
+
+
+Ping
+
+
+Ping 是 ICMP 的一个重要应用，主要用来测试两台主机之间的连通性
+Ping 的原理是通过向目的主机发送 ICMP Echo 请求报文，目的主机收到之后会发送 Echo 回答报文；Ping 会根据时间和成功响应的次数估算出数据包往返时间以及丢包率
+
+
+
+
+Traceroute
+
+
+Traceroute 是 ICMP 的另一个应用，用来跟踪一个分组从源点到终点的路径
+Traceroute 发送的 IP 数据报封装的是无法交付的 UDP 用户数据报，并由目的主机发送终点不可达差错报告报文
+源主机向目的主机发送一连串的 IP 数据报。第一个数据报 P1 的生存时间 TTL 设置为 1，当 P1 到达路径上的第一个路由器 R1 时，R1 收下它并把 TTL 减 1，此时 TTL 等于 0，R1 就把 P1 丢弃，并向源主机发送一个 ICMP 时间超过差错报告报文
+源主机接着发送第二个数据报 P2，并把 TTL 设置为 2。P2 先到达 R1，R1 收下后把 TTL 减 1 再转发给 R2，R2 收下后也把 TTL 减 1，由于此时 TTL 等于 0，R2 就丢弃 P2，并向源主机发送一个 ICMP 时间超过差错报文
+不断执行这样的步骤，直到最后一个数据报刚刚到达目的主机，主机不转发数据报，也不把 TTL 值减 1。但是因为数据报封装的是无法交付的 UDP，因此目的主机要向源主机发送 ICMP 终点不可达差错报告报文
+之后源主机知道了到达目的主机所经过的路由器 IP 地址以及到达每个路由器的往返时间
+
+
+"><meta name=author content><link rel=canonical href=http://localhost:1313/posts/computer-science/network-layer/><link crossorigin=anonymous href=/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/computer-science/network-layer/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="http://localhost:1313/posts/computer-science/network-layer/"><meta property="og:site_name" content="Zhengyu Chen - 尾張"><meta property="og:title" content="计算机网络 网络层"><meta property="og:description" content="计算机网络 网络层 地址解析协议 ARP 网络层实现主机之间的通信，链路层实现每段链路之间的通信；在通信过程中，IP 数据报的源地址和目的地址始终不变，而 MAC 地址随着链路的改变而改变 ARP 协议从 IP 地址获取 MAC 地址 每个主机有一个 ARP 高速缓存，里面有本局域网上的各主机和路由器的 IP 地址到 MAC 地址的映射表 如果主机 A 知道主机 B 的 IP 地址，但是 ARP 高速缓存中没有该 IP 地址到 MAC 地址的映射，此时主机 A 通过广播的方式发送 ARP 请求分组，主机 B 收到该请求后会发送 ARP 响应分组给主机 A 告知其 MAC 地址，随后主机 A 向其高速缓存中写入主机 B 的 IP 地址到 MAC 地址的映射 网际控制报文协议 ICMP ICMP 是为了更有效地转发 IP 数据报和提高交付成功的机会。它封装在 IP 数据报中，但是不属于高层协议 ICMP 报文分为差错报告报文和询问报文 应用 Ping Ping 是 ICMP 的一个重要应用，主要用来测试两台主机之间的连通性 Ping 的原理是通过向目的主机发送 ICMP Echo 请求报文，目的主机收到之后会发送 Echo 回答报文；Ping 会根据时间和成功响应的次数估算出数据包往返时间以及丢包率 Traceroute Traceroute 是 ICMP 的另一个应用，用来跟踪一个分组从源点到终点的路径 Traceroute 发送的 IP 数据报封装的是无法交付的 UDP 用户数据报，并由目的主机发送终点不可达差错报告报文 源主机向目的主机发送一连串的 IP 数据报。第一个数据报 P1 的生存时间 TTL 设置为 1，当 P1 到达路径上的第一个路由器 R1 时，R1 收下它并把 TTL 减 1，此时 TTL 等于 0，R1 就把 P1 丢弃，并向源主机发送一个 ICMP 时间超过差错报告报文 源主机接着发送第二个数据报 P2，并把 TTL 设置为 2。P2 先到达 R1，R1 收下后把 TTL 减 1 再转发给 R2，R2 收下后也把 TTL 减 1，由于此时 TTL 等于 0，R2 就丢弃 P2，并向源主机发送一个 ICMP 时间超过差错报文 不断执行这样的步骤，直到最后一个数据报刚刚到达目的主机，主机不转发数据报，也不把 TTL 值减 1。但是因为数据报封装的是无法交付的 UDP，因此目的主机要向源主机发送 ICMP 终点不可达差错报告报文 之后源主机知道了到达目的主机所经过的路由器 IP 地址以及到达每个路由器的往返时间 "><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2015-07-05T08:57:52+10:00"><meta property="article:modified_time" content="2015-07-05T08:57:52+10:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="计算机网络 网络层"><meta name=twitter:description content="计算机网络
+网络层
+地址解析协议 ARP
+
+网络层实现主机之间的通信，链路层实现每段链路之间的通信；在通信过程中，IP 数据报的源地址和目的地址始终不变，而 MAC 地址随着链路的改变而改变
+ARP 协议从 IP 地址获取 MAC 地址
+每个主机有一个 ARP 高速缓存，里面有本局域网上的各主机和路由器的 IP 地址到 MAC 地址的映射表
+如果主机 A 知道主机 B 的 IP 地址，但是 ARP 高速缓存中没有该 IP 地址到 MAC 地址的映射，此时主机 A 通过广播的方式发送 ARP 请求分组，主机 B 收到该请求后会发送 ARP 响应分组给主机 A 告知其 MAC 地址，随后主机 A 向其高速缓存中写入主机 B 的 IP 地址到 MAC 地址的映射
+
+网际控制报文协议 ICMP
+
+ICMP 是为了更有效地转发 IP 数据报和提高交付成功的机会。它封装在 IP 数据报中，但是不属于高层协议
+ICMP 报文分为差错报告报文和询问报文
+
+应用
+
+
+
+Ping
+
+
+Ping 是 ICMP 的一个重要应用，主要用来测试两台主机之间的连通性
+Ping 的原理是通过向目的主机发送 ICMP Echo 请求报文，目的主机收到之后会发送 Echo 回答报文；Ping 会根据时间和成功响应的次数估算出数据包往返时间以及丢包率
+
+
+
+
+Traceroute
+
+
+Traceroute 是 ICMP 的另一个应用，用来跟踪一个分组从源点到终点的路径
+Traceroute 发送的 IP 数据报封装的是无法交付的 UDP 用户数据报，并由目的主机发送终点不可达差错报告报文
+源主机向目的主机发送一连串的 IP 数据报。第一个数据报 P1 的生存时间 TTL 设置为 1，当 P1 到达路径上的第一个路由器 R1 时，R1 收下它并把 TTL 减 1，此时 TTL 等于 0，R1 就把 P1 丢弃，并向源主机发送一个 ICMP 时间超过差错报告报文
+源主机接着发送第二个数据报 P2，并把 TTL 设置为 2。P2 先到达 R1，R1 收下后把 TTL 减 1 再转发给 R2，R2 收下后也把 TTL 减 1，由于此时 TTL 等于 0，R2 就丢弃 P2，并向源主机发送一个 ICMP 时间超过差错报文
+不断执行这样的步骤，直到最后一个数据报刚刚到达目的主机，主机不转发数据报，也不把 TTL 值减 1。但是因为数据报封装的是无法交付的 UDP，因此目的主机要向源主机发送 ICMP 终点不可达差错报告报文
+之后源主机知道了到达目的主机所经过的路由器 IP 地址以及到达每个路由器的往返时间
+
+
+"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"计算机网络 网络层","item":"http://localhost:1313/posts/computer-science/network-layer/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"计算机网络 网络层","name":"计算机网络 网络层","description":"计算机网络 网络层 地址解析协议 ARP 网络层实现主机之间的通信，链路层实现每段链路之间的通信；在通信过程中，IP 数据报的源地址和目的地址始终不变，而 MAC 地址随着链路的改变而改变 ARP 协议从 IP 地址获取 MAC 地址 每个主机有一个 ARP 高速缓存，里面有本局域网上的各主机和路由器的 IP 地址到 MAC 地址的映射表 如果主机 A 知道主机 B 的 IP 地址，但是 ARP 高速缓存中没有该 IP 地址到 MAC 地址的映射，此时主机 A 通过广播的方式发送 ARP 请求分组，主机 B 收到该请求后会发送 ARP 响应分组给主机 A 告知其 MAC 地址，随后主机 A 向其高速缓存中写入主机 B 的 IP 地址到 MAC 地址的映射 网际控制报文协议 ICMP ICMP 是为了更有效地转发 IP 数据报和提高交付成功的机会。它封装在 IP 数据报中，但是不属于高层协议 ICMP 报文分为差错报告报文和询问报文 应用 Ping Ping 是 ICMP 的一个重要应用，主要用来测试两台主机之间的连通性 Ping 的原理是通过向目的主机发送 ICMP Echo 请求报文，目的主机收到之后会发送 Echo 回答报文；Ping 会根据时间和成功响应的次数估算出数据包往返时间以及丢包率 Traceroute Traceroute 是 ICMP 的另一个应用，用来跟踪一个分组从源点到终点的路径 Traceroute 发送的 IP 数据报封装的是无法交付的 UDP 用户数据报，并由目的主机发送终点不可达差错报告报文 源主机向目的主机发送一连串的 IP 数据报。第一个数据报 P1 的生存时间 TTL 设置为 1，当 P1 到达路径上的第一个路由器 R1 时，R1 收下它并把 TTL 减 1，此时 TTL 等于 0，R1 就把 P1 丢弃，并向源主机发送一个 ICMP 时间超过差错报告报文 源主机接着发送第二个数据报 P2，并把 TTL 设置为 2。P2 先到达 R1，R1 收下后把 TTL 减 1 再转发给 R2，R2 收下后也把 TTL 减 1，由于此时 TTL 等于 0，R2 就丢弃 P2，并向源主机发送一个 ICMP 时间超过差错报文 不断执行这样的步骤，直到最后一个数据报刚刚到达目的主机，主机不转发数据报，也不把 TTL 值减 1。但是因为数据报封装的是无法交付的 UDP，因此目的主机要向源主机发送 ICMP 终点不可达差错报告报文 之后源主机知道了到达目的主机所经过的路由器 IP 地址以及到达每个路由器的往返时间 ","keywords":[],"articleBody":"计算机网络 网络层 地址解析协议 ARP 网络层实现主机之间的通信，链路层实现每段链路之间的通信；在通信过程中，IP 数据报的源地址和目的地址始终不变，而 MAC 地址随着链路的改变而改变 ARP 协议从 IP 地址获取 MAC 地址 每个主机有一个 ARP 高速缓存，里面有本局域网上的各主机和路由器的 IP 地址到 MAC 地址的映射表 如果主机 A 知道主机 B 的 IP 地址，但是 ARP 高速缓存中没有该 IP 地址到 MAC 地址的映射，此时主机 A 通过广播的方式发送 ARP 请求分组，主机 B 收到该请求后会发送 ARP 响应分组给主机 A 告知其 MAC 地址，随后主机 A 向其高速缓存中写入主机 B 的 IP 地址到 MAC 地址的映射 网际控制报文协议 ICMP ICMP 是为了更有效地转发 IP 数据报和提高交付成功的机会。它封装在 IP 数据报中，但是不属于高层协议 ICMP 报文分为差错报告报文和询问报文 应用 Ping Ping 是 ICMP 的一个重要应用，主要用来测试两台主机之间的连通性 Ping 的原理是通过向目的主机发送 ICMP Echo 请求报文，目的主机收到之后会发送 Echo 回答报文；Ping 会根据时间和成功响应的次数估算出数据包往返时间以及丢包率 Traceroute Traceroute 是 ICMP 的另一个应用，用来跟踪一个分组从源点到终点的路径 Traceroute 发送的 IP 数据报封装的是无法交付的 UDP 用户数据报，并由目的主机发送终点不可达差错报告报文 源主机向目的主机发送一连串的 IP 数据报。第一个数据报 P1 的生存时间 TTL 设置为 1，当 P1 到达路径上的第一个路由器 R1 时，R1 收下它并把 TTL 减 1，此时 TTL 等于 0，R1 就把 P1 丢弃，并向源主机发送一个 ICMP 时间超过差错报告报文 源主机接着发送第二个数据报 P2，并把 TTL 设置为 2。P2 先到达 R1，R1 收下后把 TTL 减 1 再转发给 R2，R2 收下后也把 TTL 减 1，由于此时 TTL 等于 0，R2 就丢弃 P2，并向源主机发送一个 ICMP 时间超过差错报文 不断执行这样的步骤，直到最后一个数据报刚刚到达目的主机，主机不转发数据报，也不把 TTL 值减 1。但是因为数据报封装的是无法交付的 UDP，因此目的主机要向源主机发送 ICMP 终点不可达差错报告报文 之后源主机知道了到达目的主机所经过的路由器 IP 地址以及到达每个路由器的往返时间 ","wordCount":"147","inLanguage":"en","datePublished":"2015-07-05T08:57:52+10:00","dateModified":"2015-07-05T08:57:52+10:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/computer-science/network-layer/"},"publisher":{"@type":"Organization","name":"Zhengyu Chen - 尾張","logo":{"@type":"ImageObject","url":"http://localhost:1313/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="尾張 (Alt + H)">尾張</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/archives/ title=Posts><span>Posts</span></a></li><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">计算机网络 网络层
+<span class=entry-hint title=Draft><svg height="35" viewBox="0 -960 960 960" fill="currentcolor"><path d="M160-410v-60h3e2v60H160zm0-165v-60h470v60H160zm0-165v-60h470v60H160zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22-4.5 22.5T862.09-380L643-160H520zm3e2-263-37-37 37 37zM580-220h38l121-122-18-19-19-18-122 121v38zm141-141-19-18 37 37-18-19z"/></svg></span></h1><div class=post-meta><span title='2015-07-05 08:57:52 +1000 +1000'>July 5, 2015</span>&nbsp;·&nbsp;1 min</div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%bd%91%e7%bb%9c aria-label=计算机网络>计算机网络</a><ul><li><a href=#%e7%bd%91%e7%bb%9c%e5%b1%82 aria-label=网络层>网络层</a><ul><li><a href=#%e5%9c%b0%e5%9d%80%e8%a7%a3%e6%9e%90%e5%8d%8f%e8%ae%ae-arp aria-label="地址解析协议 ARP">地址解析协议 ARP</a></li><li><a href=#%e7%bd%91%e9%99%85%e6%8e%a7%e5%88%b6%e6%8a%a5%e6%96%87%e5%8d%8f%e8%ae%ae-icmp aria-label="网际控制报文协议 ICMP">网际控制报文协议 ICMP</a><ul><li><a href=#%e5%ba%94%e7%94%a8 aria-label=应用>应用</a></li></ul></li></ul></li></ul></li></ul></div></details></div><div class=post-content><h1 id=计算机网络>计算机网络<a hidden class=anchor aria-hidden=true href=#计算机网络>#</a></h1><h2 id=网络层>网络层<a hidden class=anchor aria-hidden=true href=#网络层>#</a></h2><h3 id=地址解析协议-arp>地址解析协议 ARP<a hidden class=anchor aria-hidden=true href=#地址解析协议-arp>#</a></h3><ul><li>网络层实现主机之间的通信，链路层实现每段链路之间的通信；在通信过程中，IP 数据报的源地址和目的地址始终不变，而 MAC 地址随着链路的改变而改变</li><li>ARP 协议从 IP 地址获取 MAC 地址</li><li>每个主机有一个 ARP 高速缓存，里面有本局域网上的各主机和路由器的 IP 地址到 MAC 地址的映射表</li><li>如果主机 A 知道主机 B 的 IP 地址，但是 ARP 高速缓存中没有该 IP 地址到 MAC 地址的映射，此时主机 A 通过广播的方式发送 ARP 请求分组，主机 B 收到该请求后会发送 ARP 响应分组给主机 A 告知其 MAC 地址，随后主机 A 向其高速缓存中写入主机 B 的 IP 地址到 MAC 地址的映射</li></ul><h3 id=网际控制报文协议-icmp>网际控制报文协议 ICMP<a hidden class=anchor aria-hidden=true href=#网际控制报文协议-icmp>#</a></h3><ul><li>ICMP 是为了更有效地转发 IP 数据报和提高交付成功的机会。它封装在 IP 数据报中，但是不属于高层协议</li><li>ICMP 报文分为差错报告报文和询问报文</li></ul><h4 id=应用>应用<a hidden class=anchor aria-hidden=true href=#应用>#</a></h4><ul><li><ol><li>Ping</li></ol><ul><li>Ping 是 ICMP 的一个重要应用，主要用来测试两台主机之间的连通性</li><li>Ping 的原理是通过向目的主机发送 ICMP Echo 请求报文，目的主机收到之后会发送 Echo 回答报文；Ping 会根据时间和成功响应的次数估算出数据包往返时间以及丢包率</li></ul></li><li><ol start=2><li>Traceroute</li></ol><ul><li>Traceroute 是 ICMP 的另一个应用，用来跟踪一个分组从源点到终点的路径</li><li>Traceroute 发送的 IP 数据报封装的是无法交付的 UDP 用户数据报，并由目的主机发送终点不可达差错报告报文</li><li>源主机向目的主机发送一连串的 IP 数据报。第一个数据报 P1 的生存时间 TTL 设置为 1，当 P1 到达路径上的第一个路由器 R1 时，R1 收下它并把 TTL 减 1，此时 TTL 等于 0，R1 就把 P1 丢弃，并向源主机发送一个 ICMP 时间超过差错报告报文</li><li>源主机接着发送第二个数据报 P2，并把 TTL 设置为 2。P2 先到达 R1，R1 收下后把 TTL 减 1 再转发给 R2，R2 收下后也把 TTL 减 1，由于此时 TTL 等于 0，R2 就丢弃 P2，并向源主机发送一个 ICMP 时间超过差错报文</li><li>不断执行这样的步骤，直到最后一个数据报刚刚到达目的主机，主机不转发数据报，也不把 TTL 值减 1。但是因为数据报封装的是无法交付的 UDP，因此目的主机要向源主机发送 ICMP 终点不可达差错报告报文</li><li>之后源主机知道了到达目的主机所经过的路由器 IP 地址以及到达每个路由器的往返时间</li></ul></li></ul></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=http://localhost:1313/posts/computer-science/application-layer/><span class=title>« Prev</span><br><span>计算机网络 应用层</span>
+</a><a class=next href=http://localhost:1313/posts/computer-science/object-oriented/><span class=title>Next »</span><br><span>面向对象</span></a></nav></footer></article></main><footer class=footer></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

@@ -1,0 +1,549 @@
+<!doctype html><html lang=en dir=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>面向对象 | Zhengyu Chen - 尾張</title>
+<meta name=keywords content><meta name=description content="面向对象
+面向对象思想
+三大特性
+
+
+封装
+
+利用抽象数据类型将数据和基于数据的操作封装在一起，使其构成一个不可分割的独立实体。数据被保护在抽象数据类型的内部，尽可能地隐藏内部的细节，只保留一些对外的接口使其与外部发生联系。用户无需关心对象内部的细节，但可以通过对象对外提供的接口来访问该对象
+优点：
+
+减少耦合：可以独立地开发、测试、优化、使用、理解和修改
+减轻维护的负担：可以更容易被程序员理解，并且在调试的时候可以不影响其他模块
+有效地调节性能：可以通过剖析来确定哪些模块影响了系统的性能
+提高软件的可重用性
+降低了构建大型系统的风险：即使整个系统不可用，但是这些独立的模块却有可能是可用的
+
+
+
+
+
+继承
+
+继承实现了 IS-A 关系，例如 Cat 和 Animal 就是一种 IS-A 关系，因此 Cat 可以继承自 Animal，从而获得 Animal 非 private 的属性和方法
+继承应该遵循里氏替换原则，子类对象必须能够替换掉所有父类对象
+Cat 可以当做 Animal 来使用，也就是说可以使用 Animal 引用 Cat 对象。父类引用指向子类对象称为 向上转型
+
+
+
+多态
+
+多态分为编译时多态和运行时多态：
+
+编译时多态主要指方法的重载
+运行时多态指程序中定义的对象引用所指向的具体类型在运行期间才确定
+
+
+运行时多态有三个条件：
+
+继承
+覆盖（重写）
+向上转型
+
+
+
+
+
+设计原则
+
+
+单一责任原则
+
+修改一个类的原因应该只有一个
+让一个类只负责一件事，当这个类需要做过多事情的时候，就需要分解这个类
+如果一个类承担的职责过多，就等于把这些职责耦合在了一起，一个职责的变化可能会削弱这个类完成其它职责的能力
+
+
+
+开放封闭原则
+
+类应该对扩展开放，对修改关闭
+扩展就是添加新功能的意思，因此该原则要求在添加新功能时不需要修改代码
+符合开闭原则最典型的设计模式是装饰者模式，它可以动态地将责任附加到对象上，而不用去修改类的代码
+
+
+
+里氏替换原则
+
+子类对象必须能够替换掉所有父类对象
+继承是一种 IS-A 关系，子类需要能够当成父类来使用，并且需要比父类更特殊
+如果不满足这个原则，那么各个子类的行为上就会有很大差异，增加继承体系的复杂度
+
+
+
+接口分离原则
+
+不应该强迫客户依赖于它们不用的方法
+因此使用多个专门的接口比使用单一的总接口要好
+
+
+
+依赖倒置原则
+
+高层模块不应该依赖于低层模块，二者都应该依赖于抽象
+抽象不应该依赖于细节，细节应该依赖于抽象
+高层模块包含一个应用程序中重要的策略选择和业务模块，如果高层模块依赖于低层模块，那么低层模块的改动就会直接影响到高层模块，从而迫使高层模块也需要改动。
+依赖于抽象意味着：
+
+任何变量都不应该持有一个指向具体类的指针或者引用
+任何类都不应该从具体类派生
+任何方法都不应该覆写它的任何基类中的已经实现的方法
+
+
+
+
+
+设计模式
+创建型
+单例模式 Singleton
+
+目的：保证一个类只有一个实例，并提供该实例的全局访问
+特点
+
+私有构造函数用于保证不能通过构造函数来创建新的对象实例
+公有静态函数用于返回唯一的私有静态变量
+私有静态变量
+
+
+
+简单工厂 Simple Factory
+
+目的：在创建一个对象时不向客户暴露内部细节，并提供一个创建对象的通用接口
+特点
+
+把实例化的操作单独放到一个简单工厂类中，让简单工厂类来决定应该用哪个具体子类来实例化
+把客户类和具体子类的实现解耦，客户类不再需要知道有哪些子类以及应当实例化哪个子类
+客户类有多个，增加子类时，客户类不需要进行修改
+
+
+
+工厂方法 Factory Method
+
+目的：定义一个创建对象的接口，由子类决定要实例化哪个类
+特点
+
+把实例化操作推迟到子类
+在简单工厂中，由简单工厂类创建对象；在工厂方法中，由子类创建对象
+
+
+
+抽象工厂 Abstract Factory
+
+目的：提供一个接口，用于创建相关的对象家族
+特点
+
+抽象工厂创建的是对象家族，也就是很多对象
+这些对象是相关的，也就是说必须一起创建
+工厂方法模式只用于创建单个对象
+抽象工厂用到了工厂方法来创建单一对象
+Client 通过 AbstractFactory 同时调用两个方法来创建出两个对象（对象家族），这两个对象有很大的相关性，Client 需要同时创建出这两个对象
+抽象工厂使用了组合，Cilent 组合了 AbstractFactory，而工厂方法只使用了继承
+
+
+
+生成器 Builder
+
+目的：封装一个对象的构造过程，并允许按步骤构造
+
+原型 Prototype
+
+目的：使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象
+
+行为型
+责任链 Chain of Responsibility
+
+目的：使多个对象都有机会处理请求，使请求的发送者和接收者解耦
+特点
+
+将对象连成一条链，沿着链发送请求，直到有一个对象处理为止
+
+
+
+命令 Command
+
+目的：将命令封装成对象
+特点
+
+使用命令来参数化其它对象
+将命令放入队列中进行排队
+将命令的操作记录到日志中
+支持可撤销的操作
+
+
+
+解释器 Interpreter
+
+目的：为语言创建解释器
+特点
+
+通常由语言的语法和语法分析来定义
+
+
+
+迭代器 Iterator
+
+目的：提供一种顺序访问聚合对象元素的方法，并且不暴露聚合对象的内部表示
+特点
+
+中介者 Mediator
+
+目的：集中相关对象之间复杂的沟通和控制方式
+
+备忘录 Memento
+
+目的：在不违反封装的情况下获得对象的内部状态，从而在需要时可以将对象恢复到最初状态
+
+观察者 Observer
+
+目的：定义对象之间的一对多依赖，当一个对象状态改变时，它的所有依赖都会收到通知并且自动更新状态
+
+状态 State
+
+目的：允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类
+
+策略 Strategy
+
+目的：定义一系列算法，封装每个算法，并使它们可以互换
+特点
+
+让算法独立于使用它的客户端
+
+
+
+模板方法 Template Method
+
+目的：定义算法框架，并将一些步骤的实现延迟到子类
+特点
+
+通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构
+
+
+
+访问者 Visitor
+
+目的：为一个对象结构（比如组合结构）增加新能力
+
+空对象 Null
+
+目的：用什么都不做的空对象来代替 NULL
+特点
+
+一个方法返回 NULL，意味着方法的调用端需要去检查返回值是否是 NULL，这么做会导致非常多的冗余的检查代码
+如果某一个调用端忘记了做这个检查返回值，而直接使用返回的对象，有可能抛出空指针异常
+
+
+
+结构型
+适配器 Adapter
+
+目的：把一个类接口转换成另一个用户需要的接口
+
+桥接 Bridge
+
+目的：将抽象与实现分离开来，使它们可以独立变化
+
+组合 Composite
+
+目的：将对象组合成树形结构来表示整体/部分的层次关系，允许用户以相同的方式处理单独对象和组合对象
+特点
+
+组合对象拥有一个或者多个组件对象，因此组合对象的操作可以委托给组件对象去处理，而组件对象可以是另一个组合对象或者叶子对象
+
+
+
+装饰 Decorator
+
+目的：为对象动态添加功能
+
+外观 Facade
+
+目的：提供一个统一的接口，用来访问子系统中的一群接口，从而让子系统更容易使用
+
+享元 Flyweight
+
+目的：利用共享的方式来支持大量细粒度的对象，这些对象一部分内部状态是相同的
+
+代理 Proxy
+
+目的：控制对其它对象的访问
+"><meta name=author content><link rel=canonical href=http://localhost:1313/posts/computer-science/object-oriented/><link crossorigin=anonymous href=/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/computer-science/object-oriented/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="http://localhost:1313/posts/computer-science/object-oriented/"><meta property="og:site_name" content="Zhengyu Chen - 尾張"><meta property="og:title" content="面向对象"><meta property="og:description" content="面向对象 面向对象思想 三大特性 封装
+利用抽象数据类型将数据和基于数据的操作封装在一起，使其构成一个不可分割的独立实体。数据被保护在抽象数据类型的内部，尽可能地隐藏内部的细节，只保留一些对外的接口使其与外部发生联系。用户无需关心对象内部的细节，但可以通过对象对外提供的接口来访问该对象 优点： 减少耦合：可以独立地开发、测试、优化、使用、理解和修改 减轻维护的负担：可以更容易被程序员理解，并且在调试的时候可以不影响其他模块 有效地调节性能：可以通过剖析来确定哪些模块影响了系统的性能 提高软件的可重用性 降低了构建大型系统的风险：即使整个系统不可用，但是这些独立的模块却有可能是可用的 继承
+继承实现了 IS-A 关系，例如 Cat 和 Animal 就是一种 IS-A 关系，因此 Cat 可以继承自 Animal，从而获得 Animal 非 private 的属性和方法 继承应该遵循里氏替换原则，子类对象必须能够替换掉所有父类对象 Cat 可以当做 Animal 来使用，也就是说可以使用 Animal 引用 Cat 对象。父类引用指向子类对象称为 向上转型 多态
+多态分为编译时多态和运行时多态： 编译时多态主要指方法的重载 运行时多态指程序中定义的对象引用所指向的具体类型在运行期间才确定 运行时多态有三个条件： 继承 覆盖（重写） 向上转型 设计原则 单一责任原则
+修改一个类的原因应该只有一个 让一个类只负责一件事，当这个类需要做过多事情的时候，就需要分解这个类 如果一个类承担的职责过多，就等于把这些职责耦合在了一起，一个职责的变化可能会削弱这个类完成其它职责的能力 开放封闭原则
+类应该对扩展开放，对修改关闭 扩展就是添加新功能的意思，因此该原则要求在添加新功能时不需要修改代码 符合开闭原则最典型的设计模式是装饰者模式，它可以动态地将责任附加到对象上，而不用去修改类的代码 里氏替换原则
+子类对象必须能够替换掉所有父类对象 继承是一种 IS-A 关系，子类需要能够当成父类来使用，并且需要比父类更特殊 如果不满足这个原则，那么各个子类的行为上就会有很大差异，增加继承体系的复杂度 接口分离原则
+不应该强迫客户依赖于它们不用的方法 因此使用多个专门的接口比使用单一的总接口要好 依赖倒置原则
+高层模块不应该依赖于低层模块，二者都应该依赖于抽象 抽象不应该依赖于细节，细节应该依赖于抽象 高层模块包含一个应用程序中重要的策略选择和业务模块，如果高层模块依赖于低层模块，那么低层模块的改动就会直接影响到高层模块，从而迫使高层模块也需要改动。 依赖于抽象意味着： 任何变量都不应该持有一个指向具体类的指针或者引用 任何类都不应该从具体类派生 任何方法都不应该覆写它的任何基类中的已经实现的方法 设计模式 创建型 单例模式 Singleton 目的：保证一个类只有一个实例，并提供该实例的全局访问 特点 私有构造函数用于保证不能通过构造函数来创建新的对象实例 公有静态函数用于返回唯一的私有静态变量 私有静态变量 简单工厂 Simple Factory 目的：在创建一个对象时不向客户暴露内部细节，并提供一个创建对象的通用接口 特点 把实例化的操作单独放到一个简单工厂类中，让简单工厂类来决定应该用哪个具体子类来实例化 把客户类和具体子类的实现解耦，客户类不再需要知道有哪些子类以及应当实例化哪个子类 客户类有多个，增加子类时，客户类不需要进行修改 工厂方法 Factory Method 目的：定义一个创建对象的接口，由子类决定要实例化哪个类 特点 把实例化操作推迟到子类 在简单工厂中，由简单工厂类创建对象；在工厂方法中，由子类创建对象 抽象工厂 Abstract Factory 目的：提供一个接口，用于创建相关的对象家族 特点 抽象工厂创建的是对象家族，也就是很多对象 这些对象是相关的，也就是说必须一起创建 工厂方法模式只用于创建单个对象 抽象工厂用到了工厂方法来创建单一对象 Client 通过 AbstractFactory 同时调用两个方法来创建出两个对象（对象家族），这两个对象有很大的相关性，Client 需要同时创建出这两个对象 抽象工厂使用了组合，Cilent 组合了 AbstractFactory，而工厂方法只使用了继承 生成器 Builder 目的：封装一个对象的构造过程，并允许按步骤构造 原型 Prototype 目的：使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象 行为型 责任链 Chain of Responsibility 目的：使多个对象都有机会处理请求，使请求的发送者和接收者解耦 特点 将对象连成一条链，沿着链发送请求，直到有一个对象处理为止 命令 Command 目的：将命令封装成对象 特点 使用命令来参数化其它对象 将命令放入队列中进行排队 将命令的操作记录到日志中 支持可撤销的操作 解释器 Interpreter 目的：为语言创建解释器 特点 通常由语言的语法和语法分析来定义 迭代器 Iterator 目的：提供一种顺序访问聚合对象元素的方法，并且不暴露聚合对象的内部表示 特点 中介者 Mediator 目的：集中相关对象之间复杂的沟通和控制方式 备忘录 Memento 目的：在不违反封装的情况下获得对象的内部状态，从而在需要时可以将对象恢复到最初状态 观察者 Observer 目的：定义对象之间的一对多依赖，当一个对象状态改变时，它的所有依赖都会收到通知并且自动更新状态 状态 State 目的：允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类 策略 Strategy 目的：定义一系列算法，封装每个算法，并使它们可以互换 特点 让算法独立于使用它的客户端 模板方法 Template Method 目的：定义算法框架，并将一些步骤的实现延迟到子类 特点 通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构 访问者 Visitor 目的：为一个对象结构（比如组合结构）增加新能力 空对象 Null 目的：用什么都不做的空对象来代替 NULL 特点 一个方法返回 NULL，意味着方法的调用端需要去检查返回值是否是 NULL，这么做会导致非常多的冗余的检查代码 如果某一个调用端忘记了做这个检查返回值，而直接使用返回的对象，有可能抛出空指针异常 结构型 适配器 Adapter 目的：把一个类接口转换成另一个用户需要的接口 桥接 Bridge 目的：将抽象与实现分离开来，使它们可以独立变化 组合 Composite 目的：将对象组合成树形结构来表示整体/部分的层次关系，允许用户以相同的方式处理单独对象和组合对象 特点 组合对象拥有一个或者多个组件对象，因此组合对象的操作可以委托给组件对象去处理，而组件对象可以是另一个组合对象或者叶子对象 装饰 Decorator 目的：为对象动态添加功能 外观 Facade 目的：提供一个统一的接口，用来访问子系统中的一群接口，从而让子系统更容易使用 享元 Flyweight 目的：利用共享的方式来支持大量细粒度的对象，这些对象一部分内部状态是相同的 代理 Proxy 目的：控制对其它对象的访问 "><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2015-07-05T08:57:52+10:00"><meta property="article:modified_time" content="2015-07-05T08:57:52+10:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="面向对象"><meta name=twitter:description content="面向对象
+面向对象思想
+三大特性
+
+
+封装
+
+利用抽象数据类型将数据和基于数据的操作封装在一起，使其构成一个不可分割的独立实体。数据被保护在抽象数据类型的内部，尽可能地隐藏内部的细节，只保留一些对外的接口使其与外部发生联系。用户无需关心对象内部的细节，但可以通过对象对外提供的接口来访问该对象
+优点：
+
+减少耦合：可以独立地开发、测试、优化、使用、理解和修改
+减轻维护的负担：可以更容易被程序员理解，并且在调试的时候可以不影响其他模块
+有效地调节性能：可以通过剖析来确定哪些模块影响了系统的性能
+提高软件的可重用性
+降低了构建大型系统的风险：即使整个系统不可用，但是这些独立的模块却有可能是可用的
+
+
+
+
+
+继承
+
+继承实现了 IS-A 关系，例如 Cat 和 Animal 就是一种 IS-A 关系，因此 Cat 可以继承自 Animal，从而获得 Animal 非 private 的属性和方法
+继承应该遵循里氏替换原则，子类对象必须能够替换掉所有父类对象
+Cat 可以当做 Animal 来使用，也就是说可以使用 Animal 引用 Cat 对象。父类引用指向子类对象称为 向上转型
+
+
+
+多态
+
+多态分为编译时多态和运行时多态：
+
+编译时多态主要指方法的重载
+运行时多态指程序中定义的对象引用所指向的具体类型在运行期间才确定
+
+
+运行时多态有三个条件：
+
+继承
+覆盖（重写）
+向上转型
+
+
+
+
+
+设计原则
+
+
+单一责任原则
+
+修改一个类的原因应该只有一个
+让一个类只负责一件事，当这个类需要做过多事情的时候，就需要分解这个类
+如果一个类承担的职责过多，就等于把这些职责耦合在了一起，一个职责的变化可能会削弱这个类完成其它职责的能力
+
+
+
+开放封闭原则
+
+类应该对扩展开放，对修改关闭
+扩展就是添加新功能的意思，因此该原则要求在添加新功能时不需要修改代码
+符合开闭原则最典型的设计模式是装饰者模式，它可以动态地将责任附加到对象上，而不用去修改类的代码
+
+
+
+里氏替换原则
+
+子类对象必须能够替换掉所有父类对象
+继承是一种 IS-A 关系，子类需要能够当成父类来使用，并且需要比父类更特殊
+如果不满足这个原则，那么各个子类的行为上就会有很大差异，增加继承体系的复杂度
+
+
+
+接口分离原则
+
+不应该强迫客户依赖于它们不用的方法
+因此使用多个专门的接口比使用单一的总接口要好
+
+
+
+依赖倒置原则
+
+高层模块不应该依赖于低层模块，二者都应该依赖于抽象
+抽象不应该依赖于细节，细节应该依赖于抽象
+高层模块包含一个应用程序中重要的策略选择和业务模块，如果高层模块依赖于低层模块，那么低层模块的改动就会直接影响到高层模块，从而迫使高层模块也需要改动。
+依赖于抽象意味着：
+
+任何变量都不应该持有一个指向具体类的指针或者引用
+任何类都不应该从具体类派生
+任何方法都不应该覆写它的任何基类中的已经实现的方法
+
+
+
+
+
+设计模式
+创建型
+单例模式 Singleton
+
+目的：保证一个类只有一个实例，并提供该实例的全局访问
+特点
+
+私有构造函数用于保证不能通过构造函数来创建新的对象实例
+公有静态函数用于返回唯一的私有静态变量
+私有静态变量
+
+
+
+简单工厂 Simple Factory
+
+目的：在创建一个对象时不向客户暴露内部细节，并提供一个创建对象的通用接口
+特点
+
+把实例化的操作单独放到一个简单工厂类中，让简单工厂类来决定应该用哪个具体子类来实例化
+把客户类和具体子类的实现解耦，客户类不再需要知道有哪些子类以及应当实例化哪个子类
+客户类有多个，增加子类时，客户类不需要进行修改
+
+
+
+工厂方法 Factory Method
+
+目的：定义一个创建对象的接口，由子类决定要实例化哪个类
+特点
+
+把实例化操作推迟到子类
+在简单工厂中，由简单工厂类创建对象；在工厂方法中，由子类创建对象
+
+
+
+抽象工厂 Abstract Factory
+
+目的：提供一个接口，用于创建相关的对象家族
+特点
+
+抽象工厂创建的是对象家族，也就是很多对象
+这些对象是相关的，也就是说必须一起创建
+工厂方法模式只用于创建单个对象
+抽象工厂用到了工厂方法来创建单一对象
+Client 通过 AbstractFactory 同时调用两个方法来创建出两个对象（对象家族），这两个对象有很大的相关性，Client 需要同时创建出这两个对象
+抽象工厂使用了组合，Cilent 组合了 AbstractFactory，而工厂方法只使用了继承
+
+
+
+生成器 Builder
+
+目的：封装一个对象的构造过程，并允许按步骤构造
+
+原型 Prototype
+
+目的：使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象
+
+行为型
+责任链 Chain of Responsibility
+
+目的：使多个对象都有机会处理请求，使请求的发送者和接收者解耦
+特点
+
+将对象连成一条链，沿着链发送请求，直到有一个对象处理为止
+
+
+
+命令 Command
+
+目的：将命令封装成对象
+特点
+
+使用命令来参数化其它对象
+将命令放入队列中进行排队
+将命令的操作记录到日志中
+支持可撤销的操作
+
+
+
+解释器 Interpreter
+
+目的：为语言创建解释器
+特点
+
+通常由语言的语法和语法分析来定义
+
+
+
+迭代器 Iterator
+
+目的：提供一种顺序访问聚合对象元素的方法，并且不暴露聚合对象的内部表示
+特点
+
+中介者 Mediator
+
+目的：集中相关对象之间复杂的沟通和控制方式
+
+备忘录 Memento
+
+目的：在不违反封装的情况下获得对象的内部状态，从而在需要时可以将对象恢复到最初状态
+
+观察者 Observer
+
+目的：定义对象之间的一对多依赖，当一个对象状态改变时，它的所有依赖都会收到通知并且自动更新状态
+
+状态 State
+
+目的：允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类
+
+策略 Strategy
+
+目的：定义一系列算法，封装每个算法，并使它们可以互换
+特点
+
+让算法独立于使用它的客户端
+
+
+
+模板方法 Template Method
+
+目的：定义算法框架，并将一些步骤的实现延迟到子类
+特点
+
+通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构
+
+
+
+访问者 Visitor
+
+目的：为一个对象结构（比如组合结构）增加新能力
+
+空对象 Null
+
+目的：用什么都不做的空对象来代替 NULL
+特点
+
+一个方法返回 NULL，意味着方法的调用端需要去检查返回值是否是 NULL，这么做会导致非常多的冗余的检查代码
+如果某一个调用端忘记了做这个检查返回值，而直接使用返回的对象，有可能抛出空指针异常
+
+
+
+结构型
+适配器 Adapter
+
+目的：把一个类接口转换成另一个用户需要的接口
+
+桥接 Bridge
+
+目的：将抽象与实现分离开来，使它们可以独立变化
+
+组合 Composite
+
+目的：将对象组合成树形结构来表示整体/部分的层次关系，允许用户以相同的方式处理单独对象和组合对象
+特点
+
+组合对象拥有一个或者多个组件对象，因此组合对象的操作可以委托给组件对象去处理，而组件对象可以是另一个组合对象或者叶子对象
+
+
+
+装饰 Decorator
+
+目的：为对象动态添加功能
+
+外观 Facade
+
+目的：提供一个统一的接口，用来访问子系统中的一群接口，从而让子系统更容易使用
+
+享元 Flyweight
+
+目的：利用共享的方式来支持大量细粒度的对象，这些对象一部分内部状态是相同的
+
+代理 Proxy
+
+目的：控制对其它对象的访问
+"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"面向对象","item":"http://localhost:1313/posts/computer-science/object-oriented/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"面向对象","name":"面向对象","description":"面向对象 面向对象思想 三大特性 封装\n利用抽象数据类型将数据和基于数据的操作封装在一起，使其构成一个不可分割的独立实体。数据被保护在抽象数据类型的内部，尽可能地隐藏内部的细节，只保留一些对外的接口使其与外部发生联系。用户无需关心对象内部的细节，但可以通过对象对外提供的接口来访问该对象 优点： 减少耦合：可以独立地开发、测试、优化、使用、理解和修改 减轻维护的负担：可以更容易被程序员理解，并且在调试的时候可以不影响其他模块 有效地调节性能：可以通过剖析来确定哪些模块影响了系统的性能 提高软件的可重用性 降低了构建大型系统的风险：即使整个系统不可用，但是这些独立的模块却有可能是可用的 继承\n继承实现了 IS-A 关系，例如 Cat 和 Animal 就是一种 IS-A 关系，因此 Cat 可以继承自 Animal，从而获得 Animal 非 private 的属性和方法 继承应该遵循里氏替换原则，子类对象必须能够替换掉所有父类对象 Cat 可以当做 Animal 来使用，也就是说可以使用 Animal 引用 Cat 对象。父类引用指向子类对象称为 向上转型 多态\n多态分为编译时多态和运行时多态： 编译时多态主要指方法的重载 运行时多态指程序中定义的对象引用所指向的具体类型在运行期间才确定 运行时多态有三个条件： 继承 覆盖（重写） 向上转型 设计原则 单一责任原则\n修改一个类的原因应该只有一个 让一个类只负责一件事，当这个类需要做过多事情的时候，就需要分解这个类 如果一个类承担的职责过多，就等于把这些职责耦合在了一起，一个职责的变化可能会削弱这个类完成其它职责的能力 开放封闭原则\n类应该对扩展开放，对修改关闭 扩展就是添加新功能的意思，因此该原则要求在添加新功能时不需要修改代码 符合开闭原则最典型的设计模式是装饰者模式，它可以动态地将责任附加到对象上，而不用去修改类的代码 里氏替换原则\n子类对象必须能够替换掉所有父类对象 继承是一种 IS-A 关系，子类需要能够当成父类来使用，并且需要比父类更特殊 如果不满足这个原则，那么各个子类的行为上就会有很大差异，增加继承体系的复杂度 接口分离原则\n不应该强迫客户依赖于它们不用的方法 因此使用多个专门的接口比使用单一的总接口要好 依赖倒置原则\n高层模块不应该依赖于低层模块，二者都应该依赖于抽象 抽象不应该依赖于细节，细节应该依赖于抽象 高层模块包含一个应用程序中重要的策略选择和业务模块，如果高层模块依赖于低层模块，那么低层模块的改动就会直接影响到高层模块，从而迫使高层模块也需要改动。 依赖于抽象意味着： 任何变量都不应该持有一个指向具体类的指针或者引用 任何类都不应该从具体类派生 任何方法都不应该覆写它的任何基类中的已经实现的方法 设计模式 创建型 单例模式 Singleton 目的：保证一个类只有一个实例，并提供该实例的全局访问 特点 私有构造函数用于保证不能通过构造函数来创建新的对象实例 公有静态函数用于返回唯一的私有静态变量 私有静态变量 简单工厂 Simple Factory 目的：在创建一个对象时不向客户暴露内部细节，并提供一个创建对象的通用接口 特点 把实例化的操作单独放到一个简单工厂类中，让简单工厂类来决定应该用哪个具体子类来实例化 把客户类和具体子类的实现解耦，客户类不再需要知道有哪些子类以及应当实例化哪个子类 客户类有多个，增加子类时，客户类不需要进行修改 工厂方法 Factory Method 目的：定义一个创建对象的接口，由子类决定要实例化哪个类 特点 把实例化操作推迟到子类 在简单工厂中，由简单工厂类创建对象；在工厂方法中，由子类创建对象 抽象工厂 Abstract Factory 目的：提供一个接口，用于创建相关的对象家族 特点 抽象工厂创建的是对象家族，也就是很多对象 这些对象是相关的，也就是说必须一起创建 工厂方法模式只用于创建单个对象 抽象工厂用到了工厂方法来创建单一对象 Client 通过 AbstractFactory 同时调用两个方法来创建出两个对象（对象家族），这两个对象有很大的相关性，Client 需要同时创建出这两个对象 抽象工厂使用了组合，Cilent 组合了 AbstractFactory，而工厂方法只使用了继承 生成器 Builder 目的：封装一个对象的构造过程，并允许按步骤构造 原型 Prototype 目的：使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象 行为型 责任链 Chain of Responsibility 目的：使多个对象都有机会处理请求，使请求的发送者和接收者解耦 特点 将对象连成一条链，沿着链发送请求，直到有一个对象处理为止 命令 Command 目的：将命令封装成对象 特点 使用命令来参数化其它对象 将命令放入队列中进行排队 将命令的操作记录到日志中 支持可撤销的操作 解释器 Interpreter 目的：为语言创建解释器 特点 通常由语言的语法和语法分析来定义 迭代器 Iterator 目的：提供一种顺序访问聚合对象元素的方法，并且不暴露聚合对象的内部表示 特点 中介者 Mediator 目的：集中相关对象之间复杂的沟通和控制方式 备忘录 Memento 目的：在不违反封装的情况下获得对象的内部状态，从而在需要时可以将对象恢复到最初状态 观察者 Observer 目的：定义对象之间的一对多依赖，当一个对象状态改变时，它的所有依赖都会收到通知并且自动更新状态 状态 State 目的：允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类 策略 Strategy 目的：定义一系列算法，封装每个算法，并使它们可以互换 特点 让算法独立于使用它的客户端 模板方法 Template Method 目的：定义算法框架，并将一些步骤的实现延迟到子类 特点 通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构 访问者 Visitor 目的：为一个对象结构（比如组合结构）增加新能力 空对象 Null 目的：用什么都不做的空对象来代替 NULL 特点 一个方法返回 NULL，意味着方法的调用端需要去检查返回值是否是 NULL，这么做会导致非常多的冗余的检查代码 如果某一个调用端忘记了做这个检查返回值，而直接使用返回的对象，有可能抛出空指针异常 结构型 适配器 Adapter 目的：把一个类接口转换成另一个用户需要的接口 桥接 Bridge 目的：将抽象与实现分离开来，使它们可以独立变化 组合 Composite 目的：将对象组合成树形结构来表示整体/部分的层次关系，允许用户以相同的方式处理单独对象和组合对象 特点 组合对象拥有一个或者多个组件对象，因此组合对象的操作可以委托给组件对象去处理，而组件对象可以是另一个组合对象或者叶子对象 装饰 Decorator 目的：为对象动态添加功能 外观 Facade 目的：提供一个统一的接口，用来访问子系统中的一群接口，从而让子系统更容易使用 享元 Flyweight 目的：利用共享的方式来支持大量细粒度的对象，这些对象一部分内部状态是相同的 代理 Proxy 目的：控制对其它对象的访问 ","keywords":[],"articleBody":"面向对象 面向对象思想 三大特性 封装\n利用抽象数据类型将数据和基于数据的操作封装在一起，使其构成一个不可分割的独立实体。数据被保护在抽象数据类型的内部，尽可能地隐藏内部的细节，只保留一些对外的接口使其与外部发生联系。用户无需关心对象内部的细节，但可以通过对象对外提供的接口来访问该对象 优点： 减少耦合：可以独立地开发、测试、优化、使用、理解和修改 减轻维护的负担：可以更容易被程序员理解，并且在调试的时候可以不影响其他模块 有效地调节性能：可以通过剖析来确定哪些模块影响了系统的性能 提高软件的可重用性 降低了构建大型系统的风险：即使整个系统不可用，但是这些独立的模块却有可能是可用的 继承\n继承实现了 IS-A 关系，例如 Cat 和 Animal 就是一种 IS-A 关系，因此 Cat 可以继承自 Animal，从而获得 Animal 非 private 的属性和方法 继承应该遵循里氏替换原则，子类对象必须能够替换掉所有父类对象 Cat 可以当做 Animal 来使用，也就是说可以使用 Animal 引用 Cat 对象。父类引用指向子类对象称为 向上转型 多态\n多态分为编译时多态和运行时多态： 编译时多态主要指方法的重载 运行时多态指程序中定义的对象引用所指向的具体类型在运行期间才确定 运行时多态有三个条件： 继承 覆盖（重写） 向上转型 设计原则 单一责任原则\n修改一个类的原因应该只有一个 让一个类只负责一件事，当这个类需要做过多事情的时候，就需要分解这个类 如果一个类承担的职责过多，就等于把这些职责耦合在了一起，一个职责的变化可能会削弱这个类完成其它职责的能力 开放封闭原则\n类应该对扩展开放，对修改关闭 扩展就是添加新功能的意思，因此该原则要求在添加新功能时不需要修改代码 符合开闭原则最典型的设计模式是装饰者模式，它可以动态地将责任附加到对象上，而不用去修改类的代码 里氏替换原则\n子类对象必须能够替换掉所有父类对象 继承是一种 IS-A 关系，子类需要能够当成父类来使用，并且需要比父类更特殊 如果不满足这个原则，那么各个子类的行为上就会有很大差异，增加继承体系的复杂度 接口分离原则\n不应该强迫客户依赖于它们不用的方法 因此使用多个专门的接口比使用单一的总接口要好 依赖倒置原则\n高层模块不应该依赖于低层模块，二者都应该依赖于抽象 抽象不应该依赖于细节，细节应该依赖于抽象 高层模块包含一个应用程序中重要的策略选择和业务模块，如果高层模块依赖于低层模块，那么低层模块的改动就会直接影响到高层模块，从而迫使高层模块也需要改动。 依赖于抽象意味着： 任何变量都不应该持有一个指向具体类的指针或者引用 任何类都不应该从具体类派生 任何方法都不应该覆写它的任何基类中的已经实现的方法 设计模式 创建型 单例模式 Singleton 目的：保证一个类只有一个实例，并提供该实例的全局访问 特点 私有构造函数用于保证不能通过构造函数来创建新的对象实例 公有静态函数用于返回唯一的私有静态变量 私有静态变量 简单工厂 Simple Factory 目的：在创建一个对象时不向客户暴露内部细节，并提供一个创建对象的通用接口 特点 把实例化的操作单独放到一个简单工厂类中，让简单工厂类来决定应该用哪个具体子类来实例化 把客户类和具体子类的实现解耦，客户类不再需要知道有哪些子类以及应当实例化哪个子类 客户类有多个，增加子类时，客户类不需要进行修改 工厂方法 Factory Method 目的：定义一个创建对象的接口，由子类决定要实例化哪个类 特点 把实例化操作推迟到子类 在简单工厂中，由简单工厂类创建对象；在工厂方法中，由子类创建对象 抽象工厂 Abstract Factory 目的：提供一个接口，用于创建相关的对象家族 特点 抽象工厂创建的是对象家族，也就是很多对象 这些对象是相关的，也就是说必须一起创建 工厂方法模式只用于创建单个对象 抽象工厂用到了工厂方法来创建单一对象 Client 通过 AbstractFactory 同时调用两个方法来创建出两个对象（对象家族），这两个对象有很大的相关性，Client 需要同时创建出这两个对象 抽象工厂使用了组合，Cilent 组合了 AbstractFactory，而工厂方法只使用了继承 生成器 Builder 目的：封装一个对象的构造过程，并允许按步骤构造 原型 Prototype 目的：使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象 行为型 责任链 Chain of Responsibility 目的：使多个对象都有机会处理请求，使请求的发送者和接收者解耦 特点 将对象连成一条链，沿着链发送请求，直到有一个对象处理为止 命令 Command 目的：将命令封装成对象 特点 使用命令来参数化其它对象 将命令放入队列中进行排队 将命令的操作记录到日志中 支持可撤销的操作 解释器 Interpreter 目的：为语言创建解释器 特点 通常由语言的语法和语法分析来定义 迭代器 Iterator 目的：提供一种顺序访问聚合对象元素的方法，并且不暴露聚合对象的内部表示 特点 中介者 Mediator 目的：集中相关对象之间复杂的沟通和控制方式 备忘录 Memento 目的：在不违反封装的情况下获得对象的内部状态，从而在需要时可以将对象恢复到最初状态 观察者 Observer 目的：定义对象之间的一对多依赖，当一个对象状态改变时，它的所有依赖都会收到通知并且自动更新状态 状态 State 目的：允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类 策略 Strategy 目的：定义一系列算法，封装每个算法，并使它们可以互换 特点 让算法独立于使用它的客户端 模板方法 Template Method 目的：定义算法框架，并将一些步骤的实现延迟到子类 特点 通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构 访问者 Visitor 目的：为一个对象结构（比如组合结构）增加新能力 空对象 Null 目的：用什么都不做的空对象来代替 NULL 特点 一个方法返回 NULL，意味着方法的调用端需要去检查返回值是否是 NULL，这么做会导致非常多的冗余的检查代码 如果某一个调用端忘记了做这个检查返回值，而直接使用返回的对象，有可能抛出空指针异常 结构型 适配器 Adapter 目的：把一个类接口转换成另一个用户需要的接口 桥接 Bridge 目的：将抽象与实现分离开来，使它们可以独立变化 组合 Composite 目的：将对象组合成树形结构来表示整体/部分的层次关系，允许用户以相同的方式处理单独对象和组合对象 特点 组合对象拥有一个或者多个组件对象，因此组合对象的操作可以委托给组件对象去处理，而组件对象可以是另一个组合对象或者叶子对象 装饰 Decorator 目的：为对象动态添加功能 外观 Facade 目的：提供一个统一的接口，用来访问子系统中的一群接口，从而让子系统更容易使用 享元 Flyweight 目的：利用共享的方式来支持大量细粒度的对象，这些对象一部分内部状态是相同的 代理 Proxy 目的：控制对其它对象的访问 ","wordCount":"203","inLanguage":"en","datePublished":"2015-07-05T08:57:52+10:00","dateModified":"2015-07-05T08:57:52+10:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/computer-science/object-oriented/"},"publisher":{"@type":"Organization","name":"Zhengyu Chen - 尾張","logo":{"@type":"ImageObject","url":"http://localhost:1313/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="尾張 (Alt + H)">尾張</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/archives/ title=Posts><span>Posts</span></a></li><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">面向对象
+<span class=entry-hint title=Draft><svg height="35" viewBox="0 -960 960 960" fill="currentcolor"><path d="M160-410v-60h3e2v60H160zm0-165v-60h470v60H160zm0-165v-60h470v60H160zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22-4.5 22.5T862.09-380L643-160H520zm3e2-263-37-37 37 37zM580-220h38l121-122-18-19-19-18-122 121v38zm141-141-19-18 37 37-18-19z"/></svg></span></h1><div class=post-meta><span title='2015-07-05 08:57:52 +1000 +1000'>July 5, 2015</span>&nbsp;·&nbsp;1 min</div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1 aria-label=面向对象>面向对象</a><ul><li><a href=#%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1%e6%80%9d%e6%83%b3 aria-label=面向对象思想>面向对象思想</a><ul><li><a href=#%e4%b8%89%e5%a4%a7%e7%89%b9%e6%80%a7 aria-label=三大特性>三大特性</a></li><li><a href=#%e8%ae%be%e8%ae%a1%e5%8e%9f%e5%88%99 aria-label=设计原则>设计原则</a></li></ul></li><li><a href=#%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f aria-label=设计模式>设计模式</a><ul><li><a href=#%e5%88%9b%e5%bb%ba%e5%9e%8b aria-label=创建型>创建型</a><ul><li><a href=#%e5%8d%95%e4%be%8b%e6%a8%a1%e5%bc%8f-singleton aria-label="单例模式 Singleton">单例模式 Singleton</a></li><li><a href=#%e7%ae%80%e5%8d%95%e5%b7%a5%e5%8e%82-simple-factory aria-label="简单工厂 Simple Factory">简单工厂 Simple Factory</a></li><li><a href=#%e5%b7%a5%e5%8e%82%e6%96%b9%e6%b3%95-factory-method aria-label="工厂方法 Factory Method">工厂方法 Factory Method</a></li><li><a href=#%e6%8a%bd%e8%b1%a1%e5%b7%a5%e5%8e%82-abstract-factory aria-label="抽象工厂 Abstract Factory">抽象工厂 Abstract Factory</a></li><li><a href=#%e7%94%9f%e6%88%90%e5%99%a8-builder aria-label="生成器 Builder">生成器 Builder</a></li><li><a href=#%e5%8e%9f%e5%9e%8b-prototype aria-label="原型 Prototype">原型 Prototype</a></li></ul></li><li><a href=#%e8%a1%8c%e4%b8%ba%e5%9e%8b aria-label=行为型>行为型</a><ul><li><a href=#%e8%b4%a3%e4%bb%bb%e9%93%be-chain-of-responsibility aria-label="责任链 Chain of Responsibility">责任链 Chain of Responsibility</a></li><li><a href=#%e5%91%bd%e4%bb%a4-command aria-label="命令 Command">命令 Command</a></li><li><a href=#%e8%a7%a3%e9%87%8a%e5%99%a8-interpreter aria-label="解释器 Interpreter">解释器 Interpreter</a></li><li><a href=#%e8%bf%ad%e4%bb%a3%e5%99%a8-iterator aria-label="迭代器 Iterator">迭代器 Iterator</a></li><li><a href=#%e4%b8%ad%e4%bb%8b%e8%80%85-mediator aria-label="中介者 Mediator">中介者 Mediator</a></li><li><a href=#%e5%a4%87%e5%bf%98%e5%bd%95-memento aria-label="备忘录 Memento">备忘录 Memento</a></li><li><a href=#%e8%a7%82%e5%af%9f%e8%80%85-observer aria-label="观察者 Observer">观察者 Observer</a></li><li><a href=#%e7%8a%b6%e6%80%81-state aria-label="状态 State">状态 State</a></li><li><a href=#%e7%ad%96%e7%95%a5-strategy aria-label="策略 Strategy">策略 Strategy</a></li><li><a href=#%e6%a8%a1%e6%9d%bf%e6%96%b9%e6%b3%95-template-method aria-label="模板方法 Template Method">模板方法 Template Method</a></li><li><a href=#%e8%ae%bf%e9%97%ae%e8%80%85-visitor aria-label="访问者 Visitor">访问者 Visitor</a></li><li><a href=#%e7%a9%ba%e5%af%b9%e8%b1%a1-null aria-label="空对象 Null">空对象 Null</a></li></ul></li><li><a href=#%e7%bb%93%e6%9e%84%e5%9e%8b aria-label=结构型>结构型</a><ul><li><a href=#%e9%80%82%e9%85%8d%e5%99%a8-adapter aria-label="适配器 Adapter">适配器 Adapter</a></li><li><a href=#%e6%a1%a5%e6%8e%a5-bridge aria-label="桥接 Bridge">桥接 Bridge</a></li><li><a href=#%e7%bb%84%e5%90%88-composite aria-label="组合 Composite">组合 Composite</a></li><li><a href=#%e8%a3%85%e9%a5%b0-decorator aria-label="装饰 Decorator">装饰 Decorator</a></li><li><a href=#%e5%a4%96%e8%a7%82-facade aria-label="外观 Facade">外观 Facade</a></li><li><a href=#%e4%ba%ab%e5%85%83-flyweight aria-label="享元 Flyweight">享元 Flyweight</a></li><li><a href=#%e4%bb%a3%e7%90%86-proxy aria-label="代理 Proxy">代理 Proxy</a></li></ul></li></ul></li></ul></li></ul></div></details></div><div class=post-content><h1 id=面向对象>面向对象<a hidden class=anchor aria-hidden=true href=#面向对象>#</a></h1><h2 id=面向对象思想>面向对象思想<a hidden class=anchor aria-hidden=true href=#面向对象思想>#</a></h2><h3 id=三大特性>三大特性<a hidden class=anchor aria-hidden=true href=#三大特性>#</a></h3><ol><li><p>封装</p><ul><li>利用抽象数据类型将数据和基于数据的操作封装在一起，使其构成一个不可分割的独立实体。数据被保护在抽象数据类型的内部，尽可能地隐藏内部的细节，只保留一些对外的接口使其与外部发生联系。用户无需关心对象内部的细节，但可以通过对象对外提供的接口来访问该对象</li><li>优点：<ul><li>减少耦合：可以独立地开发、测试、优化、使用、理解和修改</li><li>减轻维护的负担：可以更容易被程序员理解，并且在调试的时候可以不影响其他模块</li><li>有效地调节性能：可以通过剖析来确定哪些模块影响了系统的性能</li><li>提高软件的可重用性</li><li>降低了构建大型系统的风险：即使整个系统不可用，但是这些独立的模块却有可能是可用的</li></ul></li></ul></li><li><p>继承</p><ul><li>继承实现了 IS-A 关系，例如 Cat 和 Animal 就是一种 IS-A 关系，因此 Cat 可以继承自 Animal，从而获得 Animal 非 private 的属性和方法</li><li>继承应该遵循里氏替换原则，子类对象必须能够替换掉所有父类对象</li><li>Cat 可以当做 Animal 来使用，也就是说可以使用 Animal 引用 Cat 对象。父类引用指向子类对象称为 向上转型</li></ul></li><li><p>多态</p><ul><li>多态分为编译时多态和运行时多态：<ul><li>编译时多态主要指方法的重载</li><li>运行时多态指程序中定义的对象引用所指向的具体类型在运行期间才确定</li></ul></li><li>运行时多态有三个条件：<ul><li>继承</li><li>覆盖（重写）</li><li>向上转型</li></ul></li></ul></li></ol><h3 id=设计原则>设计原则<a hidden class=anchor aria-hidden=true href=#设计原则>#</a></h3><ol><li><p>单一责任原则</p><ul><li>修改一个类的原因应该只有一个</li><li>让一个类只负责一件事，当这个类需要做过多事情的时候，就需要分解这个类</li><li>如果一个类承担的职责过多，就等于把这些职责耦合在了一起，一个职责的变化可能会削弱这个类完成其它职责的能力</li></ul></li><li><p>开放封闭原则</p><ul><li>类应该对扩展开放，对修改关闭</li><li>扩展就是添加新功能的意思，因此该原则要求在添加新功能时不需要修改代码</li><li>符合开闭原则最典型的设计模式是装饰者模式，它可以动态地将责任附加到对象上，而不用去修改类的代码</li></ul></li><li><p>里氏替换原则</p><ul><li>子类对象必须能够替换掉所有父类对象</li><li>继承是一种 IS-A 关系，子类需要能够当成父类来使用，并且需要比父类更特殊</li><li>如果不满足这个原则，那么各个子类的行为上就会有很大差异，增加继承体系的复杂度</li></ul></li><li><p>接口分离原则</p><ul><li>不应该强迫客户依赖于它们不用的方法</li><li>因此使用多个专门的接口比使用单一的总接口要好</li></ul></li><li><p>依赖倒置原则</p><ul><li>高层模块不应该依赖于低层模块，二者都应该依赖于抽象</li><li>抽象不应该依赖于细节，细节应该依赖于抽象</li><li>高层模块包含一个应用程序中重要的策略选择和业务模块，如果高层模块依赖于低层模块，那么低层模块的改动就会直接影响到高层模块，从而迫使高层模块也需要改动。</li><li>依赖于抽象意味着：<ul><li>任何变量都不应该持有一个指向具体类的指针或者引用</li><li>任何类都不应该从具体类派生</li><li>任何方法都不应该覆写它的任何基类中的已经实现的方法</li></ul></li></ul></li></ol><h2 id=设计模式>设计模式<a hidden class=anchor aria-hidden=true href=#设计模式>#</a></h2><h3 id=创建型>创建型<a hidden class=anchor aria-hidden=true href=#创建型>#</a></h3><h4 id=单例模式-singleton>单例模式 Singleton<a hidden class=anchor aria-hidden=true href=#单例模式-singleton>#</a></h4><ul><li>目的：保证一个类只有一个实例，并提供该实例的全局访问</li><li>特点<ul><li>私有构造函数用于保证不能通过构造函数来创建新的对象实例</li><li>公有静态函数用于返回唯一的私有静态变量</li><li>私有静态变量</li></ul></li></ul><h4 id=简单工厂-simple-factory>简单工厂 Simple Factory<a hidden class=anchor aria-hidden=true href=#简单工厂-simple-factory>#</a></h4><ul><li>目的：在创建一个对象时不向客户暴露内部细节，并提供一个创建对象的通用接口</li><li>特点<ul><li>把实例化的操作单独放到一个简单工厂类中，让简单工厂类来决定应该用哪个具体子类来实例化</li><li>把客户类和具体子类的实现解耦，客户类不再需要知道有哪些子类以及应当实例化哪个子类</li><li>客户类有多个，增加子类时，客户类不需要进行修改</li></ul></li></ul><h4 id=工厂方法-factory-method>工厂方法 Factory Method<a hidden class=anchor aria-hidden=true href=#工厂方法-factory-method>#</a></h4><ul><li>目的：定义一个创建对象的接口，由子类决定要实例化哪个类</li><li>特点<ul><li>把实例化操作推迟到子类</li><li>在简单工厂中，由简单工厂类创建对象；在工厂方法中，由子类创建对象</li></ul></li></ul><h4 id=抽象工厂-abstract-factory>抽象工厂 Abstract Factory<a hidden class=anchor aria-hidden=true href=#抽象工厂-abstract-factory>#</a></h4><ul><li>目的：提供一个接口，用于创建相关的对象家族</li><li>特点<ul><li>抽象工厂创建的是对象家族，也就是很多对象</li><li>这些对象是相关的，也就是说必须一起创建</li><li>工厂方法模式只用于创建单个对象</li><li>抽象工厂用到了工厂方法来创建单一对象</li><li>Client 通过 AbstractFactory 同时调用两个方法来创建出两个对象（对象家族），这两个对象有很大的相关性，Client 需要同时创建出这两个对象</li><li>抽象工厂使用了组合，Cilent 组合了 AbstractFactory，而工厂方法只使用了继承</li></ul></li></ul><h4 id=生成器-builder>生成器 Builder<a hidden class=anchor aria-hidden=true href=#生成器-builder>#</a></h4><ul><li>目的：封装一个对象的构造过程，并允许按步骤构造</li></ul><h4 id=原型-prototype>原型 Prototype<a hidden class=anchor aria-hidden=true href=#原型-prototype>#</a></h4><ul><li>目的：使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象</li></ul><h3 id=行为型>行为型<a hidden class=anchor aria-hidden=true href=#行为型>#</a></h3><h4 id=责任链-chain-of-responsibility>责任链 Chain of Responsibility<a hidden class=anchor aria-hidden=true href=#责任链-chain-of-responsibility>#</a></h4><ul><li>目的：使多个对象都有机会处理请求，使请求的发送者和接收者解耦</li><li>特点<ul><li>将对象连成一条链，沿着链发送请求，直到有一个对象处理为止</li></ul></li></ul><h4 id=命令-command>命令 Command<a hidden class=anchor aria-hidden=true href=#命令-command>#</a></h4><ul><li>目的：将命令封装成对象</li><li>特点<ul><li>使用命令来参数化其它对象</li><li>将命令放入队列中进行排队</li><li>将命令的操作记录到日志中</li><li>支持可撤销的操作</li></ul></li></ul><h4 id=解释器-interpreter>解释器 Interpreter<a hidden class=anchor aria-hidden=true href=#解释器-interpreter>#</a></h4><ul><li>目的：为语言创建解释器</li><li>特点<ul><li>通常由语言的语法和语法分析来定义</li></ul></li></ul><h4 id=迭代器-iterator>迭代器 Iterator<a hidden class=anchor aria-hidden=true href=#迭代器-iterator>#</a></h4><ul><li>目的：提供一种顺序访问聚合对象元素的方法，并且不暴露聚合对象的内部表示</li><li>特点</li></ul><h4 id=中介者-mediator>中介者 Mediator<a hidden class=anchor aria-hidden=true href=#中介者-mediator>#</a></h4><ul><li>目的：集中相关对象之间复杂的沟通和控制方式</li></ul><h4 id=备忘录-memento>备忘录 Memento<a hidden class=anchor aria-hidden=true href=#备忘录-memento>#</a></h4><ul><li>目的：在不违反封装的情况下获得对象的内部状态，从而在需要时可以将对象恢复到最初状态</li></ul><h4 id=观察者-observer>观察者 Observer<a hidden class=anchor aria-hidden=true href=#观察者-observer>#</a></h4><ul><li>目的：定义对象之间的一对多依赖，当一个对象状态改变时，它的所有依赖都会收到通知并且自动更新状态</li></ul><h4 id=状态-state>状态 State<a hidden class=anchor aria-hidden=true href=#状态-state>#</a></h4><ul><li>目的：允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类</li></ul><h4 id=策略-strategy>策略 Strategy<a hidden class=anchor aria-hidden=true href=#策略-strategy>#</a></h4><ul><li>目的：定义一系列算法，封装每个算法，并使它们可以互换</li><li>特点<ul><li>让算法独立于使用它的客户端</li></ul></li></ul><h4 id=模板方法-template-method>模板方法 Template Method<a hidden class=anchor aria-hidden=true href=#模板方法-template-method>#</a></h4><ul><li>目的：定义算法框架，并将一些步骤的实现延迟到子类</li><li>特点<ul><li>通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构</li></ul></li></ul><h4 id=访问者-visitor>访问者 Visitor<a hidden class=anchor aria-hidden=true href=#访问者-visitor>#</a></h4><ul><li>目的：为一个对象结构（比如组合结构）增加新能力</li></ul><h4 id=空对象-null>空对象 Null<a hidden class=anchor aria-hidden=true href=#空对象-null>#</a></h4><ul><li>目的：用什么都不做的空对象来代替 NULL</li><li>特点<ul><li>一个方法返回 NULL，意味着方法的调用端需要去检查返回值是否是 NULL，这么做会导致非常多的冗余的检查代码</li><li>如果某一个调用端忘记了做这个检查返回值，而直接使用返回的对象，有可能抛出空指针异常</li></ul></li></ul><h3 id=结构型>结构型<a hidden class=anchor aria-hidden=true href=#结构型>#</a></h3><h4 id=适配器-adapter>适配器 Adapter<a hidden class=anchor aria-hidden=true href=#适配器-adapter>#</a></h4><ul><li>目的：把一个类接口转换成另一个用户需要的接口</li></ul><h4 id=桥接-bridge>桥接 Bridge<a hidden class=anchor aria-hidden=true href=#桥接-bridge>#</a></h4><ul><li>目的：将抽象与实现分离开来，使它们可以独立变化</li></ul><h4 id=组合-composite>组合 Composite<a hidden class=anchor aria-hidden=true href=#组合-composite>#</a></h4><ul><li>目的：将对象组合成树形结构来表示整体/部分的层次关系，允许用户以相同的方式处理单独对象和组合对象</li><li>特点<ul><li>组合对象拥有一个或者多个组件对象，因此组合对象的操作可以委托给组件对象去处理，而组件对象可以是另一个组合对象或者叶子对象</li></ul></li></ul><h4 id=装饰-decorator>装饰 Decorator<a hidden class=anchor aria-hidden=true href=#装饰-decorator>#</a></h4><ul><li>目的：为对象动态添加功能</li></ul><h4 id=外观-facade>外观 Facade<a hidden class=anchor aria-hidden=true href=#外观-facade>#</a></h4><ul><li>目的：提供一个统一的接口，用来访问子系统中的一群接口，从而让子系统更容易使用</li></ul><h4 id=享元-flyweight>享元 Flyweight<a hidden class=anchor aria-hidden=true href=#享元-flyweight>#</a></h4><ul><li>目的：利用共享的方式来支持大量细粒度的对象，这些对象一部分内部状态是相同的</li></ul><h4 id=代理-proxy>代理 Proxy<a hidden class=anchor aria-hidden=true href=#代理-proxy>#</a></h4><ul><li>目的：控制对其它对象的访问</li></ul></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=http://localhost:1313/posts/computer-science/network-layer/><span class=title>« Prev</span><br><span>计算机网络 网络层</span>
+</a><a class=next href=http://localhost:1313/posts/computer-science/temp/><span class=title>Next »</span><br><span></span></a></nav></footer></article></main><footer class=footer></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

@@ -1,0 +1,229 @@
+<!doctype html><html lang=en dir=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>计算机网络 应用层 | Zhengyu Chen - 尾張</title>
+<meta name=keywords content><meta name=description content="计算机网络
+应用层
+
+  
+      
+          应用层协议
+          端口号
+          传输层协议
+          备注
+      
+  
+  
+      
+          DNS
+          53
+          UDP/TCP
+          长度超过 512 字节时使用 TCP
+      
+      
+          DHCP
+          67/68
+          UDP
+          
+      
+      
+          SNMP
+          161/162
+          UDP
+          
+      
+      
+          FTP
+          20/21
+          TCP
+          控制连接 21，数据连接主动模式 20
+      
+      
+          TELNET
+          23
+          TCP
+          
+      
+      
+          HTTP
+          80
+          TCP
+          
+      
+      
+          SMTP
+          25
+          TCP
+          
+      
+      
+          POP3
+          110
+          TCP
+          
+      
+      
+          IMAP
+          143
+          TCP
+          
+      
+  
+
+域名系统 Domain Name System
+
+
+DNS 是一个分布式数据库（每个地址只保留其自己的部分数据），提供了主机名和 IP 地址之间相互转换的服务
+域名具有层次结构，从上到下分别为根域名，顶级域名，二级域名
+DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53
+DNS 一般使用 UDP 进行传输，域名解析器和域名服务器都必须自己处理超时和重传，从而保证其可靠性
+DNS 在两种情况下会使用 TCP 进行传输
+
+返回的响应超过的 512 字节（UDP 最大只支持 512 字节的数据）
+区域传送，即主域名服务器向辅助域名服务器传送变化的部分数据
+
+
+
+文件传输协议 File Transfer Protocol
+
+FTP 使用两个 TCP 连接来传输一个文件
+
+控制连接：服务器打开端口号 21 等待客户端进行连接；客户端主动建立连接后，服务器使用控制连接接收客户端的命令，并传回应答
+数据连接：用来传输文件数据
+
+
+数据连接有 2 种方式
+
+主动模式：服务器主动建立数据连接，服务器的端口号为 20，客户端的端口号随机（大于1024）
+被动连接：客户端主动建立数据连接，客户端的端口号由客户端指定，服务器端的端口号随机
+
+
+
+超文本传输协议 Hyper Text Transfer Protocol
+
+HTTP 主要用于 web 开发
+HTTP 客户端发起一个请求，创建一个到服务器指定端口（默认是 80 端口）的 TCP 连接；HTTP 服务器在对应端口监听客户端的请求，一旦收到请求，服务器会向客户端返回一个状态（例如 &ldquo;HTTP/1.1 200 OK&rdquo;）以及相应的内容，如请求的文件，错误消息，或其它信息
+HTTP 是一个无状态的协议，服务器不会去维护与客户端交互的相关信息，因此它对于事务处理没有记忆能力
+HTTP 假定其下层协议提供可靠的传输，因此任何能够提供这种保证的协议都可以被其使用，一般在 TCP/IP 协议族使用 TCP 作为其传输层
+HTTP 可以在任何互联网协议之上，或其他网络上实现
+HTTP 响应
+
+在接收和解释请求消息后，服务器会返回一个 HTTP 响应消息
+HTTP 响应由三个部分组成，分别是状态行，消息报头，响应正文
+
+
+
+动态主机配置协议 Dynamic Host Configuration Protocol
+"><meta name=author content><link rel=canonical href=http://localhost:1313/posts/computer-science/application-layer/><link crossorigin=anonymous href=/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/computer-science/application-layer/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="http://localhost:1313/posts/computer-science/application-layer/"><meta property="og:site_name" content="Zhengyu Chen - 尾張"><meta property="og:title" content="计算机网络 应用层"><meta property="og:description" content="计算机网络 应用层 应用层协议 端口号 传输层协议 备注 DNS 53 UDP/TCP 长度超过 512 字节时使用 TCP DHCP 67/68 UDP SNMP 161/162 UDP FTP 20/21 TCP 控制连接 21，数据连接主动模式 20 TELNET 23 TCP HTTP 80 TCP SMTP 25 TCP POP3 110 TCP IMAP 143 TCP 域名系统 Domain Name System DNS 是一个分布式数据库（每个地址只保留其自己的部分数据），提供了主机名和 IP 地址之间相互转换的服务 域名具有层次结构，从上到下分别为根域名，顶级域名，二级域名 DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53 DNS 一般使用 UDP 进行传输，域名解析器和域名服务器都必须自己处理超时和重传，从而保证其可靠性 DNS 在两种情况下会使用 TCP 进行传输 返回的响应超过的 512 字节（UDP 最大只支持 512 字节的数据） 区域传送，即主域名服务器向辅助域名服务器传送变化的部分数据 文件传输协议 File Transfer Protocol FTP 使用两个 TCP 连接来传输一个文件 控制连接：服务器打开端口号 21 等待客户端进行连接；客户端主动建立连接后，服务器使用控制连接接收客户端的命令，并传回应答 数据连接：用来传输文件数据 数据连接有 2 种方式 主动模式：服务器主动建立数据连接，服务器的端口号为 20，客户端的端口号随机（大于1024） 被动连接：客户端主动建立数据连接，客户端的端口号由客户端指定，服务器端的端口号随机 超文本传输协议 Hyper Text Transfer Protocol HTTP 主要用于 web 开发 HTTP 客户端发起一个请求，创建一个到服务器指定端口（默认是 80 端口）的 TCP 连接；HTTP 服务器在对应端口监听客户端的请求，一旦收到请求，服务器会向客户端返回一个状态（例如 “HTTP/1.1 200 OK”）以及相应的内容，如请求的文件，错误消息，或其它信息 HTTP 是一个无状态的协议，服务器不会去维护与客户端交互的相关信息，因此它对于事务处理没有记忆能力 HTTP 假定其下层协议提供可靠的传输，因此任何能够提供这种保证的协议都可以被其使用，一般在 TCP/IP 协议族使用 TCP 作为其传输层 HTTP 可以在任何互联网协议之上，或其他网络上实现 HTTP 响应 在接收和解释请求消息后，服务器会返回一个 HTTP 响应消息 HTTP 响应由三个部分组成，分别是状态行，消息报头，响应正文 动态主机配置协议 Dynamic Host Configuration Protocol "><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2015-07-05T08:57:52+10:00"><meta property="article:modified_time" content="2015-07-05T08:57:52+10:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="计算机网络 应用层"><meta name=twitter:description content="计算机网络
+应用层
+
+  
+      
+          应用层协议
+          端口号
+          传输层协议
+          备注
+      
+  
+  
+      
+          DNS
+          53
+          UDP/TCP
+          长度超过 512 字节时使用 TCP
+      
+      
+          DHCP
+          67/68
+          UDP
+          
+      
+      
+          SNMP
+          161/162
+          UDP
+          
+      
+      
+          FTP
+          20/21
+          TCP
+          控制连接 21，数据连接主动模式 20
+      
+      
+          TELNET
+          23
+          TCP
+          
+      
+      
+          HTTP
+          80
+          TCP
+          
+      
+      
+          SMTP
+          25
+          TCP
+          
+      
+      
+          POP3
+          110
+          TCP
+          
+      
+      
+          IMAP
+          143
+          TCP
+          
+      
+  
+
+域名系统 Domain Name System
+
+
+DNS 是一个分布式数据库（每个地址只保留其自己的部分数据），提供了主机名和 IP 地址之间相互转换的服务
+域名具有层次结构，从上到下分别为根域名，顶级域名，二级域名
+DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53
+DNS 一般使用 UDP 进行传输，域名解析器和域名服务器都必须自己处理超时和重传，从而保证其可靠性
+DNS 在两种情况下会使用 TCP 进行传输
+
+返回的响应超过的 512 字节（UDP 最大只支持 512 字节的数据）
+区域传送，即主域名服务器向辅助域名服务器传送变化的部分数据
+
+
+
+文件传输协议 File Transfer Protocol
+
+FTP 使用两个 TCP 连接来传输一个文件
+
+控制连接：服务器打开端口号 21 等待客户端进行连接；客户端主动建立连接后，服务器使用控制连接接收客户端的命令，并传回应答
+数据连接：用来传输文件数据
+
+
+数据连接有 2 种方式
+
+主动模式：服务器主动建立数据连接，服务器的端口号为 20，客户端的端口号随机（大于1024）
+被动连接：客户端主动建立数据连接，客户端的端口号由客户端指定，服务器端的端口号随机
+
+
+
+超文本传输协议 Hyper Text Transfer Protocol
+
+HTTP 主要用于 web 开发
+HTTP 客户端发起一个请求，创建一个到服务器指定端口（默认是 80 端口）的 TCP 连接；HTTP 服务器在对应端口监听客户端的请求，一旦收到请求，服务器会向客户端返回一个状态（例如 &ldquo;HTTP/1.1 200 OK&rdquo;）以及相应的内容，如请求的文件，错误消息，或其它信息
+HTTP 是一个无状态的协议，服务器不会去维护与客户端交互的相关信息，因此它对于事务处理没有记忆能力
+HTTP 假定其下层协议提供可靠的传输，因此任何能够提供这种保证的协议都可以被其使用，一般在 TCP/IP 协议族使用 TCP 作为其传输层
+HTTP 可以在任何互联网协议之上，或其他网络上实现
+HTTP 响应
+
+在接收和解释请求消息后，服务器会返回一个 HTTP 响应消息
+HTTP 响应由三个部分组成，分别是状态行，消息报头，响应正文
+
+
+
+动态主机配置协议 Dynamic Host Configuration Protocol
+"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"计算机网络 应用层","item":"http://localhost:1313/posts/computer-science/application-layer/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"计算机网络 应用层","name":"计算机网络 应用层","description":"计算机网络 应用层 应用层协议 端口号 传输层协议 备注 DNS 53 UDP/TCP 长度超过 512 字节时使用 TCP DHCP 67/68 UDP SNMP 161/162 UDP FTP 20/21 TCP 控制连接 21，数据连接主动模式 20 TELNET 23 TCP HTTP 80 TCP SMTP 25 TCP POP3 110 TCP IMAP 143 TCP 域名系统 Domain Name System DNS 是一个分布式数据库（每个地址只保留其自己的部分数据），提供了主机名和 IP 地址之间相互转换的服务 域名具有层次结构，从上到下分别为根域名，顶级域名，二级域名 DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53 DNS 一般使用 UDP 进行传输，域名解析器和域名服务器都必须自己处理超时和重传，从而保证其可靠性 DNS 在两种情况下会使用 TCP 进行传输 返回的响应超过的 512 字节（UDP 最大只支持 512 字节的数据） 区域传送，即主域名服务器向辅助域名服务器传送变化的部分数据 文件传输协议 File Transfer Protocol FTP 使用两个 TCP 连接来传输一个文件 控制连接：服务器打开端口号 21 等待客户端进行连接；客户端主动建立连接后，服务器使用控制连接接收客户端的命令，并传回应答 数据连接：用来传输文件数据 数据连接有 2 种方式 主动模式：服务器主动建立数据连接，服务器的端口号为 20，客户端的端口号随机（大于1024） 被动连接：客户端主动建立数据连接，客户端的端口号由客户端指定，服务器端的端口号随机 超文本传输协议 Hyper Text Transfer Protocol HTTP 主要用于 web 开发 HTTP 客户端发起一个请求，创建一个到服务器指定端口（默认是 80 端口）的 TCP 连接；HTTP 服务器在对应端口监听客户端的请求，一旦收到请求，服务器会向客户端返回一个状态（例如 \u0026ldquo;HTTP/1.1 200 OK\u0026rdquo;）以及相应的内容，如请求的文件，错误消息，或其它信息 HTTP 是一个无状态的协议，服务器不会去维护与客户端交互的相关信息，因此它对于事务处理没有记忆能力 HTTP 假定其下层协议提供可靠的传输，因此任何能够提供这种保证的协议都可以被其使用，一般在 TCP/IP 协议族使用 TCP 作为其传输层 HTTP 可以在任何互联网协议之上，或其他网络上实现 HTTP 响应 在接收和解释请求消息后，服务器会返回一个 HTTP 响应消息 HTTP 响应由三个部分组成，分别是状态行，消息报头，响应正文 动态主机配置协议 Dynamic Host Configuration Protocol ","keywords":[],"articleBody":"计算机网络 应用层 应用层协议 端口号 传输层协议 备注 DNS 53 UDP/TCP 长度超过 512 字节时使用 TCP DHCP 67/68 UDP SNMP 161/162 UDP FTP 20/21 TCP 控制连接 21，数据连接主动模式 20 TELNET 23 TCP HTTP 80 TCP SMTP 25 TCP POP3 110 TCP IMAP 143 TCP 域名系统 Domain Name System DNS 是一个分布式数据库（每个地址只保留其自己的部分数据），提供了主机名和 IP 地址之间相互转换的服务 域名具有层次结构，从上到下分别为根域名，顶级域名，二级域名 DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53 DNS 一般使用 UDP 进行传输，域名解析器和域名服务器都必须自己处理超时和重传，从而保证其可靠性 DNS 在两种情况下会使用 TCP 进行传输 返回的响应超过的 512 字节（UDP 最大只支持 512 字节的数据） 区域传送，即主域名服务器向辅助域名服务器传送变化的部分数据 文件传输协议 File Transfer Protocol FTP 使用两个 TCP 连接来传输一个文件 控制连接：服务器打开端口号 21 等待客户端进行连接；客户端主动建立连接后，服务器使用控制连接接收客户端的命令，并传回应答 数据连接：用来传输文件数据 数据连接有 2 种方式 主动模式：服务器主动建立数据连接，服务器的端口号为 20，客户端的端口号随机（大于1024） 被动连接：客户端主动建立数据连接，客户端的端口号由客户端指定，服务器端的端口号随机 超文本传输协议 Hyper Text Transfer Protocol HTTP 主要用于 web 开发 HTTP 客户端发起一个请求，创建一个到服务器指定端口（默认是 80 端口）的 TCP 连接；HTTP 服务器在对应端口监听客户端的请求，一旦收到请求，服务器会向客户端返回一个状态（例如 “HTTP/1.1 200 OK”）以及相应的内容，如请求的文件，错误消息，或其它信息 HTTP 是一个无状态的协议，服务器不会去维护与客户端交互的相关信息，因此它对于事务处理没有记忆能力 HTTP 假定其下层协议提供可靠的传输，因此任何能够提供这种保证的协议都可以被其使用，一般在 TCP/IP 协议族使用 TCP 作为其传输层 HTTP 可以在任何互联网协议之上，或其他网络上实现 HTTP 响应 在接收和解释请求消息后，服务器会返回一个 HTTP 响应消息 HTTP 响应由三个部分组成，分别是状态行，消息报头，响应正文 动态主机配置协议 Dynamic Host Configuration Protocol DHCP 提供了即插即用的连网方式，用户不再需要手动配置 IP 地址，子网掩码，网关 IP 地址等 DHCP 的工作过程 客户端发送 Discover 报文，其目的地址为 255.255.255.255:67，源地址为 0.0.0.0:68，通过 UDP 该报文被广播到同一个子网的所有主机上；如果客户端和 DHCP 服务器不在同一个子网，则需要使用中继代理 DHCP 服务器收到 Discover 报文之后，发送 Offer 报文给客户端，该报文包含了客户端所需要的信息；因为客户端可能收到多个 DHCP 服务器提供的信息，因此客户端需要进行选择 客户端选择某个 DHCP 服务器提供的信息，发送 Request 报文给该 DHCP 服务器 DHCP 服务器发送 Ack 报文，表示客户端此时可以使用提供给它的信息 地址解析协议 Address Resolution Protocol 每个主机会在自己的 ARP 缓冲区建立一个 ARP 列表，以表示 IP 地址和 MAC 地址的对应关系 当源主机要发送数据时，首先检查 ARP 列表中是否有对应 IP 地址的目的主机的MAC地址；如果有则直接发送数据；如果没有则向本网段的所有主机发送 ARP 数据包，该数据包包括源主机 IP 地址，源主机 MAC 地址，目的主机 IP 地址 当本网络的所有主机收到 ARP 数据包后，检查数据包中的目的主机 IP 地址是否是自己的 IP 地址；如果不是则忽略该数据包；如果是则从数据包中取出源主机的 IP 地址和 MAC 地址并写入到自己的 ARP 列表中；如果已经存在则覆盖；然后将自己的 MAC 地址写入 ARP 响应包中并发送给源主机 源主机收到 ARP 响应包后，将目的主机的 IP 和 MAC 地址写入自己的 ARP 列表中，并利用此信息发送数据 如果源主机一直没有收到 ARP 响应包，则表示 ARP 查询失败 Web 请求过程 DHCP 配置主机信息\n如果主机没有 IP 地址及相应信息，那么需要先使用 DHCP 来获取 ARP 解析 MAC 地址\nDNS 解析域名\nHTTP 请求页面\n","wordCount":"240","inLanguage":"en","datePublished":"2015-07-05T08:57:52+10:00","dateModified":"2015-07-05T08:57:52+10:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/computer-science/application-layer/"},"publisher":{"@type":"Organization","name":"Zhengyu Chen - 尾張","logo":{"@type":"ImageObject","url":"http://localhost:1313/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="尾張 (Alt + H)">尾張</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/archives/ title=Posts><span>Posts</span></a></li><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">计算机网络 应用层
+<span class=entry-hint title=Draft><svg height="35" viewBox="0 -960 960 960" fill="currentcolor"><path d="M160-410v-60h3e2v60H160zm0-165v-60h470v60H160zm0-165v-60h470v60H160zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22-4.5 22.5T862.09-380L643-160H520zm3e2-263-37-37 37 37zM580-220h38l121-122-18-19-19-18-122 121v38zm141-141-19-18 37 37-18-19z"/></svg></span></h1><div class=post-meta><span title='2015-07-05 08:57:52 +1000 +1000'>July 5, 2015</span>&nbsp;·&nbsp;2 min</div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%bd%91%e7%bb%9c aria-label=计算机网络>计算机网络</a><ul><li><a href=#%e5%ba%94%e7%94%a8%e5%b1%82 aria-label=应用层>应用层</a><ul><li><a href=#%e5%9f%9f%e5%90%8d%e7%b3%bb%e7%bb%9f-domain-name-system aria-label="域名系统 Domain Name System">域名系统 Domain Name System</a></li><li><a href=#%e6%96%87%e4%bb%b6%e4%bc%a0%e8%be%93%e5%8d%8f%e8%ae%ae-file-transfer-protocol aria-label="文件传输协议 File Transfer Protocol">文件传输协议 File Transfer Protocol</a></li><li><a href=#%e8%b6%85%e6%96%87%e6%9c%ac%e4%bc%a0%e8%be%93%e5%8d%8f%e8%ae%ae-hyper-text-transfer-protocol aria-label="超文本传输协议 Hyper Text Transfer Protocol">超文本传输协议 Hyper Text Transfer Protocol</a></li><li><a href=#%e5%8a%a8%e6%80%81%e4%b8%bb%e6%9c%ba%e9%85%8d%e7%bd%ae%e5%8d%8f%e8%ae%ae-dynamic-host-configuration-protocol aria-label="动态主机配置协议 Dynamic Host Configuration Protocol">动态主机配置协议 Dynamic Host Configuration Protocol</a></li><li><a href=#%e5%9c%b0%e5%9d%80%e8%a7%a3%e6%9e%90%e5%8d%8f%e8%ae%ae-address-resolution-protocol aria-label="地址解析协议 Address Resolution Protocol">地址解析协议 Address Resolution Protocol</a></li><li><a href=#web-%e8%af%b7%e6%b1%82%e8%bf%87%e7%a8%8b aria-label="Web 请求过程">Web 请求过程</a></li></ul></li></ul></li></ul></div></details></div><div class=post-content><h1 id=计算机网络>计算机网络<a hidden class=anchor aria-hidden=true href=#计算机网络>#</a></h1><h2 id=应用层>应用层<a hidden class=anchor aria-hidden=true href=#应用层>#</a></h2><table><thead><tr><th>应用层协议</th><th>端口号</th><th>传输层协议</th><th>备注</th></tr></thead><tbody><tr><td>DNS</td><td>53</td><td>UDP/TCP</td><td>长度超过 512 字节时使用 TCP</td></tr><tr><td>DHCP</td><td>67/68</td><td>UDP</td><td></td></tr><tr><td>SNMP</td><td>161/162</td><td>UDP</td><td></td></tr><tr><td>FTP</td><td>20/21</td><td>TCP</td><td>控制连接 21，数据连接主动模式 20</td></tr><tr><td>TELNET</td><td>23</td><td>TCP</td><td></td></tr><tr><td>HTTP</td><td>80</td><td>TCP</td><td></td></tr><tr><td>SMTP</td><td>25</td><td>TCP</td><td></td></tr><tr><td>POP3</td><td>110</td><td>TCP</td><td></td></tr><tr><td>IMAP</td><td>143</td><td>TCP</td><td></td></tr></tbody></table><h3 id=域名系统-domain-name-system>域名系统 Domain Name System<a hidden class=anchor aria-hidden=true href=#域名系统-domain-name-system>#</a></h3><p><img alt=DNS loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Computer-Science/DNS.jpg></p><ul><li>DNS 是一个分布式数据库（每个地址只保留其自己的部分数据），提供了主机名和 IP 地址之间相互转换的服务</li><li>域名具有层次结构，从上到下分别为根域名，顶级域名，二级域名</li><li>DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53</li><li>DNS 一般使用 UDP 进行传输，域名解析器和域名服务器都必须自己处理超时和重传，从而保证其可靠性</li><li>DNS 在两种情况下会使用 TCP 进行传输<ol><li>返回的响应超过的 512 字节（UDP 最大只支持 512 字节的数据）</li><li>区域传送，即主域名服务器向辅助域名服务器传送变化的部分数据</li></ol></li></ul><h3 id=文件传输协议-file-transfer-protocol>文件传输协议 File Transfer Protocol<a hidden class=anchor aria-hidden=true href=#文件传输协议-file-transfer-protocol>#</a></h3><ul><li>FTP 使用两个 TCP 连接来传输一个文件<ol><li>控制连接：服务器打开端口号 21 等待客户端进行连接；客户端主动建立连接后，服务器使用控制连接接收客户端的命令，并传回应答</li><li>数据连接：用来传输文件数据</li></ol></li><li>数据连接有 2 种方式<ol><li>主动模式：服务器主动建立数据连接，服务器的端口号为 20，客户端的端口号随机（大于1024）</li><li>被动连接：客户端主动建立数据连接，客户端的端口号由客户端指定，服务器端的端口号随机</li></ol></li></ul><h3 id=超文本传输协议-hyper-text-transfer-protocol>超文本传输协议 Hyper Text Transfer Protocol<a hidden class=anchor aria-hidden=true href=#超文本传输协议-hyper-text-transfer-protocol>#</a></h3><ul><li>HTTP 主要用于 web 开发</li><li>HTTP 客户端发起一个请求，创建一个到服务器指定端口（默认是 80 端口）的 TCP 连接；HTTP 服务器在对应端口监听客户端的请求，一旦收到请求，服务器会向客户端返回一个状态（例如 &ldquo;HTTP/1.1 200 OK&rdquo;）以及相应的内容，如请求的文件，错误消息，或其它信息</li><li>HTTP 是一个无状态的协议，服务器不会去维护与客户端交互的相关信息，因此它对于事务处理没有记忆能力</li><li>HTTP 假定其下层协议提供可靠的传输，因此任何能够提供这种保证的协议都可以被其使用，一般在 TCP/IP 协议族使用 TCP 作为其传输层</li><li>HTTP 可以在任何互联网协议之上，或其他网络上实现</li><li>HTTP 响应<ul><li>在接收和解释请求消息后，服务器会返回一个 HTTP 响应消息</li><li>HTTP 响应由三个部分组成，分别是状态行，消息报头，响应正文</li></ul></li></ul><h3 id=动态主机配置协议-dynamic-host-configuration-protocol>动态主机配置协议 Dynamic Host Configuration Protocol<a hidden class=anchor aria-hidden=true href=#动态主机配置协议-dynamic-host-configuration-protocol>#</a></h3><p><img alt=DHCP loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Computer-Science/DHCP.jpg></p><ul><li>DHCP 提供了即插即用的连网方式，用户不再需要手动配置 IP 地址，子网掩码，网关 IP 地址等</li><li>DHCP 的工作过程<ol><li>客户端发送 Discover 报文，其目的地址为 255.255.255.255:67，源地址为 0.0.0.0:68，通过 UDP 该报文被广播到同一个子网的所有主机上；如果客户端和 DHCP 服务器不在同一个子网，则需要使用中继代理</li><li>DHCP 服务器收到 Discover 报文之后，发送 Offer 报文给客户端，该报文包含了客户端所需要的信息；因为客户端可能收到多个 DHCP 服务器提供的信息，因此客户端需要进行选择</li><li>客户端选择某个 DHCP 服务器提供的信息，发送 Request 报文给该 DHCP 服务器</li><li>DHCP 服务器发送 Ack 报文，表示客户端此时可以使用提供给它的信息</li></ol></li></ul><h3 id=地址解析协议-address-resolution-protocol>地址解析协议 Address Resolution Protocol<a hidden class=anchor aria-hidden=true href=#地址解析协议-address-resolution-protocol>#</a></h3><ul><li>每个主机会在自己的 ARP 缓冲区建立一个 ARP 列表，以表示 IP 地址和 MAC 地址的对应关系</li><li>当源主机要发送数据时，首先检查 ARP 列表中是否有对应 IP 地址的目的主机的MAC地址；如果有则直接发送数据；如果没有则向本网段的所有主机发送 ARP 数据包，该数据包包括源主机 IP 地址，源主机 MAC 地址，目的主机 IP 地址</li><li>当本网络的所有主机收到 ARP 数据包后，检查数据包中的目的主机 IP 地址是否是自己的 IP 地址；如果不是则忽略该数据包；如果是则从数据包中取出源主机的 IP 地址和 MAC 地址并写入到自己的 ARP 列表中；如果已经存在则覆盖；然后将自己的 MAC 地址写入 ARP 响应包中并发送给源主机</li><li>源主机收到 ARP 响应包后，将目的主机的 IP 和 MAC 地址写入自己的 ARP 列表中，并利用此信息发送数据</li><li>如果源主机一直没有收到 ARP 响应包，则表示 ARP 查询失败</li></ul><h3 id=web-请求过程>Web 请求过程<a hidden class=anchor aria-hidden=true href=#web-请求过程>#</a></h3><ol><li><p>DHCP 配置主机信息</p><ul><li>如果主机没有 IP 地址及相应信息，那么需要先使用 DHCP 来获取</li></ul></li><li><p>ARP 解析 MAC 地址</p></li><li><p>DNS 解析域名</p></li><li><p>HTTP 请求页面</p></li></ol></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=http://localhost:1313/posts/computer-science/transmission-layer/><span class=title>« Prev</span><br><span>计算机网络 传输层</span>
+</a><a class=next href=http://localhost:1313/posts/computer-science/network-layer/><span class=title>Next »</span><br><span>计算机网络 网络层</span></a></nav></footer></article></main><footer class=footer></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

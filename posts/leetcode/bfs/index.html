@@ -1,0 +1,200 @@
+<!doctype html><html lang=en dir=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>LeetCode 广度优先搜索 | Zhengyu Chen - 尾張</title>
+<meta name=keywords content><meta name=description content="LeetCode DFS
+广度优先搜索一般用来求图中的最短路径。
+题目
+1. BFS
+787 K 站中转内最便宜的航班](https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/)
+一共走 K 轮，每轮更新能够到达的点的最小价格，更新时用的数据是上一轮的最小价格，所以要用一个临时的数组来存更新后的最小价格。
+class Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>> &amp;flights, int src, int dst, int K) {
+        vector<int> prices(n, INT_MAX);
+        prices[src] = 0;
+        for (int i = 0; i <= K; ++i) {
+            vector<int> u(prices);
+            for (auto &amp;f:flights)
+                if (prices[f[0]] != INT_MAX)
+                    u[f[1]] = min(u[f[1]], prices[f[0]] + f[2]);
+            prices = u;
+        }
+        return prices[dst] == INT_MAX ? -1 : prices[dst];
+    }
+};
+1129 颜色交替的最短路径
+因为要交替地经过两种不同的路径，所以用两个数组 edge[n][2] 来存储两种路径的边，在搜索的时候也需要给每个节点带上之前经过的是哪种路径的信息，才能在之后更换成另一种路径。因为图中可能会存在环，需要用一个数组 visited[n][n][2] 来记录哪些边是已经走过的，或是根据之前已经到达过的距离一定小于当前的距离来判断是否需要继续走下去。
+class Solution {
+public:
+    vector<int> shortestAlternatingPaths(int n, vector<vector<int>> &amp;red_edges, vector<vector<int>> &amp;blue_edges) {
+        vector<int> ret(n);
+        vector<vector<int>> res(n,vector<int>(2, INT_MAX));
+        res[0][0] = res[0][1] = 0;
+        vector<vector<vector<int>>> edge(n, vector<vector<int>>(2, vector<int>()));
+        for (auto &amp;r:red_edges)
+            edge[r[0]][0].push_back(r[1]);
+        for (auto &amp;b:blue_edges)
+            edge[b[0]][1].push_back(b[1]);
+        queue<pair<int, int>> q;
+        q.push(pair<int, int>(0, 0));
+        q.push(pair<int, int>(0, 1));
+        while (!q.empty()) {
+            auto m = q.front();
+            q.pop();
+            int node = m.first, color = m.second;
+            for (auto &amp;e:edge[node][color])
+                if (res[e][color ^ 1] > res[node][color] + 1) {
+                    res[e][color ^ 1] = res[node][color] + 1;
+                    q.push(pair<int, int>(e, color ^ 1));
+                }
+        }
+        for (int i = 0; i < n; ++i) {
+            ret[i] = min(res[i][0], res[i][1]);
+            if (ret[i] == INT_MAX)
+                ret[i] = -1;
+        }
+        return ret;
+    }
+};
+2. Dijkstra
+743 网络延迟时间
+最典型的 Dijkstra。"><meta name=author content><link rel=canonical href=http://localhost:1313/posts/leetcode/bfs/><link crossorigin=anonymous href=/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/leetcode/bfs/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="http://localhost:1313/posts/leetcode/bfs/"><meta property="og:site_name" content="Zhengyu Chen - 尾張"><meta property="og:title" content="LeetCode 广度优先搜索"><meta property="og:description" content="LeetCode DFS 广度优先搜索一般用来求图中的最短路径。
+题目 1. BFS 787 K 站中转内最便宜的航班](https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/) 一共走 K 轮，每轮更新能够到达的点的最小价格，更新时用的数据是上一轮的最小价格，所以要用一个临时的数组来存更新后的最小价格。
+class Solution { public: int findCheapestPrice(int n, vector<vector<int>> &amp;flights, int src, int dst, int K) { vector<int> prices(n, INT_MAX); prices[src] = 0; for (int i = 0; i <= K; ++i) { vector<int> u(prices); for (auto &amp;f:flights) if (prices[f[0]] != INT_MAX) u[f[1]] = min(u[f[1]], prices[f[0]] + f[2]); prices = u; } return prices[dst] == INT_MAX ? -1 : prices[dst]; } }; 1129 颜色交替的最短路径 因为要交替地经过两种不同的路径，所以用两个数组 edge[n][2] 来存储两种路径的边，在搜索的时候也需要给每个节点带上之前经过的是哪种路径的信息，才能在之后更换成另一种路径。因为图中可能会存在环，需要用一个数组 visited[n][n][2] 来记录哪些边是已经走过的，或是根据之前已经到达过的距离一定小于当前的距离来判断是否需要继续走下去。
+class Solution { public: vector<int> shortestAlternatingPaths(int n, vector<vector<int>> &amp;red_edges, vector<vector<int>> &amp;blue_edges) { vector<int> ret(n); vector<vector<int>> res(n,vector<int>(2, INT_MAX)); res[0][0] = res[0][1] = 0; vector<vector<vector<int>>> edge(n, vector<vector<int>>(2, vector<int>())); for (auto &amp;r:red_edges) edge[r[0]][0].push_back(r[1]); for (auto &amp;b:blue_edges) edge[b[0]][1].push_back(b[1]); queue<pair<int, int>> q; q.push(pair<int, int>(0, 0)); q.push(pair<int, int>(0, 1)); while (!q.empty()) { auto m = q.front(); q.pop(); int node = m.first, color = m.second; for (auto &amp;e:edge[node][color]) if (res[e][color ^ 1] > res[node][color] + 1) { res[e][color ^ 1] = res[node][color] + 1; q.push(pair<int, int>(e, color ^ 1)); } } for (int i = 0; i < n; ++i) { ret[i] = min(res[i][0], res[i][1]); if (ret[i] == INT_MAX) ret[i] = -1; } return ret; } }; 2. Dijkstra 743 网络延迟时间 最典型的 Dijkstra。"><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-07-24T19:12:25+10:00"><meta property="article:modified_time" content="2019-07-24T19:12:25+10:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="LeetCode 广度优先搜索"><meta name=twitter:description content="LeetCode DFS
+广度优先搜索一般用来求图中的最短路径。
+题目
+1. BFS
+787 K 站中转内最便宜的航班](https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/)
+一共走 K 轮，每轮更新能够到达的点的最小价格，更新时用的数据是上一轮的最小价格，所以要用一个临时的数组来存更新后的最小价格。
+class Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>> &amp;flights, int src, int dst, int K) {
+        vector<int> prices(n, INT_MAX);
+        prices[src] = 0;
+        for (int i = 0; i <= K; ++i) {
+            vector<int> u(prices);
+            for (auto &amp;f:flights)
+                if (prices[f[0]] != INT_MAX)
+                    u[f[1]] = min(u[f[1]], prices[f[0]] + f[2]);
+            prices = u;
+        }
+        return prices[dst] == INT_MAX ? -1 : prices[dst];
+    }
+};
+1129 颜色交替的最短路径
+因为要交替地经过两种不同的路径，所以用两个数组 edge[n][2] 来存储两种路径的边，在搜索的时候也需要给每个节点带上之前经过的是哪种路径的信息，才能在之后更换成另一种路径。因为图中可能会存在环，需要用一个数组 visited[n][n][2] 来记录哪些边是已经走过的，或是根据之前已经到达过的距离一定小于当前的距离来判断是否需要继续走下去。
+class Solution {
+public:
+    vector<int> shortestAlternatingPaths(int n, vector<vector<int>> &amp;red_edges, vector<vector<int>> &amp;blue_edges) {
+        vector<int> ret(n);
+        vector<vector<int>> res(n,vector<int>(2, INT_MAX));
+        res[0][0] = res[0][1] = 0;
+        vector<vector<vector<int>>> edge(n, vector<vector<int>>(2, vector<int>()));
+        for (auto &amp;r:red_edges)
+            edge[r[0]][0].push_back(r[1]);
+        for (auto &amp;b:blue_edges)
+            edge[b[0]][1].push_back(b[1]);
+        queue<pair<int, int>> q;
+        q.push(pair<int, int>(0, 0));
+        q.push(pair<int, int>(0, 1));
+        while (!q.empty()) {
+            auto m = q.front();
+            q.pop();
+            int node = m.first, color = m.second;
+            for (auto &amp;e:edge[node][color])
+                if (res[e][color ^ 1] > res[node][color] + 1) {
+                    res[e][color ^ 1] = res[node][color] + 1;
+                    q.push(pair<int, int>(e, color ^ 1));
+                }
+        }
+        for (int i = 0; i < n; ++i) {
+            ret[i] = min(res[i][0], res[i][1]);
+            if (ret[i] == INT_MAX)
+                ret[i] = -1;
+        }
+        return ret;
+    }
+};
+2. Dijkstra
+743 网络延迟时间
+最典型的 Dijkstra。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"LeetCode 广度优先搜索","item":"http://localhost:1313/posts/leetcode/bfs/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"LeetCode 广度优先搜索","name":"LeetCode 广度优先搜索","description":"LeetCode DFS 广度优先搜索一般用来求图中的最短路径。\n题目 1. BFS 787 K 站中转内最便宜的航班](https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/) 一共走 K 轮，每轮更新能够到达的点的最小价格，更新时用的数据是上一轮的最小价格，所以要用一个临时的数组来存更新后的最小价格。\nclass Solution { public: int findCheapestPrice(int n, vector\u0026lt;vector\u0026lt;int\u0026gt;\u0026gt; \u0026amp;flights, int src, int dst, int K) { vector\u0026lt;int\u0026gt; prices(n, INT_MAX); prices[src] = 0; for (int i = 0; i \u0026lt;= K; ++i) { vector\u0026lt;int\u0026gt; u(prices); for (auto \u0026amp;f:flights) if (prices[f[0]] != INT_MAX) u[f[1]] = min(u[f[1]], prices[f[0]] + f[2]); prices = u; } return prices[dst] == INT_MAX ? -1 : prices[dst]; } }; 1129 颜色交替的最短路径 因为要交替地经过两种不同的路径，所以用两个数组 edge[n][2] 来存储两种路径的边，在搜索的时候也需要给每个节点带上之前经过的是哪种路径的信息，才能在之后更换成另一种路径。因为图中可能会存在环，需要用一个数组 visited[n][n][2] 来记录哪些边是已经走过的，或是根据之前已经到达过的距离一定小于当前的距离来判断是否需要继续走下去。\nclass Solution { public: vector\u0026lt;int\u0026gt; shortestAlternatingPaths(int n, vector\u0026lt;vector\u0026lt;int\u0026gt;\u0026gt; \u0026amp;red_edges, vector\u0026lt;vector\u0026lt;int\u0026gt;\u0026gt; \u0026amp;blue_edges) { vector\u0026lt;int\u0026gt; ret(n); vector\u0026lt;vector\u0026lt;int\u0026gt;\u0026gt; res(n,vector\u0026lt;int\u0026gt;(2, INT_MAX)); res[0][0] = res[0][1] = 0; vector\u0026lt;vector\u0026lt;vector\u0026lt;int\u0026gt;\u0026gt;\u0026gt; edge(n, vector\u0026lt;vector\u0026lt;int\u0026gt;\u0026gt;(2, vector\u0026lt;int\u0026gt;())); for (auto \u0026amp;r:red_edges) edge[r[0]][0].push_back(r[1]); for (auto \u0026amp;b:blue_edges) edge[b[0]][1].push_back(b[1]); queue\u0026lt;pair\u0026lt;int, int\u0026gt;\u0026gt; q; q.push(pair\u0026lt;int, int\u0026gt;(0, 0)); q.push(pair\u0026lt;int, int\u0026gt;(0, 1)); while (!q.empty()) { auto m = q.front(); q.pop(); int node = m.first, color = m.second; for (auto \u0026amp;e:edge[node][color]) if (res[e][color ^ 1] \u0026gt; res[node][color] + 1) { res[e][color ^ 1] = res[node][color] + 1; q.push(pair\u0026lt;int, int\u0026gt;(e, color ^ 1)); } } for (int i = 0; i \u0026lt; n; ++i) { ret[i] = min(res[i][0], res[i][1]); if (ret[i] == INT_MAX) ret[i] = -1; } return ret; } }; 2. Dijkstra 743 网络延迟时间 最典型的 Dijkstra。\n","keywords":[],"articleBody":"LeetCode DFS 广度优先搜索一般用来求图中的最短路径。\n题目 1. BFS 787 K 站中转内最便宜的航班](https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/) 一共走 K 轮，每轮更新能够到达的点的最小价格，更新时用的数据是上一轮的最小价格，所以要用一个临时的数组来存更新后的最小价格。\nclass Solution { public: int findCheapestPrice(int n, vector\u003cvector\u003cint\u003e\u003e \u0026flights, int src, int dst, int K) { vector\u003cint\u003e prices(n, INT_MAX); prices[src] = 0; for (int i = 0; i \u003c= K; ++i) { vector\u003cint\u003e u(prices); for (auto \u0026f:flights) if (prices[f[0]] != INT_MAX) u[f[1]] = min(u[f[1]], prices[f[0]] + f[2]); prices = u; } return prices[dst] == INT_MAX ? -1 : prices[dst]; } }; 1129 颜色交替的最短路径 因为要交替地经过两种不同的路径，所以用两个数组 edge[n][2] 来存储两种路径的边，在搜索的时候也需要给每个节点带上之前经过的是哪种路径的信息，才能在之后更换成另一种路径。因为图中可能会存在环，需要用一个数组 visited[n][n][2] 来记录哪些边是已经走过的，或是根据之前已经到达过的距离一定小于当前的距离来判断是否需要继续走下去。\nclass Solution { public: vector\u003cint\u003e shortestAlternatingPaths(int n, vector\u003cvector\u003cint\u003e\u003e \u0026red_edges, vector\u003cvector\u003cint\u003e\u003e \u0026blue_edges) { vector\u003cint\u003e ret(n); vector\u003cvector\u003cint\u003e\u003e res(n,vector\u003cint\u003e(2, INT_MAX)); res[0][0] = res[0][1] = 0; vector\u003cvector\u003cvector\u003cint\u003e\u003e\u003e edge(n, vector\u003cvector\u003cint\u003e\u003e(2, vector\u003cint\u003e())); for (auto \u0026r:red_edges) edge[r[0]][0].push_back(r[1]); for (auto \u0026b:blue_edges) edge[b[0]][1].push_back(b[1]); queue\u003cpair\u003cint, int\u003e\u003e q; q.push(pair\u003cint, int\u003e(0, 0)); q.push(pair\u003cint, int\u003e(0, 1)); while (!q.empty()) { auto m = q.front(); q.pop(); int node = m.first, color = m.second; for (auto \u0026e:edge[node][color]) if (res[e][color ^ 1] \u003e res[node][color] + 1) { res[e][color ^ 1] = res[node][color] + 1; q.push(pair\u003cint, int\u003e(e, color ^ 1)); } } for (int i = 0; i \u003c n; ++i) { ret[i] = min(res[i][0], res[i][1]); if (ret[i] == INT_MAX) ret[i] = -1; } return ret; } }; 2. Dijkstra 743 网络延迟时间 最典型的 Dijkstra。\nclass Solution { public: int networkDelayTime(vector\u003cvector\u003cint\u003e\u003e \u0026times, int N, int K) { vector\u003cvector\u003cpair\u003cint, int\u003e\u003e\u003e graph(N + 1, vector\u003cpair\u003cint, int\u003e\u003e()); vector\u003cbool\u003e visited(N + 1, false); for (auto \u0026t:times) graph[t[0]].push_back(pair\u003cint, int\u003e(t[1], t[2])); vector\u003cint\u003e dist(N + 1, INT_MAX); dist[K] = 0; auto cmp = [](const pair\u003cint, int\u003e \u0026p1, const pair\u003cint, int\u003e \u0026p2) { return p1.second \u003e p2.second; }; priority_queue\u003cpair\u003cint, int\u003e, vector\u003cpair\u003cint, int\u003e\u003e, decltype(cmp)\u003e heap(cmp); heap.push(make_pair(K, 0)); while (!heap.empty()) { pair\u003cint, int\u003e node = heap.top(); int curr = node.first; heap.pop(); if (visited[curr]) continue; visited[curr] = true; for (auto \u0026g:graph[node.first]) { int tar = g.first, d = g.second; if (!visited[tar] \u0026\u0026 dist[tar] \u003e dist[curr] + d) { dist[tar] = dist[curr] + d; heap.push(pair\u003cint, int\u003e(tar, dist[tar])); } } } int res = *max_element(dist.begin() + 1, dist.end()); return res == INT_MAX ? -1 : res; } }; ","wordCount":"326","inLanguage":"en","datePublished":"2019-07-24T19:12:25+10:00","dateModified":"2019-07-24T19:12:25+10:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/leetcode/bfs/"},"publisher":{"@type":"Organization","name":"Zhengyu Chen - 尾張","logo":{"@type":"ImageObject","url":"http://localhost:1313/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="尾張 (Alt + H)">尾張</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/archives/ title=Posts><span>Posts</span></a></li><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">LeetCode 广度优先搜索
+<span class=entry-hint title=Draft><svg height="35" viewBox="0 -960 960 960" fill="currentcolor"><path d="M160-410v-60h3e2v60H160zm0-165v-60h470v60H160zm0-165v-60h470v60H160zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22-4.5 22.5T862.09-380L643-160H520zm3e2-263-37-37 37 37zM580-220h38l121-122-18-19-19-18-122 121v38zm141-141-19-18 37 37-18-19z"/></svg></span></h1><div class=post-meta><span title='2019-07-24 19:12:25 +1000 +1000'>July 24, 2019</span>&nbsp;·&nbsp;2 min</div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#leetcode-dfshttpsleetcode-cncomtagbreadth-first-search aria-label="LeetCode DFS">LeetCode DFS</a><ul><li><a href=#%e9%a2%98%e7%9b%ae aria-label=题目>题目</a><ul><li><a href=#1-bfs aria-label="1. BFS">1. BFS</a><ul><li><a href=#787-k-%e7%ab%99%e4%b8%ad%e8%bd%ac%e5%86%85%e6%9c%80%e4%be%bf%e5%ae%9c%e7%9a%84%e8%88%aa%e7%8f%adhttpsleetcode-cncomproblemscheapest-flights-within-k-stops aria-label="787 K 站中转内最便宜的航班](https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/)">787 K 站中转内最便宜的航班](https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/)</a></li><li><a href=#1129-%e9%a2%9c%e8%89%b2%e4%ba%a4%e6%9b%bf%e7%9a%84%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%84httpsleetcode-cncomproblemsshortest-path-with-alternating-colors aria-label="1129 颜色交替的最短路径">1129 颜色交替的最短路径</a></li></ul></li><li><a href=#2-dijkstra aria-label="2. Dijkstra">2. Dijkstra</a><ul><li><a href=#743-%e7%bd%91%e7%bb%9c%e5%bb%b6%e8%bf%9f%e6%97%b6%e9%97%b4httpsleetcode-cncomproblemsnetwork-delay-time aria-label="743 网络延迟时间">743 网络延迟时间</a></li></ul></li></ul></li></ul></li></ul></div></details></div><div class=post-content><h1 id=leetcode-dfshttpsleetcode-cncomtagbreadth-first-search><a href=https://leetcode-cn.com/tag/breadth-first-search/>LeetCode DFS</a><a hidden class=anchor aria-hidden=true href=#leetcode-dfshttpsleetcode-cncomtagbreadth-first-search>#</a></h1><p>广度优先搜索一般用来求图中的最短路径。</p><h2 id=题目>题目<a hidden class=anchor aria-hidden=true href=#题目>#</a></h2><h3 id=1-bfs>1. BFS<a hidden class=anchor aria-hidden=true href=#1-bfs>#</a></h3><h4 id=787-k-站中转内最便宜的航班httpsleetcode-cncomproblemscheapest-flights-within-k-stops>787 K 站中转内最便宜的航班](<a href=https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/>https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/</a>)<a hidden class=anchor aria-hidden=true href=#787-k-站中转内最便宜的航班httpsleetcode-cncomproblemscheapest-flights-within-k-stops>#</a></h4><p>一共走 K 轮，每轮更新能够到达的点的最小价格，更新时用的数据是上一轮的最小价格，所以要用一个临时的数组来存更新后的最小价格。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> findCheapestPrice(<span style=color:#66d9ef>int</span> n, vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> <span style=color:#f92672>&amp;</span>flights, <span style=color:#66d9ef>int</span> src, <span style=color:#66d9ef>int</span> dst, <span style=color:#66d9ef>int</span> K) {
+</span></span><span style=display:flex><span>        vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> prices(n, INT_MAX);
+</span></span><span style=display:flex><span>        prices[src] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;=</span> K; <span style=color:#f92672>++</span>i) {
+</span></span><span style=display:flex><span>            vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> u(prices);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>auto</span> <span style=color:#f92672>&amp;</span>f:flights)
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (prices[f[<span style=color:#ae81ff>0</span>]] <span style=color:#f92672>!=</span> INT_MAX)
+</span></span><span style=display:flex><span>                    u[f[<span style=color:#ae81ff>1</span>]] <span style=color:#f92672>=</span> min(u[f[<span style=color:#ae81ff>1</span>]], prices[f[<span style=color:#ae81ff>0</span>]] <span style=color:#f92672>+</span> f[<span style=color:#ae81ff>2</span>]);
+</span></span><span style=display:flex><span>            prices <span style=color:#f92672>=</span> u;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> prices[dst] <span style=color:#f92672>==</span> INT_MAX <span style=color:#f92672>?</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> prices[dst];
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><h4 id=1129-颜色交替的最短路径httpsleetcode-cncomproblemsshortest-path-with-alternating-colors><a href=https://leetcode-cn.com/problems/shortest-path-with-alternating-colors/>1129 颜色交替的最短路径</a><a hidden class=anchor aria-hidden=true href=#1129-颜色交替的最短路径httpsleetcode-cncomproblemsshortest-path-with-alternating-colors>#</a></h4><p>因为要交替地经过两种不同的路径，所以用两个数组 edge[n][2] 来存储两种路径的边，在搜索的时候也需要给每个节点带上之前经过的是哪种路径的信息，才能在之后更换成另一种路径。因为图中可能会存在环，需要用一个数组 visited[n][n][2] 来记录哪些边是已经走过的，或是根据之前已经到达过的距离一定小于当前的距离来判断是否需要继续走下去。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> shortestAlternatingPaths(<span style=color:#66d9ef>int</span> n, vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> <span style=color:#f92672>&amp;</span>red_edges, vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> <span style=color:#f92672>&amp;</span>blue_edges) {
+</span></span><span style=display:flex><span>        vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> ret(n);
+</span></span><span style=display:flex><span>        vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> res(n,vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#ae81ff>2</span>, INT_MAX));
+</span></span><span style=display:flex><span>        res[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> res[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>        vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;&gt;</span> edge(n, vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span>(<span style=color:#ae81ff>2</span>, vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>()));
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>auto</span> <span style=color:#f92672>&amp;</span>r:red_edges)
+</span></span><span style=display:flex><span>            edge[r[<span style=color:#ae81ff>0</span>]][<span style=color:#ae81ff>0</span>].push_back(r[<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>auto</span> <span style=color:#f92672>&amp;</span>b:blue_edges)
+</span></span><span style=display:flex><span>            edge[b[<span style=color:#ae81ff>0</span>]][<span style=color:#ae81ff>1</span>].push_back(b[<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span>        queue<span style=color:#f92672>&lt;</span>pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> q;
+</span></span><span style=display:flex><span>        q.push(pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>));
+</span></span><span style=display:flex><span>        q.push(pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>));
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> (<span style=color:#f92672>!</span>q.empty()) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>auto</span> m <span style=color:#f92672>=</span> q.front();
+</span></span><span style=display:flex><span>            q.pop();
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> node <span style=color:#f92672>=</span> m.first, color <span style=color:#f92672>=</span> m.second;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>auto</span> <span style=color:#f92672>&amp;</span>e:edge[node][color])
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (res[e][color <span style=color:#f92672>^</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>&gt;</span> res[node][color] <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) {
+</span></span><span style=display:flex><span>                    res[e][color <span style=color:#f92672>^</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> res[node][color] <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>                    q.push(pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(e, color <span style=color:#f92672>^</span> <span style=color:#ae81ff>1</span>));
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; <span style=color:#f92672>++</span>i) {
+</span></span><span style=display:flex><span>            ret[i] <span style=color:#f92672>=</span> min(res[i][<span style=color:#ae81ff>0</span>], res[i][<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (ret[i] <span style=color:#f92672>==</span> INT_MAX)
+</span></span><span style=display:flex><span>                ret[i] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> ret;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><h3 id=2-dijkstra>2. Dijkstra<a hidden class=anchor aria-hidden=true href=#2-dijkstra>#</a></h3><h4 id=743-网络延迟时间httpsleetcode-cncomproblemsnetwork-delay-time><a href=https://leetcode-cn.com/problems/network-delay-time/>743 网络延迟时间</a><a hidden class=anchor aria-hidden=true href=#743-网络延迟时间httpsleetcode-cncomproblemsnetwork-delay-time>#</a></h4><p>最典型的 Dijkstra。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> networkDelayTime(vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> <span style=color:#f92672>&amp;</span>times, <span style=color:#66d9ef>int</span> N, <span style=color:#66d9ef>int</span> K) {
+</span></span><span style=display:flex><span>        vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span>pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;&gt;</span> graph(N <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, vector<span style=color:#f92672>&lt;</span>pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span>());
+</span></span><span style=display:flex><span>        vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>bool</span><span style=color:#f92672>&gt;</span> visited(N <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, false);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>auto</span> <span style=color:#f92672>&amp;</span>t:times)
+</span></span><span style=display:flex><span>            graph[t[<span style=color:#ae81ff>0</span>]].push_back(pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(t[<span style=color:#ae81ff>1</span>], t[<span style=color:#ae81ff>2</span>]));
+</span></span><span style=display:flex><span>        vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> dist(N <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, INT_MAX);
+</span></span><span style=display:flex><span>        dist[K] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>auto</span> cmp <span style=color:#f92672>=</span> [](<span style=color:#66d9ef>const</span> pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> <span style=color:#f92672>&amp;</span>p1, <span style=color:#66d9ef>const</span> pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> <span style=color:#f92672>&amp;</span>p2) { <span style=color:#66d9ef>return</span> p1.second <span style=color:#f92672>&gt;</span> p2.second; };
+</span></span><span style=display:flex><span>        priority_queue<span style=color:#f92672>&lt;</span>pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>, vector<span style=color:#f92672>&lt;</span>pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span>, <span style=color:#66d9ef>decltype</span>(cmp)<span style=color:#f92672>&gt;</span> heap(cmp);
+</span></span><span style=display:flex><span>        heap.push(make_pair(K, <span style=color:#ae81ff>0</span>));
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> (<span style=color:#f92672>!</span>heap.empty()) {
+</span></span><span style=display:flex><span>            pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> node <span style=color:#f92672>=</span> heap.top();
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> curr <span style=color:#f92672>=</span> node.first;
+</span></span><span style=display:flex><span>            heap.pop();
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (visited[curr])
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>continue</span>;
+</span></span><span style=display:flex><span>            visited[curr] <span style=color:#f92672>=</span> true;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>auto</span> <span style=color:#f92672>&amp;</span>g:graph[node.first]) {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> tar <span style=color:#f92672>=</span> g.first, d <span style=color:#f92672>=</span> g.second;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>visited[tar] <span style=color:#f92672>&amp;&amp;</span> dist[tar] <span style=color:#f92672>&gt;</span> dist[curr] <span style=color:#f92672>+</span> d) {
+</span></span><span style=display:flex><span>                    dist[tar] <span style=color:#f92672>=</span> dist[curr] <span style=color:#f92672>+</span> d;
+</span></span><span style=display:flex><span>                    heap.push(pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(tar, dist[tar]));
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> res <span style=color:#f92672>=</span> <span style=color:#f92672>*</span>max_element(dist.begin() <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, dist.end());
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> res <span style=color:#f92672>==</span> INT_MAX <span style=color:#f92672>?</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> res;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=http://localhost:1313/posts/leetcode/trie/><span class=title>« Prev</span><br><span>LeetCode 字典树</span>
+</a><a class=next href=http://localhost:1313/posts/leetcode/math/><span class=title>Next »</span><br><span>LeetCode 数学</span></a></nav></footer></article></main><footer class=footer></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

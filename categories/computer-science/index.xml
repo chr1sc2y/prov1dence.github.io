@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Computer Science on Zhengyu Chen - 尾張</title>
+    <link>http://localhost:1313/categories/computer-science/</link>
+    <description>Recent content in Computer Science on Zhengyu Chen - 尾張</description>
+    <generator>Hugo -- 0.143.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Aug 2015 08:57:52 +1000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/computer-science/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux 相关</title>
+      <link>http://localhost:1313/posts/computer-science/linux/</link>
+      <pubDate>Fri, 07 Aug 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/linux/</guid>
+      <description>&lt;h1 id=&#34;linux-相关&#34;&gt;Linux 相关&lt;/h1&gt;
+&lt;h2 id=&#34;用户态和内核态&#34;&gt;用户态和内核态&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;内核态：控制计算机的硬件资源，并提供上层应用程序运行的环境&lt;/li&gt;
+&lt;li&gt;用户态：上层应用程序的活动空间，应用程序的执行必须依托于内核提供的资源&lt;/li&gt;
+&lt;li&gt;系统调用：为了使上层应用能够访问到这些资源，内核为上层应用提供访问的接口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;系统调用&#34;&gt;系统调用&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;系统调用是操作系统中的最小功能单位&lt;/li&gt;
+&lt;li&gt;系统调用与上层应用程序的关系
+&lt;ul&gt;
+&lt;li&gt;需要通过多个系统调用才能完成一个上层应用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;系统调用与公用函数库的关系
+公用函数库实现对系统调用的封装，将简单的业务逻辑接口呈现给用户，方便用户调用，从这个角度上看，库函数就像是组成汉字的“偏旁”。
+从特权级来区分内核态和用户态：
+在CPU的所有指令中，有一些指令是非常危险的，如果错用，将导致整个系统崩溃。所以，CPU将指令分为特权指令和非特权指令，对于那些危险的指令，只允许操作系统及其相关模块使用，普通的应用程序只能使用那些不会造成灾难的指令。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;intel cpu提供Ring0-Ring3四种级别的运行模式，Ring0级别最高，Ring3最低。Linux使用了Ring3级别运行用户态，Ring0作为 内核态。&lt;/p&gt;
+&lt;p&gt;用户态切换为内核态的三种情况：
+系统调用
+异常事件： 当CPU正在执行运行在用户态的程序时，突然发生某些预先不可知的异常事件，这个时候就会触发从当前用户态执行的进程转向内核态执行相关的异常事件，典型的如缺页异常。
+外围设备的中断：当外围设备完成用户的请求操作后，会像CPU发出中断信号，此时，CPU就会暂停执行下一条即将要执行的指令，转而去执行中断信号对应的处理程序，如果先前执行的指令是在用户态下，则自然就发生从用户态到内核态的转换。
+系统调用的本质其实也是中断，相对于外围设备的硬中断，这种中断称为软中断。从触发方式和效果上来看，这三种切换方式是完全一样的，都相当于是执行了一个中断响应的过程。但是从触发的对象来看，系统调用是进程主动请求切换的，而异常和硬中断则是被动的。&lt;/p&gt;
+&lt;h2 id=&#34;上下文切换&#34;&gt;上下文切换&lt;/h2&gt;
+&lt;h3 id=&#34;上下文切换的原因&#34;&gt;上下文切换的原因&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;当前线程的时间片用完&lt;/li&gt;
+&lt;li&gt;当前线程因为 IO 被阻塞&lt;/li&gt;
+&lt;li&gt;当前线程没有抢占到锁资源，被调度器挂起&lt;/li&gt;
+&lt;li&gt;用户代码挂起当前线程&lt;/li&gt;
+&lt;li&gt;硬件中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;减少上下文切换&#34;&gt;减少上下文切换&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;无锁并发编程
+&lt;ul&gt;
+&lt;li&gt;多线程竞争会引起上下文切换，所以在使用多线程编程时，可以用一些办法来避免使用锁，比如将数据的 ID 按照 Hash 取模分段不同的线程处理不同段的数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;CAS算法。Java的Atomic包使用CAS算法来更新数据，而不需要加锁&lt;/li&gt;
+&lt;li&gt;使用最少线程。避免创建不需要的线程，比如任务很少，但是创建了很多线程来处理，这样会造成大量线程都处于等待状态&lt;/li&gt;
+&lt;li&gt;协程。在单线程里实现多任务的调度，并在单线程里维持多个任务间的切换&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;命令行指令&#34;&gt;命令行指令&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;注明“在 Linux/MacOS 下”的只在指定系统下生效，否则双平台都生效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;进程&#34;&gt;进程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;top 显示系统中进程的资源占用情况&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt=&#34;top&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Computer-Science/top.png&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ldd 在 Linux 下查看程序使用了哪些共享链接库&lt;/li&gt;
+&lt;li&gt;otool -L 在 MacOS 下查看程序使用了哪些共享链接库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt=&#34;otool&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Computer-Science/otool.png&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;strace 在 Linux 下查看程序运行时的系统调用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;dtruss 在 MacOS 下查看程序运行时的系统调用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;pstack 在 Linux 下跟踪每个进程的栈&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>工具</title>
+      <link>http://localhost:1313/posts/computer-science/tool/</link>
+      <pubDate>Fri, 07 Aug 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/tool/</guid>
+      <description>&lt;h1 id=&#34;工具&#34;&gt;工具&lt;/h1&gt;
+&lt;h2 id=&#34;性能分析&#34;&gt;性能分析&lt;/h2&gt;
+&lt;h3 id=&#34;gprof&#34;&gt;gprof&lt;/h3&gt;
+&lt;h3 id=&#34;valgrind&#34;&gt;valgrind&lt;/h3&gt;
+&lt;h3 id=&#34;tcmalloc&#34;&gt;tcmalloc&lt;/h3&gt;</description>
+    </item>
+    <item>
+      <title>分布式系统</title>
+      <link>http://localhost:1313/posts/computer-science/distributed-system/</link>
+      <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/distributed-system/</guid>
+      <description>&lt;h1 id=&#34;分布式系统&#34;&gt;分布式系统&lt;/h1&gt;
+&lt;h2 id=&#34;分布式系统-1&#34;&gt;分布式系统&lt;/h2&gt;
+&lt;h3 id=&#34;cap-原则&#34;&gt;CAP 原则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;分布式系统不可能同时满足一致性（C：Consistency）、可用性（A：Availability）和分区容忍性（P：Partition Tolerance），最多只能同时满足其中两项&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;一致性&#34;&gt;一致性&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;一致性指的是多个数据副本是否能保持一致的特性，在一致性的条件下，系统在执行数据更新操作之后能够从一致性状态转移到另一个一致性状态&lt;/li&gt;
+&lt;li&gt;对系统的一个数据更新成功之后，如果所有用户都能够读取到最新的值，该系统就被认为具有强一致性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;可用性&#34;&gt;可用性&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;可用性指分布式系统在面对各种异常时可以提供正常服务的能力，可以用系统可用时间占总时间的比值来衡量，4 个 9 的可用性表示系统 99.99% 的时间是可用的&lt;/li&gt;
+&lt;li&gt;在可用性条件下，要求系统提供的服务一直处于可用的状态，对于用户的每一个操作请求总是能够在有限的时间内返回结果&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;分区容忍性&#34;&gt;分区容忍性&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;网络分区指分布式系统中的节点被划分为多个区域，每个区域内部可以通信，但是区域之间无法通信&lt;/li&gt;
+&lt;li&gt;在分区容忍性条件下，分布式系统在遇到任何网络分区故障的时候，仍然需要能对外提供一致性和可用性的服务，除非是整个网络环境都发生了故障&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;一致性--可用性两阶段提交&#34;&gt;一致性 + 可用性：两阶段提交&lt;/h4&gt;
+&lt;h4 id=&#34;一致性--分区容忍性多版本并发控制-mvcc&#34;&gt;一致性 + 分区容忍性：多版本并发控制 MVCC&lt;/h4&gt;
+&lt;h4 id=&#34;可用性--分区容忍性paxos&#34;&gt;可用性 + 分区容忍性：Paxos&lt;/h4&gt;
+&lt;h3 id=&#34;base&#34;&gt;BASE&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;BASE 是基本可用（Basically Available）、软状态（Soft State）和最终一致性（Eventually Consistent）三个短语的缩写&lt;/li&gt;
+&lt;li&gt;BASE 理论是对 CAP 中一致性和可用性权衡的结果，它的核心思想是：即使无法做到强一致性，但每个应用都可以根据自身业务特点，采用适当的方式来使系统达到最终一致性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;基本可用&#34;&gt;基本可用&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;指分布式系统在出现故障的时候，保证核心可用，允许损失部分可用性&lt;/li&gt;
+&lt;li&gt;例如促销时，为了保证购物系统的稳定性，部分消费者可能会被引导到一个降级的页面&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;软状态&#34;&gt;软状态&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;指允许系统中的数据存在中间状态，并认为该中间状态不会影响系统整体可用性，即允许系统不同节点的数据副本之间进行同步的过程存在时延&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;最终一致性&#34;&gt;最终一致性&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;最终一致性强调的是系统中所有的数据副本，在经过一段时间的同步后，最终能达到一致的状态&lt;/li&gt;
+&lt;li&gt;ACID 要求强一致性，通常运用在传统的数据库系统上。而 BASE 要求最终一致性，通过牺牲强一致性来达到可用性，通常运用在大型分布式系统中&lt;/li&gt;
+&lt;li&gt;在实际的分布式场景中，不同业务单元和组件对一致性的要求是不同的，因此 ACID 和 BASE 往往会结合在一起使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;集群&#34;&gt;集群&lt;/h2&gt;
+&lt;h3 id=&#34;负载均衡&#34;&gt;负载均衡&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;集群中的应用服务器（节点）通常被设计成无状态，用户可以请求任何一个节点&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;负载均衡器会根据集群中每个节点的负载情况，将用户请求转发到合适的节点上&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;负载均衡器可以用来实现高可用以及伸缩性&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;高可用：当某个节点故障时，负载均衡器会将用户请求转发到另外的节点上，从而保证所有服务持续可用&lt;/li&gt;
+&lt;li&gt;伸缩性：根据系统整体负载情况，可以很容易地添加或移除节点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;负载均衡器运行过程包含两个部分&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;根据负载均衡算法得到转发的节点&lt;/li&gt;
+&lt;li&gt;进行转发&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;1-轮询round-robbin&#34;&gt;1. 轮询（Round Robbin）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;轮询算法把每个请求轮流发送到每个服务器上&lt;/li&gt;
+&lt;li&gt;假设有 2 个服务器和 6 个客户端，客户端发送了 6 个请求，这 6 个请求按 (1, 2, 3, 4, 5, 6) 的顺序发送，那么 (1, 3, 5) 的请求会被发送到服务器 1，(2, 4, 6) 的请求会被发送到服务器 2&lt;/li&gt;
+&lt;li&gt;该算法比较适合每个服务器的性能差不多的场景，如果有性能存在差异的情况下，那么性能较差的服务器可能无法承担过大的负载&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-加权轮询weighted-round-robbin&#34;&gt;2. 加权轮询（Weighted Round Robbin）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;加权轮询是在轮询的基础上，根据服务器的性能差异，为服务器赋予一定的权值，性能高的服务器分配更高的权值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-最少连接least-connections&#34;&gt;3. 最少连接（Least Connections）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;由于每个请求的连接时间不一样，使用轮询或者加权轮询算法的话，可能会让一台服务器当前连接数过大，而另一台服务器的连接过小，造成负载不均衡&lt;/li&gt;
+&lt;li&gt;最少连接算法就是将请求发送给当前最少连接数的服务器上&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;4-加权最少连接weighted-least-connection&#34;&gt;4. 加权最少连接（Weighted Least Connection）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;在最少连接的基础上，根据服务器的性能为每台服务器分配权重，再根据权重计算出每台服务器能处理的连接数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;5-随机算法random&#34;&gt;5. 随机算法（Random）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;把请求随机发送到服务器上。&lt;/li&gt;
+&lt;li&gt;和轮询算法类似，该算法比较适合服务器性能差不多的场景&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;6-源地址哈希法-ip-hash&#34;&gt;6. 源地址哈希法 (IP Hash)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;源地址哈希通过对客户端 IP 计算哈希值之后，再对服务器数量取模得到目标服务器的序号&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>操作系统</title>
+      <link>http://localhost:1313/posts/computer-science/operating-system/</link>
+      <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/operating-system/</guid>
+      <description>&lt;h1 id=&#34;操作系统&#34;&gt;操作系统&lt;/h1&gt;
+&lt;h2 id=&#34;内核&#34;&gt;内核&lt;/h2&gt;
+&lt;h3 id=&#34;1-用户态切换到内核态的方式&#34;&gt;1. 用户态切换到内核态的方式&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;系统调用
+&lt;ul&gt;
+&lt;li&gt;用户进程主动发起，将参数传给内核，内核态运行的时候要保存用户进程的一些寄存器值和变量等（进程上下文）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;异常 / 设备中断（被动）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;2-为什么要用户态和内核态&#34;&gt;2. 为什么要用户态和内核态&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;防止用户直接执行比较危险的指令造成系统崩溃&lt;/li&gt;
+&lt;li&gt;处理器总处于以下状态中的一种
+&lt;ol&gt;
+&lt;li&gt;内核态，运行于进程上下文，内核代表进程运行于内核空间&lt;/li&gt;
+&lt;li&gt;内核态，运行于中断上下文，内核代表硬件运行于内核空间&lt;/li&gt;
+&lt;li&gt;用户态，运行于用户空间&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;系统调用&#34;&gt;系统调用&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;计算机系统的各种资源是有限的，有很多进程都需要访问这些资源，为了更好的管理这些资源，进程是不允许直接对他们进行操作的，所有对这些资源的访问都必须由操作系统控制；也就是说操作系统是使用这些资源的唯一入口，操作这些资源的方法叫做系统调用 System Call&lt;/li&gt;
+&lt;li&gt;从用户态切换到内核态的方法是中断；中断是一个硬件或软件请求，要求 CPU 暂停当前的工作，去处理更重要的事情；中断是依靠软件实现的&lt;/li&gt;
+&lt;li&gt;Linux 中，内核会维护一张系统调用表 sys_call_table，每个系统调用都有相应的系统调用号作为唯一的标识，表中的元素是系统调用函数的起始地址，而系统调用号就是系统调用在调用表中的偏移量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;进程和线程&#34;&gt;进程和线程&lt;/h2&gt;
+&lt;h3 id=&#34;进程&#34;&gt;进程&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;进程是资源分配的基本单位&lt;/li&gt;
+&lt;li&gt;进程是对程序的一个抽象，包括程序计数器、寄存器和变量的当前值&lt;/li&gt;
+&lt;li&gt;进程控制块 Process Control Block 描述进程的基本信息和运行状态，所谓的创建进程和撤销进程，都是指对 PCB 的操作&lt;/li&gt;
+&lt;li&gt;创建或销毁进程时，系统要为其分配或回收资源，如内存空间，I/O 设备等，其所付出的开销远大于创建或撤销线程时的开销&lt;/li&gt;
+&lt;li&gt;进行进程切换时，涉及当前执行进程 CPU 环境的保存及新调度进程 CPU 环境的设置，开销较大&lt;/li&gt;
+&lt;li&gt;进程通信需要借助 IPC&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;进程间通信-inter-process-communication&#34;&gt;进程间通信 Inter Process Communication&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;进程间通信指多个进程间进行数据传输或同步的方法&lt;/li&gt;
+&lt;li&gt;进程间通信的目的是资源共享，通知事件，进程控制等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;匿名管道 Pipeline&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;管道只能在具有公共祖先的两个进程之间使用&lt;/li&gt;
+&lt;li&gt;管道是由内核管理的一个缓冲区，其两端分别连接两个进程，一个进程会向管道输入信息，另一个进程会向管道读取信息&lt;/li&gt;
+&lt;li&gt;管道只支持半双工通信，数据只能向一个方向流动；当双方需要进行通信时，需要建立两个管道&lt;/li&gt;
+&lt;li&gt;当管道中没有信息时，读取信息的进程会等待，直到有信息被输入进管道；当管道中信息装满的时候，输入信息的进程会等待，直到有信息被读取出管道；当两个进程都被终结时，管道也会被终结&lt;/li&gt;
+&lt;li&gt;输入管道的消息会被添加在管道缓冲区的末尾，而读取管道的信息只能从缓冲区的头部读出；如果管道缓冲区头部的数据一直未被读出，那么写操作将被阻塞&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;命名管道 Named Pipeline / FIFO&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;命名管道可以在任意两个进程之间使用&lt;/li&gt;
+&lt;li&gt;FIFO 是一种特殊类型的文件，写进程向 FIFO 文件中进行写入，读进程从 FIFO 文件中进行读取；删除 FIFO 文件时，管道也随之消失&lt;/li&gt;
+&lt;li&gt;可以通过 FIFO 文件的路径来识别管道，从而让没有亲缘关系的进程之间建立连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消息队列 Message Queue&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>数据库</title>
+      <link>http://localhost:1313/posts/computer-science/database/</link>
+      <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/database/</guid>
+      <description>&lt;h1 id=&#34;数据库&#34;&gt;数据库&lt;/h1&gt;
+&lt;h2 id=&#34;数据库设计&#34;&gt;数据库设计&lt;/h2&gt;
+&lt;h3 id=&#34;关系数据理论&#34;&gt;关系数据理论&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;数据依赖是指内部属性之间的约束关系&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;范式-normal-form&#34;&gt;范式 Normal Form&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;范式是数据库的表结构的设计标准，有 1NF, 2NF, 3NF, BCNF, 4NF, 5NF 等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;第一范式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1NF 是指数据库表的每个属性都不可再分&lt;/li&gt;
+&lt;li&gt;1NF 是所有关系型数据库的最基本要求&lt;/li&gt;
+&lt;li&gt;坏处：数据冗余，插入异常，修改异常，删除异常&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第二范式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;2NF 是指在 1NF 的基础之上，消除了非主属性对于主键的部分函数依赖&lt;/li&gt;
+&lt;li&gt;非主属性完全依赖于主键&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第三范式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;3NF 是指在 2NF 的基础之上，消除了非主属性对于主键的传递函数依赖&lt;/li&gt;
+&lt;li&gt;非主属性不依赖于其它非主属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;mysql-存储引擎&#34;&gt;MySQL 存储引擎&lt;/h2&gt;
+&lt;h3 id=&#34;innodb&#34;&gt;InnoDB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;MySQL 默认的事务型存储引擎，只有在需要它不支持的特性时，才考虑使用其它存储引擎&lt;/li&gt;
+&lt;li&gt;实现了四个标准的隔离级别，默认级别是可重复读（REPEATABLE READ）；在可重复读隔离级别下，通过多版本并发控制（MVCC）+ Next-Key Locking 防止幻影读&lt;/li&gt;
+&lt;li&gt;主索引是聚簇索引，在索引中保存了数据，从而避免直接读取磁盘，因此对查询性能有很大的提升&lt;/li&gt;
+&lt;li&gt;内部进行了优化，包括从磁盘读取数据时采用的可预测性读、能够加快读操作并且自动创建的自适应哈希索引、能够加速插入操作的插入缓冲区等&lt;/li&gt;
+&lt;li&gt;支持在线热备份；其它存储引擎在需要获取一致性视图时会停止对所有表的写入，而在读写混合场景中，停止写入可能也意味着停止读取&lt;/li&gt;
+&lt;li&gt;特性：插入缓冲（insert buffer），二次写（double write），自适应哈希索引（ahi），预读（read ahead）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;myisam&#34;&gt;MyISAM&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;设计简单，数据以紧密格式存储；对于只读数据，或者表比较小、可以容忍修复操作，则依然可以使用它&lt;/li&gt;
+&lt;li&gt;提供了大量的特性，包括压缩表、空间数据索引等&lt;/li&gt;
+&lt;li&gt;不支持事务&lt;/li&gt;
+&lt;li&gt;不支持行级锁，只能对整张表加锁，读取时会对需要读到的所有表加共享锁，写入时则对表加排它锁。但在表有读取操作的同时，也可以往表中插入新的记录，这被称为并发插入（CONCURRENT INSERT）&lt;/li&gt;
+&lt;li&gt;可以手工或者自动执行检查和修复操作，但是和事务恢复以及崩溃恢复不同，可能导致一些数据丢失，而且修复操作是非常慢的&lt;/li&gt;
+&lt;li&gt;如果指定了 DELAY_KEY_WRITE 选项，在每次修改执行完成时，不会立即将修改的索引数据写入磁盘，而是会写到内存中的键缓冲区，只有在清理键缓冲区或者关闭表的时候才会将对应的索引块写入磁盘。这种方式可以极大的提升写入性能，但是在数据库或者主机崩溃时会造成索引损坏，需要执行修复操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;对比&#34;&gt;对比&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;事务：InnoDB 支持事务，可以使用 Commit 和 Rollback 语句；而 MyISAM 不支持&lt;/li&gt;
+&lt;li&gt;并发：InnoDB 支持行级锁；而 MyISAM 只支持表级锁&lt;/li&gt;
+&lt;li&gt;控制：InnoDB 支持 MVCC；而 MyISAM 不支持&lt;/li&gt;
+&lt;li&gt;外键：InnoDB 支持外键；而 MyISAM 不支持&lt;/li&gt;
+&lt;li&gt;索引：MyISAM 支持全文索引；而 InnoDB 不支持&lt;/li&gt;
+&lt;li&gt;备份：InnoDB 支持在线热备份&lt;/li&gt;
+&lt;li&gt;崩溃恢复：MyISAM 崩溃后发生损坏的概率比 InnoDB 高很多，而且恢复的速度也更慢&lt;/li&gt;
+&lt;li&gt;其它：MyISAM 支持压缩表和空间数据索引&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;事务-transaction&#34;&gt;事务 Transaction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;事务是一个操作序列，用来维护数据的一致性&lt;/li&gt;
+&lt;li&gt;满足 ACID 原则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;acid-原则&#34;&gt;ACID 原则&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;原子性 Atomic：事务被视为不可分割的最小单元，其所有操作要么全部提交成功，要么全部失败回滚；回滚可以用回滚日志来实现，回滚日志记录事务所执行的修改操作，在回滚时反向执行所有的修改操作&lt;/li&gt;
+&lt;li&gt;一致性 Consistency：数据库在事务执行前后都保持一致性状态；在一性状态下，所有事务对一个数据的读取结果都是相同的&lt;/li&gt;
+&lt;li&gt;隔离性 Isolation：一个事务所做的修改在最终提交以前，对其它事务不可见的&lt;/li&gt;
+&lt;li&gt;持久性 Durability：一旦事务提交，则其所做的修改将会永远保存到数库中；使用重做日志来保证持久性&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;只有满足一致性，事务的执行结果才是正确的&lt;/li&gt;
+&lt;li&gt;在无并发的情况下，事务串行执行，隔离性一定能够被满足；此时只要能满足原子性，就一定能满足一致性。&lt;/li&gt;
+&lt;li&gt;在并发的情况下，多个事务并行执行，事务不仅要满足原子性，还需要满足隔离性，才能满足一致性；&lt;/li&gt;
+&lt;li&gt;事务满足持久化是为了能应对数据库崩溃的情况&lt;/li&gt;
+&lt;li&gt;MySQL 默认采用自动提交模式 AUTOCOMMIT；如果不显式使用 START TRANSACTION 语句来开始一个事务，那么每个查询都会被当做一个事务被自动提交&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;并发&#34;&gt;并发&lt;/h2&gt;
+&lt;h3 id=&#34;并发一致性问题&#34;&gt;并发一致性问题&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;产生并发一致性问题主要原因是破坏了事务的隔离性&lt;/li&gt;
+&lt;li&gt;解决方法是通过并发控制来保证隔离性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;丢失修改&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>数据库 索引</title>
+      <link>http://localhost:1313/posts/computer-science/database-index/</link>
+      <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/database-index/</guid>
+      <description>&lt;h1 id=&#34;数据库&#34;&gt;数据库&lt;/h1&gt;
+&lt;h2 id=&#34;索引&#34;&gt;索引&lt;/h2&gt;
+&lt;h3 id=&#34;概念&#34;&gt;概念&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;索引是对数据库表中一个或多个列的值进行排序的数据结构&lt;/li&gt;
+&lt;li&gt;索引通过 B 树及其变种，从根节点开始快速地找到数据，而不是扫描整张表得到需要的数据；其目的是进行快速的数据查询或更新&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;优点&#34;&gt;优点&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;减少了需要扫描的数据行数&lt;/li&gt;
+&lt;li&gt;减少查询中分组和排序的时间，避免创建临时表&lt;/li&gt;
+&lt;li&gt;加速数据查询&lt;/li&gt;
+&lt;li&gt;将随机 I/O 变为顺序 I/O&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;缺点&#34;&gt;缺点&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;索引需要额外的空间来存储，还需要在表中记录增减时进行维护，因此每条记录的增删改操作将会额外增加磁盘 IO&lt;/li&gt;
+&lt;li&gt;可以使用分区技术来区分出需要查询的一组数据，而不是逐条匹配&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;数据结构&#34;&gt;数据结构&lt;/h3&gt;
+&lt;h4 id=&#34;1-b-树&#34;&gt;1. B 树&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;B 树是一种多叉平衡搜索树，结点是多个关键码的有序表，所有叶子节点位于同一层&lt;/li&gt;
+&lt;li&gt;对于要查询的关键码，在某个结点处，先在有序表中查找，若找到则返回其指针指向的数据；否则查找对应的指针指向的子树&lt;/li&gt;
+&lt;li&gt;对于存储在硬盘上的大型数据库文件，可以极大程度减少访问硬盘的次数，并大幅度提高数据检索的效率&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-b-树&#34;&gt;2. B+ 树&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;在B+ 树中，非叶子节点只进行数据索引，不保存数据，只有叶子节点存有指向数据的指针，这使得非叶子节点能保存的关键字数量大大增加&lt;/li&gt;
+&lt;li&gt;叶子节点的关键字从小到大有序排列，且叶子节点有序相连，左边节点的末尾指向右边节点的起始位置&lt;/li&gt;
+&lt;li&gt;插入删除操作会破坏树的平衡性，因此在插入删除操作之后，需要对树进行分裂，合并，旋转等操作来维护其平衡性&lt;/li&gt;
+&lt;li&gt;特点：每个节点能保存的关键字数量更多，因此树的层级更少；所有数据的地址都保存在叶子节点上，因此查询速度更稳定；进行全表扫描的时候只需要遍历所有的叶子节点即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-b-树&#34;&gt;3. B* 树&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;在B* 树中，每个节点都存有其右边节点的指针&lt;/li&gt;
+&lt;li&gt;B+ 树节点满时会分裂，而 B* 树节点满时会先检查其右边节点是否满，如果未满则直接向右边节点转移关键字；如果已满则从当前节点和右边节点各取出 1/3 的数据并创建一个新的节点进行保存&lt;/li&gt;
+&lt;li&gt;特点：可以向右边节点转移关键字的，因此分裂次数更少&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mysql-索引&#34;&gt;MySQL 索引&lt;/h3&gt;
+&lt;h4 id=&#34;1-b-树索引&#34;&gt;1. B+ 树索引&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;B+ 树具有有序性，可以用于查找，排序和分组&lt;/li&gt;
+&lt;li&gt;可以指定多个列作为索引列，多个索引列共同组成键&lt;/li&gt;
+&lt;li&gt;适用于全键值、键值范围和键前缀查找，其中键前缀查找只适用于最左前缀查找。如果不是按照索引列的顺序进行查找，则无法使用索引&lt;/li&gt;
+&lt;li&gt;InnoDB 的 B+ 树索引分为主索引和辅助索引
+&lt;ul&gt;
+&lt;li&gt;主索引的叶子节点 data 域记录完整的数据记录，这种索引方式被称为聚簇索引；因为无法把数据行存放在两个不同的地方，所以一个表只能有一个聚簇索引&lt;/li&gt;
+&lt;li&gt;辅助索引的叶子节点 data 域记录主键的值，因此在使用辅助索引进行查找时，需要先查找到主键值，然后再到主索引中进行查找&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-哈希索引&#34;&gt;2. 哈希索引&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;哈希索引能以 O(1) 的时间复杂度进行查找，但失去了有序性，无法用于排序和分组，且只支持精确查找，无法用于部分查找和范围查找&lt;/li&gt;
+&lt;li&gt;InnoDB 存储引擎具有自适应哈希索引的特性，当某个索引值被非常频繁地使用时，会在 B+ 树索引之上再创建一个哈希索引，使得 B+ 树索引具有哈希索引的一些优点，比如快速的哈希查找&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-全文索引&#34;&gt;3. 全文索引&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;MyISAM 和 InnoDB 存储引擎支持全文索引，用于查找文本中的关键词，而不是直接比较是否相等&lt;/li&gt;
+&lt;li&gt;查找条件使用 MATCH AGAINST，而不是普通的 WHERE&lt;/li&gt;
+&lt;li&gt;全文索引使用倒排索引（inverted index）实现，它记录着关键词到其所在文档的映射&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;4-空间数据索引&#34;&gt;4. 空间数据索引&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;MyISAM 存储引擎支持空间数据索引（R-Tree），可以用于地理数据存储&lt;/li&gt;
+&lt;li&gt;空间数据索引会从所有维度来索引数据，可以有效地使用任意维度来进行组合查询；必须使用 GIS 相关的函数来维护数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;索引类型&#34;&gt;索引类型&lt;/h3&gt;
+&lt;h4 id=&#34;1-普通索引&#34;&gt;1. 普通索引&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;允许索引列包含重复值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-唯一索引&#34;&gt;2. 唯一索引&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;索引列的值必须唯一，但允许有空值，保证数据记录的唯一性&lt;/li&gt;
+&lt;li&gt;简化了 MySQL 对索引的管理工作，使索引更加效率&lt;/li&gt;
+&lt;li&gt;插入数据时，会先检查这个字段是否已经出现过&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-主键索引聚集索引&#34;&gt;3. 主键索引/聚集索引&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;不允许有重复，不允许有空值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;4-全文索引&#34;&gt;4. 全文索引&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;用于模糊匹配，针对较大的数据&lt;/li&gt;
+&lt;li&gt;非常消耗时间和空间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;5-组合索引&#34;&gt;5. 组合索引&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;提高 MySQL 效率，遵循最左前缀原则&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>计算机网络</title>
+      <link>http://localhost:1313/posts/computer-science/network/</link>
+      <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/network/</guid>
+      <description>&lt;h1 id=&#34;计算机网络&#34;&gt;计算机网络&lt;/h1&gt;
+&lt;p&gt;&lt;img alt=&#34;cwnd&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Computer-Science/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;作用及协议&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;分层&lt;/th&gt;
+          &lt;th&gt;作用&lt;/th&gt;
+          &lt;th&gt;协议&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;物理层&lt;/td&gt;
+          &lt;td&gt;通过媒介传输比特，确定机械及电气规范（比特 Bit）&lt;/td&gt;
+          &lt;td&gt;RJ45、CLOCK、IEEE802.3（中继器，集线器）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;数据链路层&lt;/td&gt;
+          &lt;td&gt;将比特组装成帧和点到点的传递（帧 Frame）&lt;/td&gt;
+          &lt;td&gt;PPP、FR、HDLC、VLAN、MAC（网桥，交换机）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;网络层&lt;/td&gt;
+          &lt;td&gt;负责数据包从源到宿的传递和网际互连（包 Packet）&lt;/td&gt;
+          &lt;td&gt;IP、ICMP、ARP、RARP、OSPF、IPX、RIP、IGRP（路由器）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;运输层&lt;/td&gt;
+          &lt;td&gt;提供端到端的可靠报文传递和错误恢复（ 段Segment）&lt;/td&gt;
+          &lt;td&gt;TCP、UDP、SPX&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;会话层&lt;/td&gt;
+          &lt;td&gt;建立、管理和终止会话（会话协议数据单元 SPDU）&lt;/td&gt;
+          &lt;td&gt;NFS、SQL、NETBIOS、RPC&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;表示层&lt;/td&gt;
+          &lt;td&gt;对数据进行翻译、加密和压缩（表示协议数据单元 PPDU）&lt;/td&gt;
+          &lt;td&gt;JPEG、MPEG、ASII&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;应用层&lt;/td&gt;
+          &lt;td&gt;允许访问OSI环境的手段（应用协议数据单元 APDU）&lt;/td&gt;
+          &lt;td&gt;FTP、DNS、Telnet、SMTP、HTTP、WWW、NFS&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;链路层&#34;&gt;链路层&lt;/h2&gt;
+&lt;h3 id=&#34;mac-地址&#34;&gt;MAC 地址&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;MAC 地址是链路层地址，长度为 6 字节（48 位），用于唯一标识网络适配器（网卡）；一台主机拥有多少个网络适配器就有多少个 MAC 地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;局域网&#34;&gt;局域网&lt;/h3&gt;
+&lt;p&gt;局域网是一种典型的广播信道，主要特点是网络为一个单位所拥有，且地理范围和站点数目均有限。&lt;/p&gt;
+&lt;p&gt;主要有以太网、令牌环网、FDDI 和 ATM 等局域网技术，目前以太网占领着有线局域网市场。&lt;/p&gt;
+&lt;p&gt;可以按照网络拓扑结构对局域网进行分类：&lt;/p&gt;
+&lt;h2 id=&#34;状态码&#34;&gt;状态码&lt;/h2&gt;</description>
+    </item>
+    <item>
+      <title>计算机网络 HTTP 协议</title>
+      <link>http://localhost:1313/posts/computer-science/http/</link>
+      <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/http/</guid>
+      <description>&lt;h1 id=&#34;计算机网络&#34;&gt;计算机网络&lt;/h1&gt;
+&lt;h2 id=&#34;http-协议&#34;&gt;HTTP 协议&lt;/h2&gt;
+&lt;h3 id=&#34;报文&#34;&gt;报文&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;请求报文
+&lt;ul&gt;
+&lt;li&gt;request line&lt;/li&gt;
+&lt;li&gt;request headers&lt;/li&gt;
+&lt;li&gt;request body&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img alt=&#34;Request Datagram&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Computer-Science/Request%20Datagram.png&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;响应报文
+&lt;ul&gt;
+&lt;li&gt;status line&lt;/li&gt;
+&lt;li&gt;response headers&lt;/li&gt;
+&lt;li&gt;response body&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img alt=&#34;Response Datagram&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Computer-Science/Response%20Datagram.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;http-方法&#34;&gt;HTTP 方法&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;GET：获取资源&lt;/li&gt;
+&lt;li&gt;POST：传输数据&lt;/li&gt;
+&lt;li&gt;PUT：上传文件&lt;/li&gt;
+&lt;li&gt;DELETE：删除文件&lt;/li&gt;
+&lt;li&gt;OPTIONS：查询支持的方法&lt;/li&gt;
+&lt;li&gt;CONNECT：在与代理服务器通信时建立隧道&lt;/li&gt;
+&lt;li&gt;TRACE：追踪路径&lt;/li&gt;
+&lt;li&gt;PATCH：修改资源&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;http-状态码&#34;&gt;HTTP 状态码&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;状态码&lt;/th&gt;
+          &lt;th&gt;类别&lt;/th&gt;
+          &lt;th&gt;含义&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1xx&lt;/td&gt;
+          &lt;td&gt;Informational 信息状态码&lt;/td&gt;
+          &lt;td&gt;正在处理请求&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2xx&lt;/td&gt;
+          &lt;td&gt;Success 成功状态码&lt;/td&gt;
+          &lt;td&gt;正常地处理了请求&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;3xx&lt;/td&gt;
+          &lt;td&gt;Redirection 重定向状态码&lt;/td&gt;
+          &lt;td&gt;请求需要进行附加操作&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;4xx&lt;/td&gt;
+          &lt;td&gt;Client Error 客户端错误状态码&lt;/td&gt;
+          &lt;td&gt;客户端请求无法被处理&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;5xx&lt;/td&gt;
+          &lt;td&gt;Server Error&lt;/td&gt;
+          &lt;td&gt;服务器处理请求出错&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;安全性&#34;&gt;安全性&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP 所封装的信息是明文的，通过抓包工具可以分析其消息内容，内容可能会被窃听&lt;/li&gt;
+&lt;li&gt;不验证通信方的身份，通信方的身份有可能遭遇伪装&lt;/li&gt;
+&lt;li&gt;无法证明报文的完整性，报文有可能遭篡改&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;cookie-和-session&#34;&gt;Cookie 和 Session&lt;/h3&gt;
+&lt;h4 id=&#34;cookie&#34;&gt;Cookie&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP 协议是无状态的，为了能够保存状态信息，HTTP/1.1 引入了 Cookie&lt;/li&gt;
+&lt;li&gt;Cookie 是服务器发送到用户浏览器并保存在本地的数据；当浏览器再次向相同服务器发起请求时会附带上 Cookie 信息，用于告知服务端两个请求来自同一浏览器&lt;/li&gt;
+&lt;li&gt;附带 Cookie 数据会带来额外的性能开销，尤其是在移动环境下&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;用途&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>计算机网络 传输层</title>
+      <link>http://localhost:1313/posts/computer-science/transmission-layer/</link>
+      <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/transmission-layer/</guid>
+      <description>&lt;h1 id=&#34;计算机网络&#34;&gt;计算机网络&lt;/h1&gt;
+&lt;h2 id=&#34;传输层&#34;&gt;传输层&lt;/h2&gt;
+&lt;h3 id=&#34;tcp-transmission-control-protocol&#34;&gt;TCP Transmission Control Protocol&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;特点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;面向连接&lt;/li&gt;
+&lt;li&gt;点对点的全双工通信&lt;/li&gt;
+&lt;li&gt;利用超时重传的机制来实现可靠传输&lt;/li&gt;
+&lt;li&gt;面向字节流，将应用层传输下来的报文当作字节流，组织成不同大小的数据块&lt;/li&gt;
+&lt;li&gt;提供流量控制，拥塞控制等功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;三次握手
+&lt;img alt=&#34;三次握手&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Computer-Science/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;流程
+&lt;ol&gt;
+&lt;li&gt;server 处于 listen 状态，等待 client 的请求&lt;/li&gt;
+&lt;li&gt;client 向 server 发送请求连接报文（SYN = 1，seq = x），进入 SYN_SENT 状态&lt;/li&gt;
+&lt;li&gt;server 收到请求连接报文，向 client 发送确认连接报文（SYN = 1， ACK = 1），进入 SYN_RECV 状态&lt;/li&gt;
+&lt;li&gt;client 收到确认报文，再次向 server 发送确认报文，进入 ESTABLISHED 状态&lt;/li&gt;
+&lt;li&gt;server 收到确认报文，进入 ESTABLISHED 状态&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;目的：防止失效的连接请求到达服务器&lt;/li&gt;
+&lt;li&gt;客户端发送的连接请求如果在网络中滞留并等待一个超时重传时间之后，就会重新发送连接请求，最终服务器会收到并打开两个连接请求；如果进行了三次握手，客户端会忽略服务器发送的对滞留的连接请求的确认，并不进行第三次握手，也就不会打开重复的连接请求&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;四次挥手
+&lt;img alt=&#34;四次挥手&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Computer-Science/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.jpg&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;流程
+&lt;ol&gt;
+&lt;li&gt;主动关闭方发送释放连接报文（FIN = 1，不再发送数据），进入 FIN_WAIT-1 状态&lt;/li&gt;
+&lt;li&gt;被动关闭方收到释放连接报文，进入 CLOSE-WAIT 状态，发送确认报文（ACK = 1），主动关闭方收到确认报文后进入 FIN_WAIT-2 状态&lt;/li&gt;
+&lt;li&gt;当不再需要连接时，被动关闭方发送释放连接报文（FIN = 1，不再发送数据），进入 LAST_ACK 状态&lt;/li&gt;
+&lt;li&gt;主动关闭方收到释放连接报文，进入 TIME-WAIT 状态，发送确认报文（ACK = 1），等待 2 个最大报文存活时间（MSL）后关闭连接&lt;/li&gt;
+&lt;li&gt;被动关闭方收到确认报文，关闭连接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;CLOSE-WAIT 状态的作用：让服务器端发送还未传输完成的数据&lt;/li&gt;
+&lt;li&gt;TIME-WAIT 状态的作用
+&lt;ol&gt;
+&lt;li&gt;确认最后一个确认报文能够到达被动关闭方，如果被动关闭方没有收到确认报文，则会重新发送释放连接报文，TIME-WAIT 状态能够保证主动关闭方能够处理这种情况&lt;/li&gt;
+&lt;li&gt;让本连接持续时间内所产生的所有报文都从网络中消失，使得下一个新的连接建立后不会出现旧的报文&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;滑动窗口&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>计算机网络 应用层</title>
+      <link>http://localhost:1313/posts/computer-science/application-layer/</link>
+      <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/application-layer/</guid>
+      <description>&lt;h1 id=&#34;计算机网络&#34;&gt;计算机网络&lt;/h1&gt;
+&lt;h2 id=&#34;应用层&#34;&gt;应用层&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;应用层协议&lt;/th&gt;
+          &lt;th&gt;端口号&lt;/th&gt;
+          &lt;th&gt;传输层协议&lt;/th&gt;
+          &lt;th&gt;备注&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;DNS&lt;/td&gt;
+          &lt;td&gt;53&lt;/td&gt;
+          &lt;td&gt;UDP/TCP&lt;/td&gt;
+          &lt;td&gt;长度超过 512 字节时使用 TCP&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;DHCP&lt;/td&gt;
+          &lt;td&gt;67/68&lt;/td&gt;
+          &lt;td&gt;UDP&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;SNMP&lt;/td&gt;
+          &lt;td&gt;161/162&lt;/td&gt;
+          &lt;td&gt;UDP&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;FTP&lt;/td&gt;
+          &lt;td&gt;20/21&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;控制连接 21，数据连接主动模式 20&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;TELNET&lt;/td&gt;
+          &lt;td&gt;23&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;HTTP&lt;/td&gt;
+          &lt;td&gt;80&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;SMTP&lt;/td&gt;
+          &lt;td&gt;25&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;POP3&lt;/td&gt;
+          &lt;td&gt;110&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;IMAP&lt;/td&gt;
+          &lt;td&gt;143&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;域名系统-domain-name-system&#34;&gt;域名系统 Domain Name System&lt;/h3&gt;
+&lt;p&gt;&lt;img alt=&#34;DNS&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Computer-Science/DNS.jpg&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DNS 是一个分布式数据库（每个地址只保留其自己的部分数据），提供了主机名和 IP 地址之间相互转换的服务&lt;/li&gt;
+&lt;li&gt;域名具有层次结构，从上到下分别为根域名，顶级域名，二级域名&lt;/li&gt;
+&lt;li&gt;DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53&lt;/li&gt;
+&lt;li&gt;DNS 一般使用 UDP 进行传输，域名解析器和域名服务器都必须自己处理超时和重传，从而保证其可靠性&lt;/li&gt;
+&lt;li&gt;DNS 在两种情况下会使用 TCP 进行传输
+&lt;ol&gt;
+&lt;li&gt;返回的响应超过的 512 字节（UDP 最大只支持 512 字节的数据）&lt;/li&gt;
+&lt;li&gt;区域传送，即主域名服务器向辅助域名服务器传送变化的部分数据&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;文件传输协议-file-transfer-protocol&#34;&gt;文件传输协议 File Transfer Protocol&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;FTP 使用两个 TCP 连接来传输一个文件
+&lt;ol&gt;
+&lt;li&gt;控制连接：服务器打开端口号 21 等待客户端进行连接；客户端主动建立连接后，服务器使用控制连接接收客户端的命令，并传回应答&lt;/li&gt;
+&lt;li&gt;数据连接：用来传输文件数据&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;数据连接有 2 种方式
+&lt;ol&gt;
+&lt;li&gt;主动模式：服务器主动建立数据连接，服务器的端口号为 20，客户端的端口号随机（大于1024）&lt;/li&gt;
+&lt;li&gt;被动连接：客户端主动建立数据连接，客户端的端口号由客户端指定，服务器端的端口号随机&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;超文本传输协议-hyper-text-transfer-protocol&#34;&gt;超文本传输协议 Hyper Text Transfer Protocol&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP 主要用于 web 开发&lt;/li&gt;
+&lt;li&gt;HTTP 客户端发起一个请求，创建一个到服务器指定端口（默认是 80 端口）的 TCP 连接；HTTP 服务器在对应端口监听客户端的请求，一旦收到请求，服务器会向客户端返回一个状态（例如 &amp;ldquo;HTTP/1.1 200 OK&amp;rdquo;）以及相应的内容，如请求的文件，错误消息，或其它信息&lt;/li&gt;
+&lt;li&gt;HTTP 是一个无状态的协议，服务器不会去维护与客户端交互的相关信息，因此它对于事务处理没有记忆能力&lt;/li&gt;
+&lt;li&gt;HTTP 假定其下层协议提供可靠的传输，因此任何能够提供这种保证的协议都可以被其使用，一般在 TCP/IP 协议族使用 TCP 作为其传输层&lt;/li&gt;
+&lt;li&gt;HTTP 可以在任何互联网协议之上，或其他网络上实现&lt;/li&gt;
+&lt;li&gt;HTTP 响应
+&lt;ul&gt;
+&lt;li&gt;在接收和解释请求消息后，服务器会返回一个 HTTP 响应消息&lt;/li&gt;
+&lt;li&gt;HTTP 响应由三个部分组成，分别是状态行，消息报头，响应正文&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;动态主机配置协议-dynamic-host-configuration-protocol&#34;&gt;动态主机配置协议 Dynamic Host Configuration Protocol&lt;/h3&gt;
+&lt;p&gt;&lt;img alt=&#34;DHCP&#34; loading=&#34;lazy&#34; src=&#34;https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Computer-Science/DHCP.jpg&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>计算机网络 网络层</title>
+      <link>http://localhost:1313/posts/computer-science/network-layer/</link>
+      <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/network-layer/</guid>
+      <description>&lt;h1 id=&#34;计算机网络&#34;&gt;计算机网络&lt;/h1&gt;
+&lt;h2 id=&#34;网络层&#34;&gt;网络层&lt;/h2&gt;
+&lt;h3 id=&#34;地址解析协议-arp&#34;&gt;地址解析协议 ARP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;网络层实现主机之间的通信，链路层实现每段链路之间的通信；在通信过程中，IP 数据报的源地址和目的地址始终不变，而 MAC 地址随着链路的改变而改变&lt;/li&gt;
+&lt;li&gt;ARP 协议从 IP 地址获取 MAC 地址&lt;/li&gt;
+&lt;li&gt;每个主机有一个 ARP 高速缓存，里面有本局域网上的各主机和路由器的 IP 地址到 MAC 地址的映射表&lt;/li&gt;
+&lt;li&gt;如果主机 A 知道主机 B 的 IP 地址，但是 ARP 高速缓存中没有该 IP 地址到 MAC 地址的映射，此时主机 A 通过广播的方式发送 ARP 请求分组，主机 B 收到该请求后会发送 ARP 响应分组给主机 A 告知其 MAC 地址，随后主机 A 向其高速缓存中写入主机 B 的 IP 地址到 MAC 地址的映射&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;网际控制报文协议-icmp&#34;&gt;网际控制报文协议 ICMP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ICMP 是为了更有效地转发 IP 数据报和提高交付成功的机会。它封装在 IP 数据报中，但是不属于高层协议&lt;/li&gt;
+&lt;li&gt;ICMP 报文分为差错报告报文和询问报文&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;应用&#34;&gt;应用&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;Ping&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Ping 是 ICMP 的一个重要应用，主要用来测试两台主机之间的连通性&lt;/li&gt;
+&lt;li&gt;Ping 的原理是通过向目的主机发送 ICMP Echo 请求报文，目的主机收到之后会发送 Echo 回答报文；Ping 会根据时间和成功响应的次数估算出数据包往返时间以及丢包率&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Traceroute&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Traceroute 是 ICMP 的另一个应用，用来跟踪一个分组从源点到终点的路径&lt;/li&gt;
+&lt;li&gt;Traceroute 发送的 IP 数据报封装的是无法交付的 UDP 用户数据报，并由目的主机发送终点不可达差错报告报文&lt;/li&gt;
+&lt;li&gt;源主机向目的主机发送一连串的 IP 数据报。第一个数据报 P1 的生存时间 TTL 设置为 1，当 P1 到达路径上的第一个路由器 R1 时，R1 收下它并把 TTL 减 1，此时 TTL 等于 0，R1 就把 P1 丢弃，并向源主机发送一个 ICMP 时间超过差错报告报文&lt;/li&gt;
+&lt;li&gt;源主机接着发送第二个数据报 P2，并把 TTL 设置为 2。P2 先到达 R1，R1 收下后把 TTL 减 1 再转发给 R2，R2 收下后也把 TTL 减 1，由于此时 TTL 等于 0，R2 就丢弃 P2，并向源主机发送一个 ICMP 时间超过差错报文&lt;/li&gt;
+&lt;li&gt;不断执行这样的步骤，直到最后一个数据报刚刚到达目的主机，主机不转发数据报，也不把 TTL 值减 1。但是因为数据报封装的是无法交付的 UDP，因此目的主机要向源主机发送 ICMP 终点不可达差错报告报文&lt;/li&gt;
+&lt;li&gt;之后源主机知道了到达目的主机所经过的路由器 IP 地址以及到达每个路由器的往返时间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>面向对象</title>
+      <link>http://localhost:1313/posts/computer-science/object-oriented/</link>
+      <pubDate>Sun, 05 Jul 2015 08:57:52 +1000</pubDate>
+      <guid>http://localhost:1313/posts/computer-science/object-oriented/</guid>
+      <description>&lt;h1 id=&#34;面向对象&#34;&gt;面向对象&lt;/h1&gt;
+&lt;h2 id=&#34;面向对象思想&#34;&gt;面向对象思想&lt;/h2&gt;
+&lt;h3 id=&#34;三大特性&#34;&gt;三大特性&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;封装&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;利用抽象数据类型将数据和基于数据的操作封装在一起，使其构成一个不可分割的独立实体。数据被保护在抽象数据类型的内部，尽可能地隐藏内部的细节，只保留一些对外的接口使其与外部发生联系。用户无需关心对象内部的细节，但可以通过对象对外提供的接口来访问该对象&lt;/li&gt;
+&lt;li&gt;优点：
+&lt;ul&gt;
+&lt;li&gt;减少耦合：可以独立地开发、测试、优化、使用、理解和修改&lt;/li&gt;
+&lt;li&gt;减轻维护的负担：可以更容易被程序员理解，并且在调试的时候可以不影响其他模块&lt;/li&gt;
+&lt;li&gt;有效地调节性能：可以通过剖析来确定哪些模块影响了系统的性能&lt;/li&gt;
+&lt;li&gt;提高软件的可重用性&lt;/li&gt;
+&lt;li&gt;降低了构建大型系统的风险：即使整个系统不可用，但是这些独立的模块却有可能是可用的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;继承&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;继承实现了 IS-A 关系，例如 Cat 和 Animal 就是一种 IS-A 关系，因此 Cat 可以继承自 Animal，从而获得 Animal 非 private 的属性和方法&lt;/li&gt;
+&lt;li&gt;继承应该遵循里氏替换原则，子类对象必须能够替换掉所有父类对象&lt;/li&gt;
+&lt;li&gt;Cat 可以当做 Animal 来使用，也就是说可以使用 Animal 引用 Cat 对象。父类引用指向子类对象称为 向上转型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;多态&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;多态分为编译时多态和运行时多态：
+&lt;ul&gt;
+&lt;li&gt;编译时多态主要指方法的重载&lt;/li&gt;
+&lt;li&gt;运行时多态指程序中定义的对象引用所指向的具体类型在运行期间才确定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;运行时多态有三个条件：
+&lt;ul&gt;
+&lt;li&gt;继承&lt;/li&gt;
+&lt;li&gt;覆盖（重写）&lt;/li&gt;
+&lt;li&gt;向上转型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;设计原则&#34;&gt;设计原则&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;单一责任原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修改一个类的原因应该只有一个&lt;/li&gt;
+&lt;li&gt;让一个类只负责一件事，当这个类需要做过多事情的时候，就需要分解这个类&lt;/li&gt;
+&lt;li&gt;如果一个类承担的职责过多，就等于把这些职责耦合在了一起，一个职责的变化可能会削弱这个类完成其它职责的能力&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;开放封闭原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;类应该对扩展开放，对修改关闭&lt;/li&gt;
+&lt;li&gt;扩展就是添加新功能的意思，因此该原则要求在添加新功能时不需要修改代码&lt;/li&gt;
+&lt;li&gt;符合开闭原则最典型的设计模式是装饰者模式，它可以动态地将责任附加到对象上，而不用去修改类的代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;里氏替换原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;子类对象必须能够替换掉所有父类对象&lt;/li&gt;
+&lt;li&gt;继承是一种 IS-A 关系，子类需要能够当成父类来使用，并且需要比父类更特殊&lt;/li&gt;
+&lt;li&gt;如果不满足这个原则，那么各个子类的行为上就会有很大差异，增加继承体系的复杂度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;接口分离原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不应该强迫客户依赖于它们不用的方法&lt;/li&gt;
+&lt;li&gt;因此使用多个专门的接口比使用单一的总接口要好&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;依赖倒置原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;高层模块不应该依赖于低层模块，二者都应该依赖于抽象&lt;/li&gt;
+&lt;li&gt;抽象不应该依赖于细节，细节应该依赖于抽象&lt;/li&gt;
+&lt;li&gt;高层模块包含一个应用程序中重要的策略选择和业务模块，如果高层模块依赖于低层模块，那么低层模块的改动就会直接影响到高层模块，从而迫使高层模块也需要改动。&lt;/li&gt;
+&lt;li&gt;依赖于抽象意味着：
+&lt;ul&gt;
+&lt;li&gt;任何变量都不应该持有一个指向具体类的指针或者引用&lt;/li&gt;
+&lt;li&gt;任何类都不应该从具体类派生&lt;/li&gt;
+&lt;li&gt;任何方法都不应该覆写它的任何基类中的已经实现的方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;设计模式&#34;&gt;设计模式&lt;/h2&gt;
+&lt;h3 id=&#34;创建型&#34;&gt;创建型&lt;/h3&gt;
+&lt;h4 id=&#34;单例模式-singleton&#34;&gt;单例模式 Singleton&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：保证一个类只有一个实例，并提供该实例的全局访问&lt;/li&gt;
+&lt;li&gt;特点
+&lt;ul&gt;
+&lt;li&gt;私有构造函数用于保证不能通过构造函数来创建新的对象实例&lt;/li&gt;
+&lt;li&gt;公有静态函数用于返回唯一的私有静态变量&lt;/li&gt;
+&lt;li&gt;私有静态变量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;简单工厂-simple-factory&#34;&gt;简单工厂 Simple Factory&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：在创建一个对象时不向客户暴露内部细节，并提供一个创建对象的通用接口&lt;/li&gt;
+&lt;li&gt;特点
+&lt;ul&gt;
+&lt;li&gt;把实例化的操作单独放到一个简单工厂类中，让简单工厂类来决定应该用哪个具体子类来实例化&lt;/li&gt;
+&lt;li&gt;把客户类和具体子类的实现解耦，客户类不再需要知道有哪些子类以及应当实例化哪个子类&lt;/li&gt;
+&lt;li&gt;客户类有多个，增加子类时，客户类不需要进行修改&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;工厂方法-factory-method&#34;&gt;工厂方法 Factory Method&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：定义一个创建对象的接口，由子类决定要实例化哪个类&lt;/li&gt;
+&lt;li&gt;特点
+&lt;ul&gt;
+&lt;li&gt;把实例化操作推迟到子类&lt;/li&gt;
+&lt;li&gt;在简单工厂中，由简单工厂类创建对象；在工厂方法中，由子类创建对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;抽象工厂-abstract-factory&#34;&gt;抽象工厂 Abstract Factory&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：提供一个接口，用于创建相关的对象家族&lt;/li&gt;
+&lt;li&gt;特点
+&lt;ul&gt;
+&lt;li&gt;抽象工厂创建的是对象家族，也就是很多对象&lt;/li&gt;
+&lt;li&gt;这些对象是相关的，也就是说必须一起创建&lt;/li&gt;
+&lt;li&gt;工厂方法模式只用于创建单个对象&lt;/li&gt;
+&lt;li&gt;抽象工厂用到了工厂方法来创建单一对象&lt;/li&gt;
+&lt;li&gt;Client 通过 AbstractFactory 同时调用两个方法来创建出两个对象（对象家族），这两个对象有很大的相关性，Client 需要同时创建出这两个对象&lt;/li&gt;
+&lt;li&gt;抽象工厂使用了组合，Cilent 组合了 AbstractFactory，而工厂方法只使用了继承&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;生成器-builder&#34;&gt;生成器 Builder&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：封装一个对象的构造过程，并允许按步骤构造&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;原型-prototype&#34;&gt;原型 Prototype&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;行为型&#34;&gt;行为型&lt;/h3&gt;
+&lt;h4 id=&#34;责任链-chain-of-responsibility&#34;&gt;责任链 Chain of Responsibility&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：使多个对象都有机会处理请求，使请求的发送者和接收者解耦&lt;/li&gt;
+&lt;li&gt;特点
+&lt;ul&gt;
+&lt;li&gt;将对象连成一条链，沿着链发送请求，直到有一个对象处理为止&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;命令-command&#34;&gt;命令 Command&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：将命令封装成对象&lt;/li&gt;
+&lt;li&gt;特点
+&lt;ul&gt;
+&lt;li&gt;使用命令来参数化其它对象&lt;/li&gt;
+&lt;li&gt;将命令放入队列中进行排队&lt;/li&gt;
+&lt;li&gt;将命令的操作记录到日志中&lt;/li&gt;
+&lt;li&gt;支持可撤销的操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;解释器-interpreter&#34;&gt;解释器 Interpreter&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：为语言创建解释器&lt;/li&gt;
+&lt;li&gt;特点
+&lt;ul&gt;
+&lt;li&gt;通常由语言的语法和语法分析来定义&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;迭代器-iterator&#34;&gt;迭代器 Iterator&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：提供一种顺序访问聚合对象元素的方法，并且不暴露聚合对象的内部表示&lt;/li&gt;
+&lt;li&gt;特点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;中介者-mediator&#34;&gt;中介者 Mediator&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：集中相关对象之间复杂的沟通和控制方式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;备忘录-memento&#34;&gt;备忘录 Memento&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：在不违反封装的情况下获得对象的内部状态，从而在需要时可以将对象恢复到最初状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;观察者-observer&#34;&gt;观察者 Observer&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：定义对象之间的一对多依赖，当一个对象状态改变时，它的所有依赖都会收到通知并且自动更新状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;状态-state&#34;&gt;状态 State&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;策略-strategy&#34;&gt;策略 Strategy&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：定义一系列算法，封装每个算法，并使它们可以互换&lt;/li&gt;
+&lt;li&gt;特点
+&lt;ul&gt;
+&lt;li&gt;让算法独立于使用它的客户端&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;模板方法-template-method&#34;&gt;模板方法 Template Method&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：定义算法框架，并将一些步骤的实现延迟到子类&lt;/li&gt;
+&lt;li&gt;特点
+&lt;ul&gt;
+&lt;li&gt;通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;访问者-visitor&#34;&gt;访问者 Visitor&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：为一个对象结构（比如组合结构）增加新能力&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;空对象-null&#34;&gt;空对象 Null&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：用什么都不做的空对象来代替 NULL&lt;/li&gt;
+&lt;li&gt;特点
+&lt;ul&gt;
+&lt;li&gt;一个方法返回 NULL，意味着方法的调用端需要去检查返回值是否是 NULL，这么做会导致非常多的冗余的检查代码&lt;/li&gt;
+&lt;li&gt;如果某一个调用端忘记了做这个检查返回值，而直接使用返回的对象，有可能抛出空指针异常&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;结构型&#34;&gt;结构型&lt;/h3&gt;
+&lt;h4 id=&#34;适配器-adapter&#34;&gt;适配器 Adapter&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：把一个类接口转换成另一个用户需要的接口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;桥接-bridge&#34;&gt;桥接 Bridge&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：将抽象与实现分离开来，使它们可以独立变化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;组合-composite&#34;&gt;组合 Composite&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：将对象组合成树形结构来表示整体/部分的层次关系，允许用户以相同的方式处理单独对象和组合对象&lt;/li&gt;
+&lt;li&gt;特点
+&lt;ul&gt;
+&lt;li&gt;组合对象拥有一个或者多个组件对象，因此组合对象的操作可以委托给组件对象去处理，而组件对象可以是另一个组合对象或者叶子对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;装饰-decorator&#34;&gt;装饰 Decorator&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：为对象动态添加功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;外观-facade&#34;&gt;外观 Facade&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：提供一个统一的接口，用来访问子系统中的一群接口，从而让子系统更容易使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;享元-flyweight&#34;&gt;享元 Flyweight&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：利用共享的方式来支持大量细粒度的对象，这些对象一部分内部状态是相同的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;代理-proxy&#34;&gt;代理 Proxy&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目的：控制对其它对象的访问&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

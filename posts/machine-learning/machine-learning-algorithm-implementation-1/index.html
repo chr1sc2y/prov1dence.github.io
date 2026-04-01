@@ -1,0 +1,162 @@
+<!doctype html><html lang=en dir=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Machine Learning Algorithm Implementation (1): Linear Regression | Zhengyu Chen - 尾張</title>
+<meta name=keywords content><meta name=description content="Linear regression
+
+Goal
+
+fit a linear model, using only the numpy library
+visualize the output, using the matplotlib library
+
+
+Implementation Methods
+
+iterative updates (coordinate descent)
+linear algebra
+
+
+Verification
+
+compare our output to the output of using library sklearn.
+
+
+
+1. Import Library
+Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
+import numpy as np
+import matplotlib.pyplot as plt
+import io
+2. Formula
+The linear model can be expressed as:
+$$
+y = w_0 + \sum_{j = 1}^{m} w_j x_j = \mathbf{w} \cdot \mathbf{x}
+$$"><meta name=author content><link rel=canonical href=http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-1/><link crossorigin=anonymous href=/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-1/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-1/"><meta property="og:site_name" content="Zhengyu Chen - 尾張"><meta property="og:title" content="Machine Learning Algorithm Implementation (1): Linear Regression"><meta property="og:description" content="Linear regression Goal fit a linear model, using only the numpy library visualize the output, using the matplotlib library Implementation Methods iterative updates (coordinate descent) linear algebra Verification compare our output to the output of using library sklearn. 1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
+import numpy as np import matplotlib.pyplot as plt import io 2. Formula The linear model can be expressed as:
+$$ y = w_0 + \sum_{j = 1}^{m} w_j x_j = \mathbf{w} \cdot \mathbf{x} $$"><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-01-30T14:38:43+11:00"><meta property="article:modified_time" content="2019-01-30T14:38:43+11:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Machine Learning Algorithm Implementation (1): Linear Regression"><meta name=twitter:description content="Linear regression
+
+Goal
+
+fit a linear model, using only the numpy library
+visualize the output, using the matplotlib library
+
+
+Implementation Methods
+
+iterative updates (coordinate descent)
+linear algebra
+
+
+Verification
+
+compare our output to the output of using library sklearn.
+
+
+
+1. Import Library
+Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
+import numpy as np
+import matplotlib.pyplot as plt
+import io
+2. Formula
+The linear model can be expressed as:
+$$
+y = w_0 + \sum_{j = 1}^{m} w_j x_j = \mathbf{w} \cdot \mathbf{x}
+$$"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"Machine Learning Algorithm Implementation (1): Linear Regression","item":"http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-1/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Machine Learning Algorithm Implementation (1): Linear Regression","name":"Machine Learning Algorithm Implementation (1): Linear Regression","description":"Linear regression Goal fit a linear model, using only the numpy library visualize the output, using the matplotlib library Implementation Methods iterative updates (coordinate descent) linear algebra Verification compare our output to the output of using library sklearn. 1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).\nimport numpy as np import matplotlib.pyplot as plt import io 2. Formula The linear model can be expressed as:\n$$ y = w_0 + \\sum_{j = 1}^{m} w_j x_j = \\mathbf{w} \\cdot \\mathbf{x} $$\n","keywords":[],"articleBody":"Linear regression Goal fit a linear model, using only the numpy library visualize the output, using the matplotlib library Implementation Methods iterative updates (coordinate descent) linear algebra Verification compare our output to the output of using library sklearn. 1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).\nimport numpy as np import matplotlib.pyplot as plt import io 2. Formula The linear model can be expressed as:\n$$ y = w_0 + \\sum_{j = 1}^{m} w_j x_j = \\mathbf{w} \\cdot \\mathbf{x} $$\nwhere\n$$y$$ is the target variable $$\\mathbf{x} = [x_1, \\ldots, x_m]$$ is a vector of features ($$x_0 = 1$$) $$\\mathbf{w} = [w_0, \\ldots, w_m]$$ are the weights. To fit the model, we should minimise the empirical risk with respect to $$\\vec{w}$$.\nIn this case, this amounts to minimising the sum of squared residuals (square loss):\n$$SSR(\\mathbf{w}) = \\sum_{i=1}^{n}(y_i - \\mathbf{w} \\cdot \\mathbf{x}_i)^2$$\nFor simplicity, we only consider the case $$m = 1$$ (i.e. only one feature excluding the intercept).\n3. Import Data set Let’s use some data of the gold medal race times for marathon winners from 1896 to 2012 of Olympics.\nThe code block below reads the data into a numpy array of floats, and prints the result.\n# CSV file with variables YEAR,TIME csv =\"\"\" 1896,4.47083333333333 1900,4.46472925981123 1904,5.22208333333333 1908,4.1546786744085 1912,3.90331674958541 1920,3.5695126705653 1924,3.8245447722874 1928,3.62483706600308 1932,3.59284275388079 1936,3.53880791562981 1948,3.6701030927835 1952,3.39029110874116 1956,3.43642611683849 1960,3.2058300746534 1964,3.13275664573212 1968,3.32819844373346 1972,3.13583757949204 1976,3.07895880238575 1980,3.10581822490816 1984,3.06552909112454 1988,3.09357348817 1992,3.16111703598373 1996,3.14255243512264 2000,3.08527866650867 2004,3.1026582928467 2008,2.99877552632618 2012,3.03392977050993 \"\"\" # Read into a numpy array as floats olympics = np.genfromtxt(io.BytesIO(csv.encode()), delimiter=\",\") print(olympics) Now we take the race time as the target variable $$y$$ and the year of the race as the only feature $$x = x_1$$.\nx = olympics[:, 0:1] y = olympics[:, 1:2] Plot $$y$$ and $$x$$.\nplt.plot(x, y, 'rx') plt.ylabel(\"y (Race time)\") plt.xlabel(\"x (Year of race)\") plt.show() We can see that a linear model could be a decent fit for this data.\n4. Iterative solution (coordinate descent) Expanding out the sum of square residuals for this simple case (where $$\\mathbf{w}=[w_0, w_1]$$) we have:\n$$SSR(w_0, w_1) = \\sum_{i=1}^{n}(y_i - w_0 - w_1 x_i)^2$$\nLet’s start with an initial guess for the slope $$w_1$$ (which is clearly negative from the plot).\nw1 = -0.5 Then using the maximum likelihood update, we can get the following estimate for the intercept $$w_0$$\n$$w_0 = \\frac{\\sum_{i=1}^{n}(y_i-w_1 x_i)}{n}$$\ndef update_w0(x, y, w1): return (y - w1*x).mean() w0 = update_w0(x, y, w1) print(w0) Similarly, we can update $$w_1$$ based on this new estimate of $$w_0$$\n$$w_1 = \\frac{\\sum_{i=1}^{n} (y_i - w_0) \\times x_i}{\\sum_{i=1}^{n} x_i^2}$$\ndef update_w1(x, y, w0): return ((y - w0)*x).sum()/(x**2).sum() w1 = update_w1(x, y, w0) print(w1) Now let’s examine the quality of fit for these values for the weights $$w_0$$ and $$w_1$$. We create a vector of “test” values x_test and a function to compute the predictions according to the model.\nx_test = np.arange(1890, 2020)[:, None] def predict(x_test, w0, w1): return w0 + w1 * x_test y_test = predict(x_test, w0, w1) print(y_test) Now plot the test predictions with a blue line on the same plot as the data.\ndef plot_fit(x_test, y_test, x, y): plt.plot(x_test, y_test, 'b-') plt.plot(x, y, 'rx') plt.ylabel(\"y (Race time)\") plt.xlabel(\"x (Year of race)\") plt.show() plot_fit(x_test, predict(x_test, w0, w1), x, y) We can compute the sum of square residuals $$SSR(w_0,w_1)$$ on the training set to measure the goodness of fit.\ndef compute_SSR(x, y, w0, w1): return ((y - w0 - w1*x)**2).sum() print(compute_SSR(x, y, w0, w1)) It’s obvious that the fit isn’t very good from the plot.\nWe should repeat the alternating parameter updates many times before the algorithm converges to the optimal weights.\nfor i in np.arange(10000): w1 = update_w1(x, y, w0) w0 = update_w0(x, y, w1) if i % 500 == 0: print(\"Iteration #{}: SSR = {}\".format(i, compute_SSR(x, y, w0, w1))) print(\"Final estimates: w0 = {}; w1 = {}\".format(w0, w1)) Let’s try plotting the result again.\nplot_fit(x_test, predict(x_test, w0, w1), x, y) 5. Linear algebra solution it’s possible to solve for the optimal weights $$\\mathbf{w}^\\star$$ analytically. The solution is\n$$\\mathbf{w}^* = \\left[\\mathbf{X}^\\top \\mathbf{X}\\right]^{-1} \\mathbf{X}^\\top \\mathbf{y}$$\nwhere\n$$\\mathbf{X} = \\begin{pmatrix} 1 \u0026 x_1 \\ 1 \u0026 x_2 \\ \\vdots \u0026 \\vdots \\ 1 \u0026 x_n \\end{pmatrix} \\quad \\text{and} \\quad \\mathbf{y} = \\begin{pmatrix} y_1 \\ y_2 \\ \\vdots \\ y_n\\end{pmatrix}$$\nWe construct $$\\mathbf{X}$$ in the code block below. It’s important to include the $$x_0 = 1$$ column for the bias (intercept).\nX = np.hstack((np.ones_like(x), x)) print(X) Although we can express $$\\mathbf{w}^\\star$$ explicitly in terms of the matrix inverse $$(\\mathbf{X}^\\top \\mathbf{X})^{-1}$$, this isn’t an efficient way to compute $$\\mathbf{w}$$ numerically. It is better instead to solve the following system of linear equations\n$$\\mathbf{X}^\\top\\mathbf{X} \\mathbf{w}^\\star = \\mathbf{X}^\\top\\mathbf{y}$$\nThis can be done in numpy using the function linalg.solve\nw = np.linalg.solve(np.dot(X.T, X), np.dot(X.T, y)) print(w) Plotting this solution\nw0, w1 = w plot_fit(x_test, predict(x_test, w0, w1), x, y) We should verify that the sum of squared residuals $$SSR(w_0, w_1)$$, matches or beats the earlier iterative result.\nprint(compute_SSR(x, y, w0, w1)) The error we computed above is the training error. It doesn’t assess the model’s generalization ability, it only assesses how well it’s performing on the given training data. We can assess the generalization ability of models using held-out evaluation data.\n6. Verification using scikit-learn Now we can use the functionality in sklearn to solve linear regression problems to do the verification.\nUse the LinearRegression module to fit a linear regression model.\nfrom sklearn.linear_model import LinearRegression lr = LinearRegression().fit(x, y) lr.intercept_ # bias weight lr.coef_ # weights lr.score(x,y) ","wordCount":"903","inLanguage":"en","datePublished":"2019-01-30T14:38:43+11:00","dateModified":"2019-01-30T14:38:43+11:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-1/"},"publisher":{"@type":"Organization","name":"Zhengyu Chen - 尾張","logo":{"@type":"ImageObject","url":"http://localhost:1313/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="尾張 (Alt + H)">尾張</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/archives/ title=Posts><span>Posts</span></a></li><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">Machine Learning Algorithm Implementation (1): Linear Regression
+<span class=entry-hint title=Draft><svg height="35" viewBox="0 -960 960 960" fill="currentcolor"><path d="M160-410v-60h3e2v60H160zm0-165v-60h470v60H160zm0-165v-60h470v60H160zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22-4.5 22.5T862.09-380L643-160H520zm3e2-263-37-37 37 37zM580-220h38l121-122-18-19-19-18-122 121v38zm141-141-19-18 37 37-18-19z"/></svg></span></h1><div class=post-meta><span title='2019-01-30 14:38:43 +1100 +1100'>January 30, 2019</span>&nbsp;·&nbsp;5 min</div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#linear-regression aria-label="Linear regression">Linear regression</a><ul><li><a href=#1-import-library aria-label="1. Import Library">1. Import Library</a></li><li><a href=#2-formula aria-label="2. Formula">2. Formula</a></li><li><a href=#3-import-data-set aria-label="3. Import Data set">3. Import Data set</a></li><li><a href=#4-iterative-solution-coordinate-descent aria-label="4. Iterative solution (coordinate descent)">4. Iterative solution (coordinate descent)</a></li><li><a href=#5-linear-algebra-solution aria-label="5. Linear algebra solution">5. Linear algebra solution</a></li><li><a href=#6-verification-using-scikit-learn aria-label="6. Verification using scikit-learn">6. Verification using scikit-learn</a></li></ul></li></ul></div></details></div><div class=post-content><h1 id=linear-regression>Linear regression<a hidden class=anchor aria-hidden=true href=#linear-regression>#</a></h1><ul><li>Goal<ul><li>fit a linear model, using only the <code>numpy</code> library</li><li>visualize the output, using the <code>matplotlib</code> library</li></ul></li><li>Implementation Methods<ul><li>iterative updates (coordinate descent)</li><li>linear algebra</li></ul></li><li>Verification<ul><li>compare our output to the output of using library <code>sklearn</code>.</li></ul></li></ul><h2 id=1-import-library>1. Import Library<a hidden class=anchor aria-hidden=true href=#1-import-library>#</a></h2><p>Firstly we should import the relevant libraries (<code>numpy</code>, <code>matplotlib</code>, etc.).</p><pre tabindex=0><code>import numpy as np
+import matplotlib.pyplot as plt
+import io
+</code></pre><h2 id=2-formula>2. Formula<a hidden class=anchor aria-hidden=true href=#2-formula>#</a></h2><p>The linear model can be expressed as:</p><p>$$
+y = w_0 + \sum_{j = 1}^{m} w_j x_j = \mathbf{w} \cdot \mathbf{x}
+$$</p><p>where</p><ul><li>$$y$$ is the <strong>target variable</strong></li><li>$$\mathbf{x} = [x_1, \ldots, x_m]$$ is a vector of <strong>features</strong> ($$x_0 = 1$$)</li><li>$$\mathbf{w} = [w_0, \ldots, w_m]$$ are the <strong>weights</strong>.</li></ul><p>To fit the model, we should <strong>minimise</strong> the empirical risk with respect to $$\vec{w}$$.</p><p>In this case, this amounts to minimising the sum of squared residuals (square loss):</p><p>$$SSR(\mathbf{w}) = \sum_{i=1}^{n}(y_i - \mathbf{w} \cdot \mathbf{x}_i)^2$$</p><p>For simplicity, we only consider the case $$m = 1$$ (i.e. only one feature excluding the intercept).</p><h2 id=3-import-data-set>3. Import Data set<a hidden class=anchor aria-hidden=true href=#3-import-data-set>#</a></h2><p>Let&rsquo;s use some data of the gold medal race times for marathon winners from 1896 to 2012 of Olympics.</p><p>The code block below reads the data into a numpy array of floats, and prints the result.</p><pre tabindex=0><code># CSV file with variables YEAR,TIME
+csv =&#34;&#34;&#34;
+1896,4.47083333333333
+1900,4.46472925981123
+1904,5.22208333333333
+1908,4.1546786744085
+1912,3.90331674958541
+1920,3.5695126705653
+1924,3.8245447722874
+1928,3.62483706600308
+1932,3.59284275388079
+1936,3.53880791562981
+1948,3.6701030927835
+1952,3.39029110874116
+1956,3.43642611683849
+1960,3.2058300746534
+1964,3.13275664573212
+1968,3.32819844373346
+1972,3.13583757949204
+1976,3.07895880238575
+1980,3.10581822490816
+1984,3.06552909112454
+1988,3.09357348817
+1992,3.16111703598373
+1996,3.14255243512264
+2000,3.08527866650867
+2004,3.1026582928467
+2008,2.99877552632618
+2012,3.03392977050993
+&#34;&#34;&#34;
+
+# Read into a numpy array as floats
+olympics = np.genfromtxt(io.BytesIO(csv.encode()), delimiter=&#34;,&#34;)
+print(olympics)
+</code></pre><p>Now we take the race time as the <strong>target variable</strong> $$y$$ and the year of the race as the only <strong>feature</strong> $$x = x_1$$.</p><pre tabindex=0><code>x = olympics[:, 0:1]
+y = olympics[:, 1:2]
+</code></pre><p>Plot $$y$$ and $$x$$.</p><pre tabindex=0><code>plt.plot(x, y, &#39;rx&#39;)
+plt.ylabel(&#34;y (Race time)&#34;)
+plt.xlabel(&#34;x (Year of race)&#34;)
+plt.show()
+</code></pre><p><img alt=1 loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Machine-Learning/Machine-Learning-Algorithm-Implementation-1/1.png></p><p>We can see that a linear model could be a decent fit for this data.</p><h2 id=4-iterative-solution-coordinate-descent>4. Iterative solution (coordinate descent)<a hidden class=anchor aria-hidden=true href=#4-iterative-solution-coordinate-descent>#</a></h2><p>Expanding out the sum of square residuals for this simple case (where $$\mathbf{w}=[w_0, w_1]$$) we have:</p><p>$$SSR(w_0, w_1) = \sum_{i=1}^{n}(y_i - w_0 - w_1 x_i)^2$$</p><p>Let&rsquo;s start with an initial guess for the slope $$w_1$$ (which is clearly negative from the plot).</p><pre tabindex=0><code>w1 = -0.5
+</code></pre><p>Then using the maximum likelihood update, we can get the following estimate for the intercept $$w_0$$</p><p>$$w_0 = \frac{\sum_{i=1}^{n}(y_i-w_1 x_i)}{n}$$</p><pre tabindex=0><code>def update_w0(x, y, w1):
+    return (y - w1*x).mean()
+
+w0 = update_w0(x, y, w1)
+print(w0)
+</code></pre><p>Similarly, we can update $$w_1$$ based on this new estimate of $$w_0$$</p><p>$$w_1 = \frac{\sum_{i=1}^{n} (y_i - w_0) \times x_i}{\sum_{i=1}^{n} x_i^2}$$</p><pre tabindex=0><code>def update_w1(x, y, w0):
+    return ((y - w0)*x).sum()/(x**2).sum()
+
+w1 = update_w1(x, y, w0)
+print(w1)
+</code></pre><p>Now let&rsquo;s examine the quality of fit for these values for the weights $$w_0$$ and $$w_1$$. We create a vector of &ldquo;test&rdquo; values <code>x_test</code> and a function to compute the predictions according to the model.</p><pre tabindex=0><code>x_test = np.arange(1890, 2020)[:, None]
+
+def predict(x_test, w0, w1): 
+    return w0 + w1 * x_test
+
+y_test = predict(x_test, w0, w1)
+print(y_test)
+</code></pre><p>Now plot the test predictions with a blue line on the same plot as the data.</p><pre tabindex=0><code>def plot_fit(x_test, y_test, x, y): 
+    plt.plot(x_test, y_test, &#39;b-&#39;)
+    plt.plot(x, y, &#39;rx&#39;)
+    plt.ylabel(&#34;y (Race time)&#34;)
+    plt.xlabel(&#34;x (Year of race)&#34;)
+    plt.show()
+
+plot_fit(x_test, predict(x_test, w0, w1), x, y)
+</code></pre><p><img alt=2 loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Machine-Learning/Machine-Learning-Algorithm-Implementation-1/2.png></p><p>We can compute the sum of square residuals $$SSR(w_0,w_1)$$ on the training set to measure the goodness of fit.</p><pre tabindex=0><code>def compute_SSR(x, y, w0, w1): 
+    return ((y - w0 - w1*x)**2).sum()
+    
+print(compute_SSR(x, y, w0, w1))
+</code></pre><p>It&rsquo;s obvious that the fit isn&rsquo;t very good from the plot.</p><p>We should repeat the alternating parameter updates many times before the algorithm converges to the optimal weights.</p><pre tabindex=0><code>for i in np.arange(10000):
+    w1 = update_w1(x, y, w0) 
+    w0 = update_w0(x, y, w1) 
+    if i % 500 == 0:
+        print(&#34;Iteration #{}: SSR = {}&#34;.format(i, compute_SSR(x, y, w0, w1)))
+print(&#34;Final estimates: w0 = {}; w1 = {}&#34;.format(w0, w1))
+</code></pre><p>Let&rsquo;s try plotting the result again.</p><pre tabindex=0><code>plot_fit(x_test, predict(x_test, w0, w1), x, y)
+</code></pre><p><img alt=3 loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Machine-Learning/Machine-Learning-Algorithm-Implementation-1/3.png></p><h2 id=5-linear-algebra-solution>5. Linear algebra solution<a hidden class=anchor aria-hidden=true href=#5-linear-algebra-solution>#</a></h2><p>it&rsquo;s possible to solve for the optimal weights $$\mathbf{w}^\star$$ analytically. The solution is</p><p>$$\mathbf{w}^* = \left[\mathbf{X}^\top \mathbf{X}\right]^{-1} \mathbf{X}^\top \mathbf{y}$$</p><p>where</p><p>$$\mathbf{X} = \begin{pmatrix} 1 & x_1 \ 1 & x_2 \ \vdots & \vdots \ 1 & x_n \end{pmatrix} \quad \text{and} \quad \mathbf{y} = \begin{pmatrix} y_1 \ y_2 \ \vdots \ y_n\end{pmatrix}$$</p><p>We construct $$\mathbf{X}$$ in the code block below. It&rsquo;s important to include the $$x_0 = 1$$ column for the bias (intercept).</p><pre tabindex=0><code>X = np.hstack((np.ones_like(x), x))
+print(X)
+</code></pre><p>Although we can express $$\mathbf{w}^\star$$ explicitly in terms of the matrix inverse $$(\mathbf{X}^\top \mathbf{X})^{-1}$$, this isn&rsquo;t an efficient way to compute $$\mathbf{w}$$ numerically. It is better instead to solve the following system of linear equations</p><p>$$\mathbf{X}^\top\mathbf{X} \mathbf{w}^\star = \mathbf{X}^\top\mathbf{y}$$</p><p>This can be done in numpy using the function linalg.solve</p><pre tabindex=0><code>w = np.linalg.solve(np.dot(X.T, X), np.dot(X.T, y))
+print(w)
+</code></pre><p>Plotting this solution</p><pre tabindex=0><code>w0, w1 = w
+plot_fit(x_test, predict(x_test, w0, w1), x, y)
+</code></pre><p><img alt=4 loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Machine-Learning/Machine-Learning-Algorithm-Implementation-1/4.png></p><p>We should verify that the sum of squared residuals $$SSR(w_0, w_1)$$, matches or beats the earlier iterative result.</p><pre tabindex=0><code>print(compute_SSR(x, y, w0, w1))
+</code></pre><p>The error we computed above is the <strong>training error</strong>. It doesn&rsquo;t assess the model&rsquo;s generalization ability, it only assesses how well it&rsquo;s performing on the given training data. We can assess the generalization ability of models using held-out evaluation data.</p><h2 id=6-verification-using-scikit-learn>6. Verification using scikit-learn<a hidden class=anchor aria-hidden=true href=#6-verification-using-scikit-learn>#</a></h2><p>Now we can use the functionality in <code>sklearn</code> to solve linear regression problems to do the verification.</p><p>Use the <code>LinearRegression</code> module to fit a linear regression model.</p><pre tabindex=0><code>from sklearn.linear_model import LinearRegression
+lr = LinearRegression().fit(x, y)
+
+lr.intercept_ # bias weight
+
+lr.coef_ # weights
+
+lr.score(x,y)
+</code></pre></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-2/><span class=title>« Prev</span><br><span>Machine Learning Algorithm Implementation (2): Logistic Regression</span>
+</a><a class=next href=http://localhost:1313/posts/cpp/smart-pointer/c++-smart-pointer-4/><span class=title>Next »</span><br><span>C++ 智能指针（4）：weak_ptr</span></a></nav></footer></article></main><footer class=footer></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

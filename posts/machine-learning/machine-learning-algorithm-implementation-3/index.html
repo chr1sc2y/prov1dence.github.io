@@ -1,0 +1,216 @@
+<!doctype html><html lang=en dir=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Machine Learning Algorithm Implementation (3): Perceptron | Zhengyu Chen - 尾張</title>
+<meta name=keywords content><meta name=description content="Perceptron
+
+
+Goal
+
+implement the perceptron (a building block of neural networks)
+to assess how the perceptron behaves in two distinct scenarios (separable vs. non-separable data)
+
+
+
+Verification
+
+compare our output to the output of using LogisticRegression function from library sklearn.
+
+
+
+1. Import Library
+Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+2. Synthetic data set
+We&rsquo;ll use the make_classification function from sklearn to generate a synthetic binary classification data set."><meta name=author content><link rel=canonical href=http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-3/><link crossorigin=anonymous href=/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=http://localhost:1313/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-3/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-3/"><meta property="og:site_name" content="Zhengyu Chen - 尾張"><meta property="og:title" content="Machine Learning Algorithm Implementation (3): Perceptron"><meta property="og:description" content="Perceptron Goal
+implement the perceptron (a building block of neural networks) to assess how the perceptron behaves in two distinct scenarios (separable vs. non-separable data) Verification
+compare our output to the output of using LogisticRegression function from library sklearn. 1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
+%matplotlib inline import numpy as np import matplotlib.pyplot as plt 2. Synthetic data set We’ll use the make_classification function from sklearn to generate a synthetic binary classification data set."><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-02-05T00:58:34+11:00"><meta property="article:modified_time" content="2019-02-05T00:58:34+11:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Machine Learning Algorithm Implementation (3): Perceptron"><meta name=twitter:description content="Perceptron
+
+
+Goal
+
+implement the perceptron (a building block of neural networks)
+to assess how the perceptron behaves in two distinct scenarios (separable vs. non-separable data)
+
+
+
+Verification
+
+compare our output to the output of using LogisticRegression function from library sklearn.
+
+
+
+1. Import Library
+Firstly we should import the relevant libraries (numpy, matplotlib, etc.).
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+2. Synthetic data set
+We&rsquo;ll use the make_classification function from sklearn to generate a synthetic binary classification data set."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"Machine Learning Algorithm Implementation (3): Perceptron","item":"http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-3/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Machine Learning Algorithm Implementation (3): Perceptron","name":"Machine Learning Algorithm Implementation (3): Perceptron","description":"Perceptron Goal\nimplement the perceptron (a building block of neural networks) to assess how the perceptron behaves in two distinct scenarios (separable vs. non-separable data) Verification\ncompare our output to the output of using LogisticRegression function from library sklearn. 1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).\n%matplotlib inline import numpy as np import matplotlib.pyplot as plt 2. Synthetic data set We\u0026rsquo;ll use the make_classification function from sklearn to generate a synthetic binary classification data set.\n","keywords":[],"articleBody":"Perceptron Goal\nimplement the perceptron (a building block of neural networks) to assess how the perceptron behaves in two distinct scenarios (separable vs. non-separable data) Verification\ncompare our output to the output of using LogisticRegression function from library sklearn. 1. Import Library Firstly we should import the relevant libraries (numpy, matplotlib, etc.).\n%matplotlib inline import numpy as np import matplotlib.pyplot as plt 2. Synthetic data set We’ll use the make_classification function from sklearn to generate a synthetic binary classification data set.\nThe main advantage of using synthetic data is that we have complete control over the distribution. In particular, we’ll be varying the degree of separability between the two classes by adjusting the class_sep parameter below.\nNow we generate a data set that is almost linearly separable (with class_sep = 2).\nWe use -1 in place of 0 for the negative class, and 1 for the positive class. This is for making the gradient descent update simpler to implement.\nclass_sep = 2 # set the `class_sep` to 2 firstly # class_sep = 0.5 # adjust the `class_sep` to 0.5 later from sklearn.datasets import make_classification X, Y = make_classification(n_samples=200, n_features=2, n_informative=2, n_redundant=0, n_clusters_per_class=1, flip_y=0, class_sep=class_sep, random_state=1) Y[Y==0] = -1 # encode \"negative\" class using -1 rather than 0 plt.plot(X[Y==-1,0], X[Y==-1,1], \"o\", label=\"Y = -1\") plt.plot(X[Y==1,0], X[Y==1,1], \"o\", label=\"Y = 1\") plt.legend() plt.xlabel(\"$x_0$\") plt.ylabel(\"$x_1$\") plt.show() We can see that this data is linearly seperable.\nIn preparation for training and evaluating a perceptron on this data, we randomly partition the data into train/test sets.\nfrom sklearn.model_selection import train_test_split X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random_state=90051) print(\"Training set has {} instances. Test set has {} instances.\".format(X_train.shape[0], X_test.shape[0])) 3. Definition of the perceptron A perceptron is a binary classifier which maps an input vector $$\\mathbf{x}$$ to a binary ouput given by\nwhere $$s(\\mathbf{x}; \\mathbf{w}, b) = \\mathbf{w} \\cdot \\mathbf{x} + b$$. $$\\mathbf{w}$$ is a vector of weights (one for each feature) and $$b$$ is the bias term.\nNow we start by implementing the weighted sum function $$s(\\mathbf{x}; \\mathbf{w}, b)$$.\ndef weighted_sum(X, w, b): \"\"\" Returns an array containing the weighted sum s(x) for each instance x in the feature matrix Arguments: X : numpy array, shape: (n_instances, n_features) feature matrix w : numpy array, shape: (n_features,) weights vector b : float bias term \"\"\" return np.dot(X, w) + b def predict(X, w, b): \"\"\" Returns an array containing the predicted binary labels (-1/1) for each instance in the feature matrix Arguments: X : numpy array, shape: (n_instances, n_features) feature matrix w : numpy array, shape: (n_features,) weights vector b : float bias term \"\"\" return np.where(weighted_sum(X, w, b) \u003e= 0, 1, -1) 4. Perceptron training algorithm We’re now going to implement the perceptron training algorithm.\nThe algorithm is essentially an application of sequential gradient descent (a.k.a. online stochastic gradient descent) to minimise the following empirical loss:\n$$L[\\mathbf{w}, b] = \\frac{1}{n} \\sum_{i = 1}^{n} \\max(0, -y \\cdot s(\\mathbf{x}; \\mathbf{w}, b))$$\nIt’s sequential in that the weights/bias are updated for each training instance—one at a time. After iterating through all of the training instances, we say that we’ve completed an epoch. Typically, multiple epochs are required to get close to the optimal solution.\nNow we write a function called train which implements sequential gradient descent. The function should implement the following pseudocode.\nrepeat $$n_\\mathrm{epochs}$$ times\nfor each $$(\\mathbf{x}, y)$$ pair in the training set\nif the model prediction $$\\hat{y} = f(\\mathbf{x})$$ and $$y$$ differ, make a weight update\nreturn $$\\mathbf{w}$$ and $$b$$\nNote that the weight update in the inner-most loop is given by $$\\mathbf{w} \\gets \\mathbf{w} + \\eta y \\mathbf{x}$$ and $$b \\gets b + \\eta y$$.\ndef train(X, Y, n_epochs, w, b, eta=0.1): \"\"\" Returns updated weight vector w and bias term b Arguments: X : numpy array, shape: (n_instances, n_features) feature matrix Y : numpy array, shape: (n_instances,) target class labels relative to X n_epochs : int number of epochs (full sweeps through X) w : numpy array, shape: (n_features,) initial guess for weights vector b : float initial guess for bias term eta : positive float step size (default: 0.1) \"\"\" for t in range(n_epochs): for i in range(X.shape[0]): yhat = predict(X[i,:], w, b) if yhat != Y[i]: w += eta * Y[i] * X[i,:] b += eta * Y[i] return w, b Test our implementation by running it for 5 epochs. We can get the following result for the weights and bias term: w = [ 0.26746342 -0.96011853]; b = -0.2\n# Initialise weights and bias to zero w = np.zeros(X.shape[1]); b = 0.0 w, b = train(X_train, Y_train, 5, w, b) print(\"w = {}; b = {}\".format(w, b)) 5. Evaluation Now that we’ve trained the perceptron, let’s see how it performs.\nNow we plot the data (training and test sets) along with the decision boundary (which is defined by $${\\mathbf{x}: s(\\mathbf{x}; \\mathbf{w}, b) = 0$$}).\ndef plot_results(X_train, Y_train, X_test, Y_test, score_fn, threshold = 0): # Plot training set plt.plot(X_train[Y_train==-1,0], X_train[Y_train==-1,1], \"o\", label=\"Y=-1, train\") plt.plot(X_train[Y_train==1,0], X_train[Y_train==1,1], \"o\", label=\"Y=1, train\") plt.gca().set_prop_cycle(None) # reset colour cycle # Plot test set plt.plot(X_test[Y_test==-1,0], X_test[Y_test==-1,1], \"x\", label=\"Y=-1, test\") plt.plot(X_test[Y_test==1,0], X_test[Y_test==1,1], \"x\", label=\"Y=1, test\") # Compute axes limits border = 1 x0_lower = X[:,0].min() - border x0_upper = X[:,0].max() + border x1_lower = X[:,1].min() - border x1_upper = X[:,1].max() + border # Generate grid over feature space resolution = 0.01 x0, x1 = np.mgrid[x0_lower:x0_upper:resolution, x1_lower:x1_upper:resolution] grid = np.c_[x0.ravel(), x1.ravel()] s = score_fn(grid).reshape(x0.shape) # Plot decision boundary (where s(x) == 0) plt.contour(x0, x1, s, levels=[0], cmap=\"Greys\", vmin=-0.2, vmax=0.2) plt.legend() plt.xlabel(\"$x_0$\") plt.ylabel(\"$x_1$\") plt.show() plot_results(X_train, Y_train, X_test, Y_test, lambda X: weighted_sum(X, w, b)) The decision boundary is acceptable for class_sep=2.\nTo evaluate the perceptron quantitatively, we use the error rate (proportion of misclassified instances). The error rate is a reasonable evaluation measure to use for this data since the classes are well balanced.\ndef evaluate(X, Y, w, b): \"\"\" Returns the proportion of misclassified instances (error rate) Arguments: X : numpy array, shape: (n_instances, n_features) feature matrix Y : numpy array, shape: (n_instances,) target class labels relative to X w : numpy array, shape: (n_features,) weights vector b : float bias term \"\"\" return np.mean(predict(X, w, b) != Y) print(evaluate(X_train, Y_train, w, b)) The evaluate function computes the error rate on the training data, but it is not a good idea in general.\nCompute the error rate on the test set instead.\nprint(evaluate(X_test, Y_test, w, b)) The error on the test set is actually smaller than the error on the training set. This suggests we may not have a problem with overfitting (but it’s difficult to say for such a small sample size).\nNow we examine how the train/test error rates vary as a function of the number of epochs. Note that careful tuning of the learning rate is needed to get sensible behaviour. Setting $$\\eta(t) = \\frac{1}{1+t}$$ where $$t$$ is the epoch number often works well.\nw_hat = np.zeros(X_train.shape[1]); b_hat = 0 n_epochs = 100 # Initialize arrays to store errors for each epoch train_error = np.empty(n_epochs) heldout_error = np.empty(n_epochs) for t in range(n_epochs): # here we use a learning rate, which decays with each epoch eta = 1./(1+t) w_hat, b_hat = train(X_train, Y_train, 1, w_hat, b_hat, eta=eta) train_error[t] = evaluate(X_train, Y_train, w_hat, b_hat) heldout_error[t] = evaluate(X_test, Y_test, w_hat, b_hat) plt.plot(train_error, label = 'Train error') plt.plot(heldout_error, label = 'Test error') plt.legend() plt.xlabel('Epoch, $t$') plt.ylabel('Error') plt.show() The train/test errors are quite close. This suggests we may not have a problem with overfitting.\nThe model is relatively stable and converges quite rapidly for class_sep=2. However, The model is highly unstable for class_sep=0.5 if we adjust the class_sep to 0.5.\nplot_results(X_train, Y_train, X_test, Y_test, lambda X: weighted_sum(X, w_hat, b_hat)) 6. Repeat with class overlap By now we’ve probably concluded that the perceptron performs well on the data with class_sep=2, which is to be expected as it’s roughly linearly separable.\nHowever, the perceptron can actually fail on non-linearly separable data if we re-generate the synthetic data set with class_sep=0.5 and repeat the program.\n7. Comparison with logistic regression We know that the perceptron is not robust to binary classification problems with overlapping classes. But how does logistic regression fare in this case?\nRun the code block below to fit a logistic regression model using sklearn. We may wish to switch off regularisation (alter the C parameter) for a fairer comparison with the perceptron.\nfrom sklearn.linear_model import LogisticRegression clf = LogisticRegression() clf.fit(X_train, Y_train) Let’s plot the decision boundary.\nplot_results(X_train, Y_train, X_test, Y_test, lambda X: clf.decision_function(X)) The logistic regression classifier seems to produce a more reasonable “approximate” solution in the presence of class overlap. The support vector machine was designed to address this problem.\nThe error rate is lower for logistic regression (around 0.23). The error rate for the perceptron fluctuates, but never seems to reach a comparably low value.\n1.0 - clf.score(X_test, Y_test) ","wordCount":"1460","inLanguage":"en","datePublished":"2019-02-05T00:58:34+11:00","dateModified":"2019-02-05T00:58:34+11:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-3/"},"publisher":{"@type":"Organization","name":"Zhengyu Chen - 尾張","logo":{"@type":"ImageObject","url":"http://localhost:1313/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="尾張 (Alt + H)">尾張</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/archives/ title=Posts><span>Posts</span></a></li><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">Machine Learning Algorithm Implementation (3): Perceptron
+<span class=entry-hint title=Draft><svg height="35" viewBox="0 -960 960 960" fill="currentcolor"><path d="M160-410v-60h3e2v60H160zm0-165v-60h470v60H160zm0-165v-60h470v60H160zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22-4.5 22.5T862.09-380L643-160H520zm3e2-263-37-37 37 37zM580-220h38l121-122-18-19-19-18-122 121v38zm141-141-19-18 37 37-18-19z"/></svg></span></h1><div class=post-meta><span title='2019-02-05 00:58:34 +1100 +1100'>February 5, 2019</span>&nbsp;·&nbsp;7 min</div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#perceptron aria-label=Perceptron>Perceptron</a><ul><li><a href=#1-import-library aria-label="1. Import Library">1. Import Library</a></li><li><a href=#2-synthetic-data-set aria-label="2. Synthetic data set">2. Synthetic data set</a></li><li><a href=#3-definition-of-the-perceptron aria-label="3. Definition of the perceptron">3. Definition of the perceptron</a></li><li><a href=#4-perceptron-training-algorithm aria-label="4. Perceptron training algorithm">4. Perceptron training algorithm</a></li><li><a href=#5-evaluation aria-label="5. Evaluation">5. Evaluation</a></li><li><a href=#6-repeat-with-class-overlap aria-label="6. Repeat with class overlap">6. Repeat with class overlap</a></li><li><a href=#7-comparison-with-logistic-regression aria-label="7. Comparison with logistic regression">7. Comparison with logistic regression</a></li></ul></li></ul></div></details></div><div class=post-content><h1 id=perceptron>Perceptron<a hidden class=anchor aria-hidden=true href=#perceptron>#</a></h1><ul><li><p>Goal</p><ul><li>implement the perceptron (a building block of neural networks)</li><li>to assess how the perceptron behaves in two distinct scenarios (separable vs. non-separable data)</li></ul></li><li><p>Verification</p><ul><li>compare our output to the output of using <code>LogisticRegression</code> function from library <code>sklearn</code>.</li></ul></li></ul><h2 id=1-import-library>1. Import Library<a hidden class=anchor aria-hidden=true href=#1-import-library>#</a></h2><p>Firstly we should import the relevant libraries (<code>numpy</code>, <code>matplotlib</code>, etc.).</p><pre tabindex=0><code>%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+</code></pre><h2 id=2-synthetic-data-set>2. Synthetic data set<a hidden class=anchor aria-hidden=true href=#2-synthetic-data-set>#</a></h2><p>We&rsquo;ll use the <code>make_classification</code> function from <code>sklearn</code> to generate a synthetic binary classification data set.</p><p>The main advantage of using synthetic data is that we have complete control over the distribution.
+In particular, we&rsquo;ll be varying the <strong>degree of separability</strong> between the two classes by adjusting the <code>class_sep</code> parameter below.</p><p>Now we generate a data set that is almost linearly separable (with <code>class_sep = 2</code>).</p><p>We use <code>-1</code> in place of <code>0</code> for the negative class, and <code>1</code> for the positive class.
+This is for making the gradient descent update simpler to implement.</p><pre tabindex=0><code>class_sep = 2 # set the `class_sep` to 2 firstly
+# class_sep = 0.5 # adjust the `class_sep` to 0.5 later
+
+from sklearn.datasets import make_classification
+X, Y = make_classification(n_samples=200, n_features=2, n_informative=2, 
+                           n_redundant=0, n_clusters_per_class=1, flip_y=0,
+                           class_sep=class_sep, random_state=1)
+Y[Y==0] = -1 # encode &#34;negative&#34; class using -1 rather than 0
+plt.plot(X[Y==-1,0], X[Y==-1,1], &#34;o&#34;, label=&#34;Y = -1&#34;)
+plt.plot(X[Y==1,0], X[Y==1,1], &#34;o&#34;, label=&#34;Y = 1&#34;)
+plt.legend()
+plt.xlabel(&#34;$x_0$&#34;)
+plt.ylabel(&#34;$x_1$&#34;)
+plt.show()
+</code></pre><p><img alt=1 loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/1.png></p><p>We can see that this data is linearly seperable.</p><p>In preparation for training and evaluating a perceptron on this data, we randomly partition the data into train/test sets.</p><pre tabindex=0><code>from sklearn.model_selection import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random_state=90051)
+print(&#34;Training set has {} instances. Test set has {} instances.&#34;.format(X_train.shape[0], X_test.shape[0]))
+</code></pre><h2 id=3-definition-of-the-perceptron>3. Definition of the perceptron<a hidden class=anchor aria-hidden=true href=#3-definition-of-the-perceptron>#</a></h2><p>A perceptron is a binary classifier which maps an input vector $$\mathbf{x}$$ to a binary ouput given by</p><p><img alt=0 loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/0.png></p><p>where $$s(\mathbf{x}; \mathbf{w}, b) = \mathbf{w} \cdot \mathbf{x} + b$$.
+$$\mathbf{w}$$ is a vector of weights (one for each feature) and $$b$$ is the bias term.</p><p>Now we start by implementing the weighted sum function $$s(\mathbf{x}; \mathbf{w}, b)$$.</p><pre tabindex=0><code>def weighted_sum(X, w, b):
+    &#34;&#34;&#34;
+    Returns an array containing the weighted sum s(x) for each instance x in the feature matrix
+    
+    Arguments:
+    X : numpy array, shape: (n_instances, n_features)
+        feature matrix
+    w : numpy array, shape: (n_features,)
+        weights vector
+    b : float
+        bias term
+    &#34;&#34;&#34;
+    return np.dot(X, w) + b
+
+def predict(X, w, b):
+    &#34;&#34;&#34;
+    Returns an array containing the predicted binary labels (-1/1) for each instance in the feature matrix
+    
+    Arguments:
+    X : numpy array, shape: (n_instances, n_features)
+        feature matrix
+    w : numpy array, shape: (n_features,)
+        weights vector
+    b : float
+        bias term
+    &#34;&#34;&#34;
+    return np.where(weighted_sum(X, w, b) &gt;= 0, 1, -1)
+</code></pre><h2 id=4-perceptron-training-algorithm>4. Perceptron training algorithm<a hidden class=anchor aria-hidden=true href=#4-perceptron-training-algorithm>#</a></h2><p>We&rsquo;re now going to implement the perceptron training algorithm.</p><p>The algorithm is essentially an application of <strong>sequential gradient descent</strong> (a.k.a. <strong>online stochastic gradient descent</strong>) to minimise the following empirical loss:</p><p>$$L[\mathbf{w}, b] = \frac{1}{n} \sum_{i = 1}^{n} \max(0, -y \cdot s(\mathbf{x}; \mathbf{w}, b))$$</p><p>It&rsquo;s <strong>sequential</strong> in that the weights/bias are updated for each training instance—one at a time.
+After iterating through all of the training instances, we say that we&rsquo;ve completed an <strong>epoch</strong>.
+Typically, multiple epochs are required to get close to the optimal solution.</p><p>Now we write a function called <code>train</code> which implements sequential gradient descent. The function should implement the following pseudocode.</p><blockquote><p>repeat $$n_\mathrm{epochs}$$ times</p></blockquote><blockquote><blockquote><p>for each $$(\mathbf{x}, y)$$ pair in the training set</p></blockquote></blockquote><blockquote><blockquote><blockquote><p>if the model prediction $$\hat{y} = f(\mathbf{x})$$ and $$y$$ differ, make a weight update</p></blockquote></blockquote></blockquote><blockquote><p>return $$\mathbf{w}$$ and $$b$$</p></blockquote><p>Note that the weight update in the inner-most loop is given by $$\mathbf{w} \gets \mathbf{w} + \eta y \mathbf{x}$$ and $$b \gets b + \eta y$$.</p><pre tabindex=0><code>def train(X, Y, n_epochs, w, b, eta=0.1):
+    &#34;&#34;&#34;
+    Returns updated weight vector w and bias term b
+    
+    Arguments:
+    X : numpy array, shape: (n_instances, n_features)
+        feature matrix
+    Y : numpy array, shape: (n_instances,)
+        target class labels relative to X
+    n_epochs : int
+        number of epochs (full sweeps through X)
+    w : numpy array, shape: (n_features,)
+        initial guess for weights vector
+    b : float
+        initial guess for bias term
+    eta : positive float
+        step size (default: 0.1)
+    &#34;&#34;&#34;
+    for t in range(n_epochs):
+        for i in range(X.shape[0]):
+            yhat = predict(X[i,:], w, b)
+            if yhat != Y[i]:
+                w += eta * Y[i] * X[i,:]
+                b += eta * Y[i]
+    return w, b
+</code></pre><p>Test our implementation by running it for 5 epochs. We can get the following result for the weights and bias term:
+<code>w = [ 0.26746342 -0.96011853]; b = -0.2</code></p><pre tabindex=0><code># Initialise weights and bias to zero
+w = np.zeros(X.shape[1]); b = 0.0
+
+w, b = train(X_train, Y_train, 5, w, b)
+print(&#34;w = {}; b = {}&#34;.format(w, b))
+</code></pre><h2 id=5-evaluation>5. Evaluation<a hidden class=anchor aria-hidden=true href=#5-evaluation>#</a></h2><p>Now that we&rsquo;ve trained the perceptron, let&rsquo;s see how it performs.</p><p>Now we plot the data (training and test sets) along with the decision boundary (which is defined by $${\mathbf{x}: s(\mathbf{x}; \mathbf{w}, b) = 0$$}).</p><pre tabindex=0><code>def plot_results(X_train, Y_train, X_test, Y_test, score_fn, threshold = 0):
+    # Plot training set
+    plt.plot(X_train[Y_train==-1,0], X_train[Y_train==-1,1], &#34;o&#34;, label=&#34;Y=-1, train&#34;)
+    plt.plot(X_train[Y_train==1,0], X_train[Y_train==1,1], &#34;o&#34;, label=&#34;Y=1, train&#34;)
+    plt.gca().set_prop_cycle(None) # reset colour cycle
+
+    # Plot test set
+    plt.plot(X_test[Y_test==-1,0], X_test[Y_test==-1,1], &#34;x&#34;, label=&#34;Y=-1, test&#34;)
+    plt.plot(X_test[Y_test==1,0], X_test[Y_test==1,1], &#34;x&#34;, label=&#34;Y=1, test&#34;)
+
+    # Compute axes limits
+    border = 1
+    x0_lower = X[:,0].min() - border
+    x0_upper = X[:,0].max() + border
+    x1_lower = X[:,1].min() - border
+    x1_upper = X[:,1].max() + border
+
+    # Generate grid over feature space
+    resolution = 0.01
+    x0, x1 = np.mgrid[x0_lower:x0_upper:resolution, x1_lower:x1_upper:resolution]
+    grid = np.c_[x0.ravel(), x1.ravel()]
+    s = score_fn(grid).reshape(x0.shape)
+
+    # Plot decision boundary (where s(x) == 0)
+    plt.contour(x0, x1, s, levels=[0], cmap=&#34;Greys&#34;, vmin=-0.2, vmax=0.2)
+
+    plt.legend()
+    plt.xlabel(&#34;$x_0$&#34;)
+    plt.ylabel(&#34;$x_1$&#34;)
+    plt.show()
+    
+plot_results(X_train, Y_train, X_test, Y_test, lambda X: weighted_sum(X, w, b))
+</code></pre><p><img alt=2 loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/2.png></p><p>The decision boundary is acceptable for <code>class_sep=2</code>.</p><p>To evaluate the perceptron quantitatively, we use the error rate (proportion of misclassified instances).
+The error rate is a reasonable evaluation measure to use for this data since the classes are well balanced.</p><pre tabindex=0><code>def evaluate(X, Y, w, b):
+    &#34;&#34;&#34;
+    Returns the proportion of misclassified instances (error rate)
+    
+    Arguments:
+    X : numpy array, shape: (n_instances, n_features)
+        feature matrix
+    Y : numpy array, shape: (n_instances,)
+        target class labels relative to X
+    w : numpy array, shape: (n_features,)
+        weights vector
+    b : float
+        bias term
+    &#34;&#34;&#34;
+    return np.mean(predict(X, w, b) != Y)
+
+print(evaluate(X_train, Y_train, w, b))
+</code></pre><p>The <code>evaluate</code> function computes the error rate on the training data, but it is not a good idea in general.</p><p>Compute the error rate on the test set instead.</p><pre tabindex=0><code>print(evaluate(X_test, Y_test, w, b))
+</code></pre><p>The error on the test set is actually smaller than the error on the training set. This suggests we may not have a problem with overfitting (but it&rsquo;s difficult to say for such a small sample size).</p><p>Now we examine how the train/test error rates vary as a function of the number of epochs.
+Note that careful tuning of the learning rate is needed to get sensible behaviour.
+Setting $$\eta(t) = \frac{1}{1+t}$$ where $$t$$ is the epoch number often works well.</p><pre tabindex=0><code>w_hat = np.zeros(X_train.shape[1]); b_hat = 0
+n_epochs = 100
+
+# Initialize arrays to store errors for each epoch
+train_error = np.empty(n_epochs)
+heldout_error = np.empty(n_epochs)
+
+for t in range(n_epochs):
+    # here we use a learning rate, which decays with each epoch
+    eta = 1./(1+t)
+    w_hat, b_hat = train(X_train, Y_train, 1, w_hat, b_hat, eta=eta)    
+    train_error[t] = evaluate(X_train, Y_train, w_hat, b_hat)
+    heldout_error[t] = evaluate(X_test, Y_test, w_hat, b_hat)
+
+plt.plot(train_error, label = &#39;Train error&#39;)
+plt.plot(heldout_error, label = &#39;Test error&#39;)
+plt.legend()
+plt.xlabel(&#39;Epoch, $t$&#39;)
+plt.ylabel(&#39;Error&#39;)
+plt.show()
+</code></pre><p><img alt=3 loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/3.png></p><p>The train/test errors are quite close. This suggests we may not have a problem with overfitting.</p><p>The model is relatively stable and converges quite rapidly for <code>class_sep=2</code>. However, The model is highly unstable for <code>class_sep=0.5</code> if we adjust the <code>class_sep</code> to 0.5.</p><pre tabindex=0><code>plot_results(X_train, Y_train, X_test, Y_test, lambda X: weighted_sum(X, w_hat, b_hat))
+</code></pre><p><img alt=4 loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/4.png></p><h2 id=6-repeat-with-class-overlap>6. Repeat with class overlap<a hidden class=anchor aria-hidden=true href=#6-repeat-with-class-overlap>#</a></h2><p>By now we&rsquo;ve probably concluded that the perceptron performs well on the data with <code>class_sep=2</code>, which is to be expected as it&rsquo;s roughly linearly separable.</p><p>However, the perceptron can actually fail on non-linearly separable data if we re-generate the synthetic data set with <code>class_sep=0.5</code> and repeat the program.</p><h2 id=7-comparison-with-logistic-regression>7. Comparison with logistic regression<a hidden class=anchor aria-hidden=true href=#7-comparison-with-logistic-regression>#</a></h2><p>We know that the perceptron is not robust to binary classification problems with overlapping classes.
+But how does logistic regression fare in this case?</p><p>Run the code block below to fit a logistic regression model using <code>sklearn</code>.
+We may wish to switch off regularisation (alter the <code>C</code> parameter) for a fairer comparison with the perceptron.</p><pre tabindex=0><code>from sklearn.linear_model import LogisticRegression
+clf = LogisticRegression()
+clf.fit(X_train, Y_train)
+</code></pre><p>Let&rsquo;s plot the decision boundary.</p><pre tabindex=0><code>plot_results(X_train, Y_train, X_test, Y_test, lambda X: clf.decision_function(X))
+</code></pre><p><img alt=5 loading=lazy src=https://raw.githubusercontent.com/chr1sc2y/warehouse-deprecated/refs/heads/main/resources/Machine-Learning/Machine-Learning-Algorithm-Implementation-3/5.png></p><p>The logistic regression classifier seems to produce a more reasonable &ldquo;approximate&rdquo; solution in the presence of class overlap. The support vector machine was designed to address this problem.</p><p>The error rate is lower for logistic regression (around 0.23). The error rate for the perceptron fluctuates, but never seems to reach a comparably low value.</p><pre tabindex=0><code>1.0 - clf.score(X_test, Y_test)
+</code></pre></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=http://localhost:1313/posts/leetcode/560/><span class=title>« Prev</span><br><span>LeetCode 560 和为K的子数组</span>
+</a><a class=next href=http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-2/><span class=title>Next »</span><br><span>Machine Learning Algorithm Implementation (2): Logistic Regression</span></a></nav></footer></article></main><footer class=footer></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

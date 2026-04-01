@@ -6,8 +6,18 @@
     <description>Recent content on Zhengyu Chen - 尾張</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Mar 2026 08:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 01 Apr 2026 10:00:00 +0800</lastBuildDate>
     <atom:link href="https://prov1dence.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Claude Code 架构解析：从源码看现代 AI Agent 的四大核心设计</title>
+      <link>https://prov1dence.top/posts/ai-agent/claude-code-architecture/</link>
+      <pubDate>Wed, 01 Apr 2026 10:00:00 +0800</pubDate>
+      <guid>https://prov1dence.top/posts/ai-agent/claude-code-architecture/</guid>
+      <description>&lt;h1 id=&#34;claude-code-架构解析从源码看现代-ai-agent-的四大核心设计&#34;&gt;Claude Code 架构解析：从源码看现代 AI Agent 的四大核心设计&lt;/h1&gt;
+&lt;p&gt;Claude Code 是 Anthropic 于 2025 年 2 月发布的 AI 编程 Agent，内部代号 &lt;strong&gt;Tengu&lt;/strong&gt;（天狗）。从第一个 v0.2 beta 到泄露时的 v2.1.88，Claude Code 在一年多的时间里经历了快速迭代，陆续引入了后台 Agent 支持、auto 权限模式、MCP 服务器集成、Agent Teams 多 Agent 协作等功能。与 LangChain、Google ADK 等以&amp;quot;框架&amp;quot;自居的项目不同，Claude Code 本身是一个面向终端用户的产品，它不提供 SDK 让开发者构建自己的 Agent，而是直接作为一个可以在终端中运行的编程伙伴存在。这个定位差异决定了它的架构设计面临着一组完全不同的约束：不需要考虑可扩展性和可组合性这些框架层面的抽象问题，但必须在安全性、上下文管理、流式交互和错误恢复等工程维度上做到生产级可靠。&lt;/p&gt;
+&lt;p&gt;2026 年 3 月底，Claude Code 的完整 TypeScript 源码因一次 npm 发布配置失误而被公开。安全研究者 Chaofan Shou 发现 Anthropic 在向 npm 发布 v2.1.88 版本时，遗留了构建产物中的 &lt;code&gt;.map&lt;/code&gt; 文件（Source Map），该文件指向了 Cloudflare R2 存储桶上一份未经混淆的源码压缩包。多个 GitHub 镜像仓库迅速备份了代码，Anthropic 虽然在数小时内推送了更新并删除旧版本，但源码已无法收回。&lt;/p&gt;
+&lt;p&gt;这份意外泄露的代码库包含近 2000 个文件、超过 50 万行 TypeScript 代码，涵盖了完整的 Agent 循环、40 余种工具实现、权限管线、上下文压缩策略，以及 44 个内部 feature flag 背后的未发布功能。它为我们提供了一个从源码级别审视工业级 AI Agent 内部设计的罕见机会。Anthropic 在 Claude Code 上贯彻的核心设计哲学是 &lt;strong&gt;&amp;ldquo;Less scaffolding, more model&amp;rdquo;&lt;/strong&gt;，即尽可能信任模型的推理能力，将系统复杂度从编排层转移到模型自身。这意味着没有 DAG、没有分类器、没有 RAG 系统，整个架构的核心是一个朴素的推理-行动循环。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>LangChain 与 LangGraph 架构解析：从链式调用到图驱动的 Agent 编排</title>
       <link>https://prov1dence.top/posts/ai-agent/langchain-langgraph-architecture/</link>

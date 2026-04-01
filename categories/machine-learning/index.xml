@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Machine Learning on Zhengyu Chen - 尾張</title>
+    <link>http://localhost:1313/categories/machine-learning/</link>
+    <description>Recent content in Machine Learning on Zhengyu Chen - 尾張</description>
+    <generator>Hugo -- 0.143.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 Feb 2019 00:58:34 +1100</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Machine Learning Algorithm Implementation (3): Perceptron</title>
+      <link>http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-3/</link>
+      <pubDate>Tue, 05 Feb 2019 00:58:34 +1100</pubDate>
+      <guid>http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-3/</guid>
+      <description>&lt;h1 id=&#34;perceptron&#34;&gt;Perceptron&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Goal&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;implement the perceptron (a building block of neural networks)&lt;/li&gt;
+&lt;li&gt;to assess how the perceptron behaves in two distinct scenarios (separable vs. non-separable data)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Verification&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;compare our output to the output of using &lt;code&gt;LogisticRegression&lt;/code&gt; function from library &lt;code&gt;sklearn&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;1-import-library&#34;&gt;1. Import Library&lt;/h2&gt;
+&lt;p&gt;Firstly we should import the relevant libraries (&lt;code&gt;numpy&lt;/code&gt;, &lt;code&gt;matplotlib&lt;/code&gt;, etc.).&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;2-synthetic-data-set&#34;&gt;2. Synthetic data set&lt;/h2&gt;
+&lt;p&gt;We&amp;rsquo;ll use the &lt;code&gt;make_classification&lt;/code&gt; function from &lt;code&gt;sklearn&lt;/code&gt; to generate a synthetic binary classification data set.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Machine Learning Algorithm Implementation (2): Logistic Regression</title>
+      <link>http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-2/</link>
+      <pubDate>Fri, 01 Feb 2019 14:00:16 +1100</pubDate>
+      <guid>http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-2/</guid>
+      <description>&lt;h1 id=&#34;logistic-regression&#34;&gt;Logistic Regression&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Goal
+&lt;ul&gt;
+&lt;li&gt;implementing L2-regularised logistic regression, using &lt;code&gt;scipy&lt;/code&gt; and &lt;code&gt;numpy&lt;/code&gt; library&lt;/li&gt;
+&lt;li&gt;apply polynomial basis expansion and L2 regularisation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Implementation Methods
+&lt;ul&gt;
+&lt;li&gt;hill-climbing algorithm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Verification
+&lt;ul&gt;
+&lt;li&gt;compare our output to the output of using library &lt;code&gt;sklearn&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;1-import-library&#34;&gt;1. Import Library&lt;/h2&gt;
+&lt;p&gt;Firstly we should import the relevant libraries (&lt;code&gt;numpy&lt;/code&gt;, &lt;code&gt;matplotlib&lt;/code&gt;, etc.).&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;2-binary-classification-data&#34;&gt;2. Binary classification data&lt;/h2&gt;
+&lt;p&gt;Firstly, we generate some binary classification data using the &lt;code&gt;make_circles&lt;/code&gt; function from &lt;code&gt;sklearn&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Machine Learning Algorithm Implementation (1): Linear Regression</title>
+      <link>http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-1/</link>
+      <pubDate>Wed, 30 Jan 2019 14:38:43 +1100</pubDate>
+      <guid>http://localhost:1313/posts/machine-learning/machine-learning-algorithm-implementation-1/</guid>
+      <description>&lt;h1 id=&#34;linear-regression&#34;&gt;Linear regression&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Goal
+&lt;ul&gt;
+&lt;li&gt;fit a linear model, using only the &lt;code&gt;numpy&lt;/code&gt; library&lt;/li&gt;
+&lt;li&gt;visualize the output, using the &lt;code&gt;matplotlib&lt;/code&gt; library&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Implementation Methods
+&lt;ul&gt;
+&lt;li&gt;iterative updates (coordinate descent)&lt;/li&gt;
+&lt;li&gt;linear algebra&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Verification
+&lt;ul&gt;
+&lt;li&gt;compare our output to the output of using library &lt;code&gt;sklearn&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;1-import-library&#34;&gt;1. Import Library&lt;/h2&gt;
+&lt;p&gt;Firstly we should import the relevant libraries (&lt;code&gt;numpy&lt;/code&gt;, &lt;code&gt;matplotlib&lt;/code&gt;, etc.).&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import numpy as np
+import matplotlib.pyplot as plt
+import io
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;2-formula&#34;&gt;2. Formula&lt;/h2&gt;
+&lt;p&gt;The linear model can be expressed as:&lt;/p&gt;
+&lt;p&gt;$$
+y = w_0 + \sum_{j = 1}^{m} w_j x_j = \mathbf{w} \cdot \mathbf{x}
+$$&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
